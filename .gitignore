@@ -8,3 +8,7 @@ wandb/
 *.npz
 *.log
 .env
+# local agent instructions (not part of the project)
+AGENTS.md
+CLAUDE.md
+docs/FUNCTION_DOCUMENTATION.md

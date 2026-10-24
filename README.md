@@ -37,7 +37,7 @@ scripts/
   translit_try.py            served vs clean on any words
   track_translit.py          mirror a training run to W&B
 tests/
-docs/  TRANSLITERATOR.md (start here), DECISIONS.md, FUNCTION_DOCUMENTATION.md
+docs/  TRANSLITERATOR.md (start here), DECISIONS.md
 reports/                   results (JSON), e.g. translit_unified.json
 data/   (not in git)       pairs, mined pairs, word lists, lexicon, raw sources (2.2 GB in data/src)
 models/ (not in git)       model (A), model_b (B, served), model_e (E, served), unified/ (clean candidates)
