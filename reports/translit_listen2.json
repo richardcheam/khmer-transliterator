@@ -1,0 +1,133 @@
+{
+ "judged": 12,
+ "expected": 12,
+ "total": {
+  "arm_b": 9,
+  "served": 2,
+  "same": 1
+ },
+ "rows": [
+  {
+   "word": "keb",
+   "group": "name",
+   "notes": "",
+   "preferred": "arm_b"
+  },
+  {
+   "word": "kimya",
+   "group": "name",
+   "notes": "",
+   "preferred": "served"
+  },
+  {
+   "word": "sary",
+   "group": "name",
+   "notes": "",
+   "preferred": "arm_b"
+  },
+  {
+   "word": "galabru",
+   "group": "name",
+   "notes": "",
+   "preferred": "arm_b"
+  },
+  {
+   "word": "naradipo",
+   "group": "name",
+   "notes": "",
+   "preferred": "arm_b"
+  },
+  {
+   "word": "davin",
+   "group": "name",
+   "notes": "",
+   "preferred": "arm_b"
+  },
+  {
+   "word": "pisith",
+   "group": "name",
+   "notes": "",
+   "preferred": "arm_b"
+  },
+  {
+   "word": "meng",
+   "group": "name",
+   "notes": "",
+   "preferred": "arm_b"
+  },
+  {
+   "word": "suhana",
+   "group": "name",
+   "notes": "",
+   "preferred": "arm_b"
+  },
+  {
+   "word": "phallin",
+   "group": "name",
+   "notes": "",
+   "preferred": "served"
+  },
+  {
+   "word": "lamborghini",
+   "group": "loan",
+   "notes": "",
+   "preferred": "arm_b"
+  },
+  {
+   "word": "original",
+   "group": "loan",
+   "notes": "this is wrong, i heard: orginal, there is no រី sound for \"ri\"",
+   "preferred": "same"
+  }
+ ],
+ "spellings": {
+  "keb": {
+   "served": "កិប",
+   "arm_b": "កែប"
+  },
+  "kimya": {
+   "served": "គិម្យា",
+   "arm_b": "គីមីយ៉ា"
+  },
+  "sary": {
+   "served": "ស្អយ",
+   "arm_b": "សារី"
+  },
+  "galabru": {
+   "served": "ងឡាប់រូ",
+   "arm_b": "ហ្គាឡាប្រ៊ូ"
+  },
+  "naradipo": {
+   "served": "ណារាដិពោ",
+   "arm_b": "ណារ៉ាឌីប៉ូ"
+  },
+  "davin": {
+   "served": "ដាវិន",
+   "arm_b": "ដាវីន"
+  },
+  "pisith": {
+   "served": "ពិសិទ្ធ",
+   "arm_b": "ពិសិដ្ឋ"
+  },
+  "meng": {
+   "served": "ម៉ែង",
+   "arm_b": "ម៉េង"
+  },
+  "suhana": {
+   "served": "សុហណា",
+   "arm_b": "ស៊ូហាណា"
+  },
+  "phallin": {
+   "served": "ផល្លិន",
+   "arm_b": "ហ្វាលីន"
+  },
+  "lamborghini": {
+   "served": "ឡាមបុហ្គ៊ីនី",
+   "arm_b": "ឡាំបូហ្គីនី"
+  },
+  "original": {
+   "served": "អូរីហ្គ៊ីណាល",
+   "arm_b": "អូរីហ្គីណាល់"
+  }
+ }
+}

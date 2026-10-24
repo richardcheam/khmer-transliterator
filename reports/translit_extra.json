@@ -1,0 +1,10 @@
+{
+ "pairs": 35291,
+ "latin_forms": 25629,
+ "excluded": {
+  "listed_latin": 1067,
+  "test_khmer": 176
+ },
+ "latin_forms_also_in_test2_names": 107,
+ "test2_name_words": 223
+}

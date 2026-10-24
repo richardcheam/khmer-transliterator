@@ -1,0 +1,17 @@
+{
+ "pages": 32587,
+ "bracket_phrases": 7474,
+ "word_pairs_kept": 3532,
+ "by_class": {
+  "foreign": 2354,
+  "khmer_like": 1178
+ },
+ "latin_forms": 3157,
+ "dropped": {
+  "low_similarity": 4080,
+  "acronym": 1555,
+  "held_out_entity": 17
+ },
+ "threshold": 0.5,
+ "file": "kmwiki-latest-pages-articles.xml.bz2"
+}

@@ -1,0 +1,121 @@
+{
+ "judged": 12,
+ "expected": 12,
+ "total": {
+  "model": 8,
+  "rules": 2,
+  "same": 2
+ },
+ "rows": [
+  {
+   "word": "sosidan",
+   "preferred": "rules",
+   "notes": ""
+  },
+  {
+   "word": "chhak",
+   "preferred": "rules",
+   "notes": ""
+  },
+  {
+   "word": "tuk",
+   "preferred": "same",
+   "notes": ""
+  },
+  {
+   "word": "koul",
+   "preferred": "model",
+   "notes": ""
+  },
+  {
+   "word": "huy",
+   "preferred": "model",
+   "notes": ""
+  },
+  {
+   "word": "krya",
+   "preferred": "model",
+   "notes": ""
+  },
+  {
+   "word": "meas",
+   "preferred": "model",
+   "notes": ""
+  },
+  {
+   "word": "mey",
+   "preferred": "model",
+   "notes": ""
+  },
+  {
+   "word": "sao",
+   "preferred": "model",
+   "notes": ""
+  },
+  {
+   "word": "boret",
+   "preferred": "model",
+   "notes": ""
+  },
+  {
+   "word": "chanthou",
+   "preferred": "model",
+   "notes": ""
+  },
+  {
+   "word": "dara",
+   "preferred": "same",
+   "notes": ""
+  }
+ ],
+ "spellings": {
+  "sosidan": {
+   "rules": "សូស៊ីដាន",
+   "model": "សុសិដន"
+  },
+  "chhak": {
+   "rules": "ឆាក",
+   "model": "ឆក"
+  },
+  "tuk": {
+   "rules": "ទុក",
+   "model": "ទុក្ខ"
+  },
+  "koul": {
+   "rules": "ខៅល",
+   "model": "គោល"
+  },
+  "huy": {
+   "rules": "ហ៊ូអ៊ី",
+   "model": "ហុយ"
+  },
+  "krya": {
+   "rules": "ខ្រ្យា",
+   "model": "ក្រយា"
+  },
+  "meas": {
+   "rules": "មីស",
+   "model": "មាស"
+  },
+  "mey": {
+   "rules": "ម៉េ",
+   "model": "ម៉ៃ"
+  },
+  "sao": {
+   "rules": "សាអូ",
+   "model": "សោ"
+  },
+  "boret": {
+   "rules": "បូរ៉ែត",
+   "model": "បុរេត"
+  },
+  "chanthou": {
+   "rules": "ឆានថូ",
+   "model": "ចន្ធោ"
+  },
+  "dara": {
+   "rules": "ដារ៉ា",
+   "model": "តារា"
+  }
+ }
+}

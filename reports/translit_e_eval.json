@@ -1,0 +1,311 @@
+{
+ "list_test/check3_confirmed": {
+  "served": {
+   "n": 67,
+   "exact": 1,
+   "similarity": 1.0
+  },
+  "C_routed": {
+   "n": 67,
+   "exact": 0.597,
+   "similarity": 0.8751
+  },
+  "C_all": {
+   "n": 67,
+   "exact": 0.3731,
+   "similarity": 0.8063
+  }
+ },
+ "list_test/check3_corrected": {
+  "served": {
+   "n": 21,
+   "exact": 0,
+   "similarity": 0.4331
+  },
+  "C_routed": {
+   "n": 21,
+   "exact": 0.1429,
+   "similarity": 0.548
+  },
+  "C_all": {
+   "n": 21,
+   "exact": 0.2857,
+   "similarity": 0.648
+  }
+ },
+ "list_test/other_verified": {
+  "served": {
+   "n": 37,
+   "exact": 0.1892,
+   "similarity": 0.6204
+  },
+  "C_routed": {
+   "n": 37,
+   "exact": 0.3243,
+   "similarity": 0.746
+  },
+  "C_all": {
+   "n": 37,
+   "exact": 0.3784,
+   "similarity": 0.7723
+  }
+ },
+ "list_test/all": {
+  "served": {
+   "n": 125,
+   "exact": 0.592,
+   "similarity": 0.7924
+  },
+  "C_routed": {
+   "n": 125,
+   "exact": 0.44,
+   "similarity": 0.7819
+  },
+  "C_all": {
+   "n": 125,
+   "exact": 0.36,
+   "similarity": 0.7696
+  }
+ },
+ "romanised_test": {
+  "served": {
+   "n": 2226,
+   "exact": 0.6995,
+   "similarity": 0.9059
+  },
+  "C_routed": {
+   "n": 2226,
+   "exact": 0.6842,
+   "similarity": 0.8985
+  },
+  "C_all": {
+   "n": 2226,
+   "exact": 0.6842,
+   "similarity": 0.8987
+  }
+ },
+ "examples_other_verified": [
+  {
+   "word": "amazon",
+   "owner": "អាម៉ាហ្សូន",
+   "C": "អាម៉ាហ្សូន",
+   "served": "អាម៉ាហ្សុន"
+  },
+  {
+   "word": "android",
+   "owner": "អេនដ្រយ",
+   "C": "អេនដ្រយ",
+   "served": "អង់ដ្រូអ៊ីដ"
+  },
+  {
+   "word": "app",
+   "owner": "អេប",
+   "C": "អែប",
+   "served": "អេប"
+  },
+  {
+   "word": "car",
+   "owner": "ខា",
+   "C": "ការ",
+   "served": "កា"
+  },
+  {
+   "word": "delivery",
+   "owner": "ឌីលីវើរី",
+   "C": "ឌីលីវើរី",
+   "served": "ដេលីវើរី"
+  },
+  {
+   "word": "designer",
+   "owner": "ឌីហ្សាញនើ",
+   "C": "ឌីសាញ",
+   "served": "ដេស៊ីហ្គន័រ"
+  },
+  {
+   "word": "desktop",
+   "owner": "ដេសថប",
+   "C": "ដេសខ្ទប",
+   "served": "ដេសក្តុប"
+  },
+  {
+   "word": "dinner",
+   "owner": "ឌីន័រ",
+   "C": "ឌីនណឺ",
+   "served": "ឌីនន័រ"
+  },
+  {
+   "word": "driver",
+   "owner": "ដ្រាយវើ",
+   "C": "ដ្រាយវើ",
+   "served": "ឌ្រីវើ"
+  },
+  {
+   "word": "github",
+   "owner": "ហ្គីតហាប់",
+   "C": "ហ្គីថាប់",
+   "served": "ហ្គីធុប"
+  },
+  {
+   "word": "ikea",
+   "owner": "អាយគៀ",
+   "C": "អាយគៀ",
+   "served": "ឥគារ"
+  },
+  {
+   "word": "influencer",
+   "owner": "អ៊ីនហ្វ្លូអិនស៊ើរ",
+   "C": "អ៊ីនហ្វ្លឺនសឺ",
+   "served": "អ៊ិនហ្វ្លូអែនសែ"
+  },
+  {
+   "word": "kimya",
+   "owner": "គិម្យា",
+   "C": "គីមយ៉ា",
+   "served": "គីមីយ៉ា"
+  },
+  {
+   "word": "mart",
+   "owner": "ម៉ាត",
+   "C": "ម៉ាត",
+   "served": "ម៉ាត"
+  },
+  {
+   "word": "max",
+   "owner": "ម៉ាក់",
+   "C": "ម៉ាក់",
+   "served": "ម៉ាក្ស"
+  },
+  {
+   "word": "maybank",
+   "owner": "មេបែង",
+   "C": "ម៉ាយបែង",
+   "served": "ម៉ាយបាន"
+  },
+  {
+   "word": "mercedes",
+   "owner": "មែស៊ីដេស",
+   "C": "មឺសេដ",
+   "served": "ម៉ឺសេដេស"
+  },
+  {
+   "word": "messenger",
+   "owner": "មែសសិនជឺ",
+   "C": "មេសិនជឺ",
+   "served": "មេសសេងហ្គឺ"
+  },
+  {
+   "word": "neo",
+   "owner": "ណេអូ",
+   "C": "នេអូ",
+   "served": "ណេអូ"
+  },
+  {
+   "word": "news",
+   "owner": "ញូវស៍",
+   "C": "ញូស៍",
+   "served": "ណែស"
+  },
+  {
+   "word": "nintendo",
+   "owner": "នីនតិនដូ",
+   "C": "នីនតេនដូ",
+   "served": "នីនថេនដូ"
+  },
+  {
+   "word": "order",
+   "owner": "អ័រឌ័រ",
+   "C": "អ័រដឺ",
+   "served": "អ័រដឺ"
+  },
+  {
+   "word": "phallin",
+   "owner": "ផល្លិន",
+   "C": "ហ្វាលីន",
+   "served": "ហ្វាលីន"
+  },
+  {
+   "word": "philips",
+   "owner": "ហ្វីលីព",
+   "C": "ហ្វីលីព",
+   "served": "ហ្វីលីព"
+  },
+  {
+   "word": "pinterest",
+   "owner": "ភីនធើរេស",
+   "C": "ភីនធឺរេស",
+   "served": "ភីនថេរ៉េស"
+  },
+  {
+   "word": "prius",
+   "owner": "ព្រូស",
+   "C": "ព្រីស",
+   "served": "ព្រីស"
+  },
+  {
+   "word": "programming",
+   "owner": "ប្រូក្រាមមីង",
+   "C": "ប្រូក្រាមមីង",
+   "served": "ប្រូក្រាមមីង"
+  },
+  {
+   "word": "shop",
+   "owner": "សប",
+   "C": "សប",
+   "served": "សប"
+  },
+  {
+   "word": "siam",
+   "owner": "សៀម",
+   "C": "សៀម",
+   "served": "ស្យាម"
+  },
+  {
+   "word": "slides",
+   "owner": "ស្លាយ",
+   "C": "ស្លាយ",
+   "served": "ស្លាយ"
+  },
+  {
+   "word": "starlink",
+   "owner": "ស្តាលីង",
+   "C": "ស្តារលីង",
+   "served": "ស្តាលីន"
+  },
+  {
+   "word": "tiktok",
+   "owner": "តិកតុក",
+   "C": "តិកតុក",
+   "served": "ទីកទុក"
+  },
+  {
+   "word": "times",
+   "owner": "ថាម",
+   "C": "ថាម",
+   "served": "ទីម"
+  },
+  {
+   "word": "token",
+   "owner": "ថូខឹន",
+   "C": "តូខិន",
+   "served": "តូកេន"
+  },
+  {
+   "word": "vlog",
+   "owner": "វ្លក",
+   "C": "វ្លង់",
+   "served": "វ្លក់"
+  },
+  {
+   "word": "vlogger",
+   "owner": "វ្លកហ្គ័រ",
+   "C": "វ្លុកហ្គឺ",
+   "served": "វ្លកហ្គើ"
+  },
+  {
+   "word": "voucher",
+   "owner": "វោឆឺ",
+   "C": "វ៉ៅឆឺ",
+   "served": "វោជេរ"
+  }
+ ]
+}

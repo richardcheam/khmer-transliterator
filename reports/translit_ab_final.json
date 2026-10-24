@@ -1,0 +1,87 @@
+{
+ "test2_names": {
+  "A|known|cmudict": {
+   "n": 258,
+   "exact": 0.2868,
+   "similarity": 0.6562
+  },
+  "B|known|all": {
+   "n": 258,
+   "exact": 0.4845,
+   "similarity": 0.7654
+  },
+  "rules": {
+   "n": 258,
+   "exact": 0.1938,
+   "similarity": 0.55
+  }
+ },
+ "test2_words_in_mined": {
+  "A|known|cmudict": {
+   "n": 129,
+   "exact": 0.3566,
+   "similarity": 0.7074
+  },
+  "B|known|all": {
+   "n": 129,
+   "exact": 0.6279,
+   "similarity": 0.8374
+  },
+  "rules": {
+   "n": 129,
+   "exact": 0.3023,
+   "similarity": 0.6089
+  }
+ },
+ "test2_words_not_in_mined": {
+  "A|known|cmudict": {
+   "n": 129,
+   "exact": 0.2171,
+   "similarity": 0.6049
+  },
+  "B|known|all": {
+   "n": 129,
+   "exact": 0.3411,
+   "similarity": 0.6933
+  },
+  "rules": {
+   "n": 129,
+   "exact": 0.0853,
+   "similarity": 0.491
+  }
+ },
+ "romanised_test": {
+  "A|known|cmudict": {
+   "n": 2226,
+   "exact": 0.6918,
+   "similarity": 0.9033
+  },
+  "B|known|all": {
+   "n": 2226,
+   "exact": 0.6995,
+   "similarity": 0.9059
+  },
+  "rules": {
+   "n": 2226,
+   "exact": 0.0265,
+   "similarity": 0.4255
+  }
+ },
+ "english_loans": {
+  "A|known|cmudict": {
+   "n": 1257,
+   "exact": 0.171,
+   "similarity": 0.6329
+  },
+  "B|known|all": {
+   "n": 1257,
+   "exact": 0.3134,
+   "similarity": 0.7044
+  },
+  "rules": {
+   "n": 1257,
+   "exact": 0.1352,
+   "similarity": 0.6192
+  }
+ }
+}

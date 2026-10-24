@@ -1,0 +1,17 @@
+{
+ "pages": 668671,
+ "bracket_phrases": 265796,
+ "word_pairs_kept": 63805,
+ "by_class": {
+  "khmer_like": 13127,
+  "foreign": 50678
+ },
+ "latin_forms": 35793,
+ "dropped": {
+  "acronym": 100512,
+  "low_similarity": 139239,
+  "held_out_entity": 122
+ },
+ "threshold": 0.5,
+ "file": "train_000_00000.parquet"
+}

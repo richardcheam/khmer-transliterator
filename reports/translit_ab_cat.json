@@ -1,0 +1,466 @@
+{
+ "by_group": {
+  "EN": {
+   "arm_e": 10,
+   "served": 4,
+   "same": 6,
+   "expected_better": "arm_e",
+   "p_one_sided": 0.0898
+  },
+  "FN": {
+   "arm_e": 4,
+   "served": 6,
+   "same": 10,
+   "expected_better": "served",
+   "p_one_sided": 0.377
+  }
+ },
+ "routed_vs_alternative": {
+  "wins": 16,
+  "losses": 8
+ },
+ "answered": 40,
+ "of": 40,
+ "rows": [
+  {
+   "word": "kazunori",
+   "group": "FN",
+   "served": "ខាហ្ស៊ូណូរី",
+   "arm_e": "កាហ្ស៊ូណូរី",
+   "a": "កាហ្ស៊ូណូរី",
+   "b": "ខាហ្ស៊ូណូរី",
+   "verdict": "A",
+   "winner": "arm_e",
+   "notes": ""
+  },
+  {
+   "word": "ruth",
+   "group": "EN",
+   "served": "រថ",
+   "arm_e": "រូត",
+   "a": "រូត",
+   "b": "រថ",
+   "verdict": "A",
+   "winner": "arm_e",
+   "notes": ""
+  },
+  {
+   "word": "ruiz",
+   "group": "FN",
+   "served": "រូអ៊ិស",
+   "arm_e": "រូស",
+   "a": "រូអ៊ិស",
+   "b": "រូស",
+   "verdict": "A",
+   "winner": "served",
+   "notes": ""
+  },
+  {
+   "word": "thongprasom",
+   "group": "FN",
+   "served": "ថុងប្រាសុំ",
+   "arm_e": "ប្រាស៊ុម",
+   "a": "ប្រាស៊ុម",
+   "b": "ថុងប្រាសុំ",
+   "verdict": "B",
+   "winner": "served",
+   "notes": ""
+  },
+  {
+   "word": "counter",
+   "group": "EN",
+   "served": "ខនធឺ",
+   "arm_e": "ខោនធ័រ",
+   "a": "ខនធឺ",
+   "b": "ខោនធ័រ",
+   "verdict": "B",
+   "winner": "arm_e",
+   "notes": ""
+  },
+  {
+   "word": "fei",
+   "group": "FN",
+   "served": "ហ្វេ",
+   "arm_e": "ហ្វៃ",
+   "a": "ហ្វេ",
+   "b": "ហ្វៃ",
+   "verdict": "B",
+   "winner": "arm_e",
+   "notes": ""
+  },
+  {
+   "word": "dogecoin",
+   "group": "EN",
+   "served": "ដូហ្គេខូន",
+   "arm_e": "ដូហ្គេខញ",
+   "a": "ដូហ្គេខូន",
+   "b": "ដូហ្គេខញ",
+   "verdict": "B",
+   "winner": "arm_e",
+   "notes": ""
+  },
+  {
+   "word": "configuration",
+   "group": "EN",
+   "served": "កុនហ្វ៊ីហ្គ៊ូរ៉ាទីអុន",
+   "arm_e": "ខនហ្វីហ្គឺរេសិន",
+   "a": "ខនហ្វីហ្គឺរេសិន",
+   "b": "កុនហ្វ៊ីហ្គ៊ូរ៉ាទីអុន",
+   "verdict": "A",
+   "winner": "arm_e",
+   "notes": ""
+  },
+  {
+   "word": "encrypt",
+   "group": "EN",
+   "served": "អេនគ្រីប",
+   "arm_e": "អង់គ្រីប",
+   "a": "អេនគ្រីប",
+   "b": "អង់គ្រីប",
+   "verdict": "A",
+   "winner": "served",
+   "notes": ""
+  },
+  {
+   "word": "timeline",
+   "group": "EN",
+   "served": "ទីមេលីន",
+   "arm_e": "ថាយមីឡាញ",
+   "a": "ទីមេលីន",
+   "b": "ថាយមីឡាញ",
+   "verdict": "same",
+   "winner": "same",
+   "notes": "ថាមឡាញ"
+  },
+  {
+   "word": "spike",
+   "group": "EN",
+   "served": "ស្ពីក",
+   "arm_e": "ស្ពាយ",
+   "a": "ស្ពាយ",
+   "b": "ស្ពីក",
+   "verdict": "B",
+   "winner": "served",
+   "notes": ""
+  },
+  {
+   "word": "joaquin",
+   "group": "FN",
+   "served": "ជូឃ្វិន",
+   "arm_e": "ជូអាឃ្វីន",
+   "a": "ជូឃ្វិន",
+   "b": "ជូអាឃ្វីន",
+   "verdict": "A",
+   "winner": "served",
+   "notes": ""
+  },
+  {
+   "word": "zhengfei",
+   "group": "FN",
+   "served": "ហ្ស្ហែងហ្វេ",
+   "arm_e": "ហ្សេងហ្វី",
+   "a": "ហ្សេងហ្វី",
+   "b": "ហ្ស្ហែងហ្វេ",
+   "verdict": "B",
+   "winner": "served",
+   "notes": ""
+  },
+  {
+   "word": "sergi",
+   "group": "FN",
+   "served": "សឺហ្គី",
+   "arm_e": "សឺជី",
+   "a": "សឺហ្គី",
+   "b": "សឺជី",
+   "verdict": "same",
+   "winner": "same",
+   "notes": ""
+  },
+  {
+   "word": "homepod",
+   "group": "EN",
+   "served": "ហូមផូដ",
+   "arm_e": "ហូមេផត",
+   "a": "ហូមផូដ",
+   "b": "ហូមេផត",
+   "verdict": "A",
+   "winner": "served",
+   "notes": ""
+  },
+  {
+   "word": "nangarhar",
+   "group": "FN",
+   "served": "ណាងហ្គាហារ",
+   "arm_e": "ណាងហ្គាហា",
+   "a": "ណាងហ្គាហារ",
+   "b": "ណាងហ្គាហា",
+   "verdict": "same",
+   "winner": "same",
+   "notes": ""
+  },
+  {
+   "word": "insight",
+   "group": "EN",
+   "served": "អ៊ីនសៃ",
+   "arm_e": "អ៊ីនសាយ",
+   "a": "អ៊ីនសាយ",
+   "b": "អ៊ីនសៃ",
+   "verdict": "same",
+   "winner": "same",
+   "notes": ""
+  },
+  {
+   "word": "duty",
+   "group": "EN",
+   "served": "ឌូទី",
+   "arm_e": "ឌូធី",
+   "a": "ឌូធី",
+   "b": "ឌូទី",
+   "verdict": "A",
+   "winner": "arm_e",
+   "notes": ""
+  },
+  {
+   "word": "gallagher",
+   "group": "EN",
+   "served": "ហ្គាឡាហ្គើ",
+   "arm_e": "ហ្គាឡាហ្គ័រ",
+   "a": "ហ្គាឡាហ្គ័រ",
+   "b": "ហ្គាឡាហ្គើ",
+   "verdict": "same",
+   "winner": "same",
+   "notes": ""
+  },
+  {
+   "word": "xia",
+   "group": "FN",
+   "served": "ស៊ីអា",
+   "arm_e": "ស៊ា",
+   "a": "ស៊ា",
+   "b": "ស៊ីអា",
+   "verdict": "A",
+   "winner": "arm_e",
+   "notes": ""
+  },
+  {
+   "word": "renato",
+   "group": "FN",
+   "served": "រីណាតូ",
+   "arm_e": "រ៉េណាតូ",
+   "a": "រ៉េណាតូ",
+   "b": "រីណាតូ",
+   "verdict": "same",
+   "winner": "same",
+   "notes": ""
+  },
+  {
+   "word": "porter",
+   "group": "EN",
+   "served": "ព័រទ័រ",
+   "arm_e": "ផតធ័រ",
+   "a": "ផតធ័រ",
+   "b": "ព័រទ័រ",
+   "verdict": "A",
+   "winner": "arm_e",
+   "notes": ""
+  },
+  {
+   "word": "mainz",
+   "group": "FN",
+   "served": "ម៉ៃនស",
+   "arm_e": "ម៉េន",
+   "a": "ម៉េន",
+   "b": "ម៉ៃនស",
+   "verdict": "same",
+   "winner": "same",
+   "notes": ""
+  },
+  {
+   "word": "shadow",
+   "group": "EN",
+   "served": "សាដៅ",
+   "arm_e": "សាដូ",
+   "a": "សាដៅ",
+   "b": "សាដូ",
+   "verdict": "B",
+   "winner": "arm_e",
+   "notes": ""
+  },
+  {
+   "word": "vazquez",
+   "group": "FN",
+   "served": "វ៉ាសខ្វែស",
+   "arm_e": "វ៉ាសក្វេស",
+   "a": "វ៉ាសខ្វែស",
+   "b": "វ៉ាសក្វេស",
+   "verdict": "B",
+   "winner": "arm_e",
+   "notes": ""
+  },
+  {
+   "word": "anbar",
+   "group": "FN",
+   "served": "អានបា",
+   "arm_e": "អាន់បា",
+   "a": "អានបា",
+   "b": "អាន់បា",
+   "verdict": "same",
+   "winner": "same",
+   "notes": ""
+  },
+  {
+   "word": "hawk",
+   "group": "EN",
+   "served": "ហៅក",
+   "arm_e": "ហក",
+   "a": "ហក",
+   "b": "ហៅក",
+   "verdict": "A",
+   "winner": "arm_e",
+   "notes": ""
+  },
+  {
+   "word": "kwok",
+   "group": "FN",
+   "served": "ខ្វុក",
+   "arm_e": "ខ្វក",
+   "a": "ខ្វក",
+   "b": "ខ្វុក",
+   "verdict": "B",
+   "winner": "served",
+   "notes": ""
+  },
+  {
+   "word": "tie",
+   "group": "EN",
+   "served": "ធី",
+   "arm_e": "ទី",
+   "a": "ធី",
+   "b": "ទី",
+   "verdict": "same",
+   "winner": "same",
+   "notes": "ថាយ"
+  },
+  {
+   "word": "palermo",
+   "group": "FN",
+   "served": "ផាឡឺម៉ូ",
+   "arm_e": "ផាលែម៉ូ",
+   "a": "ផាឡឺម៉ូ",
+   "b": "ផាលែម៉ូ",
+   "verdict": "same",
+   "winner": "same",
+   "notes": ""
+  },
+  {
+   "word": "woranuch",
+   "group": "FN",
+   "served": "វ៉ូរ៉ានុច",
+   "arm_e": "វ៉រ៉ានុច",
+   "a": "វ៉រ៉ានុច",
+   "b": "វ៉ូរ៉ានុច",
+   "verdict": "same",
+   "winner": "same",
+   "notes": ""
+  },
+  {
+   "word": "woman",
+   "group": "EN",
+   "served": "វ៉ូម៉ាន",
+   "arm_e": "វូម៉ាន់",
+   "a": "វ៉ូម៉ាន",
+   "b": "វូម៉ាន់",
+   "verdict": "B",
+   "winner": "arm_e",
+   "notes": ""
+  },
+  {
+   "word": "ripple",
+   "group": "EN",
+   "served": "រីបផល",
+   "arm_e": "រីបភើល",
+   "a": "រីបភើល",
+   "b": "រីបផល",
+   "verdict": "B",
+   "winner": "served",
+   "notes": ""
+  },
+  {
+   "word": "rafale",
+   "group": "FN",
+   "served": "រ៉ាហ្វេល",
+   "arm_e": "រ៉ាហ្វែល",
+   "a": "រ៉ាហ្វេល",
+   "b": "រ៉ាហ្វែល",
+   "verdict": "A",
+   "winner": "served",
+   "notes": ""
+  },
+  {
+   "word": "emre",
+   "group": "FN",
+   "served": "អេមរី",
+   "arm_e": "អេមរេ",
+   "a": "អេមរី",
+   "b": "អេមរេ",
+   "verdict": "same",
+   "winner": "same",
+   "notes": ""
+  },
+  {
+   "word": "uncategorized",
+   "group": "EN",
+   "served": "អ៊ុនកាតេហ្គូរីហ្សែដ",
+   "arm_e": "អ៊ុនកាតេហ្គោរីហ្សដ",
+   "a": "អ៊ុនកាតេហ្គូរីហ្សែដ",
+   "b": "អ៊ុនកាតេហ្គោរីហ្សដ",
+   "verdict": "same",
+   "winner": "same",
+   "notes": ""
+  },
+  {
+   "word": "miao",
+   "group": "FN",
+   "served": "មីអាវ",
+   "arm_e": "មៀវ",
+   "a": "មីអាវ",
+   "b": "មៀវ",
+   "verdict": "same",
+   "winner": "same",
+   "notes": ""
+  },
+  {
+   "word": "turbocharged",
+   "group": "EN",
+   "served": "ទូរបូឆាហ្គេដ",
+   "arm_e": "ទ័របូឆាក",
+   "a": "ទូរបូឆាហ្គេដ",
+   "b": "ទ័របូឆាក",
+   "verdict": "same",
+   "winner": "same",
+   "notes": ""
+  },
+  {
+   "word": "golan",
+   "group": "FN",
+   "served": "ហ្គោឡេន",
+   "arm_e": "ហ្គោឡង់",
+   "a": "ហ្គោឡេន",
+   "b": "ហ្គោឡង់",
+   "verdict": "same",
+   "winner": "same",
+   "notes": ""
+  },
+  {
+   "word": "wilshere",
+   "group": "EN",
+   "served": "វិលសី",
+   "arm_e": "វីលសឺ",
+   "a": "វិលសី",
+   "b": "វីលសឺ",
+   "verdict": "B",
+   "winner": "arm_e",
+   "notes": ""
+  }
+ ]
+}

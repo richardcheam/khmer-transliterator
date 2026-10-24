@@ -1,0 +1,23 @@
+[project]
+name = "khmer-translit"
+version = "0.1.0"
+description = "Latin → Khmer transliteration for Khmer TTS: a small learned model (NumPy inference), rules and the Google Khmer lexicon"
+requires-python = ">=3.10,<3.13"
+dependencies = ["numpy>=2"]   # serving needs NumPy only
+
+[dependency-groups]
+train = [                     # data building, training, experiment tracking
+    "torch==2.14.0",          # the same build as the speech repo's upstream env (shared uv cache)
+    "pyarrow>=17",
+    "wandb>=0.30.0",
+]
+
+[tool.uv]
+default-groups = ["train"]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/khmer_translit"]

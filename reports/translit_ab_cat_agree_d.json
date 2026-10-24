@@ -1,0 +1,44 @@
+{
+ "b": {
+  "EN": {
+   "preferred": 6,
+   "rejected": 6,
+   "neither": 4,
+   "n": 16
+  },
+  "FN": {
+   "preferred": 4,
+   "rejected": 2,
+   "neither": 4,
+   "n": 10
+  }
+ },
+ "e": {
+  "EN": {
+   "preferred": 10,
+   "rejected": 4,
+   "neither": 2,
+   "n": 16
+  },
+  "FN": {
+   "preferred": 4,
+   "rejected": 6,
+   "neither": 0,
+   "n": 10
+  }
+ },
+ "d": {
+  "EN": {
+   "preferred": 6,
+   "rejected": 2,
+   "neither": 8,
+   "n": 16
+  },
+  "FN": {
+   "preferred": 3,
+   "rejected": 3,
+   "neither": 4,
+   "n": 10
+  }
+ }
+}

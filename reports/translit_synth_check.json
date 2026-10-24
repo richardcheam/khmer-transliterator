@@ -1,0 +1,62 @@
+{
+ "input": "/home/richard/projects/khmer-pocket-tts-work-harness/data/translit/synth/synthetic_pairs.tsv",
+ "kept": 3976,
+ "dropped": {
+  "header_or_blank": 6,
+  "not_on_list": 0,
+  "protected": 0,
+  "bad_khmer": 12,
+  "duplicate": 0
+ },
+ "bad_khmer_examples": [
+  [
+   "trophy",
+   "ထ្រូហ្វី"
+  ],
+  [
+   "meridian",
+   "មេ រីឌាន"
+  ],
+  [
+   "introvert",
+   "អ៊ិនထ្រូវើត"
+  ],
+  [
+   "oasis",
+   "អូអេFullName"
+  ],
+  [
+   "interior",
+   "អ៊ិនធើ រៀ"
+  ],
+  [
+   "mozzarella",
+   "ម៉ូហ្សា រ៉េឡា"
+  ],
+  [
+   "appearance",
+   "អាភា រ៉ិនស៍"
+  ],
+  [
+   "thousand",
+   "ថาวសិន"
+  ],
+  [
+   "arguments",
+   "អាហ្គ្យുമង់ស៍"
+  ],
+  [
+   "argument",
+   "អាហ្គ្យുമង់"
+  ],
+  [
+   "piranha",
+   "ពី រ៉ាញ៉ា"
+  ],
+  [
+   "mop",
+   "ម៉ប  ម៉ប"
+  ]
+ ],
+ "sha256_input": "3b7855f619be7c4d454aa28a692d2125710e19442468f07e82d67fcbd855fa8f"
+}
