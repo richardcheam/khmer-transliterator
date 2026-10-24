@@ -10,6 +10,7 @@ train = [                     # data building, training, experiment tracking
     "torch==2.14.0",          # the same build as the speech repo's upstream env (shared uv cache)
     "pyarrow>=17",
     "wandb>=0.30.0",
+    "pyyaml>=6.0.3",
 ]
 
 [tool.uv]

@@ -7,7 +7,7 @@ Run from the repository root (dump in `data/src/kmwiki/`, see `data/SOURCES.md`)
     .venv/bin/python scripts/translit_mine.py --source fineweb    # -> data/mined_fineweb.tsv
 
 Sources: the Khmer Wikipedia articles dump (CC BY-SA) or the FineWeb-2 `khm_Khmr` train shard (ODC-By, Common
-Crawl terms). Summaries go to `reports/translit_mine_<source>.json`.
+Crawl terms). Summaries go to `datasets/build/translit_mine_<source>.json`.
 
 **Extraction.** Khmer writers often give the Latin form in brackets: "ចូ ប៉េពីតូន (Joe Pepitone)", and less often the
 reverse, "Sok Hour (ហុង សុហួរ)". Wiki links and bold/italic marks are stripped; for each bracket of 1–4 capitalised
@@ -223,7 +223,7 @@ def main() -> int:
                "by_class": dict(Counter(r[2] for r in rows)), "latin_forms": len({r[0] for r in rows}),
                "dropped": dict(dropped), "threshold": THRESHOLD,
                "file": (DUMP if source == "kmwiki" else FINEWEB).name}
-    (ROOT / f"reports/translit_mine_{source}.json").write_text(json.dumps(summary, indent=1) + "\n")
+    (ROOT / f"datasets/build/translit_mine_{source}.json").write_text(json.dumps(summary, indent=1) + "\n")
     print(json.dumps(summary))
     return 0
 

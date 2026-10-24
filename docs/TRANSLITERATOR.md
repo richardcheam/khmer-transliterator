@@ -127,13 +127,15 @@ lost only on everyday romanised **chat words** (mok, ot, te, rean, nis, laor).
 | Mine bracket pairs (Wikipedia, FineWeb-2) | `.venv/bin/python scripts/translit_mine.py --source kmwiki` (or `--source fineweb`), then `scripts/translit_extra.py` |
 | Rule-romanised clean pairs | `.venv/bin/python scripts/translit_roman.py build` (`tune` scores the rule variants) |
 | Train / export a served-style model | `.venv/bin/python scripts/translit_train.py train [flags] --out models/NAME`, then `export --out models/NAME` |
-| Unified clean model: data, train, export, score | `.venv/bin/python scripts/translit_unified.py data`, then `train --arm aux --seed 0`, `export --arm aux --seed 0`, `score` |
-| Mirror a training run to W&B | `.venv/bin/python scripts/track_translit.py models/unified/aux_s0` |
+| Unified clean model (E01): data, train, export, score | `.venv/bin/python scripts/translit_unified.py data`, then `train --arm aux --seed 0` (reads `experiments/E01-unified/config.yaml`; records the run and mirrors it to W&B), `export --arm aux --seed 0`, `score` |
+| Score any exported model on the frozen benchmark | `.venv/bin/python scripts/evaluate.py models/NAME [--known served]` |
+| Check the data is the pinned version | `.venv/bin/python scripts/data_manifest.py check` |
 | Blind listening A/B for the owner (needs the speech model) | in the speech repo: `scripts/translit_listen_clean.py gen` / `queue` / `report`, answered in `scripts/review_app.py` |
 | Tests | `.venv/bin/python -m unittest discover -s tests` |
 
-**Rules that kept results trustworthy:** write the adoption rule down before seeing results; never tune on the test
-sets or the reserve; compare with paired seeds; the owner's blinded A/B decides what is served.
+**How to run an experiment:** `docs/RESEARCH_PROTOCOL.md` (plan and adoption rule committed before training, strict
+config, provenance and W&B per run, frozen benchmark, paired seeds; the owner's blinded A/B decides what is
+served). Experiments so far: `experiments/README.md`.
 
 **Release constraints:** no Chhunneng pairs or `known_targets.txt`; attribution for the Google lexicon (CC BY 4.0),
 FineWeb-2 (ODC-By) and Wikipedia (CC BY-SA). The evaluation scripts for older arms are archived in the speech

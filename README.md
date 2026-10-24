@@ -7,11 +7,14 @@ about 16 ms a word on CPU), by English sound-out rules, and by re-ranking toward
 
 **Served today:** model B (names, romanised Khmer) and model E (English dictionary words).
 **Current goal:** one clean, releasable model without the Chhunneng data. The gap is real romanised-typing data.
-Everything about the data, models, results and next steps: `docs/TRANSLITERATOR.md`.
+Everything about the data, models, results and next steps: `docs/TRANSLITERATOR.md`. How experiments are run
+(plan before training, configs, provenance, W&B, frozen benchmark): `docs/RESEARCH_PROTOCOL.md`.
 
 ## Quick start
 ```bash
-uv sync                                                        # numpy + torch, pyarrow, wandb (training group)
+uv sync                                                        # numpy + torch, pyarrow, wandb, pyyaml (training group)
+.venv/bin/python scripts/data_manifest.py check                # is the local data the pinned version?
+.venv/bin/python scripts/evaluate.py models/model_b            # score a model on the frozen benchmark v1
 .venv/bin/python scripts/translit_try.py knhom nham bay safety ronaldo    # served vs clean, side by side
 .venv/bin/python -c "from khmer_translit import translit; print(translit.guess_many(['sophea', 'safety']))"
 .venv/bin/python -m unittest discover -s tests
@@ -27,18 +30,25 @@ src/khmer_translit/        the package (what the speech repo imports)
   romanise.py                rule romanisation of Khmer words (clean training pairs)
   lexicon.py                 Google Khmer lexicon: spellings, word splitting
   loanwords.py               where the speech repo's loanword list is
+  experiment.py              strict configs, provenance, run records + W&B mirror
+  benchmark.py               frozen test panels, scoring, paired bootstrap
 scripts/
   translit_data.py           source pairs, splits, Wikidata names
   translit_mine.py           bracket pairs mined from Khmer Wikipedia and FineWeb-2
   translit_extra.py          filters the mined pairs
   translit_roman.py          rule-romanised clean pairs
   translit_train.py          train / export a model (torch → .npz)
-  translit_unified.py        the one-model experiment: data, train, export, score (D173)
+  translit_unified.py        experiment E01: data, train, export, score (config-driven, recorded)
+  evaluate.py                score any exported model on a benchmark version
+  data_manifest.py           pin / check the data (datasets/manifest.json)
   translit_try.py            served vs clean on any words
-  track_translit.py          mirror a training run to W&B
+experiments/               one folder per experiment: PLAN.md (before training), config.yaml, RESULTS.md, results.json
+  README.md                  index; TEMPLATE/ for a new one; E00-history/; E01-unified/
+benchmarks/v1.json         the frozen benchmark: panel hashes and descriptions (panel files in data/benchmark/)
+datasets/                  data card, manifest.json (hash of every data file), build/ summaries
+model_cards/               the served models: recipe, results, limits
 tests/
-docs/  TRANSLITERATOR.md (start here), DECISIONS.md
-reports/                   results (JSON), e.g. translit_unified.json
+docs/  TRANSLITERATOR.md (start here), RESEARCH_PROTOCOL.md, DECISIONS.md
 data/   (not in git)       pairs, mined pairs, word lists, lexicon, raw sources (2.2 GB in data/src)
 models/ (not in git)       model (A), model_b (B, served), model_e (E, served), unified/ (clean candidates)
 ```

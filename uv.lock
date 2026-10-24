@@ -366,6 +366,7 @@ dependencies = [
 train = [
     { name = "pyarrow", version = "25.0.1", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.11'" },
     { name = "pyarrow", version = "26.0.0", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.11'" },
+    { name = "pyyaml" },
     { name = "torch" },
     { name = "wandb" },
 ]
@@ -376,6 +377,7 @@ requires-dist = [{ name = "numpy", specifier = ">=2" }]
 [package.metadata.requires-dev]
 train = [
     { name = "pyarrow", specifier = ">=17" },
+    { name = "pyyaml", specifier = ">=6.0.3" },
     { name = "torch", specifier = "==2.14.0" },
     { name = "wandb", specifier = ">=0.30.0" },
 ]

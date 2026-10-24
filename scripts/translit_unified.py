@@ -1,13 +1,18 @@
 #!/usr/bin/env python3
 """One unified Latin → Khmer transliterator, with and without a Khmer-pronunciation side task (D173).
 
-Run from the repository root (training needs torch: use the upstream interpreter):
+Experiment E01 (`experiments/E01-unified/`: PLAN.md, config.yaml, RESULTS.md). Run from the repository root:
 
     .venv/bin/python scripts/translit_unified.py data                    # -> models/unified/ + manifest
-    .venv/bin/python scripts/translit_unified.py train --arm base --seed 0
+    .venv/bin/python scripts/translit_unified.py train --arm base --seed 0   # config: experiments/E01-unified/config.yaml
     .venv/bin/python scripts/translit_unified.py train --arm aux --seed 0
     .venv/bin/python scripts/translit_unified.py export --arm aux --seed 0
-    .venv/bin/python scripts/translit_unified.py score                   # -> reports/translit_unified.json
+    .venv/bin/python scripts/translit_unified.py score                   # -> experiments/E01-unified/results.json
+    # smoke run (never into a registered folder):
+    .venv/bin/python scripts/translit_unified.py train --arm base --seed 0 --set train.epochs=1 --out /tmp/smoke
+
+Each run folder gets `config.json`, `provenance.json`, `metrics.jsonl`, `summary.json` and a W&B mirror
+(`khmer_translit.experiment`); scoring uses the frozen benchmark (`khmer_translit.benchmark`, v1).
 
 **Question:** does an auxiliary task, predicting Google's Khmer-adapted pronunciation of Latin words, improve one
 Latin → Khmer model that covers romanised Khmer, foreign names and English loans?
@@ -75,11 +80,44 @@ sys.path.insert(0, str(ROOT / "src"))
 sys.path.insert(0, str(ROOT / "scripts"))
 from khmer_translit.loanwords import LIST_TSV as LOANWORDS  # noqa: E402
 D = ROOT / "models" / "unified"
-REPORT = ROOT / "reports" / "translit_unified.json"
+EXPERIMENT = ROOT / "experiments" / "E01-unified"
+CONFIG = EXPERIMENT / "config.yaml"
+REPORT = EXPERIMENT / "results.json"
 LEX = ROOT / "data/lexicon/km_lexicon.tsv"
 MAX_IN, AUX_MAX = 48, 48
 LOAN_REPEAT, BATCH, EPOCHS, LR, WARMUP = 4, 128, 40, 1e-3, 500
 AUX_WEIGHT, AUX_EVERY, AUX_BATCH = 0.5, 8, 128
+# Config schema (`experiment.load_config`): every key must be in the config file. The values here are E01's.
+CONFIG_KEYS = {
+    "paths": {"runs_dir": "models/unified"},
+    "data": {"max_in": MAX_IN, "aux_max": AUX_MAX, "loan_repeat": LOAN_REPEAT, "roman_val_n": 1000},
+    "model": {"d": 192, "layers": 3, "heads": 4, "ff": 512, "dropout": 0.1},
+    "train": {"seeds": [0, 1, 2], "epochs": EPOCHS, "batch": BATCH, "lr": LR, "weight_decay": 0.01, "warmup": WARMUP,
+              "label_smoothing": 0.1, "grad_clip": 1.0, "threads": 6},
+    "aux": {"weight": AUX_WEIGHT, "every": AUX_EVERY, "batch": AUX_BATCH},
+    "eval": {"benchmark": "v1", "beam": 4},
+}
+DEFAULT_CONFIG = {**CONFIG_KEYS, "overrides": []}
+# Settings this code implements but does not read from the config yet: a config that changes them is refused.
+FIXED = {"paths": CONFIG_KEYS["paths"], "data": CONFIG_KEYS["data"], "model": CONFIG_KEYS["model"]}
+
+
+def check_implemented(cfg: dict) -> None:
+    """Refuse a config whose data, model or path settings differ from what this script implements.
+
+    Those values are built into the data stage and the model classes; changing them needs a code change, which
+    a config edit alone must not pretend to make.
+
+    Args:
+        cfg: A config from `experiment.load_config`.
+
+    Raises:
+        ValueError: Naming each differing setting.
+    """
+    diff = [f"{s}.{k}={cfg[s][k]!r} (implemented: {v!r})" for s, keys in FIXED.items() for k, v in keys.items()
+            if cfg[s][k] != v]
+    if diff:
+        raise ValueError("not configurable in this script yet: " + ", ".join(diff))
 ROMAN_VAL_N = 1000
 SUFFIXES = ("ings", "ing", "ers", "er", "ies", "ied", "es", "ed", "ly", "s")
 PAD, BOS, EOS = 0, 1, 2
@@ -573,33 +611,39 @@ def aux_exact(model, aux, rows: list[tuple[str, list[str]]], src_v: str, aux_v: 
     return hit / len(rows)
 
 
-def train(arm: str, seed: int, epochs: int = EPOCHS, out: Path | None = None, data: tuple | None = None,
-          trace: bool = False) -> dict:
+def train(arm: str, seed: int, epochs: int | None = None, out: Path | None = None, data: tuple | None = None,
+          trace: bool = False, cfg: dict | None = None, run=None) -> dict:
     """Train one arm for one seed; keep the best checkpoint by the mean spelling-validation exact match.
 
     Args:
         arm: "base" or "aux".
         seed: Paired seed (0, 1, 2).
-        epochs: Epochs (40 registered; smaller only in tests).
+        epochs: Epochs; None = the config's (40 registered; smaller only in tests and smoke runs).
         out: Output folder (default `models/unified/<arm>_s<seed>`).
         data: `(spell, aux_rows, vals, manifest)` instead of `load_data()` (tests only).
         trace: Record a hash of the global torch RNG state after every spelling forward pass (tests only).
+        cfg: The resolved config (default `DEFAULT_CONFIG`, = E01).
+        run: An `experiment.Run` that receives every epoch record and the final summary (None: no records).
 
     Returns:
         The training log (also written as `train_log.json`).
     """
     import torch
     from torch import nn
-    torch.set_num_threads(6)
+    c = cfg or DEFAULT_CONFIG
+    tc, ac = c["train"], c["aux"]
+    epochs = tc["epochs"] if epochs is None else epochs
+    torch.set_num_threads(tc["threads"])
     spell, aux_rows, vals, manifest = data if data is not None else load_data()
     src_v, tgt_v, aux_v = manifest["vocab"]["src"], manifest["vocab"]["tgt"], manifest["vocab"]["aux"]
     model, aux = build_models(len(src_v) + 3, len(tgt_v) + 3, len(aux_v) + 3, arm, seed)
     params = list(model.parameters()) + (list(aux.parameters()) if aux is not None else [])
-    opt = torch.optim.AdamW(params, lr=LR, weight_decay=0.01)
-    steps = epochs * math.ceil(len(spell) / BATCH)
+    opt = torch.optim.AdamW(params, lr=tc["lr"], weight_decay=tc["weight_decay"])
+    batch, warmup = tc["batch"], tc["warmup"]
+    steps = epochs * math.ceil(len(spell) / batch)
     sched = torch.optim.lr_scheduler.LambdaLR(
-        opt, lambda s: min(1.0, (s + 1) / WARMUP) * 0.5 * (1 + math.cos(math.pi * min(1.0, s / steps))))
-    ce = nn.CrossEntropyLoss(ignore_index=PAD, label_smoothing=0.1)
+        opt, lambda s: min(1.0, (s + 1) / warmup) * 0.5 * (1 + math.cos(math.pi * min(1.0, s / steps))))
+    ce = nn.CrossEntropyLoss(ignore_index=PAD, label_smoothing=tc["label_smoothing"])
     rng_spell, rng_aux = random.Random(seed), random.Random(10_000 + seed)
     saved = torch.get_rng_state()
     torch.manual_seed(10_000 + seed)
@@ -618,9 +662,9 @@ def train(arm: str, seed: int, epochs: int = EPOCHS, out: Path | None = None, da
         rng_spell.shuffle(order)
         tot_s = tot_a = 0.0
         gn = {"aux_steps": [], "spell_only_steps": []}
-        for i in range(0, len(order), BATCH):
-            chunk = [spell[j] for j in order[i:i + BATCH]]
-            batch_digest.update(",".join(map(str, order[i:i + BATCH])).encode())
+        for i in range(0, len(order), batch):
+            chunk = [spell[j] for j in order[i:i + batch]]
+            batch_digest.update(",".join(map(str, order[i:i + batch])).encode())
             S = encode_batch([a for a, _ in chunk], src_v)
             Tt = target_batch([list(b) for _, b in chunk], tgt_v, 40)
             logits = model(S, Tt[:, :-1])
@@ -628,13 +672,13 @@ def train(arm: str, seed: int, epochs: int = EPOCHS, out: Path | None = None, da
             tot_s += loss.item() * len(chunk)
             if trace:
                 rng_trace.append(hashlib.sha256(torch.get_rng_state().numpy().tobytes()).hexdigest()[:16])
-            if aux is not None and step % AUX_EVERY == 0:
-                if aux_pos + AUX_BATCH > len(aux_order):
+            if aux is not None and step % ac["every"] == 0:
+                if aux_pos + ac["batch"] > len(aux_order):
                     aux_order = list(range(len(aux_rows)))
                     rng_aux.shuffle(aux_order)
                     aux_pos = 0
-                ach = [aux_rows[j] for j in aux_order[aux_pos:aux_pos + AUX_BATCH]]
-                aux_pos += AUX_BATCH
+                ach = [aux_rows[j] for j in aux_order[aux_pos:aux_pos + ac["batch"]]]
+                aux_pos += ac["batch"]
                 saved = torch.get_rng_state()
                 torch.set_rng_state(aux_state)
                 Sa = encode_batch([w for w, _ in ach], src_v)
@@ -644,13 +688,13 @@ def train(arm: str, seed: int, epochs: int = EPOCHS, out: Path | None = None, da
                 loss_a = ce(la.reshape(-1, la.shape[-1]), Ta[:, 1:].reshape(-1))
                 aux_state = torch.get_rng_state()
                 torch.set_rng_state(saved)
-                loss = loss + AUX_WEIGHT * loss_a
+                loss = loss + ac["weight"] * loss_a
                 tot_a += loss_a.item()
                 aux_steps += 1
             opt.zero_grad()
             loss.backward()
-            norm_ = float(nn.utils.clip_grad_norm_(params, 1.0))
-            gn["aux_steps" if aux is not None and step % AUX_EVERY == 0 else "spell_only_steps"].append(norm_)
+            norm_ = float(nn.utils.clip_grad_norm_(params, tc["grad_clip"]))
+            gn["aux_steps" if aux is not None and step % ac["every"] == 0 else "spell_only_steps"].append(norm_)
             opt.step()
             sched.step()
             step += 1
@@ -665,6 +709,8 @@ def train(arm: str, seed: int, epochs: int = EPOCHS, out: Path | None = None, da
                     "val": {n: round(hits[n] / len(p), 4) for n, p in vals.items()},
                     "val_mean": round(float(score), 4), "minutes": round((time.time() - t0) / 60, 1)})
         print(json.dumps(log[-1]), flush=True)
+        if run is not None:
+            run.log(log[-1], step=ep + 1)
         if score > best:
             best, best_epoch = score, ep + 1
             torch.save({"state": model.state_dict(), "aux": aux.state_dict() if aux is not None else None,
@@ -679,6 +725,8 @@ def train(arm: str, seed: int, epochs: int = EPOCHS, out: Path | None = None, da
     if trace:
         result["rng_trace"] = rng_trace
     (out / "train_log.json").write_text(json.dumps(result, indent=1) + "\n", encoding="utf-8")
+    if run is not None:
+        run.finish({k: v for k, v in result.items() if k not in ("log", "rng_trace")})
     return result
 
 
@@ -701,7 +749,9 @@ def export(folder: Path) -> Path:
 
 # ---------------------------------------------------------------- scoring
 def panels() -> dict[str, list[tuple[str, frozenset[str]]]]:
-    """Scored panels (never the reserve), one item per Latin word with all its attested Khmer forms.
+    """The D173 panels rebuilt from the data (never the reserve), one item per Latin word with all its attested
+    Khmer forms. Frozen as benchmark v1 (`khmer_translit.benchmark`), which `score` uses; kept to rebuild or audit
+    the panels.
 
     A word counts as right if the output equals any attested form (the project's long-standing rule, D133).
 
@@ -793,8 +843,9 @@ def score() -> dict:
     """
     from khmer_translit import translit
     from khmer_translit.lexicon import keys as _lexicon_keys
+    from khmer_translit import benchmark
     google = frozenset(_lexicon_keys())
-    P = panels()
+    P = benchmark.load(DEFAULT_CONFIG["eval"]["benchmark"])
     out: dict = {"panels": {n: len(p) for n, p in P.items()}, "models": {}, "items": {}}
     runs = valid_runs()
     for run in runs:
@@ -834,9 +885,7 @@ def score() -> dict:
         items = out["items"]["pick_test"]
         n = len(P["pick_test"])
         diff = [Fraction(sum(items[f"aux_s{s}"][i] - items[f"base_s{s}"][i] for s in seeds), len(seeds)) for i in range(n)]
-        rng = random.Random(0)
-        boots = sorted(float(sum(diff[rng.randrange(n)] for _ in range(n)) / n * 100) for _ in range(2000))
-        g["english_joint_word_bootstrap_95ci_pp"] = [round(boots[50], 2), round(boots[1949], 2)]
+        g["english_joint_word_bootstrap_95ci_pp"] = list(benchmark.paired_bootstrap(diff))
         g["english_words_aux_better_worse_tied"] = [sum(d > 0 for d in diff), sum(d < 0 for d in diff), sum(d == 0 for d in diff)]
     out["gate"] = g
     REPORT.write_text(json.dumps(out, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
@@ -853,6 +902,10 @@ def main() -> int:
     ap.add_argument("mode", choices=["data", "train", "export", "score"])
     ap.add_argument("--arm", choices=["base", "aux"])
     ap.add_argument("--seed", type=int, default=0)
+    ap.add_argument("--config", type=Path, default=CONFIG, help="experiment config (default E01's)")
+    ap.add_argument("--set", action="append", default=[], metavar="SECTION.KEY=VALUE",
+                    help="override one config value (recorded in the run); needs --out")
+    ap.add_argument("--out", type=Path, default=None, help="run folder (default <runs_dir>/<arm>_s<seed>)")
     args = ap.parse_args()
     if args.mode == "data":
         m = build()
@@ -860,12 +913,34 @@ def main() -> int:
         print(json.dumps({n: (s["rows_in"], s["kept"], s["dropped"]) for n, s in m["sources"].items()}))
         print(json.dumps({k: m["aux"][k] for k in ("rows_in", "kept", "dropped", "words_with_alternatives")}))
     elif args.mode == "train":
-        r = train(args.arm, args.seed)
+        from khmer_translit.experiment import Run, load_config
+        cfg = load_config(args.config, CONFIG_KEYS, args.set)
+        check_implemented(cfg)
+        if args.set and args.out is None:
+            raise SystemExit("--set changes the registered recipe: write the run elsewhere with --out")
+        if args.seed not in cfg["train"]["seeds"]:
+            raise SystemExit(f"seed {args.seed} is not one of the registered seeds {cfg['train']['seeds']}")
+        out = args.out or ROOT / cfg["paths"]["runs_dir"] / f"{args.arm}_s{args.seed}"
+        inputs = [args.config, D / "manifest.json", D / "spell_train.tsv", D / "aux_train.tsv"] + \
+                 [D / f"val_{n}.tsv" for n in ("romanised", "names", "english")]
+        group = cfg.get("experiment", args.config.parent.name) + ("-smoke" if args.set else "")   # tests never mix in
+        run = Run(out, group, f"{args.arm}_s{args.seed}", cfg, inputs, job_type="smoke" if args.set else "train")
+        r = train(args.arm, args.seed, out=out, cfg=cfg, run=run)
         print(json.dumps({k: v for k, v in r.items() if k != "log"}))
     elif args.mode == "export":
         print(export(D / f"{args.arm}_s{args.seed}"))
     else:
+        from khmer_translit import benchmark
+        from khmer_translit.experiment import Run
+        cfg = DEFAULT_CONFIG
+        version = cfg["eval"]["benchmark"]
+        inputs = [benchmark.MANIFESTS / f"{version}.json"] + sorted((benchmark.FILES / version).glob("*.tsv")) + \
+                 [D / run / "translit.npz" for run in valid_runs()]
+        rec = Run(D / "score", "E01-unified", "score", cfg, inputs, job_type="eval")
         r = score()
+        rec.finish({"gate": r["gate"], "reranked": {m: {p: v["reranked"] for p, v in res.items()}
+                                                   for m, res in r["models"].items()},
+                    "served_reference": {p: v["reranked"] for p, v in r["served_reference"]["panels"].items()}})
         print(json.dumps({"models": r["models"], "served_reference": r["served_reference"], "gate": r["gate"]}))
     return 0
 

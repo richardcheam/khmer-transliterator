@@ -1,0 +1,38 @@
+experiment: Exx-name
+description: <one line>
+
+paths:
+  runs_dir: models/Exx-name        # one folder per run, <arm>_s<seed>; never another experiment's folder
+
+data:                             # fixed by the data stage (scripts/translit_unified.py build)
+  max_in: 48                      # longest Latin input (the longest is 32: no truncation)
+  aux_max: 48                     # longest phone sequence of the side task
+  loan_repeat: 4                  # list train + owner examples + LLM drafts repeated 4x, as in arm E
+  roman_val_n: 1000               # hash-chosen rows of the romanised val split used for validation
+
+model:                            # translit_train.Model (letters-only encoder-decoder)
+  d: 192
+  layers: 3                       # 3 encoder + 3 decoder; the aux decoder has the same design
+  heads: 4
+  ff: 512
+  dropout: 0.1
+
+train:
+  seeds: [0, 1, 2]                # paired: both arms see identical spelling batches per seed
+  epochs: 40
+  batch: 128
+  lr: 0.001                       # AdamW, linear warm-up then cosine to 0
+  weight_decay: 0.01
+  warmup: 500
+  label_smoothing: 0.1
+  grad_clip: 1.0
+  threads: 6
+
+aux:                              # aux arm only; fixed in advance, never tuned
+  weight: 0.5                     # loss = spell + 0.5 * aux on aux steps
+  every: 8                        # one aux batch on every 8th spelling step
+  batch: 128
+
+eval:
+  benchmark: v1                   # khmer_translit.benchmark; the reserve stays sealed
+  beam: 4

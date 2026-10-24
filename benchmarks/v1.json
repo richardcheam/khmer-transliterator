@@ -1,0 +1,31 @@
+{
+ "version": "v1",
+ "note": "Frozen from scripts/translit_unified.py panels() on 2026-10-24: the panels scored in D173/D174. The 120-word reserve is excluded (sealed).",
+ "panels": {
+  "romanised_test": {
+   "n": 2226,
+   "sha256": "0d6b89914ee3977e027b18d24619ea103df61a8569f1418a553a0c3c9c46ed7e",
+   "description": "Real romanised typing: the Chhunneng test split, every Chhunneng-attested form accepted. Same style as the Chhunneng training pairs (easy for models trained on them)."
+  },
+  "names_test2": {
+   "n": 223,
+   "sha256": "7b4c5d053f33da6236d0d957c1650d4efec703bf59694229fc88e75a1ce42afe",
+   "description": "Wikidata Cambodian person-name words (CC0), test half, fixed word alignment (D135); scored once per experiment."
+  },
+  "pick_test": {
+   "n": 150,
+   "sha256": "7dc035f7633c5204535b2059efd7f4c806a0fc3ec2cde0bc02fda9b58670b1d5",
+   "description": "150 English words with the owner's chosen spelling (D158-D161), never in training or prompts; answers mostly from E's top 5."
+  },
+  "dev41": {
+   "n": 41,
+   "sha256": "2e3ce91a829f78bb37eb271f225ee5c318872259583c5d121e21265e0467bb3f",
+   "description": "41 English words with the owner's preferred spelling (D151). Diagnostic only: used in development, a retrain moves it about 5 words."
+  },
+  "list_test": {
+   "n": 125,
+   "sha256": "6652ea92cfeafdca8aafa4af2c16011bfa2a81c79b65662e4c9e631eb094b337",
+   "description": "125 verified loanword-list words held out of training (frozen list split, D146)."
+  }
+ }
+}

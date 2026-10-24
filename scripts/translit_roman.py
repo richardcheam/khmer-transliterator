@@ -3,7 +3,7 @@
 
 Run from the repository root:
 
-    .venv/bin/python scripts/translit_roman.py tune     # agreement report -> reports/translit_roman_tune.json
+    .venv/bin/python scripts/translit_roman.py tune     # agreement report -> datasets/build/translit_roman_tune.json
     .venv/bin/python scripts/translit_roman.py build    # -> data/roman/pairs.tsv (same columns as pairs.tsv)
 
 **Source:** google/language-resources `km` lexicon (CC BY 4.0, © Google): the Khmer-script headwords only.
@@ -79,7 +79,7 @@ def main() -> int:
                "real_typing_in_top3": sum(r[0] in romanise_variants(r[1], 3) for r in test),
                "real_typing_similarity": round(sum(difflib.SequenceMatcher(None, romanise(r[1]), r[0]).ratio()
                                                    for r in test) / len(test), 3)}
-        (ROOT / "reports/translit_roman_tune.json").write_text(json.dumps(out, indent=1) + "\n", encoding="utf-8")
+        (ROOT / "datasets/build/translit_roman_tune.json").write_text(json.dumps(out, indent=1) + "\n", encoding="utf-8")
         print(json.dumps(out))
         return 0
     held = test_targets()

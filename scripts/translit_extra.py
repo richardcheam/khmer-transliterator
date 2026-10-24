@@ -3,7 +3,7 @@
 
 Run from the repository root after `scripts/translit_mine.py` (both sources):
 
-    .venv/bin/python scripts/translit_extra.py    # -> data/extra_train.tsv, reports/translit_extra.json
+    .venv/bin/python scripts/translit_extra.py    # -> data/extra_train.tsv, datasets/build/translit_extra.json
 
 **Noise filter** (mined pairs come from automatic bracket alignment and cutting):
 - keep a pair seen ≥ 2 times (documents), or once with similarity ≥ 0.7;
@@ -84,7 +84,7 @@ def main() -> int:
     summary = {"pairs": len(rows), "latin_forms": len({r[0] for r in rows}), "excluded": excluded,
                "latin_forms_also_in_test2_names": len({r[0] for r in rows} & test2_words),
                "test2_name_words": len(test2_words)}
-    (ROOT / "reports/translit_extra.json").write_text(json.dumps(summary, indent=1) + "\n")
+    (ROOT / "datasets/build/translit_extra.json").write_text(json.dumps(summary, indent=1) + "\n")
     print(json.dumps(summary))
     return 0
 

@@ -190,7 +190,7 @@ def load_pairs(split: str) -> list[tuple[str, str]]:
 def list_split() -> dict[str, list[str]]:
     """Frozen split of the loanword list's single words for the list-trained model (D146).
 
-    - **test:** half of the owner-verified words (`VERIFIED` provenance in `reports/latin_audit.json`),
+    - **test:** half of the owner-verified words (`VERIFIED` provenance in `datasets/build/latin_audit.json`),
       sha1(word) even: held out from all training, the comparison set;
     - **val:** non-verified words with sha1(word) mod 10 == 1 (checkpoint selection, with the romanised val);
     - **train:** every other single-word entry.
@@ -203,7 +203,7 @@ def list_split() -> dict[str, list[str]]:
     import re
     if LIST_SPLIT.exists():
         return json.loads(LIST_SPLIT.read_text(encoding="utf-8"))
-    prov = json.loads((ROOT / "reports/latin_audit.json").read_text(encoding="utf-8"))["provenance_by_word"]
+    prov = json.loads((ROOT / "datasets/build/latin_audit.json").read_text(encoding="utf-8"))["provenance_by_word"]
     h = lambda w: int(hashlib.sha1(w.encode()).hexdigest(), 16)
     words = sorted(w for w in prov if re.fullmatch("[a-z]+", w))
     split = {"test": [w for w in words if prov[w] in VERIFIED and h(w) % 2 == 0],

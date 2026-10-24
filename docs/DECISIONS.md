@@ -27,3 +27,41 @@ there (`git -C ../pocket-tts-khmer show archive/checkpoints-p0-p6:state/DECISION
   - A test sentence gives byte-identical audio before and after the split.
   - `translit_try.py` gives the same spellings as before.
   - Re-scoring the six unified models reproduces `reports/translit_unified.json`.
+
+## D177 — Research protocol and tooling (2026-10-24)
+- **Owner's request:** make the repository follow research-grade procedure, as the base for continued work.
+- **Added:**
+  - **Protocol:** `docs/RESEARCH_PROTOCOL.md` (plan → run → evaluate → results → decide), one folder per
+    experiment, `experiments/TEMPLATE/`.
+  - **`khmer_translit.experiment`:**
+    - strict configs: every key required, unknown keys refused;
+    - provenance: commit, uncommitted-change flag and diff hash, versions, input hashes;
+    - per-run records (`config.json`, `provenance.json`, `metrics.jsonl`, `summary.json`), mirrored to W&B (team
+      `richardcheam912-ensiie`, project `khmer-transliterator`, group = experiment). The team is fixed in code,
+      because the shell's `WANDB_ENTITY` names an account W&B does not know. Override runs go to a separate
+      `<experiment>-smoke` group.
+  - **`khmer_translit.benchmark`:** frozen, hash-checked panels. Version v1 = the D173/D174 panels; the reserve
+    stays sealed. Also `outcomes` and `paired_bootstrap`.
+  - **Scripts:** `scripts/evaluate.py` (any model on a benchmark version); `scripts/data_manifest.py` and
+    `datasets/manifest.json` (212 data files pinned); the data card `datasets/README.md`; data-build summaries in
+    `datasets/build/`.
+  - **`experiments/E00-history/`:** the pre-protocol arms and their reports. **`experiments/E01-unified/`:** the
+    D173 plan, config, results and the owner's listening.
+  - **`model_cards/`:** B and E, with benchmark-v1 results.
+- **`translit_unified.py` is now config-driven:**
+  - it reads `experiments/E01-unified/config.yaml` and refuses data, model or path settings it does not implement;
+  - `--set` overrides require `--out`, so a test never writes into a registered run;
+  - it records each run through `experiment.Run`, and scoring uses benchmark v1.
+
+  `track_translit.py` (the old W&B follower) is removed.
+- **Verified:**
+  - Old vs new trainer, aux arm, seed 0, one epoch: identical training log (losses, validation hits, batch-order
+    hash) and byte-identical checkpoint.
+  - Re-scoring the six E01 models through benchmark v1 wrote a fresh `results.json`, byte-identical to D174's.
+  - `evaluate.py` reproduces the E01 reference numbers for B and E exactly.
+  - An end-to-end smoke run (CLI, override, records, W&B) completed.
+  - 29 tests pass.
+- **Mistake during verification:** four memory-heavy jobs at once ran the 7.6 GB laptop out of memory. The kernel
+  killed one evaluation and a re-score, plus the desktop SSH agent and two dbus processes. A re-score check then
+  passed falsely, because it compared an unwritten file with itself. It was redone alone, with the old file moved
+  aside first. **Rule kept:** run one heavy job at a time.
