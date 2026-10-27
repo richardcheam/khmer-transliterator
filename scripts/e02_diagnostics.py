@@ -758,12 +758,106 @@ def aggregate(rows: list[dict]) -> dict:
     return out
 
 
+# ---------------------------------------------------------------- post-hoc analyses (added after both freezes)
+DOUBLE = __import__("re").compile(r"([bcdfgklmnprstvz])\1")
+
+
+def op_type(op: list, rec: dict) -> str:
+    """Post-hoc descriptive type of one unexplained operation of the audit (does not change any category)."""
+    kind, x, y = op
+    tgt, word = rec["target"], rec["word"]
+    if kind == "del_b" and y in ("យ", COENG + "យ"):
+        return "khmer_glide_in_hiatus (y between vowels: a likely Khmer adaptation not in ADAPT)"
+    if kind == "del_a" and x == "Y":
+        return "english_y_glide_not_written"
+    if "ហ" + COENG + "ក" in tgt and (y in ("ហ", COENG + "ក", "ក") or x in ("G", "K")):
+        return "reader_gap_ho_ka (ហ្ក = g in loans, missing from the frozen rules)"
+    if kind == "del_b" and DOUBLE.search(word) and y.lstrip(COENG) and any(
+            km == y.lstrip(COENG) or KM_LETTER.get(km) == KM_LETTER.get(y.lstrip(COENG)) for km in tgt
+            if tgt.count(km) and km != y.lstrip(COENG)) | (tgt.count(y.lstrip(COENG)) > 1):
+        return "doubled_letter_written_twice (target follows the English spelling)"
+    if kind == "sub" and x == "N" and y in ("ង", NIKAHIT):
+        return "n_written_ng (French-style nasal or before a velar)"
+    if kind == "sub" and x == "K" and y == "ច":
+        return "coda_k_written_c (Khmer ិច convention)"
+    if kind == "sub":
+        return "consonant_class_change (e.g. a non-English reading: c→s, j→g)"
+    return "unexplained_insertion" if kind == "del_b" else "unexplained_deletion"
+
+
+def posthoc() -> dict:
+    """Post-hoc: (1) type the audit's unexplained operations; (2) in the sensitivity run, does an output under
+    donor or alternative phones move towards those phones' consonants? Written to `*/posthoc.json`."""
+    rows = [json.loads(l) for l in (OUT / "compat" / "training_pairs.jsonl").read_text(encoding="utf-8").splitlines()]
+    types, row_types = Counter(), Counter()
+    examples: dict[str, list] = defaultdict(list)
+    for r in rows:
+        if r["category"] != "suspected_conflict":
+            continue
+        ts = [op_type(o, r) for o in r.get("ops", []) if o[0] in ("sub", "del_a", "del_b")]
+        types.update(ts)
+        for t in set(ts):
+            if len(examples[t]) < 8:
+                examples[t].append([r["word"], r["target"], r["pronunciation"]["supplied"]])
+        plausible = {"khmer_glide_in_hiatus", "english_y_glide_not_written", "reader_gap_ho_ka",
+                     "doubled_letter_written_twice", "coda_k_written_c"}
+        row_types["only_plausible_conventions_or_reader_gaps" if all(t.split(" ")[0] in plausible for t in ts)
+                  else "some_other_unexplained_operation"] += 1
+    contaminated = [[r["word"], r["target"]] for r in rows if r["category"] == "suspected_conflict"
+                    and r["cost_supplied"] is not None and r["cost_supplied"] >= 3]
+    compat_out = {"note": "post hoc, after the frozen audit; descriptive types only, categories unchanged",
+                  "operation_types": dict(types.most_common()), "suspected_rows": dict(row_types),
+                  "examples": examples, "rows_with_3plus_unexplained_operations": contaminated[:40]}
+    (OUT / "compat" / "posthoc.json").write_text(json.dumps(compat_out, ensure_ascii=False, indent=1) + "\n",
+                                                encoding="utf-8")
+    per = [json.loads(l) for l in (OUT / "sensitivity" / "per_item.jsonl").read_text(encoding="utf-8").splitlines()]
+    base = {(r["checkpoint"], r["id"]): r for r in per if r["condition"] == "default"}
+    toward = defaultdict(Counter)
+    for r in per:
+        if r["mode"] != "phones" or r["condition"] not in ("donor", "alternative") or not r["top1_changed"]:
+            continue
+        b = base[(r["checkpoint"], r["id"])]
+        target_ph = en_skeleton(r["phones"].split())
+        own_ph = en_skeleton(b["phones"].split())
+        new_k, old_k = km_skeleton(r["top1"]), km_skeleton(b["top1"])
+        if new_k is None or old_k is None:
+            continue
+        d_new, d_old = align(target_ph, new_k)[0], align(target_ph, old_k)[0]
+        o_new, o_old = align(own_ph, new_k)[0], align(own_ph, old_k)[0]
+        key = (r["checkpoint"], r["condition"])
+        toward[key]["changed"] += 1
+        toward[key]["closer_to_given_phones"] += d_new < d_old
+        toward[key]["farther_from_given_phones"] += d_new > d_old
+        toward[key]["farther_from_word_own_phones"] += o_new > o_old
+    alt_rows = [{"checkpoint": r["checkpoint"], "word": r["word"], "default_phones": base[(r["checkpoint"], r["id"])]["phones"],
+                 "alt_phones": r["phones"], "default_top1": base[(r["checkpoint"], r["id"])]["top1"], "alt_top1": r["top1"],
+                 "rank_of_default_top1": r["default_top1_rank"], "delta_norm_logprob": round(r["delta_norm_logprob"], 4)}
+                for r in per if r["condition"] == "alternative" and r["mode"] == "phones"]
+    default_lp = {m: float(np.mean([r["default_top1_norm_logprob"] for r in per if r["checkpoint"] == m
+                                    and r["condition"] == "default"])) for m in {r["checkpoint"] for r in per}}
+    agree = defaultdict(list)
+    for r in per:
+        if r["mode"] == "phones" and r["checkpoint"] != "phones_p2g_s0" and r["condition"] == "donor":
+            agree[r["id"]].append(r["top1_changed"])
+    consistency = Counter(sum(v) for v in agree.values() if len(v) == 3)
+    sens_out = {"note": "post hoc, after the frozen run",
+                "toward_given_phones": {f"{m}|{c}": dict(v) for (m, c), v in sorted(toward.items())},
+                "mean_default_top1_norm_logprob": default_lp,
+                "donor_change_count_across_3_phone_seeds": {str(k): v for k, v in sorted(consistency.items())},
+                "alternative_readings": alt_rows}
+    (OUT / "sensitivity" / "posthoc.json").write_text(json.dumps(sens_out, ensure_ascii=False, indent=1) + "\n",
+                                                     encoding="utf-8")
+    return {"compat": {k: compat_out[k] for k in ("operation_types", "suspected_rows")},
+            "sensitivity": {k: sens_out[k] for k in ("toward_given_phones", "mean_default_top1_norm_logprob",
+                                                     "donor_change_count_across_3_phone_seeds")}}
+
+
 def main() -> int:
     """Command line."""
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
-    ap.add_argument("step", choices=["compat", "freeze", "sensitivity"])
+    ap.add_argument("step", choices=["compat", "freeze", "sensitivity", "posthoc"])
     a = ap.parse_args()
-    res = {"compat": compat, "freeze": freeze, "sensitivity": sensitivity}[a.step]()
+    res = {"compat": compat, "freeze": freeze, "sensitivity": sensitivity, "posthoc": posthoc}[a.step]()
     print(json.dumps(res, ensure_ascii=False, indent=1)[:6000])
     return 0
 

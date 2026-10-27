@@ -89,3 +89,21 @@ there (`git -C ../pocket-tts-khmer show archive/checkpoints-p0-p6:state/DECISION
   `restricted_artifacts_local_only`.
 - **Open:** independent review of the references (the only way to qualify the benchmark); the share-alike status
   of weights trained on Wikipedia pairs; a code licence.
+
+## D179 — E02 diagnostics: pronunciation compatibility and phone sensitivity (2026-10-27)
+- **Scope:** diagnostics only (`experiments/E02-diagnostics-2026-10-27/REPORT.md`); E02's registered result and
+  verdict (`inconclusive`, letters retained) are unchanged.
+- **Compatibility:**
+  - No training target has an exact Google-lexicon reading: the miner's `khmer_like` class, which E02 drops, is
+    assigned exactly when the Khmer side is a known word.
+  - On consonants read from the spelling (rules validated at 88.6% on held-out lexicon headwords), 69.9% of rows
+    show compatible evidence and 30.1% a suspected conflict.
+  - 54% of rows belong to words with several targets; translations and compounds are present among the worst rows.
+- **Sensitivity** (saved checkpoints, frozen dev sample):
+  - donor phones change the top-1 output for 33–45% of words, yet rarely move its consonants toward the donor
+    (2–7% of cases);
+  - only 7 words change in all three seeds;
+  - the letters controls never change.
+- **Recommended next (not launched):** re-admit mined pairs whose Khmer side is a known word (8,725 before
+  filters), keep the exact-reading-consistent ones, and test letters vs phones with phone steering as the primary
+  outcome.

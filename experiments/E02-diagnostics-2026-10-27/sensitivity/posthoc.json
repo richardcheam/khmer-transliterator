@@ -1,0 +1,910 @@
+{
+ "note": "post hoc, after the frozen run",
+ "toward_given_phones": {
+  "phones_p2g_s0|alternative": {
+   "changed": 2,
+   "closer_to_given_phones": 0,
+   "farther_from_given_phones": 0,
+   "farther_from_word_own_phones": 0
+  },
+  "phones_p2g_s0|donor": {
+   "changed": 21,
+   "closer_to_given_phones": 2,
+   "farther_from_given_phones": 1,
+   "farther_from_word_own_phones": 1
+  },
+  "phones_s0|alternative": {
+   "changed": 3,
+   "closer_to_given_phones": 0,
+   "farther_from_given_phones": 0,
+   "farther_from_word_own_phones": 0
+  },
+  "phones_s0|donor": {
+   "changed": 34,
+   "closer_to_given_phones": 7,
+   "farther_from_given_phones": 3,
+   "farther_from_word_own_phones": 5
+  },
+  "phones_s1|alternative": {
+   "changed": 7,
+   "closer_to_given_phones": 2,
+   "farther_from_given_phones": 2,
+   "farther_from_word_own_phones": 2
+  },
+  "phones_s1|donor": {
+   "changed": 31,
+   "closer_to_given_phones": 3,
+   "farther_from_given_phones": 4,
+   "farther_from_word_own_phones": 5
+  },
+  "phones_s2|alternative": {
+   "changed": 7,
+   "closer_to_given_phones": 0,
+   "farther_from_given_phones": 2,
+   "farther_from_word_own_phones": 1
+  },
+  "phones_s2|donor": {
+   "changed": 42,
+   "closer_to_given_phones": 2,
+   "farther_from_given_phones": 4,
+   "farther_from_word_own_phones": 2
+  }
+ },
+ "mean_default_top1_norm_logprob": {
+  "letters_s2": -0.3061106406978625,
+  "letters_s1": -0.29013284476327933,
+  "letters_s0": -0.26570323049280714,
+  "phones_s0": -0.2709385306329769,
+  "phones_p2g_s0": -0.3167546654038029,
+  "phones_s1": -0.32184876452465727,
+  "phones_s2": -0.26793727413509494
+ },
+ "donor_change_count_across_3_phone_seeds": {
+  "0": 26,
+  "1": 36,
+  "2": 25,
+  "3": 7
+ },
+ "alternative_readings": [
+  {
+   "checkpoint": "phones_s0",
+   "word": "always",
+   "default_phones": "AO1 L W EY2 Z",
+   "alt_phones": "AO1 L W IY0 Z",
+   "default_top1": "អាល់វ៉េស",
+   "alt_top1": "អាល់វ៉េស",
+   "rank_of_default_top1": 1,
+   "delta_norm_logprob": 0.0162
+  },
+  {
+   "checkpoint": "phones_s0",
+   "word": "benz",
+   "default_phones": "B EH1 N Z",
+   "alt_phones": "B AE1 N Z",
+   "default_top1": "បេនស៍",
+   "alt_top1": "បេនស៍",
+   "rank_of_default_top1": 1,
+   "delta_norm_logprob": -0.0113
+  },
+  {
+   "checkpoint": "phones_s0",
+   "word": "emirates",
+   "default_phones": "EH1 M ER0 AH0 T S",
+   "alt_phones": "EH1 M ER0 EY2 T S",
+   "default_top1": "អេមីរ៉េត",
+   "alt_top1": "អេមីរ៉េត",
+   "rank_of_default_top1": 1,
+   "delta_norm_logprob": 0.0078
+  },
+  {
+   "checkpoint": "phones_s0",
+   "word": "evolution",
+   "default_phones": "EH2 V AH0 L UW1 SH AH0 N",
+   "alt_phones": "IY2 V AH0 L UW1 SH AH0 N",
+   "default_top1": "អេវ៉ូលូទីអុន",
+   "alt_top1": "អេវ៉ូលូទីអុន",
+   "rank_of_default_top1": 1,
+   "delta_norm_logprob": 0.0101
+  },
+  {
+   "checkpoint": "phones_s0",
+   "word": "evolution",
+   "default_phones": "EH2 V AH0 L UW1 SH AH0 N",
+   "alt_phones": "EH2 V OW0 L UW1 SH AH0 N",
+   "default_top1": "អេវ៉ូលូទីអុន",
+   "alt_top1": "អេវ៉ូលូទីអុន",
+   "rank_of_default_top1": 1,
+   "delta_norm_logprob": 0.0495
+  },
+  {
+   "checkpoint": "phones_s0",
+   "word": "evolution",
+   "default_phones": "EH2 V AH0 L UW1 SH AH0 N",
+   "alt_phones": "IY2 V OW0 L UW1 SH AH0 N",
+   "default_top1": "អេវ៉ូលូទីអុន",
+   "alt_top1": "អេវ៉ូលូទីអុន",
+   "rank_of_default_top1": 1,
+   "delta_norm_logprob": 0.0523
+  },
+  {
+   "checkpoint": "phones_s0",
+   "word": "job",
+   "default_phones": "JH AA1 B",
+   "alt_phones": "JH OW1 B",
+   "default_top1": "ចប",
+   "alt_top1": "ចូប",
+   "rank_of_default_top1": 2,
+   "delta_norm_logprob": -0.0104
+  },
+  {
+   "checkpoint": "phones_s0",
+   "word": "jobs",
+   "default_phones": "JH AA1 B Z",
+   "alt_phones": "JH OW1 B Z",
+   "default_top1": "ចូបស៍",
+   "alt_top1": "ចូបស៍",
+   "rank_of_default_top1": 1,
+   "delta_norm_logprob": 0.0284
+  },
+  {
+   "checkpoint": "phones_s0",
+   "word": "manager",
+   "default_phones": "M AE1 N AH0 JH ER0",
+   "alt_phones": "M AE1 N IH0 JH ER0",
+   "default_top1": "ម៉ាណាហ្គឺ",
+   "alt_top1": "ម៉ាណាហ្គឺ",
+   "rank_of_default_top1": 1,
+   "delta_norm_logprob": 0.0022
+  },
+  {
+   "checkpoint": "phones_s0",
+   "word": "natural",
+   "default_phones": "N AE1 CH ER0 AH0 L",
+   "alt_phones": "N AE1 CH R AH0 L",
+   "default_top1": "ណាទូរ៉ាល់",
+   "alt_top1": "ណាទូរ៉ាល់",
+   "rank_of_default_top1": 1,
+   "delta_norm_logprob": -0.0097
+  },
+  {
+   "checkpoint": "phones_s0",
+   "word": "rapid",
+   "default_phones": "R AE1 P AH0 D",
+   "alt_phones": "R AE1 P IH0 D",
+   "default_top1": "រ៉ាពីដ",
+   "alt_top1": "រ៉ាពីដ",
+   "rank_of_default_top1": 1,
+   "delta_norm_logprob": 0.0249
+  },
+  {
+   "checkpoint": "phones_s0",
+   "word": "record",
+   "default_phones": "R AH0 K AO1 R D",
+   "alt_phones": "R EH1 K ER0 D",
+   "default_top1": "រ៉េខដ",
+   "alt_top1": "រ៉េខដ",
+   "rank_of_default_top1": 1,
+   "delta_norm_logprob": -0.0085
+  },
+  {
+   "checkpoint": "phones_s0",
+   "word": "record",
+   "default_phones": "R AH0 K AO1 R D",
+   "alt_phones": "R IH0 K AO1 R D",
+   "default_top1": "រ៉េខដ",
+   "alt_top1": "រ៉េខដ",
+   "rank_of_default_top1": 1,
+   "delta_norm_logprob": -0.0089
+  },
+  {
+   "checkpoint": "phones_s0",
+   "word": "related",
+   "default_phones": "R IH0 L EY1 T IH0 D",
+   "alt_phones": "R IY2 L EY1 T IH0 D",
+   "default_top1": "រីឡេត",
+   "alt_top1": "រីឡេត",
+   "rank_of_default_top1": 1,
+   "delta_norm_logprob": 0.0241
+  },
+  {
+   "checkpoint": "phones_s0",
+   "word": "related",
+   "default_phones": "R IH0 L EY1 T IH0 D",
+   "alt_phones": "R IY0 L EY1 T IH0 D",
+   "default_top1": "រីឡេត",
+   "alt_top1": "រីឡេត",
+   "rank_of_default_top1": 1,
+   "delta_norm_logprob": -0.0244
+  },
+  {
+   "checkpoint": "phones_s0",
+   "word": "report",
+   "default_phones": "R IY0 P AO1 R T",
+   "alt_phones": "R IH0 P AO1 R T",
+   "default_top1": "រ៉េប៉ត",
+   "alt_top1": "រ៉េប៉ត",
+   "rank_of_default_top1": 1,
+   "delta_norm_logprob": -0.009
+  },
+  {
+   "checkpoint": "phones_s0",
+   "word": "reports",
+   "default_phones": "R IY0 P AO1 R T S",
+   "alt_phones": "R IH0 P AO1 R T S",
+   "default_top1": "រ៉េប៉ត",
+   "alt_top1": "រ៉េផតស៍",
+   "rank_of_default_top1": 2,
+   "delta_norm_logprob": -0.0532
+  },
+  {
+   "checkpoint": "phones_s0",
+   "word": "sheriff",
+   "default_phones": "SH EH1 R AH0 F",
+   "alt_phones": "SH EH1 R IH0 F",
+   "default_top1": "សេរីហ្វ",
+   "alt_top1": "សេរីហ្វ",
+   "rank_of_default_top1": 1,
+   "delta_norm_logprob": 0.0327
+  },
+  {
+   "checkpoint": "phones_s0",
+   "word": "top",
+   "default_phones": "T AA1 P",
+   "alt_phones": "T AO1 P",
+   "default_top1": "តុប",
+   "alt_top1": "តុប",
+   "rank_of_default_top1": 1,
+   "delta_norm_logprob": 0.0354
+  },
+  {
+   "checkpoint": "phones_s0",
+   "word": "tours",
+   "default_phones": "T UH1 R Z",
+   "alt_phones": "T AO1 R Z",
+   "default_top1": "ធួស",
+   "alt_top1": "ទ័រស៍",
+   "rank_of_default_top1": null,
+   "delta_norm_logprob": -0.0798
+  },
+  {
+   "checkpoint": "phones_s0",
+   "word": "victory",
+   "default_phones": "V IH1 K T ER0 IY0",
+   "alt_phones": "V IH1 K T R IY0",
+   "default_top1": "វីកតូរី",
+   "alt_top1": "វីកតូរី",
+   "rank_of_default_top1": 1,
+   "delta_norm_logprob": -0.0198
+  },
+  {
+   "checkpoint": "phones_s1",
+   "word": "always",
+   "default_phones": "AO1 L W EY2 Z",
+   "alt_phones": "AO1 L W IY0 Z",
+   "default_top1": "អាល់វ៉េស",
+   "alt_top1": "អាល់វ៉េ",
+   "rank_of_default_top1": 4,
+   "delta_norm_logprob": -0.1099
+  },
+  {
+   "checkpoint": "phones_s1",
+   "word": "benz",
+   "default_phones": "B EH1 N Z",
+   "alt_phones": "B AE1 N Z",
+   "default_top1": "បិនស៍",
+   "alt_top1": "បិនស៍",
+   "rank_of_default_top1": 1,
+   "delta_norm_logprob": 0.047
+  },
+  {
+   "checkpoint": "phones_s1",
+   "word": "emirates",
+   "default_phones": "EH1 M ER0 AH0 T S",
+   "alt_phones": "EH1 M ER0 EY2 T S",
+   "default_top1": "អេមីរ៉ាត",
+   "alt_top1": "អេមីរ៉ាត",
+   "rank_of_default_top1": 1,
+   "delta_norm_logprob": -0.0261
+  },
+  {
+   "checkpoint": "phones_s1",
+   "word": "evolution",
+   "default_phones": "EH2 V AH0 L UW1 SH AH0 N",
+   "alt_phones": "IY2 V AH0 L UW1 SH AH0 N",
+   "default_top1": "អេវ៉ូលទីយ៉ុន",
+   "alt_top1": "អេវ៉ូលទីយ៉ុន",
+   "rank_of_default_top1": 1,
+   "delta_norm_logprob": -0.0016
+  },
+  {
+   "checkpoint": "phones_s1",
+   "word": "evolution",
+   "default_phones": "EH2 V AH0 L UW1 SH AH0 N",
+   "alt_phones": "EH2 V OW0 L UW1 SH AH0 N",
+   "default_top1": "អេវ៉ូលទីយ៉ុន",
+   "alt_top1": "អេវូលូទីអុន",
+   "rank_of_default_top1": 3,
+   "delta_norm_logprob": -0.0245
+  },
+  {
+   "checkpoint": "phones_s1",
+   "word": "evolution",
+   "default_phones": "EH2 V AH0 L UW1 SH AH0 N",
+   "alt_phones": "IY2 V OW0 L UW1 SH AH0 N",
+   "default_top1": "អេវ៉ូលទីយ៉ុន",
+   "alt_top1": "អេវូលូទីអុន",
+   "rank_of_default_top1": 3,
+   "delta_norm_logprob": -0.0228
+  },
+  {
+   "checkpoint": "phones_s1",
+   "word": "job",
+   "default_phones": "JH AA1 B",
+   "alt_phones": "JH OW1 B",
+   "default_top1": "ចប",
+   "alt_top1": "ចប",
+   "rank_of_default_top1": 1,
+   "delta_norm_logprob": 0.0183
+  },
+  {
+   "checkpoint": "phones_s1",
+   "word": "jobs",
+   "default_phones": "JH AA1 B Z",
+   "alt_phones": "JH OW1 B Z",
+   "default_top1": "ចប",
+   "alt_top1": "ចប",
+   "rank_of_default_top1": 1,
+   "delta_norm_logprob": 0.0081
+  },
+  {
+   "checkpoint": "phones_s1",
+   "word": "manager",
+   "default_phones": "M AE1 N AH0 JH ER0",
+   "alt_phones": "M AE1 N IH0 JH ER0",
+   "default_top1": "ម៉ាណាជើ",
+   "alt_top1": "ម៉ាណាហ្គឺ",
+   "rank_of_default_top1": 2,
+   "delta_norm_logprob": 0.0012
+  },
+  {
+   "checkpoint": "phones_s1",
+   "word": "natural",
+   "default_phones": "N AE1 CH ER0 AH0 L",
+   "alt_phones": "N AE1 CH R AH0 L",
+   "default_top1": "ណាទូរ៉ាល់",
+   "alt_top1": "ណាទូរ៉ាល់",
+   "rank_of_default_top1": 1,
+   "delta_norm_logprob": -0.0239
+  },
+  {
+   "checkpoint": "phones_s1",
+   "word": "rapid",
+   "default_phones": "R AE1 P AH0 D",
+   "alt_phones": "R AE1 P IH0 D",
+   "default_top1": "រ៉ាពីដ",
+   "alt_top1": "រ៉ាពីដ",
+   "rank_of_default_top1": 1,
+   "delta_norm_logprob": -0.0048
+  },
+  {
+   "checkpoint": "phones_s1",
+   "word": "record",
+   "default_phones": "R AH0 K AO1 R D",
+   "alt_phones": "R EH1 K ER0 D",
+   "default_top1": "រ៉េខត",
+   "alt_top1": "រ៉េកដ",
+   "rank_of_default_top1": 2,
+   "delta_norm_logprob": 0.0068
+  },
+  {
+   "checkpoint": "phones_s1",
+   "word": "record",
+   "default_phones": "R AH0 K AO1 R D",
+   "alt_phones": "R IH0 K AO1 R D",
+   "default_top1": "រ៉េខត",
+   "alt_top1": "រ៉េកដ",
+   "rank_of_default_top1": 3,
+   "delta_norm_logprob": -0.0272
+  },
+  {
+   "checkpoint": "phones_s1",
+   "word": "related",
+   "default_phones": "R IH0 L EY1 T IH0 D",
+   "alt_phones": "R IY2 L EY1 T IH0 D",
+   "default_top1": "រ៉េឡេត",
+   "alt_top1": "រីឡេត",
+   "rank_of_default_top1": 2,
+   "delta_norm_logprob": 0.0556
+  },
+  {
+   "checkpoint": "phones_s1",
+   "word": "related",
+   "default_phones": "R IH0 L EY1 T IH0 D",
+   "alt_phones": "R IY0 L EY1 T IH0 D",
+   "default_top1": "រ៉េឡេត",
+   "alt_top1": "រ៉េឡេត",
+   "rank_of_default_top1": 1,
+   "delta_norm_logprob": 0.0209
+  },
+  {
+   "checkpoint": "phones_s1",
+   "word": "report",
+   "default_phones": "R IY0 P AO1 R T",
+   "alt_phones": "R IH0 P AO1 R T",
+   "default_top1": "រ៉េប៉ត",
+   "alt_top1": "រ៉េប៉ត",
+   "rank_of_default_top1": 1,
+   "delta_norm_logprob": 0.0036
+  },
+  {
+   "checkpoint": "phones_s1",
+   "word": "reports",
+   "default_phones": "R IY0 P AO1 R T S",
+   "alt_phones": "R IH0 P AO1 R T S",
+   "default_top1": "រ៉េប៉ត",
+   "alt_top1": "រ៉េប៉ត",
+   "rank_of_default_top1": 1,
+   "delta_norm_logprob": -0.0498
+  },
+  {
+   "checkpoint": "phones_s1",
+   "word": "sheriff",
+   "default_phones": "SH EH1 R AH0 F",
+   "alt_phones": "SH EH1 R IH0 F",
+   "default_top1": "សេរីហ្វ",
+   "alt_top1": "សេរីហ្វ",
+   "rank_of_default_top1": 1,
+   "delta_norm_logprob": -0.0166
+  },
+  {
+   "checkpoint": "phones_s1",
+   "word": "top",
+   "default_phones": "T AA1 P",
+   "alt_phones": "T AO1 P",
+   "default_top1": "តុប",
+   "alt_top1": "តុប",
+   "rank_of_default_top1": 1,
+   "delta_norm_logprob": 0.0105
+  },
+  {
+   "checkpoint": "phones_s1",
+   "word": "tours",
+   "default_phones": "T UH1 R Z",
+   "alt_phones": "T AO1 R Z",
+   "default_top1": "ទូស",
+   "alt_top1": "ទូស",
+   "rank_of_default_top1": 1,
+   "delta_norm_logprob": -0.0124
+  },
+  {
+   "checkpoint": "phones_s1",
+   "word": "victory",
+   "default_phones": "V IH1 K T ER0 IY0",
+   "alt_phones": "V IH1 K T R IY0",
+   "default_top1": "វីកតូរី",
+   "alt_top1": "វីកតូរី",
+   "rank_of_default_top1": 1,
+   "delta_norm_logprob": -0.0131
+  },
+  {
+   "checkpoint": "phones_s2",
+   "word": "always",
+   "default_phones": "AO1 L W EY2 Z",
+   "alt_phones": "AO1 L W IY0 Z",
+   "default_top1": "អាលវ៉េស",
+   "alt_top1": "អាលវ៉េស",
+   "rank_of_default_top1": 1,
+   "delta_norm_logprob": -0.0224
+  },
+  {
+   "checkpoint": "phones_s2",
+   "word": "benz",
+   "default_phones": "B EH1 N Z",
+   "alt_phones": "B AE1 N Z",
+   "default_top1": "បេនស៍",
+   "alt_top1": "បេនស៍",
+   "rank_of_default_top1": 1,
+   "delta_norm_logprob": -0.0716
+  },
+  {
+   "checkpoint": "phones_s2",
+   "word": "emirates",
+   "default_phones": "EH1 M ER0 AH0 T S",
+   "alt_phones": "EH1 M ER0 EY2 T S",
+   "default_top1": "អេមីរ៉ាត",
+   "alt_top1": "អេមីរ៉ាត",
+   "rank_of_default_top1": 1,
+   "delta_norm_logprob": -0.0384
+  },
+  {
+   "checkpoint": "phones_s2",
+   "word": "evolution",
+   "default_phones": "EH2 V AH0 L UW1 SH AH0 N",
+   "alt_phones": "IY2 V AH0 L UW1 SH AH0 N",
+   "default_top1": "អេវូលូទីយ៉ុន",
+   "alt_top1": "អេវូលូទីយ៉ុន",
+   "rank_of_default_top1": 1,
+   "delta_norm_logprob": 0.0309
+  },
+  {
+   "checkpoint": "phones_s2",
+   "word": "evolution",
+   "default_phones": "EH2 V AH0 L UW1 SH AH0 N",
+   "alt_phones": "EH2 V OW0 L UW1 SH AH0 N",
+   "default_top1": "អេវូលូទីយ៉ុន",
+   "alt_top1": "អេវូលូទីយ៉ូន",
+   "rank_of_default_top1": 2,
+   "delta_norm_logprob": -0.0235
+  },
+  {
+   "checkpoint": "phones_s2",
+   "word": "evolution",
+   "default_phones": "EH2 V AH0 L UW1 SH AH0 N",
+   "alt_phones": "IY2 V OW0 L UW1 SH AH0 N",
+   "default_top1": "អេវូលូទីយ៉ុន",
+   "alt_top1": "អេវូលូទីយ៉ុន",
+   "rank_of_default_top1": 1,
+   "delta_norm_logprob": 0.0094
+  },
+  {
+   "checkpoint": "phones_s2",
+   "word": "job",
+   "default_phones": "JH AA1 B",
+   "alt_phones": "JH OW1 B",
+   "default_top1": "ចប",
+   "alt_top1": "ចូប",
+   "rank_of_default_top1": 2,
+   "delta_norm_logprob": -0.1349
+  },
+  {
+   "checkpoint": "phones_s2",
+   "word": "jobs",
+   "default_phones": "JH AA1 B Z",
+   "alt_phones": "JH OW1 B Z",
+   "default_top1": "ចុប",
+   "alt_top1": "ចូបស៍",
+   "rank_of_default_top1": 2,
+   "delta_norm_logprob": -0.0288
+  },
+  {
+   "checkpoint": "phones_s2",
+   "word": "manager",
+   "default_phones": "M AE1 N AH0 JH ER0",
+   "alt_phones": "M AE1 N IH0 JH ER0",
+   "default_top1": "ម៉ាណាហ្សឺ",
+   "alt_top1": "ម៉ាណាហ្គឺ",
+   "rank_of_default_top1": 4,
+   "delta_norm_logprob": -0.056
+  },
+  {
+   "checkpoint": "phones_s2",
+   "word": "natural",
+   "default_phones": "N AE1 CH ER0 AH0 L",
+   "alt_phones": "N AE1 CH R AH0 L",
+   "default_top1": "ណាទូរ៉ាល",
+   "alt_top1": "ណាទូរ៉ាល",
+   "rank_of_default_top1": 1,
+   "delta_norm_logprob": 0.0069
+  },
+  {
+   "checkpoint": "phones_s2",
+   "word": "rapid",
+   "default_phones": "R AE1 P AH0 D",
+   "alt_phones": "R AE1 P IH0 D",
+   "default_top1": "រ៉ាពីដ",
+   "alt_top1": "រ៉ាពីដ",
+   "rank_of_default_top1": 1,
+   "delta_norm_logprob": -0.0016
+  },
+  {
+   "checkpoint": "phones_s2",
+   "word": "record",
+   "default_phones": "R AH0 K AO1 R D",
+   "alt_phones": "R EH1 K ER0 D",
+   "default_top1": "រ៉េកដ",
+   "alt_top1": "រ៉េក័រ",
+   "rank_of_default_top1": 2,
+   "delta_norm_logprob": -0.244
+  },
+  {
+   "checkpoint": "phones_s2",
+   "word": "record",
+   "default_phones": "R AH0 K AO1 R D",
+   "alt_phones": "R IH0 K AO1 R D",
+   "default_top1": "រ៉េកដ",
+   "alt_top1": "រ៉េកដ",
+   "rank_of_default_top1": 1,
+   "delta_norm_logprob": -0.0768
+  },
+  {
+   "checkpoint": "phones_s2",
+   "word": "related",
+   "default_phones": "R IH0 L EY1 T IH0 D",
+   "alt_phones": "R IY2 L EY1 T IH0 D",
+   "default_top1": "រ៉េឡាតេដ",
+   "alt_top1": "រីឡាតេដ",
+   "rank_of_default_top1": 2,
+   "delta_norm_logprob": -0.0985
+  },
+  {
+   "checkpoint": "phones_s2",
+   "word": "related",
+   "default_phones": "R IH0 L EY1 T IH0 D",
+   "alt_phones": "R IY0 L EY1 T IH0 D",
+   "default_top1": "រ៉េឡាតេដ",
+   "alt_top1": "រីឡាតេដ",
+   "rank_of_default_top1": 2,
+   "delta_norm_logprob": -0.1136
+  },
+  {
+   "checkpoint": "phones_s2",
+   "word": "report",
+   "default_phones": "R IY0 P AO1 R T",
+   "alt_phones": "R IH0 P AO1 R T",
+   "default_top1": "រ៉េប៉ត",
+   "alt_top1": "រ៉េប៉ត",
+   "rank_of_default_top1": 1,
+   "delta_norm_logprob": 0.0003
+  },
+  {
+   "checkpoint": "phones_s2",
+   "word": "reports",
+   "default_phones": "R IY0 P AO1 R T S",
+   "alt_phones": "R IH0 P AO1 R T S",
+   "default_top1": "រ៉េប៉តស៍",
+   "alt_top1": "រ៉េប៉តស៍",
+   "rank_of_default_top1": 1,
+   "delta_norm_logprob": -0.0009
+  },
+  {
+   "checkpoint": "phones_s2",
+   "word": "sheriff",
+   "default_phones": "SH EH1 R AH0 F",
+   "alt_phones": "SH EH1 R IH0 F",
+   "default_top1": "សេរីហ្វ",
+   "alt_top1": "សេរីហ្វ",
+   "rank_of_default_top1": 1,
+   "delta_norm_logprob": 0.035
+  },
+  {
+   "checkpoint": "phones_s2",
+   "word": "top",
+   "default_phones": "T AA1 P",
+   "alt_phones": "T AO1 P",
+   "default_top1": "តុប",
+   "alt_top1": "តុប",
+   "rank_of_default_top1": 1,
+   "delta_norm_logprob": 0.0775
+  },
+  {
+   "checkpoint": "phones_s2",
+   "word": "tours",
+   "default_phones": "T UH1 R Z",
+   "alt_phones": "T AO1 R Z",
+   "default_top1": "ទ័រស៍",
+   "alt_top1": "ទ័រស៍",
+   "rank_of_default_top1": 1,
+   "delta_norm_logprob": 0.0149
+  },
+  {
+   "checkpoint": "phones_s2",
+   "word": "victory",
+   "default_phones": "V IH1 K T ER0 IY0",
+   "alt_phones": "V IH1 K T R IY0",
+   "default_top1": "វីកតូរី",
+   "alt_top1": "វីកតូរី",
+   "rank_of_default_top1": 1,
+   "delta_norm_logprob": 0.0037
+  },
+  {
+   "checkpoint": "phones_p2g_s0",
+   "word": "always",
+   "default_phones": "AO1 L W EY2 Z",
+   "alt_phones": "AO1 L W IY0 Z",
+   "default_top1": "អាល់វ៉េស",
+   "alt_top1": "អាល់វ៉េស",
+   "rank_of_default_top1": 1,
+   "delta_norm_logprob": 0.0333
+  },
+  {
+   "checkpoint": "phones_p2g_s0",
+   "word": "benz",
+   "default_phones": "B EH1 N Z",
+   "alt_phones": "B AE1 N Z",
+   "default_top1": "បេនស៍",
+   "alt_top1": "បេនស៍",
+   "rank_of_default_top1": 1,
+   "delta_norm_logprob": 0.0101
+  },
+  {
+   "checkpoint": "phones_p2g_s0",
+   "word": "emirates",
+   "default_phones": "EH1 M ER0 AH0 T S",
+   "alt_phones": "EH1 M ER0 EY2 T S",
+   "default_top1": "អេមីរ៉ាតេស",
+   "alt_top1": "អេមីរ៉ាតេស",
+   "rank_of_default_top1": 1,
+   "delta_norm_logprob": -0.0154
+  },
+  {
+   "checkpoint": "phones_p2g_s0",
+   "word": "evolution",
+   "default_phones": "EH2 V AH0 L UW1 SH AH0 N",
+   "alt_phones": "IY2 V AH0 L UW1 SH AH0 N",
+   "default_top1": "អេវ៉ូលូទីយ៉ុន",
+   "alt_top1": "អេវ៉ូលូទីយ៉ុន",
+   "rank_of_default_top1": 1,
+   "delta_norm_logprob": -0.0065
+  },
+  {
+   "checkpoint": "phones_p2g_s0",
+   "word": "evolution",
+   "default_phones": "EH2 V AH0 L UW1 SH AH0 N",
+   "alt_phones": "EH2 V OW0 L UW1 SH AH0 N",
+   "default_top1": "អេវ៉ូលូទីយ៉ុន",
+   "alt_top1": "អេវ៉ូលូទីយ៉ុន",
+   "rank_of_default_top1": 1,
+   "delta_norm_logprob": -0.0201
+  },
+  {
+   "checkpoint": "phones_p2g_s0",
+   "word": "evolution",
+   "default_phones": "EH2 V AH0 L UW1 SH AH0 N",
+   "alt_phones": "IY2 V OW0 L UW1 SH AH0 N",
+   "default_top1": "អេវ៉ូលូទីយ៉ុន",
+   "alt_top1": "អេវ៉ូលូទីយ៉ុន",
+   "rank_of_default_top1": 1,
+   "delta_norm_logprob": -0.0231
+  },
+  {
+   "checkpoint": "phones_p2g_s0",
+   "word": "job",
+   "default_phones": "JH AA1 B",
+   "alt_phones": "JH OW1 B",
+   "default_top1": "ចប",
+   "alt_top1": "ចប",
+   "rank_of_default_top1": 1,
+   "delta_norm_logprob": -0.009
+  },
+  {
+   "checkpoint": "phones_p2g_s0",
+   "word": "jobs",
+   "default_phones": "JH AA1 B Z",
+   "alt_phones": "JH OW1 B Z",
+   "default_top1": "ចបស៍",
+   "alt_top1": "ចបស៍",
+   "rank_of_default_top1": 1,
+   "delta_norm_logprob": 0.0129
+  },
+  {
+   "checkpoint": "phones_p2g_s0",
+   "word": "manager",
+   "default_phones": "M AE1 N AH0 JH ER0",
+   "alt_phones": "M AE1 N IH0 JH ER0",
+   "default_top1": "ម៉ាណាជើ",
+   "alt_top1": "ម៉ាណាជើ",
+   "rank_of_default_top1": 1,
+   "delta_norm_logprob": 0.0053
+  },
+  {
+   "checkpoint": "phones_p2g_s0",
+   "word": "natural",
+   "default_phones": "N AE1 CH ER0 AH0 L",
+   "alt_phones": "N AE1 CH R AH0 L",
+   "default_top1": "ណាទូរ៉ាល់",
+   "alt_top1": "ណាទូរ៉ាល់",
+   "rank_of_default_top1": 1,
+   "delta_norm_logprob": -0.02
+  },
+  {
+   "checkpoint": "phones_p2g_s0",
+   "word": "rapid",
+   "default_phones": "R AE1 P AH0 D",
+   "alt_phones": "R AE1 P IH0 D",
+   "default_top1": "រ៉ាពីដ",
+   "alt_top1": "រ៉ាពីដ",
+   "rank_of_default_top1": 1,
+   "delta_norm_logprob": -0.0009
+  },
+  {
+   "checkpoint": "phones_p2g_s0",
+   "word": "record",
+   "default_phones": "R AH0 K AO1 R D",
+   "alt_phones": "R EH1 K ER0 D",
+   "default_top1": "រ៉េកដ",
+   "alt_top1": "រ៉េខដ",
+   "rank_of_default_top1": 2,
+   "delta_norm_logprob": -0.0129
+  },
+  {
+   "checkpoint": "phones_p2g_s0",
+   "word": "record",
+   "default_phones": "R AH0 K AO1 R D",
+   "alt_phones": "R IH0 K AO1 R D",
+   "default_top1": "រ៉េកដ",
+   "alt_top1": "រ៉េកដ",
+   "rank_of_default_top1": 1,
+   "delta_norm_logprob": 0.0281
+  },
+  {
+   "checkpoint": "phones_p2g_s0",
+   "word": "related",
+   "default_phones": "R IH0 L EY1 T IH0 D",
+   "alt_phones": "R IY2 L EY1 T IH0 D",
+   "default_top1": "រីឡាត",
+   "alt_top1": "រីឡាត",
+   "rank_of_default_top1": 1,
+   "delta_norm_logprob": 0.0147
+  },
+  {
+   "checkpoint": "phones_p2g_s0",
+   "word": "related",
+   "default_phones": "R IH0 L EY1 T IH0 D",
+   "alt_phones": "R IY0 L EY1 T IH0 D",
+   "default_top1": "រីឡាត",
+   "alt_top1": "រីឡាត",
+   "rank_of_default_top1": 1,
+   "delta_norm_logprob": 0.0061
+  },
+  {
+   "checkpoint": "phones_p2g_s0",
+   "word": "report",
+   "default_phones": "R IY0 P AO1 R T",
+   "alt_phones": "R IH0 P AO1 R T",
+   "default_top1": "រីប៉ត",
+   "alt_top1": "រីប៉ត",
+   "rank_of_default_top1": 1,
+   "delta_norm_logprob": 0.0
+  },
+  {
+   "checkpoint": "phones_p2g_s0",
+   "word": "reports",
+   "default_phones": "R IY0 P AO1 R T S",
+   "alt_phones": "R IH0 P AO1 R T S",
+   "default_top1": "រីប៉ត",
+   "alt_top1": "រីប៉ត",
+   "rank_of_default_top1": 1,
+   "delta_norm_logprob": -0.01
+  },
+  {
+   "checkpoint": "phones_p2g_s0",
+   "word": "sheriff",
+   "default_phones": "SH EH1 R AH0 F",
+   "alt_phones": "SH EH1 R IH0 F",
+   "default_top1": "សេរីហ្វ",
+   "alt_top1": "សេរីហ្វ",
+   "rank_of_default_top1": 1,
+   "delta_norm_logprob": -0.0036
+  },
+  {
+   "checkpoint": "phones_p2g_s0",
+   "word": "top",
+   "default_phones": "T AA1 P",
+   "alt_phones": "T AO1 P",
+   "default_top1": "តុប",
+   "alt_top1": "តប",
+   "rank_of_default_top1": 2,
+   "delta_norm_logprob": 0.0158
+  },
+  {
+   "checkpoint": "phones_p2g_s0",
+   "word": "tours",
+   "default_phones": "T UH1 R Z",
+   "alt_phones": "T AO1 R Z",
+   "default_top1": "ទូស",
+   "alt_top1": "ទូស",
+   "rank_of_default_top1": 1,
+   "delta_norm_logprob": 0.0962
+  },
+  {
+   "checkpoint": "phones_p2g_s0",
+   "word": "victory",
+   "default_phones": "V IH1 K T ER0 IY0",
+   "alt_phones": "V IH1 K T R IY0",
+   "default_top1": "វីកតូរី",
+   "alt_top1": "វីកតូរី",
+   "rank_of_default_top1": 1,
+   "delta_norm_logprob": 0.0144
+  }
+ ]
+}

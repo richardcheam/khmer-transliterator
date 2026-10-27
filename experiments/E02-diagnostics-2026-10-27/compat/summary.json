@@ -1,0 +1,514 @@
+{
+ "rows": 10031,
+ "words": 6916,
+ "coverage": {
+  "cmudict_supplied": 10031,
+  "supplied_equals_dictionary_default": 10031,
+  "cmudict_ambiguous_beyond_stress": 1030,
+  "google_exact_target_hits": 0,
+  "orthographic_readable": 10031,
+  "google_latin_reading_of_word": 1196,
+  "assessable_any_track": 10031
+ },
+ "orthography_validation": {
+  "calibration": {
+   "other": {
+    "headwords": 22410,
+    "unreadable": 3,
+    "consonants_equal": 19784,
+    "rate": 0.88293836747445
+   },
+   "loan_marked": {
+    "headwords": 8760,
+    "unreadable": 0,
+    "consonants_equal": 7936,
+    "rate": 0.9059360730593607
+   },
+   "all": {
+    "headwords": 31170,
+    "unreadable": 3,
+    "consonants_equal": 27720,
+    "rate": 0.8894022523823275
+   },
+   "top_disagreements": [
+    [
+     "del_a:រ>",
+     294
+    ],
+    [
+     "del_a:ត>",
+     225
+    ],
+    [
+     "sub:ស>h",
+     191
+    ],
+    [
+     "del_a:ម>",
+     179
+    ],
+    [
+     "del_a:្រ>",
+     168
+    ],
+    [
+     "del_a:ស>",
+     165
+    ],
+    [
+     "del_b:>h",
+     153
+    ],
+    [
+     "del_a:្យ>",
+     148
+    ],
+    [
+     "del_a:្ត>",
+     147
+    ],
+    [
+     "del_b:>t",
+     146
+    ],
+    [
+     "del_a:ទ>",
+     134
+    ],
+    [
+     "del_a:្ទ>",
+     130
+    ],
+    [
+     "del_a:្ស>",
+     123
+    ],
+    [
+     "del_a:្គ>",
+     112
+    ],
+    [
+     "del_a:ហ>",
+     106
+    ],
+    [
+     "del_a:ក>",
+     100
+    ],
+    [
+     "del_a:ដ>",
+     76
+    ],
+    [
+     "del_a:ណ>",
+     75
+    ],
+    [
+     "del_b:>k",
+     73
+    ],
+    [
+     "del_b:>m",
+     66
+    ],
+    [
+     "del_b:>p",
+     57
+    ],
+    [
+     "del_b:>l",
+     56
+    ],
+    [
+     "del_a:្ធ>",
+     52
+    ],
+    [
+     "del_a:ច>",
+     50
+    ],
+    [
+     "del_a:្ឌ>",
+     47
+    ]
+   ]
+  },
+  "heldout": {
+   "other": {
+    "headwords": 22149,
+    "unreadable": 2,
+    "consonants_equal": 19477,
+    "rate": 0.8794419108682892
+   },
+   "loan_marked": {
+    "headwords": 8831,
+    "unreadable": 1,
+    "consonants_equal": 7958,
+    "rate": 0.9012457531143828
+   },
+   "all": {
+    "headwords": 30980,
+    "unreadable": 3,
+    "consonants_equal": 27435,
+    "rate": 0.8856571004293509
+   },
+   "top_disagreements": [
+    [
+     "del_a:រ>",
+     333
+    ],
+    [
+     "sub:ស>h",
+     237
+    ],
+    [
+     "del_a:ត>",
+     225
+    ],
+    [
+     "del_a:ស>",
+     188
+    ],
+    [
+     "del_a:ម>",
+     183
+    ],
+    [
+     "del_a:្រ>",
+     172
+    ],
+    [
+     "del_a:្ត>",
+     152
+    ],
+    [
+     "del_a:្យ>",
+     145
+    ],
+    [
+     "del_b:>h",
+     145
+    ],
+    [
+     "del_b:>t",
+     142
+    ],
+    [
+     "del_a:្ទ>",
+     136
+    ],
+    [
+     "del_a:្ស>",
+     133
+    ],
+    [
+     "del_a:ទ>",
+     126
+    ],
+    [
+     "del_a:ហ>",
+     98
+    ],
+    [
+     "del_a:្គ>",
+     97
+    ],
+    [
+     "del_a:ក>",
+     94
+    ],
+    [
+     "del_a:ណ>",
+     90
+    ],
+    [
+     "del_b:>p",
+     64
+    ],
+    [
+     "sub:្វ>p",
+     62
+    ],
+    [
+     "del_b:>c",
+     62
+    ],
+    [
+     "del_a:្ឌ>",
+     60
+    ],
+    [
+     "del_b:>m",
+     54
+    ],
+    [
+     "del_a:ដ>",
+     53
+    ],
+    [
+     "del_b:>k",
+     52
+    ],
+    [
+     "del_a:្ធ>",
+     51
+    ]
+   ]
+  }
+ },
+ "categories": {
+  "suspected_conflict": 3018,
+  "compatible_evidence": 7013
+ },
+ "levels": {
+  "1": 2607,
+  "0": 7013,
+  "2": 372,
+  "3+": 39
+ },
+ "by_source": {
+  "fineweb": {
+   "suspected_conflict": 2777,
+   "level_1": 2405,
+   "compatible_evidence": 6561,
+   "level_0": 6561,
+   "level_2": 336,
+   "level_3+": 36
+  },
+  "fineweb+kmwiki": {
+   "compatible_evidence": 298,
+   "level_0": 298,
+   "suspected_conflict": 171,
+   "level_1": 137,
+   "level_2": 31,
+   "level_3+": 3
+  },
+  "kmwiki": {
+   "compatible_evidence": 154,
+   "level_0": 154,
+   "suspected_conflict": 70,
+   "level_1": 65,
+   "level_2": 5
+  }
+ },
+ "by_length": {
+  "5-8": {
+   "suspected_conflict": 2215,
+   "level_1": 1951,
+   "compatible_evidence": 5393,
+   "level_0": 5393,
+   "level_2": 245,
+   "level_3+": 19
+  },
+  "<=4": {
+   "compatible_evidence": 834,
+   "level_0": 834,
+   "suspected_conflict": 243,
+   "level_1": 222,
+   "level_3+": 2,
+   "level_2": 19
+  },
+  ">=9": {
+   "compatible_evidence": 786,
+   "level_0": 786,
+   "suspected_conflict": 560,
+   "level_2": 108,
+   "level_1": 434,
+   "level_3+": 18
+  }
+ },
+ "by_word_class": {
+  "common_english_word": {
+   "compatible_evidence": 1055,
+   "level_0": 1055,
+   "suspected_conflict": 470,
+   "level_2": 71,
+   "level_1": 384,
+   "level_3+": 15
+  },
+  "other_or_name": {
+   "suspected_conflict": 2548,
+   "level_1": 2223,
+   "compatible_evidence": 5958,
+   "level_0": 5958,
+   "level_2": 301,
+   "level_3+": 24
+  }
+ },
+ "by_cmudict_ambiguity": {
+  "False": {
+   "suspected_conflict": 2671,
+   "compatible_evidence": 6330
+  },
+  "True": {
+   "compatible_evidence": 683,
+   "suspected_conflict": 347
+  }
+ },
+ "suspected_conflict_reasons": {
+  "vowels not assessed": 3018,
+  "1 unexplained consonant operation(s)": 2607,
+  "2 unexplained consonant operation(s)": 372,
+  "extra Khmer consonant at the start (possible mining alignment artefact)": 311,
+  "fits the Google lexicon's Khmer reading of the word, which departs from the English one": 93,
+  "fits another CMUdict reading, not the supplied first one": 45,
+  "3 unexplained consonant operation(s)": 29,
+  "4 unexplained consonant operation(s)": 8,
+  "5 unexplained consonant operation(s)": 1,
+  "7 unexplained consonant operation(s)": 1
+ },
+ "unexplained_operations_top": [
+  [
+   "del_b ∅→យ",
+   375
+  ],
+  [
+   "del_b ∅→ស",
+   207
+  ],
+  [
+   "del_b ∅→ហ",
+   167
+  ],
+  [
+   "del_b ∅→ន",
+   163
+  ],
+  [
+   "sub N→ង",
+   153
+  ],
+  [
+   "del_b ∅→ល",
+   139
+  ],
+  [
+   "del_b ∅→ត",
+   107
+  ],
+  [
+   "sub K→ច",
+   104
+  ],
+  [
+   "del_b ∅→ក",
+   96
+  ],
+  [
+   "del_a Y→∅",
+   86
+  ],
+  [
+   "del_b ∅→វ",
+   76
+  ],
+  [
+   "del_a K→∅",
+   64
+  ],
+  [
+   "del_a T→∅",
+   57
+  ],
+  [
+   "del_a L→∅",
+   53
+  ],
+  [
+   "del_a D→∅",
+   47
+  ],
+  [
+   "sub JH→ហ្គ",
+   44
+  ],
+  [
+   "del_a S→∅",
+   42
+  ],
+  [
+   "del_b ∅→ដ",
+   41
+  ],
+  [
+   "del_b ∅→ម",
+   41
+  ],
+  [
+   "del_a W→∅",
+   38
+  ],
+  [
+   "del_a Z→∅",
+   37
+  ],
+  [
+   "sub CH→ស",
+   35
+  ],
+  [
+   "del_a N→∅",
+   34
+  ],
+  [
+   "del_b ∅→ង",
+   32
+  ],
+  [
+   "del_a P→∅",
+   29
+  ],
+  [
+   "del_b ∅→ប",
+   25
+  ],
+  [
+   "del_b ∅→្យ",
+   23
+  ],
+  [
+   "sub R→ក",
+   23
+  ],
+  [
+   "del_b ∅→្ហ",
+   22
+  ],
+  [
+   "del_a F→∅",
+   20
+  ]
+ ],
+ "adaptations_used": {
+  "adapt:v→w (Khmer វ is a labial approximant)": 720,
+  "free:r of -er": 671,
+  "free:coda r": 583,
+  "free:final cluster reduction": 522,
+  "adapt:ʃ→s": 396,
+  "adapt:θ→t/th": 174,
+  "free:h may drop": 55,
+  "adapt:ŋ→n": 47,
+  "adapt:n→ɲ before a front glide": 46,
+  "adapt:dʒ→s/z": 45,
+  "adapt:ʃ→c/ch": 45,
+  "free:coda r silent": 35,
+  "adapt:f→ph (older loans write ផ/ភ for f)": 29,
+  "adapt:ʒ→s/z": 25,
+  "free:ះ may be unreleased": 17,
+  "adapt:θ→s": 16,
+  "adapt:ʒ→c": 11,
+  "adapt:ð→d/t": 8
+ },
+ "multi_target": {
+  "words_with_several_targets": 2340,
+  "rows": 5455,
+  "words_whose_targets_disagree_on_consonants": 961
+ },
+ "google_latin_track": {
+  "rows": 1196,
+  "google_reading_departs_from_supplied_english": 355,
+  "target_fits_google_reading": 752,
+  "target_fits_google_but_not_english": 109
+ },
+ "elapsed_s": 6.6
+}

@@ -15,3 +15,4 @@ docs/FUNCTION_DOCUMENTATION.md
 dist/
 state/
 state_runner.out
+experiments/E02-diagnostics-2026-10-27/compat/training_pairs.jsonl
