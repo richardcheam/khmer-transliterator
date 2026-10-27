@@ -499,7 +499,7 @@ def summarize(table: list[dict], validation: dict, lat_lex: dict, cmu: dict) -> 
     for r in table:
         if r["category"] == "suspected_conflict":
             for x in r["reasons"]:
-                reasons[x.split(":")[0] if "unexplained" in x else x] += 1
+                reasons[x.split(":")[0] if "unexplained" in x or x.startswith("fits another") else x] += 1
     subs = Counter(f"{k} {x or '∅'}→{y or '∅'}" for r in table for k, x, y in r.get("ops", [])
                    if k in ("sub", "del_a", "del_b"))
     adapts = Counter(k for r in table for k, _x, _y in r.get("ops", []) if k.startswith(("adapt:", "free:")))
