@@ -145,3 +145,24 @@ there (`git -C ../pocket-tts-khmer show archive/checkpoints-p0-p6:state/DECISION
 - **Decision:** the product default and serving are unchanged. Phones alone are a weaker but complementary
   pathway. The next useful step still needs reviewed references (about 50 ranking failures per model are the
   cheapest lead). Report: `experiments/E04-pronunciation-pathways/REPORT.md`.
+
+## D182 — E05: is G+P candidate pooling more than "more candidates"? (2026-10-27)
+- **Setup:** inference only, exploratory on historical data. E04's G_s0/G_s1/G_s2 and P_s0, beam-8 for every
+  model. Compared: G4, G8, G+G (3 seed pairs) and G+P (3 combinations sharing P_s0). Macro coverage over families,
+  paired family bootstrap.
+- **Eval (registered primary):**
+  - G+P − G8 +1.63 points [−1.08, +4.51];
+  - G+P − G+G +0.75 [−2.25, +3.90];
+  - G8 − G4 +5.88 and G+G − G4 +6.76, i.e. most of E04's +8 came from extra slots;
+  - rule outcome: **no clear advantage**, uncertainty flag set (one negative per-combination sign).
+- **Dev (descriptive):** G+P beats both controls (+4.9, +5.1) but eval does not reproduce it. The checkpoints were
+  selected on dev.
+- **Cost:** G8 21.9 ms/word with one model resident; G+P 30.2 ms/word (beam-4 each) with two resident, and it
+  needs CMUdict.
+- **Decision:**
+  - keep the simpler letters-only generator;
+  - no pronunciation-specific reranker and no further phone/fusion training;
+  - a blinded review queue (56 words, 726 candidates) is prepared locally in `data/e05/review/`, not collected.
+- **E04 clarification:** the interpretation was corrected (unequal budgets; retention ≠ evidence of seed churn;
+  the sanity check is not a bug proof).
+- Report: `experiments/E05-candidate-diversity/REPORT.md`.
