@@ -1,0 +1,107 @@
+{
+ "created": "2026-10-27T09:12:52",
+ "purpose": "E02 diagnostics: training-target pronunciation compatibility; phone sensitivity of saved checkpoints",
+ "source_commit": "ac6bf6f3f293c58067d7503b9fc72d154d8a6e2a",
+ "branch": "english-phonetic",
+ "tracked_tree_dirty": false,
+ "diagnostic_script": {
+  "path": "scripts/e02_diagnostics.py",
+  "sha256": "2a3e6ec25b925245c0c5001ac10c9974e641ca979976fcf530f752de8e655be6",
+  "note": "fixes the shared consonant classes, the adaptation list (ADAPT) and the orthographic reading rules; the rules were adjusted on the calibration half of the Google lexicon before this file was written; ADAPT was not changed after any training row was compared"
+ },
+ "inputs": {
+  "train": {
+   "path": "data/e02/train.tsv",
+   "sha256": "ee473aa0eac4f0a934b4651ed3bdec1eea8202ec4fb82ecee1dda95be05d87aa"
+  },
+  "mined_kmwiki": {
+   "path": "data/mined_kmwiki.tsv",
+   "sha256": "e7e0a06c81d16ef6950ed5eec04706df9db3efe7b24f42e35e0ec65a7ce701e2"
+  },
+  "mined_fineweb": {
+   "path": "data/mined_fineweb.tsv",
+   "sha256": "1e8e64a73a073a117741f4549eff7c2b2b1debbd7891032ffc8a4a429d2fce40"
+  },
+  "lexicon": {
+   "path": "data/lexicon/km_lexicon.tsv",
+   "sha256": "b3f2e700d07d6c01a4c8cac5aa2f13b9a66885668ac482cc0c513f73c56495e5"
+  },
+  "cmudict": {
+   "path": "data/src/cmudict/cmudict.dict",
+   "sha256": "81917843c7f44ce2b094ac63873c2c7a4cf802040792c455ba3ca406891c3d22"
+  },
+  "en_words": {
+   "path": "data/en_common_words.txt",
+   "sha256": "deda37e079ec205ee5be93512682aeadfdbf0d76ec272f6e3c66240fb19a9d00"
+  },
+  "dev_references": {
+   "path": "data/e02/dev_references.jsonl",
+   "sha256": "58541efdfe6ec1d300d7c8293cc6af6a8d12fca1ba29d61c8559b2ef5afb2989"
+  }
+ },
+ "checkpoints": {
+  "phones_s0": {
+   "path": "models/e02/phones_s0/model.npz",
+   "sha256": "30e4afb4e1e13d189148a694c2d893d6dd7c92c868e8028fa875eaa59647fff3"
+  },
+  "phones_s1": {
+   "path": "models/e02/phones_s1/model.npz",
+   "sha256": "c4360046b99b1aa3e88c066302853f2a0729b8f2daa2fe24ce744e068f290d5d"
+  },
+  "phones_s2": {
+   "path": "models/e02/phones_s2/model.npz",
+   "sha256": "f1230006f815a2f234859eab15d16cbf7d64115cc7512a1e565c5946ee09ad16"
+  },
+  "letters_s0": {
+   "path": "models/e02/letters_s0/model.npz",
+   "sha256": "8901050b1093cf90f60523c7941d6c12dbd8571d71698e37abcf874ba437904b"
+  },
+  "letters_s1": {
+   "path": "models/e02/letters_s1/model.npz",
+   "sha256": "8c8f5ca95266720bbd55819a973565b050a6405f8f6e1416aebd0e9bad7e4bfa"
+  },
+  "letters_s2": {
+   "path": "models/e02/letters_s2/model.npz",
+   "sha256": "d07e8b88673e03ed4f98b8c61bb81ced1f36a80d49c68dd4a32b20b5e423182e"
+  },
+  "phones_p2g_s0": {
+   "path": "models/e02/phones_p2g_s0/model.npz",
+   "sha256": "8d7e949b086369585bf61acdeefe8528c03e2a5ad2b439e41c57ae25536ff0bf"
+  }
+ },
+ "e02_reference_hashes_unchanged_check": {
+  "data/e02/manifest.json": "6cdc7c8a6f24b6c8bb68d651e3c9dcb8f1329da702be548b6ece7dd76ffdffad"
+ },
+ "settings": {
+  "seed": 20261027,
+  "sample_max": 200,
+  "sensitivity": {
+   "beam": 4,
+   "top_k": 4,
+   "seed": 20261027,
+   "donor_rule": "another dev word with a dictionary reading, phone count within \u00b11 and a different stress-free reading; nearest count first, ties by the item's RNG",
+   "conditions": [
+    "default",
+    "no_pron",
+    "donor",
+    "alternative"
+   ]
+  },
+  "threads": "OMP_NUM_THREADS=6",
+  "gpu": "hidden (CUDA_VISIBLE_DEVICES=)"
+ },
+ "forbidden_paths": [
+  "data/e02/references.jsonl",
+  "data/e02/results",
+  "data/benchmark",
+  "e2/reserve",
+  "reserve.json",
+  "experiments/E02-english-phonetic/results.json"
+ ],
+ "commands": [
+  "CUDA_VISIBLE_DEVICES= OMP_NUM_THREADS=6 .venv/bin/python scripts/e02_diagnostics.py compat",
+  "CUDA_VISIBLE_DEVICES= OMP_NUM_THREADS=6 .venv/bin/python scripts/e02_diagnostics.py freeze",
+  "CUDA_VISIBLE_DEVICES= OMP_NUM_THREADS=6 .venv/bin/python scripts/e02_diagnostics.py sensitivity",
+  "CUDA_VISIBLE_DEVICES= .venv/bin/python -m unittest tests.test_e02_diagnostics -v"
+ ]
+}
