@@ -1,0 +1,10 @@
+# Research-only extras for the ByT5 experiments (E06, E07). Not used by serving (which needs NumPy only) and not in
+# uv.lock, so `uv sync` leaves them out. Install on top of the synced dev environment:
+#   uv sync && uv pip install --python .venv/bin/python -r research/requirements-byt5.txt
+# The full resolved environment these experiments ran in is research/requirements-byt5.lock.txt.
+transformers==5.19.0
+tokenizers==0.23.3
+huggingface-hub==2.3.0
+safetensors==0.8.0
+regex==2026.9.29
+torch==2.14.0

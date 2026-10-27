@@ -1,0 +1,14 @@
+experiment: E07-byt5-diagnosis
+description: diagnose E06's near-constant ByT5 outputs; 32-pair memorisation gate; one corrected full adaptation only if the gate passes
+base: {model: google/byt5-small, revision: 68377bdc18a2ffec8a0533fef03b1c513a4dd49d, local: models/e06/byt5-small, downloads: none}
+environment: {pins: research/requirements-byt5.txt, lock: research/requirements-byt5.lock.txt}
+data:
+  train: data/e03/train.tsv (part train = optimisation, 2,255; part train_val = diagnostic, 93)
+  select: data/e03/dev_references.jsonl (primary items; checkpoint selection only)
+  historical_eval: data/e03/eval_references.jsonl (primary items; scored after predictions are frozen)
+  pool: experiments/E06-reference-model/pool.jsonl (56 fresh words; no references)
+tiny: scripts/e07.py TINY and TINY_GATE (32 pairs; ≥ 30 exact; input dependence; reload; audit)
+full: experiments/E07-byt5-diagnosis/full_recipe.json (registered only after a passed tiny gate)
+decode: {selection: greedy, primary_top1: beam 4 sum log-prob, oracle: beam-4 top-4, max_new_tokens: 121}
+bootstrap: {unit: family, n: 10000, seed: 20261027}
+limits: scripts/e07.py LIMITS (6 threads; 2 tiny attempts; 1 full run ≤ 3,000 updates / 6 h; 8 training h; 12 wall h; RSS ≤ 5 GiB; ≥ 1.5 GiB available)
