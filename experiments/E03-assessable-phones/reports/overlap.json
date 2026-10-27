@@ -1,0 +1,42 @@
+{
+ "train": {
+  "words": 1964,
+  "targets": 2000,
+  "e02_train_words": 872,
+  "e02_train_targets": 0,
+  "e02_p2g_targets (phones_p2g model only)": 2000,
+  "e01_mined_extra_train_words": 1670,
+  "e01_mined_extra_train_targets": 1737,
+  "known_targets (models A/B/E training targets)": 219,
+  "loanword_list_words (speech repo)": 691,
+  "e03_heldout_words": 0,
+  "e03_heldout_targets": 0
+ },
+ "dev": {
+  "words": 276,
+  "targets": 307,
+  "e02_train_words": 131,
+  "e02_train_targets": 0,
+  "e02_p2g_targets (phones_p2g model only)": 307,
+  "e01_mined_extra_train_words": 245,
+  "e01_mined_extra_train_targets": 272,
+  "known_targets (models A/B/E training targets)": 42,
+  "loanword_list_words (speech repo)": 96,
+  "e03_heldout_words": 0,
+  "e03_heldout_targets": 0
+ },
+ "eval": {
+  "words": 245,
+  "targets": 283,
+  "e02_train_words": 122,
+  "e02_train_targets": 0,
+  "e02_p2g_targets (phones_p2g model only)": 283,
+  "e01_mined_extra_train_words": 206,
+  "e01_mined_extra_train_targets": 256,
+  "known_targets (models A/B/E training targets)": 37,
+  "loanword_list_words (speech repo)": 89,
+  "e03_heldout_words": 0,
+  "e03_heldout_targets": 0
+ },
+ "note": "counts of shared words/targets; E03 targets are Google-lexicon words by construction, so the E02 P2G pretraining saw them as spellings (E03 trains no P2G)"
+}
