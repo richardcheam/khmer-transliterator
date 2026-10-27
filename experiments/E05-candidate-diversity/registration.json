@@ -1,0 +1,45 @@
+{
+ "experiment": "E05-candidate-diversity",
+ "registered_at": "2026-10-27T13:12:54+00:00",
+ "commit": "99723edf1efb48fff6664cb3a92132a1fd7a6f99",
+ "label": "exploratory on historical data (E03/E04 partitions already examined); not fresh validation",
+ "checkpoints": {
+  "G_s0": "d5b781044612a6f0ac5535188e0082d2e17dbb3dd64b6ce6f7caabb039eca476",
+  "G_s1": "82661d2f4e27401c0721f1975ffe5c7a4025e89dbb47d3168573db3eeafae22e",
+  "G_s2": "08b31777014180ccd32f38461c8b89ac7e636414acb9c72af0b05ee1cf4258c3",
+  "P_s0": "76a5883fd97c81440d4da8d2a8412a5e6f04fa876d1c9def849cdf98059b21b6"
+ },
+ "data": {
+  "data/e03/dev_references.jsonl": "87ce1bc6b7015b1368cd2a0157c8a36206cb24db8cb17ab67c215f77f1edb4db",
+  "data/e03/eval_references.jsonl": "56c472895346fafae0eb5b3ab28f6dc50112ec29f7fd0ced0b0107bd213c516d",
+  "data/e03/train.tsv": "8d9bf0c057b0bc3df758e9443ad7ec77a07358026a6a3f5c48aeec0a8b480986",
+  "data/e04/phone_seen.json": "cc0ebd0602869051952b551fa8c69dce66f094382318b1ca595d9aad7cdb7ef9",
+  "experiments/E04-pronunciation-pathways/results/eval_per_item.jsonl": "1920dfb31812f448c9e24a98da43a05f668f38fd1b28d84c8880cb40eb97cd04",
+  "experiments/E04-pronunciation-pathways/reports/pilot_dev_per_item.jsonl": "39aae2411d4e6409139e6ad0b3b54fa622d3a9ccb712d81c3fa03804ca2ba1bd",
+  "experiments/E04-pronunciation-pathways/results.json": "cc14a19246c770d4c09e6beb472f4bb13ba4fa97be183ae954dd5ba0e7731899"
+ },
+ "cmudict_sha256": "81917843c7f44ce2b094ac63873c2c7a4cf802040792c455ba3ca406891c3d22",
+ "source_vocab": "\u1780\u1781\u1782\u1783\u1784\u1785\u1786\u1787\u1788\u1789\u178a\u178b\u178c\u178d\u178e\u178f\u1790\u1791\u1792\u1793\u1794\u1795\u1796\u1797\u1798\u1799\u179a\u179b\u179c\u179f\u17a0\u17a1\u17a2\u17a3\u17a4\u17a5\u17a6\u17a7\u17a8\u17a9\u17aa\u17ab\u17ac\u17ad\u17ae\u17af\u17b0\u17b1\u17b2\u17b3\u17b6\u17b7\u17b8\u17b9\u17ba\u17bb\u17bc\u17bd\u17be\u17bf\u17c0\u17c1\u17c2\u17c3\u17c4\u17c5\u17c6\u17c7\u17c8\u17c9\u17ca\u17cb\u17cc\u17cd\u17ce\u17cf\u17d0\u17d2",
+ "decoder": {
+  "search": "NumPy beam search (khmer_translit.translit.Transliterator.beam_search)",
+  "score": "sum of token log-probabilities, EOS included; no length normalisation",
+  "max_output_tokens": 40,
+  "source": "scripts/e04.py encode (main view of each model)",
+  "pronunciation": "CMUdict first listed reading with stress (scripts/e04.py phones_of)",
+  "candidates": "NFC; empty strings dropped; identical strings deduplicated keeping the best rank"
+ },
+ "width": 8,
+ "budgets": [
+  1,
+  2,
+  4,
+  8
+ ],
+ "n_boot": 10000,
+ "boot_seed": 20261027,
+ "code": {
+  "scripts/e05.py": "96f96f3955dcd7451254c7ba088afb73d52857f323d3943e28ac64c0a78f6a65",
+  "scripts/e04.py": "77ff2297360d37fd50786b616c12cb662d854305c45dc6b6281c7caa1ffbac20",
+  "src/khmer_translit/translit.py": "77f7c82d7e7dd38c3dbdfa5a41cc8afe9f5b08fb74ddef48903d81b46c227d5c"
+ }
+}

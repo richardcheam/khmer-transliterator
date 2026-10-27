@@ -138,6 +138,10 @@ there (`git -C ../pocket-tts-khmer show archive/checkpoints-p0-p6:state/DECISION
   - P collapses on phone-seen homophones (1/14).
 - **Post hoc:** G ∪ P top-4 72.7 vs GP 65.8. GP keeps 8/20 of P's unique wins, the same rate as for a second G
   seed's (8/17), so no specific joint-training loss is shown.
+- **Clarified 2026-10-27 (E05):**
+  - the G ∪ P vs G top-4 gain compares unequal candidate budgets;
+  - the retention counts cannot separate pronunciation-specific complementarity from seed variation;
+  - the sanity check shows learnability, not the absence of bugs.
 - **Decision:** the product default and serving are unchanged. Phones alone are a weaker but complementary
   pathway. The next useful step still needs reviewed references (about 50 ranking failures per model are the
   cheapest lead). Report: `experiments/E04-pronunciation-pathways/REPORT.md`.

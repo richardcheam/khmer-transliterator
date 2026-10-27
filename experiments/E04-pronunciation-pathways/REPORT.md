@@ -3,6 +3,22 @@
 **Status:** done 2026-10-27, branch B (GP candidate, confirmed with 3 paired seeds). Research only: the product
 default (E02 `letters_s0`) and serving are unchanged. Plan: `PLAN.md` (registered at `d82be16`, before training).
 
+## Clarification (2026-10-27, added with E05; no registered number changed)
+Three interpretive statements in the first version of this report went beyond the evidence. They are corrected in
+place below; the numbers are unchanged.
+1. **Candidate budgets:** "G's top-4 vs G ∪ P top-4" (+11.8 dev, +8.1 eval) compares up to 8 candidates with 4.
+   It is not an equal-budget comparison and does not by itself show pronunciation-specific diversity. E05 compares
+   G ∪ P with G's top-8 and with unions of two G seeds.
+2. **Retention:** GP keeping 8 of 20 P-only wins and 8 of 17 second-seed wins cannot tell pronunciation-specific
+   complementarity apart from seed variation. It does **not** establish that most P-only wins are ordinary
+   variation; the earlier sentence saying so is withdrawn.
+3. **Sanity check:** reaching 100% training agreement on 64 words shows that each arm can learn that subset. It
+   does not rule out every implementation issue.
+
+Also, the earlier answer "Partly" to "does joint training lose it?" is replaced by the narrower supported
+statement: one GP model does not match a two-model union, and these data neither show nor exclude a loss of phone
+information.
+
 ## In plain words
 We trained the same small model three ways on the same 2,255 English → Khmer pairs:
 - **G** sees only the English letters (`buffet`);
@@ -22,21 +38,25 @@ With the phones, the model "hears" the k in *accel* and the hard g in *big*. GP 
 
 What we found:
 1. **Pronunciation alone works, but less well than letters.** P gets about 35% exact on eval vs G's 43%. It is
-   a real pathway (it gets 20 eval items right that G misses), not noise and not a broken model.
+   a real pathway (it gets 20 eval items right that G misses). The sanity check shows it can learn; it does
+   not prove the implementation is free of every bug (see the clarification below).
 2. **Letters and pronunciation get different words right.** If we pool G's and P's four best guesses, the right
-   spelling is among them for 73% of eval words, vs 65% for G alone.
+   spelling is among them for 73% of eval words, vs 65% for G alone. This compares up to 8 guesses with 4, so it
+   is not an equal-budget comparison (see the clarification below).
 3. **Feeding both (GP) is a little better than letters, but not detectably.** Over three paired seeds, GP − G is
    +2.2 points, with a 95% interval of −1.5 to +6.0 points. This interval includes zero.
 4. **GP does not collect the whole pooled benefit** (65.8% top-4 vs the pooled 72.7%). But we cannot show that GP
    specifically "forgets" P's wins: GP keeps 8 of P's 20 extra items, and it keeps exactly as many (8 of 17) of
-   the items that simply a *second G seed* happened to get right. Most of the "P-only" wins are ordinary
-   retraining churn.
+   the items that simply a *second G seed* happened to get right. These counts cannot tell
+   pronunciation-specific complementarity apart from seed variation; they do not show that most "P-only" wins
+   are ordinary variation (clarified 2026-10-27).
 
 None of this measures phonetic correctness: the references are mined, unreviewed spellings.
 
 ## What ran (budget)
 - Sanity: 3 of 6 attempts. G, P and GP each reached 100% exact training agreement on 64 unambiguous words within
-  500 updates (`reports/sanity.json`), so P's lower score is not an implementation failure.
+  500 updates (`reports/sanity.json`). This shows that each arm can learn that subset; it does not rule out
+  every implementation issue (clarified 2026-10-27).
 - Full runs: 7 of 8 attempts, 2.01 of 12 hours, one process, 6 threads, CPU only, no failures
   (`run_ledger.json`).
   - pilots G_s0, P_s0, GP_s0;
@@ -110,8 +130,9 @@ Seed 0 is the only seed with all three arms.
   - P-only hits: 18, GP keeps 10;
   - G ∪ P coverage 72.7 vs G 64.6 and GP 65.8.
 - **Reading:** GP keeps P's unique wins at the same rate as it keeps a second G seed's unique wins. The data do
-  not separate "joint training loses the phone pathway" from ordinary seed-to-seed churn. The pooled top-4
-  advantage is real on both dev and eval, but it is a two-model union. GP does not reach it.
+  not separate pronunciation-specific complementarity from seed-to-seed variation, in either direction. The
+  pooled top-4 advantage appears on both dev and eval, but it is a two-model union with up to twice the candidate
+  slots of G4. It is not compared with G8 or G+G here; that is E05. GP's own top-4 is below the union.
 
 ## Alternative CMUdict readings (E03's frozen eval sample, 21 cases; `results.json` → `alternative_readings`)
 | Model | Top-1 changed | Agrees, default reading | Agrees, alternative | Both outputs in the lexicon |
@@ -128,12 +149,15 @@ Seed 0 is the only seed with all three arms.
 
 ## Answers to the two questions
 1. **Standalone pathway:** on this data and recipe, P is a usable but weaker pathway: −8 points top-1 vs G
-   (exploratory, one seed). Its errors differ from G's enough that the union of their candidates covers about 8
-   to 12 more points of references.
-2. **Does joint training lose it?** Partly. GP's candidates do not reach the G ∪ P coverage. But GP is not
-   detectably worse than G (+2.2 [−1.5, +6.0]), and the per-item loss of P's wins is indistinguishable from seed
-   churn. There is no evidence of a specific joint-training failure, and the conditional three-view recipe was
-   correctly not run (branch B).
+   (exploratory, one seed). The union of G's and P's top-4 covers about 8 to 12 more points of references than
+   G's top-4. That compares up to 8 candidates with 4, so by itself it does not show pronunciation-specific
+   diversity (clarified 2026-10-27; tested with matched controls in E05).
+2. **Does joint training lose it?** Not shown. GP's top-4 covers fewer references than the 8-slot G ∪ P union,
+   which is expected from the slot difference alone. GP is not detectably different from G (+2.2 [−1.5, +6.0]).
+   The retention counts cannot separate pronunciation-specific complementarity from seed variation. The
+   supported statement is narrower: GP's single model does not match a two-model union, and these data neither
+   show nor exclude a loss of phone information. The conditional three-view recipe was correctly not run
+   (branch B).
 
 ## Limitations
 - The references are mined and consonant-screened, not reviewed. Exact match against them is a proxy for
@@ -150,8 +174,9 @@ Seed 0 is the only seed with all three arms.
 
 ## Recommendation (not launched)
 - The cheapest lead is the ranking failures: about 50 items per model have the reference in the top 4.
-- The G ∪ P union shows that candidate diversity exists, but turning it into a product needs reviewed references
-  first. Otherwise any reranker is tuned to mined spellings.
+- The G ∪ P union suggests extra candidate coverage, but before matched controls (G8, G+G) it does not show
+  pronunciation-specific diversity (E05). Any product use would need reviewed references first, otherwise a
+  reranker is tuned to mined spellings.
 - The prerequisite named in E03 still stands: independent review of a reference set.
 
 ## Reproduction

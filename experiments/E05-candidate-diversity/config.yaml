@@ -1,0 +1,20 @@
+experiment: E05-candidate-diversity
+description: inference-only candidate-diversity study; G+P vs G8 and G+G on E03/E04 dev/eval (exploratory, historical data)
+models: [G_s0, G_s1, G_s2, P_s0]          # models/e04/<name>/model.npz, frozen (hashes in registration.json)
+decoder:
+  width: 8                                # primary matched configuration for every constituent
+  reproduction_width: 4                   # E04's saved outputs (+ dev G_s1/G_s2 generated)
+  score: sum log-prob incl. EOS, no length normalisation
+  max_output_tokens: 40
+candidates:
+  normalisation: NFC
+  dedup: identical strings, first rank kept
+  fill_undersized_unions: false
+  empty_output: failure
+systems: [G4, G8, G+G (3 unordered pairs), G+P (G_s0/G_s1/G_s2 with shared P_s0)]
+budgets: [1, 2, 4, 8]                     # interleaving, both model-priority orders
+metric: macro coverage over lexical families (oracle; mined, unreviewed references)
+bootstrap: {unit: family, n: 10000, seed: 20261027, interval: 95% percentile, shared draws across systems}
+compute: {cpu_only: true, threads: 6, one_job_at_a_time: true, max_hours: 2}
+cost: {sample: 100 primary dev items, repetitions: 3, batch: 1, fresh_process_per_config: true}
+review_queue: {items_per_stratum: 10, seed: e05-review, location: data/e05/review (git-ignored)}
