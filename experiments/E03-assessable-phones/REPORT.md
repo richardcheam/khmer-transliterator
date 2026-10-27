@@ -210,3 +210,12 @@ CUDA_VISIBLE_DEVICES= .venv/bin/python scripts/e03_eval.py freeze      # only fo
 CUDA_VISIBLE_DEVICES= .venv/bin/python scripts/e03_run.py --config experiments/E03-assessable-phones/config.yaml --resume
 CUDA_VISIBLE_DEVICES= OMP_NUM_THREADS=6 .venv/bin/python scripts/e03_eval.py evaluate
 ```
+
+## Erratum (2026-10-27, recorded during E04; data unchanged)
+- **Vowel counts, Q2.** "Of the retained pairs, 3,008 have as many Khmer syllables as English vowels, 169 one fewer,
+  35 more" is wrong: those figures came from a stale build output, made before the split fix, when 3,212 pairs were
+  still counted as retained. The current `reports/data_audit.json` (`vowels_descriptive.retained`) gives, for the
+  2,967 retained pairs: **2,774 equal, 158 one fewer, 34 one more, 1 two more**. Over all 4,239 assessable pairs:
+  3,862 equal, 291 one fewer, 63 one more, and 23 others.
+- **Training rows.** The 2,348 training-partition pairs are 2,255 optimisation pairs plus 93 train-val pairs (used
+  only to break checkpoint ties), as the plan states.

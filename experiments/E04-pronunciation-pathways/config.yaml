@@ -1,0 +1,42 @@
+experiment: E04-pronunciation-pathways
+description: G (letters) vs P (phones only) vs GP (both) on E03's DACS partitions; conditional three-view model; sequential LR schedule
+
+paths:
+  runs_dir: models/e04            # one folder per job: <arm>_s<seed>
+
+model:                            # translit_train.Model, unchanged from E02/E03 (same 157-token source vocabulary)
+  d: 192
+  layers: 3
+  heads: 4
+  ff: 512
+  dropout: 0.1
+
+train:
+  updates: 3000                   # supervised updates per full run
+  warmup: 150                     # linear to the base rate, then cosine over the remaining 2,850 (scripts/e04.py seq_lambda)
+  batch: 128
+  lr: 0.001                       # AdamW base rate, as E02/E03
+  weight_decay: 0.01
+  label_smoothing: 0.1
+  grad_clip: 1.0
+  threads: 6
+  eval_every: 100                 # greedy dev macro + train-val loss for checkpoint selection
+
+sanity:                           # tiny overfit checks only (no dev/eval data)
+  max_examples: 64
+  updates: 500
+  warmup: 50
+  batch: 64
+  lr: 0.001
+  threshold: 0.95                 # greedy exact training agreement required
+  max_attempts: 6
+
+eval:
+  beam: 4
+  top_k: 4
+
+rules:
+  signal_union_gain_pp: 5.0       # Branch rule: P useful if P dev macro > G, or G∪P top-4 coverage − G top-4 ≥ 5 pp
+  screen_margin_pp: 2.0           # confirmation only if the seed-0 candidate's dev macro ≥ G + 2 pp
+  n_boot: 10000
+  boot_seed: 20261027

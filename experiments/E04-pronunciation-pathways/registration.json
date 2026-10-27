@@ -1,0 +1,40 @@
+{
+ "created": "2026-10-27T11:49:44",
+ "base_commit": "98b501fcf0672cb52e0511b1b3af738a82c7d8db",
+ "branch": "english-phonetic",
+ "sha256": {
+  "experiments/E04-pronunciation-pathways/config.yaml": "90cfbdcea9cfb087a3bf055a14902860972daaf354737acad22926d398f68852",
+  "scripts/e04.py": "e18f71e64cf27fd9893452761b86f3a63d4c5a01973ad1e4e6eae57081cce1de",
+  "scripts/e04_run.py": "e7b36cf1d4b8288daf320608741a5b10b08d7ab1829e93b2df157b0f49d1ef83",
+  "scripts/english_phonetic_train.py": "d9b7b8831df1dfe201e09fc82125cd149c9807c320170e6f9dae2aee18260b5b",
+  "scripts/translit_train.py": "1d1f39d4d1863bdfd12c5815e623919532ad16a8228b31a536c22bb6a058e753",
+  "data/e03/manifest.json": "12dfdf5cf10ad58f087ccc5573b1bb6477e53a7759549af54aa8151862928830",
+  "data/e03/train.tsv": "8d9bf0c057b0bc3df758e9443ad7ec77a07358026a6a3f5c48aeec0a8b480986",
+  "data/e03/dev_references.jsonl": "87ce1bc6b7015b1368cd2a0157c8a36206cb24db8cb17ab67c215f77f1edb4db",
+  "data/e03/eval_references.jsonl": "56c472895346fafae0eb5b3ab28f6dc50112ec29f7fd0ced0b0107bd213c516d",
+  "data/e03/vocab.json": "bdf2fcd5b565e8b999114c88de05bc543694cea008e4674385f237c4f3a6bbe3",
+  "data/e04/phone_seen.json": "cc0ebd0602869051952b551fa8c69dce66f094382318b1ca595d9aad7cdb7ef9",
+  "data/src/cmudict/cmudict.dict": "81917843c7f44ce2b094ac63873c2c7a4cf802040792c455ba3ca406891c3d22",
+  "data/lexicon/km_lexicon.tsv": "b3f2e700d07d6c01a4c8cac5aa2f13b9a66885668ac482cc0c513f73c56495e5",
+  "experiments/E03-assessable-phones/frozen_eval.json": "21be93810595f13456695ebcacbe2692a845495040bae27f8e0554bc391e9dbc"
+ },
+ "e02_checkpoints": [
+  "letters_s0",
+  "letters_s1",
+  "letters_s2",
+  "p2g_s0",
+  "phones_p2g_s0",
+  "phones_s0",
+  "phones_s1",
+  "phones_s2"
+ ],
+ "e03_checkpoints": [
+  "letters_s0",
+  "letters_s1",
+  "letters_s2",
+  "phones_s0",
+  "phones_s1",
+  "phones_s2"
+ ],
+ "note": "written before any E04 full training; sanity checks follow this registration"
+}

@@ -1,0 +1,544 @@
+{
+ "provider": {
+  "name": "cmudict",
+  "sha256": "81917843c7f44ce2b094ac63873c2c7a4cf802040792c455ba3ca406891c3d22",
+  "reading": "first listed, stress kept"
+ },
+ "material": {
+  "train_rows": 2255,
+  "train_val_rows": 93,
+  "dev_items": 276,
+  "phone_sequences": 2098,
+  "english_words": 2240
+ },
+ "phone_collisions": {
+  "sequences_with_several_words": 131,
+  "words_in_them": 273,
+  "of_which_targets_disjoint": 43,
+  "examples_disjoint": [
+   {
+    "phones": "AH0 L IY1 S AH0",
+    "words": {
+     "alisa": [
+      "អាលីសា"
+     ],
+     "elisa": [
+      "អេលីហ្សា"
+     ]
+    }
+   },
+   {
+    "phones": "AE1 N",
+    "words": {
+     "anne": [
+      "អ៊ែន"
+     ],
+     "ann": [
+      "អាន់",
+      "អែន"
+     ]
+    }
+   },
+   {
+    "phones": "AE1 T W UH2 D",
+    "words": {
+     "attwood": [
+      "អ៊ែតវូត"
+     ],
+     "atwood": [
+      "អ៊ែតវូដ"
+     ]
+    }
+   },
+   {
+    "phones": "B IY1",
+    "words": {
+     "be": [
+      "បេ"
+     ],
+     "bea": [
+      "បៀ"
+     ],
+     "bee": [
+      "ប៊ី"
+     ]
+    }
+   },
+   {
+    "phones": "B EH1 R IH0 NG",
+    "words": {
+     "behring": [
+      "ប៊ើរីង"
+     ],
+     "bering": [
+      "ប៊ែរីង"
+     ]
+    }
+   },
+   {
+    "phones": "B ER1 N",
+    "words": {
+     "berne": [
+      "ប៊ែន"
+     ],
+     "byrne": [
+      "ប៊ើន"
+     ]
+    }
+   },
+   {
+    "phones": "B IH1 L",
+    "words": {
+     "bill": [
+      "ប៊ិល"
+     ],
+     "bil": [
+      "បៀល"
+     ]
+    }
+   },
+   {
+    "phones": "B AA1 N",
+    "words": {
+     "bonn": [
+      "បន",
+      "ប៊ន"
+     ],
+     "bonne": [
+      "បូន",
+      "បោន"
+     ]
+    }
+   },
+   {
+    "phones": "B UW1 TH",
+    "words": {
+     "buth": [
+      "ប៊ុត"
+     ],
+     "booth": [
+      "ប៊ូត"
+     ]
+    }
+   },
+   {
+    "phones": "K AE1 N AH0",
+    "words": {
+     "cana": [
+      "កាណ",
+      "កាណា"
+     ],
+     "khanna": [
+      "ខាណា"
+     ]
+    }
+   },
+   {
+    "phones": "K L AY1 N",
+    "words": {
+     "clyne": [
+      "គ្លីន"
+     ],
+     "klein": [
+      "ក្លេន"
+     ]
+    }
+   },
+   {
+    "phones": "K AA1 L IY0",
+    "words": {
+     "collie": [
+      "ខូលី"
+     ],
+     "cali": [
+      "កាលី"
+     ]
+    }
+   },
+   {
+    "phones": "D AY1",
+    "words": {
+     "dai": [
+      "ដៃ"
+     ],
+     "die": [
+      "ឌី"
+     ]
+    }
+   },
+   {
+    "phones": "D AA1 L IY0",
+    "words": {
+     "dali": [
+      "ដាលី",
+      "តាលី"
+     ],
+     "dolly": [
+      "ដូលី"
+     ]
+    }
+   },
+   {
+    "phones": "D EH1 L AH0",
+    "words": {
+     "dela": [
+      "ដឺឡា"
+     ],
+     "della": [
+      "ដេឡា"
+     ]
+    }
+   }
+  ],
+  "examples_shared_target": [
+   {
+    "phones": "AE1 B AH0 T",
+    "words": {
+     "abbot": [
+      "អាបុត"
+     ],
+     "abbott": [
+      "អាបុត"
+     ]
+    }
+   },
+   {
+    "phones": "AE1 L AH0 N",
+    "words": {
+     "alan": [
+      "អាលែន",
+      "អាឡែន"
+     ],
+     "allen": [
+      "អាលែន"
+     ]
+    }
+   },
+   {
+    "phones": "AE1 N D ER0 S AH0 N",
+    "words": {
+     "anderson": [
+      "អាន់ឌឺសុន"
+     ],
+     "andersson": [
+      "អាន់ឌឺសុន",
+      "អេនដឺសុន"
+     ]
+    }
+   },
+   {
+    "phones": "AE1 N D IY0",
+    "words": {
+     "andie": [
+      "អេនឌី"
+     ],
+     "andy": [
+      "អេនឌី",
+      "អែនឌី",
+      "អ៊ែនឌី"
+     ]
+    }
+   },
+   {
+    "phones": "B AE1 R IY0",
+    "words": {
+     "barrie": [
+      "បារី",
+      "ប៊ែរី"
+     ],
+     "barry": [
+      "បារី",
+      "ប៊េរី",
+      "ប៊ែរី"
+     ]
+    }
+   },
+   {
+    "phones": "B AH0 Z AA1 R",
+    "words": {
+     "bazaar": [
+      "បាហ្សា"
+     ],
+     "bazar": [
+      "បាហ្សា"
+     ]
+    }
+   },
+   {
+    "phones": "B IY1 N",
+    "words": {
+     "bean": [
+      "បៀន",
+      "ប៊ីន"
+     ],
+     "beane": [
+      "ប៊ីន"
+     ],
+     "bien": [
+      "បៀន"
+     ]
+    }
+   },
+   {
+    "phones": "B UW1 N",
+    "words": {
+     "boon": [
+      "ប៊ូន"
+     ],
+     "boone": [
+      "ប៊ូន"
+     ]
+    }
+   },
+   {
+    "phones": "B R AO1 N",
+    "words": {
+     "braun": [
+      "ប្រូន",
+      "ប្រោន"
+     ],
+     "brawn": [
+      "ប្រោន"
+     ]
+    }
+   },
+   {
+    "phones": "K AW1",
+    "words": {
+     "cao": [
+      "កាវ",
+      "កៅ"
+     ],
+     "cau": [
+      "កៅ"
+     ]
+    }
+   }
+  ]
+ },
+ "spelling_collisions": {
+  "targets_with_several_english_words": 305,
+  "examples": [
+   {
+    "khmer": "អាបុត",
+    "words": [
+     "abbot",
+     "abbott"
+    ]
+   },
+   {
+    "khmer": "អាប៊ី",
+    "words": [
+     "abby",
+     "arby"
+    ]
+   },
+   {
+    "khmer": "អាប៊ូ",
+    "words": [
+     "abou",
+     "abu"
+    ]
+   },
+   {
+    "khmer": "អាក្រា",
+    "words": [
+     "accra",
+     "agra"
+    ]
+   },
+   {
+    "khmer": "អាដា",
+    "words": [
+     "ada",
+     "adar",
+     "arda"
+    ]
+   },
+   {
+    "khmer": "អាដ្រេណាលីន",
+    "words": [
+     "adrenalin",
+     "adrenaline"
+    ]
+   },
+   {
+    "khmer": "អាមេដ",
+    "words": [
+     "ahmad",
+     "ahmed"
+    ]
+   },
+   {
+    "khmer": "អេដិន",
+    "words": [
+     "aidan",
+     "eden",
+     "edin"
+    ]
+   },
+   {
+    "khmer": "អាលែន",
+    "words": [
+     "alan",
+     "allen"
+    ]
+   },
+   {
+    "khmer": "អេលៀន",
+    "words": [
+     "alien",
+     "aliens"
+    ]
+   }
+  ]
+ },
+ "targets_per_word": {
+  "1": 1866,
+  "2": 317,
+  "3": 57
+ },
+ "coverage": {
+  "words_with_dictionary_reading": "all (E03 requires one)",
+  "unknown_phone_tokens": 0
+ },
+ "dev_primary": {
+  "items": 253,
+  "p_cannot_distinguish": 15,
+  "examples": [
+   {
+    "word": "ava",
+    "phones": "EY1 V AH0",
+    "other_words": [
+     "eva"
+    ],
+    "with_train_word": true
+   },
+   {
+    "word": "bee",
+    "phones": "B IY1",
+    "other_words": [
+     "be",
+     "bea"
+    ],
+    "with_train_word": true
+   },
+   {
+    "word": "bil",
+    "phones": "B IH1 L",
+    "other_words": [
+     "bill"
+    ],
+    "with_train_word": true
+   },
+   {
+    "word": "booth",
+    "phones": "B UW1 TH",
+    "other_words": [
+     "buth"
+    ],
+    "with_train_word": true
+   },
+   {
+    "word": "cara",
+    "phones": "K EH1 R AH0",
+    "other_words": [
+     "kara"
+    ],
+    "with_train_word": true
+   },
+   {
+    "word": "fen",
+    "phones": "F EH1 N",
+    "other_words": [
+     "fenn"
+    ],
+    "with_train_word": true
+   },
+   {
+    "word": "fu",
+    "phones": "F UW1",
+    "other_words": [
+     "phu"
+    ],
+    "with_train_word": true
+   },
+   {
+    "word": "gregory",
+    "phones": "G R EH1 G ER0 IY0",
+    "other_words": [
+     "grigory"
+    ],
+    "with_train_word": true
+   },
+   {
+    "word": "ki",
+    "phones": "K IY1",
+    "other_words": [
+     "kee"
+    ],
+    "with_train_word": true
+   },
+   {
+    "word": "kin",
+    "phones": "K IH1 N",
+    "other_words": [
+     "qin"
+    ],
+    "with_train_word": true
+   },
+   {
+    "word": "klein",
+    "phones": "K L AY1 N",
+    "other_words": [
+     "clyne"
+    ],
+    "with_train_word": true
+   },
+   {
+    "word": "marrow",
+    "phones": "M EH1 R OW0",
+    "other_words": [
+     "merrow"
+    ],
+    "with_train_word": true
+   },
+   {
+    "word": "mory",
+    "phones": "M AO1 R IY0",
+    "other_words": [
+     "mori"
+    ],
+    "with_train_word": true
+   },
+   {
+    "word": "sophy",
+    "phones": "S OW1 F IY0",
+    "other_words": [
+     "sophie"
+    ],
+    "with_train_word": true
+   },
+   {
+    "word": "sym",
+    "phones": "S IH1 M",
+    "other_words": [
+     "sim"
+    ],
+    "with_train_word": true
+   }
+  ],
+  "empirical_exact_match_ceiling_for_any_phones_only_model": 1.0,
+  "note": "property of these observed references (one output per phone sequence), not a limit on phonetic correctness"
+ },
+ "phone_seen": {
+  "dev": {
+   "items": 276,
+   "phone_seen_in_training": 16
+  },
+  "eval": {
+   "items": 245,
+   "phone_seen_in_training": 15
+  }
+ }
+}
