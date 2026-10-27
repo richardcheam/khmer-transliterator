@@ -15,3 +15,6 @@ Results summary: `docs/DECISIONS.md` (D183).
 | 9 | 2026-10-27 | Gate baseline = product default E02 letters_s0; bootstrap over pool words (one family each) | The practical baseline; pool words were selected one per family |
 | 10 | 2026-10-27 | Discovery words frozen before candidate generation; candidates ≥ 3 characters only | Prevent selection on outcomes; one- and two-character Khmer strings match nearly every document |
 | 11 | 2026-10-27 | Commits omit Claude attribution lines | Owner's standing rule |
+| 12 | 2026-10-27 | Post-hoc conditioning check (correct vs shuffled source loss) after the all-zero dev curve | Distinguish an input-ignoring adaptation from a decoding bug before interpreting; no training involved |
+| 13 | 2026-10-27 | No second recipe, larger model or tiny-subset overfit run | One recipe registered; no larger download; reported as a limitation |
+| 14 | 2026-10-27 | Discovery matches inspected by the agent and labelled as such | 23 matches; not independent review; nothing kept as a label |

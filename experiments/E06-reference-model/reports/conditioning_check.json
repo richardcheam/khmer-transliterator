@@ -1,0 +1,26 @@
+{
+ "label": "post-hoc diagnostic (no training): teacher-forced loss per target byte with correct vs shuffled source words",
+ "adapted/train_val": {
+  "correct_input": 0.7891,
+  "shuffled_input": 0.851
+ },
+ "adapted/train_sample": {
+  "correct_input": 0.7426,
+  "shuffled_input": 0.7831
+ },
+ "adapted_greedy": [
+  "អារ៉ាន",
+  "អារ៉ានីន",
+  "អាលីន",
+  "អាម៉ាន",
+  "អាម៉ានី"
+ ],
+ "base_zero_lora/train_val": {
+  "correct_input": 7.8263,
+  "shuffled_input": 7.8142
+ },
+ "base_zero_lora/train_sample": {
+  "correct_input": 7.5427,
+  "shuffled_input": 7.6535
+ }
+}

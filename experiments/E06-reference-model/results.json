@@ -1,0 +1,993 @@
+{
+ "evidence_levels": {
+  "1_independent_review": "none available (no judgments collected)",
+  "2_attested_unreviewed": "E03 dev/eval mined, consonant-screened references (historical)",
+  "3_automated_proxy": "orthography rules, frozen consonant screen, lexicon membership, agreement between systems"
+ },
+ "historical_eval": {
+  "label": "level 2 (attested, unreviewed); historical set; ByT5 one adaptation run, G three seeds",
+  "items": 228,
+  "families": 222,
+  "systems": {
+   "byt5_lora": {
+    "top1_macro": 0,
+    "top4_macro": 0,
+    "empty_or_failed": 0
+   },
+   "G_s0": {
+    "top1_macro": 0.4272,
+    "top4_macro": 0.6456,
+    "empty_or_failed": 0
+   },
+   "G_s1": {
+    "top1_macro": 0.4122,
+    "top4_macro": 0.6682,
+    "empty_or_failed": 0
+   },
+   "G_s2": {
+    "top1_macro": 0.4002,
+    "top4_macro": 0.6682,
+    "empty_or_failed": 0
+   }
+  },
+  "byt5_minus_G_mean_top1": {
+   "plus": [
+    "byt5_lora@1"
+   ],
+   "minus": [
+    "G_s0@1",
+    "G_s1@1",
+    "G_s2@1"
+   ],
+   "diff_pp": -41.316,
+   "ci95_pp": [
+    -47.072,
+    -35.736
+   ]
+  },
+  "byt5_minus_G_mean_top4": {
+   "plus": [
+    "byt5_lora@4"
+   ],
+   "minus": [
+    "G_s0@4",
+    "G_s1@4",
+    "G_s2@4"
+   ],
+   "diff_pp": -66.066,
+   "ci95_pp": [
+    -71.622,
+    -60.36
+   ]
+  },
+  "per_seed_top1": {
+   "G_s0": {
+    "plus": [
+     "byt5_lora@1"
+    ],
+    "minus": [
+     "G_s0@1"
+    ],
+    "diff_pp": -42.718,
+    "ci95_pp": [
+     -49.324,
+     -36.411
+    ]
+   },
+   "G_s1": {
+    "plus": [
+     "byt5_lora@1"
+    ],
+    "minus": [
+     "G_s1@1"
+    ],
+    "diff_pp": -41.216,
+    "ci95_pp": [
+     -47.748,
+     -34.685
+    ]
+   },
+   "G_s2": {
+    "plus": [
+     "byt5_lora@1"
+    ],
+    "minus": [
+     "G_s2@1"
+    ],
+    "diff_pp": -40.015,
+    "ci95_pp": [
+     -46.396,
+     -33.634
+    ]
+   }
+  }
+ },
+ "dev_selection_set": {
+  "label": "descriptive; ByT5 checkpoint selected on these items",
+  "byt5_top1": 0.004,
+  "byt5_top4": 0.004,
+  "G_s0_top1": 0.438,
+  "G_s0_top4": 0.642
+ },
+ "diagnostics_eval": {
+  "byt5_lora": {
+   "orthography_top1": {
+    "ok": 245
+   },
+   "consonant_screen_top1": {
+    "3+": 70,
+    "2": 125,
+    "1": 48,
+    "0": 2
+   },
+   "top1_is_lexicon_word": 238,
+   "no_candidate": 0,
+   "words": 245
+  },
+  "G_s0": {
+   "orthography_top1": {
+    "ok": 245
+   },
+   "consonant_screen_top1": {
+    "1": 23,
+    "0": 218,
+    "2": 4
+   },
+   "top1_is_lexicon_word": 139,
+   "no_candidate": 0,
+   "words": 245
+  },
+  "G_s1": {
+   "orthography_top1": {
+    "ok": 245
+   },
+   "consonant_screen_top1": {
+    "1": 36,
+    "0": 206,
+    "2": 2,
+    "3+": 1
+   },
+   "top1_is_lexicon_word": 141,
+   "no_candidate": 0,
+   "words": 245
+  },
+  "G_s2": {
+   "orthography_top1": {
+    "ok": 245
+   },
+   "consonant_screen_top1": {
+    "0": 218,
+    "2": 5,
+    "1": 22
+   },
+   "top1_is_lexicon_word": 146,
+   "no_candidate": 0,
+   "words": 245
+  }
+ },
+ "pool": {
+  "label": "fresh words; no qualified or attested references exist; level 3 only",
+  "words": 56,
+  "per_category": {
+   "ordinary": 8,
+   "name": 8,
+   "difficult": 8,
+   "short": 8,
+   "long": 8,
+   "dictionary_miss": 8,
+   "ambiguous": 8
+  },
+  "diagnostics": {
+   "byt5_lora": {
+    "orthography_top1": {
+     "ok": 56
+    },
+    "consonant_screen_top1": {
+     "2": 18,
+     "3+": 27,
+     "1": 3,
+     "no_phones": 8
+    },
+    "top1_is_lexicon_word": 53,
+    "no_candidate": 0,
+    "words": 56
+   },
+   "G_s0": {
+    "orthography_top1": {
+     "ok": 56
+    },
+    "consonant_screen_top1": {
+     "0": 25,
+     "2": 4,
+     "1": 16,
+     "3+": 3,
+     "no_phones": 8
+    },
+    "top1_is_lexicon_word": 8,
+    "no_candidate": 0,
+    "words": 56
+   },
+   "G_s1": {
+    "orthography_top1": {
+     "ok": 56
+    },
+    "consonant_screen_top1": {
+     "0": 22,
+     "2": 5,
+     "1": 18,
+     "3+": 3,
+     "no_phones": 8
+    },
+    "top1_is_lexicon_word": 11,
+    "no_candidate": 0,
+    "words": 56
+   },
+   "G_s2": {
+    "orthography_top1": {
+     "ok": 56
+    },
+    "consonant_screen_top1": {
+     "0": 23,
+     "1": 17,
+     "2": 5,
+     "3+": 3,
+     "no_phones": 8
+    },
+    "top1_is_lexicon_word": 12,
+    "no_candidate": 0,
+    "words": 56
+   },
+   "default_e02": {
+    "orthography_top1": {
+     "ok": 56
+    },
+    "consonant_screen_top1": {
+     "1": 8,
+     "0": 37,
+     "2": 3,
+     "no_phones": 8
+    },
+    "top1_is_lexicon_word": 6,
+    "no_candidate": 0,
+    "words": 56
+   }
+  },
+  "by_category": {
+   "ordinary": {
+    "byt5_lora": {
+     "orthography_ok_top1": 8,
+     "screen_level0_top1": 0
+    },
+    "G_s0": {
+     "orthography_ok_top1": 8,
+     "screen_level0_top1": 2
+    },
+    "G_s1": {
+     "orthography_ok_top1": 8,
+     "screen_level0_top1": 2
+    },
+    "G_s2": {
+     "orthography_ok_top1": 8,
+     "screen_level0_top1": 3
+    },
+    "default_e02": {
+     "orthography_ok_top1": 8,
+     "screen_level0_top1": 4
+    },
+    "words": 8
+   },
+   "name": {
+    "byt5_lora": {
+     "orthography_ok_top1": 8,
+     "screen_level0_top1": 0
+    },
+    "G_s0": {
+     "orthography_ok_top1": 8,
+     "screen_level0_top1": 8
+    },
+    "G_s1": {
+     "orthography_ok_top1": 8,
+     "screen_level0_top1": 4
+    },
+    "G_s2": {
+     "orthography_ok_top1": 8,
+     "screen_level0_top1": 5
+    },
+    "default_e02": {
+     "orthography_ok_top1": 8,
+     "screen_level0_top1": 8
+    },
+    "words": 8
+   },
+   "difficult": {
+    "byt5_lora": {
+     "orthography_ok_top1": 8,
+     "screen_level0_top1": 0
+    },
+    "G_s0": {
+     "orthography_ok_top1": 8,
+     "screen_level0_top1": 3
+    },
+    "G_s1": {
+     "orthography_ok_top1": 8,
+     "screen_level0_top1": 4
+    },
+    "G_s2": {
+     "orthography_ok_top1": 8,
+     "screen_level0_top1": 3
+    },
+    "default_e02": {
+     "orthography_ok_top1": 8,
+     "screen_level0_top1": 6
+    },
+    "words": 8
+   },
+   "short": {
+    "byt5_lora": {
+     "orthography_ok_top1": 8,
+     "screen_level0_top1": 0
+    },
+    "G_s0": {
+     "orthography_ok_top1": 8,
+     "screen_level0_top1": 7
+    },
+    "G_s1": {
+     "orthography_ok_top1": 8,
+     "screen_level0_top1": 8
+    },
+    "G_s2": {
+     "orthography_ok_top1": 8,
+     "screen_level0_top1": 7
+    },
+    "default_e02": {
+     "orthography_ok_top1": 8,
+     "screen_level0_top1": 8
+    },
+    "words": 8
+   },
+   "long": {
+    "byt5_lora": {
+     "orthography_ok_top1": 8,
+     "screen_level0_top1": 0
+    },
+    "G_s0": {
+     "orthography_ok_top1": 8,
+     "screen_level0_top1": 1
+    },
+    "G_s1": {
+     "orthography_ok_top1": 8,
+     "screen_level0_top1": 0
+    },
+    "G_s2": {
+     "orthography_ok_top1": 8,
+     "screen_level0_top1": 0
+    },
+    "default_e02": {
+     "orthography_ok_top1": 8,
+     "screen_level0_top1": 4
+    },
+    "words": 8
+   },
+   "dictionary_miss": {
+    "byt5_lora": {
+     "orthography_ok_top1": 8,
+     "screen_level0_top1": 0
+    },
+    "G_s0": {
+     "orthography_ok_top1": 8,
+     "screen_level0_top1": 0
+    },
+    "G_s1": {
+     "orthography_ok_top1": 8,
+     "screen_level0_top1": 0
+    },
+    "G_s2": {
+     "orthography_ok_top1": 8,
+     "screen_level0_top1": 0
+    },
+    "default_e02": {
+     "orthography_ok_top1": 8,
+     "screen_level0_top1": 0
+    },
+    "words": 8
+   },
+   "ambiguous": {
+    "byt5_lora": {
+     "orthography_ok_top1": 8,
+     "screen_level0_top1": 0
+    },
+    "G_s0": {
+     "orthography_ok_top1": 8,
+     "screen_level0_top1": 4
+    },
+    "G_s1": {
+     "orthography_ok_top1": 8,
+     "screen_level0_top1": 4
+    },
+    "G_s2": {
+     "orthography_ok_top1": 8,
+     "screen_level0_top1": 5
+    },
+    "default_e02": {
+     "orthography_ok_top1": 8,
+     "screen_level0_top1": 7
+    },
+    "words": 8
+   }
+  },
+  "top1_agreement_between_systems": {
+   "byt5_lora|default_e02": 0,
+   "G_s0|byt5_lora": 0,
+   "G_s0|G_s1": 12,
+   "G_s0|G_s2": 11,
+   "G_s0|default_e02": 7,
+   "G_s1|byt5_lora": 0,
+   "G_s1|G_s2": 19,
+   "G_s1|default_e02": 6,
+   "G_s2|byt5_lora": 0,
+   "G_s2|default_e02": 6
+  },
+  "examples": [
+   {
+    "word": "elect",
+    "category": "ordinary",
+    "phones": "IH0 L EH1 K T",
+    "byt5_lora": "ហ្វេន",
+    "G_s0": "អេឡិកត",
+    "G_s1": "អេឡិក",
+    "G_s2": "អេឡិក",
+    "default_e02": "អេឡិច"
+   },
+   {
+    "word": "stigmatize",
+    "category": "ordinary",
+    "phones": "S T IH1 G M AH0 T AY2 Z",
+    "byt5_lora": "ម៉ាលីន",
+    "G_s0": "ស្ទីម៉ាទី",
+    "G_s1": "ស្ត៊ីម៉ាទី",
+    "G_s2": "ស្ទីកម៉ាទី",
+    "default_e02": "ស្ទីកម៉ាទីស"
+   },
+   {
+    "word": "disruptive",
+    "category": "ordinary",
+    "phones": "D IH0 S R AH1 P T IH0 V",
+    "byt5_lora": "ហ្វ្រេន",
+    "G_s0": "ឌីស្រូទីវ",
+    "G_s1": "ឌីស្រូត",
+    "G_s2": "ឌីស្រូពិវ",
+    "default_e02": "ឌីស្រូពីវ"
+   },
+   {
+    "word": "bluebirds",
+    "category": "ordinary",
+    "phones": "B L UW1 B ER2 D Z",
+    "byt5_lora": "ហ្វេន",
+    "G_s0": "ប្លុយប៊ើដ",
+    "G_s1": "ប្លេយប៊ើដ",
+    "G_s2": "ប្លឹប៊ីដ",
+    "default_e02": "ប្លូប៊ឺដ"
+   },
+   {
+    "word": "cation",
+    "category": "ordinary",
+    "phones": "K AE1 T AY2 AH0 N",
+    "byt5_lora": "ហ្វេន",
+    "G_s0": "កាទីន",
+    "G_s1": "កាទីន",
+    "G_s2": "កាទីន",
+    "default_e02": "កាទីយ៉ុន"
+   },
+   {
+    "word": "plaited",
+    "category": "ordinary",
+    "phones": "P L EY1 T IH0 D",
+    "byt5_lora": "ហ្វេន",
+    "G_s0": "ផ្លេត",
+    "G_s1": "ផ្លេត",
+    "G_s2": "ផ្លេត",
+    "default_e02": "ផ្លែត"
+   },
+   {
+    "word": "rootless",
+    "category": "ordinary",
+    "phones": "R UW1 T L AH0 S",
+    "byt5_lora": "ហ្វេន",
+    "G_s0": "រ៉ូតល",
+    "G_s1": "រ៉ូត",
+    "G_s2": "រ៉ូតូល",
+    "default_e02": "រូតលីស"
+   },
+   {
+    "word": "sensibly",
+    "category": "ordinary",
+    "phones": "S EH1 N S AH0 B L IY0",
+    "byt5_lora": "ហ្វេន",
+    "G_s0": "សេនស៊ីប៊ី",
+    "G_s1": "សិនស៊ីលី",
+    "G_s2": "សិនស៊ីប៊ី",
+    "default_e02": "សេនស៊ីប៊្លី"
+   },
+   {
+    "word": "mauldin",
+    "category": "name",
+    "phones": "M AW1 L D AH0 N",
+    "byt5_lora": "ហ្វេន",
+    "G_s0": "ម៉ូលដិន",
+    "G_s1": "ម៉ូលឌីន",
+    "G_s2": "ម៉ូលឌីន",
+    "default_e02": "ម៉ូលឌីន"
+   },
+   {
+    "word": "stalinist",
+    "category": "name",
+    "phones": "S T AA1 L IH0 N IH0 S T",
+    "byt5_lora": "ម៉ាលីន",
+    "G_s0": "ស្តាលីនីស្ត",
+    "G_s1": "ស្តាលីន",
+    "G_s2": "ស្តាលីន",
+    "default_e02": "ស្តាលីនីស្ត"
+   },
+   {
+    "word": "massenet",
+    "category": "name",
+    "phones": "M AE1 S AH0 N EH2 T",
+    "byt5_lora": "ហ្វេន",
+    "G_s0": "ម៉ាសេនីត",
+    "G_s1": "ម៉ាសេន",
+    "G_s2": "ម៉ាសេន",
+    "default_e02": "ម៉ាសេណេត"
+   },
+   {
+    "word": "merton",
+    "category": "name",
+    "phones": "M ER1 T AH0 N",
+    "byt5_lora": "ហ្វេន",
+    "G_s0": "មើតុន",
+    "G_s1": "មេរតុន",
+    "G_s2": "មើតុន",
+    "default_e02": "មើតុន"
+   },
+   {
+    "word": "mohican",
+    "category": "name",
+    "phones": "M OW2 HH IY1 K AH0 N",
+    "byt5_lora": "ហ្វេន",
+    "G_s0": "ម៉ូហ៊ីកាន",
+    "G_s1": "ម៉ូហ៊ីណាន",
+    "G_s2": "ម៉ូហ៊ីខាន",
+    "default_e02": "ម៉ូហ៊ីកាន"
+   },
+   {
+    "word": "jerold",
+    "category": "name",
+    "phones": "JH EH1 R OW0 L D",
+    "byt5_lora": "ហ្វេន",
+    "G_s0": "ចេរ៉ូលដ៍",
+    "G_s1": "ចេរ៉ុលដ",
+    "G_s2": "ជេរ៉ូលដ៍",
+    "default_e02": "ជេរ៉ូល"
+   },
+   {
+    "word": "anzac",
+    "category": "name",
+    "phones": "AE1 N Z AE0 K",
+    "byt5_lora": "ហ្វេន",
+    "G_s0": "អេនហ្សាក់",
+    "G_s1": "អានហ្សាក់",
+    "G_s2": "អានហ្សាក់",
+    "default_e02": "អាន់ហ្សាក់"
+   },
+   {
+    "word": "holst",
+    "category": "name",
+    "phones": "HH OW1 L S T",
+    "byt5_lora": "ហ្វេន",
+    "G_s0": "ហូលស្ត",
+    "G_s1": "ហូលស៍",
+    "G_s2": "ហូលស៍",
+    "default_e02": "ហូលស្ត៍"
+   },
+   {
+    "word": "flightless",
+    "category": "difficult",
+    "phones": "F L AY1 T L AH0 S",
+    "byt5_lora": "ហ្វេន",
+    "G_s0": "ផ្លីហ្វលស្ល",
+    "G_s1": "ហ្វ្លីត",
+    "G_s2": "ហ្វ្លីហ្លស៍",
+    "default_e02": "ហ្វ្លីហ្លេស"
+   },
+   {
+    "word": "possessing",
+    "category": "difficult",
+    "phones": "P AH0 Z EH1 S IH0 NG",
+    "byt5_lora": "ហ្វេន",
+    "G_s0": "ប៉ូសេស៊ីន",
+    "G_s1": "ប៉ូសេស៊ីន",
+    "G_s2": "ប៉ូសេស៊ីន",
+    "default_e02": "ផូសេស៊ីង"
+   },
+   {
+    "word": "unearthed",
+    "category": "difficult",
+    "phones": "AH0 N ER1 TH T",
+    "byt5_lora": "ហ្វេន",
+    "G_s0": "អ៊ូណាត",
+    "G_s1": "អ៊ូណាត",
+    "G_s2": "អ៊ុន",
+    "default_e02": "អ៊ូណាថេដ"
+   },
+   {
+    "word": "gooseberry",
+    "category": "difficult",
+    "phones": "G UW1 S B EH2 R IY0",
+    "byt5_lora": "ហ្វេន",
+    "G_s0": "ហ្គូសឺបឺរី",
+    "G_s1": "ហ្គូសប៊ឺរី",
+    "G_s2": "ហ្គូសប៊ឺរី",
+    "default_e02": "ហ្គូសេបឺរី"
+   },
+   {
+    "word": "offshoots",
+    "category": "difficult",
+    "phones": "AO1 F SH UW2 T S",
+    "byt5_lora": "ហ្វេន",
+    "G_s0": "អូហ្វសូតូត",
+    "G_s1": "អូហ្វាសុត",
+    "G_s2": "អូហ្វស្ថូត",
+    "default_e02": "អូហ្វសូត"
+   },
+   {
+    "word": "eightieth",
+    "category": "difficult",
+    "phones": "EY1 T IY0 IH0 TH",
+    "byt5_lora": "ហ្វេន",
+    "G_s0": "អេហ្គីទីត",
+    "G_s1": "អេហ្គីតេត",
+    "G_s2": "អេហ្គីតាថេ",
+    "default_e02": "អៃធីត"
+   },
+   {
+    "word": "chugging",
+    "category": "difficult",
+    "phones": "CH AH1 G IH0 NG",
+    "byt5_lora": "ហ្វេន",
+    "G_s0": "ជុយហ្គីង",
+    "G_s1": "ឈុយហ្គីង",
+    "G_s2": "ឈុក",
+    "default_e02": "ឈូហ្គីង"
+   },
+   {
+    "word": "wrecker",
+    "category": "difficult",
+    "phones": "R EH1 K ER0",
+    "byt5_lora": "ហ្វេន",
+    "G_s0": "រែកឃែរ",
+    "G_s1": "រីរិក",
+    "G_s2": "រែក",
+    "default_e02": "វ្រិកឃើ"
+   },
+   {
+    "word": "coma",
+    "category": "short",
+    "phones": "K OW1 M AH0",
+    "byt5_lora": "ហ្វេន",
+    "G_s0": "កូម៉ា",
+    "G_s1": "កូម៉ា",
+    "G_s2": "កូម៉ា",
+    "default_e02": "កូម៉ា"
+   },
+   {
+    "word": "berm",
+    "category": "short",
+    "phones": "B ER1 M",
+    "byt5_lora": "ហ្វេន",
+    "G_s0": "ប៊ែម",
+    "G_s1": "ប៊ែម",
+    "G_s2": "ប៊ែម",
+    "default_e02": "ប៊ឺម"
+   },
+   {
+    "word": "urn",
+    "category": "short",
+    "phones": "ER1 N",
+    "byt5_lora": "ហ្វេន",
+    "G_s0": "អ៊ុន",
+    "G_s1": "អ៊ែន",
+    "G_s2": "អ៊ុន",
+    "default_e02": "អ៊ឺន"
+   },
+   {
+    "word": "quid",
+    "category": "short",
+    "phones": "K W IH1 D",
+    "byt5_lora": "ហ្វេន",
+    "G_s0": "ឃូដ",
+    "G_s1": "គ្វីត",
+    "G_s2": "គ្វីត",
+    "default_e02": "ឃ្វីដ"
+   },
+   {
+    "word": "limb",
+    "category": "short",
+    "phones": "L IH1 M",
+    "byt5_lora": "ហ្វេន",
+    "G_s0": "លីម",
+    "G_s1": "លីម",
+    "G_s2": "លីមប",
+    "default_e02": "លីមប៍"
+   },
+   {
+    "word": "rosy",
+    "category": "short",
+    "phones": "R OW1 Z IY0",
+    "byt5_lora": "ហ្វេន",
+    "G_s0": "រ៉ូស៊ី",
+    "G_s1": "រ៉ូស៊ី",
+    "G_s2": "រ៉ូស៊ី",
+    "default_e02": "រ៉ូស៊ី"
+   },
+   {
+    "word": "wend",
+    "category": "short",
+    "phones": "W EH1 N D",
+    "byt5_lora": "ហ្វា",
+    "G_s0": "វែន",
+    "G_s1": "វេន",
+    "G_s2": "វេន",
+    "default_e02": "វេនដ៍"
+   },
+   {
+    "word": "wean",
+    "category": "short",
+    "phones": "W IY1 N",
+    "byt5_lora": "ហ្វេន",
+    "G_s0": "វាន",
+    "G_s1": "វីន",
+    "G_s2": "វៀន",
+    "default_e02": "វីន"
+   },
+   {
+    "word": "workmanlike",
+    "category": "long",
+    "phones": "W ER1 K M AE2 N L AY2 K",
+    "byt5_lora": "ម៉ារ៉ានី",
+    "G_s0": "វ៉ូកម៉ានី",
+    "G_s1": "វ័កមែនលីន",
+    "G_s2": "វ៉ុកម៉ានី",
+    "default_e02": "វ៉កម៉ាន់លីក"
+   },
+   {
+    "word": "traffickers",
+    "category": "long",
+    "phones": "T R AE1 F IH0 K ER0 Z",
+    "byt5_lora": "ហ្វេន",
+    "G_s0": "ត្រាហ្វីកាក",
+    "G_s1": "ត្រាហ្វីកស្ត",
+    "G_s2": "ត្រាហ្វិក",
+    "default_e02": "ត្រាហ្វីកឺស"
+   },
+   {
+    "word": "cheerleader",
+    "category": "long",
+    "phones": "CH IH1 R L IY2 D ER0",
+    "byt5_lora": "ហ្វេន",
+    "G_s0": "ជេរេលីដាល់",
+    "G_s1": "ឈីរីឡា",
+    "G_s2": "ឈើរែល",
+    "default_e02": "ឈីលី"
+   },
+   {
+    "word": "comportment",
+    "category": "long",
+    "phones": "K AH0 M P AO1 R T M AH0 N T",
+    "byt5_lora": "ហ្វេន",
+    "G_s0": "កមប៉ូតូម៉ន",
+    "G_s1": "កូម៉ូតូម៉ាន",
+    "G_s2": "ខូមប៉ន",
+    "default_e02": "ខុមផតូមិន"
+   },
+   {
+    "word": "counterclaim",
+    "category": "long",
+    "phones": "K AW1 N T ER0 K L EY2 M",
+    "byt5_lora": "ហ្វេន",
+    "G_s0": "កន្តេម៉ាក់សិក",
+    "G_s1": "ខនស្តេក",
+    "G_s2": "កូនីម៉ាលិក",
+    "default_e02": "ខូនតឺរ៉ាលី"
+   },
+   {
+    "word": "overstatements",
+    "category": "long",
+    "phones": "OW1 V ER0 S T EY2 T M AH0 N T S",
+    "byt5_lora": "ហ្វានីន",
+    "G_s0": "អូវែតស្តាន",
+    "G_s1": "អូវិនស្តាត",
+    "G_s2": "អូវើតស្តាម៉េន",
+    "default_e02": "អូវើស្តេមីន"
+   },
+   {
+    "word": "astronomers",
+    "category": "long",
+    "phones": "AH0 S T R AA1 N AH0 M ER0 Z",
+    "byt5_lora": "ហ្វានីន",
+    "G_s0": "អាស្ត្រូមសែម",
+    "G_s1": "អាស្ត្រូមេម",
+    "G_s2": "អាស្ត្រូមេម",
+    "default_e02": "អាស្ត្រូណូមឺស"
+   },
+   {
+    "word": "nutritionist",
+    "category": "long",
+    "phones": "N UW0 T R IH1 SH AH0 N IH0 S T",
+    "byt5_lora": "ហ្វាម៉ាន់",
+    "G_s0": "នុយទ្រីទីន",
+    "G_s1": "នុយទ្រីទីន",
+    "G_s2": "នុយទ្រីទីន",
+    "default_e02": "នូទ្រីទីអូនីស"
+   },
+   {
+    "word": "upstarted",
+    "category": "dictionary_miss",
+    "phones": null,
+    "byt5_lora": "ហ្វេន",
+    "G_s0": "អ៊ុបទាត",
+    "G_s1": "អ៊ុយសាត",
+    "G_s2": "អ៊ុយស្តាត",
+    "default_e02": "អ៊ូបស្តាតេដ"
+   },
+   {
+    "word": "frothiest",
+    "category": "dictionary_miss",
+    "phones": null,
+    "byt5_lora": "ហ្វេន",
+    "G_s0": "ហ្វ្រូទីស្ត",
+    "G_s1": "ហ្វ្រាតីស្ត",
+    "G_s2": "ហ្វ្រូតស៊ីត",
+    "default_e02": "ហ្វ្រូធៀស"
+   },
+   {
+    "word": "speciously",
+    "category": "dictionary_miss",
+    "phones": null,
+    "byt5_lora": "ហ្វេន",
+    "G_s0": "ស្ពេស៊ីស៊ី",
+    "G_s1": "ស្ពីសូលីលីន",
+    "G_s2": "ស្ពេស៊ូលីស៊ី",
+    "default_e02": "ស្ពេស៊ីអូស្លី"
+   },
+   {
+    "word": "watchbands",
+    "category": "dictionary_miss",
+    "phones": null,
+    "byt5_lora": "ហ្វេន",
+    "G_s0": "វ៉ាច់ប៊ែន",
+    "G_s1": "វ៉ាច់ប៊ែន",
+    "G_s2": "វ៉ាច់",
+    "default_e02": "វ៉ចប៊ែន"
+   },
+   {
+    "word": "alighted",
+    "category": "dictionary_miss",
+    "phones": null,
+    "byt5_lora": "ហ្វេន",
+    "G_s0": "អាលីហ្គេត",
+    "G_s1": "អាលីហ្សាត",
+    "G_s2": "អាលីហ្គីត",
+    "default_e02": "អាលីកតេដ"
+   },
+   {
+    "word": "waistbands",
+    "category": "dictionary_miss",
+    "phones": null,
+    "byt5_lora": "ហ្វេន",
+    "G_s0": "វ៉ាស៊ីតាន់",
+    "G_s1": "វ៉ាស្តាន់",
+    "G_s2": "វ៉េស្តាន់",
+    "default_e02": "វ៉ៃស្តែន"
+   },
+   {
+    "word": "execrates",
+    "category": "dictionary_miss",
+    "phones": null,
+    "byt5_lora": "ហ្វេន",
+    "G_s0": "អេសេក្រាត",
+    "G_s1": "អេស្សាត",
+    "G_s2": "អេកសេរ៉ាត",
+    "default_e02": "អេសេក្រាតស៍"
+   },
+   {
+    "word": "assorting",
+    "category": "dictionary_miss",
+    "phones": null,
+    "byt5_lora": "ហ្វេន",
+    "G_s0": "អាសូទ័រីន",
+    "G_s1": "អាស្សូទីន",
+    "G_s2": "អាសូរទីង",
+    "default_e02": "អាសរទីង"
+   },
+   {
+    "word": "recurrent",
+    "category": "ambiguous",
+    "phones": "R IH0 K ER1 AH0 N T",
+    "byt5_lora": "ហ្វេន",
+    "G_s0": "រូស៊ូរ៉ិន",
+    "G_s1": "រីស៊ន",
+    "G_s2": "រេស៊ូរ៉េន",
+    "default_e02": "រ៉េខឺរ៉ិន"
+   },
+   {
+    "word": "anecdotal",
+    "category": "ambiguous",
+    "phones": "AE2 N AH0 K D OW1 T AH0 L",
+    "byt5_lora": "ហ្វេន",
+    "G_s0": "អានិកដូតាល់",
+    "G_s1": "អានិកូតាឡា",
+    "G_s2": "អាន់សេដូតា",
+    "default_e02": "អាណេកដូតាល"
+   },
+   {
+    "word": "cruel",
+    "category": "ambiguous",
+    "phones": "K R UW1 AH0 L",
+    "byt5_lora": "ហ្វេន",
+    "G_s0": "គ្រូល",
+    "G_s1": "គ្រូល",
+    "G_s2": "គ្រូល",
+    "default_e02": "គ្រូល"
+   },
+   {
+    "word": "firearms",
+    "category": "ambiguous",
+    "phones": "F AY1 ER0 AA2 R M Z",
+    "byt5_lora": "ហ្វេន",
+    "G_s0": "ហ្វ៊ីរ៉ាម",
+    "G_s1": "ហ្វីរ៉ាម",
+    "G_s2": "ហ្វ៊ីរ៉ាមស",
+    "default_e02": "ហ្វីរៀមស៍"
+   },
+   {
+    "word": "regret",
+    "category": "ambiguous",
+    "phones": "R AH0 G R EH1 T",
+    "byt5_lora": "ហ្វេន",
+    "G_s0": "រ៉េហ្គ្ត",
+    "G_s1": "រ៉ាហ្គែត",
+    "G_s2": "រីហ្គែត",
+    "default_e02": "រេហ្គ្រេត"
+   },
+   {
+    "word": "wobbling",
+    "category": "ambiguous",
+    "phones": "W AA1 B AH0 L IH0 NG",
+    "byt5_lora": "ម៉ារ៉ា",
+    "G_s0": "វ៉ូប៊ីង",
+    "G_s1": "វ៉ុប៊ីង",
+    "G_s2": "វ៉ូបលីង",
+    "default_e02": "វបលីង"
+   },
+   {
+    "word": "rivaling",
+    "category": "ambiguous",
+    "phones": "R AY1 V AH0 L IH0 NG",
+    "byt5_lora": "ហ្វេន",
+    "G_s0": "រីវ៉ាលីង",
+    "G_s1": "រីវ៉ាលីង",
+    "G_s2": "រីវ៉ាលីង",
+    "default_e02": "រីវ៉ាលីង"
+   },
+   {
+    "word": "juvenile",
+    "category": "ambiguous",
+    "phones": "JH UW1 V AH0 N AH0 L",
+    "byt5_lora": "ហ្វេន",
+    "G_s0": "ជូវេនី",
+    "G_s1": "ជូវេនីល",
+    "G_s2": "ជូវេនីលី",
+    "default_e02": "ជូវេននីល"
+   }
+  ]
+ }
+}

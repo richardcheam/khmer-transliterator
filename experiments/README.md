@@ -13,5 +13,6 @@ How to run one: `../docs/RESEARCH_PROTOCOL.md`. New experiment: copy `TEMPLATE/`
 | [E03-assessable-phones](E03-assessable-phones/) | Repaired `khmer_like` selection; letters vs phones on dictionary-assessable, consonant-screened pairs | phones +0.60 pts [−2.40, +3.75]; donor phones change 34% of outputs but steer consonants +1.4% [−0.8, +3.5]; default unchanged | D180 |
 | [E04-pronunciation-pathways](E04-pronunciation-pathways/) | Letters (G) vs phones only (P) vs both (GP), corrected schedule; conditional three-view (not triggered) | GP − G +2.20 pts [−1.48, +6.01] (3 seeds); P − G −8.0 (1 seed); G ∪ P top-4 +8–12 pts; default unchanged | D181 |
 | [E05-candidate-diversity](E05-candidate-diversity/) | Inference only: G+P candidate pooling vs G8 and G+G at matched beam-8 (exploratory, historical data) | eval G+P − G8 +1.6 [−1.1, +4.5], − G+G +0.8 [−2.3, +3.9]: no clear advantage; review queue prepared | D182 |
+| [E06-reference-model](E06-reference-model/) | ByT5-small + LoRA (letters only) as a reference/teacher; Gemini route unavailable; teacher gate; constrained-discovery audit | ByT5 ignores its input (eval top-1 0% vs G 40–43%); gate unresolved (no judgments); distillation skipped; discovery 3/200 plausible | D183 |
 
 **Later candidate:** E01's aux recipe plus clean real romanised-typing data, scored on benchmark v1.

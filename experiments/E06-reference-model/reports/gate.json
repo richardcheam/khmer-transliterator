@@ -1,0 +1,19 @@
+{
+ "status": "teacher_advantage_unresolved",
+ "reason": "no independent judgments exist (queue prepared, not collected); unreviewed outputs and automated proxies cannot unlock distillation",
+ "procedure": {
+  "needs": "independent judgments (data/e06/review/judgments.tsv by a reviewer who is not a model or the agent) on the blinded queue",
+  "unit": "primary-track pool word; a system's top-1 is accepted if judged acceptable ('uncertain' = not accepted; sensitivity: uncertain = accepted)",
+  "comparison": "paired: reference (byt5_lora) top-1 accepted \u2212 baseline (default_e02) top-1 accepted, per word",
+  "interval": "family bootstrap (pool words are one family each), 10,000 resamples, seed 20261027, 95% percentile",
+  "pass_if": [
+   "at least 40 primary words judged",
+   "reference accepted count > baseline accepted count",
+   "interval lower bound > 0",
+   "net advantage not confined: positive difference in at least 3 categories and no category supplies more than half of the net wins",
+   "malformed, translations (judged comments) and unsupported cases reported",
+   "teacher-output use compatible (ByT5: Apache-2.0)"
+  ],
+  "otherwise": "teacher_advantage_unresolved (insufficient sample or interval) or teacher_not_better"
+ }
+}

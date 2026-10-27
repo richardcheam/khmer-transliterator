@@ -166,3 +166,24 @@ there (`git -C ../pocket-tts-khmer show archive/checkpoints-p0-p6:state/DECISION
 - **E04 clarification:** the interpretation was corrected (unequal budgets; retention ≠ evidence of seed churn;
   the sanity check is not a bug proof).
 - Report: `experiments/E05-candidate-diversity/REPORT.md`.
+
+## D183 — E06: a pretrained reference model (ByT5-small + LoRA) as a possible teacher (2026-10-27)
+- **Routes:**
+  - Gemini unavailable: no authorised free interface, no request sent;
+  - ByT5-small (Apache-2.0, pinned) feasible on the laptop: 1.18 GiB downloads, 3.9 GB RSS, 0.61 h for the
+    registered 1,000-update LoRA run.
+- **Result:**
+  - the adapted ByT5 ignores its input (loss 0.79 vs 0.85 per byte with shuffled inputs) and outputs a near-constant
+    Khmer word;
+  - historical eval top-1 0.0% vs G 40–43% (−41.3 points [−47.1, −35.7]);
+  - this is an inadequate adaptation, not evidence against pretrained transfer (Kirov et al. used full fine-tuning
+    of ByT5-base for 50k steps).
+- **Gate:** `teacher_advantage_unresolved` (no independent judgments). Distillation skipped, 0 student runs.
+- **Fresh pool:** 56 words with no historical family overlap; blinded queue (643 candidates) prepared locally in
+  `data/e06/review/`, not collected.
+- **Discovery audit:** 200 words, 1.6M local documents; 3 plausible existing targets (multi-word bracketed names),
+  20 spurious matches. Not a credible supervision source at scale.
+- **Decision:**
+  - product default and serving unchanged;
+  - reliable reviewed supervision/evaluation remains the blocker.
+- Report: `experiments/E06-reference-model/REPORT.md`.
