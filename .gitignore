@@ -12,5 +12,6 @@ wandb/
 AGENTS.md
 CLAUDE.md
 docs/FUNCTION_DOCUMENTATION.md
-state/english-phonetic/logs/
 dist/
+state/
+state_runner.out

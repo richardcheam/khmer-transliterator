@@ -5,6 +5,9 @@ description = "Latin → Khmer transliteration for Khmer TTS: a small learned mo
 requires-python = ">=3.10,<3.13"
 dependencies = ["numpy>=2"]   # serving needs NumPy only
 
+[project.scripts]
+khmer-translit = "khmer_translit.cli:main"
+
 [dependency-groups]
 train = [                     # data building, training, experiment tracking
     "torch==2.14.0",          # the same build as the speech repo's upstream env (shared uv cache)

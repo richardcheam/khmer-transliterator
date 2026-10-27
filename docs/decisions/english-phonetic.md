@@ -24,3 +24,5 @@ reason. Consequential results go to `docs/DECISIONS.md` (D178).
 | 17 | 2026-10-27 | Smoke-run count: 8 of 10 used (4 jobs that failed at start-up because a data file was missing, then 4 good ones) | Counted conservatively |
 | 18 | 2026-10-27 | MekongPhon not downloaded | The local Google lexicon already gives 61,809 eligible P2G pairs; MekongPhon would add a second phone alphabet |
 | 19 | 2026-10-27 | Commits omit Claude attribution lines | Owner's standing rule |
+| 20 | 2026-10-27 | `state/` is git-ignored; a copy of the final run ledger goes to the experiment folder | The runner's live state files are untracked and made every run's `git_dirty` true; `letters_s0` started that way (tracked diff empty, so its code is exactly `b9c7ea4`) |
+| 21 | 2026-10-27 | CLI and `KHMER_TRANSLIT_CMUDICT` committed while `letters_s0` ran | Product-only change; training code paths unchanged (env var unset during runs) |

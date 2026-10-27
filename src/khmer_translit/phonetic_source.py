@@ -30,6 +30,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+import os
 import re
 import unicodedata
 from dataclasses import dataclass, field
@@ -37,7 +38,7 @@ from functools import lru_cache
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
-CMUDICT = ROOT / "data" / "src" / "cmudict" / "cmudict.dict"
+CMUDICT = Path(os.environ.get("KHMER_TRANSLIT_CMUDICT", ROOT / "data" / "src" / "cmudict" / "cmudict.dict"))
 ENCODER_VERSION = "en-phonetic-src-v1"
 ALPHABET = "arpabet-cmudict-stress"
 MAX_LETTERS = 32     # longest accepted normalised word (the longest eligible training word has 20 letters)
