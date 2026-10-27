@@ -27,4 +27,4 @@ build-backend = "hatchling.build"
 packages = ["src/khmer_translit"]
 
 [tool.hatch.build.targets.sdist]
-include = ["src/khmer_translit", "README.md", "pyproject.toml"]
+include = ["/src/khmer_translit", "/README.md", "/pyproject.toml"]
