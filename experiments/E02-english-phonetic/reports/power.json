@@ -1,0 +1,36 @@
+{
+ "assumptions": {
+  "delta_pp": 5.0,
+  "alpha": "two-sided 5% (95% percentile interval lower bound > 0)",
+  "target_power": 0.8,
+  "model": "one item per family, one seed; discordant family favours treatment with prob 0.5+delta/(2d)",
+  "discordance_grid_source": "declared sensitivity grid; E01 historical paired discordance on the 150-word pick test was 29/150 = 0.19 per seed (D174), from a different model pair and panel",
+  "n_sim": 400,
+  "n_boot": 1000,
+  "seed": 0
+ },
+ "primary_final_families": 162,
+ "proxy_track_families": 375,
+ "power_primary": {
+  "0.1": 0.4975,
+  "0.15": 0.3275,
+  "0.2": 0.2875,
+  "0.25": 0.22,
+  "0.3": 0.2375
+ },
+ "power_proxy": {
+  "0.1": 0.86,
+  "0.15": 0.69,
+  "0.2": 0.5725,
+  "0.25": 0.52,
+  "0.3": 0.4475
+ },
+ "families_needed_80pct_normal_approx": {
+  "0.1": 314,
+  "0.15": 471,
+  "0.2": 628,
+  "0.25": 785,
+  "0.3": 942
+ },
+ "conclusion": "The attainable primary set is underpowered for a 5-point gain at every discordance >= 0.10; expect an inconclusive interval unless the true gain is much larger."
+}

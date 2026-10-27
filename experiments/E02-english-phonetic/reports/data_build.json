@@ -1,0 +1,167 @@
+{
+ "experiment": "E02-english-phonetic",
+ "encoder_version": "en-phonetic-src-v1",
+ "source_vocab_sha256": "999ddaba85df7e58991992d64939c706eeb4246ef039a2f2f8c2a5ec6a8834e2",
+ "n_src_tokens": 157,
+ "n_tgt_chars": 78,
+ "reference_chars_outside_target_vocab": [],
+ "counts": {
+  "loanword_list": {
+   "benchmark_pool:llm_suggested_owner_verified": 53,
+   "benchmark_pool:owner_added": 149,
+   "benchmark_pool:owner_chosen": 10,
+   "benchmark_pool:owner_confirmed": 78,
+   "benchmark_pool:owner_corrected": 4,
+   "excluded_policy:attested": 320,
+   "excluded_policy:attested_web": 213,
+   "excluded_policy:draft_low": 240,
+   "excluded_policy:draft_medium": 638,
+   "excluded_unsupported_multiword:attested": 118,
+   "excluded_unsupported_multiword:draft_low": 67,
+   "excluded_unsupported_multiword:draft_medium": 131,
+   "excluded_unsupported_multiword:owner_chosen": 3,
+   "excluded_unsupported_multiword:owner_confirmed": 8,
+   "historical_related:attested": 50,
+   "historical_related:attested_web": 37,
+   "historical_related:draft_low": 27,
+   "historical_related:draft_medium": 112,
+   "historical_related:llm_suggested_owner_verified": 21,
+   "historical_related:llm_suggested_spotchecked": 43,
+   "historical_related:owner_added": 162,
+   "historical_related:owner_chosen": 18,
+   "historical_related:owner_confirmed": 84,
+   "historical_related:owner_corrected": 1,
+   "proxy_candidates:llm_suggested_spotchecked": 2314
+  },
+  "mined_rows_in": {
+   "mined_kmwiki.tsv": 3532,
+   "mined_fineweb.tsv": 63805
+  },
+  "supervised_dropped": {
+   "mined:bad_khmer_or_length": 29,
+   "mined:heldout_related": 940,
+   "mined:heldout_target": 22,
+   "mined:khmer_like_romanisation": 13433,
+   "mined:no_english_reading": 17641,
+   "mined:noise_filter": 23326,
+   "owner_examples:heldout_related": 150
+  },
+  "supervised_kept": {
+   "mined_web": 10031
+  },
+  "p2g": {
+   "kept": 61809,
+   "dropped": {
+    "not_khmer_headword": 7261,
+    "empty_pronunciation": 61,
+    "heldout_target": 284
+   },
+   "homophone_groups": 3872,
+   "dev": 3093
+  }
+ },
+ "separation": {
+  "families_in_several_splits": [],
+  "train_word_related": {
+   "dev": 0,
+   "final": 0,
+   "final_proxy": 0
+  },
+  "train_target_shared": {
+   "dev": 0,
+   "final": 0,
+   "final_proxy": 0
+  },
+  "sizes": {
+   "dev": {
+    "items": 103,
+    "families": 101
+   },
+   "final": {
+    "items": 191,
+    "families": 188
+   },
+   "final_proxy": {
+    "items": 400,
+    "families": 375
+   }
+  }
+ },
+ "strata": {
+  "dev": {
+   "items": 103,
+   "families": 101,
+   "multi_item_families": 2,
+   "flags": {
+    "candidate_anchored": 50,
+    "pronunciation_ambiguous": 17,
+    "dictionary_miss": 8
+   },
+   "primary_eligible": 86,
+   "short_le4": 29,
+   "long_ge9": 12
+  },
+  "final": {
+   "items": 191,
+   "families": 188,
+   "multi_item_families": 3,
+   "flags": {
+    "candidate_anchored": 94,
+    "dictionary_miss": 23,
+    "pronunciation_ambiguous": 24,
+    "possible_translation": 2
+   },
+   "primary_eligible": 165,
+   "short_le4": 37,
+   "long_ge9": 29
+  },
+  "final_proxy": {
+   "items": 400,
+   "families": 375,
+   "multi_item_families": 23,
+   "flags": {
+    "dictionary_miss": 78,
+    "pronunciation_ambiguous": 46,
+    "possible_translation": 4
+   },
+   "primary_eligible": 350,
+   "short_le4": 105,
+   "long_ge9": 50
+  }
+ },
+ "lengths": {
+  "max_letters": 16,
+  "max_en_source": 34,
+  "max_p2g_source": 39,
+  "max_target": 32,
+  "registered_max_src": 80,
+  "registered_max_tgt": 40
+ },
+ "train_rows": {
+  "train": 9735,
+  "train_val": 296
+ },
+ "train_dictionary_hits": 10031,
+ "input_sha256": {
+  "/home/richard/projects/pocket-tts-khmer/configs/latin_khmer.tsv": "69bf45f4e3df04b96dbe2d40537f976f96375f210c23d6f2c26074331fab384e",
+  "datasets/build/latin_audit.json": "4f1c741c8ddb32b81d7555ae3413c92485861caf002d275b76ce9ef29ed929e2",
+  "data/mined_kmwiki.tsv": "e7e0a06c81d16ef6950ed5eec04706df9db3efe7b24f42e35e0ec65a7ce701e2",
+  "data/mined_fineweb.tsv": "1e8e64a73a073a117741f4549eff7c2b2b1debbd7891032ffc8a4a429d2fce40",
+  "data/synth/examples.tsv": "fa2e694612b11bca42bb43f03ee9580906dfaaed2a61c2f40aff98b8e6a52707",
+  "data/lexicon/km_lexicon.tsv": "b3f2e700d07d6c01a4c8cac5aa2f13b9a66885668ac482cc0c513f73c56495e5",
+  "data/src/cmudict/cmudict.dict": "81917843c7f44ce2b094ac63873c2c7a4cf802040792c455ba3ca406891c3d22",
+  "data/list_split.json": "b5e18e1e38527d6b2fb31328427fe31726978c492f17da7115c12f002a0b2041",
+  "data/e2/reserve.json": "991cf27078b4e7fc010e1df15c68a6ac9788559d97055e17e4d31d5bafba2c4b",
+  "data/benchmark/v1/pick_test.tsv": "7dc035f7633c5204535b2059efd7f4c806a0fc3ec2cde0bc02fda9b58670b1d5",
+  "data/benchmark/v1/dev41.tsv": "2e3ce91a829f78bb37eb271f225ee5c318872259583c5d121e21265e0467bb3f",
+  "data/benchmark/v1/list_test.tsv": "6652ea92cfeafdca8aafa4af2c16011bfa2a81c79b65662e4c9e631eb094b337"
+ },
+ "output_sha256": {
+  "train.tsv": "ee473aa0eac4f0a934b4651ed3bdec1eea8202ec4fb82ecee1dda95be05d87aa",
+  "p2g.tsv": "f8f2a071f53a9e5c9ea2d659a807761daa91c03d4f405f1f74c4176d43f0a441",
+  "references.jsonl": "11d89a0ab23826ab938aa43927bd321f186f490352848a8ce8423578d45cf0b5",
+  "dev_references.jsonl": "58541efdfe6ec1d300d7c8293cc6af6a8d12fca1ba29d61c8559b2ef5afb2989",
+  "vocab.json": "bdf2fcd5b565e8b999114c88de05bc543694cea008e4674385f237c4f3a6bbe3"
+ },
+ "cmudict_sha256": "81917843c7f44ce2b094ac63873c2c7a4cf802040792c455ba3ca406891c3d22"
+}

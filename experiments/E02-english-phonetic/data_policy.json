@@ -1,0 +1,53 @@
+{
+ "policy": "English word or name read as English (default US CMUdict first-listed reading), written phonetically in Khmer script; sound, not meaning; conventional Khmer forms accepted only where already listed as the reference",
+ "tiers": {
+  "independent_reviewed": "none available",
+  "attested": "owner-verified loanword-list spellings (reviewed under the TTS-list policy)",
+  "proxy": "web-mined pairs; LLM spellings with owner spot check"
+ },
+ "supervised_training": {
+  "eligible": [
+   "mined_kmwiki + mined_fineweb: plain a-z Latin, CMUdict hit, not khmer_like, Khmer letters only, <=40 chars, D135 noise filter (>=2 docs or similarity>=0.7, no strict-suffix cuts, <=3 forms)"
+  ],
+  "excluded": [
+   "owner_examples (all are benchmark-pool words)",
+   "LLM drafts / Gemini",
+   "loanword-list drafts and attested conventional forms",
+   "Chhunneng pairs",
+   "rule-romanised Khmer",
+   "multi-word entries",
+   "Khmer-like romanisation (Cambodian names)",
+   "CMUdict misses (no English reading)"
+  ],
+  "leak_filter": "drop a row whose Latin shares a suffix stem with any dev/final/proxy/historical word, or whose Khmer is an accepted dev/final/proxy spelling",
+  "same_rows_and_weights_in_every_arm": true
+ },
+ "benchmark": {
+  "pool": "loanword-list single words with provenance owner_added/owner_confirmed/owner_chosen/owner_corrected/llm_suggested_owner_verified, not related to any historical word",
+  "split": "lexical family hash (salt e02-english-phonetic): 65% final, 35% dev",
+  "proxy_track": "400 items (whole families) of llm_suggested_spotchecked, hash order",
+  "primary_track": "final minus flags pronunciation_ambiguous, possible_translation",
+  "flags": {
+   "pronunciation_ambiguous": "CMUdict readings differ beyond stress",
+   "possible_translation": "both rule spellings < 0.15 similar",
+   "dictionary_miss": "no CMUdict entry",
+   "candidate_anchored": "owner pick among model E candidates"
+  }
+ },
+ "p2g": {
+  "source": "Google lexicon Khmer headwords",
+  "exclusions": "spellings equal to any accepted dev/final/proxy form (so final is target-unseen)",
+  "split": "5% dev by connected spelling-pronunciation component",
+  "alternatives_and_homophones": "kept"
+ },
+ "pronunciation": {
+  "provider": "CMUdict first-listed reading",
+  "alphabet": "arpabet-cmudict-stress",
+  "miss": "<no_pron> (no G2P fallback)",
+  "supplied": "ARPAbet with stress digits, overrides default"
+ },
+ "normalisation": {
+  "english": "NFKC, lower, strip accents, drop apostrophes/hyphens, [a-z]+, <=32",
+  "khmer": "NFC, marks preserved"
+ }
+}

@@ -236,6 +236,17 @@ class Transliterator:
         """
         ids = [[self.src_vocab.index(c) + 3 for c in source(w, self.phones, word_tag(w) if self.tags else None) if c in self.src_vocab][:self.max_in]
                for w in words]
+        return self.encode_ids(ids)
+
+    def encode_ids(self, ids: list[list[int]]) -> tuple[np.ndarray, np.ndarray]:
+        """Run the encoder on source token ids (the part of `encode` after tokenisation).
+
+        Args:
+            ids: One list of source ids per item (PAD = 0 never inside), each at most `max_in` long.
+
+        Returns:
+            `(memory, pad_mask)` as `encode` returns them.
+        """
         T = max(1, max(len(i) for i in ids))
         x = np.zeros((len(ids), T), dtype=np.int64)
         for r, i in enumerate(ids):
@@ -353,15 +364,29 @@ class Transliterator:
         if not words:
             return []
         memory, pad = self.encode([w.lower() for w in words])
+        return self.beam_search(memory, pad, beam)
+
+    def beam_search(self, memory: np.ndarray, pad: np.ndarray, beam: int = 4) -> list[list[tuple[str, float]]]:
+        """The beam search of `nbest_batch`, from encoder states (`encode` or `encode_ids`).
+
+        Args:
+            memory: `(B, T, d)` encoder states.
+            pad: `(B, T)` pad mask.
+            beam: Beam width; also the number of results per item.
+
+        Returns:
+            One list of `(khmer, logprob)` per item, best first.
+        """
+        n_items = memory.shape[0]
         cross = [(self._heads(self._linear(memory, f"dec.{n}.cross.k")), self._heads(self._linear(memory, f"dec.{n}.cross.v")))
                  for n in range(self.layers)]
         d = memory.shape[-1]
         h, dh = self.heads, d // self.heads
-        cache_k = [np.zeros((len(words), h, 0, dh)) for _ in range(self.layers)]
-        cache_v = [np.zeros((len(words), h, 0, dh)) for _ in range(self.layers)]
+        cache_k = [np.zeros((n_items, h, 0, dh)) for _ in range(self.layers)]
+        cache_v = [np.zeros((n_items, h, 0, dh)) for _ in range(self.layers)]
         # one row per live beam: (word index, tokens, score); row r of the caches belongs to rows[r]
-        rows: list[tuple[int, list[int], float]] = [(i, [BOS], 0.0) for i in range(len(words))]
-        done: list[list[tuple[list[int], float]]] = [[] for _ in words]
+        rows: list[tuple[int, list[int], float]] = [(i, [BOS], 0.0) for i in range(n_items)]
+        done: list[list[tuple[list[int], float]]] = [[] for _ in range(n_items)]
         for step in range(MAX_OUT):
             src = np.array([r[0] for r in rows])
             x = self.w["tgt_emb.weight"][np.array([r[1][-1] for r in rows])][:, None] + self.w["tgt_pos.weight"][step]

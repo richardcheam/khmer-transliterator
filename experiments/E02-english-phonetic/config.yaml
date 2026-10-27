@@ -1,0 +1,36 @@
+experiment: E02-english-phonetic
+description: English word -> Khmer phonetic spelling; letters vs letters+English phones vs phones+Khmer P2G transfer (handoff 2026-10-27)
+
+paths:
+  runs_dir: models/e02            # one folder per job: <arm>_s<seed>, p2g_s<seed>
+
+model:                            # translit_train.Model, identical in every arm
+  d: 192
+  layers: 3                       # 3 encoder + 3 decoder
+  heads: 4
+  ff: 512
+  dropout: 0.1
+
+train:                            # supervised English -> Khmer, every arm
+  epochs: 40
+  batch: 128
+  lr: 0.001                       # AdamW, linear warm-up then cosine to 0 over the supervised steps
+  weight_decay: 0.01
+  warmup: 500
+  label_smoothing: 0.1
+  grad_clip: 1.0
+  threads: 6
+  phone_dropout: 0.1              # phone arms: share of training examples encoded <no_pron> (private RNG)
+
+p2g:                              # phones_p2g only
+  epochs: 10                      # pretraining cap (or max_hours, whichever first); best by P2G dev loss
+  max_hours: 2.0
+  lr: 0.001                       # its own warm-up + cosine schedule
+  warmup: 500
+  batch: 128
+  replay_every: 8                 # one P2G replay batch after every 8 supervised updates
+  replay_batch: 128
+
+eval:
+  beam: 4                         # final scoring: raw beam-4 top-1 (validation: greedy top-1)
+  top_k: 4

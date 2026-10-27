@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "experiment_id": null,
+  "branch": null,
+  "commit": null,
+  "config_sha256": null,
+  "phase": "not_started",
+  "product_status": "not_started",
+  "benchmark_qualification": "not_assessed",
+  "evidence_status": "inconclusive",
+  "budget": {
+    "supervised_attempts_used": 0,
+    "supervised_attempts_cap": 7,
+    "p2g_jobs_used": 0,
+    "p2g_jobs_cap": 3,
+    "training_elapsed_hours": 0,
+    "training_elapsed_hours_cap": 96,
+    "additional_download_bytes": 0,
+    "additional_download_bytes_cap": 2147483648,
+    "smoke_jobs_used": 0,
+    "smoke_jobs_cap": 10
+  },
+  "jobs": [],
+  "artifacts": [],
+  "blockers": [],
+  "next_command": null,
+  "last_updated": null
+}
