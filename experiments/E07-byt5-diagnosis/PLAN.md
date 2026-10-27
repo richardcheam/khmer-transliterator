@@ -6,6 +6,10 @@
 - The full-adaptation recipe (`full_recipe.json`) is written and committed with `registration.json` **after** the
   tiny gate passes and **before** full adaptation. If the gate fails, it is never written.
 
+**Update (2026-10-27, before full adaptation):**
+- The tiny gate passed on attempt 1 (`reports/tiny_overfit.json`); attempt 2 was not used.
+- The full recipe is `full_recipe.json`, registered in `registration.json` and committed before the run starts.
+
 **Fixed for this phase:**
 - E01–E06 results and checkpoints, the product default (E02 `letters_s0`), serving, E02's final references, the
   sealed reserve and the E03 split boundaries stay unchanged;

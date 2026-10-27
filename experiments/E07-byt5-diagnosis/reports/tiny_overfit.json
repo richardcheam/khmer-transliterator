@@ -1,0 +1,556 @@
+{
+ "attempts": [
+  1
+ ],
+ "latest": 1,
+ "attempt": 1,
+ "run": "tiny_a1",
+ "cfg": {
+  "n": 32,
+  "bins": [
+   [
+    1,
+    4
+   ],
+   [
+    5,
+    6
+   ],
+   [
+    7,
+    8
+   ],
+   [
+    9,
+    99
+   ]
+  ],
+  "per_bin": 8,
+  "adapter": {
+   "r": 16,
+   "alpha": 32,
+   "dropout": 0.0,
+   "targets": [
+    "attn",
+    "ffn"
+   ]
+  },
+  "base_dropout": 0.0,
+  "optimizer": "AdamW",
+  "lr": 0.001,
+  "betas": [
+   0.9,
+   0.999
+  ],
+  "weight_decay": 0.0,
+  "grad_clip": 1.0,
+  "batch": 16,
+  "grad_accumulation": 1,
+  "warmup": 20,
+  "schedule": "constant",
+  "max_updates": 1000,
+  "max_hours": 0.75,
+  "eval_every": 100,
+  "stop_when_all_correct": true,
+  "seed": 0
+ },
+ "cfg_hash": "c4d6d17b3952a15bfc68b3f9202f7ae7b578d914b9d08e224bfc971db8f22e69",
+ "pairs_hash": "676a1cc5518469895710eba19f633bd085694ff5b1e0250ace49f8a68b3e95ac",
+ "training": {
+  "run": "tiny_a1",
+  "stop": "all_correct",
+  "updates": 100,
+  "epochs_started": 50,
+  "elapsed_hours": 0.051,
+  "best": {
+   "key": [
+    32
+   ],
+   "update": 100,
+   "exact": 32,
+   "distinct": 32,
+   "elapsed_s": 184.8
+  },
+  "history": [
+   {
+    "update": 100,
+    "exact": 32,
+    "distinct": 32,
+    "elapsed_s": 184.8
+   }
+  ],
+  "params": {
+   "trainable": 6258688,
+   "total": 305896448
+  },
+  "trainable_by_location": {
+   "encoder_self": 1425408,
+   "encoder_ffn": 2912256,
+   "decoder_self": 475136,
+   "decoder_cross": 475136,
+   "decoder_ffn": 970752
+  },
+  "rows": 32,
+  "ident": {
+   "cfg": "c4d6d17b3952a15bfc68b3f9202f7ae7b578d914b9d08e224bfc971db8f22e69",
+   "data": "676a1cc5518469895710eba19f633bd085694ff5b1e0250ace49f8a68b3e95ac",
+   "base": {
+    "pytorch_model.bin": "5c5aaf56299d6f2d4eaadad550a40765198828ead4d74f0a15f91cbe0961931a"
+   }
+  },
+  "peak_rss_mb": 2629,
+  "min_available_mb": 3962,
+  "best_sha256": "c249c1cd0784230b25f0e1e22637b10c04295de1d2f11662b13c841811aff12c",
+  "time_cap_hours": 0.75
+ },
+ "exact_nfc": 32,
+ "n": 32,
+ "distinct_outputs": 32,
+ "byte_loss": {
+  "per_byte": 0.0,
+  "by_class": {
+   "lead": 0.0,
+   "block": 0.0,
+   "final": 0.0001,
+   "eos": 0.0001
+  },
+  "class_share": {
+   "lead": 0.317,
+   "block": 0.331,
+   "final": 0.303,
+   "eos": 0.049
+  },
+  "per_example_sum": 0.001,
+  "positions": 656
+ },
+ "input_dependence": {
+  "rows": 32,
+  "loss": {
+   "correct": {
+    "per_byte": 0.0,
+    "by_class": {
+     "lead": 0.0,
+     "block": 0.0,
+     "final": 0.0001,
+     "eos": 0.0001
+    },
+    "class_share": {
+     "lead": 0.317,
+     "block": 0.331,
+     "final": 0.303,
+     "eos": 0.049
+    },
+    "per_example_sum": 0.001,
+    "positions": 656
+   },
+   "shuffled": {
+    "per_byte": 2.4643,
+    "by_class": {
+     "lead": 0.5944,
+     "block": 1.1154,
+     "final": 5.6665,
+     "eos": 3.8519
+    },
+    "class_share": {
+     "lead": 0.317,
+     "block": 0.331,
+     "final": 0.303,
+     "eos": 0.049
+    },
+    "per_example_sum": 50.518,
+    "positions": 656
+   },
+   "empty": {
+    "per_byte": 1.6782,
+    "by_class": {
+     "lead": 1.2857,
+     "block": 0.4495,
+     "final": 3.6877,
+     "eos": 0.0642
+    },
+    "class_share": {
+     "lead": 0.317,
+     "block": 0.331,
+     "final": 0.303,
+     "eos": 0.049
+    },
+    "per_example_sum": 34.403,
+    "positions": 656
+   }
+  },
+  "loss_gap_shuffled_minus_correct": 2.4643,
+  "loss_gap_empty_minus_correct": 1.6782,
+  "greedy_distinct_outputs": 32,
+  "most_common_output": [
+   "បូឡា",
+   1
+  ],
+  "empty_input_output": "ស្លី",
+  "outputs_equal_to_empty_input_output": 0,
+  "exact_correct_input": 32
+ },
+ "shuffled_inputs_reproduce_the_other_words_target": 32,
+ "gate": {
+  "exact_at_least_30": true,
+  "outputs_depend_on_inputs": true,
+  "save_reload_preserves_predictions": true,
+  "pipeline_checks_pass": true
+ },
+ "passed": true,
+ "table": [
+  {
+   "word": "bola",
+   "target": "បូឡា",
+   "output": "បូឡា",
+   "status": "ok",
+   "exact_nfc": true,
+   "loss_sum": 0.0006,
+   "loss_per_byte": 0.0,
+   "output_when_given_input_of": "hiroshima",
+   "that_output": "ហ៊ីរ៉ូស៊ីម៉ា"
+  },
+  {
+   "word": "kara",
+   "target": "ការ៉ា",
+   "output": "ការ៉ា",
+   "status": "ok",
+   "exact_nfc": true,
+   "loss_sum": 0.0013,
+   "loss_per_byte": 0.0001,
+   "output_when_given_input_of": "carribean",
+   "that_output": "ការ៉ាប៊ីន"
+  },
+  {
+   "word": "dec",
+   "target": "ដែក",
+   "output": "ដែក",
+   "status": "ok",
+   "exact_nfc": true,
+   "loss_sum": 0.0009,
+   "loss_per_byte": 0.0001,
+   "output_when_given_input_of": "plasma",
+   "that_output": "ប្លាស្មា"
+  },
+  {
+   "word": "yee",
+   "target": "យី",
+   "output": "យី",
+   "status": "ok",
+   "exact_nfc": true,
+   "loss_sum": 0.001,
+   "loss_per_byte": 0.0001,
+   "output_when_given_input_of": "didi",
+   "that_output": "ឌីឌី"
+  },
+  {
+   "word": "jude",
+   "target": "ជូត",
+   "output": "ជូត",
+   "status": "ok",
+   "exact_nfc": true,
+   "loss_sum": 0.0004,
+   "loss_per_byte": 0.0,
+   "output_when_given_input_of": "gehry",
+   "that_output": "ហ្គេរី"
+  },
+  {
+   "word": "lina",
+   "target": "លីណា",
+   "output": "លីណា",
+   "status": "ok",
+   "exact_nfc": true,
+   "loss_sum": 0.0008,
+   "loss_per_byte": 0.0001,
+   "output_when_given_input_of": "blaine",
+   "that_output": "ប្លេន"
+  },
+  {
+   "word": "didi",
+   "target": "ឌីឌី",
+   "output": "ឌីឌី",
+   "status": "ok",
+   "exact_nfc": true,
+   "loss_sum": 0.0011,
+   "loss_per_byte": 0.0001,
+   "output_when_given_input_of": "charlton",
+   "that_output": "ឆាលតុន"
+  },
+  {
+   "word": "pell",
+   "target": "ផេល",
+   "output": "ផេល",
+   "status": "ok",
+   "exact_nfc": true,
+   "loss_sum": 0.0001,
+   "loss_per_byte": 0.0,
+   "output_when_given_input_of": "mindanao",
+   "that_output": "មីនដាណាវ"
+  },
+  {
+   "word": "plasma",
+   "target": "ប្លាស្មា",
+   "output": "ប្លាស្មា",
+   "status": "ok",
+   "exact_nfc": true,
+   "loss_sum": 0.0008,
+   "loss_per_byte": 0.0,
+   "output_when_given_input_of": "dasilva",
+   "that_output": "ដាស៊ីលវ៉ា"
+  },
+  {
+   "word": "twain",
+   "target": "ថ្វេន",
+   "output": "ថ្វេន",
+   "status": "ok",
+   "exact_nfc": true,
+   "loss_sum": 0.0001,
+   "loss_per_byte": 0.0,
+   "output_when_given_input_of": "charlie",
+   "that_output": "ឆាលី"
+  },
+  {
+   "word": "crean",
+   "target": "គ្រីន",
+   "output": "គ្រីន",
+   "status": "ok",
+   "exact_nfc": true,
+   "loss_sum": 0.0003,
+   "loss_per_byte": 0.0,
+   "output_when_given_input_of": "silva",
+   "that_output": "ស៊ីលវ៉ា"
+  },
+  {
+   "word": "silva",
+   "target": "ស៊ីលវ៉ា",
+   "output": "ស៊ីលវ៉ា",
+   "status": "ok",
+   "exact_nfc": true,
+   "loss_sum": 0.0009,
+   "loss_per_byte": 0.0,
+   "output_when_given_input_of": "bollywood",
+   "that_output": "បូលីវូដ"
+  },
+  {
+   "word": "shock",
+   "target": "ស្ហុក",
+   "output": "ស្ហុក",
+   "status": "ok",
+   "exact_nfc": true,
+   "loss_sum": 0.0011,
+   "loss_per_byte": 0.0001,
+   "output_when_given_input_of": "alfredo",
+   "that_output": "អាល់ហ្វ្រេដូ"
+  },
+  {
+   "word": "blaine",
+   "target": "ប្លេន",
+   "output": "ប្លេន",
+   "status": "ok",
+   "exact_nfc": true,
+   "loss_sum": 0.0007,
+   "loss_per_byte": 0.0,
+   "output_when_given_input_of": "adenosine",
+   "that_output": "អាដេណូស៊ីន"
+  },
+  {
+   "word": "gehry",
+   "target": "ហ្គេរី",
+   "output": "ហ្គេរី",
+   "status": "ok",
+   "exact_nfc": true,
+   "loss_sum": 0.0012,
+   "loss_per_byte": 0.0001,
+   "output_when_given_input_of": "twain",
+   "that_output": "ថ្វេន"
+  },
+  {
+   "word": "garcia",
+   "target": "ហ្គាសៀ",
+   "output": "ហ្គាសៀ",
+   "status": "ok",
+   "exact_nfc": true,
+   "loss_sum": 0.0015,
+   "loss_per_byte": 0.0001,
+   "output_when_given_input_of": "lawrence",
+   "that_output": "ឡរ៉ែន"
+  },
+  {
+   "word": "charlie",
+   "target": "ឆាលី",
+   "output": "ឆាលី",
+   "status": "ok",
+   "exact_nfc": true,
+   "loss_sum": 0.0006,
+   "loss_per_byte": 0.0,
+   "output_when_given_input_of": "pell",
+   "that_output": "ផេល"
+  },
+  {
+   "word": "dasilva",
+   "target": "ដាស៊ីលវ៉ា",
+   "output": "ដាស៊ីលវ៉ា",
+   "status": "ok",
+   "exact_nfc": true,
+   "loss_sum": 0.0012,
+   "loss_per_byte": 0.0,
+   "output_when_given_input_of": "macdonald",
+   "that_output": "ម៉ាកដូណាល់"
+  },
+  {
+   "word": "charlton",
+   "target": "ឆាលតុន",
+   "output": "ឆាលតុន",
+   "status": "ok",
+   "exact_nfc": true,
+   "loss_sum": 0.0004,
+   "loss_per_byte": 0.0,
+   "output_when_given_input_of": "yee",
+   "that_output": "យី"
+  },
+  {
+   "word": "alfredo",
+   "target": "អាល់ហ្វ្រេដូ",
+   "output": "អាល់ហ្វ្រេដូ",
+   "status": "ok",
+   "exact_nfc": true,
+   "loss_sum": 0.0011,
+   "loss_per_byte": 0.0,
+   "output_when_given_input_of": "shock",
+   "that_output": "ស្ហុក"
+  },
+  {
+   "word": "mindanao",
+   "target": "មីនដាណាវ",
+   "output": "មីនដាណាវ",
+   "status": "ok",
+   "exact_nfc": true,
+   "loss_sum": 0.0013,
+   "loss_per_byte": 0.0001,
+   "output_when_given_input_of": "jude",
+   "that_output": "ជូត"
+  },
+  {
+   "word": "bracket",
+   "target": "ប្រកួត",
+   "output": "ប្រកួត",
+   "status": "ok",
+   "exact_nfc": true,
+   "loss_sum": 0.0007,
+   "loss_per_byte": 0.0,
+   "output_when_given_input_of": "cambodian",
+   "that_output": "ខេមបូឌាន"
+  },
+  {
+   "word": "hamilton",
+   "target": "ហាមីលតុន",
+   "output": "ហាមីលតុន",
+   "status": "ok",
+   "exact_nfc": true,
+   "loss_sum": 0.0008,
+   "loss_per_byte": 0.0,
+   "output_when_given_input_of": "crean",
+   "that_output": "គ្រីន"
+  },
+  {
+   "word": "lawrence",
+   "target": "ឡរ៉ែន",
+   "output": "ឡរ៉ែន",
+   "status": "ok",
+   "exact_nfc": true,
+   "loss_sum": 0.0005,
+   "loss_per_byte": 0.0,
+   "output_when_given_input_of": "lina",
+   "that_output": "លីណា"
+  },
+  {
+   "word": "bollywood",
+   "target": "បូលីវូដ",
+   "output": "បូលីវូដ",
+   "status": "ok",
+   "exact_nfc": true,
+   "loss_sum": 0.0003,
+   "loss_per_byte": 0.0,
+   "output_when_given_input_of": "bola",
+   "that_output": "បូឡា"
+  },
+  {
+   "word": "adenosine",
+   "target": "អាដេណូស៊ីន",
+   "output": "អាដេណូស៊ីន",
+   "status": "ok",
+   "exact_nfc": true,
+   "loss_sum": 0.0019,
+   "loss_per_byte": 0.0001,
+   "output_when_given_input_of": "christophe",
+   "that_output": "គ្រីស្តូហ្វ"
+  },
+  {
+   "word": "carribean",
+   "target": "ការ៉ាប៊ីន",
+   "output": "ការ៉ាប៊ីន",
+   "status": "ok",
+   "exact_nfc": true,
+   "loss_sum": 0.0012,
+   "loss_per_byte": 0.0,
+   "output_when_given_input_of": "kara",
+   "that_output": "ការ៉ា"
+  },
+  {
+   "word": "minnesota",
+   "target": "មីនីសូតា",
+   "output": "មីនីសូតា",
+   "status": "ok",
+   "exact_nfc": true,
+   "loss_sum": 0.0012,
+   "loss_per_byte": 0.0,
+   "output_when_given_input_of": "hamilton",
+   "that_output": "ហាមីលតុន"
+  },
+  {
+   "word": "hiroshima",
+   "target": "ហ៊ីរ៉ូស៊ីម៉ា",
+   "output": "ហ៊ីរ៉ូស៊ីម៉ា",
+   "status": "ok",
+   "exact_nfc": true,
+   "loss_sum": 0.0015,
+   "loss_per_byte": 0.0,
+   "output_when_given_input_of": "dec",
+   "that_output": "ដែក"
+  },
+  {
+   "word": "christophe",
+   "target": "គ្រីស្តូហ្វ",
+   "output": "គ្រីស្តូហ្វ",
+   "status": "ok",
+   "exact_nfc": true,
+   "loss_sum": 0.0015,
+   "loss_per_byte": 0.0,
+   "output_when_given_input_of": "garcia",
+   "that_output": "ហ្គាសៀ"
+  },
+  {
+   "word": "macdonald",
+   "target": "ម៉ាកដូណាល់",
+   "output": "ម៉ាកដូណាល់",
+   "status": "ok",
+   "exact_nfc": true,
+   "loss_sum": 0.001,
+   "loss_per_byte": 0.0,
+   "output_when_given_input_of": "bracket",
+   "that_output": "ប្រកួត"
+  },
+  {
+   "word": "cambodian",
+   "target": "ខេមបូឌាន",
+   "output": "ខេមបូឌាន",
+   "status": "ok",
+   "exact_nfc": true,
+   "loss_sum": 0.0012,
+   "loss_per_byte": 0.0,
+   "output_when_given_input_of": "minnesota",
+   "that_output": "មីនីសូតា"
+  }
+ ],
+ "decode": "greedy, eval mode, NFC exact match",
+ "torch_threads": 6
+}

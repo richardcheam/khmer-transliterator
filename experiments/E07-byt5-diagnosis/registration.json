@@ -1,0 +1,150 @@
+{
+ "registered": "2026-10-27T20:30:29+00:00",
+ "git": {
+  "commit": "0e3250b8a3f32586d3860dcae34fc234080695a4",
+  "dirty_tracked": true
+ },
+ "full_recipe_sha256": "4df0102426ca82e7d5550c6e0655ce5f0e1fc9c83b848056d90bbde4acdc5c1d",
+ "full_recipe": {
+  "adapter": {
+   "r": 16,
+   "alpha": 32,
+   "dropout": 0.05,
+   "targets": [
+    "attn",
+    "ffn"
+   ]
+  },
+  "base_dropout": 0.1,
+  "optimizer": "AdamW",
+  "lr": 0.001,
+  "betas": [
+   0.9,
+   0.999
+  ],
+  "weight_decay": 0.0,
+  "grad_clip": 1.0,
+  "batch": 32,
+  "grad_accumulation": 1,
+  "warmup": 100,
+  "schedule": "linear",
+  "max_updates": 3000,
+  "max_hours": 6.0,
+  "eval_at": [
+   600,
+   1200,
+   1800,
+   2400,
+   3000
+  ],
+  "select": "highest dev greedy top-1 macro (exact reference agreement, NFC), then lower dev mean CER, then earlier update",
+  "seed": 0,
+  "input": "lower-cased English word as UTF-8 bytes + EOS (unchanged from E06); no pronunciation, no prefix",
+  "fixes": [
+   "max_new_tokens 121 with a no_eos status (latent E06 defect)",
+   "LoRA wrapper exposes the frozen base weight so FFN layers can be adapted"
+  ],
+  "decode": {
+   "selection": "greedy",
+   "primary_top1": "beam 4, sum log-prob, length_penalty 0",
+   "oracle": "beam-4 top-4",
+   "max_new_tokens": 121
+  },
+  "metrics": [
+   "top-1 exact macro by family (NFC)",
+   "top-4 oracle at equal beam-4 budget",
+   "mean CER (khmer_translit.evaluation)",
+   "validity statuses and orthography",
+   "distinct top-1 and most frequent share"
+  ],
+  "rationale": "From the audit and the passed tiny gate: the pipeline can learn input-dependent outputs, so E06's collapse is an adaptation limitation. Kept from the tiny diagnostic: FFN + attention adapters (capacity; PEFT notes all-linear targeting can approach full fine-tuning) and lr 1e-3. Changed from E06: FFN targets, 3x the updates and 2x the batch (about 43 epochs vs 7) so cross-attention has time to learn the mapping before the schedule decays. Kept from E06 for generalisation on 2,255 noisy mined pairs: base dropout 0.1 and adapter dropout 0.05 (zero dropout was only for memorisation). Linear decay to 0 after a 100-update warm-up."
+ },
+ "limits": {
+  "threads": 6,
+  "rss_max_bytes": 5368709120,
+  "min_available_bytes": 1610612736,
+  "pressure_checks": 3,
+  "tiny_attempts": 2,
+  "tiny_max_updates": 1000,
+  "tiny_max_hours": 0.75,
+  "full_runs": 1,
+  "full_max_updates": 3000,
+  "full_max_hours": 6.0,
+  "training_hours_total": 8.0,
+  "wall_hours_total": 12.0
+ },
+ "tiny": {
+  "n": 32,
+  "bins": [
+   [
+    1,
+    4
+   ],
+   [
+    5,
+    6
+   ],
+   [
+    7,
+    8
+   ],
+   [
+    9,
+    99
+   ]
+  ],
+  "per_bin": 8,
+  "adapter": {
+   "r": 16,
+   "alpha": 32,
+   "dropout": 0.0,
+   "targets": [
+    "attn",
+    "ffn"
+   ]
+  },
+  "base_dropout": 0.0,
+  "optimizer": "AdamW",
+  "lr": 0.001,
+  "betas": [
+   0.9,
+   0.999
+  ],
+  "weight_decay": 0.0,
+  "grad_clip": 1.0,
+  "batch": 16,
+  "grad_accumulation": 1,
+  "warmup": 20,
+  "schedule": "constant",
+  "max_updates": 1000,
+  "max_hours": 0.75,
+  "eval_every": 100,
+  "stop_when_all_correct": true,
+  "seed": 0
+ },
+ "tiny_gate": {
+  "exact_min": 30,
+  "n": 32
+ },
+ "source_sha256": {
+  "scripts/e07.py": "624ba6de2b145d952a099f7fc4eeb3f6eae52d704a16a483ae37d007d5013c9e",
+  "scripts/e06_byt5.py": "aff9e09275fd0569252cf952402cc7c5bd461628e33db84857ed044641940efb",
+  "scripts/e06.py": "49461d352324b14cd39ad358e913fab8b149d4e7654be6d7b285a15183c46afa",
+  "scripts/e05.py": "96f96f3955dcd7451254c7ba088afb73d52857f323d3943e28ac64c0a78f6a65",
+  "tests/test_e07.py": "32fdc018a78557d5b8b3ba4978793c282e68c1e96a5f19e9667401e3b4048258",
+  "experiments/E07-byt5-diagnosis/PLAN.md": "681244b299bf5ae9b13aa07b88d061adc957a525a6f210e71291cf01781a24c5",
+  "experiments/E07-byt5-diagnosis/config.yaml": "c25099c3099185c6886131f15c13b37070663b89548e425edf2c549fe45cc692",
+  "research/requirements-byt5.txt": "f0010e42f369dfa570236e6d9cae5c212467fa7c8cdda3638d81b60ddc171918",
+  "research/requirements-byt5.lock.txt": "86bbd43732b3898c820510871d7c3029d3f1a1a1123621006121cfa02aa54911"
+ },
+ "data": {
+  "train.tsv": "8d9bf0c057b0bc3df758e9443ad7ec77a07358026a6a3f5c48aeec0a8b480986",
+  "optimisation_hash": "69f816aa7d3ee0bdf7c07e02cfb3af1adb3b94e14f4180d93ba1e31aacf82ee2",
+  "train_val_hash": "d410a8e09127166e4b27177fbe8fe3b576094b991e82fbf116cfa5f0dab8071b",
+  "dev_references.jsonl": "87ce1bc6b7015b1368cd2a0157c8a36206cb24db8cb17ab67c215f77f1edb4db",
+  "pool.jsonl": "0c5932c8ed0e3c80d7d980a27d2550b68dcb332ab3b0fcb6c2493b4da9e93f56"
+ },
+ "base_sha256": {
+  "pytorch_model.bin": "5c5aaf56299d6f2d4eaadad550a40765198828ead4d74f0a15f91cbe0961931a"
+ }
+}
