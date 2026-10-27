@@ -150,6 +150,12 @@ def report() -> int:
             o = benchmark.outcomes(raw, v1[pname])
             r["v1"][pname] = {"raw_correct": sum(o), "n": len(o), "raw": sum(o) / len(o)}
         out["runs"][name] = r
+    def runtime_ok(run: str) -> bool | None:
+        """The measured guards of one run (`reports/runtime.json`, Task 5); None if it was not measured."""
+        f = EXP / "reports" / "runtime.json"
+        rows = json.loads(f.read_text(encoding="utf-8"))["models"] if f.exists() else []
+        return next((r["guards_ok"] for r in rows if Path(r["model"]).parent.name == run), None)
+
     # paired comparisons on the primary track
     winner = st["selection"]["winner"]
     seeds = lambda arm: [n for n in (f"{arm}_s0", f"{arm}_s1", f"{arm}_s2") if n in preds]
@@ -159,7 +165,7 @@ def report() -> int:
         c = ev.compare_paired_runs(prim, [run_outcomes(preds[n]["primary"], prim) for n in seeds("letters")],
                                    [run_outcomes(preds[n]["primary"], prim) for n in seeds(winner)])
         c["evidence"] = ev.evidence_fields(c["ci95_pp"])
-        c["adoption"] = ev.adoption(False, c, out["controls"]["ok"], runtime_ok=None)
+        c["adoption"] = ev.adoption(False, c, out["controls"]["ok"], runtime_ok=runtime_ok(f"{winner}_s0"))
         c["kind"] = f"confirmatory: {winner} vs letters, seeds 0-2"
         comps["confirmatory"] = c
         proxy = tr["final_proxy"]

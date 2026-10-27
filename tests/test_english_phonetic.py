@@ -6,6 +6,7 @@ need the local CMUdict copy skip when it is absent.
 from __future__ import annotations
 
 import json
+import os
 import tempfile
 import unicodedata
 import unittest
@@ -45,10 +46,10 @@ class TestPronunciation(unittest.TestCase):
         self.cmu = Path(self.tmp.name) / "cmu.dict"
         self.cmu.write_text("record R AH0 K AO1 R D\nrecord(2) R EH1 K ER0 D\nsofa S OW1 F AH0\nsofa(2) S OW1 F AH2\n"
                             "o'neil OW0 N IY1 L\n", encoding="utf-8")
-        ps.cmudict.cache_clear()
+        ps._cmudict.cache_clear()
 
     def tearDown(self):
-        ps.cmudict.cache_clear()
+        ps._cmudict.cache_clear()
         self.tmp.cleanup()
 
     def test_default_ambiguous_and_supplied(self):
@@ -81,6 +82,16 @@ class TestPronunciation(unittest.TestCase):
     def test_missing_resource(self):
         with self.assertRaises(FileNotFoundError):
             ps.get_pronunciation("record", path=Path(self.tmp.name) / "absent.dict")
+
+    def test_replaced_file_is_not_served_from_cache(self):
+        f = Path(self.tmp.name) / "versioned.dict"
+        f.write_text("tomato T AH0 M EY1 T OW2\n", encoding="utf-8")
+        first = ps.get_pronunciation("tomato", path=f)
+        f.write_text("tomato T AH0 M AA1 T OW2\n", encoding="utf-8")
+        os.utime(f, ns=(f.stat().st_atime_ns, f.stat().st_mtime_ns + 10**9))
+        second = ps.get_pronunciation("tomato", path=f)
+        self.assertEqual((first.phones[3], second.phones[3]), ("EY1", "AA1"))
+        self.assertNotEqual(first.resource_sha256, second.resource_sha256)
 
 
 class TestEncoding(unittest.TestCase):

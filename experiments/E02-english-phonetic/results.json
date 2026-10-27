@@ -1,0 +1,1068 @@
+{
+ "benchmark": {
+  "qualified": false,
+  "status": "unqualified",
+  "reason": "no item has documented independent acceptance under the E02 phonetic policy; the final items are owner-verified loanword-list spellings (tier attested)",
+  "metric_name": "reference_agreement",
+  "sizes": {
+   "primary": {
+    "items": 165,
+    "families": 162
+   },
+   "final_flagged": {
+    "items": 26,
+    "families": 26
+   },
+   "final_proxy": {
+    "items": 400,
+    "families": 375
+   }
+  }
+ },
+ "selection": {
+  "winner": "phones",
+  "dev_primary_macro": {
+   "letters": 0.20930232558139536,
+   "phones": 0.23255813953488372,
+   "phones_p2g": 0.22093023255813954
+  },
+  "rule": "dev only; ties letters > phones > phones_p2g",
+  "at": "2026-10-27T03:31:17+00:00"
+ },
+ "controls": {
+  "accepted_pass": true,
+  "nfd_pass": true,
+  "corrupt_fail": true,
+  "missing_refused": true,
+  "unknown_refused": true,
+  "ok": true
+ },
+ "runs": {
+  "letters_s0": {
+   "primary": {
+    "primary_macro": 0.16666666666666666,
+    "item_accuracy": 0.1696969696969697,
+    "correct_items": 28,
+    "n_items": 165,
+    "topk_macro": 0.404320987654321,
+    "mean_cer": 0.3528227452150897,
+    "abstained": 0,
+    "reranked_macro": 0.18518518518518517,
+    "strata": {
+     "dictionary_hit": {
+      "n": 143,
+      "macro": 0.14285714285714285
+     },
+     "dictionary_miss": {
+      "n": 22,
+      "macro": 0.3181818181818182
+     },
+     "candidate_anchored": {
+      "n": 82,
+      "macro": 0.1625
+     },
+     "not_anchored": {
+      "n": 83,
+      "macro": 0.1686746987951807
+     },
+     "short_le4": {
+      "n": 34,
+      "macro": 0.23529411764705882
+     },
+     "long_ge9": {
+      "n": 25,
+      "macro": 0.125
+     }
+    }
+   },
+   "final_flagged": {
+    "primary_macro": 0.19230769230769232,
+    "item_accuracy": 0.19230769230769232,
+    "correct_items": 5,
+    "n_items": 26,
+    "topk_macro": 0.38461538461538464,
+    "mean_cer": 0.3150696525696526,
+    "abstained": 0,
+    "reranked_macro": 0.23076923076923078,
+    "strata": {
+     "dictionary_hit": {
+      "n": 25,
+      "macro": 0.2
+     },
+     "dictionary_miss": {
+      "n": 1,
+      "macro": 0
+     },
+     "candidate_anchored": {
+      "n": 12,
+      "macro": 0.16666666666666666
+     },
+     "not_anchored": {
+      "n": 14,
+      "macro": 0.21428571428571427
+     },
+     "short_le4": {
+      "n": 3,
+      "macro": 0.3333333333333333
+     },
+     "long_ge9": {
+      "n": 4,
+      "macro": 0
+     }
+    }
+   },
+   "final_proxy": {
+    "primary_macro": 0.30133333333333334,
+    "item_accuracy": 0.29,
+    "correct_items": 116,
+    "n_items": 400,
+    "topk_macro": 0.5133333333333333,
+    "mean_cer": 0.3429170725108225,
+    "abstained": 0,
+    "reranked_macro": 0.3253333333333333,
+    "strata": {
+     "dictionary_hit": {
+      "n": 322,
+      "macro": 0.3177257525083612
+     },
+     "dictionary_miss": {
+      "n": 78,
+      "macro": 0.23376623376623376
+     },
+     "not_anchored": {
+      "n": 400,
+      "macro": 0.30133333333333334
+     },
+     "short_le4": {
+      "n": 105,
+      "macro": 0.4519230769230769
+     },
+     "long_ge9": {
+      "n": 50,
+      "macro": 0.08163265306122448
+     }
+    }
+   },
+   "v1": {
+    "pick_test": {
+     "raw_correct": 33,
+     "n": 150,
+     "raw": 0.22
+    },
+    "dev41": {
+     "raw_correct": 5,
+     "n": 41,
+     "raw": 0.12195121951219512
+    },
+    "list_test": {
+     "raw_correct": 18,
+     "n": 125,
+     "raw": 0.144
+    }
+   }
+  },
+  "phones_s0": {
+   "primary": {
+    "primary_macro": 0.1728395061728395,
+    "item_accuracy": 0.17575757575757575,
+    "correct_items": 29,
+    "n_items": 165,
+    "topk_macro": 0.42901234567901236,
+    "mean_cer": 0.3366495298074245,
+    "abstained": 0,
+    "reranked_macro": 0.22839506172839505,
+    "strata": {
+     "dictionary_hit": {
+      "n": 143,
+      "macro": 0.17142857142857143
+     },
+     "dictionary_miss": {
+      "n": 22,
+      "macro": 0.18181818181818182
+     },
+     "candidate_anchored": {
+      "n": 82,
+      "macro": 0.2125
+     },
+     "not_anchored": {
+      "n": 83,
+      "macro": 0.13253012048192772
+     },
+     "short_le4": {
+      "n": 34,
+      "macro": 0.20588235294117646
+     },
+     "long_ge9": {
+      "n": 25,
+      "macro": 0.08333333333333333
+     }
+    }
+   },
+   "final_flagged": {
+    "primary_macro": 0.23076923076923078,
+    "item_accuracy": 0.23076923076923078,
+    "correct_items": 6,
+    "n_items": 26,
+    "topk_macro": 0.34615384615384615,
+    "mean_cer": 0.32642357642357644,
+    "abstained": 0,
+    "reranked_macro": 0.19230769230769232,
+    "strata": {
+     "dictionary_hit": {
+      "n": 25,
+      "macro": 0.24
+     },
+     "dictionary_miss": {
+      "n": 1,
+      "macro": 0
+     },
+     "candidate_anchored": {
+      "n": 12,
+      "macro": 0.16666666666666666
+     },
+     "not_anchored": {
+      "n": 14,
+      "macro": 0.2857142857142857
+     },
+     "short_le4": {
+      "n": 3,
+      "macro": 0.3333333333333333
+     },
+     "long_ge9": {
+      "n": 4,
+      "macro": 0.25
+     }
+    }
+   },
+   "final_proxy": {
+    "primary_macro": 0.28933333333333333,
+    "item_accuracy": 0.28,
+    "correct_items": 112,
+    "n_items": 400,
+    "topk_macro": 0.5026666666666667,
+    "mean_cer": 0.33533522727272724,
+    "abstained": 0,
+    "reranked_macro": 0.30133333333333334,
+    "strata": {
+     "dictionary_hit": {
+      "n": 322,
+      "macro": 0.3076923076923077
+     },
+     "dictionary_miss": {
+      "n": 78,
+      "macro": 0.21428571428571427
+     },
+     "not_anchored": {
+      "n": 400,
+      "macro": 0.28933333333333333
+     },
+     "short_le4": {
+      "n": 105,
+      "macro": 0.40384615384615385
+     },
+     "long_ge9": {
+      "n": 50,
+      "macro": 0.10204081632653061
+     }
+    }
+   },
+   "v1": {
+    "pick_test": {
+     "raw_correct": 31,
+     "n": 150,
+     "raw": 0.20666666666666667
+    },
+    "dev41": {
+     "raw_correct": 9,
+     "n": 41,
+     "raw": 0.21951219512195122
+    },
+    "list_test": {
+     "raw_correct": 21,
+     "n": 125,
+     "raw": 0.168
+    }
+   }
+  },
+  "phones_p2g_s0": {
+   "primary": {
+    "primary_macro": 0.16666666666666666,
+    "item_accuracy": 0.1696969696969697,
+    "correct_items": 28,
+    "n_items": 165,
+    "topk_macro": 0.45987654320987653,
+    "mean_cer": 0.350305751310536,
+    "abstained": 0,
+    "reranked_macro": 0.2191358024691358,
+    "strata": {
+     "dictionary_hit": {
+      "n": 143,
+      "macro": 0.17142857142857143
+     },
+     "dictionary_miss": {
+      "n": 22,
+      "macro": 0.13636363636363635
+     },
+     "candidate_anchored": {
+      "n": 82,
+      "macro": 0.1875
+     },
+     "not_anchored": {
+      "n": 83,
+      "macro": 0.14457831325301204
+     },
+     "short_le4": {
+      "n": 34,
+      "macro": 0.14705882352941177
+     },
+     "long_ge9": {
+      "n": 25,
+      "macro": 0.125
+     }
+    }
+   },
+   "final_flagged": {
+    "primary_macro": 0.19230769230769232,
+    "item_accuracy": 0.19230769230769232,
+    "correct_items": 5,
+    "n_items": 26,
+    "topk_macro": 0.38461538461538464,
+    "mean_cer": 0.393505106005106,
+    "abstained": 0,
+    "reranked_macro": 0.23076923076923078,
+    "strata": {
+     "dictionary_hit": {
+      "n": 25,
+      "macro": 0.2
+     },
+     "dictionary_miss": {
+      "n": 1,
+      "macro": 0
+     },
+     "candidate_anchored": {
+      "n": 12,
+      "macro": 0.25
+     },
+     "not_anchored": {
+      "n": 14,
+      "macro": 0.14285714285714285
+     },
+     "short_le4": {
+      "n": 3,
+      "macro": 0.3333333333333333
+     },
+     "long_ge9": {
+      "n": 4,
+      "macro": 0.25
+     }
+    }
+   },
+   "final_proxy": {
+    "primary_macro": 0.30666666666666664,
+    "item_accuracy": 0.2975,
+    "correct_items": 119,
+    "n_items": 400,
+    "topk_macro": 0.5406666666666666,
+    "mean_cer": 0.31600450937950936,
+    "abstained": 0,
+    "reranked_macro": 0.338,
+    "strata": {
+     "dictionary_hit": {
+      "n": 322,
+      "macro": 0.32608695652173914
+     },
+     "dictionary_miss": {
+      "n": 78,
+      "macro": 0.23376623376623376
+     },
+     "not_anchored": {
+      "n": 400,
+      "macro": 0.30666666666666664
+     },
+     "short_le4": {
+      "n": 105,
+      "macro": 0.44711538461538464
+     },
+     "long_ge9": {
+      "n": 50,
+      "macro": 0.10204081632653061
+     }
+    }
+   },
+   "v1": {
+    "pick_test": {
+     "raw_correct": 25,
+     "n": 150,
+     "raw": 0.16666666666666666
+    },
+    "dev41": {
+     "raw_correct": 12,
+     "n": 41,
+     "raw": 0.2926829268292683
+    },
+    "list_test": {
+     "raw_correct": 18,
+     "n": 125,
+     "raw": 0.144
+    }
+   }
+  },
+  "letters_s1": {
+   "primary": {
+    "primary_macro": 0.15123456790123457,
+    "item_accuracy": 0.15151515151515152,
+    "correct_items": 25,
+    "n_items": 165,
+    "topk_macro": 0.39197530864197533,
+    "mean_cer": 0.3753788254984427,
+    "abstained": 0,
+    "reranked_macro": 0.18209876543209877,
+    "strata": {
+     "dictionary_hit": {
+      "n": 143,
+      "macro": 0.16071428571428573
+     },
+     "dictionary_miss": {
+      "n": 22,
+      "macro": 0.09090909090909091
+     },
+     "candidate_anchored": {
+      "n": 82,
+      "macro": 0.14375
+     },
+     "not_anchored": {
+      "n": 83,
+      "macro": 0.1566265060240964
+     },
+     "short_le4": {
+      "n": 34,
+      "macro": 0.20588235294117646
+     },
+     "long_ge9": {
+      "n": 25,
+      "macro": 0.125
+     }
+    }
+   },
+   "final_flagged": {
+    "primary_macro": 0.23076923076923078,
+    "item_accuracy": 0.23076923076923078,
+    "correct_items": 6,
+    "n_items": 26,
+    "topk_macro": 0.34615384615384615,
+    "mean_cer": 0.4087801087801088,
+    "abstained": 0,
+    "reranked_macro": 0.2692307692307692,
+    "strata": {
+     "dictionary_hit": {
+      "n": 25,
+      "macro": 0.24
+     },
+     "dictionary_miss": {
+      "n": 1,
+      "macro": 0
+     },
+     "candidate_anchored": {
+      "n": 12,
+      "macro": 0.16666666666666666
+     },
+     "not_anchored": {
+      "n": 14,
+      "macro": 0.2857142857142857
+     },
+     "short_le4": {
+      "n": 3,
+      "macro": 0.3333333333333333
+     },
+     "long_ge9": {
+      "n": 4,
+      "macro": 0.25
+     }
+    }
+   },
+   "final_proxy": {
+    "primary_macro": 0.256,
+    "item_accuracy": 0.2475,
+    "correct_items": 99,
+    "n_items": 400,
+    "topk_macro": 0.47733333333333333,
+    "mean_cer": 0.3566387085137085,
+    "abstained": 0,
+    "reranked_macro": 0.288,
+    "strata": {
+     "dictionary_hit": {
+      "n": 322,
+      "macro": 0.2608695652173913
+     },
+     "dictionary_miss": {
+      "n": 78,
+      "macro": 0.23376623376623376
+     },
+     "not_anchored": {
+      "n": 400,
+      "macro": 0.256
+     },
+     "short_le4": {
+      "n": 105,
+      "macro": 0.34615384615384615
+     },
+     "long_ge9": {
+      "n": 50,
+      "macro": 0.061224489795918366
+     }
+    }
+   },
+   "v1": {
+    "pick_test": {
+     "raw_correct": 24,
+     "n": 150,
+     "raw": 0.16
+    },
+    "dev41": {
+     "raw_correct": 7,
+     "n": 41,
+     "raw": 0.17073170731707318
+    },
+    "list_test": {
+     "raw_correct": 18,
+     "n": 125,
+     "raw": 0.144
+    }
+   }
+  },
+  "phones_s1": {
+   "primary": {
+    "primary_macro": 0.16666666666666666,
+    "item_accuracy": 0.1696969696969697,
+    "correct_items": 28,
+    "n_items": 165,
+    "topk_macro": 0.42901234567901236,
+    "mean_cer": 0.3335497906311303,
+    "abstained": 0,
+    "reranked_macro": 0.2191358024691358,
+    "strata": {
+     "dictionary_hit": {
+      "n": 143,
+      "macro": 0.17142857142857143
+     },
+     "dictionary_miss": {
+      "n": 22,
+      "macro": 0.13636363636363635
+     },
+     "candidate_anchored": {
+      "n": 82,
+      "macro": 0.15
+     },
+     "not_anchored": {
+      "n": 83,
+      "macro": 0.18072289156626506
+     },
+     "short_le4": {
+      "n": 34,
+      "macro": 0.20588235294117646
+     },
+     "long_ge9": {
+      "n": 25,
+      "macro": 0.08333333333333333
+     }
+    }
+   },
+   "final_flagged": {
+    "primary_macro": 0.23076923076923078,
+    "item_accuracy": 0.23076923076923078,
+    "correct_items": 6,
+    "n_items": 26,
+    "topk_macro": 0.38461538461538464,
+    "mean_cer": 0.3674325674325674,
+    "abstained": 0,
+    "reranked_macro": 0.2692307692307692,
+    "strata": {
+     "dictionary_hit": {
+      "n": 25,
+      "macro": 0.24
+     },
+     "dictionary_miss": {
+      "n": 1,
+      "macro": 0
+     },
+     "candidate_anchored": {
+      "n": 12,
+      "macro": 0.16666666666666666
+     },
+     "not_anchored": {
+      "n": 14,
+      "macro": 0.2857142857142857
+     },
+     "short_le4": {
+      "n": 3,
+      "macro": 0.3333333333333333
+     },
+     "long_ge9": {
+      "n": 4,
+      "macro": 0.25
+     }
+    }
+   },
+   "final_proxy": {
+    "primary_macro": 0.3,
+    "item_accuracy": 0.29,
+    "correct_items": 116,
+    "n_items": 400,
+    "topk_macro": 0.532,
+    "mean_cer": 0.33670179473304473,
+    "abstained": 0,
+    "reranked_macro": 0.324,
+    "strata": {
+     "dictionary_hit": {
+      "n": 322,
+      "macro": 0.32274247491638797
+     },
+     "dictionary_miss": {
+      "n": 78,
+      "macro": 0.2077922077922078
+     },
+     "not_anchored": {
+      "n": 400,
+      "macro": 0.3
+     },
+     "short_le4": {
+      "n": 105,
+      "macro": 0.4230769230769231
+     },
+     "long_ge9": {
+      "n": 50,
+      "macro": 0.10204081632653061
+     }
+    }
+   },
+   "v1": {
+    "pick_test": {
+     "raw_correct": 29,
+     "n": 150,
+     "raw": 0.19333333333333333
+    },
+    "dev41": {
+     "raw_correct": 5,
+     "n": 41,
+     "raw": 0.12195121951219512
+    },
+    "list_test": {
+     "raw_correct": 17,
+     "n": 125,
+     "raw": 0.136
+    }
+   }
+  },
+  "letters_s2": {
+   "primary": {
+    "primary_macro": 0.16049382716049382,
+    "item_accuracy": 0.16363636363636364,
+    "correct_items": 27,
+    "n_items": 165,
+    "topk_macro": 0.4351851851851852,
+    "mean_cer": 0.3472029662699519,
+    "abstained": 0,
+    "reranked_macro": 0.19135802469135801,
+    "strata": {
+     "dictionary_hit": {
+      "n": 143,
+      "macro": 0.16428571428571428
+     },
+     "dictionary_miss": {
+      "n": 22,
+      "macro": 0.13636363636363635
+     },
+     "candidate_anchored": {
+      "n": 82,
+      "macro": 0.2
+     },
+     "not_anchored": {
+      "n": 83,
+      "macro": 0.12048192771084337
+     },
+     "short_le4": {
+      "n": 34,
+      "macro": 0.20588235294117646
+     },
+     "long_ge9": {
+      "n": 25,
+      "macro": 0.16666666666666666
+     }
+    }
+   },
+   "final_flagged": {
+    "primary_macro": 0.2692307692307692,
+    "item_accuracy": 0.2692307692307692,
+    "correct_items": 7,
+    "n_items": 26,
+    "topk_macro": 0.4230769230769231,
+    "mean_cer": 0.3237359862359862,
+    "abstained": 0,
+    "reranked_macro": 0.3076923076923077,
+    "strata": {
+     "dictionary_hit": {
+      "n": 25,
+      "macro": 0.28
+     },
+     "dictionary_miss": {
+      "n": 1,
+      "macro": 0
+     },
+     "candidate_anchored": {
+      "n": 12,
+      "macro": 0.16666666666666666
+     },
+     "not_anchored": {
+      "n": 14,
+      "macro": 0.35714285714285715
+     },
+     "short_le4": {
+      "n": 3,
+      "macro": 0.3333333333333333
+     },
+     "long_ge9": {
+      "n": 4,
+      "macro": 0.5
+     }
+    }
+   },
+   "final_proxy": {
+    "primary_macro": 0.27066666666666667,
+    "item_accuracy": 0.265,
+    "correct_items": 106,
+    "n_items": 400,
+    "topk_macro": 0.5066666666666667,
+    "mean_cer": 0.3569577922077922,
+    "abstained": 0,
+    "reranked_macro": 0.32266666666666666,
+    "strata": {
+     "dictionary_hit": {
+      "n": 322,
+      "macro": 0.29264214046822745
+     },
+     "dictionary_miss": {
+      "n": 78,
+      "macro": 0.18831168831168832
+     },
+     "not_anchored": {
+      "n": 400,
+      "macro": 0.27066666666666667
+     },
+     "short_le4": {
+      "n": 105,
+      "macro": 0.3605769230769231
+     },
+     "long_ge9": {
+      "n": 50,
+      "macro": 0.08163265306122448
+     }
+    }
+   },
+   "v1": {
+    "pick_test": {
+     "raw_correct": 24,
+     "n": 150,
+     "raw": 0.16
+    },
+    "dev41": {
+     "raw_correct": 9,
+     "n": 41,
+     "raw": 0.21951219512195122
+    },
+    "list_test": {
+     "raw_correct": 17,
+     "n": 125,
+     "raw": 0.136
+    }
+   }
+  },
+  "phones_s2": {
+   "primary": {
+    "primary_macro": 0.1882716049382716,
+    "item_accuracy": 0.19393939393939394,
+    "correct_items": 32,
+    "n_items": 165,
+    "topk_macro": 0.4228395061728395,
+    "mean_cer": 0.33290851802813526,
+    "abstained": 0,
+    "reranked_macro": 0.23765432098765432,
+    "strata": {
+     "dictionary_hit": {
+      "n": 143,
+      "macro": 0.175
+     },
+     "dictionary_miss": {
+      "n": 22,
+      "macro": 0.2727272727272727
+     },
+     "candidate_anchored": {
+      "n": 82,
+      "macro": 0.19375
+     },
+     "not_anchored": {
+      "n": 83,
+      "macro": 0.18072289156626506
+     },
+     "short_le4": {
+      "n": 34,
+      "macro": 0.17647058823529413
+     },
+     "long_ge9": {
+      "n": 25,
+      "macro": 0.2916666666666667
+     }
+    }
+   },
+   "final_flagged": {
+    "primary_macro": 0.2692307692307692,
+    "item_accuracy": 0.2692307692307692,
+    "correct_items": 7,
+    "n_items": 26,
+    "topk_macro": 0.38461538461538464,
+    "mean_cer": 0.3429195804195804,
+    "abstained": 0,
+    "reranked_macro": 0.3076923076923077,
+    "strata": {
+     "dictionary_hit": {
+      "n": 25,
+      "macro": 0.28
+     },
+     "dictionary_miss": {
+      "n": 1,
+      "macro": 0
+     },
+     "candidate_anchored": {
+      "n": 12,
+      "macro": 0.16666666666666666
+     },
+     "not_anchored": {
+      "n": 14,
+      "macro": 0.35714285714285715
+     },
+     "short_le4": {
+      "n": 3,
+      "macro": 0.3333333333333333
+     },
+     "long_ge9": {
+      "n": 4,
+      "macro": 0.5
+     }
+    }
+   },
+   "final_proxy": {
+    "primary_macro": 0.2813333333333333,
+    "item_accuracy": 0.2725,
+    "correct_items": 109,
+    "n_items": 400,
+    "topk_macro": 0.5066666666666667,
+    "mean_cer": 0.34015706168831167,
+    "abstained": 0,
+    "reranked_macro": 0.30933333333333335,
+    "strata": {
+     "dictionary_hit": {
+      "n": 322,
+      "macro": 0.30267558528428096
+     },
+     "dictionary_miss": {
+      "n": 78,
+      "macro": 0.19480519480519481
+     },
+     "not_anchored": {
+      "n": 400,
+      "macro": 0.2813333333333333
+     },
+     "short_le4": {
+      "n": 105,
+      "macro": 0.4230769230769231
+     },
+     "long_ge9": {
+      "n": 50,
+      "macro": 0.08163265306122448
+     }
+    }
+   },
+   "v1": {
+    "pick_test": {
+     "raw_correct": 28,
+     "n": 150,
+     "raw": 0.18666666666666668
+    },
+    "dev41": {
+     "raw_correct": 9,
+     "n": 41,
+     "raw": 0.21951219512195122
+    },
+    "list_test": {
+     "raw_correct": 18,
+     "n": 125,
+     "raw": 0.144
+    }
+   }
+  }
+ },
+ "comparisons": {
+  "confirmatory": {
+   "seed_gains_pp": [
+    0.6172839506172849,
+    1.543209876543207,
+    2.7777777777777786
+   ],
+   "mean_gain_pp": 1.6460905349794235,
+   "ci95_pp": [
+    -1.6460905349794233,
+    4.93827160493827
+   ],
+   "control_macro": [
+    16.666666666666664,
+    15.123456790123457,
+    16.049382716049383
+   ],
+   "treatment_macro": [
+    17.28395061728395,
+    16.666666666666664,
+    18.82716049382716
+   ],
+   "families": 162,
+   "evidence": {
+    "positive_effect_supported": false,
+    "meaningful_gain_ruled_out_conditional": true,
+    "practically_equivalent_conditional": true
+   },
+   "adoption": {
+    "adopt": false,
+    "conditions": {
+     "benchmark_qualified": false,
+     "mean_gain_ge_threshold": false,
+     "positive_in_2_of_3_seeds": true,
+     "ci_lower_gt_0": false,
+     "controls_ok": true,
+     "runtime_ok": true
+    }
+   },
+   "kind": "confirmatory: phones vs letters, seeds 0-2"
+  },
+  "proxy_track": {
+   "seed_gains_pp": [
+    -1.1999999999999993,
+    4.399999999999999,
+    1.0666666666666664
+   ],
+   "mean_gain_pp": 1.4222222222222218,
+   "ci95_pp": [
+    -0.6222222222222221,
+    3.555555555555555
+   ],
+   "control_macro": [
+    30.133333333333333,
+    25.6,
+    27.066666666666666
+   ],
+   "treatment_macro": [
+    28.933333333333334,
+    30.0,
+    28.133333333333333
+   ],
+   "families": 375,
+   "evidence": {
+    "positive_effect_supported": false,
+    "meaningful_gain_ruled_out_conditional": true,
+    "practically_equivalent_conditional": true
+   },
+   "kind": "exploratory proxy track (LLM spellings), same paired seeds"
+  },
+  "pilot_phones_vs_letters": {
+   "seed_gains_pp": [
+    0.6172839506172849
+   ],
+   "mean_gain_pp": 0.6172839506172849,
+   "ci95_pp": [
+    -3.7037037037037033,
+    5.555555555555555
+   ],
+   "control_macro": [
+    16.666666666666664
+   ],
+   "treatment_macro": [
+    17.28395061728395
+   ],
+   "families": 162,
+   "kind": "exploratory one-seed pilot: phones vs letters"
+  },
+  "pilot_phones_p2g_vs_letters": {
+   "seed_gains_pp": [
+    0.0
+   ],
+   "mean_gain_pp": 0.0,
+   "ci95_pp": [
+    -5.555555555555555,
+    5.555555555555555
+   ],
+   "control_macro": [
+    16.666666666666664
+   ],
+   "treatment_macro": [
+    16.666666666666664
+   ],
+   "families": 162,
+   "kind": "exploratory one-seed pilot: phones_p2g vs letters"
+  },
+  "pilot_phones_p2g_vs_phones": {
+   "seed_gains_pp": [
+    -0.6172839506172849
+   ],
+   "mean_gain_pp": -0.6172839506172849,
+   "ci95_pp": [
+    -6.172839506172839,
+    4.938271604938271
+   ],
+   "control_macro": [
+    17.28395061728395
+   ],
+   "treatment_macro": [
+    16.666666666666664
+   ],
+   "families": 162,
+   "kind": "exploratory one-seed pilot: phones_p2g vs phones"
+  }
+ },
+ "evidence_status": "inconclusive",
+ "experiment_status": "complete_paired",
+ "adoption": "letters_baseline_retained",
+ "default_model": "letters_s0",
+ "power": {
+  "assumptions": {
+   "delta_pp": 5.0,
+   "alpha": "two-sided 5% (95% percentile interval lower bound > 0)",
+   "target_power": 0.8,
+   "model": "one item per family, one seed; discordant family favours treatment with prob 0.5+delta/(2d)",
+   "discordance_grid_source": "declared sensitivity grid; E01 historical paired discordance on the 150-word pick test was 29/150 = 0.19 per seed (D174), from a different model pair and panel",
+   "n_sim": 400,
+   "n_boot": 1000,
+   "seed": 0
+  },
+  "primary_final_families": 162,
+  "proxy_track_families": 375,
+  "power_primary": {
+   "0.1": 0.4975,
+   "0.15": 0.3275,
+   "0.2": 0.2875,
+   "0.25": 0.22,
+   "0.3": 0.2375
+  },
+  "power_proxy": {
+   "0.1": 0.86,
+   "0.15": 0.69,
+   "0.2": 0.5725,
+   "0.25": 0.52,
+   "0.3": 0.4475
+  },
+  "families_needed_80pct_normal_approx": {
+   "0.1": 314,
+   "0.15": 471,
+   "0.2": 628,
+   "0.25": 785,
+   "0.3": 942
+  },
+  "conclusion": "The attainable primary set is underpowered for a 5-point gain at every discordance >= 0.10; expect an inconclusive interval unless the true gain is much larger."
+ }
+}

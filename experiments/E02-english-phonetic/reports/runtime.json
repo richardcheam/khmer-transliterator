@@ -1,0 +1,74 @@
+{
+ "machine": {
+  "platform": "Linux-7.0.0-34-generic-x86_64-with-glibc2.39",
+  "cpu_count": 12,
+  "python": "3.10.21",
+  "threads": "OMP_NUM_THREADS=6"
+ },
+ "measured": "2026-10-27 05:50",
+ "models": [
+  {
+   "model": "models/e02/letters_s0/model.npz",
+   "mode": "letters",
+   "cold_load_s": 0.09218768822029233,
+   "pron_lookup_s_per_word": null,
+   "batch1_p50_s": 0.017898264341056347,
+   "batch1_p95_s": 0.031788213178515434,
+   "batch1_p95_hit_s": 0.03156321868300438,
+   "batch1_p95_miss_s": 0.034588840790092945,
+   "batch16_s_per_word": 0.01230474113272714,
+   "words": 103,
+   "passes": 3,
+   "peak_rss_mib": 65.09375,
+   "guards": {
+    "cold_load_le_30s": true,
+    "batch1_p95_le_1s": true,
+    "peak_rss_le_1_5gib": true,
+    "p95_le_2x_letters": true
+   },
+   "guards_ok": true
+  },
+  {
+   "model": "models/e02/phones_s0/model.npz",
+   "mode": "phones",
+   "cold_load_s": 1.4740782948210835,
+   "pron_lookup_s_per_word": 8.49952152704151e-05,
+   "batch1_p50_s": 0.02045995509251952,
+   "batch1_p95_s": 0.03616783581674099,
+   "batch1_p95_hit_s": 0.03528092196211219,
+   "batch1_p95_miss_s": 0.03738341620191932,
+   "batch16_s_per_word": 0.015374293029428878,
+   "words": 103,
+   "passes": 3,
+   "peak_rss_mib": 137.49609375,
+   "guards": {
+    "cold_load_le_30s": true,
+    "batch1_p95_le_1s": true,
+    "peak_rss_le_1_5gib": true,
+    "p95_le_2x_letters": true
+   },
+   "guards_ok": true
+  },
+  {
+   "model": "models/e02/phones_p2g_s0/model.npz",
+   "mode": "phones",
+   "cold_load_s": 1.4952180651016533,
+   "pron_lookup_s_per_word": 8.559449422127992e-05,
+   "batch1_p50_s": 0.023027459159493446,
+   "batch1_p95_s": 0.040656594093889,
+   "batch1_p95_hit_s": 0.0407389746978879,
+   "batch1_p95_miss_s": 0.039792382158339024,
+   "batch16_s_per_word": 0.01613298775688489,
+   "words": 103,
+   "passes": 3,
+   "peak_rss_mib": 138.3203125,
+   "guards": {
+    "cold_load_le_30s": true,
+    "batch1_p95_le_1s": true,
+    "peak_rss_le_1_5gib": true,
+    "p95_le_2x_letters": true
+   },
+   "guards_ok": true
+  }
+ ]
+}

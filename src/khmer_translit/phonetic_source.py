@@ -159,11 +159,11 @@ def sha256_file(path: Path) -> str:
     return h.hexdigest()
 
 
-@lru_cache(maxsize=4)
 def cmudict(path: Path = CMUDICT) -> tuple[dict[str, tuple[tuple[str, ...], ...]], str]:
     """Every CMUdict reading, keyed by the headword normalised like an input (`normalize_word`).
 
-    Headwords that normalise to the same key (its / it's) share one entry, readings in file order.
+    Headwords that normalise to the same key (its / it's) share one entry, readings in file order. The parse is
+    cached per (path, size, modification time), so a replaced file is read again and never served stale.
 
     Args:
         path: The `cmudict.dict` file.
@@ -176,6 +176,13 @@ def cmudict(path: Path = CMUDICT) -> tuple[dict[str, tuple[tuple[str, ...], ...]
     """
     if not Path(path).exists():
         raise FileNotFoundError(f"CMUdict not found at {path}; it is needed for phone-input models")
+    st = Path(path).stat()
+    return _cmudict(str(Path(path).resolve()), st.st_size, st.st_mtime_ns)
+
+
+@lru_cache(maxsize=4)
+def _cmudict(path: str, size: int, mtime_ns: int) -> tuple[dict[str, tuple[tuple[str, ...], ...]], str]:
+    """Parse one version of the file (the cache key carries its size and mtime); see `cmudict`."""
     out: dict[str, list[tuple[str, ...]]] = {}
     for line in Path(path).read_text(encoding="utf-8").splitlines():
         if not line[:1].isalpha():

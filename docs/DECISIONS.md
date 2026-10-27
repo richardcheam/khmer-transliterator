@@ -65,3 +65,27 @@ there (`git -C ../pocket-tts-khmer show archive/checkpoints-p0-p6:state/DECISION
   killed one evaluation and a re-score, plus the desktop SSH agent and two dbus processes. A re-score check then
   passed falsely, because it compared an unwritten file with itself. It was redone alone, with the old file moved
   aside first. **Rule kept:** run one heavy job at a time.
+
+## D178 — E02: English words to Khmer phonetic spelling (2026-10-27)
+- **Task (owner's handoff, `handoff/english-phonetic/`):** one English word → its English pronunciation written in
+  Khmer script; translation, romanised Khmer chat and audio out of scope. Executed autonomously; every ordinary
+  choice is logged in `docs/decisions/english-phonetic.md` (1–27).
+- **Audit:** E01 was letters-only input (its exported models say `phones: false`), with a Latin → Google-phones side
+  decoder; `docs/TRANSLITERATOR.md` corrected. Only historical model E (Chhunneng-trained) has phone input.
+- **Benchmark `en-phonetic-v1`** (`data/e02/references.jsonl`): dev 103, final 191 (primary 165 items / 162
+  families), proxy 400, from the owner's loanword list; split by lexical family; no training overlap. **Unqualified**
+  (no independent review under the phonetic policy), so the registered evidence status is `inconclusive`.
+- **Experiment** (`experiments/E02-english-phonetic/`, registered at `b9c7ea4` before training): letters vs
+  letters + CMUdict phones vs phones + Khmer P2G pretraining/replay; seed-0 pilots, the dev winner (phones) and
+  letters confirmed at seeds 1–2. 7/7 supervised runs, 1/3 P2G jobs, 2.81 h of CPU time, no GPU, no spending.
+- **Result:** phones vs letters on the primary track +1.65 points (seeds +0.62/+1.54/+2.78), 95% paired family
+  bootstrap [−1.65, +4.94]: a meaningful (≥ 5) gain ruled out on this benchmark, a positive effect not shown. P2G:
+  no gain in its one-seed pilot. Proxy track +1.42 [−0.62, +3.56].
+- **Decision:** `letters_baseline_retained`; default model `models/e02/letters_s0` (raw 16.7% primary agreement).
+  Nothing changes in serving (still B/E; the owner decides).
+- **Product:** `khmer_translit.english.Transliterator` and the `khmer-translit` CLI (prepare / predict / inspect),
+  offline, NumPy only; installed-wheel checks pass outside the checkout (`reports/wheel_check.json`); runtime guards
+  pass (letters: cold 0.09 s, p95 32 ms/word, 65 MiB). Local bundle `dist/english-phonetic-0.1.0/` + ZIP; weights
+  `restricted_artifacts_local_only`.
+- **Open:** independent review of the references (the only way to qualify the benchmark); the share-alike status
+  of weights trained on Wikipedia pairs; a code licence.

@@ -145,7 +145,10 @@ class Transliterator:
         if meta["mode"] == "phones":
             cmu = Path(cmudict_path)
             if not cmu.exists():
-                raise FileNotFoundError(f"this phone-input model needs CMUdict at {cmu} (see `khmer-translit prepare`)")
+                raise FileNotFoundError(f"this phone-input model needs CMUdict (sha256 "
+                                        f"{(meta.get('pronunciation') or {}).get('cmudict_sha256', '?')}); not found "
+                                        f"at {cmu}. Pass --cmudict PATH (API: cmudict_path=) or set "
+                                        f"KHMER_TRANSLIT_CMUDICT")
             want = (meta.get("pronunciation") or {}).get("cmudict_sha256")
             if want and ps.sha256_file(cmu) != want:
                 raise ModelFormatError(f"CMUdict at {cmu} differs from the one the model was trained with")

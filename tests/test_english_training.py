@@ -156,6 +156,60 @@ class TestTraining(unittest.TestCase):
             Transliterator.from_pretrained(out / "absent.npz")
 
 
+@unittest.skipUnless(HAVE_TORCH and HAVE_CMU, "needs torch and data/src/cmudict")
+class TestCLI(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        import english_phonetic_train as T
+        cls.tmp = tempfile.TemporaryDirectory()
+        data = Path(cls.tmp.name) / "data"
+        tiny_data(data)
+        cls.out = Path(cls.tmp.name) / "m"
+        with mock.patch.object(T, "DATA", data), mock.patch.dict("os.environ", {"WANDB_MODE": "disabled"}):
+            T.train("letters", 0, cls.out, cfg(epochs=60, lr=3e-3))
+            T.export(cls.out, cfg())
+
+    @classmethod
+    def tearDownClass(cls):
+        cls.tmp.cleanup()
+
+    def run_cli(self, *argv: str) -> tuple[int, str]:
+        import contextlib
+        import io
+        from khmer_translit import cli
+        buf = io.StringIO()
+        with contextlib.redirect_stdout(buf), contextlib.redirect_stderr(io.StringIO()):
+            code = cli.main(list(argv))
+        return code, buf.getvalue()
+
+    def test_predict_formats_and_order(self):
+        words = Path(self.tmp.name) / "words.txt"
+        words.write_text("one\n\nTwo\nnew york\n", encoding="utf-8")
+        code, out = self.run_cli("predict", "--model", str(self.out), "--input", str(words), "--jsonl")
+        rows = [json.loads(l) for l in out.splitlines()]
+        self.assertEqual(code, 1)                                  # two inputs refused
+        self.assertEqual([r["id"] for r in rows], [1, 2, 3, 4])
+        self.assertEqual([r["input"] for r in rows], ["one", "", "Two", "new york"])
+        self.assertEqual([r["status"] for r in rows], ["ok", "empty", "ok", "unsupported_multiword"])
+        code, out = self.run_cli("predict", "--model", str(self.out), "--word", "one", "--json", "--top-k", "2")
+        self.assertEqual(code, 0)
+        self.assertEqual(json.loads(out)["status"], "ok")
+        self.assertIsNone(json.loads(out)["pronunciation"])        # letters model: no pronunciation used
+
+    def test_inspect_prepare_and_errors(self):
+        code, out = self.run_cli("inspect", "--model", str(self.out))
+        info = json.loads(out)
+        self.assertEqual((code, info["mode"], info["requires"]), (0, "letters", ["nothing besides numpy"]))
+        npz = self.out / "model.npz"
+        man = Path(self.tmp.name) / "res.json"
+        man.write_text(json.dumps({"files": [{"path": "m/model.npz", "sha256": ps.sha256_file(npz), "role": "model"}]}))
+        self.assertEqual(self.run_cli("prepare", "--manifest", str(man))[0], 0)
+        man.write_text(json.dumps({"files": [{"path": "m/model.npz", "sha256": "0" * 64, "role": "model"}]}))
+        self.assertEqual(self.run_cli("prepare", "--manifest", str(man))[0], 1)
+        self.assertEqual(self.run_cli("predict", "--model", str(self.out / "nope.npz"), "--word", "a")[0], 2)
+        self.assertEqual(self.run_cli("predict", "--model", str(self.out), "--word", "a", "--sha256", "0" * 64)[0], 2)
+
+
 class TestRunner(unittest.TestCase):
     def setUp(self):
         import english_phonetic_run as R

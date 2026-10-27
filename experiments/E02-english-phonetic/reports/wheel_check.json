@@ -1,0 +1,97 @@
+{
+ "checked": "2026-10-27 05:52",
+ "wheel": "khmer_translit-0.1.0-py3-none-any.whl",
+ "built": [
+  ".gitignore",
+  "khmer_translit-0.1.0-py3-none-any.whl",
+  "khmer_translit-0.1.0.tar.gz"
+ ],
+ "install": "offline (uv cache)",
+ "python": "3.10 (uv venv)",
+ "cwd": "temporary folder outside the checkout",
+ "env": "no PYTHONPATH, no KHMER_TRANSLIT_CMUDICT; API check with sockets disabled",
+ "models": {
+  "letters": "/home/richard/projects/khmer-transliterator/models/e02/letters_s0",
+  "phones": "/home/richard/projects/khmer-transliterator/models/e02/phones_s0"
+ },
+ "all_ok": true,
+ "checks": {
+  "letters_word_json": {
+   "cmd": "khmer-translit predict --model letters_s0 --word coffee --json --top-k 3",
+   "exit": 0,
+   "stdout": "{\n \"id\": 1,\n \"input\": \"coffee\",\n \"normalized\": \"coffee\",\n \"status\": \"ok\",\n \"candidates\": [\n  {\n   \"text\": \"ខូហ្វ៊ី\",\n   \"log_score\": -1.6165986741551936\n  },\n  {\n   \"text\": \"កូហ្វ៊ី\",\n   \"log_score\": -1.6696176475814446\n  },\n  {\n   \"text\": \"កូហ្វី\",\n   \"log_score\": -2.6094601861724205\n  }\n ],\n \"pronunciation\": null,\n \"message\": \"\"\n}\n",
+   "stderr": "",
+   "ok": true
+  },
+  "letters_batch_jsonl": {
+   "cmd": "khmer-translit predict --model letters_s0 --input - --jsonl",
+   "exit": 1,
+   "stdout": "{\"id\": 1, \"input\": \"computer\", \"normalized\": \"computer\", \"status\": \"ok\", \"candidates\": [{\"text\": \"កំពូទែរ\", \"log_score\": -3.373198978254069}], \"pronunciation\": null, \"message\": \"\"}\n{\"id\": 2, \"input\": \"\", \"normalized\": \"\", \"status\": \"empty\", \"candidates\": [], \"pronunciation\": null, \"message\": \"input refused: empty\"}\n{\"id\": 3, \"input\": \"hello world\", \"normalized\": \"hello world\", \"status\": \"unsupported_multiword\", \"candidates\": [], \"pronunciation\": null, \"message\": \"input refused: unsupported_multiword\"}\n{\"id\": 4, \"input\": \"Johnson\", \"normalized\": \"johnson\", \"status\": \"ok\", \"candidates\": [{\"text\": \"ចនសុន\", \"log_score\": -0.8865165169312783}], \"pronunciation\": null, \"message\": \"\"}\n{\"id\": 5, \"input\": \"កាហ្វេ\", \"normalized\": \"កាហវេ\", \"status\": \"unsupported_characters\", \"candidates\": [], \"pronunciation\": null, \"message\": \"input refused: unsupported_characters\"}\n",
+   "stderr": "",
+   "ok": true
+  },
+  "phones_without_cmudict_refused": {
+   "cmd": "khmer-translit predict --model phones_s0 --word coffee",
+   "exit": 2,
+   "stdout": "",
+   "stderr": "khmer-translit: error: this phone-input model needs CMUdict (sha256 81917843c7f44ce2b094ac63873c2c7a4cf802040792c455ba3ca406891c3d22); not found at /tmp/e02-wheel-ezu3s7tq/venv/lib/python3.10/data/src/cmudict/cmudict.dict. Pass --cmudict PATH (API: cmudict_path=) or set KHMER_TRANSLIT_CMUDICT",
+   "ok": true
+  },
+  "phones_with_cmudict": {
+   "cmd": "khmer-translit predict --model phones_s0 --cmudict cmudict.dict --word record --json",
+   "exit": 0,
+   "stdout": "{\n \"id\": 1,\n \"input\": \"record\",\n \"normalized\": \"record\",\n \"status\": \"ok\",\n \"candidates\": [\n  {\n   \"text\": \"រ៉េខដ\",\n   \"log_score\": -2.1246244591064487\n  }\n ],\n \"pronunciation\": {\n  \"word\": \"record\",\n  \"phones\": \"R AH0 K AO1 R D\",\n  \"status\": \"dictionary\",\n  \"provider\": \"cmudict\",\n  \"alternatives\": [\n   \"R EH1 K ER0 D\",\n   \"R IH0 K AO1 R D\"\n  ],\n  \"ambiguous\": true,\n  \"alphabet\": \"arpabet-cmudict-stress\",\n  \"resource_sha256\": \"81917843c7f44ce2b094ac63873c2c7a4cf802040792c455ba3ca406891c3d22\",\n  \"dictionary_hit\": true\n },\n \"message\": \"\"\n}\n",
+   "stderr": "",
+   "ok": true
+  },
+  "supplied_pronunciation": {
+   "cmd": "khmer-translit predict --model phones_s0 --cmudict cmudict.dict --word record --pronunciation R IH0 K AO1 R D --json",
+   "exit": 0,
+   "stdout": "{\n \"id\": 1,\n \"input\": \"record\",\n \"normalized\": \"record\",\n \"status\": \"ok\",\n \"candidates\": [\n  {\n   \"text\": \"រ៉េខដ\",\n   \"log_score\": -2.1781008761343545\n  }\n ],\n \"pronunciation\": {\n  \"word\": \"record\",\n  \"phones\": \"R IH0 K AO1 R D\",\n  \"status\": \"provided\",\n  \"provider\": \"caller\",\n  \"alternatives\": [],\n  \"ambiguous\": false,\n  \"alphabet\": \"arpabet-cmudict-stress\",\n  \"resource_sha256\": \"81917843c7f44ce2b094ac63873c2c7a4cf802040792c455ba3ca406891c3d22\",\n  \"dictionary_hit\": true\n },\n \"message\": \"\"\n}\n",
+   "stderr": "",
+   "ok": true
+  },
+  "unparsed_pronunciation_refused": {
+   "cmd": "khmer-translit predict --model phones_s0 --cmudict cmudict.dict --word record --pronunciation r i k o r d",
+   "exit": 1,
+   "stdout": "record\t[unknown_phone]\n",
+   "stderr": "",
+   "ok": true
+  },
+  "inspect": {
+   "cmd": "khmer-translit inspect --model phones_s0 --cmudict cmudict.dict",
+   "exit": 0,
+   "stdout": "{\n \"format\": \"khmer-translit-english-v1\",\n \"encoder_version\": \"en-phonetic-src-v1\",\n \"mode\": \"phones\",\n \"arm\": \"phones\",\n \"seed\": 0,\n \"epoch\": 27,\n \"heads\": 4,\n \"layers\": 3,\n \"max_src\": 80,\n \"max_tgt\": 40,\n \"beam\": 4,\n \"pronunciation\": {\n  \"provider\": \"cmudict\",\n  \"alphabet\": \"arpabet-cmudict-stress\",\n  \"accent\": \"en-US-cmudict\",\n  \"default\": \"first listed reading\",\n  \"miss\": \"<no_pron>\",\n  \"cmudict_sha256\": \"81917843c7f44ce2b094ac63873c2c7a4cf802040792c455ba3ca406891c3d22\"\n },\n \"input_policy\": \"one English word; NFKC, lower case, accents removed, apostrophes/hyphens dropped; a-z, <= 32 letters\",\n \"data_manifest_sha256\": \"6cdc7c8a6f24b6c8bb68d651e3c9dcb8f1329da702be548b6ece7dd76ffdffad\",\n \"config_sha256\": \"941a8453d4b579737837c38372fdb94c6cfb0b7ba00f3b2f06838713364dacaf\",\n \"checkpoint_sha256\": \"834a33409f8ccd26576790df580bee31d79df9301a5e0af25833533b33479157\",\n \"training_sources\": {\n  \"mined_web\": 10031\n },\n \"evidence_status\": \"inconclusive (benchmark unqualified; see experiments/E02-english-phonetic)\",\n \"parameters\": 2609169,\n \"n_src_tokens\": 157,\n \"n_tgt_chars\": 78,\n \"model_sha256\": \"30e4afb4e1e13d189148a694c2d893d6dd7c92c868e8028fa875eaa59647fff3\",\n \"requires\": [\n  \"CMUdict (sha256 81917843c7f44ce2b094ac63873c2c7a4cf802040792c455ba3ca406891c3d22)\"\n ]\n}\n",
+   "stderr": "",
+   "ok": true
+  },
+  "corrupt_checkpoint_refused": {
+   "cmd": "khmer-translit predict --model corrupt.npz --word coffee",
+   "exit": 2,
+   "stdout": "",
+   "stderr": "khmer-translit: error: /tmp/e02-wheel-ezu3s7tq/elsewhere/corrupt.npz: not a readable model file (This file contains pickled (object) data. If you trust the file you can load it unsafely using the `allow_pickle=` keyword argument or `pickle.load()`.)",
+   "ok": true
+  },
+  "missing_checkpoint_refused": {
+   "cmd": "khmer-translit predict --model absent.npz --word coffee",
+   "exit": 2,
+   "stdout": "",
+   "stderr": "khmer-translit: error: model file not found: /tmp/e02-wheel-ezu3s7tq/elsewhere/absent.npz",
+   "ok": true
+  },
+  "repeat_run_determinism": {
+   "cmd": "khmer-translit predict --model letters_s0 --input - --jsonl --top-k 4",
+   "exit": 0,
+   "stdout": "{\"id\": 1, \"input\": \"banana\", \"normalized\": \"banana\", \"status\": \"ok\", \"candidates\": [{\"text\": \"បាណាណា\", \"log_score\": -0.8378093634280463}, {\"text\": \"បាណានា\", \"log_score\": -3.42710104159157}, {\"text\": \"បាណា\", \"log_score\": -4.139111421247746}, {\"text\": \"បាណាន់ណា\", \"log_score\": -4.7294831178869}], \"pronunciation\": null, \"message\": \"\"}\n{\"id\": 2, \"input\": \"television\", \"normalized\": \"television\", \"status\": \"ok\", \"candidates\": [{\"text\": \"តេឡេវីស្យូន\", \"log_score\": -3.05102471686151}, {\"text\": \"តេឡេវីស៊ីន\", \"log_score\": -3.770285107927976}, {\"text\": \"តេលេវីស្យូន\", \"log_score\": -3.9368637201809236}, {\"text\": \"តេឡេវីសស្យុន\", \"log_score\": -4.803617421934542}], \"pronunciation\": null, \"message\": \"\"}\n{\"id\": 3, \"input\": \"Smith\", \"normalized\": \"smith\", \"status\": \"ok\", \"candidates\": [{\"text\": \"ស្មីថ៍\", \"log_score\": -2.509781676082101}, {\"text\": \"ស្មាយ\", \"log_score\": -2.955677059247892}, {\"text\": \"ស្មាយស៍\", \"log_score\": -3.1860291229016005}, {\"text\": \"ស្មីត\", \"log_score\": -3.248494059291421}], \"pronunciation\": null, \"message\": \"\"}\n",
+   "stderr": "",
+   "ok": true
+  },
+  "api_offline_no_checkout": {
+   "cmd": "python -I api.py letters_s0 phones_s0 cmudict.dict",
+   "exit": 0,
+   "stdout": "{\"package_file\": \"/tmp/e02-wheel-ezu3s7tq/venv/lib/python3.10/site-packages/khmer_translit/__init__.py\", \"deterministic\": true, \"statuses\": [\"ok\", \"ok\", \"empty\", \"unsupported_multiword\", \"ok\", \"ok\"], \"inputs\": [\"coffee\", \"Computer\", \"\", \"new york\", \"zzyzxq\", \"record\"], \"pron_status\": [\"dictionary\", \"dictionary\", null, null, \"unavailable\", \"dictionary\"], \"supplied\": \"provided\", \"letters_top\": [\"ខូហ្វ៊ី\", \"កូហ្វ៊ី\", \"កូហ្វី\"], \"heavy_modules\": []}\n",
+   "stderr": "",
+   "ok": true
+  }
+ }
+}

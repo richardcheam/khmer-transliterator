@@ -26,3 +26,9 @@ reason. Consequential results go to `docs/DECISIONS.md` (D178).
 | 19 | 2026-10-27 | Commits omit Claude attribution lines | Owner's standing rule |
 | 20 | 2026-10-27 | `state/` is git-ignored; a copy of the final run ledger goes to the experiment folder | The runner's live state files are untracked and made every run's `git_dirty` true; `letters_s0` started that way (tracked diff empty, so its code is exactly `b9c7ea4`) |
 | 21 | 2026-10-27 | CLI and `KHMER_TRANSLIT_CMUDICT` committed while `letters_s0` ran | Product-only change; training code paths unchanged (env var unset during runs) |
+| 22 | 2026-10-27 | Runs after `ac5a157` are also flagged `git_dirty` | Uncommitted tests (`TestCLI`), `SOURCE_VERIFICATION.md` and the bench script were in the tree; none is imported by training; diff hash in each `provenance.json` |
+| 23 | 2026-10-27 | The CMUdict parse is cached per (path, size, mtime) | Task 5 "cache version separation": a replaced file must not be served from the old parse |
+| 24 | 2026-10-27 | Runtime bench: no pronunciation lookups for letters models; hit/miss from the items' `dictionary_miss` flag; the first measurement was replaced | The first run parsed CMUdict inside the letters process, inflating its lookup time (13 ms) and RSS (129 → 65 MiB) |
+| 25 | 2026-10-27 | `report` reads the treatment's measured guards from `reports/runtime.json` | It passed `runtime_ok=None` (counted as a failure) before Task 5 existed; the guards are the registered ones |
+| 26 | 2026-10-27 | The clean-venv check uses Python 3.10 and the uv cache (else PyPI for NumPy) | The cached NumPy wheels are for 3.10; the package itself installs from the local wheel |
+| 27 | 2026-10-27 | The bundle carries the owner-list references and per-item outcomes | Per-item outcomes are a Task 6 deliverable; the whole bundle is local only (NOTICES.md) |

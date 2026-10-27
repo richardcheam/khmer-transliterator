@@ -39,3 +39,6 @@ change log below. An experiment's provenance records the hashes of the files it 
 ## Change log
 - 2026-10-24: manifest created (212 files), data moved from the speech repo's `data/translit/` (D176); benchmark
   v1 frozen.
+- 2026-10-27 (D178): added `e02/` (E02 training pairs, P2G pairs, references `en-phonetic-v1`, vocabulary, build
+  manifest; `e02/results/` the final predictions and per-item outcomes); `lexicon/ATTRIBUTION.md` now states the
+  lexicon's training use in E01/E02 (it said "not used for model training").
