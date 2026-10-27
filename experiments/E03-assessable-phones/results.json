@@ -1,0 +1,1889 @@
+{
+ "experiment": "E03-assessable-phones",
+ "frozen_eval_sha256": "21be93810595f13456695ebcacbe2692a845495040bae27f8e0554bc391e9dbc",
+ "models": {
+  "letters_s0": "a96fbdd49359decdcc1da1ec5c1c965b4ef37f39106a9a98a0f6b5b398274270",
+  "phones_s0": "3e5d4e06486aaa45ae23d848ce25ee81ff31882ded544369b33adc0346adc22c",
+  "letters_s1": "72ed05b43791bcd7016b9f0849280b6a2601492f88020bf205c14864ae57e77b",
+  "phones_s1": "2867bf76fa2f991cba21cf2717972a2d5ecdc1f73337e38e8ac05a5554c576df",
+  "letters_s2": "5c558e3d72e4c77446b9ca3ba1ce14f534f396504671a50bbead87d22b980b7e",
+  "phones_s2": "69ebc62ba0d1c7f327ad690df1faf2838a06e176000515a8b326d61c6600b407"
+ },
+ "controls": {
+  "accepted_pass": true,
+  "nfd_pass": true,
+  "corrupt_fail": true,
+  "missing_refused": true,
+  "unknown_refused": true,
+  "ok": true
+ },
+ "quality": {
+  "runs": {
+   "letters_s0": {
+    "eval": {
+     "primary": {
+      "n_items": 228,
+      "n_families": 222,
+      "primary_macro": 0.4099099099099099,
+      "item_accuracy": 0.4166666666666667,
+      "correct_items": 95,
+      "topk_macro": 0.6831831831831832,
+      "mean_cer": 0.2143327432801117,
+      "abstained": 0
+     },
+     "all": {
+      "n_items": 245,
+      "n_families": 239,
+      "primary_macro": 0.39330543933054396,
+      "item_accuracy": 0.4,
+      "correct_items": 98,
+      "topk_macro": 0.6638772663877266,
+      "mean_cer": 0.21799809034502912,
+      "abstained": 0
+     },
+     "flagged": {
+      "n_items": 17,
+      "n_families": 17,
+      "primary_macro": 0.17647058823529413,
+      "item_accuracy": 0.17647058823529413,
+      "correct_items": 3,
+      "topk_macro": 0.4117647058823529,
+      "mean_cer": 0.26715686274509803,
+      "abstained": 0
+     }
+    },
+    "dev": {
+     "primary": {
+      "n_items": 253,
+      "n_families": 250,
+      "primary_macro": 0.47,
+      "item_accuracy": 0.47035573122529645,
+      "correct_items": 119,
+      "topk_macro": 0.686,
+      "mean_cer": 0.20455329694460128,
+      "abstained": 0
+     },
+     "all": {
+      "n_items": 276,
+      "n_families": 270,
+      "primary_macro": 0.4734567901234568,
+      "item_accuracy": 0.47101449275362317,
+      "correct_items": 130,
+      "topk_macro": 0.6932098765432099,
+      "mean_cer": 0.2011157119852772,
+      "abstained": 0
+     },
+     "flagged": {
+      "n_items": 23,
+      "n_families": 22,
+      "primary_macro": 0.4772727272727273,
+      "item_accuracy": 0.4782608695652174,
+      "correct_items": 11,
+      "topk_macro": 0.7272727272727273,
+      "mean_cer": 0.16330227743271222,
+      "abstained": 0
+     }
+    },
+    "e02_dev": {
+     "primary": {
+      "n_items": 86,
+      "n_families": 86,
+      "primary_macro": 0.16279069767441862,
+      "item_accuracy": 0.16279069767441862,
+      "correct_items": 14,
+      "topk_macro": 0.29069767441860467,
+      "mean_cer": 0.4278268566059264,
+      "abstained": 0
+     },
+     "all": {
+      "n_items": 103,
+      "n_families": 101,
+      "primary_macro": 0.1485148514851485,
+      "item_accuracy": 0.14563106796116504,
+      "correct_items": 15,
+      "topk_macro": 0.25742574257425743,
+      "mean_cer": 0.4737927121422267,
+      "abstained": 0
+     },
+     "flagged": {
+      "n_items": 17,
+      "n_families": 15,
+      "primary_macro": 0.06666666666666667,
+      "item_accuracy": 0.058823529411764705,
+      "correct_items": 1,
+      "topk_macro": 0.06666666666666667,
+      "mean_cer": 0.7063258636788049,
+      "abstained": 0
+     }
+    }
+   },
+   "phones_s0": {
+    "eval": {
+     "primary": {
+      "n_items": 228,
+      "n_families": 222,
+      "primary_macro": 0.4316816816816817,
+      "item_accuracy": 0.43859649122807015,
+      "correct_items": 100,
+      "topk_macro": 0.6426426426426426,
+      "mean_cer": 0.20060666672508778,
+      "abstained": 0
+     },
+     "all": {
+      "n_items": 245,
+      "n_families": 239,
+      "primary_macro": 0.4177126917712692,
+      "item_accuracy": 0.42448979591836733,
+      "correct_items": 104,
+      "topk_macro": 0.6387726638772664,
+      "mean_cer": 0.20536048985028577,
+      "abstained": 0
+     },
+     "flagged": {
+      "n_items": 17,
+      "n_families": 17,
+      "primary_macro": 0.23529411764705882,
+      "item_accuracy": 0.23529411764705882,
+      "correct_items": 4,
+      "topk_macro": 0.5882352941176471,
+      "mean_cer": 0.2691176470588235,
+      "abstained": 0
+     }
+    },
+    "dev": {
+     "primary": {
+      "n_items": 253,
+      "n_families": 250,
+      "primary_macro": 0.446,
+      "item_accuracy": 0.44664031620553357,
+      "correct_items": 113,
+      "topk_macro": 0.664,
+      "mean_cer": 0.21053932891877555,
+      "abstained": 0
+     },
+     "all": {
+      "n_items": 276,
+      "n_families": 270,
+      "primary_macro": 0.4487654320987654,
+      "item_accuracy": 0.4492753623188406,
+      "correct_items": 124,
+      "topk_macro": 0.674074074074074,
+      "mean_cer": 0.20622333584290106,
+      "abstained": 0
+     },
+     "flagged": {
+      "n_items": 23,
+      "n_families": 22,
+      "primary_macro": 0.45454545454545453,
+      "item_accuracy": 0.4782608695652174,
+      "correct_items": 11,
+      "topk_macro": 0.7727272727272727,
+      "mean_cer": 0.15874741200828157,
+      "abstained": 0
+     }
+    },
+    "e02_dev": {
+     "primary": {
+      "n_items": 86,
+      "n_families": 86,
+      "primary_macro": 0.11627906976744186,
+      "item_accuracy": 0.11627906976744186,
+      "correct_items": 10,
+      "topk_macro": 0.2441860465116279,
+      "mean_cer": 0.4595640793315212,
+      "abstained": 0
+     },
+     "all": {
+      "n_items": 103,
+      "n_families": 101,
+      "primary_macro": 0.10891089108910891,
+      "item_accuracy": 0.10679611650485436,
+      "correct_items": 11,
+      "topk_macro": 0.21782178217821782,
+      "mean_cer": 0.4786898107286457,
+      "abstained": 0
+     },
+     "flagged": {
+      "n_items": 17,
+      "n_families": 15,
+      "primary_macro": 0.06666666666666667,
+      "item_accuracy": 0.058823529411764705,
+      "correct_items": 1,
+      "topk_macro": 0.06666666666666667,
+      "mean_cer": 0.5754435107376283,
+      "abstained": 0
+     }
+    }
+   },
+   "letters_s1": {
+    "eval": {
+     "primary": {
+      "n_items": 228,
+      "n_families": 222,
+      "primary_macro": 0.42492492492492495,
+      "item_accuracy": 0.4298245614035088,
+      "correct_items": 98,
+      "topk_macro": 0.6846846846846847,
+      "mean_cer": 0.21799388477020057,
+      "abstained": 0
+     },
+     "all": {
+      "n_items": 245,
+      "n_families": 239,
+      "primary_macro": 0.4072524407252441,
+      "item_accuracy": 0.4122448979591837,
+      "correct_items": 101,
+      "topk_macro": 0.6694560669456067,
+      "mean_cer": 0.22310101463162688,
+      "abstained": 0
+     },
+     "flagged": {
+      "n_items": 17,
+      "n_families": 17,
+      "primary_macro": 0.17647058823529413,
+      "item_accuracy": 0.17647058823529413,
+      "correct_items": 3,
+      "topk_macro": 0.47058823529411764,
+      "mean_cer": 0.29159663865546215,
+      "abstained": 0
+     }
+    },
+    "dev": {
+     "primary": {
+      "n_items": 253,
+      "n_families": 250,
+      "primary_macro": 0.454,
+      "item_accuracy": 0.45454545454545453,
+      "correct_items": 115,
+      "topk_macro": 0.678,
+      "mean_cer": 0.21272792863701953,
+      "abstained": 0
+     },
+     "all": {
+      "n_items": 276,
+      "n_families": 270,
+      "primary_macro": 0.45493827160493827,
+      "item_accuracy": 0.4528985507246377,
+      "correct_items": 125,
+      "topk_macro": 0.6833333333333333,
+      "mean_cer": 0.2117060877930443,
+      "abstained": 0
+     },
+     "flagged": {
+      "n_items": 23,
+      "n_families": 22,
+      "primary_macro": 0.4318181818181818,
+      "item_accuracy": 0.43478260869565216,
+      "correct_items": 10,
+      "topk_macro": 0.7272727272727273,
+      "mean_cer": 0.20046583850931676,
+      "abstained": 0
+     }
+    },
+    "e02_dev": {
+     "primary": {
+      "n_items": 86,
+      "n_families": 86,
+      "primary_macro": 0.13953488372093023,
+      "item_accuracy": 0.13953488372093023,
+      "correct_items": 12,
+      "topk_macro": 0.2441860465116279,
+      "mean_cer": 0.4539850330548005,
+      "abstained": 0
+     },
+     "all": {
+      "n_items": 103,
+      "n_families": 101,
+      "primary_macro": 0.12871287128712872,
+      "item_accuracy": 0.1262135922330097,
+      "correct_items": 13,
+      "topk_macro": 0.21782178217821782,
+      "mean_cer": 0.4756111741548635,
+      "abstained": 0
+     },
+     "flagged": {
+      "n_items": 17,
+      "n_families": 15,
+      "primary_macro": 0.06666666666666667,
+      "item_accuracy": 0.058823529411764705,
+      "correct_items": 1,
+      "topk_macro": 0.06666666666666667,
+      "mean_cer": 0.5850140056022409,
+      "abstained": 0
+     }
+    }
+   },
+   "phones_s1": {
+    "eval": {
+     "primary": {
+      "n_items": 228,
+      "n_families": 222,
+      "primary_macro": 0.42117117117117114,
+      "item_accuracy": 0.42543859649122806,
+      "correct_items": 97,
+      "topk_macro": 0.6951951951951952,
+      "mean_cer": 0.2129959100353837,
+      "abstained": 0
+     },
+     "all": {
+      "n_items": 245,
+      "n_families": 239,
+      "primary_macro": 0.4121338912133891,
+      "item_accuracy": 0.4163265306122449,
+      "correct_items": 102,
+      "topk_macro": 0.6959553695955369,
+      "mean_cer": 0.21506467455447048,
+      "abstained": 0
+     },
+     "flagged": {
+      "n_items": 17,
+      "n_families": 17,
+      "primary_macro": 0.29411764705882354,
+      "item_accuracy": 0.29411764705882354,
+      "correct_items": 5,
+      "topk_macro": 0.7058823529411765,
+      "mean_cer": 0.24281045751633987,
+      "abstained": 0
+     }
+    },
+    "dev": {
+     "primary": {
+      "n_items": 253,
+      "n_families": 250,
+      "primary_macro": 0.478,
+      "item_accuracy": 0.48221343873517786,
+      "correct_items": 122,
+      "topk_macro": 0.688,
+      "mean_cer": 0.20269108361993737,
+      "abstained": 0
+     },
+     "all": {
+      "n_items": 276,
+      "n_families": 270,
+      "primary_macro": 0.4759259259259259,
+      "item_accuracy": 0.48188405797101447,
+      "correct_items": 133,
+      "topk_macro": 0.6962962962962963,
+      "mean_cer": 0.20241075349771,
+      "abstained": 0
+     },
+     "flagged": {
+      "n_items": 23,
+      "n_families": 22,
+      "primary_macro": 0.45454545454545453,
+      "item_accuracy": 0.4782608695652174,
+      "correct_items": 11,
+      "topk_macro": 0.7727272727272727,
+      "mean_cer": 0.1993271221532091,
+      "abstained": 0
+     }
+    },
+    "e02_dev": {
+     "primary": {
+      "n_items": 86,
+      "n_families": 86,
+      "primary_macro": 0.09302325581395349,
+      "item_accuracy": 0.09302325581395349,
+      "correct_items": 8,
+      "topk_macro": 0.2558139534883721,
+      "mean_cer": 0.45340363770596326,
+      "abstained": 0
+     },
+     "all": {
+      "n_items": 103,
+      "n_families": 101,
+      "primary_macro": 0.09900990099009901,
+      "item_accuracy": 0.0970873786407767,
+      "correct_items": 10,
+      "topk_macro": 0.2376237623762376,
+      "mean_cer": 0.47273707953319605,
+      "abstained": 0
+     },
+     "flagged": {
+      "n_items": 17,
+      "n_families": 15,
+      "primary_macro": 0.13333333333333333,
+      "item_accuracy": 0.11764705882352941,
+      "correct_items": 2,
+      "topk_macro": 0.13333333333333333,
+      "mean_cer": 0.5705415499533146,
+      "abstained": 0
+     }
+    }
+   },
+   "letters_s2": {
+    "eval": {
+     "primary": {
+      "n_items": 228,
+      "n_families": 222,
+      "primary_macro": 0.4114114114114114,
+      "item_accuracy": 0.4166666666666667,
+      "correct_items": 95,
+      "topk_macro": 0.6944444444444444,
+      "mean_cer": 0.21270999955210482,
+      "abstained": 0
+     },
+     "all": {
+      "n_items": 245,
+      "n_families": 239,
+      "primary_macro": 0.403068340306834,
+      "item_accuracy": 0.40816326530612246,
+      "correct_items": 100,
+      "topk_macro": 0.6827057182705718,
+      "mean_cer": 0.21745976245976245,
+      "abstained": 0
+     },
+     "flagged": {
+      "n_items": 17,
+      "n_families": 17,
+      "primary_macro": 0.29411764705882354,
+      "item_accuracy": 0.29411764705882354,
+      "correct_items": 5,
+      "topk_macro": 0.5294117647058824,
+      "mean_cer": 0.2811624649859944,
+      "abstained": 0
+     }
+    },
+    "dev": {
+     "primary": {
+      "n_items": 253,
+      "n_families": 250,
+      "primary_macro": 0.462,
+      "item_accuracy": 0.466403162055336,
+      "correct_items": 118,
+      "topk_macro": 0.672,
+      "mean_cer": 0.20826118326118326,
+      "abstained": 0
+     },
+     "all": {
+      "n_items": 276,
+      "n_families": 270,
+      "primary_macro": 0.46111111111111114,
+      "item_accuracy": 0.4601449275362319,
+      "correct_items": 127,
+      "topk_macro": 0.6802469135802469,
+      "mean_cer": 0.20631757533931447,
+      "abstained": 0
+     },
+     "flagged": {
+      "n_items": 23,
+      "n_families": 22,
+      "primary_macro": 0.4090909090909091,
+      "item_accuracy": 0.391304347826087,
+      "correct_items": 9,
+      "topk_macro": 0.7272727272727273,
+      "mean_cer": 0.18493788819875775,
+      "abstained": 0
+     }
+    },
+    "e02_dev": {
+     "primary": {
+      "n_items": 86,
+      "n_families": 86,
+      "primary_macro": 0.16279069767441862,
+      "item_accuracy": 0.16279069767441862,
+      "correct_items": 14,
+      "topk_macro": 0.313953488372093,
+      "mean_cer": 0.4417849592268197,
+      "abstained": 0
+     },
+     "all": {
+      "n_items": 103,
+      "n_families": 101,
+      "primary_macro": 0.1485148514851485,
+      "item_accuracy": 0.14563106796116504,
+      "correct_items": 15,
+      "topk_macro": 0.2871287128712871,
+      "mean_cer": 0.482750178623965,
+      "abstained": 0
+     },
+     "flagged": {
+      "n_items": 17,
+      "n_families": 15,
+      "primary_macro": 0.06666666666666667,
+      "item_accuracy": 0.058823529411764705,
+      "correct_items": 1,
+      "topk_macro": 0.13333333333333333,
+      "mean_cer": 0.6899859943977591,
+      "abstained": 0
+     }
+    }
+   },
+   "phones_s2": {
+    "eval": {
+     "primary": {
+      "n_items": 228,
+      "n_families": 222,
+      "primary_macro": 0.4114114114114114,
+      "item_accuracy": 0.4166666666666667,
+      "correct_items": 95,
+      "topk_macro": 0.6426426426426426,
+      "mean_cer": 0.22034176836808417,
+      "abstained": 0
+     },
+     "all": {
+      "n_items": 245,
+      "n_families": 239,
+      "primary_macro": 0.3905160390516039,
+      "item_accuracy": 0.39591836734693875,
+      "correct_items": 97,
+      "topk_macro": 0.6304044630404463,
+      "mean_cer": 0.2269461717420901,
+      "abstained": 0
+     },
+     "flagged": {
+      "n_items": 17,
+      "n_families": 17,
+      "primary_macro": 0.11764705882352941,
+      "item_accuracy": 0.11764705882352941,
+      "correct_items": 2,
+      "topk_macro": 0.47058823529411764,
+      "mean_cer": 0.31552287581699345,
+      "abstained": 0
+     }
+    },
+    "dev": {
+     "primary": {
+      "n_items": 253,
+      "n_families": 250,
+      "primary_macro": 0.458,
+      "item_accuracy": 0.4624505928853755,
+      "correct_items": 117,
+      "topk_macro": 0.67,
+      "mean_cer": 0.20500045628504127,
+      "abstained": 0
+     },
+     "all": {
+      "n_items": 276,
+      "n_families": 270,
+      "primary_macro": 0.4561728395061728,
+      "item_accuracy": 0.4601449275362319,
+      "correct_items": 127,
+      "topk_macro": 0.678395061728395,
+      "mean_cer": 0.20356149486584268,
+      "abstained": 0
+     },
+     "flagged": {
+      "n_items": 23,
+      "n_families": 22,
+      "primary_macro": 0.4090909090909091,
+      "item_accuracy": 0.43478260869565216,
+      "correct_items": 10,
+      "topk_macro": 0.7272727272727273,
+      "mean_cer": 0.18773291925465838,
+      "abstained": 0
+     }
+    },
+    "e02_dev": {
+     "primary": {
+      "n_items": 86,
+      "n_families": 86,
+      "primary_macro": 0.13953488372093023,
+      "item_accuracy": 0.13953488372093023,
+      "correct_items": 12,
+      "topk_macro": 0.26744186046511625,
+      "mean_cer": 0.4458270411758784,
+      "abstained": 0
+     },
+     "all": {
+      "n_items": 103,
+      "n_families": 101,
+      "primary_macro": 0.12871287128712872,
+      "item_accuracy": 0.1262135922330097,
+      "correct_items": 13,
+      "topk_macro": 0.25742574257425743,
+      "mean_cer": 0.48245737541854045,
+      "abstained": 0
+     },
+     "flagged": {
+      "n_items": 17,
+      "n_families": 15,
+      "primary_macro": 0.06666666666666667,
+      "item_accuracy": 0.058823529411764705,
+      "correct_items": 1,
+      "topk_macro": 0.2,
+      "mean_cer": 0.6677637721755368,
+      "abstained": 0
+     }
+    }
+   }
+  },
+  "comparisons": {
+   "eval": {
+    "seed_gains_pp": [
+     2.1771771771771853,
+     -0.3753753753753841,
+     0.0
+    ],
+    "mean_gain_pp": 0.6006006006006004,
+    "ci95_pp": [
+     -2.402402402402402,
+     3.7537537537537533
+    ],
+    "control_macro": [
+     40.99099099099099,
+     42.492492492492495,
+     41.14114114114114
+    ],
+    "treatment_macro": [
+     43.16816816816817,
+     42.11711711711711,
+     41.14114114114114
+    ],
+    "families": 222,
+    "evidence": {
+     "positive_effect_supported": false,
+     "meaningful_gain_ruled_out_conditional": true,
+     "practically_equivalent_conditional": true
+    },
+    "cer_diff_pp_mean": -0.369742749128714,
+    "cer_diff_pp_ci95": [
+     -1.9039873206539875,
+     1.0935394268727605
+    ],
+    "role": "registered primary (quality proxy)"
+   },
+   "dev": {
+    "seed_gains_pp": [
+     -2.3999999999999986,
+     2.3999999999999986,
+     -0.3999999999999986
+    ],
+    "mean_gain_pp": -0.13333333333333286,
+    "ci95_pp": [
+     -3.066666666666668,
+     2.9333333333333313
+    ],
+    "control_macro": [
+     47.0,
+     45.4,
+     46.2
+    ],
+    "treatment_macro": [
+     44.6,
+     47.8,
+     45.800000000000004
+    ],
+    "families": 250,
+    "evidence": {
+     "positive_effect_supported": false,
+     "meaningful_gain_ruled_out_conditional": true,
+     "practically_equivalent_conditional": true
+    },
+    "cer_diff_pp_mean": -0.24371800063499677,
+    "cer_diff_pp_ci95": [
+     -1.6138480038480043,
+     1.1843915343915339
+    ],
+    "role": "secondary (used for checkpoint selection)"
+   },
+   "e02_dev": {
+    "seed_gains_pp": [
+     -4.651162790697676,
+     -4.651162790697674,
+     -2.325581395348838
+    ],
+    "mean_gain_pp": -3.8759689922480622,
+    "ci95_pp": [
+     -7.751937984496124,
+     -0.3875968992248062
+    ],
+    "control_macro": [
+     16.27906976744186,
+     13.953488372093023,
+     16.27906976744186
+    ],
+    "treatment_macro": [
+     11.627906976744185,
+     9.30232558139535,
+     13.953488372093023
+    ],
+    "families": 86,
+    "evidence": {
+     "positive_effect_supported": false,
+     "meaningful_gain_ruled_out_conditional": true,
+     "practically_equivalent_conditional": false
+    },
+    "cer_diff_pp_mean": 1.1732636441938766,
+    "cer_diff_pp_ci95": [
+     -2.40079365079365,
+     5.795188876584223
+    ],
+    "role": "secondary (E02 development material, owner-list references)"
+   }
+  }
+ },
+ "mechanism": {
+  "checks": {
+   "letters_s0": {
+    "encoding_as_intended": true,
+    "teacher_forced_vs_beam_max_gap": 7.993605777301127e-15,
+    "letters_control_identical": true,
+    "letters_control_max_score_diff": 7.993605777301127e-15
+   },
+   "phones_s0": {
+    "encoding_as_intended": true,
+    "teacher_forced_vs_beam_max_gap": 9.769962616701378e-15
+   },
+   "letters_s1": {
+    "encoding_as_intended": true,
+    "teacher_forced_vs_beam_max_gap": 7.549516567451064e-15,
+    "letters_control_identical": true,
+    "letters_control_max_score_diff": 6.217248937900877e-15
+   },
+   "phones_s1": {
+    "encoding_as_intended": true,
+    "teacher_forced_vs_beam_max_gap": 6.661338147750939e-15
+   },
+   "letters_s2": {
+    "encoding_as_intended": true,
+    "teacher_forced_vs_beam_max_gap": 1.509903313490213e-14,
+    "letters_control_identical": true,
+    "letters_control_max_score_diff": 1.2434497875801753e-14
+   },
+   "phones_s2": {
+    "encoding_as_intended": true,
+    "teacher_forced_vs_beam_max_gap": 7.993605777301127e-15
+   }
+  },
+  "aggregate": {
+   "per_model": {
+    "letters_s0": {
+     "e02_dev": {
+      "alternative_segmental": {
+       "n": 21,
+       "top1_changed": 0,
+       "top1_change_rate": 0.0,
+       "mean_topk_overlap": 1.0,
+       "default_top1_still_in_topk": 21,
+       "mean_delta_norm_logprob": 0.0,
+       "consonant_closer": 0,
+       "consonant_farther": 0,
+       "consonant_same": 0,
+       "consonant_unreadable": 0,
+       "net_consonant_steering_rate": 0.0,
+       "consonant_preserving_changes": 0,
+       "syllable_closer": 0,
+       "syllable_farther": 0,
+       "syllable_assessable": 0,
+       "reader_coverage": 1.0,
+       "output_in_lexicon": 0.23809523809523808
+      },
+      "default": {
+       "n": 95,
+       "top1_changed": 0,
+       "top1_change_rate": 0.0,
+       "mean_topk_overlap": 1.0,
+       "default_top1_still_in_topk": 95,
+       "mean_delta_norm_logprob": 0.0,
+       "consonant_closer": 0,
+       "consonant_farther": 0,
+       "consonant_same": 0,
+       "consonant_unreadable": 0,
+       "net_consonant_steering_rate": 0.0,
+       "consonant_preserving_changes": 0,
+       "syllable_closer": 0,
+       "syllable_farther": 0,
+       "syllable_assessable": 0,
+       "reader_coverage": 1.0,
+       "output_in_lexicon": 0.4421052631578947
+      },
+      "donor": {
+       "n": 94,
+       "top1_changed": 0,
+       "top1_change_rate": 0.0,
+       "mean_topk_overlap": 1.0,
+       "default_top1_still_in_topk": 94,
+       "mean_delta_norm_logprob": 0.0,
+       "consonant_closer": 0,
+       "consonant_farther": 0,
+       "consonant_same": 0,
+       "consonant_unreadable": 0,
+       "net_consonant_steering_rate": 0.0,
+       "consonant_preserving_changes": 0,
+       "syllable_closer": 0,
+       "syllable_farther": 0,
+       "syllable_assessable": 0,
+       "reader_coverage": 1.0,
+       "output_in_lexicon": 0.44680851063829785
+      },
+      "no_pron": {
+       "n": 95,
+       "top1_changed": 0,
+       "top1_change_rate": 0.0,
+       "mean_topk_overlap": 1.0,
+       "default_top1_still_in_topk": 95,
+       "mean_delta_norm_logprob": 0.0,
+       "consonant_closer": 0,
+       "consonant_farther": 0,
+       "consonant_same": 0,
+       "consonant_unreadable": 0,
+       "net_consonant_steering_rate": 0.0,
+       "consonant_preserving_changes": 0,
+       "syllable_closer": 0,
+       "syllable_farther": 0,
+       "syllable_assessable": 0,
+       "reader_coverage": 1.0,
+       "output_in_lexicon": 0.4421052631578947
+      }
+     },
+     "eval": {
+      "alternative_segmental": {
+       "n": 21,
+       "top1_changed": 0,
+       "top1_change_rate": 0.0,
+       "mean_topk_overlap": 1.0,
+       "default_top1_still_in_topk": 21,
+       "mean_delta_norm_logprob": 0.0,
+       "consonant_closer": 0,
+       "consonant_farther": 0,
+       "consonant_same": 0,
+       "consonant_unreadable": 0,
+       "net_consonant_steering_rate": 0.0,
+       "consonant_preserving_changes": 0,
+       "syllable_closer": 0,
+       "syllable_farther": 0,
+       "syllable_assessable": 0,
+       "reader_coverage": 1.0,
+       "output_in_lexicon": 0.3333333333333333
+      },
+      "default": {
+       "n": 245,
+       "top1_changed": 0,
+       "top1_change_rate": 0.0,
+       "mean_topk_overlap": 1.0,
+       "default_top1_still_in_topk": 245,
+       "mean_delta_norm_logprob": 0.0,
+       "consonant_closer": 0,
+       "consonant_farther": 0,
+       "consonant_same": 0,
+       "consonant_unreadable": 0,
+       "net_consonant_steering_rate": 0.0,
+       "consonant_preserving_changes": 0,
+       "syllable_closer": 0,
+       "syllable_farther": 0,
+       "syllable_assessable": 0,
+       "reader_coverage": 1.0,
+       "output_in_lexicon": 0.6081632653061224
+      },
+      "donor": {
+       "n": 244,
+       "top1_changed": 0,
+       "top1_change_rate": 0.0,
+       "mean_topk_overlap": 1.0,
+       "default_top1_still_in_topk": 244,
+       "mean_delta_norm_logprob": 0.0,
+       "consonant_closer": 0,
+       "consonant_farther": 0,
+       "consonant_same": 0,
+       "consonant_unreadable": 0,
+       "net_consonant_steering_rate": 0.0,
+       "consonant_preserving_changes": 0,
+       "syllable_closer": 0,
+       "syllable_farther": 0,
+       "syllable_assessable": 0,
+       "reader_coverage": 1.0,
+       "output_in_lexicon": 0.610655737704918
+      },
+      "no_pron": {
+       "n": 245,
+       "top1_changed": 0,
+       "top1_change_rate": 0.0,
+       "mean_topk_overlap": 1.0,
+       "default_top1_still_in_topk": 245,
+       "mean_delta_norm_logprob": 0.0,
+       "consonant_closer": 0,
+       "consonant_farther": 0,
+       "consonant_same": 0,
+       "consonant_unreadable": 0,
+       "net_consonant_steering_rate": 0.0,
+       "consonant_preserving_changes": 0,
+       "syllable_closer": 0,
+       "syllable_farther": 0,
+       "syllable_assessable": 0,
+       "reader_coverage": 1.0,
+       "output_in_lexicon": 0.6081632653061224
+      }
+     }
+    },
+    "letters_s1": {
+     "e02_dev": {
+      "alternative_segmental": {
+       "n": 21,
+       "top1_changed": 0,
+       "top1_change_rate": 0.0,
+       "mean_topk_overlap": 1.0,
+       "default_top1_still_in_topk": 21,
+       "mean_delta_norm_logprob": 0.0,
+       "consonant_closer": 0,
+       "consonant_farther": 0,
+       "consonant_same": 0,
+       "consonant_unreadable": 0,
+       "net_consonant_steering_rate": 0.0,
+       "consonant_preserving_changes": 0,
+       "syllable_closer": 0,
+       "syllable_farther": 0,
+       "syllable_assessable": 0,
+       "reader_coverage": 1.0,
+       "output_in_lexicon": 0.23809523809523808
+      },
+      "default": {
+       "n": 95,
+       "top1_changed": 0,
+       "top1_change_rate": 0.0,
+       "mean_topk_overlap": 1.0,
+       "default_top1_still_in_topk": 95,
+       "mean_delta_norm_logprob": 0.0,
+       "consonant_closer": 0,
+       "consonant_farther": 0,
+       "consonant_same": 0,
+       "consonant_unreadable": 0,
+       "net_consonant_steering_rate": 0.0,
+       "consonant_preserving_changes": 0,
+       "syllable_closer": 0,
+       "syllable_farther": 0,
+       "syllable_assessable": 0,
+       "reader_coverage": 1.0,
+       "output_in_lexicon": 0.35789473684210527
+      },
+      "donor": {
+       "n": 94,
+       "top1_changed": 0,
+       "top1_change_rate": 0.0,
+       "mean_topk_overlap": 1.0,
+       "default_top1_still_in_topk": 94,
+       "mean_delta_norm_logprob": 0.0,
+       "consonant_closer": 0,
+       "consonant_farther": 0,
+       "consonant_same": 0,
+       "consonant_unreadable": 0,
+       "net_consonant_steering_rate": 0.0,
+       "consonant_preserving_changes": 0,
+       "syllable_closer": 0,
+       "syllable_farther": 0,
+       "syllable_assessable": 0,
+       "reader_coverage": 1.0,
+       "output_in_lexicon": 0.3617021276595745
+      },
+      "no_pron": {
+       "n": 95,
+       "top1_changed": 0,
+       "top1_change_rate": 0.0,
+       "mean_topk_overlap": 1.0,
+       "default_top1_still_in_topk": 95,
+       "mean_delta_norm_logprob": 0.0,
+       "consonant_closer": 0,
+       "consonant_farther": 0,
+       "consonant_same": 0,
+       "consonant_unreadable": 0,
+       "net_consonant_steering_rate": 0.0,
+       "consonant_preserving_changes": 0,
+       "syllable_closer": 0,
+       "syllable_farther": 0,
+       "syllable_assessable": 0,
+       "reader_coverage": 1.0,
+       "output_in_lexicon": 0.35789473684210527
+      }
+     },
+     "eval": {
+      "alternative_segmental": {
+       "n": 21,
+       "top1_changed": 0,
+       "top1_change_rate": 0.0,
+       "mean_topk_overlap": 1.0,
+       "default_top1_still_in_topk": 21,
+       "mean_delta_norm_logprob": 0.0,
+       "consonant_closer": 0,
+       "consonant_farther": 0,
+       "consonant_same": 0,
+       "consonant_unreadable": 0,
+       "net_consonant_steering_rate": 0.0,
+       "consonant_preserving_changes": 0,
+       "syllable_closer": 0,
+       "syllable_farther": 0,
+       "syllable_assessable": 0,
+       "reader_coverage": 1.0,
+       "output_in_lexicon": 0.2857142857142857
+      },
+      "default": {
+       "n": 245,
+       "top1_changed": 0,
+       "top1_change_rate": 0.0,
+       "mean_topk_overlap": 1.0,
+       "default_top1_still_in_topk": 245,
+       "mean_delta_norm_logprob": 0.0,
+       "consonant_closer": 0,
+       "consonant_farther": 0,
+       "consonant_same": 0,
+       "consonant_unreadable": 0,
+       "net_consonant_steering_rate": 0.0,
+       "consonant_preserving_changes": 0,
+       "syllable_closer": 0,
+       "syllable_farther": 0,
+       "syllable_assessable": 0,
+       "reader_coverage": 1.0,
+       "output_in_lexicon": 0.5959183673469388
+      },
+      "donor": {
+       "n": 244,
+       "top1_changed": 0,
+       "top1_change_rate": 0.0,
+       "mean_topk_overlap": 1.0,
+       "default_top1_still_in_topk": 244,
+       "mean_delta_norm_logprob": 0.0,
+       "consonant_closer": 0,
+       "consonant_farther": 0,
+       "consonant_same": 0,
+       "consonant_unreadable": 0,
+       "net_consonant_steering_rate": 0.0,
+       "consonant_preserving_changes": 0,
+       "syllable_closer": 0,
+       "syllable_farther": 0,
+       "syllable_assessable": 0,
+       "reader_coverage": 1.0,
+       "output_in_lexicon": 0.5983606557377049
+      },
+      "no_pron": {
+       "n": 245,
+       "top1_changed": 0,
+       "top1_change_rate": 0.0,
+       "mean_topk_overlap": 1.0,
+       "default_top1_still_in_topk": 245,
+       "mean_delta_norm_logprob": 0.0,
+       "consonant_closer": 0,
+       "consonant_farther": 0,
+       "consonant_same": 0,
+       "consonant_unreadable": 0,
+       "net_consonant_steering_rate": 0.0,
+       "consonant_preserving_changes": 0,
+       "syllable_closer": 0,
+       "syllable_farther": 0,
+       "syllable_assessable": 0,
+       "reader_coverage": 1.0,
+       "output_in_lexicon": 0.5959183673469388
+      }
+     }
+    },
+    "letters_s2": {
+     "e02_dev": {
+      "alternative_segmental": {
+       "n": 21,
+       "top1_changed": 0,
+       "top1_change_rate": 0.0,
+       "mean_topk_overlap": 1.0,
+       "default_top1_still_in_topk": 21,
+       "mean_delta_norm_logprob": 0.0,
+       "consonant_closer": 0,
+       "consonant_farther": 0,
+       "consonant_same": 0,
+       "consonant_unreadable": 0,
+       "net_consonant_steering_rate": 0.0,
+       "consonant_preserving_changes": 0,
+       "syllable_closer": 0,
+       "syllable_farther": 0,
+       "syllable_assessable": 0,
+       "reader_coverage": 1.0,
+       "output_in_lexicon": 0.23809523809523808
+      },
+      "default": {
+       "n": 95,
+       "top1_changed": 0,
+       "top1_change_rate": 0.0,
+       "mean_topk_overlap": 1.0,
+       "default_top1_still_in_topk": 95,
+       "mean_delta_norm_logprob": 0.0,
+       "consonant_closer": 0,
+       "consonant_farther": 0,
+       "consonant_same": 0,
+       "consonant_unreadable": 0,
+       "net_consonant_steering_rate": 0.0,
+       "consonant_preserving_changes": 0,
+       "syllable_closer": 0,
+       "syllable_farther": 0,
+       "syllable_assessable": 0,
+       "reader_coverage": 1.0,
+       "output_in_lexicon": 0.4105263157894737
+      },
+      "donor": {
+       "n": 94,
+       "top1_changed": 0,
+       "top1_change_rate": 0.0,
+       "mean_topk_overlap": 1.0,
+       "default_top1_still_in_topk": 94,
+       "mean_delta_norm_logprob": 0.0,
+       "consonant_closer": 0,
+       "consonant_farther": 0,
+       "consonant_same": 0,
+       "consonant_unreadable": 0,
+       "net_consonant_steering_rate": 0.0,
+       "consonant_preserving_changes": 0,
+       "syllable_closer": 0,
+       "syllable_farther": 0,
+       "syllable_assessable": 0,
+       "reader_coverage": 1.0,
+       "output_in_lexicon": 0.4148936170212766
+      },
+      "no_pron": {
+       "n": 95,
+       "top1_changed": 0,
+       "top1_change_rate": 0.0,
+       "mean_topk_overlap": 1.0,
+       "default_top1_still_in_topk": 95,
+       "mean_delta_norm_logprob": 0.0,
+       "consonant_closer": 0,
+       "consonant_farther": 0,
+       "consonant_same": 0,
+       "consonant_unreadable": 0,
+       "net_consonant_steering_rate": 0.0,
+       "consonant_preserving_changes": 0,
+       "syllable_closer": 0,
+       "syllable_farther": 0,
+       "syllable_assessable": 0,
+       "reader_coverage": 1.0,
+       "output_in_lexicon": 0.4105263157894737
+      }
+     },
+     "eval": {
+      "alternative_segmental": {
+       "n": 21,
+       "top1_changed": 0,
+       "top1_change_rate": 0.0,
+       "mean_topk_overlap": 1.0,
+       "default_top1_still_in_topk": 21,
+       "mean_delta_norm_logprob": 0.0,
+       "consonant_closer": 0,
+       "consonant_farther": 0,
+       "consonant_same": 0,
+       "consonant_unreadable": 0,
+       "net_consonant_steering_rate": 0.0,
+       "consonant_preserving_changes": 0,
+       "syllable_closer": 0,
+       "syllable_farther": 0,
+       "syllable_assessable": 0,
+       "reader_coverage": 1.0,
+       "output_in_lexicon": 0.38095238095238093
+      },
+      "default": {
+       "n": 245,
+       "top1_changed": 0,
+       "top1_change_rate": 0.0,
+       "mean_topk_overlap": 1.0,
+       "default_top1_still_in_topk": 245,
+       "mean_delta_norm_logprob": 0.0,
+       "consonant_closer": 0,
+       "consonant_farther": 0,
+       "consonant_same": 0,
+       "consonant_unreadable": 0,
+       "net_consonant_steering_rate": 0.0,
+       "consonant_preserving_changes": 0,
+       "syllable_closer": 0,
+       "syllable_farther": 0,
+       "syllable_assessable": 0,
+       "reader_coverage": 1.0,
+       "output_in_lexicon": 0.5795918367346938
+      },
+      "donor": {
+       "n": 244,
+       "top1_changed": 0,
+       "top1_change_rate": 0.0,
+       "mean_topk_overlap": 1.0,
+       "default_top1_still_in_topk": 244,
+       "mean_delta_norm_logprob": 0.0,
+       "consonant_closer": 0,
+       "consonant_farther": 0,
+       "consonant_same": 0,
+       "consonant_unreadable": 0,
+       "net_consonant_steering_rate": 0.0,
+       "consonant_preserving_changes": 0,
+       "syllable_closer": 0,
+       "syllable_farther": 0,
+       "syllable_assessable": 0,
+       "reader_coverage": 1.0,
+       "output_in_lexicon": 0.5819672131147541
+      },
+      "no_pron": {
+       "n": 245,
+       "top1_changed": 0,
+       "top1_change_rate": 0.0,
+       "mean_topk_overlap": 1.0,
+       "default_top1_still_in_topk": 245,
+       "mean_delta_norm_logprob": 0.0,
+       "consonant_closer": 0,
+       "consonant_farther": 0,
+       "consonant_same": 0,
+       "consonant_unreadable": 0,
+       "net_consonant_steering_rate": 0.0,
+       "consonant_preserving_changes": 0,
+       "syllable_closer": 0,
+       "syllable_farther": 0,
+       "syllable_assessable": 0,
+       "reader_coverage": 1.0,
+       "output_in_lexicon": 0.5795918367346938
+      }
+     }
+    },
+    "phones_s0": {
+     "e02_dev": {
+      "alternative_segmental": {
+       "n": 21,
+       "top1_changed": 2,
+       "top1_change_rate": 0.09523809523809523,
+       "mean_topk_overlap": 0.7496598639455783,
+       "default_top1_still_in_topk": 21,
+       "mean_delta_norm_logprob": -0.0054563573557033646,
+       "consonant_closer": 0,
+       "consonant_farther": 0,
+       "consonant_same": 2,
+       "consonant_unreadable": 0,
+       "net_consonant_steering_rate": 0.0,
+       "consonant_preserving_changes": 1,
+       "syllable_closer": 0,
+       "syllable_farther": 1,
+       "syllable_assessable": 1,
+       "reader_coverage": 1.0,
+       "output_in_lexicon": 0.23809523809523808
+      },
+      "default": {
+       "n": 95,
+       "top1_changed": 0,
+       "top1_change_rate": 0.0,
+       "mean_topk_overlap": 1.0,
+       "default_top1_still_in_topk": 95,
+       "mean_delta_norm_logprob": 0.0,
+       "consonant_closer": 0,
+       "consonant_farther": 0,
+       "consonant_same": 0,
+       "consonant_unreadable": 0,
+       "net_consonant_steering_rate": 0.0,
+       "consonant_preserving_changes": 0,
+       "syllable_closer": 0,
+       "syllable_farther": 0,
+       "syllable_assessable": 0,
+       "reader_coverage": 1.0,
+       "output_in_lexicon": 0.3894736842105263
+      },
+      "donor": {
+       "n": 94,
+       "top1_changed": 36,
+       "top1_change_rate": 0.3829787234042553,
+       "mean_topk_overlap": 0.5132725430597771,
+       "default_top1_still_in_topk": 78,
+       "mean_delta_norm_logprob": -0.12464508423715691,
+       "consonant_closer": 4,
+       "consonant_farther": 4,
+       "consonant_same": 27,
+       "consonant_unreadable": 1,
+       "net_consonant_steering_rate": 0.0,
+       "consonant_preserving_changes": 18,
+       "syllable_closer": 1,
+       "syllable_farther": 1,
+       "syllable_assessable": 10,
+       "reader_coverage": 0.9893617021276596,
+       "output_in_lexicon": 0.3829787234042553
+      },
+      "no_pron": {
+       "n": 95,
+       "top1_changed": 38,
+       "top1_change_rate": 0.4,
+       "mean_topk_overlap": 0.5361403508771929,
+       "default_top1_still_in_topk": 83,
+       "mean_delta_norm_logprob": -0.05798519915923427,
+       "consonant_closer": 0,
+       "consonant_farther": 0,
+       "consonant_same": 0,
+       "consonant_unreadable": 0,
+       "net_consonant_steering_rate": 0.0,
+       "consonant_preserving_changes": 0,
+       "syllable_closer": 0,
+       "syllable_farther": 0,
+       "syllable_assessable": 0,
+       "reader_coverage": 1.0,
+       "output_in_lexicon": 0.42105263157894735
+      }
+     },
+     "eval": {
+      "alternative_segmental": {
+       "n": 21,
+       "top1_changed": 7,
+       "top1_change_rate": 0.3333333333333333,
+       "mean_topk_overlap": 0.6861678004535148,
+       "default_top1_still_in_topk": 20,
+       "mean_delta_norm_logprob": -0.06936656309364009,
+       "consonant_closer": 2,
+       "consonant_farther": 0,
+       "consonant_same": 5,
+       "consonant_unreadable": 0,
+       "net_consonant_steering_rate": 0.09523809523809523,
+       "consonant_preserving_changes": 5,
+       "syllable_closer": 0,
+       "syllable_farther": 0,
+       "syllable_assessable": 0,
+       "reader_coverage": 1.0,
+       "output_in_lexicon": 0.3333333333333333
+      },
+      "default": {
+       "n": 245,
+       "top1_changed": 0,
+       "top1_change_rate": 0.0,
+       "mean_topk_overlap": 1.0,
+       "default_top1_still_in_topk": 245,
+       "mean_delta_norm_logprob": 0.0,
+       "consonant_closer": 0,
+       "consonant_farther": 0,
+       "consonant_same": 0,
+       "consonant_unreadable": 0,
+       "net_consonant_steering_rate": 0.0,
+       "consonant_preserving_changes": 0,
+       "syllable_closer": 0,
+       "syllable_farther": 0,
+       "syllable_assessable": 0,
+       "reader_coverage": 1.0,
+       "output_in_lexicon": 0.5877551020408164
+      },
+      "donor": {
+       "n": 244,
+       "top1_changed": 73,
+       "top1_change_rate": 0.29918032786885246,
+       "mean_topk_overlap": 0.5624902419984387,
+       "default_top1_still_in_topk": 223,
+       "mean_delta_norm_logprob": -0.09321472643289082,
+       "consonant_closer": 10,
+       "consonant_farther": 1,
+       "consonant_same": 62,
+       "consonant_unreadable": 0,
+       "net_consonant_steering_rate": 0.036885245901639344,
+       "consonant_preserving_changes": 49,
+       "syllable_closer": 2,
+       "syllable_farther": 0,
+       "syllable_assessable": 16,
+       "reader_coverage": 1.0,
+       "output_in_lexicon": 0.5532786885245902
+      },
+      "no_pron": {
+       "n": 245,
+       "top1_changed": 76,
+       "top1_change_rate": 0.31020408163265306,
+       "mean_topk_overlap": 0.5818075801749271,
+       "default_top1_still_in_topk": 226,
+       "mean_delta_norm_logprob": -0.06769665510681715,
+       "consonant_closer": 0,
+       "consonant_farther": 0,
+       "consonant_same": 0,
+       "consonant_unreadable": 0,
+       "net_consonant_steering_rate": 0.0,
+       "consonant_preserving_changes": 0,
+       "syllable_closer": 0,
+       "syllable_farther": 0,
+       "syllable_assessable": 0,
+       "reader_coverage": 1.0,
+       "output_in_lexicon": 0.563265306122449
+      }
+     }
+    },
+    "phones_s1": {
+     "e02_dev": {
+      "alternative_segmental": {
+       "n": 21,
+       "top1_changed": 7,
+       "top1_change_rate": 0.3333333333333333,
+       "mean_topk_overlap": 0.6390022675736962,
+       "default_top1_still_in_topk": 19,
+       "mean_delta_norm_logprob": -0.04346124519613815,
+       "consonant_closer": 0,
+       "consonant_farther": 1,
+       "consonant_same": 6,
+       "consonant_unreadable": 0,
+       "net_consonant_steering_rate": -0.047619047619047616,
+       "consonant_preserving_changes": 6,
+       "syllable_closer": 0,
+       "syllable_farther": 0,
+       "syllable_assessable": 2,
+       "reader_coverage": 1.0,
+       "output_in_lexicon": 0.19047619047619047
+      },
+      "default": {
+       "n": 95,
+       "top1_changed": 0,
+       "top1_change_rate": 0.0,
+       "mean_topk_overlap": 1.0,
+       "default_top1_still_in_topk": 95,
+       "mean_delta_norm_logprob": 0.0,
+       "consonant_closer": 0,
+       "consonant_farther": 0,
+       "consonant_same": 0,
+       "consonant_unreadable": 0,
+       "net_consonant_steering_rate": 0.0,
+       "consonant_preserving_changes": 0,
+       "syllable_closer": 0,
+       "syllable_farther": 0,
+       "syllable_assessable": 0,
+       "reader_coverage": 1.0,
+       "output_in_lexicon": 0.4
+      },
+      "donor": {
+       "n": 94,
+       "top1_changed": 47,
+       "top1_change_rate": 0.5,
+       "mean_topk_overlap": 0.5105369807497467,
+       "default_top1_still_in_topk": 75,
+       "mean_delta_norm_logprob": -0.15071059457642005,
+       "consonant_closer": 4,
+       "consonant_farther": 5,
+       "consonant_same": 38,
+       "consonant_unreadable": 0,
+       "net_consonant_steering_rate": -0.010638297872340425,
+       "consonant_preserving_changes": 31,
+       "syllable_closer": 2,
+       "syllable_farther": 2,
+       "syllable_assessable": 11,
+       "reader_coverage": 1.0,
+       "output_in_lexicon": 0.3829787234042553
+      },
+      "no_pron": {
+       "n": 95,
+       "top1_changed": 38,
+       "top1_change_rate": 0.4,
+       "mean_topk_overlap": 0.5387468671679198,
+       "default_top1_still_in_topk": 88,
+       "mean_delta_norm_logprob": -0.06694657329536473,
+       "consonant_closer": 0,
+       "consonant_farther": 0,
+       "consonant_same": 0,
+       "consonant_unreadable": 0,
+       "net_consonant_steering_rate": 0.0,
+       "consonant_preserving_changes": 0,
+       "syllable_closer": 0,
+       "syllable_farther": 0,
+       "syllable_assessable": 0,
+       "reader_coverage": 1.0,
+       "output_in_lexicon": 0.4
+      }
+     },
+     "eval": {
+      "alternative_segmental": {
+       "n": 21,
+       "top1_changed": 4,
+       "top1_change_rate": 0.19047619047619047,
+       "mean_topk_overlap": 0.5972789115646259,
+       "default_top1_still_in_topk": 20,
+       "mean_delta_norm_logprob": -0.051888453430083144,
+       "consonant_closer": 1,
+       "consonant_farther": 1,
+       "consonant_same": 2,
+       "consonant_unreadable": 0,
+       "net_consonant_steering_rate": 0.0,
+       "consonant_preserving_changes": 2,
+       "syllable_closer": 0,
+       "syllable_farther": 0,
+       "syllable_assessable": 0,
+       "reader_coverage": 1.0,
+       "output_in_lexicon": 0.3333333333333333
+      },
+      "default": {
+       "n": 245,
+       "top1_changed": 0,
+       "top1_change_rate": 0.0,
+       "mean_topk_overlap": 1.0,
+       "default_top1_still_in_topk": 245,
+       "mean_delta_norm_logprob": 0.0,
+       "consonant_closer": 0,
+       "consonant_farther": 0,
+       "consonant_same": 0,
+       "consonant_unreadable": 0,
+       "net_consonant_steering_rate": 0.0,
+       "consonant_preserving_changes": 0,
+       "syllable_closer": 0,
+       "syllable_farther": 0,
+       "syllable_assessable": 0,
+       "reader_coverage": 1.0,
+       "output_in_lexicon": 0.5877551020408164
+      },
+      "donor": {
+       "n": 244,
+       "top1_changed": 88,
+       "top1_change_rate": 0.36065573770491804,
+       "mean_topk_overlap": 0.51775956284153,
+       "default_top1_still_in_topk": 213,
+       "mean_delta_norm_logprob": -0.11605306622038071,
+       "consonant_closer": 10,
+       "consonant_farther": 9,
+       "consonant_same": 69,
+       "consonant_unreadable": 0,
+       "net_consonant_steering_rate": 0.004098360655737705,
+       "consonant_preserving_changes": 59,
+       "syllable_closer": 1,
+       "syllable_farther": 1,
+       "syllable_assessable": 26,
+       "reader_coverage": 1.0,
+       "output_in_lexicon": 0.5942622950819673
+      },
+      "no_pron": {
+       "n": 245,
+       "top1_changed": 72,
+       "top1_change_rate": 0.2938775510204082,
+       "mean_topk_overlap": 0.5880660835762876,
+       "default_top1_still_in_topk": 226,
+       "mean_delta_norm_logprob": -0.07371047414500313,
+       "consonant_closer": 0,
+       "consonant_farther": 0,
+       "consonant_same": 0,
+       "consonant_unreadable": 0,
+       "net_consonant_steering_rate": 0.0,
+       "consonant_preserving_changes": 0,
+       "syllable_closer": 0,
+       "syllable_farther": 0,
+       "syllable_assessable": 0,
+       "reader_coverage": 1.0,
+       "output_in_lexicon": 0.5714285714285714
+      }
+     }
+    },
+    "phones_s2": {
+     "e02_dev": {
+      "alternative_segmental": {
+       "n": 21,
+       "top1_changed": 2,
+       "top1_change_rate": 0.09523809523809523,
+       "mean_topk_overlap": 0.654421768707483,
+       "default_top1_still_in_topk": 21,
+       "mean_delta_norm_logprob": -0.023061296909863215,
+       "consonant_closer": 0,
+       "consonant_farther": 0,
+       "consonant_same": 2,
+       "consonant_unreadable": 0,
+       "net_consonant_steering_rate": 0.0,
+       "consonant_preserving_changes": 2,
+       "syllable_closer": 0,
+       "syllable_farther": 0,
+       "syllable_assessable": 1,
+       "reader_coverage": 1.0,
+       "output_in_lexicon": 0.23809523809523808
+      },
+      "default": {
+       "n": 95,
+       "top1_changed": 0,
+       "top1_change_rate": 0.0,
+       "mean_topk_overlap": 1.0,
+       "default_top1_still_in_topk": 95,
+       "mean_delta_norm_logprob": 0.0,
+       "consonant_closer": 0,
+       "consonant_farther": 0,
+       "consonant_same": 0,
+       "consonant_unreadable": 0,
+       "net_consonant_steering_rate": 0.0,
+       "consonant_preserving_changes": 0,
+       "syllable_closer": 0,
+       "syllable_farther": 0,
+       "syllable_assessable": 0,
+       "reader_coverage": 1.0,
+       "output_in_lexicon": 0.4105263157894737
+      },
+      "donor": {
+       "n": 94,
+       "top1_changed": 48,
+       "top1_change_rate": 0.5106382978723404,
+       "mean_topk_overlap": 0.4430597771023303,
+       "default_top1_still_in_topk": 80,
+       "mean_delta_norm_logprob": -0.1321675502059832,
+       "consonant_closer": 8,
+       "consonant_farther": 0,
+       "consonant_same": 40,
+       "consonant_unreadable": 0,
+       "net_consonant_steering_rate": 0.0851063829787234,
+       "consonant_preserving_changes": 34,
+       "syllable_closer": 1,
+       "syllable_farther": 0,
+       "syllable_assessable": 11,
+       "reader_coverage": 1.0,
+       "output_in_lexicon": 0.3404255319148936
+      },
+      "no_pron": {
+       "n": 95,
+       "top1_changed": 41,
+       "top1_change_rate": 0.43157894736842106,
+       "mean_topk_overlap": 0.4890225563909774,
+       "default_top1_still_in_topk": 83,
+       "mean_delta_norm_logprob": -0.08411105583209263,
+       "consonant_closer": 0,
+       "consonant_farther": 0,
+       "consonant_same": 0,
+       "consonant_unreadable": 0,
+       "net_consonant_steering_rate": 0.0,
+       "consonant_preserving_changes": 0,
+       "syllable_closer": 0,
+       "syllable_farther": 0,
+       "syllable_assessable": 0,
+       "reader_coverage": 1.0,
+       "output_in_lexicon": 0.43157894736842106
+      }
+     },
+     "eval": {
+      "alternative_segmental": {
+       "n": 21,
+       "top1_changed": 7,
+       "top1_change_rate": 0.3333333333333333,
+       "mean_topk_overlap": 0.48707482993197276,
+       "default_top1_still_in_topk": 19,
+       "mean_delta_norm_logprob": -0.10839637287348225,
+       "consonant_closer": 2,
+       "consonant_farther": 0,
+       "consonant_same": 5,
+       "consonant_unreadable": 0,
+       "net_consonant_steering_rate": 0.09523809523809523,
+       "consonant_preserving_changes": 5,
+       "syllable_closer": 0,
+       "syllable_farther": 0,
+       "syllable_assessable": 2,
+       "reader_coverage": 1.0,
+       "output_in_lexicon": 0.23809523809523808
+      },
+      "default": {
+       "n": 245,
+       "top1_changed": 0,
+       "top1_change_rate": 0.0,
+       "mean_topk_overlap": 1.0,
+       "default_top1_still_in_topk": 245,
+       "mean_delta_norm_logprob": 0.0,
+       "consonant_closer": 0,
+       "consonant_farther": 0,
+       "consonant_same": 0,
+       "consonant_unreadable": 0,
+       "net_consonant_steering_rate": 0.0,
+       "consonant_preserving_changes": 0,
+       "syllable_closer": 0,
+       "syllable_farther": 0,
+       "syllable_assessable": 0,
+       "reader_coverage": 1.0,
+       "output_in_lexicon": 0.5755102040816327
+      },
+      "donor": {
+       "n": 244,
+       "top1_changed": 90,
+       "top1_change_rate": 0.36885245901639346,
+       "mean_topk_overlap": 0.5003903200624512,
+       "default_top1_still_in_topk": 216,
+       "mean_delta_norm_logprob": -0.11904737218356015,
+       "consonant_closer": 8,
+       "consonant_farther": 8,
+       "consonant_same": 74,
+       "consonant_unreadable": 0,
+       "net_consonant_steering_rate": 0.0,
+       "consonant_preserving_changes": 58,
+       "syllable_closer": 1,
+       "syllable_farther": 0,
+       "syllable_assessable": 30,
+       "reader_coverage": 1.0,
+       "output_in_lexicon": 0.5737704918032787
+      },
+      "no_pron": {
+       "n": 245,
+       "top1_changed": 78,
+       "top1_change_rate": 0.3183673469387755,
+       "mean_topk_overlap": 0.5500485908649174,
+       "default_top1_still_in_topk": 226,
+       "mean_delta_norm_logprob": -0.08058852349787583,
+       "consonant_closer": 0,
+       "consonant_farther": 0,
+       "consonant_same": 0,
+       "consonant_unreadable": 0,
+       "net_consonant_steering_rate": 0.0,
+       "consonant_preserving_changes": 0,
+       "syllable_closer": 0,
+       "syllable_farther": 0,
+       "syllable_assessable": 0,
+       "reader_coverage": 1.0,
+       "output_in_lexicon": 0.5387755102040817
+      }
+     }
+    }
+   },
+   "phones_vs_letters_intervals": {
+    "eval|donor|phones": {
+     "items": 244,
+     "families": 238,
+     "change_rate_pct": 34.2896174863388,
+     "change_rate_ci95_pct": [
+      29.341736694677884,
+      37.88515406162462
+     ],
+     "net_steering_pct": 1.366120218579235,
+     "net_steering_ci95_pct": [
+      -0.7703081232492995,
+      3.5014005602240883
+     ],
+     "changed_in_all_3_seeds": 20
+    },
+    "eval|donor|letters": {
+     "items": 244,
+     "families": 238,
+     "change_rate_pct": 0.0,
+     "change_rate_ci95_pct": [
+      0.0,
+      0.0
+     ],
+     "net_steering_pct": 0.0,
+     "net_steering_ci95_pct": [
+      0.0,
+      0.0
+     ],
+     "changed_in_all_3_seeds": 0
+    },
+    "eval|no_pron|phones": {
+     "items": 245,
+     "families": 239,
+     "change_rate_pct": 30.74829931972789,
+     "change_rate_ci95_pct": [
+      26.19711761971178,
+      34.68154346815436
+     ],
+     "net_steering_pct": 0.0,
+     "net_steering_ci95_pct": [
+      0.0,
+      0.0
+     ],
+     "changed_in_all_3_seeds": 24
+    },
+    "eval|no_pron|letters": {
+     "items": 245,
+     "families": 239,
+     "change_rate_pct": 0.0,
+     "change_rate_ci95_pct": [
+      0.0,
+      0.0
+     ],
+     "net_steering_pct": 0.0,
+     "net_steering_ci95_pct": [
+      0.0,
+      0.0
+     ],
+     "changed_in_all_3_seeds": 0
+    },
+    "eval|alternative|phones": {
+     "items": 21,
+     "families": 17,
+     "change_rate_pct": 28.57142857142857,
+     "change_rate_ci95_pct": [
+      13.725490196078432,
+      44.11764705882353
+     ],
+     "net_steering_pct": 6.349206349206349,
+     "net_steering_ci95_pct": [
+      -3.9215686274509802,
+      12.745098039215685
+     ],
+     "changed_in_all_3_seeds": 1
+    },
+    "eval|alternative|letters": {
+     "items": 21,
+     "families": 17,
+     "change_rate_pct": 0.0,
+     "change_rate_ci95_pct": [
+      0.0,
+      0.0
+     ],
+     "net_steering_pct": 0.0,
+     "net_steering_ci95_pct": [
+      0.0,
+      0.0
+     ],
+     "changed_in_all_3_seeds": 0
+    },
+    "e02_dev|donor|phones": {
+     "items": 94,
+     "families": 92,
+     "change_rate_pct": 46.45390070921986,
+     "change_rate_ci95_pct": [
+      39.4927536231884,
+      52.53623188405798
+     ],
+     "net_steering_pct": 2.482269503546099,
+     "net_steering_ci95_pct": [
+      -1.0869565217391304,
+      6.159420289855073
+     ],
+     "changed_in_all_3_seeds": 14
+    },
+    "e02_dev|donor|letters": {
+     "items": 94,
+     "families": 92,
+     "change_rate_pct": 0.0,
+     "change_rate_ci95_pct": [
+      0.0,
+      0.0
+     ],
+     "net_steering_pct": 0.0,
+     "net_steering_ci95_pct": [
+      0.0,
+      0.0
+     ],
+     "changed_in_all_3_seeds": 0
+    },
+    "e02_dev|no_pron|phones": {
+     "items": 95,
+     "families": 93,
+     "change_rate_pct": 41.05263157894737,
+     "change_rate_ci95_pct": [
+      34.40860215053762,
+      47.31182795698927
+     ],
+     "net_steering_pct": 0.0,
+     "net_steering_ci95_pct": [
+      0.0,
+      0.0
+     ],
+     "changed_in_all_3_seeds": 11
+    },
+    "e02_dev|no_pron|letters": {
+     "items": 95,
+     "families": 93,
+     "change_rate_pct": 0.0,
+     "change_rate_ci95_pct": [
+      0.0,
+      0.0
+     ],
+     "net_steering_pct": 0.0,
+     "net_steering_ci95_pct": [
+      0.0,
+      0.0
+     ],
+     "changed_in_all_3_seeds": 0
+    },
+    "e02_dev|alternative|phones": {
+     "items": 21,
+     "families": 15,
+     "change_rate_pct": 17.46031746031746,
+     "change_rate_ci95_pct": [
+      6.666666666666667,
+      24.444444444444446
+     ],
+     "net_steering_pct": -1.5873015873015872,
+     "net_steering_ci95_pct": [
+      -6.666666666666667,
+      0.0
+     ],
+     "changed_in_all_3_seeds": 0
+    },
+    "e02_dev|alternative|letters": {
+     "items": 21,
+     "families": 15,
+     "change_rate_pct": 0.0,
+     "change_rate_ci95_pct": [
+      0.0,
+      0.0
+     ],
+     "net_steering_pct": 0.0,
+     "net_steering_ci95_pct": [
+      0.0,
+      0.0
+     ],
+     "changed_in_all_3_seeds": 0
+    }
+   }
+  }
+ },
+ "elapsed_s": 325.1,
+ "status": {
+  "benchmark": "unqualified (screened mined pairs; no independent review)",
+  "product_default": "unchanged (E02 letters_s0); no promotion from a mechanism study"
+ }
+}

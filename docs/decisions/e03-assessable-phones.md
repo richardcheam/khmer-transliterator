@@ -19,3 +19,6 @@ Routine decisions made while executing the owner's E03 instruction (2026-10-27).
 | 12 | 2026-10-27 | No re-ranker in E03 | Every reference is a lexicon word: a lexicon re-ranker would leak answers |
 | 13 | 2026-10-27 | E03 eval items use the split label `final` inside `eval_references.jsonl` | `reference_data` has no `eval` split; documented as E03's eval partition everywhere |
 | 14 | 2026-10-27 | Commits omit Claude attribution lines | Owner's standing rule |
+| 15 | 2026-10-27 | Letters-control check corrected after the run: identical ids and texts, scores within 1e-9 (measured max 1.2e-14) | Exact score equality failed on floating-point noise between batch rows; the outputs were identical |
+| 16 | 2026-10-27 | Alternative-reading intervals keyed by (id, reading); evaluation rerun | Items with several alternatives had been collapsed to the last one |
+| 17 | 2026-10-27 | Quarantine flaws reported post hoc, data unchanged: one-syllable compound tails (87 of 98) and the s/z → h coda (207 of 920) | Frozen rules are not edited after the fact; a fix would be a new registered data version |

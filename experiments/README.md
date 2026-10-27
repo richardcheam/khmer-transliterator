@@ -10,5 +10,6 @@ How to run one: `../docs/RESEARCH_PROTOCOL.md`. New experiment: copy `TEMPLATE/`
 
 | [E02-english-phonetic](E02-english-phonetic/) | English words → Khmer phonetic spelling: do English phone inputs, or Khmer P2G transfer, help a clean model? | phones +1.65 pts [−1.65, +4.94] over 3 paired seeds; benchmark unqualified → inconclusive; letters baseline kept (research preview) | D178 |
 | [E02-diagnostics-2026-10-27](E02-diagnostics-2026-10-27/) | Diagnostics (no training): do E02's training targets follow the supplied phones, and do the phone models use them? | 0% of targets readable by exact lookup (by construction); 30% consonant-conflict flags on a validated spelling reading; phone sensitivity shallow and seed-dependent | D179 |
+| [E03-assessable-phones](E03-assessable-phones/) | Repaired `khmer_like` selection; letters vs phones on dictionary-assessable, consonant-screened pairs | phones +0.60 pts [−2.40, +3.75]; donor phones change 34% of outputs but steer consonants +1.4% [−0.8, +3.5]; default unchanged | D180 |
 
 **Later candidate:** E01's aux recipe plus clean real romanised-typing data, scored on benchmark v1.

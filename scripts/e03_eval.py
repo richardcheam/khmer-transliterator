@@ -31,6 +31,7 @@ import time
 from collections import Counter, defaultdict
 from pathlib import Path
 from statistics import mean
+from types import SimpleNamespace
 
 import numpy as np
 
@@ -135,15 +136,18 @@ def mechanism(fz: dict, tls: dict) -> tuple[dict, list[dict]]:
     st = fz["settings"]
     rows, checks = [], {}
     for m, tl in tls.items():
-        enc_ok, gap, control_same = True, 0.0, True
+        enc_ok, gap, control_same, control_score_diff = True, 0.0, True, 0.0
         for sname, sample in fz["samples"].items():
             for it in sample:
                 conds = [c for c in it["conditions"] if "skipped" not in c]
                 ids = [DG.condition_ids(tl, it["word"], c) for c in conds]
                 enc_ok &= all(DG.check_encoding(tl, it["word"], c, x) for c, x in zip(conds, ids))
                 beams = tl.model.beam_search(*tl.model.encode_ids(ids), st["beam"])
-                if tl.mode == "letters":
-                    control_same &= all(x == ids[0] for x in ids) and all(b == beams[0] for b in beams)
+                if tl.mode == "letters":   # same ids, same candidate texts; scores equal up to batch-row float noise
+                    control_same &= all(x == ids[0] for x in ids) and all(
+                        [t for t, _ in b] == [t for t, _ in beams[0]] for b in beams)
+                    control_score_diff = max([control_score_diff] + [abs(s - s0) for b in beams
+                                                                      for (_, s), (_, s0) in zip(b, beams[0])])
                 ref, ref_score = beams[0][0]
                 base_tf, ntok = DG.score_text(tl, ids[0], ref)
                 gap = max(gap, abs(base_tf - ref_score))
@@ -161,7 +165,8 @@ def mechanism(fz: dict, tls: dict) -> tuple[dict, list[dict]]:
                     r.update(movement(r, base_top[0], it, c, km_lex))
                     rows.append(r)
         checks[m] = {"encoding_as_intended": enc_ok, "teacher_forced_vs_beam_max_gap": gap,
-                     **({"letters_control_identical": control_same} if tl.mode == "letters" else {})}
+                     **({"letters_control_identical": control_same and control_score_diff <= 1e-9,
+                         "letters_control_max_score_diff": control_score_diff} if tl.mode == "letters" else {})}
     return {"checks": checks, "aggregate": aggregate(rows, fz)}, rows
 
 
@@ -222,13 +227,14 @@ def aggregate(rows: list[dict], fz: dict) -> dict:
                 vals_change, vals_net = [], []
                 for k in range(3):
                     rs = [r for r in rows if r["model"] == f"{arm}_s{k}" and r["set"] == s and r["condition"] == c]
-                    vals_change.append({r["id"]: float(r["top1_changed"]) for r in rs})
-                    vals_net.append({r["id"]: {"closer": 1.0, "farther": -1.0}.get(r.get("consonant_move"), 0.0)
+                    key = lambda r: f"{r['id']}|{r['phones']}"   # an item can have several alternative readings
+                    vals_change.append({key(r): float(r["top1_changed"]) for r in rs})
+                    vals_net.append({key(r): {"closer": 1.0, "farther": -1.0}.get(r.get("consonant_move"), 0.0)
                                      for r in rs})
                 ids = [i for i in vals_change[0] if all(i in v for v in vals_change)]
                 if not ids:
                     continue
-                its = [items[i] for i in ids]
+                its = [SimpleNamespace(id=i, family=items[i.split("|")[0]].family) for i in ids]
                 intervals[f"{s}|{c}|{arm}"] = {
                     "items": len(ids), "families": len({it.family for it in its}),
                     "change_rate_pct": mean(mean(v[i] for v in vals_change) for i in ids) * 100,

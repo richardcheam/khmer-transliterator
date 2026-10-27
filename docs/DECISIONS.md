@@ -107,3 +107,21 @@ there (`git -C ../pocket-tts-khmer show archive/checkpoints-p0-p6:state/DECISION
 - **Recommended next (not launched):** re-admit mined pairs whose Khmer side is a known word (8,725 before
   filters), keep the exact-reading-consistent ones, and test letters vs phones with phone steering as the primary
   outcome.
+
+## D180 — E03: English phones under dictionary-assessable supervision (2026-10-27)
+- **Repair:** the miner's `khmer_like` merged "romanised-Khmer Latin input" with "known Khmer target", and E02
+  dropped both. E03 separates them (the stored class is reproduced for all 65,422 pairs):
+  - romanised Latin stays excluded, with 549 detector collisions with English words recorded;
+  - a known Khmer target alone is no reason to reject: 11,377 rows recovered.
+- **Data (DACS):**
+  - after E02's unchanged filters, 4,239 pairs have an exact Google reading;
+  - the frozen consonant screen keeps 2,967 (2,485 words), split by family 2,348 / 323 / 296;
+  - quarantine is kept on file. Post hoc, it over-flags doubled letters and glides and misses the coda s → h.
+- **Two arms, three paired seeds** (6/6 attempts, 0.56 h).
+- **Quality proxy (eval):** phones − letters +0.60 points [−2.40, +3.75], no detectable effect. On E02's dev words,
+  −3.88 [−7.75, −0.39] (secondary).
+- **Mechanism:** donor phones change 34% of outputs, but net consonant steering is +1.4% [−0.8, +3.5]; changes are
+  mostly vowel or diacritic edits and seed-specific. The letters control is exactly 0.
+- **Decision:** the product default and serving are unchanged. Evidence is still missing for a quality claim:
+  independently reviewed references and a validated Khmer reader. Report:
+  `experiments/E03-assessable-phones/REPORT.md`.
