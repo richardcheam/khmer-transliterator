@@ -1,0 +1,102 @@
+{
+ "experiment": "E06-reference-model",
+ "registered_at": "2026-10-27T17:30:41+00:00",
+ "commit_at_registration": "5053019f27a5e82a0e509ffd8427fb5b2469c278",
+ "label": "operational comparison on historical (unreviewed) and fresh (reference-free) material; teacher quality requires independent judgments",
+ "byt5": {
+  "model": "google/byt5-small",
+  "revision": "68377bdc18a2ffec8a0533fef03b1c513a4dd49d",
+  "base_sha256": {
+   "pytorch_model.bin": "5c5aaf56299d6f2d4eaadad550a40765198828ead4d74f0a15f91cbe0961931a"
+  },
+  "license": "apache-2.0",
+  "recipe": {
+   "lora_r": 16,
+   "lora_alpha": 32,
+   "lora_dropout": 0.05,
+   "lora_targets": "q, k, v, o of every T5 attention block (encoder self, decoder self, decoder cross)",
+   "base_frozen": true,
+   "base_dropout": 0.1,
+   "optimizer": "AdamW",
+   "lr": 0.001,
+   "weight_decay": 0.0,
+   "betas": [
+    0.9,
+    0.999
+   ],
+   "grad_clip": 1.0,
+   "batch": 16,
+   "grad_accumulation": 1,
+   "warmup": 50,
+   "schedule": "linear warm-up, then linear decay to 0 at max_updates",
+   "max_updates": 1000,
+   "max_hours": 4.0,
+   "eval_every": 100,
+   "select": "greedy exact-match macro on E03 dev primary items; ties: lower train-val loss, then earlier update",
+   "max_src_bytes": 32,
+   "max_tgt_bytes": 120,
+   "threads": 6,
+   "seed": 0,
+   "decode": {
+    "beam": 4,
+    "return": 4,
+    "length_penalty": 0.0,
+    "max_new_tokens": 120,
+    "early_stopping": true
+   }
+  },
+  "interface": "letters only (no pronunciation input)",
+  "feasibility": {
+   "params": {
+    "trainable": 2375680,
+    "total": 302013440
+   },
+   "update_s_median_after_first": 1.91,
+   "estimated_train_hours_1000_updates": 0.67,
+   "peak_rss_mb": 3890.5
+  }
+ },
+ "route_a": {
+  "status": "unavailable",
+  "prompt_sha256": "d5a1f7fac774418e1c8176e979149709fedf2e31a49e7d08f74e41e9cb4070ed"
+ },
+ "baselines": {
+  "E04 G_s0..s2": {
+   "G_s0": "d5b781044612a6f0ac5535188e0082d2e17dbb3dd64b6ce6f7caabb039eca476",
+   "G_s1": "82661d2f4e27401c0721f1975ffe5c7a4025e89dbb47d3168573db3eeafae22e",
+   "G_s2": "08b31777014180ccd32f38461c8b89ac7e636414acb9c72af0b05ee1cf4258c3"
+  },
+  "product default E02 letters_s0": "8901050b1093cf90f60523c7941d6c12dbd8571d71698e37abcf874ba437904b"
+ },
+ "data": {
+  "data/e03/train.tsv": "8d9bf0c057b0bc3df758e9443ad7ec77a07358026a6a3f5c48aeec0a8b480986",
+  "data/e03/dev_references.jsonl": "87ce1bc6b7015b1368cd2a0157c8a36206cb24db8cb17ab67c215f77f1edb4db",
+  "data/e03/eval_references.jsonl": "56c472895346fafae0eb5b3ab28f6dc50112ec29f7fd0ced0b0107bd213c516d",
+  "data/src/cmudict/cmudict.dict": "81917843c7f44ce2b094ac63873c2c7a4cf802040792c455ba3ca406891c3d22"
+ },
+ "pool": {
+  "path": "experiments/E06-reference-model/pool.jsonl",
+  "sha256": "0c5932c8ed0e3c80d7d980a27d2550b68dcb332ab3b0fcb6c2493b4da9e93f56"
+ },
+ "gate": {
+  "needs": "independent judgments (data/e06/review/judgments.tsv by a reviewer who is not a model or the agent) on the blinded queue",
+  "unit": "primary-track pool word; a system's top-1 is accepted if judged acceptable ('uncertain' = not accepted; sensitivity: uncertain = accepted)",
+  "comparison": "paired: reference (byt5_lora) top-1 accepted \u2212 baseline (default_e02) top-1 accepted, per word",
+  "interval": "family bootstrap (pool words are one family each), 10,000 resamples, seed 20261027, 95% percentile",
+  "pass_if": [
+   "at least 40 primary words judged",
+   "reference accepted count > baseline accepted count",
+   "interval lower bound > 0",
+   "net advantage not confined: positive difference in at least 3 categories and no category supplies more than half of the net wins",
+   "malformed, translations (judged comments) and unsupported cases reported",
+   "teacher-output use compatible (ByT5: Apache-2.0)"
+  ],
+  "otherwise": "teacher_advantage_unresolved (insufficient sample or interval) or teacher_not_better"
+ },
+ "n_boot": 10000,
+ "boot_seed": 20261027,
+ "code": {
+  "scripts/e06.py": "49461d352324b14cd39ad358e913fab8b149d4e7654be6d7b285a15183c46afa",
+  "scripts/e06_byt5.py": "aff9e09275fd0569252cf952402cc7c5bd461628e33db84857ed044641940efb"
+ }
+}

@@ -1,0 +1,17 @@
+experiment: E06-reference-model
+description: reference-model feasibility (ByT5-small + LoRA, letters only) vs the letters baseline; teacher gate; conditional distillation; constrained-discovery audit
+reference_routes:
+  A_gemini: unavailable (no authorised free interface; no requests)
+  B_byt5_small: {revision: 68377bdc18a2ffec8a0533fef03b1c513a4dd49d, license: apache-2.0, interface: letters only}
+recipe: see scripts/e06_byt5.py RECIPE (registered in registration.json)
+data:
+  train: data/e03/train.tsv (train 2,255; train_val 93)
+  select: data/e03/dev_references.jsonl (primary items)
+  historical_eval: data/e03/eval_references.jsonl (primary items; level 2, unreviewed)
+  pool: experiments/E06-reference-model/pool.jsonl (56 fresh words; no references)
+  discovery: experiments/E06-reference-model/reports/discovery/words.json (200 fresh words)
+baselines: [models/e02/letters_s0 (product default), models/e04/G_s0, G_s1, G_s2]
+decode: {beam: 4, top_k: 4, length_penalty: 0, max_new_bytes: 120}
+bootstrap: {unit: family, n: 10000, seed: 20261027}
+gate: see scripts/e06.py GATE
+budgets: {downloads_gib: 2, adaptation_hours: 4, max_updates: 1000, training_hours_total: 12, student_runs: 6, word_requests: 1100, threads: 6}
