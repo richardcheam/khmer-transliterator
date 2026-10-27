@@ -133,7 +133,7 @@ def main() -> int:
         shutil.rmtree(out)
     out.mkdir(parents=True)
     info = build(out)
-    zpath = out.with_suffix(".zip")
+    zpath = out.parent / f"{out.name}.zip"
     zpath.unlink(missing_ok=True)
     with zipfile.ZipFile(zpath, "w", zipfile.ZIP_DEFLATED) as z:
         for p in sorted(out.rglob("*")):
@@ -144,7 +144,7 @@ def main() -> int:
            "git_dirty": bool(git("status", "--porcelain", "--untracked-files=no")),
            "bundle": str(out.relative_to(ROOT)), "zip": str(zpath.relative_to(ROOT)), "zip_sha256": sha(zpath),
            "zip_bytes": zpath.stat().st_size, **info, **verify(out, zpath)}
-    out.with_suffix(".verify.json").write_text(json.dumps(rep, indent=1) + "\n", encoding="utf-8")
+    (out.parent / f"{out.name}.verify.json").write_text(json.dumps(rep, indent=1) + "\n", encoding="utf-8")
     print(json.dumps(rep, indent=1))
     return 0 if rep["ok"] else 1
 
