@@ -741,10 +741,48 @@ def alternatives(models: list[str], voc) -> dict:
     return res
 
 
+def retention() -> dict:
+    """Post-hoc (not registered): from the saved eval predictions only, does GP keep what only P gets right?
+
+    Uses `results/eval_per_item.jsonl`; makes no new predictions. Seed 0 is the only seed with all three arms.
+    Writes `reports/retention_posthoc.json`.
+
+    Returns:
+        Counts of P-only / G-only top-1 and top-4 hits on the primary eval items and how many of each GP keeps,
+        plus G ∪ P top-4 coverage (macro).
+    """
+    prim = primary(items("eval"))
+    acc = {i.id: {ps.nfc(a) for a in i.accepted} for i in prim}
+    top4 = defaultdict(dict)
+    for line in (EXP / "results" / "eval_per_item.jsonl").read_text(encoding="utf-8").splitlines():
+        r = json.loads(line)
+        top4[r["model"]][r["id"]] = [ps.nfc(t) for t in r["top4"]]
+    hit = {m: {i.id: (top4[m][i.id][:1][0] in acc[i.id] if top4[m][i.id] else False,
+                      any(t in acc[i.id] for t in top4[m][i.id])) for i in prim} for m in ("G_s0", "P_s0", "GP_s0", "G_s1")}
+    out = {"label": "post-hoc, exploratory, seed 0, E03 eval primary items", "items": len(prim)}
+    for k, name in ((0, "top1"), (1, "top4")):
+        p_only = [i for i in hit["P_s0"] if hit["P_s0"][i][k] and not hit["G_s0"][i][k]]
+        g_only = [i for i in hit["G_s0"] if hit["G_s0"][i][k] and not hit["P_s0"][i][k]]
+        out[name] = {"p_only": len(p_only), "gp_keeps_p_only": sum(hit["GP_s0"][i][k] for i in p_only),
+                     "g_only": len(g_only), "gp_keeps_g_only": sum(hit["GP_s0"][i][k] for i in g_only),
+                     "both": sum(hit["G_s0"][i][k] and hit["P_s0"][i][k] for i in hit["G_s0"]),
+                     "gp_keeps_both": sum(hit["GP_s0"][i][k] for i in hit["G_s0"]
+                                          if hit["G_s0"][i][k] and hit["P_s0"][i][k]),
+                     "p_only_examples": p_only[:10]}
+    # Seed-churn baseline: a second G seed also "wins" items G_s0 misses; how many of those does GP_s0 keep?
+    churn = [i for i in hit["G_s1"] if hit["G_s1"][i][0] and not hit["G_s0"][i][0]]
+    out["churn_baseline_top1"] = {"g_s1_only": len(churn), "gp_keeps_g_s1_only": sum(hit["GP_s0"][i][0] for i in churn)}
+    out["g_top4_macro"] = ev.macro(prim, {i.id: int(hit["G_s0"][i.id][1]) for i in prim})
+    out["g_union_p_top4_macro"] = ev.macro(prim, {i.id: int(hit["G_s0"][i.id][1] or hit["P_s0"][i.id][1]) for i in prim})
+    out["gp_top4_macro"] = ev.macro(prim, {i.id: int(hit["GP_s0"][i.id][1]) for i in prim})
+    (REPORTS / "retention_posthoc.json").write_text(json.dumps(out, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
+    return out
+
+
 def main() -> int:
     """Command line."""
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
-    ap.add_argument("step", choices=["audit", "sanity", "train", "export", "verify", "devcheck", "combine", "evaluate"])
+    ap.add_argument("step", choices=["audit", "sanity", "train", "export", "verify", "devcheck", "combine", "evaluate", "retention"])
     ap.add_argument("--arm", choices=list(ARMS))
     ap.add_argument("--seed", type=int, default=0)
     ap.add_argument("--out")
@@ -756,7 +794,7 @@ def main() -> int:
     elif a.step == "verify":
         return 0 if verify(Path(a.out))["ok"] else 1
     else:
-        r = {"audit": audit, "sanity": sanity, "devcheck": devcheck, "combine": combine, "evaluate": evaluate}[a.step]()
+        r = {"audit": audit, "sanity": sanity, "devcheck": devcheck, "combine": combine, "evaluate": evaluate, "retention": retention}[a.step]()
         print(json.dumps(r, ensure_ascii=False, indent=1, default=str)[:5000])
         if a.step == "sanity" and not r["passed"]:
             return 1

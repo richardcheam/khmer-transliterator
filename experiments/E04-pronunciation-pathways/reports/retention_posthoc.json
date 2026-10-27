@@ -1,0 +1,51 @@
+{
+ "label": "post-hoc, exploratory, seed 0, E03 eval primary items",
+ "items": 228,
+ "top1": {
+  "p_only": 20,
+  "gp_keeps_p_only": 8,
+  "g_only": 39,
+  "gp_keeps_g_only": 27,
+  "both": 60,
+  "gp_keeps_both": 50,
+  "p_only_examples": [
+   "accel#default",
+   "ali#default",
+   "austen#default",
+   "big#default",
+   "breeze#default",
+   "ching#default",
+   "guinea#default",
+   "kant#default",
+   "karp#default",
+   "loong#default"
+  ]
+ },
+ "top4": {
+  "p_only": 18,
+  "gp_keeps_p_only": 10,
+  "g_only": 43,
+  "gp_keeps_g_only": 30,
+  "both": 105,
+  "gp_keeps_both": 100,
+  "p_only_examples": [
+   "accel#default",
+   "austen#default",
+   "breeze#default",
+   "ghent#default",
+   "golda#default",
+   "guinea#default",
+   "intel#default",
+   "joe#default",
+   "loren#default",
+   "michele#default"
+  ]
+ },
+ "churn_baseline_top1": {
+  "g_s1_only": 17,
+  "gp_keeps_g_s1_only": 8
+ },
+ "g_top4_macro": 0.6456456456456456,
+ "g_union_p_top4_macro": 0.7267267267267268,
+ "gp_top4_macro": 0.6576576576576577
+}

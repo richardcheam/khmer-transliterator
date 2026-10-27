@@ -125,3 +125,19 @@ there (`git -C ../pocket-tts-khmer show archive/checkpoints-p0-p6:state/DECISION
 - **Decision:** the product default and serving are unchanged. Evidence is still missing for a quality claim:
   independently reviewed references and a validated Khmer reader. Report:
   `experiments/E03-assessable-phones/REPORT.md`.
+
+## D181 — E04: English pronunciation as a standalone and joint input (2026-10-27)
+- **Arms:** G (letters), P (CMUdict phones only, no letters) and GP (both), on E03's DACS data. Corrected
+  schedule: 3,000 updates, 150 warm-up, then cosine. Sanity: all three arms reach 100% on 64 words. 7/8 full
+  attempts, 2.0 h.
+- **Pilots (dev):** G 43.8, P 38.8, GP 46.2; G ∪ P top-4 +11.8 points over G → useful signal; GP strongest →
+  branch B (no three-view run); GP passed the +2-point screen.
+- **Eval (historical E03 set, unqualified references):**
+  - GP − G +2.20 points [−1.48, +6.01] over 3 paired seeds: no detectable effect;
+  - P − G −8.03 [−14.64, −1.35], one seed, exploratory;
+  - P collapses on phone-seen homophones (1/14).
+- **Post hoc:** G ∪ P top-4 72.7 vs GP 65.8. GP keeps 8/20 of P's unique wins, the same rate as for a second G
+  seed's (8/17), so no specific joint-training loss is shown.
+- **Decision:** the product default and serving are unchanged. Phones alone are a weaker but complementary
+  pathway. The next useful step still needs reviewed references (about 50 ranking failures per model are the
+  cheapest lead). Report: `experiments/E04-pronunciation-pathways/REPORT.md`.

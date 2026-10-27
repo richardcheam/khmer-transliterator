@@ -1,0 +1,1226 @@
+{
+ "set": "E03 eval partition (historical; informed earlier work; unqualified references)",
+ "selection": {
+  "dev_macro_seed0": {
+   "G": 0.438,
+   "P": 0.388,
+   "GP": 0.462
+  },
+  "margin_pp": 2.0,
+  "passing": [
+   "GP"
+  ],
+  "candidate": "GP",
+  "at": "2026-10-27T11:44:11+00:00"
+ },
+ "branch": {
+  "branch": "B",
+  "useful_signal": true,
+  "gp_strongest": true,
+  "union_gain_pp": 11.799999999999999,
+  "p_macro_exceeds_g": false,
+  "macro": {
+   "G": 0.438,
+   "P": 0.388,
+   "GP": 0.462
+  }
+ },
+ "models": {
+  "GP_s0": {
+   "macro": 0.4144144144144144,
+   "item_accuracy": 0.42105263157894735,
+   "correct": 96,
+   "topk_macro": 0.6576576576576577,
+   "mean_cer": 0.22452975874028505,
+   "n": 228,
+   "families": 222,
+   "failures": {
+    "ok": 96,
+    "generation": 78,
+    "ranking": 54
+   },
+   "strata": {
+    "phone_seen=True": {
+     "items": 14,
+     "macro": 0.35714285714285715
+    },
+    "phone_seen=False": {
+     "items": 214,
+     "macro": 0.42105263157894735
+    }
+   },
+   "flagged_track": 0.4117647058823529,
+   "model_sha256": "b04e52106c83790fddbbe6119f3fc8034130af8838ebcf8d3c0d1f3ff814edf7"
+  },
+  "GP_s1": {
+   "macro": 0.4451951951951952,
+   "item_accuracy": 0.4517543859649123,
+   "correct": 103,
+   "topk_macro": 0.6681681681681682,
+   "mean_cer": 0.21592273467273468,
+   "n": 228,
+   "families": 222,
+   "failures": {
+    "generation": 75,
+    "ok": 103,
+    "ranking": 50
+   },
+   "strata": {
+    "phone_seen=True": {
+     "items": 14,
+     "macro": 0.5
+    },
+    "phone_seen=False": {
+     "items": 214,
+     "macro": 0.44417862838915473
+    }
+   },
+   "flagged_track": 0.23529411764705882,
+   "model_sha256": "7f684f659b7c9e3c50ca7604a7508470301630dc92281669ca648ecd8008783f"
+  },
+  "GP_s2": {
+   "macro": 0.44594594594594594,
+   "item_accuracy": 0.4517543859649123,
+   "correct": 103,
+   "topk_macro": 0.6771771771771772,
+   "mean_cer": 0.20860540531593164,
+   "n": 228,
+   "families": 222,
+   "failures": {
+    "ranking": 52,
+    "ok": 103,
+    "generation": 73
+   },
+   "strata": {
+    "phone_seen=True": {
+     "items": 14,
+     "macro": 0.42857142857142855
+    },
+    "phone_seen=False": {
+     "items": 214,
+     "macro": 0.44976076555023925
+    }
+   },
+   "flagged_track": 0.058823529411764705,
+   "model_sha256": "427a383981915a729c86400f6e4c75fbe263d36740fd1ab1732f4e02d2130d0f"
+  },
+  "G_s0": {
+   "macro": 0.4271771771771772,
+   "item_accuracy": 0.4342105263157895,
+   "correct": 99,
+   "topk_macro": 0.6456456456456456,
+   "mean_cer": 0.20384392654129496,
+   "n": 228,
+   "families": 222,
+   "failures": {
+    "generation": 80,
+    "ranking": 49,
+    "ok": 99
+   },
+   "strata": {
+    "phone_seen=True": {
+     "items": 14,
+     "macro": 0.5714285714285714
+    },
+    "phone_seen=False": {
+     "items": 214,
+     "macro": 0.4178628389154705
+    }
+   },
+   "flagged_track": 0.17647058823529413,
+   "model_sha256": "d5b781044612a6f0ac5535188e0082d2e17dbb3dd64b6ce6f7caabb039eca476"
+  },
+  "G_s1": {
+   "macro": 0.41216216216216217,
+   "item_accuracy": 0.41228070175438597,
+   "correct": 94,
+   "topk_macro": 0.6681681681681682,
+   "mean_cer": 0.21939464044727203,
+   "n": 228,
+   "families": 222,
+   "failures": {
+    "ranking": 58,
+    "ok": 94,
+    "generation": 76
+   },
+   "strata": {
+    "phone_seen=True": {
+     "items": 14,
+     "macro": 0.35714285714285715
+    },
+    "phone_seen=False": {
+     "items": 214,
+     "macro": 0.4138755980861244
+    }
+   },
+   "flagged_track": 0.17647058823529413,
+   "model_sha256": "82661d2f4e27401c0721f1975ffe5c7a4025e89dbb47d3168573db3eeafae22e"
+  },
+  "G_s2": {
+   "macro": 0.40015015015015015,
+   "item_accuracy": 0.40789473684210525,
+   "correct": 93,
+   "topk_macro": 0.6681681681681682,
+   "mean_cer": 0.22737386882123722,
+   "n": 228,
+   "families": 222,
+   "failures": {
+    "ranking": 60,
+    "ok": 93,
+    "generation": 75
+   },
+   "strata": {
+    "phone_seen=True": {
+     "items": 14,
+     "macro": 0.42857142857142855
+    },
+    "phone_seen=False": {
+     "items": 214,
+     "macro": 0.39872408293460926
+    }
+   },
+   "flagged_track": 0.29411764705882354,
+   "model_sha256": "08b31777014180ccd32f38461c8b89ac7e636414acb9c72af0b05ee1cf4258c3"
+  },
+  "P_s0": {
+   "macro": 0.34684684684684686,
+   "item_accuracy": 0.3508771929824561,
+   "correct": 80,
+   "topk_macro": 0.5405405405405406,
+   "mean_cer": 0.24191695244326822,
+   "n": 228,
+   "families": 222,
+   "failures": {
+    "ok": 80,
+    "generation": 105,
+    "ranking": 43
+   },
+   "strata": {
+    "phone_seen=True": {
+     "items": 14,
+     "macro": 0.07142857142857142
+    },
+    "phone_seen=False": {
+     "items": 214,
+     "macro": 0.36363636363636365
+    }
+   },
+   "flagged_track": 0.4117647058823529,
+   "model_sha256": "76a5883fd97c81440d4da8d2a8412a5e6f04fa876d1c9def849cdf98059b21b6"
+  }
+ },
+ "comparisons": {
+  "P_vs_G": {
+   "seed_gains_pp": [
+    -8.033033033033036
+   ],
+   "mean_gain_pp": -8.033033033033036,
+   "ci95_pp": [
+    -14.63963963963964,
+    -1.3513513513513513
+   ],
+   "control_macro": [
+    42.71771771771772
+   ],
+   "treatment_macro": [
+    34.68468468468468
+   ],
+   "families": 222,
+   "seeds": [
+    0
+   ],
+   "label": "pilot (exploratory, one seed)"
+  },
+  "GP_vs_G": {
+   "seed_gains_pp": [
+    -1.2762762762762776,
+    3.303303303303302,
+    4.57957957957958
+   ],
+   "mean_gain_pp": 2.2022022022022014,
+   "ci95_pp": [
+    -1.4764764764764755,
+    6.006006006006003
+   ],
+   "control_macro": [
+    42.71771771771772,
+    41.21621621621622,
+    40.01501501501502
+   ],
+   "treatment_macro": [
+    41.44144144144144,
+    44.51951951951952,
+    44.5945945945946
+   ],
+   "families": 222,
+   "seeds": [
+    0,
+    1,
+    2
+   ],
+   "label": "confirmatory (3 paired seeds)"
+  }
+ },
+ "alternative_readings": {
+  "GP_s0": {
+   "cases": 21,
+   "changed": 10,
+   "agreement_default": 8,
+   "agreement_alternative": 5,
+   "vowel_assessable_both_lexicon": 5,
+   "rows": [
+    {
+     "word": "armstrong",
+     "default": "AA1 R M S T R AA2 NG",
+     "alternative": "AA1 R M S T R AO2 NG",
+     "default_top1": "អាមស្ត្រូន",
+     "alt_top1": "អាមស្ត្រូន",
+     "changed": false,
+     "default_agrees": false,
+     "alt_agrees": false,
+     "both_in_lexicon": false
+    },
+    {
+     "word": "avril",
+     "default": "AE1 V R IH0 L",
+     "alternative": "EY1 V R AH0 L",
+     "default_top1": "អាវ្រីល",
+     "alt_top1": "អាវ្រ៊ីល",
+     "changed": true,
+     "default_agrees": true,
+     "alt_agrees": false,
+     "both_in_lexicon": false
+    },
+    {
+     "word": "buffet",
+     "default": "B AH1 F AH0 T",
+     "alternative": "B AH0 F EY1",
+     "default_top1": "បាហ្វេត",
+     "alt_top1": "ប៊ូហ្វេត",
+     "changed": true,
+     "default_agrees": true,
+     "alt_agrees": false,
+     "both_in_lexicon": true
+    },
+    {
+     "word": "corp",
+     "default": "K AO1 R P",
+     "alternative": "K AO1 R P ER0 EY1 SH AH0 N",
+     "default_top1": "កបប",
+     "alt_top1": "ខុប",
+     "changed": true,
+     "default_agrees": false,
+     "alt_agrees": false,
+     "both_in_lexicon": false
+    },
+    {
+     "word": "ecology",
+     "default": "IH0 K AA1 L AH0 JH IY0",
+     "alternative": "IY0 K AA1 L AH0 JH IY0",
+     "default_top1": "អេកូហ្សូហ្ស៊ី",
+     "alt_top1": "អេកូហ្សូហ្ស៊ី",
+     "changed": false,
+     "default_agrees": false,
+     "alt_agrees": false,
+     "both_in_lexicon": false
+    },
+    {
+     "word": "eleanor",
+     "default": "EH1 L AH0 N AO0 R",
+     "alternative": "EH1 L AH0 N ER0",
+     "default_top1": "អេលាណុរ",
+     "alt_top1": "អេឡាណូ",
+     "changed": true,
+     "default_agrees": false,
+     "alt_agrees": false,
+     "both_in_lexicon": false
+    },
+    {
+     "word": "elysee",
+     "default": "EH1 L IH0 S IY2",
+     "alternative": "EH1 L IY0 S IY2",
+     "default_top1": "អេលីហ្សែ",
+     "alt_top1": "អេលីហ្សែ",
+     "changed": false,
+     "default_agrees": false,
+     "alt_agrees": false,
+     "both_in_lexicon": false
+    },
+    {
+     "word": "friday",
+     "default": "F R AY1 D IY0",
+     "alternative": "F R AY1 D EY2",
+     "default_top1": "ហ្វ្រាយដ",
+     "alt_top1": "ហ្វ្រេដ",
+     "changed": true,
+     "default_agrees": false,
+     "alt_agrees": false,
+     "both_in_lexicon": false
+    },
+    {
+     "word": "ghadafi",
+     "default": "G AH0 D AE1 F IY0",
+     "alternative": "K AH0 D AA1 F IY0",
+     "default_top1": "ហ្គាដាហ្វី",
+     "alt_top1": "ហ្គាដាហ្វី",
+     "changed": false,
+     "default_agrees": true,
+     "alt_agrees": true,
+     "both_in_lexicon": true
+    },
+    {
+     "word": "ghadafi",
+     "default": "G AH0 D AE1 F IY0",
+     "alternative": "G AH0 D AA1 F IY0",
+     "default_top1": "ហ្គាដាហ្វី",
+     "alt_top1": "ហ្គាដាហ្វី",
+     "changed": false,
+     "default_agrees": true,
+     "alt_agrees": true,
+     "both_in_lexicon": true
+    },
+    {
+     "word": "iraq",
+     "default": "IH2 R AA1 K",
+     "alternative": "IY2 R AA1 K",
+     "default_top1": "អ៊ីកាក់",
+     "alt_top1": "អ៊ីក្រាក់",
+     "changed": true,
+     "default_agrees": false,
+     "alt_agrees": false,
+     "both_in_lexicon": false
+    },
+    {
+     "word": "iraq",
+     "default": "IH2 R AA1 K",
+     "alternative": "AY2 R AA1 K",
+     "default_top1": "អ៊ីកាក់",
+     "alt_top1": "អ៊ីកាក់",
+     "changed": false,
+     "default_agrees": false,
+     "alt_agrees": false,
+     "both_in_lexicon": false
+    },
+    {
+     "word": "jaimie",
+     "default": "JH EY1 M IY0",
+     "alternative": "HH AY1 M IY0",
+     "default_top1": "ជេមី",
+     "alt_top1": "ជេមី",
+     "changed": false,
+     "default_agrees": true,
+     "alt_agrees": true,
+     "both_in_lexicon": true
+    },
+    {
+     "word": "kamei",
+     "default": "K AE1 M IY0",
+     "alternative": "K AA2 M EY1",
+     "default_top1": "ខេមី",
+     "alt_top1": "កាមេ",
+     "changed": true,
+     "default_agrees": false,
+     "alt_agrees": true,
+     "both_in_lexicon": false
+    },
+    {
+     "word": "michel",
+     "default": "M IH0 SH EH1 L",
+     "alternative": "M IH1 CH AH0 L",
+     "default_top1": "មីឆែល",
+     "alt_top1": "មីឆែល",
+     "changed": false,
+     "default_agrees": false,
+     "alt_agrees": false,
+     "both_in_lexicon": false
+    },
+    {
+     "word": "michel",
+     "default": "M IH0 SH EH1 L",
+     "alternative": "M AY1 K AH0 L",
+     "default_top1": "មីឆែល",
+     "alt_top1": "មីកែល",
+     "changed": true,
+     "default_agrees": false,
+     "alt_agrees": false,
+     "both_in_lexicon": false
+    },
+    {
+     "word": "nitroglycerin",
+     "default": "N AY2 T R OW0 G L IH1 S ER0 AH0 N",
+     "alternative": "N AY2 T R AH0 G L IH1 S ER0 AH0 N",
+     "default_top1": "នីត្រូហ្គីន",
+     "alt_top1": "នីត្រូហ្គីន",
+     "changed": false,
+     "default_agrees": false,
+     "alt_agrees": false,
+     "both_in_lexicon": false
+    },
+    {
+     "word": "nitroglycerin",
+     "default": "N AY2 T R OW0 G L IH1 S ER0 AH0 N",
+     "alternative": "N AY2 CH R AH0 G L IH1 S ER0 AH0 N",
+     "default_top1": "នីត្រូហ្គីន",
+     "alt_top1": "នីត្រូហ្គីន",
+     "changed": false,
+     "default_agrees": false,
+     "alt_agrees": false,
+     "both_in_lexicon": false
+    },
+    {
+     "word": "osteen",
+     "default": "OW0 S T IY1 N",
+     "alternative": "AA1 S T IY2 N",
+     "default_top1": "អូស្ទីន",
+     "alt_top1": "អូស្តេន",
+     "changed": true,
+     "default_agrees": true,
+     "alt_agrees": false,
+     "both_in_lexicon": false
+    },
+    {
+     "word": "tube",
+     "default": "T UW1 B",
+     "alternative": "T Y UW1 B",
+     "default_top1": "ធូប",
+     "alt_top1": "ទូបេ",
+     "changed": true,
+     "default_agrees": true,
+     "alt_agrees": false,
+     "both_in_lexicon": false
+    },
+    {
+     "word": "vincent",
+     "default": "V IH1 N S AH0 N T",
+     "alternative": "V IH1 N S IH0 N T",
+     "default_top1": "វីនសិន",
+     "alt_top1": "វីនសិន",
+     "changed": false,
+     "default_agrees": true,
+     "alt_agrees": true,
+     "both_in_lexicon": true
+    }
+   ]
+  },
+  "GP_s1": {
+   "cases": 21,
+   "changed": 7,
+   "agreement_default": 4,
+   "agreement_alternative": 4,
+   "vowel_assessable_both_lexicon": 3,
+   "rows": [
+    {
+     "word": "armstrong",
+     "default": "AA1 R M S T R AA2 NG",
+     "alternative": "AA1 R M S T R AO2 NG",
+     "default_top1": "អាមស្ទ័រ",
+     "alt_top1": "អាមស្ទ័រ",
+     "changed": false,
+     "default_agrees": false,
+     "alt_agrees": false,
+     "both_in_lexicon": false
+    },
+    {
+     "word": "avril",
+     "default": "AE1 V R IH0 L",
+     "alternative": "EY1 V R AH0 L",
+     "default_top1": "អាវិល",
+     "alt_top1": "អាវិល",
+     "changed": false,
+     "default_agrees": false,
+     "alt_agrees": false,
+     "both_in_lexicon": false
+    },
+    {
+     "word": "buffet",
+     "default": "B AH1 F AH0 T",
+     "alternative": "B AH0 F EY1",
+     "default_top1": "ប៊ុហ្វេត",
+     "alt_top1": "ប៊ូហ្វេត",
+     "changed": true,
+     "default_agrees": false,
+     "alt_agrees": false,
+     "both_in_lexicon": false
+    },
+    {
+     "word": "corp",
+     "default": "K AO1 R P",
+     "alternative": "K AO1 R P ER0 EY1 SH AH0 N",
+     "default_top1": "កុប",
+     "alt_top1": "កូប៉ុន",
+     "changed": true,
+     "default_agrees": false,
+     "alt_agrees": false,
+     "both_in_lexicon": false
+    },
+    {
+     "word": "ecology",
+     "default": "IH0 K AA1 L AH0 JH IY0",
+     "alternative": "IY0 K AA1 L AH0 JH IY0",
+     "default_top1": "អេកូឡូ",
+     "alt_top1": "អេកូឡូ",
+     "changed": false,
+     "default_agrees": false,
+     "alt_agrees": false,
+     "both_in_lexicon": false
+    },
+    {
+     "word": "eleanor",
+     "default": "EH1 L AH0 N AO0 R",
+     "alternative": "EH1 L AH0 N ER0",
+     "default_top1": "អេលីណា",
+     "alt_top1": "អេលីណា",
+     "changed": false,
+     "default_agrees": true,
+     "alt_agrees": true,
+     "both_in_lexicon": true
+    },
+    {
+     "word": "elysee",
+     "default": "EH1 L IH0 S IY2",
+     "alternative": "EH1 L IY0 S IY2",
+     "default_top1": "អេលីហ្សេ",
+     "alt_top1": "អេលីស៊ី",
+     "changed": true,
+     "default_agrees": true,
+     "alt_agrees": false,
+     "both_in_lexicon": false
+    },
+    {
+     "word": "friday",
+     "default": "F R AY1 D IY0",
+     "alternative": "F R AY1 D EY2",
+     "default_top1": "ហ្វ្រាដ",
+     "alt_top1": "ហ្វ្រាដ",
+     "changed": false,
+     "default_agrees": false,
+     "alt_agrees": false,
+     "both_in_lexicon": false
+    },
+    {
+     "word": "ghadafi",
+     "default": "G AH0 D AE1 F IY0",
+     "alternative": "K AH0 D AA1 F IY0",
+     "default_top1": "ហ្គាដាហ្គី",
+     "alt_top1": "ហ្គាដាហ្វី",
+     "changed": true,
+     "default_agrees": false,
+     "alt_agrees": true,
+     "both_in_lexicon": false
+    },
+    {
+     "word": "ghadafi",
+     "default": "G AH0 D AE1 F IY0",
+     "alternative": "G AH0 D AA1 F IY0",
+     "default_top1": "ហ្គាដាហ្គី",
+     "alt_top1": "ហ្គាដាហ្គី",
+     "changed": false,
+     "default_agrees": false,
+     "alt_agrees": false,
+     "both_in_lexicon": false
+    },
+    {
+     "word": "iraq",
+     "default": "IH2 R AA1 K",
+     "alternative": "IY2 R AA1 K",
+     "default_top1": "អ៊ីរ៉ាក",
+     "alt_top1": "អ៊ីរ៉ាក",
+     "changed": false,
+     "default_agrees": false,
+     "alt_agrees": false,
+     "both_in_lexicon": false
+    },
+    {
+     "word": "iraq",
+     "default": "IH2 R AA1 K",
+     "alternative": "AY2 R AA1 K",
+     "default_top1": "អ៊ីរ៉ាក",
+     "alt_top1": "អ៊ីរ៉ាក",
+     "changed": false,
+     "default_agrees": false,
+     "alt_agrees": false,
+     "both_in_lexicon": false
+    },
+    {
+     "word": "jaimie",
+     "default": "JH EY1 M IY0",
+     "alternative": "HH AY1 M IY0",
+     "default_top1": "ជេមី",
+     "alt_top1": "ជេមី",
+     "changed": false,
+     "default_agrees": true,
+     "alt_agrees": true,
+     "both_in_lexicon": true
+    },
+    {
+     "word": "kamei",
+     "default": "K AE1 M IY0",
+     "alternative": "K AA2 M EY1",
+     "default_top1": "កាមេ",
+     "alt_top1": "កាមេ",
+     "changed": false,
+     "default_agrees": true,
+     "alt_agrees": true,
+     "both_in_lexicon": true
+    },
+    {
+     "word": "michel",
+     "default": "M IH0 SH EH1 L",
+     "alternative": "M IH1 CH AH0 L",
+     "default_top1": "មីឈែល",
+     "alt_top1": "មីឈែល",
+     "changed": false,
+     "default_agrees": false,
+     "alt_agrees": false,
+     "both_in_lexicon": false
+    },
+    {
+     "word": "michel",
+     "default": "M IH0 SH EH1 L",
+     "alternative": "M AY1 K AH0 L",
+     "default_top1": "មីឈែល",
+     "alt_top1": "មីកែល",
+     "changed": true,
+     "default_agrees": false,
+     "alt_agrees": false,
+     "both_in_lexicon": false
+    },
+    {
+     "word": "nitroglycerin",
+     "default": "N AY2 T R OW0 G L IH1 S ER0 AH0 N",
+     "alternative": "N AY2 T R AH0 G L IH1 S ER0 AH0 N",
+     "default_top1": "នីត្រូហ្គីន",
+     "alt_top1": "នីត្រូហ្គីន",
+     "changed": false,
+     "default_agrees": false,
+     "alt_agrees": false,
+     "both_in_lexicon": false
+    },
+    {
+     "word": "nitroglycerin",
+     "default": "N AY2 T R OW0 G L IH1 S ER0 AH0 N",
+     "alternative": "N AY2 CH R AH0 G L IH1 S ER0 AH0 N",
+     "default_top1": "នីត្រូហ្គីន",
+     "alt_top1": "នីត្រូហ្គីន",
+     "changed": false,
+     "default_agrees": false,
+     "alt_agrees": false,
+     "both_in_lexicon": false
+    },
+    {
+     "word": "osteen",
+     "default": "OW0 S T IY1 N",
+     "alternative": "AA1 S T IY2 N",
+     "default_top1": "អូស្តេន",
+     "alt_top1": "អូសែន",
+     "changed": true,
+     "default_agrees": false,
+     "alt_agrees": false,
+     "both_in_lexicon": false
+    },
+    {
+     "word": "tube",
+     "default": "T UW1 B",
+     "alternative": "T Y UW1 B",
+     "default_top1": "ទូប",
+     "alt_top1": "ទូប៊ី",
+     "changed": true,
+     "default_agrees": false,
+     "alt_agrees": false,
+     "both_in_lexicon": false
+    },
+    {
+     "word": "vincent",
+     "default": "V IH1 N S AH0 N T",
+     "alternative": "V IH1 N S IH0 N T",
+     "default_top1": "វីនសែន",
+     "alt_top1": "វីនសែន",
+     "changed": false,
+     "default_agrees": false,
+     "alt_agrees": false,
+     "both_in_lexicon": false
+    }
+   ]
+  },
+  "GP_s2": {
+   "cases": 21,
+   "changed": 16,
+   "agreement_default": 1,
+   "agreement_alternative": 4,
+   "vowel_assessable_both_lexicon": 1,
+   "rows": [
+    {
+     "word": "armstrong",
+     "default": "AA1 R M S T R AA2 NG",
+     "alternative": "AA1 R M S T R AO2 NG",
+     "default_top1": "អាមស្តុង",
+     "alt_top1": "អាមស្តុន",
+     "changed": true,
+     "default_agrees": false,
+     "alt_agrees": false,
+     "both_in_lexicon": false
+    },
+    {
+     "word": "avril",
+     "default": "AE1 V R IH0 L",
+     "alternative": "EY1 V R AH0 L",
+     "default_top1": "អាវ្រៀល",
+     "alt_top1": "អេវៀល",
+     "changed": true,
+     "default_agrees": false,
+     "alt_agrees": false,
+     "both_in_lexicon": false
+    },
+    {
+     "word": "buffet",
+     "default": "B AH1 F AH0 T",
+     "alternative": "B AH0 F EY1",
+     "default_top1": "ប៊ុហ្វេត",
+     "alt_top1": "បុហ្វេត",
+     "changed": true,
+     "default_agrees": false,
+     "alt_agrees": false,
+     "both_in_lexicon": false
+    },
+    {
+     "word": "corp",
+     "default": "K AO1 R P",
+     "alternative": "K AO1 R P ER0 EY1 SH AH0 N",
+     "default_top1": "ក",
+     "alt_top1": "ក័រ៉ុន",
+     "changed": true,
+     "default_agrees": false,
+     "alt_agrees": false,
+     "both_in_lexicon": false
+    },
+    {
+     "word": "ecology",
+     "default": "IH0 K AA1 L AH0 JH IY0",
+     "alternative": "IY0 K AA1 L AH0 JH IY0",
+     "default_top1": "អេកូឡូ",
+     "alt_top1": "អេកូឡូ",
+     "changed": false,
+     "default_agrees": false,
+     "alt_agrees": false,
+     "both_in_lexicon": false
+    },
+    {
+     "word": "eleanor",
+     "default": "EH1 L AH0 N AO0 R",
+     "alternative": "EH1 L AH0 N ER0",
+     "default_top1": "អេលេណូ",
+     "alt_top1": "អេលេណា",
+     "changed": true,
+     "default_agrees": false,
+     "alt_agrees": false,
+     "both_in_lexicon": false
+    },
+    {
+     "word": "elysee",
+     "default": "EH1 L IH0 S IY2",
+     "alternative": "EH1 L IY0 S IY2",
+     "default_top1": "អេលីសេ",
+     "alt_top1": "អេលីហ្សេ",
+     "changed": true,
+     "default_agrees": false,
+     "alt_agrees": true,
+     "both_in_lexicon": false
+    },
+    {
+     "word": "friday",
+     "default": "F R AY1 D IY0",
+     "alternative": "F R AY1 D EY2",
+     "default_top1": "ហ្វ្រ៊ីដី",
+     "alt_top1": "ហ្វ្រេដយ",
+     "changed": true,
+     "default_agrees": false,
+     "alt_agrees": false,
+     "both_in_lexicon": false
+    },
+    {
+     "word": "ghadafi",
+     "default": "G AH0 D AE1 F IY0",
+     "alternative": "K AH0 D AA1 F IY0",
+     "default_top1": "ហ្គាដ្វី",
+     "alt_top1": "ហ្វាដាហ្វី",
+     "changed": true,
+     "default_agrees": false,
+     "alt_agrees": false,
+     "both_in_lexicon": false
+    },
+    {
+     "word": "ghadafi",
+     "default": "G AH0 D AE1 F IY0",
+     "alternative": "G AH0 D AA1 F IY0",
+     "default_top1": "ហ្គាដ្វី",
+     "alt_top1": "ហ្គាដាហ្វី",
+     "changed": true,
+     "default_agrees": false,
+     "alt_agrees": true,
+     "both_in_lexicon": false
+    },
+    {
+     "word": "iraq",
+     "default": "IH2 R AA1 K",
+     "alternative": "IY2 R AA1 K",
+     "default_top1": "អ៊ីកា",
+     "alt_top1": "អ៊ីកា",
+     "changed": false,
+     "default_agrees": false,
+     "alt_agrees": false,
+     "both_in_lexicon": false
+    },
+    {
+     "word": "iraq",
+     "default": "IH2 R AA1 K",
+     "alternative": "AY2 R AA1 K",
+     "default_top1": "អ៊ីកា",
+     "alt_top1": "អ៊ីកា",
+     "changed": false,
+     "default_agrees": false,
+     "alt_agrees": false,
+     "both_in_lexicon": false
+    },
+    {
+     "word": "jaimie",
+     "default": "JH EY1 M IY0",
+     "alternative": "HH AY1 M IY0",
+     "default_top1": "ជេមី",
+     "alt_top1": "ចៃមី",
+     "changed": true,
+     "default_agrees": true,
+     "alt_agrees": false,
+     "both_in_lexicon": false
+    },
+    {
+     "word": "kamei",
+     "default": "K AE1 M IY0",
+     "alternative": "K AA2 M EY1",
+     "default_top1": "កាមី",
+     "alt_top1": "កាមេ",
+     "changed": true,
+     "default_agrees": false,
+     "alt_agrees": true,
+     "both_in_lexicon": true
+    },
+    {
+     "word": "michel",
+     "default": "M IH0 SH EH1 L",
+     "alternative": "M IH1 CH AH0 L",
+     "default_top1": "មីឆែល",
+     "alt_top1": "មីឆែល",
+     "changed": false,
+     "default_agrees": false,
+     "alt_agrees": false,
+     "both_in_lexicon": false
+    },
+    {
+     "word": "michel",
+     "default": "M IH0 SH EH1 L",
+     "alternative": "M AY1 K AH0 L",
+     "default_top1": "មីឆែល",
+     "alt_top1": "មីឃែល",
+     "changed": true,
+     "default_agrees": false,
+     "alt_agrees": false,
+     "both_in_lexicon": false
+    },
+    {
+     "word": "nitroglycerin",
+     "default": "N AY2 T R OW0 G L IH1 S ER0 AH0 N",
+     "alternative": "N AY2 T R AH0 G L IH1 S ER0 AH0 N",
+     "default_top1": "នីធើកូលី",
+     "alt_top1": "នីទ្រូហ្គីន",
+     "changed": true,
+     "default_agrees": false,
+     "alt_agrees": false,
+     "both_in_lexicon": false
+    },
+    {
+     "word": "nitroglycerin",
+     "default": "N AY2 T R OW0 G L IH1 S ER0 AH0 N",
+     "alternative": "N AY2 CH R AH0 G L IH1 S ER0 AH0 N",
+     "default_top1": "នីធើកូលី",
+     "alt_top1": "នីធ្រូហ្គីន",
+     "changed": true,
+     "default_agrees": false,
+     "alt_agrees": false,
+     "both_in_lexicon": false
+    },
+    {
+     "word": "osteen",
+     "default": "OW0 S T IY1 N",
+     "alternative": "AA1 S T IY2 N",
+     "default_top1": "អូស្តេន",
+     "alt_top1": "អូស្តេន",
+     "changed": false,
+     "default_agrees": false,
+     "alt_agrees": false,
+     "both_in_lexicon": false
+    },
+    {
+     "word": "tube",
+     "default": "T UW1 B",
+     "alternative": "T Y UW1 B",
+     "default_top1": "ធូបេ",
+     "alt_top1": "ទូបេ",
+     "changed": true,
+     "default_agrees": false,
+     "alt_agrees": false,
+     "both_in_lexicon": false
+    },
+    {
+     "word": "vincent",
+     "default": "V IH1 N S AH0 N T",
+     "alternative": "V IH1 N S IH0 N T",
+     "default_top1": "វិនសិន",
+     "alt_top1": "វីនសិន",
+     "changed": true,
+     "default_agrees": false,
+     "alt_agrees": true,
+     "both_in_lexicon": false
+    }
+   ]
+  },
+  "P_s0": {
+   "cases": 21,
+   "changed": 16,
+   "agreement_default": 9,
+   "agreement_alternative": 3,
+   "vowel_assessable_both_lexicon": 6,
+   "rows": [
+    {
+     "word": "armstrong",
+     "default": "AA1 R M S T R AA2 NG",
+     "alternative": "AA1 R M S T R AO2 NG",
+     "default_top1": "អាមស្តុង",
+     "alt_top1": "អាមស្ត",
+     "changed": true,
+     "default_agrees": false,
+     "alt_agrees": false,
+     "both_in_lexicon": false
+    },
+    {
+     "word": "avril",
+     "default": "AE1 V R IH0 L",
+     "alternative": "EY1 V R AH0 L",
+     "default_top1": "អាវែល",
+     "alt_top1": "អេវ្រែល",
+     "changed": true,
+     "default_agrees": false,
+     "alt_agrees": false,
+     "both_in_lexicon": false
+    },
+    {
+     "word": "buffet",
+     "default": "B AH1 F AH0 T",
+     "alternative": "B AH0 F EY1",
+     "default_top1": "បាហ្វេត",
+     "alt_top1": "បាហ្វេ",
+     "changed": true,
+     "default_agrees": true,
+     "alt_agrees": false,
+     "both_in_lexicon": false
+    },
+    {
+     "word": "corp",
+     "default": "K AO1 R P",
+     "alternative": "K AO1 R P ER0 EY1 SH AH0 N",
+     "default_top1": "កូប",
+     "alt_top1": "កូប៉ារ៉ាសែន",
+     "changed": true,
+     "default_agrees": true,
+     "alt_agrees": false,
+     "both_in_lexicon": false
+    },
+    {
+     "word": "ecology",
+     "default": "IH0 K AA1 L AH0 JH IY0",
+     "alternative": "IY0 K AA1 L AH0 JH IY0",
+     "default_top1": "អេកាឡាជី",
+     "alt_top1": "អេកាឡូហ្ស៊ី",
+     "changed": true,
+     "default_agrees": false,
+     "alt_agrees": false,
+     "both_in_lexicon": false
+    },
+    {
+     "word": "eleanor",
+     "default": "EH1 L AH0 N AO0 R",
+     "alternative": "EH1 L AH0 N ER0",
+     "default_top1": "អេឡែន",
+     "alt_top1": "អេឡែន",
+     "changed": false,
+     "default_agrees": false,
+     "alt_agrees": false,
+     "both_in_lexicon": true
+    },
+    {
+     "word": "elysee",
+     "default": "EH1 L IH0 S IY2",
+     "alternative": "EH1 L IY0 S IY2",
+     "default_top1": "អេលីហ្សេ",
+     "alt_top1": "អេលៀ",
+     "changed": true,
+     "default_agrees": true,
+     "alt_agrees": false,
+     "both_in_lexicon": false
+    },
+    {
+     "word": "friday",
+     "default": "F R AY1 D IY0",
+     "alternative": "F R AY1 D EY2",
+     "default_top1": "ហ្វ្រីឌី",
+     "alt_top1": "ហ្វ្រាយ",
+     "changed": true,
+     "default_agrees": false,
+     "alt_agrees": false,
+     "both_in_lexicon": false
+    },
+    {
+     "word": "ghadafi",
+     "default": "G AH0 D AE1 F IY0",
+     "alternative": "K AH0 D AA1 F IY0",
+     "default_top1": "ហ្គាដាហ្វី",
+     "alt_top1": "កាដាហ្វី",
+     "changed": true,
+     "default_agrees": true,
+     "alt_agrees": false,
+     "both_in_lexicon": true
+    },
+    {
+     "word": "ghadafi",
+     "default": "G AH0 D AE1 F IY0",
+     "alternative": "G AH0 D AA1 F IY0",
+     "default_top1": "ហ្គាដាហ្វី",
+     "alt_top1": "ហ្គាដាហ្វី",
+     "changed": false,
+     "default_agrees": true,
+     "alt_agrees": true,
+     "both_in_lexicon": true
+    },
+    {
+     "word": "iraq",
+     "default": "IH2 R AA1 K",
+     "alternative": "IY2 R AA1 K",
+     "default_top1": "អេរ៉ុក",
+     "alt_top1": "អេរ៉ុក",
+     "changed": false,
+     "default_agrees": false,
+     "alt_agrees": false,
+     "both_in_lexicon": false
+    },
+    {
+     "word": "iraq",
+     "default": "IH2 R AA1 K",
+     "alternative": "AY2 R AA1 K",
+     "default_top1": "អេរ៉ុក",
+     "alt_top1": "អេរ៉ុក",
+     "changed": false,
+     "default_agrees": false,
+     "alt_agrees": false,
+     "both_in_lexicon": false
+    },
+    {
+     "word": "jaimie",
+     "default": "JH EY1 M IY0",
+     "alternative": "HH AY1 M IY0",
+     "default_top1": "ជែមី",
+     "alt_top1": "ហេមី",
+     "changed": true,
+     "default_agrees": false,
+     "alt_agrees": false,
+     "both_in_lexicon": true
+    },
+    {
+     "word": "kamei",
+     "default": "K AE1 M IY0",
+     "alternative": "K AA2 M EY1",
+     "default_top1": "ខាមី",
+     "alt_top1": "កាមេ",
+     "changed": true,
+     "default_agrees": false,
+     "alt_agrees": true,
+     "both_in_lexicon": true
+    },
+    {
+     "word": "michel",
+     "default": "M IH0 SH EH1 L",
+     "alternative": "M IH1 CH AH0 L",
+     "default_top1": "មីសែល",
+     "alt_top1": "មីឆែល",
+     "changed": true,
+     "default_agrees": true,
+     "alt_agrees": false,
+     "both_in_lexicon": false
+    },
+    {
+     "word": "michel",
+     "default": "M IH0 SH EH1 L",
+     "alternative": "M AY1 K AH0 L",
+     "default_top1": "មីសែល",
+     "alt_top1": "មីខាល",
+     "changed": true,
+     "default_agrees": true,
+     "alt_agrees": false,
+     "both_in_lexicon": false
+    },
+    {
+     "word": "nitroglycerin",
+     "default": "N AY2 T R OW0 G L IH1 S ER0 AH0 N",
+     "alternative": "N AY2 T R AH0 G L IH1 S ER0 AH0 N",
+     "default_top1": "នីត្រូហ្គីន",
+     "alt_top1": "ណីត្រាហ្គីន",
+     "changed": true,
+     "default_agrees": false,
+     "alt_agrees": false,
+     "both_in_lexicon": false
+    },
+    {
+     "word": "nitroglycerin",
+     "default": "N AY2 T R OW0 G L IH1 S ER0 AH0 N",
+     "alternative": "N AY2 CH R AH0 G L IH1 S ER0 AH0 N",
+     "default_top1": "នីត្រូហ្គីន",
+     "alt_top1": "នីច្រូហ្គីន",
+     "changed": true,
+     "default_agrees": false,
+     "alt_agrees": false,
+     "both_in_lexicon": false
+    },
+    {
+     "word": "osteen",
+     "default": "OW0 S T IY1 N",
+     "alternative": "AA1 S T IY2 N",
+     "default_top1": "អូស្ទីន",
+     "alt_top1": "អូស្ទីន",
+     "changed": false,
+     "default_agrees": true,
+     "alt_agrees": true,
+     "both_in_lexicon": true
+    },
+    {
+     "word": "tube",
+     "default": "T UW1 B",
+     "alternative": "T Y UW1 B",
+     "default_top1": "តូប",
+     "alt_top1": "ទ្យូប",
+     "changed": true,
+     "default_agrees": false,
+     "alt_agrees": false,
+     "both_in_lexicon": false
+    },
+    {
+     "word": "vincent",
+     "default": "V IH1 N S AH0 N T",
+     "alternative": "V IH1 N S IH0 N T",
+     "default_top1": "វីនសិន",
+     "alt_top1": "វីនស៊ីន",
+     "changed": true,
+     "default_agrees": true,
+     "alt_agrees": false,
+     "both_in_lexicon": false
+    }
+   ]
+  }
+ }
+}

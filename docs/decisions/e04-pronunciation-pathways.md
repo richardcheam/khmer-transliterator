@@ -16,3 +16,5 @@ Routine decisions made while executing the owner's E04 instruction (2026-10-27).
 | 9 | 2026-10-27 | Sources verified on abstract pages; the CVPR and IEEE pages were unavailable, so their arXiv versions were used | Recorded in SOURCE_VERIFICATION.md |
 | 10 | 2026-10-27 | E03 vowel-count erratum added to its report; its data is unchanged | The 3,008 figure came from a stale build |
 | 11 | 2026-10-27 | Commits omit Claude attribution lines | Owner's standing rule |
+| 12 | 2026-10-27 | Added a post-hoc `retention` step (saved predictions only) with a seed-churn baseline | Question 2 asks whether GP keeps P's capability; one seed of P cannot separate that from retraining churn without a baseline |
+| 13 | 2026-10-27 | The example table in REPORT.md comes from the saved eval predictions (seed 0) | Plain explanation for the owner; no new predictions |

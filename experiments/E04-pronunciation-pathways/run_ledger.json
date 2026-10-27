@@ -1,0 +1,162 @@
+{
+ "schema_version": 1,
+ "experiment_id": "E04-pronunciation-pathways",
+ "phase": "done",
+ "created": "2026-10-27T10:53:32+00:00",
+ "registered_sha256": {
+  "experiments/E04-pronunciation-pathways/config.yaml": "90cfbdcea9cfb087a3bf055a14902860972daaf354737acad22926d398f68852",
+  "/home/richard/projects/khmer-transliterator/data/e03/manifest.json": "12dfdf5cf10ad58f087ccc5573b1bb6477e53a7759549af54aa8151862928830",
+  "/home/richard/projects/khmer-transliterator/data/e03/train.tsv": "8d9bf0c057b0bc3df758e9443ad7ec77a07358026a6a3f5c48aeec0a8b480986",
+  "/home/richard/projects/khmer-transliterator/data/e03/dev_references.jsonl": "87ce1bc6b7015b1368cd2a0157c8a36206cb24db8cb17ab67c215f77f1edb4db",
+  "/home/richard/projects/khmer-transliterator/data/e03/eval_references.jsonl": "56c472895346fafae0eb5b3ab28f6dc50112ec29f7fd0ced0b0107bd213c516d",
+  "/home/richard/projects/khmer-transliterator/data/e03/vocab.json": "bdf2fcd5b565e8b999114c88de05bc543694cea008e4674385f237c4f3a6bbe3"
+ },
+ "budget": {
+  "supervised_attempts_used": 7,
+  "supervised_attempts_cap": 8,
+  "p2g_jobs_used": 0,
+  "p2g_jobs_cap": 0,
+  "training_elapsed_hours": 2.0072574373086294,
+  "training_elapsed_hours_cap": 12.0
+ },
+ "jobs": [
+  {
+   "id": "G_s0",
+   "kind": "train",
+   "arm": "G",
+   "seed": 0,
+   "init": null,
+   "state": "completed",
+   "attempts": 1,
+   "pid": null,
+   "started": "2026-10-27T10:53:32+00:00",
+   "finished": "2026-10-27T11:08:11+00:00",
+   "elapsed_hours": 0.24396074268552992,
+   "log": "/home/richard/projects/khmer-transliterator/state/e04/logs/G_s0.log",
+   "reason": null
+  },
+  {
+   "id": "P_s0",
+   "kind": "train",
+   "arm": "P",
+   "seed": 0,
+   "init": null,
+   "state": "completed",
+   "attempts": 1,
+   "pid": null,
+   "started": "2026-10-27T11:08:11+00:00",
+   "finished": "2026-10-27T11:22:52+00:00",
+   "elapsed_hours": 0.24490504013167486,
+   "log": "/home/richard/projects/khmer-transliterator/state/e04/logs/P_s0.log",
+   "reason": null
+  },
+  {
+   "id": "GP_s0",
+   "kind": "train",
+   "arm": "GP",
+   "seed": 0,
+   "init": null,
+   "state": "completed",
+   "attempts": 1,
+   "pid": null,
+   "started": "2026-10-27T11:22:52+00:00",
+   "finished": "2026-10-27T11:43:48+00:00",
+   "elapsed_hours": 0.34880272342099083,
+   "log": "/home/richard/projects/khmer-transliterator/state/e04/logs/GP_s0.log",
+   "reason": null
+  },
+  {
+   "id": "G_s1",
+   "kind": "train",
+   "arm": "G",
+   "seed": 1,
+   "init": null,
+   "state": "completed",
+   "attempts": 1,
+   "pid": null,
+   "started": "2026-10-27T11:44:11+00:00",
+   "finished": "2026-10-27T11:58:36+00:00",
+   "elapsed_hours": 0.24028869648774465,
+   "log": "/home/richard/projects/khmer-transliterator/state/e04/logs/G_s1.log",
+   "reason": null
+  },
+  {
+   "id": "GP_s1",
+   "kind": "train",
+   "arm": "GP",
+   "seed": 1,
+   "init": null,
+   "state": "completed",
+   "attempts": 1,
+   "pid": null,
+   "started": "2026-10-27T11:58:36+00:00",
+   "finished": "2026-10-27T12:19:12+00:00",
+   "elapsed_hours": 0.34336437231964534,
+   "log": "/home/richard/projects/khmer-transliterator/state/e04/logs/GP_s1.log",
+   "reason": null
+  },
+  {
+   "id": "G_s2",
+   "kind": "train",
+   "arm": "G",
+   "seed": 2,
+   "init": null,
+   "state": "completed",
+   "attempts": 1,
+   "pid": null,
+   "started": "2026-10-27T12:19:12+00:00",
+   "finished": "2026-10-27T12:33:41+00:00",
+   "elapsed_hours": 0.24138289133707683,
+   "log": "/home/richard/projects/khmer-transliterator/state/e04/logs/G_s2.log",
+   "reason": null
+  },
+  {
+   "id": "GP_s2",
+   "kind": "train",
+   "arm": "GP",
+   "seed": 2,
+   "init": null,
+   "state": "completed",
+   "attempts": 1,
+   "pid": null,
+   "started": "2026-10-27T12:33:41+00:00",
+   "finished": "2026-10-27T12:54:22+00:00",
+   "elapsed_hours": 0.3445529709259669,
+   "log": "/home/richard/projects/khmer-transliterator/state/e04/logs/GP_s2.log",
+   "reason": null
+  }
+ ],
+ "branch": {
+  "branch": "B",
+  "useful_signal": true,
+  "gp_strongest": true,
+  "union_gain_pp": 11.799999999999999,
+  "p_macro_exceeds_g": false,
+  "macro": {
+   "G": 0.438,
+   "P": 0.388,
+   "GP": 0.462
+  }
+ },
+ "combination": null,
+ "selection": {
+  "dev_macro_seed0": {
+   "G": 0.438,
+   "P": 0.388,
+   "GP": 0.462
+  },
+  "margin_pp": 2.0,
+  "passing": [
+   "GP"
+  ],
+  "candidate": "GP",
+  "at": "2026-10-27T11:44:11+00:00"
+ },
+ "blockers": [],
+ "final_eval": {
+  "exit": 0,
+  "at": "2026-10-27T12:54:54+00:00"
+ },
+ "last_updated": "2026-10-27T12:54:54+00:00",
+ "next_command": "/home/richard/projects/khmer-transliterator/.venv/bin/python scripts/e04_run.py --config experiments/E04-pronunciation-pathways/config.yaml --resume"
+}
