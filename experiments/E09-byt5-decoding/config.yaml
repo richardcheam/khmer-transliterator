@@ -1,0 +1,17 @@
+experiment: E09-byt5-decoding
+description: inference-only audit of ByT5 decoding (greedy vs beam) on the E07 and E08 checkpoints; dev selection, then exploratory historical eval
+base: {model: google/byt5-small, revision: 68377bdc18a2ffec8a0533fef03b1c513a4dd49d, local: models/e06/byt5-small, downloads: none}
+environment: {pins: research/requirements-byt5.txt, lock: research/requirements-byt5.lock.txt}
+models:
+  e07: models/e07/full/best.pt (E07 recipe, update 1200; sha256 in registration.json)
+  e08: models/e08/rs_s0/best.pt (E07 recipe on E08 R+S, update 3000; sha256 in registration.json)
+tokenizer: {scheme: "UTF-8 byte + 3", pad: 0, eos: 1, unk: 2, decoder_start: 0, input: lower-cased word + EOS}
+data:
+  dev: data/e03/dev_references.jsonl (primary items; reproduction, comparison, selection)
+  historical_eval: data/e03/eval_references.jsonl (primary items; scored only after selection is committed)
+settings: scripts/e09.py SETTINGS (greedy; beam 2/4/8 registered = lp 0, early_stopping True; beam 2/4/8 canonical = early_stopping "never"); max_new_tokens 121; do_sample false; no logits processors
+top1: first non-empty, well-decoded candidate (E07/E08 convention); raw rank-1 status reported
+follow_up: at most one beam-4 length_penalty 1.0 setting, only under the PLAN.md §3 trigger
+selection: dev top-1 macro, then lower dev mean CER, then lower generation seconds
+bootstrap: {unit: family, n: 10000, seed: 20261027}
+limits: scripts/e09.py LIMITS (6 threads; 4 active hours; RSS ≤ 5 GiB; ≥ 1.5 GiB available; one model loaded)
