@@ -1,0 +1,17 @@
+{
+ "frozen": "2026-10-28T18:28:34+00:00",
+ "sha256": {
+  "e07_beam2_can_eval.jsonl": "c3d2027d28849e4960c3160e6aaded526951e882afac2cf967ce644e8a080478",
+  "e08_beam8_can_eval.jsonl": "33e48fe9eb2dc3502f0423909d5c559dcada495b2e45dcad7a46da665c6c243b"
+ },
+ "reused_saved": {
+  "e07": {
+   "beam4_reg": "experiments/E07-byt5-diagnosis/predictions/byt5_e07_eval.jsonl",
+   "greedy": "experiments/E07-byt5-diagnosis/predictions/byt5_e07_eval.jsonl"
+  },
+  "e08": {
+   "beam4_reg": "experiments/E08-data-expansion/predictions/byt5_rs_s0_eval.jsonl",
+   "greedy": "experiments/E08-data-expansion/predictions/byt5_rs_s0_eval.jsonl"
+  }
+ }
+}

@@ -241,3 +241,23 @@ there (`git -C ../pocket-tts-khmer show archive/checkpoints-p0-p6:state/DECISION
 - **Unchanged:** serving, product default; no distillation, merge, release or publication; model local only.
 - Report: `experiments/E08-data-expansion/REPORT.md` (update 3).
 
+## D187 — E09: ByT5 decoding audit; greedy's advantage was a beam-search configuration defect (2026-10-28)
+- **Reproduced exactly:** registered greedy and beam-4 match the saved E07/E08 dev predictions.
+- **Cause:** the registered beam call used `early_stopping=True`. With byte targets, junk hypotheses (EOS at once,
+  or one letter) finish first and stop the search. Beam top-1 was then often less probable than greedy and
+  byte-shorter, often without ៉ / ៊.
+  - No implementation defect.
+  - Regression test, then the fix `e07.gen(early_stopping=…)`, with the registered defaults kept.
+- **Dev selection:** E07 beam-2 canonical, E08 beam-8 canonical; ≈ greedy (+0.4 / +1.2 points).
+  - No length-penalty problem, so the follow-up was not run.
+- **Historical eval** (repeated, mined, exploratory):
+  - vs registered beam-4: E07 +2.3 [−0.9, +5.4] and E08 **+5.9 [+1.4, +10.4]**;
+  - vs greedy: −0.5 and +0.9 (noise).
+  - E08 − E07 matched: greedy +2.6 [−2.4, +7.5], selected +3.9 [−1.1, +9.0]. The earlier +0.3 was depressed by the
+    defect.
+- **Practical rule:** use greedy, or canonical beam search when several candidates are needed. Never use
+  `early_stopping=True` for byte-level beams.
+- **Unchanged:** phonetic quality is not measured; no seed variance; D186's pre-registered verdict stands as
+  recorded; no serving, training or release.
+- Report: `experiments/E09-byt5-decoding/REPORT.md`.
+

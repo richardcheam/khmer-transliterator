@@ -20,3 +20,7 @@
 {"time": "2026-10-28T18:24:51+00:00", "event": "step", "step": "diagnose", "seconds": 22.4}
 {"time": "2026-10-28T18:25:40+00:00", "event": "step", "step": "diagnose", "seconds": 22.2}
 {"time": "2026-10-28T18:25:52+00:00", "event": "step", "step": "select", "seconds": 0.1}
+{"time": "2026-10-28T18:27:25+00:00", "event": "generate", "model": "e07", "setting": "beam2_can", "split": "eval", "items": 245, "seconds": 30.1, "setting_hash": "1f6eeac0ae4f25f216cc30e23ae5cf085443c85bf8db56849cc20e9a7a02bfce", "checkpoint_sha256": "24c9d2001693bfba792b543002b98992f3aa949b2908b3b1a6cf2ef5266757e1", "data_hash": "c2f7c0fd35f2522b31659283dfb3289e5c90bbab3782c3e328902a5ee9e7c319", "file": "e07_beam2_can_eval_6e641d55d836eb96.jsonl", "peak_rss_mb": 1946}
+{"time": "2026-10-28T18:28:34+00:00", "event": "generate", "model": "e08", "setting": "beam8_can", "split": "eval", "items": 245, "seconds": 65.7, "setting_hash": "d995736be16f5e7d132fd3fd56378cc630bce0ee461b1c7b942a928c858c2033", "checkpoint_sha256": "d5da8c29129636803c3688d71f4133fffa8a7ec4142010fe9d5ec85218058d2c", "data_hash": "c2f7c0fd35f2522b31659283dfb3289e5c90bbab3782c3e328902a5ee9e7c319", "file": "e08_beam8_can_eval_fd7f94bd0f8260b5.jsonl", "peak_rss_mb": 1960}
+{"time": "2026-10-28T18:28:34+00:00", "event": "step", "step": "eval", "seconds": 104.7}
+{"time": "2026-10-28T18:28:37+00:00", "event": "step", "step": "analyse", "seconds": 0.2}
