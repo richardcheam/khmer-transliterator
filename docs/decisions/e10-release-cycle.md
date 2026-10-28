@@ -12,3 +12,4 @@ Results summary: `docs/DECISIONS.md` (D188).
 | 6 | 2026-10-28 | `e07.fit` gains an optional `order` hook; the default is unchanged | Word-level sampling without changing E07/E08 reproduction |
 | 7 | 2026-10-28 | Commits omit Claude attribution lines | Owner's standing rule |
 | 8 | 2026-10-28 | Memory guard relaxed during A_s0 (RSS cap 5 → 6.5 GiB; minimum available 1.5 → 0.4 GiB) after two clean resumable pauses (updates 992, 1,075) | Owner: "i am willing to use all resource". The guard remains a last-resort stop before the OOM killer; recipe, data and gate unchanged; same attempt |
+| 9 | 2026-10-29 | CPU threads 6 → 12 for runs after A_s0 (A_s0 finishes at 6); a third clean pause at update 1,399 (other programs left < 0.4 GiB free; the run itself used 5.2 GB) | Owner: "use 12 threads for the next runs". Seed-1 pair (A_s1, E08_s1) both at 12, so their comparison stays matched; A_s0/E08 runtimes are reported at 6 |

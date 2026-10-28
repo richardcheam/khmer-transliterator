@@ -54,7 +54,8 @@ MODELS = ROOT / "models" / "e10"
 GiB = 1024 ** 3
 # Memory guard relaxed by the owner on 2026-10-28 during A_s0 ("i am willing to use all resource"): was RSS 5 GiB and
 # 1.5 GiB available; now only a last-resort stop before the kernel's OOM killer (resumable from last.pt)
-LIMITS = {"threads": 6, "rss_max_bytes": int(6.5 * GiB), "min_available_bytes": int(0.4 * GiB), "pressure_checks": 3,
+# Threads 6 → 12 from the run after A_s0 (owner, 2026-10-29); A_s0 itself finishes at 6
+LIMITS = {"threads": 12, "rss_max_bytes": int(6.5 * GiB), "min_available_bytes": int(0.4 * GiB), "pressure_checks": 3,
           "full_runs": 4, "full_max_updates": 3000, "full_max_hours": 6.0, "training_hours_total": 24.0,
           "wall_hours_total": 1e9, "inference_hours_total": 4.0}
 E08_DIR = ROOT / "models" / "e08" / "rs_s0"
@@ -794,7 +795,7 @@ def main() -> int:
     ap.add_argument("--judgments")
     a = ap.parse_args()
     import torch
-    torch.set_num_threads(LIMITS["threads"])
+    torch.set_num_threads(6 if a.run == "A_s0" else LIMITS["threads"])     # A_s0 started at 6 and finishes at 6
     kw = {k: v for k, v in (("run", a.run), ("judgments", a.judgments)) if v is not None}
     res = STEPS[a.step](**kw)
     print(json.dumps(res, ensure_ascii=False, default=str)[:4000])

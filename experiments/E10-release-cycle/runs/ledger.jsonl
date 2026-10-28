@@ -6,3 +6,4 @@
 {"time": "2026-10-28T18:55:28+00:00", "event": "start", "run": "A_s0", "kind": "full", "cfg_hash": "fbab036a224f2192c843b09a32f3d14b353dbeb8abfc0175df036ffe549cd32b", "data_hash": "901b59f2b8938cc657a7ce4305586e025f6b62dce5f0b56039225c9fee5b0fc0", "t": 1793213728.250483}
 {"time": "2026-10-28T20:35:58+00:00", "event": "segment", "run": "A_s0", "kind": "full", "hours": 1.6732, "updates_to": 992, "stop": "memory_pressure", "t": 1793219758.9898005}
 {"time": "2026-10-28T21:48:33+00:00", "event": "segment", "run": "A_s0", "kind": "full", "hours": 0.1399, "updates_to": 1075, "stop": "memory_pressure", "t": 1793224113.9371514}
+{"time": "2026-10-28T22:35:21+00:00", "event": "segment", "run": "A_s0", "kind": "full", "hours": 0.5427, "updates_to": 1399, "stop": "memory_pressure", "t": 1793226921.3317752}
