@@ -1,0 +1,339 @@
+{
+ "tokens": 7964,
+ "candidate_pairs": 2786,
+ "counts": {
+  "excluded:exact_pair_already_present": 615,
+  "recovered": 1222,
+  "uncertain": 288,
+  "excluded:protected_family": 506,
+  "excluded:target_in_dev_eval_or_heldout": 150,
+  "error_or_translation": 5
+ },
+ "eligible": {
+  "pairs": 1222,
+  "words": 1097,
+  "new_words_not_in_control": 947
+ },
+ "audit_sample": [
+  {
+   "word": "shane",
+   "target": "សាន់",
+   "sentences": 1,
+   "acceptance_rule": [
+    "screen_compatible_alternative"
+   ]
+  },
+  {
+   "word": "jurassic",
+   "target": "ជូរាស៊ីក",
+   "sentences": 1,
+   "acceptance_rule": [
+    "screen_compatible_alternative"
+   ]
+  },
+  {
+   "word": "rabin",
+   "target": "រ៉ាប៊ីន",
+   "sentences": 8,
+   "acceptance_rule": [
+    "screen_compatible_alternative"
+   ]
+  },
+  {
+   "word": "tani",
+   "target": "តានី",
+   "sentences": 1,
+   "acceptance_rule": [
+    "screen_compatible_alternative"
+   ]
+  },
+  {
+   "word": "trident",
+   "target": "ទ្រីដិន",
+   "sentences": 6,
+   "acceptance_rule": [
+    "screen_compatible_alternative"
+   ]
+  },
+  {
+   "word": "dutt",
+   "target": "ឌុត",
+   "sentences": 1,
+   "acceptance_rule": [
+    "screen_compatible_alternative"
+   ]
+  },
+  {
+   "word": "holbrooke",
+   "target": "ហូលប្រូក",
+   "sentences": 2,
+   "acceptance_rule": [
+    "screen_compatible_alternative"
+   ]
+  },
+  {
+   "word": "victoria",
+   "target": "វីកតូរី",
+   "sentences": 1,
+   "acceptance_rule": [
+    "screen_compatible_alternative"
+   ]
+  },
+  {
+   "word": "rehman",
+   "target": "រ៉េម៉ាន់",
+   "sentences": 1,
+   "acceptance_rule": [
+    "screen_compatible_alternative"
+   ]
+  },
+  {
+   "word": "citro",
+   "target": "ស៊ីត្រូ",
+   "sentences": 1,
+   "acceptance_rule": [
+    "screen_compatible_alternative"
+   ]
+  },
+  {
+   "word": "toledo",
+   "target": "តូឡេដូ",
+   "sentences": 1,
+   "acceptance_rule": [
+    "screen_compatible_alternative"
+   ]
+  },
+  {
+   "word": "tweed",
+   "target": "ទ្វីដ",
+   "sentences": 1,
+   "acceptance_rule": [
+    "screen_compatible_alternative"
+   ]
+  },
+  {
+   "word": "everton",
+   "target": "អេវើតុន",
+   "sentences": 1,
+   "acceptance_rule": [
+    "screen_compatible_alternative"
+   ]
+  },
+  {
+   "word": "bermuda",
+   "target": "ប៊ើមូដា",
+   "sentences": 1,
+   "acceptance_rule": [
+    "y_unwritten"
+   ]
+  },
+  {
+   "word": "gil",
+   "target": "គីល",
+   "sentences": 2,
+   "acceptance_rule": [
+    "screen_compatible_alternative"
+   ]
+  },
+  {
+   "word": "felt",
+   "target": "ហ្វេល",
+   "sentences": 1,
+   "acceptance_rule": [
+    "screen_compatible_alternative"
+   ]
+  },
+  {
+   "word": "fujian",
+   "target": "ហ្វូជាន",
+   "sentences": 1,
+   "acceptance_rule": [
+    "screen_compatible_alternative"
+   ]
+  },
+  {
+   "word": "patrick",
+   "target": "ផាទ្រីក",
+   "sentences": 3,
+   "acceptance_rule": [
+    "screen_compatible_alternative"
+   ]
+  },
+  {
+   "word": "khalil",
+   "target": "កាលីល",
+   "sentences": 1,
+   "acceptance_rule": [
+    "screen_compatible_alternative"
+   ]
+  },
+  {
+   "word": "brazil",
+   "target": "ប្រេហ្ស៊ីល",
+   "sentences": 1,
+   "acceptance_rule": [
+    "screen_compatible_alternative"
+   ]
+  },
+  {
+   "word": "alder",
+   "target": "អាល់ឌឺ",
+   "sentences": 1,
+   "acceptance_rule": [
+    "screen_compatible_alternative"
+   ]
+  },
+  {
+   "word": "higgins",
+   "target": "ហ៊ីហ្គីន",
+   "sentences": 1,
+   "acceptance_rule": [
+    "screen_compatible_alternative"
+   ]
+  },
+  {
+   "word": "delp",
+   "target": "ឌែល",
+   "sentences": 2,
+   "acceptance_rule": [
+    "screen_compatible_alternative"
+   ]
+  },
+  {
+   "word": "paul",
+   "target": "ប៉ូល",
+   "sentences": 32,
+   "acceptance_rule": [
+    "screen_compatible_alternative"
+   ]
+  },
+  {
+   "word": "horan",
+   "target": "ហូរ៉ាន",
+   "sentences": 2,
+   "acceptance_rule": [
+    "screen_compatible_alternative"
+   ]
+  },
+  {
+   "word": "game",
+   "target": "ហ្គែម",
+   "sentences": 1,
+   "acceptance_rule": [
+    "screen_compatible_alternative"
+   ]
+  },
+  {
+   "word": "prague",
+   "target": "ប្រាហ្គូ",
+   "sentences": 1,
+   "acceptance_rule": [
+    "screen_compatible_alternative"
+   ]
+  },
+  {
+   "word": "avila",
+   "target": "អាវីឡា",
+   "sentences": 5,
+   "acceptance_rule": [
+    "screen_compatible_alternative"
+   ]
+  },
+  {
+   "word": "jazeera",
+   "target": "ជេសេរ៉ា",
+   "sentences": 1,
+   "acceptance_rule": [
+    "screen_compatible_alternative"
+   ]
+  },
+  {
+   "word": "halle",
+   "target": "ហាឡេ",
+   "sentences": 1,
+   "acceptance_rule": [
+    "screen_compatible_alternative"
+   ]
+  },
+  {
+   "word": "marcell",
+   "target": "ម៉ាសេល",
+   "sentences": 1,
+   "acceptance_rule": [
+    "screen_compatible_alternative"
+   ]
+  },
+  {
+   "word": "calvert",
+   "target": "ខាលវើត",
+   "sentences": 1,
+   "acceptance_rule": [
+    "screen_compatible_alternative"
+   ]
+  },
+  {
+   "word": "weekly",
+   "target": "វីកលី",
+   "sentences": 1,
+   "acceptance_rule": [
+    "screen_compatible_alternative"
+   ]
+  },
+  {
+   "word": "abdo",
+   "target": "អាប់ដូ",
+   "sentences": 1,
+   "acceptance_rule": [
+    "screen_compatible_alternative"
+   ]
+  },
+  {
+   "word": "wills",
+   "target": "វីល",
+   "sentences": 1,
+   "acceptance_rule": [
+    "screen_compatible_alternative"
+   ]
+  },
+  {
+   "word": "markin",
+   "target": "ម៉ាគីន",
+   "sentences": 2,
+   "acceptance_rule": [
+    "screen_compatible_alternative"
+   ]
+  },
+  {
+   "word": "kimberley",
+   "target": "ឃីមបឺលី",
+   "sentences": 1,
+   "acceptance_rule": [
+    "screen_compatible_alternative"
+   ]
+  },
+  {
+   "word": "durban",
+   "target": "ឌូបាន",
+   "sentences": 1,
+   "acceptance_rule": [
+    "screen_compatible_alternative"
+   ]
+  },
+  {
+   "word": "afar",
+   "target": "អាហ្វា",
+   "sentences": 1,
+   "acceptance_rule": [
+    "screen_compatible_alternative"
+   ]
+  },
+  {
+   "word": "riley",
+   "target": "រីលេ",
+   "sentences": 1,
+   "acceptance_rule": [
+    "screen_compatible_alternative"
+   ]
+  }
+ ]
+}

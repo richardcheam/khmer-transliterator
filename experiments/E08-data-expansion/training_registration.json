@@ -1,0 +1,32 @@
+{
+ "registered": "2026-10-28T09:41:52+00:00",
+ "status": "plan registered, not executed",
+ "plan": "experiments/E08-data-expansion/TRAINING_PLAN.md",
+ "plan_sha256": "df489ae5254441e329bd28af99828aef931a9ac3a6e87f354182c31b63c21a16",
+ "recipe": "experiments/E07-byt5-diagnosis/full_recipe.json",
+ "recipe_sha256": "4df0102426ca82e7d5550c6e0655ce5f0e1fc9c83b848056d90bbde4acdc5c1d",
+ "arms": {
+  "C": {
+   "sha256": "6ee65992fa6a04f676c7b3e3f9c9e5b104c8d9136f667d64f83baff8c7435249",
+   "optimisation_rows": 2255,
+   "optimisation_words": 1883
+  },
+  "R": {
+   "sha256": "d00706cf1e16ccb81f9d367301d9a3fa637a46f79e2e8c8f0b2e501b57f8ec88",
+   "optimisation_rows": 4764,
+   "optimisation_words": 3585
+  }
+ },
+ "arm_RS": "frozen later by scripts/e08.py freeze",
+ "sampler": "word-level: each epoch visits every optimisation word once (seeded order); one spelling drawn uniformly per visit; equal provenance weights",
+ "selection": "dev greedy top-1 macro, then lower dev CER, then earlier; checkpoints 600/1200/1800/2400/3000",
+ "evaluation": "E03 eval primary; beam-4 top-1, greedy top-1, CER, top-4 oracle (beam 4), validity, diversity; paired family bootstrap 10000 seed 20261027",
+ "replication": "seed 0 for C,R,RS; if a contrast's dev top-1 diff >= +3.0 pp, seeds 1-2 for both arms of it; max 7 runs; claims only from 3-seed mean with eval CI > 0",
+ "limits": {
+  "threads": 6,
+  "rss_gib": 5,
+  "min_available_gib": 1.5,
+  "hours_per_run": 6,
+  "max_runs": 7
+ }
+}

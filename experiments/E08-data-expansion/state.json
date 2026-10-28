@@ -1,0 +1,19 @@
+{
+ "state": "awaiting_ai_mode_responses",
+ "updated": "2026-10-28T09:40:19+00:00",
+ "detail": {
+  "save_responses_to": "data/e08/ai_mode_responses",
+  "files": [
+   "batch_01.md",
+   "batch_02.md",
+   "batch_03.md",
+   "batch_04.md",
+   "batch_05.md",
+   "batch_06.md",
+   "batch_07.md",
+   "batch_08.md",
+   "batch_09.md",
+   "batch_10.md"
+  ]
+ }
+}

@@ -210,3 +210,21 @@ there (`git -C ../pocket-tts-khmer show archive/checkpoints-p0-p6:state/DECISION
   - no distillation;
   - the wall-time cap was exceeded only by post-training analysis after an idle session (reported).
 - Report: `experiments/E07-byt5-diagnosis/REPORT.md`.
+
+## D185 — E08: additional training data for ByT5-small, prepared (2026-10-28)
+- **Policy:** frozen before any example was accepted (English reading specified; no translations; no silent
+  switch to a name's original-language reading; alternatives allowed; uncertain → quarantine).
+- **Recovered:** 1,292 E03-excluded mined pairs, by rules for documented screen weaknesses:
+  - coda ស = h, y glides, doubled letters, final ិច, unwritten y;
+  - screen-compatible noise-filtered forms.
+- **Attested:** 1,217 pairs from the ALT Parallel Corpus (CC BY 4.0): translator spellings found verbatim and then
+  screened.
+- **Quarantined:** 1,981 uncertain and 114 error rows, kept apart.
+- **Agent inspection** (not review): about 80–85% plausible; vowel errors pass the consonant-only screen.
+- **Sources not used:** ECCC (signed form needed), Khmerologie (no reuse terms), Google lexicon (auxiliary only).
+- **Synthetic:** 200 fresh, unprotected inputs frozen, with 10 Google AI Mode prompts and a strict importer.
+  State `awaiting_ai_mode_responses`.
+- **Phase-B plan registered, not run:** C vs R (4,764 rows) vs R+S on the E07 recipe, with a word-level sampler and
+  bounded 3-seed replication.
+- **Unchanged:** no training, serving or product-default change.
+- Report: `experiments/E08-data-expansion/REPORT.md`.

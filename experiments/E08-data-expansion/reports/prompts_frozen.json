@@ -1,0 +1,42 @@
+{
+ "batch_01.md": {
+  "items": 20,
+  "sha256": "c3898a96813ffd0245b7ea5ee43080b9edc6e9e8e5b8714b73a8d9d05ebcebe2"
+ },
+ "batch_02.md": {
+  "items": 20,
+  "sha256": "b8c94d60be570141e8b11430b72f602b14697b4fd5e595417fdfcae943b106dc"
+ },
+ "batch_03.md": {
+  "items": 20,
+  "sha256": "2e03b8c1279ea4b237188d808326be75356a1b3e3e8f0bf6423ac7356237e310"
+ },
+ "batch_04.md": {
+  "items": 20,
+  "sha256": "98257a4764c2768254a6c8ed1e1634df70b5e4e9b4166ad1ecd87c8664985595"
+ },
+ "batch_05.md": {
+  "items": 20,
+  "sha256": "7da20c319ef4343b9fef49c9051876c5f6e60c7e94f6d1162d2e16f0fa7cee74"
+ },
+ "batch_06.md": {
+  "items": 20,
+  "sha256": "68e79c25a79801ef032af28ef92262d7641891ca4ea21a80af92f45c3f7d74ec"
+ },
+ "batch_07.md": {
+  "items": 20,
+  "sha256": "70b0c3bf104b06faa779e0bec71f3f335f2169e00eb4e088148193e960abd617"
+ },
+ "batch_08.md": {
+  "items": 20,
+  "sha256": "65b1b46090dd3f97148204b3ced281e5f0d8dd8d468f9f4c1c2eb9d313612b5d"
+ },
+ "batch_09.md": {
+  "items": 20,
+  "sha256": "e884e1361153ef8501881b01d68c0499d18803278ac7a93c97fa5183801827e3"
+ },
+ "batch_10.md": {
+  "items": 20,
+  "sha256": "fedb745a983f11c7dfe9d12afa4c9aa1de6592174ba897bfedf45ea3b1b543f6"
+ }
+}
