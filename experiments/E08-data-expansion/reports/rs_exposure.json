@@ -1,0 +1,68 @@
+{
+ "arm_sha256": "03a4988f84cdc97aff6b8356e019d1076c8d09a1ecec4004a2a909ed3e229b0f",
+ "optimisation_rows": 5148,
+ "rows_by_provenance": {
+  "control": 2255,
+  "recovered": 1292,
+  "attested_alt": 1217,
+  "google_ai_mode_synthetic": 384
+ },
+ "words": 3778,
+ "words_by_provenance": {
+  "attested_alt": 1092,
+  "control": 1883,
+  "google_ai_mode_synthetic": 193,
+  "recovered": 1098
+ },
+ "synthetic_note": "384 synthetic rows = 193 words (preferred + up to two alternatives), not 384 words",
+ "exact_duplicate_pairs": 0,
+ "protected_family_rows_added": 0,
+ "control_words_related_to_e08_protected_set": {
+  "words": 35,
+  "examples": [
+   "babar",
+   "baby",
+   "banner",
+   "bin",
+   "cheng",
+   "dai",
+   "daily",
+   "gram",
+   "hmong",
+   "hok"
+  ],
+  "note": "E03's immutable baseline; E08's protected set is wider than E03's (stem relatedness to E06 pool, review queues, panels); control rows are kept unchanged, as registered"
+ },
+ "rejected_by_byte_limits": {},
+ "alternatives": {
+  "words_with_several_spellings": 1031,
+  "rows_in_those_words": 2401,
+  "max_spellings_per_word": 8,
+  "effect": "row-level sampling (E07 convention): a word with k spellings is drawn k times per epoch"
+ },
+ "sampling": "row-level, seeded permutation per epoch (e07.fit); no source oversampling",
+ "draws_total": 96000,
+ "epochs": 18.65,
+ "draws_by_provenance": {
+  "attested_alt": {
+   "draws": 22719,
+   "share": 0.2367
+  },
+  "control": {
+   "draws": 42049,
+   "share": 0.438
+  },
+  "google_ai_mode_synthetic": {
+   "draws": 7148,
+   "share": 0.0745
+  },
+  "recovered": {
+   "draws": 24084,
+   "share": 0.2509
+  }
+ },
+ "e07_reference": {
+  "rows": 2255,
+  "epochs": 42.57
+ }
+}

@@ -34,5 +34,21 @@
   "min_available_gib": 1.5,
   "hours_per_run": 6,
   "max_runs": 7
- }
+ },
+ "amendments": [
+  {
+   "n": 1,
+   "date": "2026-10-28T10:35:53+00:00",
+   "file": "experiments/E08-data-expansion/TRAINING_AMENDMENT_1.md",
+   "sha256": "190fb7ef1d3d0b1fc494d072090b49f199fb2a5e555356d1a30ef592bc7949b2",
+   "replaces": "three-arm comparison",
+   "run": "rs_s0 (arm RS, E07 recipe, seed 0, row-level sampling)",
+   "baseline": "saved E07 checkpoint and predictions",
+   "code_sha256": {
+    "scripts/e08_train.py": "7512c09d751527db142a9529029afd6ccf2a0f074801dcfda3fe7b0a13d9c972",
+    "scripts/e07.py": "e32730dacf0f936a3df6792bd7713630174a98668e84578ac016cc0c38df71f1"
+   },
+   "exposure": "experiments/E08-data-expansion/reports/rs_exposure.json"
+  }
+ ]
 }
