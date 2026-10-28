@@ -52,7 +52,9 @@ LEDGER = EXP / "runs" / "ledger.jsonl"
 DATA = ROOT / "data" / "e10"
 MODELS = ROOT / "models" / "e10"
 GiB = 1024 ** 3
-LIMITS = {"threads": 6, "rss_max_bytes": 5 * GiB, "min_available_bytes": int(1.5 * GiB), "pressure_checks": 3,
+# Memory guard relaxed by the owner on 2026-10-28 during A_s0 ("i am willing to use all resource"): was RSS 5 GiB and
+# 1.5 GiB available; now only a last-resort stop before the kernel's OOM killer (resumable from last.pt)
+LIMITS = {"threads": 6, "rss_max_bytes": int(6.5 * GiB), "min_available_bytes": int(0.4 * GiB), "pressure_checks": 3,
           "full_runs": 4, "full_max_updates": 3000, "full_max_hours": 6.0, "training_hours_total": 24.0,
           "wall_hours_total": 1e9, "inference_hours_total": 4.0}
 E08_DIR = ROOT / "models" / "e08" / "rs_s0"

@@ -11,3 +11,4 @@ Results summary: `docs/DECISIONS.md` (D188).
 | 5 | 2026-10-28 | One candidate recipe (A: word-level sampling + LR 2e-3), not two | A second recipe would vary A's components (an ablation); capacity is not indicated |
 | 6 | 2026-10-28 | `e07.fit` gains an optional `order` hook; the default is unchanged | Word-level sampling without changing E07/E08 reproduction |
 | 7 | 2026-10-28 | Commits omit Claude attribution lines | Owner's standing rule |
+| 8 | 2026-10-28 | Memory guard relaxed during A_s0 (RSS cap 5 → 6.5 GiB; minimum available 1.5 → 0.4 GiB) after two clean resumable pauses (updates 992, 1,075) | Owner: "i am willing to use all resource". The guard remains a last-resort stop before the OOM killer; recipe, data and gate unchanged; same attempt |
