@@ -835,7 +835,13 @@ def import_responses(directory: Path) -> dict:
     regenerate = sorted([i for i in quarantine if quarantine[i]["reason"] != "marked_uncertain"] + missing)
     write_jsonl(IMPORTED / "accepted.jsonl", [accepted[i] for i in sorted(accepted)])
     write_jsonl(IMPORTED / "quarantine.jsonl", [quarantine[i] for i in sorted(quarantine)])
+    additional = import_additional(directory)
+    if additional:                                # it may fill structural quarantines only
+        accepted = {r["id"]: r for r in read_jsonl(IMPORTED / "accepted.jsonl")}
+        quarantine = {r["id"]: r for r in read_jsonl(IMPORTED / "quarantine.jsonl")}
+        regenerate = sorted([i for i in quarantine if quarantine[i]["reason"] != "marked_uncertain"] + missing)
     summary = {"imported_at": e06.now(), "files": per_file, "manifest_items": len(manifest),
+               "additional_round": additional,
                "accepted": len(accepted), "accepted_alternatives": sum(len(r["alternatives"]) for r in accepted.values()),
                "quarantined": dict(Counter(q["reason"] for q in quarantine.values())), "missing": len(missing),
                "needs_regeneration": len(regenerate), "source": SOURCE,
@@ -849,10 +855,71 @@ def import_responses(directory: Path) -> dict:
     return summary
 
 
+ADDITIONAL_ID = re.compile(r"^(e08s\d{3})[a-z]$")
+
+
+def import_additional(directory: Path) -> dict | None:
+    """The owner's extra AI Mode round (`additional*.md`, ids `e08sNNN` + a letter). It was not produced by a
+    frozen prompt, so:
+    - it never replaces or extends an accepted record (no extra alternatives);
+    - it may fill a record quarantined for a *structural* reason (non-Khmer letters, a shifted or missing row),
+      labelled `generation: additional`, provided its own row passes the same checks;
+    - uncertain records stay quarantined;
+    - agreement with the first round is reported as self-consistency, which is not validation.
+    """
+    files = sorted(p for p in Path(directory).glob("additional*") if p.is_file() and p.read_text().strip())
+    if not files:
+        return None
+    manifest = {r["id"]: r for r in load_manifest()}
+    acc = {r["id"]: r for r in read_jsonl(IMPORTED / "accepted.jsonl")}
+    quar = {r["id"]: r for r in read_jsonl(IMPORTED / "quarantine.jsonl")}
+    rows, stats = [], Counter()
+    for p in files:
+        shutil.copyfile(p, IMPORTED / "raw" / p.name)
+        seen = defaultdict(list)
+        for line in p.read_text(encoding="utf-8").splitlines():
+            cells = split_row(line)
+            m = ADDITIONAL_ID.match(clean_cell(cells[0]).lower()) if cells else None
+            if m:
+                seen[m.group(1)].append(cells)
+        for base, cs in seen.items():
+            if base not in manifest or len({tuple(c) for c in cs}) > 1:
+                stats["unknown_or_conflicting"] += 1
+                continue
+            j = judge([base] + cs[0][1:], manifest[base]) | {"file": p.name, "file_sha256": e06.sha(p),
+                                                            "generation": "additional"}
+            rows.append(j)
+            stats[j["status"] if j["status"] == "accepted" else j["reason"]] += 1
+    filled, consistency = [], Counter()
+    for j in rows:
+        first = acc.get(j["id"])
+        if first and j["status"] == "accepted":
+            a, b = {first["preferred"], *first["alternatives"]}, {j["preferred"], *j["alternatives"]}
+            consistency["same_preferred" if first["preferred"] == j["preferred"] else
+                        "overlapping_sets" if a & b else "disjoint"] += 1
+        q = quar.get(j["id"])
+        if q and q["reason"] != "marked_uncertain" and j["status"] == "accepted" and j["id"] not in acc:
+            acc[j["id"]] = j | {"replaces_quarantined": q["reason"]}
+            quar.pop(j["id"])
+            filled.append(j["id"])
+    write_jsonl(IMPORTED / "additional.jsonl", rows)
+    write_jsonl(IMPORTED / "accepted.jsonl", [acc[i] for i in sorted(acc)])
+    write_jsonl(IMPORTED / "quarantine.jsonl", [quar[i] for i in sorted(quar)])
+    return {"files": [p.name for p in files], "rows": len(rows), "statuses": dict(stats),
+            "filled_structural_quarantine": filled, "self_consistency_vs_first_round": dict(consistency)}
+
+
 def state_name(n_covered: int, n_accepted: int, regenerate: list[str], not_provided: list[str] = ()) -> str:
     if n_covered == 0 or not_provided:
         return "awaiting_ai_mode_responses"
     return "awaiting_regeneration_responses" if regenerate else "imported_ready_to_freeze"
+
+
+REGEN_NOTE = """
+## Note for this replacement batch
+Use Khmer Unicode letters only (block U+1780–U+17FF). Do not use Lao, Thai or Tibetan letters that look similar:
+for example write the Khmer vowel ោ, not the Lao letter ໂ.
+"""                                               # amendment 2: the first round mixed Lao/Tibetan look-alikes
 
 
 def regen_prompts(ids: list[str], manifest: dict, quarantine: dict) -> None:
@@ -866,7 +933,7 @@ def regen_prompts(ids: list[str], manifest: dict, quarantine: dict) -> None:
         chunk = ids[k:k + PER_BATCH]
         n = k // PER_BATCH + 1
         (PROMPTS / f"regen_{n:02d}.md").write_text(
-            render_prompt([manifest[i] for i in chunk], f"replacement batch {n:02d}"), encoding="utf-8")
+            render_prompt([manifest[i] for i in chunk], f"replacement batch {n:02d}") + REGEN_NOTE, encoding="utf-8")
         write_json(PROMPTS / f"regen_{n:02d}.ids.json", chunk)
 
 

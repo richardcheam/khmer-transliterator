@@ -1,0 +1,121 @@
+{
+ "imported_at": "2026-10-28T10:24:29+00:00",
+ "files": {
+  "batch_01.md": {
+   "batch_items": 20,
+   "rows_found": 20,
+   "missing": 0,
+   "unparsed_id_lines": 0,
+   "accepted": 18,
+   "english_mismatch": 1,
+   "marked_uncertain": 1
+  },
+  "batch_02.md": {
+   "batch_items": 20,
+   "rows_found": 20,
+   "missing": 0,
+   "unparsed_id_lines": 0,
+   "accepted": 17,
+   "preferred_non_khmer": 3
+  },
+  "batch_03.md": {
+   "batch_items": 20,
+   "rows_found": 20,
+   "missing": 0,
+   "unparsed_id_lines": 0,
+   "accepted": 18,
+   "preferred_non_khmer": 2
+  },
+  "batch_04.md": {
+   "batch_items": 20,
+   "rows_found": 20,
+   "missing": 0,
+   "unparsed_id_lines": 0,
+   "accepted": 20
+  },
+  "batch_05.md": {
+   "batch_items": 20,
+   "rows_found": 20,
+   "missing": 0,
+   "unparsed_id_lines": 0,
+   "accepted": 20
+  },
+  "batch_06.md": {
+   "batch_items": 20,
+   "rows_found": 20,
+   "missing": 0,
+   "unparsed_id_lines": 0,
+   "accepted": 20
+  },
+  "batch_07.md": {
+   "batch_items": 20,
+   "rows_found": 20,
+   "missing": 0,
+   "unparsed_id_lines": 0,
+   "accepted": 20
+  },
+  "batch_08.md": {
+   "batch_items": 20,
+   "rows_found": 20,
+   "missing": 0,
+   "unparsed_id_lines": 0,
+   "accepted": 19,
+   "marked_uncertain": 1
+  },
+  "batch_09.md": {
+   "batch_items": 20,
+   "rows_found": 20,
+   "missing": 0,
+   "unparsed_id_lines": 0,
+   "accepted": 17,
+   "preferred_non_khmer": 3
+  },
+  "batch_10.md": {
+   "batch_items": 20,
+   "rows_found": 20,
+   "missing": 0,
+   "unparsed_id_lines": 0,
+   "accepted": 19,
+   "preferred_non_khmer": 1
+  }
+ },
+ "manifest_items": 200,
+ "additional_round": {
+  "files": [
+   "additional.md"
+  ],
+  "rows": 130,
+  "statuses": {
+   "accepted": 124,
+   "marked_uncertain": 1,
+   "preferred_non_khmer": 5
+  },
+  "filled_structural_quarantine": [
+   "e08s142",
+   "e08s032"
+  ],
+  "self_consistency_vs_first_round": {
+   "same_preferred": 48,
+   "disjoint": 52,
+   "overlapping_sets": 22
+  }
+ },
+ "accepted": 190,
+ "accepted_alternatives": 188,
+ "quarantined": {
+  "preferred_non_khmer": 8,
+  "marked_uncertain": 2
+ },
+ "missing": 0,
+ "needs_regeneration": 8,
+ "source": "google_ai_mode_synthetic",
+ "batches_not_provided": [],
+ "accepted_per_category": {
+  "common": 37,
+  "irregular": 38,
+  "vowels": 39,
+  "clusters": 39,
+  "names": 37
+ },
+ "state": "awaiting_regeneration_responses"
+}

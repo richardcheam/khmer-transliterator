@@ -17,3 +17,5 @@ Results summary: `docs/DECISIONS.md` (D185).
 | 11 | 2026-10-28 | Synthetic import validates structure only; accepted rows never re-asked; uncertain rows not regenerated | Instruction §7 |
 | 12 | 2026-10-28 | Phase-B plan: word-level sampler for every arm, including C (so C is a new run, not E07's checkpoint); equal provenance weights; 3,000 updates per run | Alternatives must not multiply exposure; equal updates keep the comparison budget-matched |
 | 13 | 2026-10-28 | Commits omit Claude attribution lines | Owner's standing rule |
+| 14 | 2026-10-28 | The owner's extra round (`additional.md`, 130 rows with ids `e08sNNNb`) is kept as a separate generation. It fills only records quarantined for structural reasons (2: *nutrients*, *overview*) and never replaces or extends an accepted record; its agreement with round 1 is reported as self-consistency | No frozen prompt produced it; a repeated generation is not validation |
+| 15 | 2026-10-28 | Amendment 2 (replacement prompts only, before their answers): a note to use Khmer Unicode only (ោ, not Lao ໂ) | 9 first-round preferred spellings mixed Lao/Tibetan look-alike letters; the frozen batch prompts are unchanged |

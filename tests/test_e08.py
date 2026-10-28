@@ -163,6 +163,22 @@ class TestImporter(unittest.TestCase):
             self.assertEqual(s["state"], "awaiting_ai_mode_responses")
             self.assertEqual(s["missing"], 0)                       # unfilled batches are not "missing"
 
+    def test_additional_round_fills_structural_quarantine_only(self):
+        with Env() as env:
+            b1 = ("| e08s001 | coffee | កាហ្វេ | | | no | |\n| e08s002 | london | ឡុងໂ | | | no | |\n"
+                  "| e08s003 | taxi | តាក់ស៊ី | | | yes | |")                     # TEST FIXTURE
+            extra = ("| e08s001b | coffee | ខូហ្វី | | | | |\n| e08s002b | london | ឡុងដ៍ | | | | |\n"
+                     "| e08s003b | taxi | តាក់ស៊ី | | | | |")                    # TEST FIXTURE
+            (env.d / "responses" / "batch_01.md").write_text(b1, encoding="utf-8")
+            (env.d / "responses" / "additional.md").write_text(extra, encoding="utf-8")
+            s = e08.import_responses(env.d / "responses")
+            acc = {r["id"]: r for r in e08.read_jsonl(env.d / "imported" / "accepted.jsonl")}
+            self.assertEqual(acc["e08s001"]["preferred"], "កាហ្វេ")              # first round kept, no extra alt
+            self.assertEqual(acc["e08s001"]["alternatives"], [])
+            self.assertEqual((acc["e08s002"]["preferred"], acc["e08s002"]["generation"]), ("ឡុងដ៍", "additional"))
+            self.assertNotIn("e08s003", acc)                                         # uncertain stays out
+            self.assertEqual(s["additional_round"]["self_consistency_vs_first_round"], {"disjoint": 1})
+
     def test_refuses_protected_overlap(self):
         with Env() as env:
             prot = {"words": {"coffee"}, "stems": set(), "held_targets": set(), "counts": {}}

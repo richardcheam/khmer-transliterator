@@ -1,6 +1,18 @@
 # E08 — data expansion for ByT5-small: report of the preparation phase (2026-10-28)
 
-**State: `awaiting_ai_mode_responses`.** This is an external input dependency.
+**Update (2026-10-28, after the owner's AI Mode answers):** state `awaiting_regeneration_responses` (optional).
+- **Accepted:** 190/200 words, with 188 alternatives (`google_ai_mode_synthetic`). By stratum: common 37,
+  irregular 38, vowels 39, clusters 39, names 37.
+- **Quarantined:**
+  - 8 preferred spellings with Lao/Tibetan look-alike letters (ໂ for ោ). Their replacement prompt is
+    `synthetic/prompts/regen_01.md`.
+  - 2 that AI Mode itself marked uncertain.
+- **The owner's extra round:** `additional.md`, 130 words, kept separate. It filled 2 structural quarantines.
+- **Self-consistency:** where both rounds were accepted, the preferred spelling was the same for only 48 of 122
+  words; 22 more shared some spelling and 52 were disjoint. These labels are unstable, and that is reported as a
+  property of the synthetic data, not validation.
+
+**Original state: `awaiting_ai_mode_responses`.** This was an external input dependency.
 - All preparation that does not need AI Mode answers is done.
 - **No training ran in this phase.**
 - Product default, serving, previous results and checkpoints, protected families, E02 final references and the
