@@ -3,3 +3,4 @@
 {"time": "2026-10-28T18:52:46+00:00", "event": "step", "step": "import", "seconds": 0.0}
 {"time": "2026-10-28T18:53:00+00:00", "event": "step", "step": "confirm", "seconds": 4.4}
 {"time": "2026-10-28T18:53:59+00:00", "event": "step", "step": "register", "seconds": 1.3}
+{"time": "2026-10-28T18:55:28+00:00", "event": "start", "run": "A_s0", "kind": "full", "cfg_hash": "fbab036a224f2192c843b09a32f3d14b353dbeb8abfc0175df036ffe549cd32b", "data_hash": "901b59f2b8938cc657a7ce4305586e025f6b62dce5f0b56039225c9fee5b0fc0", "t": 1793213728.250483}

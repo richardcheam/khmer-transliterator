@@ -643,8 +643,146 @@ def gate() -> dict:
     return e07.write_json(REPORTS / "gate.json", out) and out
 
 
+# ------------------------------------------------------------------ freeze and evaluate
+DECODINGS = {"single": "greedy", "candidates": "beam4_can"}      # E09-corrected; equal candidate budget (4)
+RC_RULE = ("Keep E08 rs_s0 unless the gate passed AND the seed-1 replication supports the direction: A_s1 dev "
+           "greedy top-1 > E08_s1 dev greedy top-1 with dev CER not higher. Then A_s0 (or A_s1, whichever has the "
+           "higher dev top-1, then lower CER) becomes the research release candidate. Historical eval cannot change "
+           "this choice.")
+
+
+def trained_runs() -> list[str]:
+    return [r for r in RUNS if (MODELS / r / "done.json").exists()]
+
+
+def register_checkpoints() -> None:
+    """Make E10 runs loadable through E09's cached generation (same adapter architecture as E07/E08)."""
+    for r in trained_runs():
+        e09.CHECKPOINTS[r] = MODELS / r
+
+
+@timed("freeze")
+def freeze() -> dict:
+    """Candidate identities, decoding and the release-candidate rule, frozen before historical eval scoring."""
+    register_checkpoints()
+    cands = ["e08", *trained_runs()]
+    rc = "e08"
+    g = gate_result() or {}
+    if g.get("passed") and {"A_s1", "E08_s1"} <= set(trained_runs()):
+        a1, b1 = (json.loads((MODELS / r / "done.json").read_text())["best"] for r in ("A_s1", "E08_s1"))
+        if a1["dev_top1"] > b1["dev_top1"] and a1["dev_cer"] <= b1["dev_cer"]:
+            a0 = json.loads((MODELS / "A_s0" / "done.json").read_text())["best"]
+            rc = max((("A_s0", a0), ("A_s1", a1)), key=lambda x: (x[1]["dev_top1"], -x[1]["dev_cer"]))[0]
+    out = {"frozen": e06.now(), "candidates": {c: {"checkpoint": str((e09.CHECKPOINTS[c] / "best.pt").relative_to(ROOT)),
+                                                   "sha256": e09.checkpoint_sha(c),
+                                                   "update": json.loads((e09.CHECKPOINTS[c] / "done.json").read_text())["best"]["update"],
+                                                   "dev_greedy": {k: json.loads((e09.CHECKPOINTS[c] / "done.json").read_text())["best"][k]
+                                                                  for k in ("dev_top1", "dev_cer")}}
+                                               for c in cands},
+           "decoding": {k: {"setting": v, **e09.setting(v), **e09.COMMON, "hash": e09.setting_hash(v)}
+                        for k, v in DECODINGS.items()},
+           "gate": g, "release_candidate_rule": RC_RULE, "release_candidate": rc,
+           "base": {"repo": "google/byt5-small", "revision": B.REVISION, "sha256": B.BASE_SHA256}}
+    set_state("freeze", "done", release_candidate=rc)
+    return e07.write_json(REPORTS / "candidates_frozen.json", out) and out
+
+
+def confirm_rows() -> list[tuple[str, str]]:
+    return [(r["id"], r["word"]) for r in e07.load_jsonl(CONFIRM_DIR / "input_manifest.jsonl")]
+
+
+def operational(recs: list[dict]) -> dict:
+    """Diagnostics without references: statuses, orthography, empty/truncated/repeated outputs, length, diversity."""
+    tops = [e09.top1(r["cands"]) for r in recs]
+    return {"items": len(recs), "rank1_status": dict(Counter(r["cands"][0]["status"] for r in recs)),
+            "no_output": sum(t is None for t in tops),
+            "orthography_not_ok": sum(e06.orthography(t) != "ok" for t in tops if t),
+            "repeated": sum(e09.repeated(t) for t in tops), "truncated_no_eos": sum(
+                c["status"] == "no_eos" for r in recs for c in r["cands"]),
+            "mean_codepoints": round(mean(len(t or "") for t in tops), 2), "distinct_top1": len({t for t in tops if t}),
+            "max_share_one_output": round(Counter(t for t in tops if t).most_common(1)[0][1] / len(recs), 4)}
+
+
+def seed_contrast(items, per: dict, plus: list[str], minus: list[str]) -> dict:
+    idx = e05.boot_indices(len({i.family for i in items}))
+    fm = {s: e05.family_means(items, {i: v["top1"] for i, v in per[s].items()}) for s in plus + minus}
+    fc = {s: e05.family_means(items, {i: -v["cer"] for i, v in per[s].items()}) for s in plus + minus}
+    return {"top1": e05.contrast(fm, plus, minus, idx), "cer_reduction": e05.contrast(fc, plus, minus, idx)}
+
+
+@timed("evaluate")
+def evaluate() -> dict:
+    """Dev, historical eval (exploratory) and confirmation diagnostics for every frozen candidate."""
+    fz = json.loads((REPORTS / "candidates_frozen.json").read_text())
+    register_checkpoints()
+    sets = {"dev": e09.dev_rows(), "eval": e09.eval_rows(), "confirmation": confirm_rows()}
+    for c in fz["candidates"]:
+        m, _ = e09.load(c)
+        sha = e09.checkpoint_sha(c)
+        for split, rows in sets.items():
+            for d in DECODINGS.values():
+                e09.generate(m, c, d, split, rows, sha)
+        e09.unload(m)
+    load_c = lambda c, d, split: e07.load_jsonl(e09.cache_path(c, d, split, e09.checkpoint_sha(c), sets[split]))  # noqa: E731
+    out = {"label": "Track 1 (historical mined-reference agreement) for dev and eval; eval examined repeatedly "
+                    "(E03–E10), exploratory. Confirmation: operational diagnostics only (no references, no "
+                    "independent judgments).", "frozen": fz["frozen"], "release_candidate": fz["release_candidate"]}
+    per_split = {}
+    for split in ("dev", "eval"):
+        items = e06.primary(e06.items(split))
+        tab, per = {}, {}
+        for c in fz["candidates"]:
+            for k, d in DECODINGS.items():
+                recs = load_c(c, d, split)
+                tab[f"{c}:{k}"], per[f"{c}:{k}"] = e09.setting_metrics(items, recs, e09.gen_seconds(c, d, split))
+        con = {}
+        for c in fz["candidates"]:
+            if c != "e08":
+                con[f"{c}_minus_e08:single"] = seed_contrast(items, per, [f"{c}:single"], ["e08:single"])
+        if {"A_s0", "A_s1", "E08_s1"} <= set(fz["candidates"]):
+            con["A_s1_minus_E08_s1:single"] = seed_contrast(items, per, ["A_s1:single"], ["E08_s1:single"])
+            con["A_seed_mean_minus_E08_seed_mean:single"] = seed_contrast(
+                items, per, ["A_s0:single", "A_s1:single"], ["e08:single", "E08_s1:single"])
+        wrong = {s: Counter(error_kind(per[s][i.id]["prediction"], i.accepted) for i in items if not per[s][i.id]["top1"])
+                 for s in per if s.endswith(":single")}
+        out[split] = {"items": len(items), "families": len({i.family for i in items}), "table": tab,
+                      "contrasts": con, "error_kinds_single": {k: dict(v) for k, v in wrong.items()}}
+        per_split[split] = per
+    out["confirmation"] = {f"{c}:{k}": operational(load_c(c, d, "confirmation"))
+                           for c in fz["candidates"] for k, d in DECODINGS.items()}
+    tops = {c: {r["id"]: e09.top1(r["cands"]) for r in load_c(c, "greedy", "confirmation")} for c in fz["candidates"]}
+    if len(tops) > 1:
+        out["confirmation_agreement_with_e08_single"] = {
+            c: round(mean(tops[c][i] == tops["e08"][i] for i in tops["e08"]), 3) for c in tops if c != "e08"}
+    PRED.mkdir(parents=True, exist_ok=True)
+    for c in fz["candidates"]:
+        for split in ("eval", "confirmation"):
+            recs = load_c(c, "greedy", split)
+            beams = {r["id"]: e09.cand_list(r["cands"]) for r in load_c(c, "beam4_can", split)}
+            (PRED / f"{c}_{split}.jsonl").write_text("".join(json.dumps(
+                {"id": r["id"], "word": r["word"], "single": e09.top1(r["cands"]), "candidates4": beams[r["id"]]},
+                ensure_ascii=False) + "\n" for r in recs), encoding="utf-8")
+    with open(EXP / "results_per_item.jsonl", "w", encoding="utf-8") as f:
+        for split in ("dev", "eval"):
+            for i in e06.primary(e06.items(split)):
+                f.write(json.dumps({"split": split, "id": i.id, "word": i.word, "family": i.family,
+                                    **{s: {"top1": p[i.id]["prediction"], "correct": p[i.id]["top1"],
+                                           "cer": round(p[i.id]["cer"], 4)} for s, p in per_split[split].items()}},
+                                   ensure_ascii=False) + "\n")
+    set_state("evaluate", "done")
+    return e07.write_json(EXP / "results.json", out) and out
+
+
+def status() -> dict:
+    s = state()
+    s["inference_hours"] = round(inference_hours(), 3)
+    s["training"] = e07.budget_left("full")
+    return s
+
+
 STEPS = {"diagnose": diagnose, "review": review, "import": import_judgments, "confirm": confirm,
-         "register": register, "train": train, "gate": gate}
+         "register": register, "train": train, "gate": gate, "freeze": freeze, "evaluate": evaluate,
+         "status": status}
 
 
 def main() -> int:

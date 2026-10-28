@@ -1,9 +1,16 @@
 [project]
 name = "khmer-translit"
-version = "0.1.0"
+version = "0.2.0"
 description = "Latin → Khmer transliteration for Khmer TTS: a small learned model (NumPy inference), rules and the Google Khmer lexicon"
 requires-python = ">=3.10,<3.13"
 dependencies = ["numpy>=2"]   # serving needs NumPy only
+
+[project.optional-dependencies]
+byt5 = [                      # the ByT5 research-preview backend (khmer_translit.byt5); tested with these versions
+    "torch>=2.14,<3",
+    "transformers>=5.19,<6",
+    "safetensors>=0.8",
+]
 
 [project.scripts]
 khmer-translit = "khmer_translit.cli:main"
