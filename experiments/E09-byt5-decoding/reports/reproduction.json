@@ -1,0 +1,31 @@
+{
+ "e07": {
+  "greedy": {
+   "items": 276,
+   "mismatches": 0,
+   "examples": [],
+   "max_abs_score_diff": 0.0
+  },
+  "beam4_reg": {
+   "items": 276,
+   "mismatches": 0,
+   "examples": [],
+   "max_abs_score_diff": 0.0
+  }
+ },
+ "e08": {
+  "greedy": {
+   "items": 276,
+   "mismatches": 0,
+   "examples": [],
+   "max_abs_score_diff": 0.0
+  },
+  "beam4_reg": {
+   "items": 276,
+   "mismatches": 0,
+   "examples": [],
+   "max_abs_score_diff": 0.0
+  }
+ },
+ "exact": true
+}

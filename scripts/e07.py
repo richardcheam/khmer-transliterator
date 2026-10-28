@@ -302,11 +302,16 @@ def decode(ids: list[int]) -> tuple[str | None, str]:
     return B.decode_ids(ids)
 
 
-def gen(model, srcs: list[list[int]], beam: int = 1, ret: int = 1, bs: int = 32, max_new: int = MAX_NEW):
+def gen(model, srcs: list[list[int]], beam: int = 1, ret: int = 1, bs: int = 32, max_new: int = MAX_NEW,
+        early_stopping: bool | str = True, length_penalty: float = 0.0):
     """Deterministic generation in eval mode from encoded sources.
 
     Returns per source: `[(text, status, score, raw_ids)]`, best first. Greedy score = sum of chosen log-probs;
-    beam score = sum log-prob (length_penalty 0).
+    beam score = sum log-prob / length**length_penalty.
+
+    The defaults are the registered E07/E08 beam call. E09 found that `early_stopping=True` ends the search once
+    `beam` hypotheses have finished, so short byte sequences that end early can fill the beam before the most
+    probable one finishes; `early_stopping="never"` is canonical beam search (Transformers' note).
     """
     import torch
     model.eval()
@@ -316,7 +321,8 @@ def gen(model, srcs: list[list[int]], beam: int = 1, ret: int = 1, bs: int = 32,
             chunk = srcs[i:i + bs]
             S = max(map(len, chunk))
             ids = torch.tensor([s + [B.PAD] * (S - len(s)) for s in chunk])
-            kw = dict(num_beams=beam, num_return_sequences=ret, length_penalty=0.0, early_stopping=True) if beam > 1 \
+            kw = dict(num_beams=beam, num_return_sequences=ret, length_penalty=length_penalty,
+                      early_stopping=early_stopping) if beam > 1 \
                 else dict(num_beams=1)
             g = model.generate(input_ids=ids, attention_mask=(ids != B.PAD).long(), max_new_tokens=max_new,
                                do_sample=False, output_scores=True, return_dict_in_generate=True, **kw)

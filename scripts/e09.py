@@ -543,6 +543,41 @@ def balanced_sample(groups: dict[str, list[str]], model: str, k: int = 5) -> dic
             for g, ids in groups.items()}
 
 
+MARKS = {"\u17c9": "muusikatoan ៉", "\u17ca": "triisap ៊"}
+
+
+def shortening(g: str | None, b: str | None) -> str:
+    """How a differing beam top-1 relates to greedy's in UTF-8 bytes: `shorter`, `same_bytes` or `longer`, with
+    `+marks` when the beam output equals greedy's with ៉/៊ removed.
+
+    Examples:
+        >>> shortening("ម៉ានី", "មានី"), shortening("ហ្គាវីន", "កាវីន"), shortening("ក", "ខ")
+        ('shorter+marks', 'shorter', 'same_bytes')
+    """
+    lg, lb = len((g or "").encode()), len((b or "").encode())
+    k = "shorter" if lb < lg else "longer" if lb > lg else "same_bytes"
+    if g and b and b != g and b == "".join(c for c in g if c not in MARKS):
+        k += "+marks"
+    return k
+
+
+def mechanism(model: str) -> dict:
+    """Over all dev primary items: byte length of registered vs canonical beam-4 top-1 relative to greedy, and the
+    share of registered top-1s that are the most probable of the candidates the canonical search found."""
+    rows, sha = dev_rows(), checkpoint_sha(model)
+    ids = {i.id for i in e06.primary(e06.items("dev"))}
+    out = {}
+    g = {r["id"]: r for r in e07.load_jsonl(cache_path(model, "greedy", "dev", sha, rows))}
+    for n in ("beam4_reg", "beam4_can"):
+        b = {r["id"]: r for r in e07.load_jsonl(cache_path(model, n, "dev", sha, rows))}
+        diff = [i for i in ids if top1(b[i]["cands"]) != top1(g[i]["cands"])]
+        out[n] = {"differs_from_greedy": len(diff),
+                  "relation": dict(Counter(shortening(top1(g[i]["cands"]), top1(b[i]["cands"])) for i in diff)),
+                  "mean_bytes_all_candidates": round(mean(len(c["ids"]) for i in ids for c in b[i]["cands"]), 2),
+                  "candidates_finished_in_le_4_bytes": sum(len(c["ids"]) <= 4 for i in ids for c in b[i]["cands"])}
+    return out
+
+
 @timed("diagnose")
 def diagnose() -> dict:
     rows = dev_rows()
@@ -578,6 +613,7 @@ def diagnose() -> dict:
                                      "reference_preferred": i.preferred, "reference_accepted": i.accepted,
                                      "reference_tf_logprob": {a: next(it) for a in refs}, "candidates": cand})
         out[f"{model}_group_sizes"] = {x: len(v) for x, v in grp.items()}
+        out[f"{model}_mechanism"] = mechanism(model)
         unload(m)
     return e07.write_json(REPORTS / "disagreements.json", out) and out
 

@@ -34,6 +34,37 @@ def tiny_t5():
     return T5ForConditionalGeneration(cfg).eval()
 
 
+def scripted_t5():
+    """A tiny T5 whose next-byte distribution is scripted from the decoder prefix (the encoder is ignored):
+    "a" × 6 then EOS is by far the most probable sequence (≈ −0.63), but EOS, "b" and "c" rank 2nd–4th at the first
+    steps, so short junk hypotheses finish first. This is the byte-level situation H1 describes."""
+    A, Y1, Y2 = ord("a") + 3, ord("b") + 3, ord("c") + 3
+
+    class Scripted(T5ForConditionalGeneration):
+        def forward(self, *a, **kw):
+            out = super().forward(*a, **kw)
+            dec = kw["decoder_input_ids"]
+            lp = torch.full(out.logits.shape, float(torch.log(torch.tensor(0.001 / 380))))
+            for n in range(dec.shape[0]):
+                seq = dec[n, 1:].tolist()
+                if any(t in (Y1, Y2) for t in seq) or seq.count(A) >= 6:
+                    lp[n, -1, B.EOS] = float(torch.log(torch.tensor(0.999)))
+                else:
+                    for t, p in ((A, 0.9), (B.EOS, 0.05), (Y1, 0.03), (Y2, 0.019)):
+                        lp[n, -1, t] = float(torch.log(torch.tensor(p)))
+            out.logits = lp
+            return out
+
+        def generate(self, *a, **kw):
+            return super().generate(*a, **{**kw, "use_cache": False})
+
+    torch.manual_seed(1)
+    cfg = T5Config(vocab_size=384, d_model=16, d_kv=8, d_ff=16, num_layers=1, num_decoder_layers=1, num_heads=2,
+                   dropout_rate=0.0, decoder_start_token_id=0, pad_token_id=0, eos_token_id=1,
+                   tie_word_embeddings=False)
+    return Scripted(cfg).eval()
+
+
 class TestPure(unittest.TestCase):
     def test_doctests(self):
         self.assertEqual(doctest.testmod(e09).failed, 0)
@@ -128,6 +159,23 @@ class TestModel(unittest.TestCase):
             self.assertEqual(len(c), 3)
             events = [json.loads(x)["event"] for x in (Path(d) / "ledger.jsonl").read_text().splitlines()]
             self.assertEqual(events, ["generate", "generate"])
+
+    def test_registered_early_stopping_ends_beam_before_the_best_hypothesis(self):
+        # confirmed configuration defect (E09 audit): early_stopping=True stops once num_beams hypotheses have
+        # finished, so short junk that finishes first fills the beam; canonical search ("never") keeps going
+        m, src = scripted_t5(), [B.encode_src("x")]
+        reg = e07.gen(m, src, beam=4, ret=4, max_new=12)[0]
+        can = e07.gen(m, src, beam=4, ret=4, max_new=12, early_stopping="never")[0]
+        self.assertEqual(can[0][0], "aaaaaa")
+        self.assertNotIn("aaaaaa", [t for t, *_ in reg])
+        self.assertGreater(can[0][2], max(sc for *_, sc, _ in reg))     # the model prefers the canonical top-1
+        self.assertEqual(e09.top1([{"text": t, "status": s} for t, s, *_ in reg]), "a")
+
+    def test_registered_call_unchanged(self):
+        # the default arguments of e07.gen remain the registered E07/E08 call (saved predictions reproduce)
+        m, src = scripted_t5(), [B.encode_src("x")]
+        self.assertEqual(e07.gen(m, src, beam=4, ret=4, max_new=12),
+                         e07.gen(m, src, beam=4, ret=4, max_new=12, early_stopping=True, length_penalty=0.0))
 
     def test_memory_pressure_stops_before_writing(self):
         g = e07.Guard(read=lambda: {"rss": 6 * e09.GiB, "available": 4 * e09.GiB}, limits=e09.LIMITS)

@@ -1,0 +1,4635 @@
+{
+ "label": "development items only; references are mined and unreviewed, shown as stored; agent inspection (if any) is non-independent",
+ "items": [
+  {
+   "model": "e07",
+   "group": "greedy_right_beam_wrong",
+   "id": "mani#default",
+   "english": "mani",
+   "reference_preferred": "មុនី",
+   "reference_accepted": [
+    "មុនី",
+    "ម៉ានី"
+   ],
+   "reference_tf_logprob": {
+    "មុនី": -15.094899,
+    "ម៉ានី": -0.024722
+   },
+   "candidates": [
+    {
+     "source": "greedy",
+     "rank": 1,
+     "text": "ម៉ានី",
+     "status": "ok",
+     "gen_score": -0.024726,
+     "tf_logprob": -0.024722,
+     "bytes": 16,
+     "eos": true,
+     "correct": 1
+    },
+    {
+     "source": "beam4_reg",
+     "rank": 1,
+     "text": "មានី",
+     "status": "ok",
+     "gen_score": -4.689823,
+     "tf_logprob": -4.689816,
+     "bytes": 13,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_reg",
+     "rank": 2,
+     "text": "មែនី",
+     "status": "ok",
+     "gen_score": -5.80441,
+     "tf_logprob": -5.804407,
+     "bytes": 13,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_reg",
+     "rank": 3,
+     "text": "មេនី",
+     "status": "ok",
+     "gen_score": -5.832759,
+     "tf_logprob": -5.832759,
+     "bytes": 13,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_reg",
+     "rank": 4,
+     "text": "ម",
+     "status": "ok",
+     "gen_score": -10.512025,
+     "tf_logprob": -10.512029,
+     "bytes": 4,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_can",
+     "rank": 1,
+     "text": "ម៉ានី",
+     "status": "ok",
+     "gen_score": -0.024726,
+     "tf_logprob": -0.024722,
+     "bytes": 16,
+     "eos": true,
+     "correct": 1
+    },
+    {
+     "source": "beam4_can",
+     "rank": 2,
+     "text": "មានី",
+     "status": "ok",
+     "gen_score": -4.689823,
+     "tf_logprob": -4.689816,
+     "bytes": 13,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_can",
+     "rank": 3,
+     "text": "មែនី",
+     "status": "ok",
+     "gen_score": -5.80441,
+     "tf_logprob": -5.804407,
+     "bytes": 13,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_can",
+     "rank": 4,
+     "text": "មេនី",
+     "status": "ok",
+     "gen_score": -5.832759,
+     "tf_logprob": -5.832758,
+     "bytes": 13,
+     "eos": true,
+     "correct": 0
+    }
+   ]
+  },
+  {
+   "model": "e07",
+   "group": "greedy_right_beam_wrong",
+   "id": "mora#default",
+   "english": "mora",
+   "reference_preferred": "ម៉ូរ៉ា",
+   "reference_accepted": [
+    "ម៉ូរ៉ា"
+   ],
+   "reference_tf_logprob": {
+    "ម៉ូរ៉ា": -0.08401
+   },
+   "candidates": [
+    {
+     "source": "greedy",
+     "rank": 1,
+     "text": "ម៉ូរ៉ា",
+     "status": "ok",
+     "gen_score": -0.084014,
+     "tf_logprob": -0.08401,
+     "bytes": 19,
+     "eos": true,
+     "correct": 1
+    },
+    {
+     "source": "beam4_reg",
+     "rank": 1,
+     "text": "មូរ៉ា",
+     "status": "ok",
+     "gen_score": -3.194107,
+     "tf_logprob": -3.1941,
+     "bytes": 16,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_reg",
+     "rank": 2,
+     "text": "ម័រា",
+     "status": "ok",
+     "gen_score": -3.598827,
+     "tf_logprob": -3.598828,
+     "bytes": 13,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_reg",
+     "rank": 3,
+     "text": "ម៉ូរា",
+     "status": "ok",
+     "gen_score": -5.202204,
+     "tf_logprob": -5.202202,
+     "bytes": 16,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_reg",
+     "rank": 4,
+     "text": "ម៉រ៉ា",
+     "status": "ok",
+     "gen_score": -6.947762,
+     "tf_logprob": -6.947761,
+     "bytes": 16,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_can",
+     "rank": 1,
+     "text": "ម៉ូរ៉ា",
+     "status": "ok",
+     "gen_score": -0.084014,
+     "tf_logprob": -0.08401,
+     "bytes": 19,
+     "eos": true,
+     "correct": 1
+    },
+    {
+     "source": "beam4_can",
+     "rank": 2,
+     "text": "មូរ៉ា",
+     "status": "ok",
+     "gen_score": -3.194107,
+     "tf_logprob": -3.194101,
+     "bytes": 16,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_can",
+     "rank": 3,
+     "text": "ម័រា",
+     "status": "ok",
+     "gen_score": -3.598827,
+     "tf_logprob": -3.598827,
+     "bytes": 13,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_can",
+     "rank": 4,
+     "text": "ម៉ូរា",
+     "status": "ok",
+     "gen_score": -5.202204,
+     "tf_logprob": -5.202201,
+     "bytes": 16,
+     "eos": true,
+     "correct": 0
+    }
+   ]
+  },
+  {
+   "model": "e07",
+   "group": "greedy_right_beam_wrong",
+   "id": "naro#default",
+   "english": "naro",
+   "reference_preferred": "ណារ៉ូ",
+   "reference_accepted": [
+    "ណារ៉ូ"
+   ],
+   "reference_tf_logprob": {
+    "ណារ៉ូ": -0.043213
+   },
+   "candidates": [
+    {
+     "source": "greedy",
+     "rank": 1,
+     "text": "ណារ៉ូ",
+     "status": "ok",
+     "gen_score": -0.043217,
+     "tf_logprob": -0.043213,
+     "bytes": 16,
+     "eos": true,
+     "correct": 1
+    },
+    {
+     "source": "beam4_reg",
+     "rank": 1,
+     "text": "ណារូ",
+     "status": "ok",
+     "gen_score": -3.371178,
+     "tf_logprob": -3.371176,
+     "bytes": 13,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_reg",
+     "rank": 2,
+     "text": "ណារុ",
+     "status": "ok",
+     "gen_score": -5.990803,
+     "tf_logprob": -5.990799,
+     "bytes": 13,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_reg",
+     "rank": 3,
+     "text": "ណារ៉",
+     "status": "ok",
+     "gen_score": -8.104083,
+     "tf_logprob": -8.104085,
+     "bytes": 13,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_reg",
+     "rank": 4,
+     "text": "ណា",
+     "status": "ok",
+     "gen_score": -8.346109,
+     "tf_logprob": -8.346109,
+     "bytes": 7,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_can",
+     "rank": 1,
+     "text": "ណារ៉ូ",
+     "status": "ok",
+     "gen_score": -0.043217,
+     "tf_logprob": -0.043213,
+     "bytes": 16,
+     "eos": true,
+     "correct": 1
+    },
+    {
+     "source": "beam4_can",
+     "rank": 2,
+     "text": "ណារូ",
+     "status": "ok",
+     "gen_score": -3.371178,
+     "tf_logprob": -3.371176,
+     "bytes": 13,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_can",
+     "rank": 3,
+     "text": "ណារ៉ុ",
+     "status": "ok",
+     "gen_score": -5.614079,
+     "tf_logprob": -5.614078,
+     "bytes": 16,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_can",
+     "rank": 4,
+     "text": "ណារុ",
+     "status": "ok",
+     "gen_score": -5.990803,
+     "tf_logprob": -5.990802,
+     "bytes": 13,
+     "eos": true,
+     "correct": 0
+    }
+   ]
+  },
+  {
+   "model": "e07",
+   "group": "greedy_right_beam_wrong",
+   "id": "ralph#default",
+   "english": "ralph",
+   "reference_preferred": "រ៉ាល់",
+   "reference_accepted": [
+    "រ៉ាល់"
+   ],
+   "reference_tf_logprob": {
+    "រ៉ាល់": -0.283329
+   },
+   "candidates": [
+    {
+     "source": "greedy",
+     "rank": 1,
+     "text": "រ៉ាល់",
+     "status": "ok",
+     "gen_score": -0.283332,
+     "tf_logprob": -0.28333,
+     "bytes": 16,
+     "eos": true,
+     "correct": 1
+    },
+    {
+     "source": "beam4_reg",
+     "rank": 1,
+     "text": "រ៉ាល",
+     "status": "ok",
+     "gen_score": -2.883795,
+     "tf_logprob": -2.883793,
+     "bytes": 13,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_reg",
+     "rank": 2,
+     "text": "រាល់",
+     "status": "ok",
+     "gen_score": -4.252972,
+     "tf_logprob": -4.252972,
+     "bytes": 13,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_reg",
+     "rank": 3,
+     "text": "រាល",
+     "status": "ok",
+     "gen_score": -5.817275,
+     "tf_logprob": -5.817273,
+     "bytes": 10,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_reg",
+     "rank": 4,
+     "text": "រ",
+     "status": "ok",
+     "gen_score": -11.661216,
+     "tf_logprob": -11.661218,
+     "bytes": 4,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_can",
+     "rank": 1,
+     "text": "រ៉ាល់",
+     "status": "ok",
+     "gen_score": -0.283332,
+     "tf_logprob": -0.283329,
+     "bytes": 16,
+     "eos": true,
+     "correct": 1
+    },
+    {
+     "source": "beam4_can",
+     "rank": 2,
+     "text": "រ៉ាលហ្វ",
+     "status": "ok",
+     "gen_score": -1.967786,
+     "tf_logprob": -1.96778,
+     "bytes": 22,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_can",
+     "rank": 3,
+     "text": "រ៉ាល",
+     "status": "ok",
+     "gen_score": -2.883795,
+     "tf_logprob": -2.883793,
+     "bytes": 13,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_can",
+     "rank": 4,
+     "text": "រ៉ាឡ់",
+     "status": "ok",
+     "gen_score": -4.07366,
+     "tf_logprob": -4.073659,
+     "bytes": 16,
+     "eos": true,
+     "correct": 0
+    }
+   ]
+  },
+  {
+   "model": "e07",
+   "group": "greedy_right_beam_wrong",
+   "id": "saint#default",
+   "english": "saint",
+   "reference_preferred": "សេន",
+   "reference_accepted": [
+    "សេន"
+   ],
+   "reference_tf_logprob": {
+    "សេន": -1.002267
+   },
+   "candidates": [
+    {
+     "source": "greedy",
+     "rank": 1,
+     "text": "សេន",
+     "status": "ok",
+     "gen_score": -1.002268,
+     "tf_logprob": -1.002266,
+     "bytes": 10,
+     "eos": true,
+     "correct": 1
+    },
+    {
+     "source": "beam4_reg",
+     "rank": 1,
+     "text": "សាន",
+     "status": "ok",
+     "gen_score": -0.932627,
+     "tf_logprob": -0.932625,
+     "bytes": 10,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_reg",
+     "rank": 2,
+     "text": "សេន",
+     "status": "ok",
+     "gen_score": -1.002269,
+     "tf_logprob": -1.002266,
+     "bytes": 10,
+     "eos": true,
+     "correct": 1
+    },
+    {
+     "source": "beam4_reg",
+     "rank": 3,
+     "text": "សែន",
+     "status": "ok",
+     "gen_score": -2.806381,
+     "tf_logprob": -2.806378,
+     "bytes": 10,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_reg",
+     "rank": 4,
+     "text": "សាន់",
+     "status": "ok",
+     "gen_score": -4.182816,
+     "tf_logprob": -4.182812,
+     "bytes": 13,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_can",
+     "rank": 1,
+     "text": "សាន",
+     "status": "ok",
+     "gen_score": -0.932627,
+     "tf_logprob": -0.932625,
+     "bytes": 10,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_can",
+     "rank": 2,
+     "text": "សេន",
+     "status": "ok",
+     "gen_score": -1.002269,
+     "tf_logprob": -1.002266,
+     "bytes": 10,
+     "eos": true,
+     "correct": 1
+    },
+    {
+     "source": "beam4_can",
+     "rank": 3,
+     "text": "សែន",
+     "status": "ok",
+     "gen_score": -2.806381,
+     "tf_logprob": -2.806377,
+     "bytes": 10,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_can",
+     "rank": 4,
+     "text": "សាអ៊ីន",
+     "status": "ok",
+     "gen_score": -4.135552,
+     "tf_logprob": -4.135547,
+     "bytes": 19,
+     "eos": true,
+     "correct": 0
+    }
+   ]
+  },
+  {
+   "model": "e07",
+   "group": "beam_right_greedy_wrong",
+   "id": "hulme#default",
+   "english": "hulme",
+   "reference_preferred": "ហ៊ុល",
+   "reference_accepted": [
+    "ហ៊ុល"
+   ],
+   "reference_tf_logprob": {
+    "ហ៊ុល": -1.336575
+   },
+   "candidates": [
+    {
+     "source": "greedy",
+     "rank": 1,
+     "text": "ហ៊ូល",
+     "status": "ok",
+     "gen_score": -1.353354,
+     "tf_logprob": -1.35335,
+     "bytes": 13,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_reg",
+     "rank": 1,
+     "text": "ហ៊ុល",
+     "status": "ok",
+     "gen_score": -1.33658,
+     "tf_logprob": -1.336578,
+     "bytes": 13,
+     "eos": true,
+     "correct": 1
+    },
+    {
+     "source": "beam4_reg",
+     "rank": 2,
+     "text": "ហ៊ូល",
+     "status": "ok",
+     "gen_score": -1.353355,
+     "tf_logprob": -1.35335,
+     "bytes": 13,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_reg",
+     "rank": 3,
+     "text": "ហុល",
+     "status": "ok",
+     "gen_score": -1.548998,
+     "tf_logprob": -1.548993,
+     "bytes": 10,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_reg",
+     "rank": 4,
+     "text": "ហូល",
+     "status": "ok",
+     "gen_score": -2.208142,
+     "tf_logprob": -2.20814,
+     "bytes": 10,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_can",
+     "rank": 1,
+     "text": "ហ៊ុល",
+     "status": "ok",
+     "gen_score": -1.33658,
+     "tf_logprob": -1.336578,
+     "bytes": 13,
+     "eos": true,
+     "correct": 1
+    },
+    {
+     "source": "beam4_can",
+     "rank": 2,
+     "text": "ហ៊ូល",
+     "status": "ok",
+     "gen_score": -1.353355,
+     "tf_logprob": -1.35335,
+     "bytes": 13,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_can",
+     "rank": 3,
+     "text": "ហុល",
+     "status": "ok",
+     "gen_score": -1.548998,
+     "tf_logprob": -1.548993,
+     "bytes": 10,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_can",
+     "rank": 4,
+     "text": "ហូល",
+     "status": "ok",
+     "gen_score": -2.208142,
+     "tf_logprob": -2.208141,
+     "bytes": 10,
+     "eos": true,
+     "correct": 0
+    }
+   ]
+  },
+  {
+   "model": "e07",
+   "group": "beam_right_greedy_wrong",
+   "id": "lauren#default",
+   "english": "lauren",
+   "reference_preferred": "ឡូរិន",
+   "reference_accepted": [
+    "ឡូរិន"
+   ],
+   "reference_tf_logprob": {
+    "ឡូរិន": -1.300727
+   },
+   "candidates": [
+    {
+     "source": "greedy",
+     "rank": 1,
+     "text": "ឡូរ៉ែន",
+     "status": "ok",
+     "gen_score": -1.467703,
+     "tf_logprob": -1.467701,
+     "bytes": 19,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_reg",
+     "rank": 1,
+     "text": "ឡូរិន",
+     "status": "ok",
+     "gen_score": -1.300731,
+     "tf_logprob": -1.300728,
+     "bytes": 16,
+     "eos": true,
+     "correct": 1
+    },
+    {
+     "source": "beam4_reg",
+     "rank": 2,
+     "text": "ឡូរ៉ែន",
+     "status": "ok",
+     "gen_score": -1.467703,
+     "tf_logprob": -1.467701,
+     "bytes": 19,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_reg",
+     "rank": 3,
+     "text": "ឡូរ៉ិន",
+     "status": "ok",
+     "gen_score": -2.647192,
+     "tf_logprob": -2.647189,
+     "bytes": 19,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_reg",
+     "rank": 4,
+     "text": "ឡូរីន",
+     "status": "ok",
+     "gen_score": -2.726525,
+     "tf_logprob": -2.72652,
+     "bytes": 16,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_can",
+     "rank": 1,
+     "text": "ឡូរិន",
+     "status": "ok",
+     "gen_score": -1.300731,
+     "tf_logprob": -1.300728,
+     "bytes": 16,
+     "eos": true,
+     "correct": 1
+    },
+    {
+     "source": "beam4_can",
+     "rank": 2,
+     "text": "ឡូរ៉ែន",
+     "status": "ok",
+     "gen_score": -1.467703,
+     "tf_logprob": -1.467701,
+     "bytes": 19,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_can",
+     "rank": 3,
+     "text": "ឡូរ៉ិន",
+     "status": "ok",
+     "gen_score": -2.647192,
+     "tf_logprob": -2.647188,
+     "bytes": 19,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_can",
+     "rank": 4,
+     "text": "ឡូរីន",
+     "status": "ok",
+     "gen_score": -2.726525,
+     "tf_logprob": -2.72652,
+     "bytes": 16,
+     "eos": true,
+     "correct": 0
+    }
+   ]
+  },
+  {
+   "model": "e07",
+   "group": "beam_right_greedy_wrong",
+   "id": "moise#default",
+   "english": "moise",
+   "reference_preferred": "ម៉ូសេ",
+   "reference_accepted": [
+    "ម៉ូសេ"
+   ],
+   "reference_tf_logprob": {
+    "ម៉ូសេ": -2.3951
+   },
+   "candidates": [
+    {
+     "source": "greedy",
+     "rank": 1,
+     "text": "ម៉ូអ៊ីស",
+     "status": "ok",
+     "gen_score": -1.140218,
+     "tf_logprob": -1.140213,
+     "bytes": 22,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_reg",
+     "rank": 1,
+     "text": "ម៉ូសេ",
+     "status": "ok",
+     "gen_score": -2.395106,
+     "tf_logprob": -2.3951,
+     "bytes": 16,
+     "eos": true,
+     "correct": 1
+    },
+    {
+     "source": "beam4_reg",
+     "rank": 2,
+     "text": "ម៉ូយ",
+     "status": "ok",
+     "gen_score": -2.915226,
+     "tf_logprob": -2.915219,
+     "bytes": 13,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_reg",
+     "rank": 3,
+     "text": "ម៉ូយស",
+     "status": "ok",
+     "gen_score": -3.544573,
+     "tf_logprob": -3.544564,
+     "bytes": 16,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_reg",
+     "rank": 4,
+     "text": "ម",
+     "status": "ok",
+     "gen_score": -8.219189,
+     "tf_logprob": -8.219185,
+     "bytes": 4,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_can",
+     "rank": 1,
+     "text": "ម៉ូអ៊ីស",
+     "status": "ok",
+     "gen_score": -1.140219,
+     "tf_logprob": -1.140212,
+     "bytes": 22,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_can",
+     "rank": 2,
+     "text": "ម៉ូអ៊ី",
+     "status": "ok",
+     "gen_score": -2.179703,
+     "tf_logprob": -2.179699,
+     "bytes": 19,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_can",
+     "rank": 3,
+     "text": "ម៉ូសេ",
+     "status": "ok",
+     "gen_score": -2.395106,
+     "tf_logprob": -2.3951,
+     "bytes": 16,
+     "eos": true,
+     "correct": 1
+    },
+    {
+     "source": "beam4_can",
+     "rank": 4,
+     "text": "ម៉ូយ",
+     "status": "ok",
+     "gen_score": -2.915226,
+     "tf_logprob": -2.915219,
+     "bytes": 13,
+     "eos": true,
+     "correct": 0
+    }
+   ]
+  },
+  {
+   "model": "e07",
+   "group": "beam_right_greedy_wrong",
+   "id": "seine#default",
+   "english": "seine",
+   "reference_preferred": "សែន",
+   "reference_accepted": [
+    "សេន",
+    "សែន"
+   ],
+   "reference_tf_logprob": {
+    "សែន": -3.119636,
+    "សេន": -1.412062
+   },
+   "candidates": [
+    {
+     "source": "greedy",
+     "rank": 1,
+     "text": "ស៊ីន",
+     "status": "ok",
+     "gen_score": -0.783265,
+     "tf_logprob": -0.78326,
+     "bytes": 13,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_reg",
+     "rank": 1,
+     "text": "សេន",
+     "status": "ok",
+     "gen_score": -1.412063,
+     "tf_logprob": -1.412062,
+     "bytes": 10,
+     "eos": true,
+     "correct": 1
+    },
+    {
+     "source": "beam4_reg",
+     "rank": 2,
+     "text": "សៀន",
+     "status": "ok",
+     "gen_score": -2.482587,
+     "tf_logprob": -2.482586,
+     "bytes": 10,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_reg",
+     "rank": 3,
+     "text": "សែន",
+     "status": "ok",
+     "gen_score": -3.119639,
+     "tf_logprob": -3.119637,
+     "bytes": 10,
+     "eos": true,
+     "correct": 1
+    },
+    {
+     "source": "beam4_reg",
+     "rank": 4,
+     "text": "សេន\n",
+     "status": "ok",
+     "gen_score": -12.696879,
+     "tf_logprob": -12.696881,
+     "bytes": 11,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_can",
+     "rank": 1,
+     "text": "ស៊ីន",
+     "status": "ok",
+     "gen_score": -0.783265,
+     "tf_logprob": -0.783259,
+     "bytes": 13,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_can",
+     "rank": 2,
+     "text": "សេន",
+     "status": "ok",
+     "gen_score": -1.412063,
+     "tf_logprob": -1.412062,
+     "bytes": 10,
+     "eos": true,
+     "correct": 1
+    },
+    {
+     "source": "beam4_can",
+     "rank": 3,
+     "text": "សៀន",
+     "status": "ok",
+     "gen_score": -2.482587,
+     "tf_logprob": -2.482586,
+     "bytes": 10,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_can",
+     "rank": 4,
+     "text": "សែន",
+     "status": "ok",
+     "gen_score": -3.119639,
+     "tf_logprob": -3.119636,
+     "bytes": 10,
+     "eos": true,
+     "correct": 1
+    }
+   ]
+  },
+  {
+   "model": "e07",
+   "group": "beam_right_greedy_wrong",
+   "id": "walmart#default",
+   "english": "walmart",
+   "reference_preferred": "វ៉លម៉ាត",
+   "reference_accepted": [
+    "វ៉លម៉ាត"
+   ],
+   "reference_tf_logprob": {
+    "វ៉លម៉ាត": -2.611231
+   },
+   "candidates": [
+    {
+     "source": "greedy",
+     "rank": 1,
+     "text": "វ៉ាល់ម៉ាត",
+     "status": "ok",
+     "gen_score": -0.760188,
+     "tf_logprob": -0.760182,
+     "bytes": 28,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_reg",
+     "rank": 1,
+     "text": "វ៉លម៉ាត",
+     "status": "ok",
+     "gen_score": -2.611236,
+     "tf_logprob": -2.611233,
+     "bytes": 22,
+     "eos": true,
+     "correct": 1
+    },
+    {
+     "source": "beam4_reg",
+     "rank": 2,
+     "text": "វ៉ាល់មែត",
+     "status": "ok",
+     "gen_score": -2.86921,
+     "tf_logprob": -2.869206,
+     "bytes": 25,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_reg",
+     "rank": 3,
+     "text": "វ៉លម៉ាត់",
+     "status": "ok",
+     "gen_score": -2.88575,
+     "tf_logprob": -2.885744,
+     "bytes": 25,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_reg",
+     "rank": 4,
+     "text": "វ៉ាឡាត",
+     "status": "ok",
+     "gen_score": -3.161872,
+     "tf_logprob": -3.161873,
+     "bytes": 19,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_can",
+     "rank": 1,
+     "text": "វ៉ាល់ម៉ាត",
+     "status": "ok",
+     "gen_score": -0.760188,
+     "tf_logprob": -0.760182,
+     "bytes": 28,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_can",
+     "rank": 2,
+     "text": "វ៉ាល់ម៉ាត់",
+     "status": "ok",
+     "gen_score": -2.146403,
+     "tf_logprob": -2.146397,
+     "bytes": 31,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_can",
+     "rank": 3,
+     "text": "វ៉លម៉ាត",
+     "status": "ok",
+     "gen_score": -2.611236,
+     "tf_logprob": -2.611234,
+     "bytes": 22,
+     "eos": true,
+     "correct": 1
+    },
+    {
+     "source": "beam4_can",
+     "rank": 4,
+     "text": "វ៉ាល់មែត",
+     "status": "ok",
+     "gen_score": -2.86921,
+     "tf_logprob": -2.869205,
+     "bytes": 25,
+     "eos": true,
+     "correct": 0
+    }
+   ]
+  },
+  {
+   "model": "e07",
+   "group": "both_wrong_different",
+   "id": "booth#default",
+   "english": "booth",
+   "reference_preferred": "ប៊ូត",
+   "reference_accepted": [
+    "ប៊ូត"
+   ],
+   "reference_tf_logprob": {
+    "ប៊ូត": -1.599696
+   },
+   "candidates": [
+    {
+     "source": "greedy",
+     "rank": 1,
+     "text": "ប៊ុត",
+     "status": "ok",
+     "gen_score": -1.424535,
+     "tf_logprob": -1.424534,
+     "bytes": 13,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_reg",
+     "rank": 1,
+     "text": "បូត",
+     "status": "ok",
+     "gen_score": -1.345615,
+     "tf_logprob": -1.345611,
+     "bytes": 10,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_reg",
+     "rank": 2,
+     "text": "ប៊ុត",
+     "status": "ok",
+     "gen_score": -1.424536,
+     "tf_logprob": -1.424534,
+     "bytes": 13,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_reg",
+     "rank": 3,
+     "text": "ប៊ូត",
+     "status": "ok",
+     "gen_score": -1.599701,
+     "tf_logprob": -1.599696,
+     "bytes": 13,
+     "eos": true,
+     "correct": 1
+    },
+    {
+     "source": "beam4_reg",
+     "rank": 4,
+     "text": "បុត",
+     "status": "ok",
+     "gen_score": -2.000497,
+     "tf_logprob": -2.000496,
+     "bytes": 10,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_can",
+     "rank": 1,
+     "text": "បូត",
+     "status": "ok",
+     "gen_score": -1.345615,
+     "tf_logprob": -1.345611,
+     "bytes": 10,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_can",
+     "rank": 2,
+     "text": "ប៊ុត",
+     "status": "ok",
+     "gen_score": -1.424536,
+     "tf_logprob": -1.424534,
+     "bytes": 13,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_can",
+     "rank": 3,
+     "text": "ប៊ូត",
+     "status": "ok",
+     "gen_score": -1.599701,
+     "tf_logprob": -1.599696,
+     "bytes": 13,
+     "eos": true,
+     "correct": 1
+    },
+    {
+     "source": "beam4_can",
+     "rank": 4,
+     "text": "បុត",
+     "status": "ok",
+     "gen_score": -2.000497,
+     "tf_logprob": -2.000495,
+     "bytes": 10,
+     "eos": true,
+     "correct": 0
+    }
+   ]
+  },
+  {
+   "model": "e07",
+   "group": "both_wrong_different",
+   "id": "clean#default",
+   "english": "clean",
+   "reference_preferred": "ឃ្លីន",
+   "reference_accepted": [
+    "ឃ្លីន"
+   ],
+   "reference_tf_logprob": {
+    "ឃ្លីន": -2.841658
+   },
+   "candidates": [
+    {
+     "source": "greedy",
+     "rank": 1,
+     "text": "ក្លេន",
+     "status": "ok",
+     "gen_score": -2.722147,
+     "tf_logprob": -2.722142,
+     "bytes": 16,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_reg",
+     "rank": 1,
+     "text": "គ្លីន",
+     "status": "ok",
+     "gen_score": -2.188785,
+     "tf_logprob": -2.188782,
+     "bytes": 16,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_reg",
+     "rank": 2,
+     "text": "ឃ្លាន",
+     "status": "ok",
+     "gen_score": -2.339652,
+     "tf_logprob": -2.33965,
+     "bytes": 16,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_reg",
+     "rank": 3,
+     "text": "ក្លាន",
+     "status": "ok",
+     "gen_score": -2.375183,
+     "tf_logprob": -2.375182,
+     "bytes": 16,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_reg",
+     "rank": 4,
+     "text": "ក្លេន",
+     "status": "ok",
+     "gen_score": -2.722145,
+     "tf_logprob": -2.722142,
+     "bytes": 16,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_can",
+     "rank": 1,
+     "text": "គ្លីន",
+     "status": "ok",
+     "gen_score": -2.188785,
+     "tf_logprob": -2.188783,
+     "bytes": 16,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_can",
+     "rank": 2,
+     "text": "ឃ្លាន",
+     "status": "ok",
+     "gen_score": -2.339652,
+     "tf_logprob": -2.33965,
+     "bytes": 16,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_can",
+     "rank": 3,
+     "text": "ក្លាន",
+     "status": "ok",
+     "gen_score": -2.375183,
+     "tf_logprob": -2.375181,
+     "bytes": 16,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_can",
+     "rank": 4,
+     "text": "ក្លេន",
+     "status": "ok",
+     "gen_score": -2.722145,
+     "tf_logprob": -2.722143,
+     "bytes": 16,
+     "eos": true,
+     "correct": 0
+    }
+   ]
+  },
+  {
+   "model": "e07",
+   "group": "both_wrong_different",
+   "id": "esther#default",
+   "english": "esther",
+   "reference_preferred": "ស្តើរ",
+   "reference_accepted": [
+    "ស្តើរ"
+   ],
+   "reference_tf_logprob": {
+    "ស្តើរ": -16.93487
+   },
+   "candidates": [
+    {
+     "source": "greedy",
+     "rank": 1,
+     "text": "អេស្ទើ",
+     "status": "ok",
+     "gen_score": -1.303176,
+     "tf_logprob": -1.303172,
+     "bytes": 19,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_reg",
+     "rank": 1,
+     "text": "អេស្ទ័រ",
+     "status": "ok",
+     "gen_score": -1.303041,
+     "tf_logprob": -1.303037,
+     "bytes": 22,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_reg",
+     "rank": 2,
+     "text": "អេស្ទើ",
+     "status": "ok",
+     "gen_score": -1.303177,
+     "tf_logprob": -1.303172,
+     "bytes": 19,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_reg",
+     "rank": 3,
+     "text": "អេស្ទឺ",
+     "status": "ok",
+     "gen_score": -3.006013,
+     "tf_logprob": -3.006008,
+     "bytes": 19,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_reg",
+     "rank": 4,
+     "text": "អេស្ទើរ",
+     "status": "ok",
+     "gen_score": -3.14198,
+     "tf_logprob": -3.141976,
+     "bytes": 22,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_can",
+     "rank": 1,
+     "text": "អេស្ទ័រ",
+     "status": "ok",
+     "gen_score": -1.303041,
+     "tf_logprob": -1.303037,
+     "bytes": 22,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_can",
+     "rank": 2,
+     "text": "អេស្ទើ",
+     "status": "ok",
+     "gen_score": -1.303177,
+     "tf_logprob": -1.303172,
+     "bytes": 19,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_can",
+     "rank": 3,
+     "text": "អេស្ទឺ",
+     "status": "ok",
+     "gen_score": -3.006013,
+     "tf_logprob": -3.006005,
+     "bytes": 19,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_can",
+     "rank": 4,
+     "text": "អេស្ទើរ",
+     "status": "ok",
+     "gen_score": -3.14198,
+     "tf_logprob": -3.141978,
+     "bytes": 22,
+     "eos": true,
+     "correct": 0
+    }
+   ]
+  },
+  {
+   "model": "e07",
+   "group": "both_wrong_different",
+   "id": "mecca#default",
+   "english": "mecca",
+   "reference_preferred": "មេកា",
+   "reference_accepted": [
+    "មេកា"
+   ],
+   "reference_tf_logprob": {
+    "មេកា": -7.201676
+   },
+   "candidates": [
+    {
+     "source": "greedy",
+     "rank": 1,
+     "text": "ម៉េកកា",
+     "status": "ok",
+     "gen_score": -1.994903,
+     "tf_logprob": -1.994898,
+     "bytes": 19,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_reg",
+     "rank": 1,
+     "text": "មេកកា",
+     "status": "ok",
+     "gen_score": -1.382094,
+     "tf_logprob": -1.382089,
+     "bytes": 16,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_reg",
+     "rank": 2,
+     "text": "ម៉េកកា",
+     "status": "ok",
+     "gen_score": -1.994898,
+     "tf_logprob": -1.994898,
+     "bytes": 19,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_reg",
+     "rank": 3,
+     "text": "ម៉ិកកា",
+     "status": "ok",
+     "gen_score": -2.157035,
+     "tf_logprob": -2.15703,
+     "bytes": 19,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_reg",
+     "rank": 4,
+     "text": "មេកការ",
+     "status": "ok",
+     "gen_score": -3.648431,
+     "tf_logprob": -3.648426,
+     "bytes": 19,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_can",
+     "rank": 1,
+     "text": "មេកកា",
+     "status": "ok",
+     "gen_score": -1.382094,
+     "tf_logprob": -1.382088,
+     "bytes": 16,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_can",
+     "rank": 2,
+     "text": "ម៉េកកា",
+     "status": "ok",
+     "gen_score": -1.994898,
+     "tf_logprob": -1.994897,
+     "bytes": 19,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_can",
+     "rank": 3,
+     "text": "ម៉ិកកា",
+     "status": "ok",
+     "gen_score": -2.157035,
+     "tf_logprob": -2.157032,
+     "bytes": 19,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_can",
+     "rank": 4,
+     "text": "មេកការ",
+     "status": "ok",
+     "gen_score": -3.648431,
+     "tf_logprob": -3.648429,
+     "bytes": 19,
+     "eos": true,
+     "correct": 0
+    }
+   ]
+  },
+  {
+   "model": "e07",
+   "group": "both_wrong_different",
+   "id": "yoon#default",
+   "english": "yoon",
+   "reference_preferred": "យុន",
+   "reference_accepted": [
+    "យុន",
+    "យ៉ុន"
+   ],
+   "reference_tf_logprob": {
+    "យុន": -2.523426,
+    "យ៉ុន": -2.699746
+   },
+   "candidates": [
+    {
+     "source": "greedy",
+     "rank": 1,
+     "text": "យ៉ូន",
+     "status": "ok",
+     "gen_score": -0.717444,
+     "tf_logprob": -0.717442,
+     "bytes": 13,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_reg",
+     "rank": 1,
+     "text": "យូន",
+     "status": "ok",
+     "gen_score": -1.188971,
+     "tf_logprob": -1.188967,
+     "bytes": 10,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_reg",
+     "rank": 2,
+     "text": "យុន",
+     "status": "ok",
+     "gen_score": -2.523429,
+     "tf_logprob": -2.523426,
+     "bytes": 10,
+     "eos": true,
+     "correct": 1
+    },
+    {
+     "source": "beam4_reg",
+     "rank": 3,
+     "text": "យន",
+     "status": "ok",
+     "gen_score": -4.820248,
+     "tf_logprob": -4.820247,
+     "bytes": 7,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_reg",
+     "rank": 4,
+     "text": "យ",
+     "status": "ok",
+     "gen_score": -9.044777,
+     "tf_logprob": -9.044777,
+     "bytes": 4,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_can",
+     "rank": 1,
+     "text": "យ៉ូន",
+     "status": "ok",
+     "gen_score": -0.717444,
+     "tf_logprob": -0.717441,
+     "bytes": 13,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_can",
+     "rank": 2,
+     "text": "យូន",
+     "status": "ok",
+     "gen_score": -1.188971,
+     "tf_logprob": -1.188967,
+     "bytes": 10,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_can",
+     "rank": 3,
+     "text": "យុន",
+     "status": "ok",
+     "gen_score": -2.523429,
+     "tf_logprob": -2.523426,
+     "bytes": 10,
+     "eos": true,
+     "correct": 1
+    },
+    {
+     "source": "beam4_can",
+     "rank": 4,
+     "text": "យ៉ុន",
+     "status": "ok",
+     "gen_score": -2.699749,
+     "tf_logprob": -2.699747,
+     "bytes": 13,
+     "eos": true,
+     "correct": 1
+    }
+   ]
+  },
+  {
+   "model": "e07",
+   "group": "agree",
+   "id": "lada#default",
+   "english": "lada",
+   "reference_preferred": "ឡាដា",
+   "reference_accepted": [
+    "ឡាដា"
+   ],
+   "reference_tf_logprob": {
+    "ឡាដា": -0.032585
+   },
+   "candidates": [
+    {
+     "source": "greedy",
+     "rank": 1,
+     "text": "ឡាដា",
+     "status": "ok",
+     "gen_score": -0.032588,
+     "tf_logprob": -0.032585,
+     "bytes": 13,
+     "eos": true,
+     "correct": 1
+    },
+    {
+     "source": "beam4_reg",
+     "rank": 1,
+     "text": "ឡាដា",
+     "status": "ok",
+     "gen_score": -0.032588,
+     "tf_logprob": -0.032585,
+     "bytes": 13,
+     "eos": true,
+     "correct": 1
+    },
+    {
+     "source": "beam4_reg",
+     "rank": 2,
+     "text": "ឡាតា",
+     "status": "ok",
+     "gen_score": -4.517603,
+     "tf_logprob": -4.517599,
+     "bytes": 13,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_reg",
+     "rank": 3,
+     "text": "ឡាឌា",
+     "status": "ok",
+     "gen_score": -4.81792,
+     "tf_logprob": -4.817916,
+     "bytes": 13,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_reg",
+     "rank": 4,
+     "text": "ឡាដា\n",
+     "status": "ok",
+     "gen_score": -11.58877,
+     "tf_logprob": -11.58877,
+     "bytes": 14,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_can",
+     "rank": 1,
+     "text": "ឡាដា",
+     "status": "ok",
+     "gen_score": -0.032588,
+     "tf_logprob": -0.032585,
+     "bytes": 13,
+     "eos": true,
+     "correct": 1
+    },
+    {
+     "source": "beam4_can",
+     "rank": 2,
+     "text": "ឡាតា",
+     "status": "ok",
+     "gen_score": -4.517603,
+     "tf_logprob": -4.5176,
+     "bytes": 13,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_can",
+     "rank": 3,
+     "text": "ឡាឌា",
+     "status": "ok",
+     "gen_score": -4.81792,
+     "tf_logprob": -4.817918,
+     "bytes": 13,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_can",
+     "rank": 4,
+     "text": "ឡាំដា",
+     "status": "ok",
+     "gen_score": -5.417597,
+     "tf_logprob": -5.417593,
+     "bytes": 16,
+     "eos": true,
+     "correct": 0
+    }
+   ]
+  },
+  {
+   "model": "e07",
+   "group": "agree",
+   "id": "martie#default",
+   "english": "martie",
+   "reference_preferred": "ម៉ាទី",
+   "reference_accepted": [
+    "ម៉ាទី"
+   ],
+   "reference_tf_logprob": {
+    "ម៉ាទី": -0.332951
+   },
+   "candidates": [
+    {
+     "source": "greedy",
+     "rank": 1,
+     "text": "ម៉ាទី",
+     "status": "ok",
+     "gen_score": -0.332955,
+     "tf_logprob": -0.332951,
+     "bytes": 16,
+     "eos": true,
+     "correct": 1
+    },
+    {
+     "source": "beam4_reg",
+     "rank": 1,
+     "text": "ម៉ាទី",
+     "status": "ok",
+     "gen_score": -0.332956,
+     "tf_logprob": -0.332952,
+     "bytes": 16,
+     "eos": true,
+     "correct": 1
+    },
+    {
+     "source": "beam4_reg",
+     "rank": 2,
+     "text": "ម៉ាធី",
+     "status": "ok",
+     "gen_score": -1.567933,
+     "tf_logprob": -1.567929,
+     "bytes": 16,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_reg",
+     "rank": 3,
+     "text": "ម៉ាឌី",
+     "status": "ok",
+     "gen_score": -3.432344,
+     "tf_logprob": -3.432337,
+     "bytes": 16,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_reg",
+     "rank": 4,
+     "text": "ម៉ាតី",
+     "status": "ok",
+     "gen_score": -4.346838,
+     "tf_logprob": -4.346833,
+     "bytes": 16,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_can",
+     "rank": 1,
+     "text": "ម៉ាទី",
+     "status": "ok",
+     "gen_score": -0.332956,
+     "tf_logprob": -0.332951,
+     "bytes": 16,
+     "eos": true,
+     "correct": 1
+    },
+    {
+     "source": "beam4_can",
+     "rank": 2,
+     "text": "ម៉ាធី",
+     "status": "ok",
+     "gen_score": -1.567933,
+     "tf_logprob": -1.567928,
+     "bytes": 16,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_can",
+     "rank": 3,
+     "text": "ម៉ាឌី",
+     "status": "ok",
+     "gen_score": -3.432344,
+     "tf_logprob": -3.43234,
+     "bytes": 16,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_can",
+     "rank": 4,
+     "text": "ម៉ាតី",
+     "status": "ok",
+     "gen_score": -4.346838,
+     "tf_logprob": -4.346834,
+     "bytes": 16,
+     "eos": true,
+     "correct": 0
+    }
+   ]
+  },
+  {
+   "model": "e07",
+   "group": "agree",
+   "id": "netanyahu#default",
+   "english": "netanyahu",
+   "reference_preferred": "ណេតាន់យ៉ាហ៊ូ",
+   "reference_accepted": [
+    "ណេតាន់យ៉ាហ៊ូ"
+   ],
+   "reference_tf_logprob": {
+    "ណេតាន់យ៉ាហ៊ូ": -5.398176
+   },
+   "candidates": [
+    {
+     "source": "greedy",
+     "rank": 1,
+     "text": "ណេតានីហ្សា",
+     "status": "ok",
+     "gen_score": -2.258586,
+     "tf_logprob": -2.258584,
+     "bytes": 31,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_reg",
+     "rank": 1,
+     "text": "ណេតានីហ្សា",
+     "status": "ok",
+     "gen_score": -2.258586,
+     "tf_logprob": -2.258581,
+     "bytes": 31,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_reg",
+     "rank": 2,
+     "text": "ណេតានីហ្សូ",
+     "status": "ok",
+     "gen_score": -2.354453,
+     "tf_logprob": -2.354447,
+     "bytes": 31,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_reg",
+     "rank": 3,
+     "text": "ណេតានយ៉ាហ្សា",
+     "status": "ok",
+     "gen_score": -3.771948,
+     "tf_logprob": -3.771939,
+     "bytes": 37,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_reg",
+     "rank": 4,
+     "text": "ណេតានយ៉ាហ្សូ",
+     "status": "ok",
+     "gen_score": -3.792998,
+     "tf_logprob": -3.792984,
+     "bytes": 37,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_can",
+     "rank": 1,
+     "text": "ណេតានីហ្សា",
+     "status": "ok",
+     "gen_score": -2.258586,
+     "tf_logprob": -2.258582,
+     "bytes": 31,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_can",
+     "rank": 2,
+     "text": "ណេតានីហ្សូ",
+     "status": "ok",
+     "gen_score": -2.354453,
+     "tf_logprob": -2.35445,
+     "bytes": 31,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_can",
+     "rank": 3,
+     "text": "ណេតាន់យ៉ាហ្សូ",
+     "status": "ok",
+     "gen_score": -3.072133,
+     "tf_logprob": -3.072124,
+     "bytes": 40,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_can",
+     "rank": 4,
+     "text": "ណេតាន់យ៉ាហ្សា",
+     "status": "ok",
+     "gen_score": -3.19073,
+     "tf_logprob": -3.190721,
+     "bytes": 40,
+     "eos": true,
+     "correct": 0
+    }
+   ]
+  },
+  {
+   "model": "e07",
+   "group": "agree",
+   "id": "ritchie#default",
+   "english": "ritchie",
+   "reference_preferred": "រីឈី",
+   "reference_accepted": [
+    "រីឈី"
+   ],
+   "reference_tf_logprob": {
+    "រីឈី": -3.306722
+   },
+   "candidates": [
+    {
+     "source": "greedy",
+     "rank": 1,
+     "text": "រីធី",
+     "status": "ok",
+     "gen_score": -0.657645,
+     "tf_logprob": -0.657642,
+     "bytes": 13,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_reg",
+     "rank": 1,
+     "text": "រីធី",
+     "status": "ok",
+     "gen_score": -0.657645,
+     "tf_logprob": -0.657642,
+     "bytes": 13,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_reg",
+     "rank": 2,
+     "text": "រីជី",
+     "status": "ok",
+     "gen_score": -1.663504,
+     "tf_logprob": -1.663498,
+     "bytes": 13,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_reg",
+     "rank": 3,
+     "text": "រីទី",
+     "status": "ok",
+     "gen_score": -2.172906,
+     "tf_logprob": -2.172904,
+     "bytes": 13,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_reg",
+     "rank": 4,
+     "text": "រីឈី",
+     "status": "ok",
+     "gen_score": -3.306726,
+     "tf_logprob": -3.306722,
+     "bytes": 13,
+     "eos": true,
+     "correct": 1
+    },
+    {
+     "source": "beam4_can",
+     "rank": 1,
+     "text": "រីធី",
+     "status": "ok",
+     "gen_score": -0.657645,
+     "tf_logprob": -0.657641,
+     "bytes": 13,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_can",
+     "rank": 2,
+     "text": "រីជី",
+     "status": "ok",
+     "gen_score": -1.663504,
+     "tf_logprob": -1.663499,
+     "bytes": 13,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_can",
+     "rank": 3,
+     "text": "រីទី",
+     "status": "ok",
+     "gen_score": -2.172906,
+     "tf_logprob": -2.172901,
+     "bytes": 13,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_can",
+     "rank": 4,
+     "text": "រីឈី",
+     "status": "ok",
+     "gen_score": -3.306726,
+     "tf_logprob": -3.306722,
+     "bytes": 13,
+     "eos": true,
+     "correct": 1
+    }
+   ]
+  },
+  {
+   "model": "e07",
+   "group": "agree",
+   "id": "vy#default",
+   "english": "vy",
+   "reference_preferred": "វី",
+   "reference_accepted": [
+    "វី"
+   ],
+   "reference_tf_logprob": {
+    "វី": -0.120027
+   },
+   "candidates": [
+    {
+     "source": "greedy",
+     "rank": 1,
+     "text": "វី",
+     "status": "ok",
+     "gen_score": -0.12003,
+     "tf_logprob": -0.120027,
+     "bytes": 7,
+     "eos": true,
+     "correct": 1
+    },
+    {
+     "source": "beam4_reg",
+     "rank": 1,
+     "text": "វី",
+     "status": "ok",
+     "gen_score": -0.12003,
+     "tf_logprob": -0.120027,
+     "bytes": 7,
+     "eos": true,
+     "correct": 1
+    },
+    {
+     "source": "beam4_reg",
+     "rank": 2,
+     "text": "វៀ",
+     "status": "ok",
+     "gen_score": -2.548965,
+     "tf_logprob": -2.548961,
+     "bytes": 7,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_reg",
+     "rank": 3,
+     "text": "វិ",
+     "status": "ok",
+     "gen_score": -5.266083,
+     "tf_logprob": -5.266084,
+     "bytes": 7,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_reg",
+     "rank": 4,
+     "text": "វ",
+     "status": "ok",
+     "gen_score": -7.868473,
+     "tf_logprob": -7.868468,
+     "bytes": 4,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_can",
+     "rank": 1,
+     "text": "វី",
+     "status": "ok",
+     "gen_score": -0.12003,
+     "tf_logprob": -0.120027,
+     "bytes": 7,
+     "eos": true,
+     "correct": 1
+    },
+    {
+     "source": "beam4_can",
+     "rank": 2,
+     "text": "វៀ",
+     "status": "ok",
+     "gen_score": -2.548965,
+     "tf_logprob": -2.548961,
+     "bytes": 7,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_can",
+     "rank": 3,
+     "text": "វ៉ៀ",
+     "status": "ok",
+     "gen_score": -5.128214,
+     "tf_logprob": -5.128212,
+     "bytes": 10,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_can",
+     "rank": 4,
+     "text": "វិ",
+     "status": "ok",
+     "gen_score": -5.266083,
+     "tf_logprob": -5.266084,
+     "bytes": 7,
+     "eos": true,
+     "correct": 0
+    }
+   ]
+  },
+  {
+   "model": "e08",
+   "group": "greedy_right_beam_wrong",
+   "id": "bee#default",
+   "english": "bee",
+   "reference_preferred": "ប៊ី",
+   "reference_accepted": [
+    "ប៊ី"
+   ],
+   "reference_tf_logprob": {
+    "ប៊ី": -0.310053
+   },
+   "candidates": [
+    {
+     "source": "greedy",
+     "rank": 1,
+     "text": "ប៊ី",
+     "status": "ok",
+     "gen_score": -0.310056,
+     "tf_logprob": -0.310052,
+     "bytes": 10,
+     "eos": true,
+     "correct": 1
+    },
+    {
+     "source": "beam4_reg",
+     "rank": 1,
+     "text": "បៃ",
+     "status": "ok",
+     "gen_score": -2.373271,
+     "tf_logprob": -2.37327,
+     "bytes": 7,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_reg",
+     "rank": 2,
+     "text": "បៀ",
+     "status": "ok",
+     "gen_score": -3.614251,
+     "tf_logprob": -3.614251,
+     "bytes": 7,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_reg",
+     "rank": 3,
+     "text": "ប",
+     "status": "ok",
+     "gen_score": -7.508576,
+     "tf_logprob": -7.508576,
+     "bytes": 4,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_reg",
+     "rank": 4,
+     "text": "",
+     "status": "empty",
+     "gen_score": -27.3456,
+     "tf_logprob": -27.345602,
+     "bytes": 1,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_can",
+     "rank": 1,
+     "text": "ប៊ី",
+     "status": "ok",
+     "gen_score": -0.310056,
+     "tf_logprob": -0.310053,
+     "bytes": 10,
+     "eos": true,
+     "correct": 1
+    },
+    {
+     "source": "beam4_can",
+     "rank": 2,
+     "text": "បៃ",
+     "status": "ok",
+     "gen_score": -2.373271,
+     "tf_logprob": -2.373271,
+     "bytes": 7,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_can",
+     "rank": 3,
+     "text": "បៀ",
+     "status": "ok",
+     "gen_score": -3.614251,
+     "tf_logprob": -3.614251,
+     "bytes": 7,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_can",
+     "rank": 4,
+     "text": "ប៉ៃ",
+     "status": "ok",
+     "gen_score": -4.147938,
+     "tf_logprob": -4.147936,
+     "bytes": 10,
+     "eos": true,
+     "correct": 0
+    }
+   ]
+  },
+  {
+   "model": "e08",
+   "group": "greedy_right_beam_wrong",
+   "id": "boeing#default",
+   "english": "boeing",
+   "reference_preferred": "ប៊ូអ៊ីង",
+   "reference_accepted": [
+    "ប៊ូអ៊ីង"
+   ],
+   "reference_tf_logprob": {
+    "ប៊ូអ៊ីង": -1.05915
+   },
+   "candidates": [
+    {
+     "source": "greedy",
+     "rank": 1,
+     "text": "ប៊ូអ៊ីង",
+     "status": "ok",
+     "gen_score": -1.059156,
+     "tf_logprob": -1.05915,
+     "bytes": 22,
+     "eos": true,
+     "correct": 1
+    },
+    {
+     "source": "beam4_reg",
+     "rank": 1,
+     "text": "បូអ៊ីង",
+     "status": "ok",
+     "gen_score": -2.390155,
+     "tf_logprob": -2.390149,
+     "bytes": 19,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_reg",
+     "rank": 2,
+     "text": "ប៊ូអេង",
+     "status": "ok",
+     "gen_score": -2.609111,
+     "tf_logprob": -2.609104,
+     "bytes": 19,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_reg",
+     "rank": 3,
+     "text": "ប",
+     "status": "ok",
+     "gen_score": -7.61935,
+     "tf_logprob": -7.61935,
+     "bytes": 4,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_reg",
+     "rank": 4,
+     "text": "",
+     "status": "empty",
+     "gen_score": -27.303396,
+     "tf_logprob": -27.303406,
+     "bytes": 1,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_can",
+     "rank": 1,
+     "text": "ប៊ូអ៊ីង",
+     "status": "ok",
+     "gen_score": -1.059157,
+     "tf_logprob": -1.05915,
+     "bytes": 22,
+     "eos": true,
+     "correct": 1
+    },
+    {
+     "source": "beam4_can",
+     "rank": 2,
+     "text": "បូអ៊ីង",
+     "status": "ok",
+     "gen_score": -2.390155,
+     "tf_logprob": -2.390149,
+     "bytes": 19,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_can",
+     "rank": 3,
+     "text": "ប៊ូអេង",
+     "status": "ok",
+     "gen_score": -2.609111,
+     "tf_logprob": -2.609104,
+     "bytes": 19,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_can",
+     "rank": 4,
+     "text": "ប៊ុយអ៊ីង",
+     "status": "ok",
+     "gen_score": -3.132032,
+     "tf_logprob": -3.132029,
+     "bytes": 25,
+     "eos": true,
+     "correct": 0
+    }
+   ]
+  },
+  {
+   "model": "e08",
+   "group": "greedy_right_beam_wrong",
+   "id": "gavin#default",
+   "english": "gavin",
+   "reference_preferred": "ហ្គាវីន",
+   "reference_accepted": [
+    "ហ្គាវីន"
+   ],
+   "reference_tf_logprob": {
+    "ហ្គាវីន": -0.603599
+   },
+   "candidates": [
+    {
+     "source": "greedy",
+     "rank": 1,
+     "text": "ហ្គាវីន",
+     "status": "ok",
+     "gen_score": -0.603606,
+     "tf_logprob": -0.6036,
+     "bytes": 22,
+     "eos": true,
+     "correct": 1
+    },
+    {
+     "source": "beam4_reg",
+     "rank": 1,
+     "text": "កាវីន",
+     "status": "ok",
+     "gen_score": -1.878429,
+     "tf_logprob": -1.878424,
+     "bytes": 16,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_reg",
+     "rank": 2,
+     "text": "កាវិន",
+     "status": "ok",
+     "gen_score": -2.921534,
+     "tf_logprob": -2.921524,
+     "bytes": 16,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_reg",
+     "rank": 3,
+     "text": "គាវីន",
+     "status": "ok",
+     "gen_score": -3.696676,
+     "tf_logprob": -3.696667,
+     "bytes": 16,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_reg",
+     "rank": 4,
+     "text": "",
+     "status": "empty",
+     "gen_score": -29.305454,
+     "tf_logprob": -29.305456,
+     "bytes": 1,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_can",
+     "rank": 1,
+     "text": "ហ្គាវីន",
+     "status": "ok",
+     "gen_score": -0.603606,
+     "tf_logprob": -0.6036,
+     "bytes": 22,
+     "eos": true,
+     "correct": 1
+    },
+    {
+     "source": "beam4_can",
+     "rank": 2,
+     "text": "កាវីន",
+     "status": "ok",
+     "gen_score": -1.878429,
+     "tf_logprob": -1.878424,
+     "bytes": 16,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_can",
+     "rank": 3,
+     "text": "ហ្គាវិន",
+     "status": "ok",
+     "gen_score": -2.032503,
+     "tf_logprob": -2.032497,
+     "bytes": 22,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_can",
+     "rank": 4,
+     "text": "កាវិន",
+     "status": "ok",
+     "gen_score": -2.921534,
+     "tf_logprob": -2.921526,
+     "bytes": 16,
+     "eos": true,
+     "correct": 0
+    }
+   ]
+  },
+  {
+   "model": "e08",
+   "group": "greedy_right_beam_wrong",
+   "id": "mora#default",
+   "english": "mora",
+   "reference_preferred": "ម៉ូរ៉ា",
+   "reference_accepted": [
+    "ម៉ូរ៉ា"
+   ],
+   "reference_tf_logprob": {
+    "ម៉ូរ៉ា": -0.080637
+   },
+   "candidates": [
+    {
+     "source": "greedy",
+     "rank": 1,
+     "text": "ម៉ូរ៉ា",
+     "status": "ok",
+     "gen_score": -0.080641,
+     "tf_logprob": -0.080637,
+     "bytes": 19,
+     "eos": true,
+     "correct": 1
+    },
+    {
+     "source": "beam4_reg",
+     "rank": 1,
+     "text": "មូរ៉ា",
+     "status": "ok",
+     "gen_score": -2.87429,
+     "tf_logprob": -2.874287,
+     "bytes": 16,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_reg",
+     "rank": 2,
+     "text": "ម៉ូរា",
+     "status": "ok",
+     "gen_score": -4.09394,
+     "tf_logprob": -4.093934,
+     "bytes": 16,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_reg",
+     "rank": 3,
+     "text": "មូរា",
+     "status": "ok",
+     "gen_score": -6.918309,
+     "tf_logprob": -6.918309,
+     "bytes": 13,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_reg",
+     "rank": 4,
+     "text": "ម",
+     "status": "ok",
+     "gen_score": -7.918942,
+     "tf_logprob": -7.918942,
+     "bytes": 4,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_can",
+     "rank": 1,
+     "text": "ម៉ូរ៉ា",
+     "status": "ok",
+     "gen_score": -0.080641,
+     "tf_logprob": -0.080637,
+     "bytes": 19,
+     "eos": true,
+     "correct": 1
+    },
+    {
+     "source": "beam4_can",
+     "rank": 2,
+     "text": "មូរ៉ា",
+     "status": "ok",
+     "gen_score": -2.87429,
+     "tf_logprob": -2.874288,
+     "bytes": 16,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_can",
+     "rank": 3,
+     "text": "ម៉ូរា",
+     "status": "ok",
+     "gen_score": -4.09394,
+     "tf_logprob": -4.093937,
+     "bytes": 16,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_can",
+     "rank": 4,
+     "text": "មូរា",
+     "status": "ok",
+     "gen_score": -6.918309,
+     "tf_logprob": -6.918309,
+     "bytes": 13,
+     "eos": true,
+     "correct": 0
+    }
+   ]
+  },
+  {
+   "model": "e08",
+   "group": "greedy_right_beam_wrong",
+   "id": "ravi#default",
+   "english": "ravi",
+   "reference_preferred": "រ៉ាវី",
+   "reference_accepted": [
+    "រ៉ាវី"
+   ],
+   "reference_tf_logprob": {
+    "រ៉ាវី": -0.096815
+   },
+   "candidates": [
+    {
+     "source": "greedy",
+     "rank": 1,
+     "text": "រ៉ាវី",
+     "status": "ok",
+     "gen_score": -0.096819,
+     "tf_logprob": -0.096815,
+     "bytes": 16,
+     "eos": true,
+     "correct": 1
+    },
+    {
+     "source": "beam4_reg",
+     "rank": 1,
+     "text": "រាវី",
+     "status": "ok",
+     "gen_score": -3.798784,
+     "tf_logprob": -3.798778,
+     "bytes": 13,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_reg",
+     "rank": 2,
+     "text": "រាវិ",
+     "status": "ok",
+     "gen_score": -6.458876,
+     "tf_logprob": -6.458872,
+     "bytes": 13,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_reg",
+     "rank": 3,
+     "text": "រ",
+     "status": "ok",
+     "gen_score": -9.190785,
+     "tf_logprob": -9.190784,
+     "bytes": 4,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_reg",
+     "rank": 4,
+     "text": "",
+     "status": "empty",
+     "gen_score": -29.896412,
+     "tf_logprob": -29.896421,
+     "bytes": 1,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_can",
+     "rank": 1,
+     "text": "រ៉ាវី",
+     "status": "ok",
+     "gen_score": -0.096819,
+     "tf_logprob": -0.096815,
+     "bytes": 16,
+     "eos": true,
+     "correct": 1
+    },
+    {
+     "source": "beam4_can",
+     "rank": 2,
+     "text": "រ៉ាវិ",
+     "status": "ok",
+     "gen_score": -2.750111,
+     "tf_logprob": -2.750107,
+     "bytes": 16,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_can",
+     "rank": 3,
+     "text": "រាវី",
+     "status": "ok",
+     "gen_score": -3.798784,
+     "tf_logprob": -3.798776,
+     "bytes": 13,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_can",
+     "rank": 4,
+     "text": "រាវិ",
+     "status": "ok",
+     "gen_score": -6.458876,
+     "tf_logprob": -6.458871,
+     "bytes": 13,
+     "eos": true,
+     "correct": 0
+    }
+   ]
+  },
+  {
+   "model": "e08",
+   "group": "beam_right_greedy_wrong",
+   "id": "barron#default",
+   "english": "barron",
+   "reference_preferred": "បារុន",
+   "reference_accepted": [
+    "បារុន"
+   ],
+   "reference_tf_logprob": {
+    "បារុន": -2.051681
+   },
+   "candidates": [
+    {
+     "source": "greedy",
+     "rank": 1,
+     "text": "បារ៉ុន",
+     "status": "ok",
+     "gen_score": -0.200563,
+     "tf_logprob": -0.200554,
+     "bytes": 19,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_reg",
+     "rank": 1,
+     "text": "បារុន",
+     "status": "ok",
+     "gen_score": -2.05168,
+     "tf_logprob": -2.05168,
+     "bytes": 16,
+     "eos": true,
+     "correct": 1
+    },
+    {
+     "source": "beam4_reg",
+     "rank": 2,
+     "text": "បារ៉ន",
+     "status": "ok",
+     "gen_score": -3.492727,
+     "tf_logprob": -3.492718,
+     "bytes": 16,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_reg",
+     "rank": 3,
+     "text": "ប",
+     "status": "ok",
+     "gen_score": -10.509315,
+     "tf_logprob": -10.509314,
+     "bytes": 4,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_reg",
+     "rank": 4,
+     "text": "",
+     "status": "empty",
+     "gen_score": -29.613052,
+     "tf_logprob": -29.613047,
+     "bytes": 1,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_can",
+     "rank": 1,
+     "text": "បារ៉ុន",
+     "status": "ok",
+     "gen_score": -0.200563,
+     "tf_logprob": -0.200554,
+     "bytes": 19,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_can",
+     "rank": 2,
+     "text": "បារុន",
+     "status": "ok",
+     "gen_score": -2.05168,
+     "tf_logprob": -2.05168,
+     "bytes": 16,
+     "eos": true,
+     "correct": 1
+    },
+    {
+     "source": "beam4_can",
+     "rank": 3,
+     "text": "បារ៉ន",
+     "status": "ok",
+     "gen_score": -3.492727,
+     "tf_logprob": -3.492718,
+     "bytes": 16,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_can",
+     "rank": 4,
+     "text": "បារ៉ូន",
+     "status": "ok",
+     "gen_score": -5.054524,
+     "tf_logprob": -5.054518,
+     "bytes": 19,
+     "eos": true,
+     "correct": 0
+    }
+   ]
+  },
+  {
+   "model": "e08",
+   "group": "beam_right_greedy_wrong",
+   "id": "evergreen#default",
+   "english": "evergreen",
+   "reference_preferred": "អេវើហ្គ្រីន",
+   "reference_accepted": [
+    "អេវើហ្គ្រីន"
+   ],
+   "reference_tf_logprob": {
+    "អេវើហ្គ្រីន": -2.115038
+   },
+   "candidates": [
+    {
+     "source": "greedy",
+     "rank": 1,
+     "text": "អ៊ីវើគ្រីន",
+     "status": "ok",
+     "gen_score": -2.166801,
+     "tf_logprob": -2.166796,
+     "bytes": 31,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_reg",
+     "rank": 1,
+     "text": "អេវើហ្គ្រីន",
+     "status": "ok",
+     "gen_score": -2.115046,
+     "tf_logprob": -2.115038,
+     "bytes": 34,
+     "eos": true,
+     "correct": 1
+    },
+    {
+     "source": "beam4_reg",
+     "rank": 2,
+     "text": "អេវើគ្រីន",
+     "status": "ok",
+     "gen_score": -2.164918,
+     "tf_logprob": -2.164913,
+     "bytes": 28,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_reg",
+     "rank": 3,
+     "text": "អ៊ីវើគ្រីន",
+     "status": "ok",
+     "gen_score": -2.166801,
+     "tf_logprob": -2.166796,
+     "bytes": 31,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_reg",
+     "rank": 4,
+     "text": "អេវើហ្គ្រិន",
+     "status": "ok",
+     "gen_score": -5.918047,
+     "tf_logprob": -5.918037,
+     "bytes": 34,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_can",
+     "rank": 1,
+     "text": "អេវើហ្គ្រីន",
+     "status": "ok",
+     "gen_score": -2.115046,
+     "tf_logprob": -2.115039,
+     "bytes": 34,
+     "eos": true,
+     "correct": 1
+    },
+    {
+     "source": "beam4_can",
+     "rank": 2,
+     "text": "អេវើគ្រីន",
+     "status": "ok",
+     "gen_score": -2.164918,
+     "tf_logprob": -2.164913,
+     "bytes": 28,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_can",
+     "rank": 3,
+     "text": "អ៊ីវើគ្រីន",
+     "status": "ok",
+     "gen_score": -2.166801,
+     "tf_logprob": -2.166796,
+     "bytes": 31,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_can",
+     "rank": 4,
+     "text": "អ៊ីវើហ្គ្រីន",
+     "status": "ok",
+     "gen_score": -2.361269,
+     "tf_logprob": -2.361265,
+     "bytes": 37,
+     "eos": true,
+     "correct": 0
+    }
+   ]
+  },
+  {
+   "model": "e08",
+   "group": "beam_right_greedy_wrong",
+   "id": "falcon#default",
+   "english": "falcon",
+   "reference_preferred": "ហ្វាលខុន",
+   "reference_accepted": [
+    "ហ្វាលខុន"
+   ],
+   "reference_tf_logprob": {
+    "ហ្វាលខុន": -2.216933
+   },
+   "candidates": [
+    {
+     "source": "greedy",
+     "rank": 1,
+     "text": "ហ្វាល់ខុន",
+     "status": "ok",
+     "gen_score": -1.113736,
+     "tf_logprob": -1.113728,
+     "bytes": 28,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_reg",
+     "rank": 1,
+     "text": "ហ្វាលខុន",
+     "status": "ok",
+     "gen_score": -2.216942,
+     "tf_logprob": -2.216932,
+     "bytes": 25,
+     "eos": true,
+     "correct": 1
+    },
+    {
+     "source": "beam4_reg",
+     "rank": 2,
+     "text": "ហ្វាលកុន",
+     "status": "ok",
+     "gen_score": -2.963423,
+     "tf_logprob": -2.963411,
+     "bytes": 25,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_reg",
+     "rank": 3,
+     "text": "ហ្វាល",
+     "status": "ok",
+     "gen_score": -4.879064,
+     "tf_logprob": -4.879063,
+     "bytes": 16,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_reg",
+     "rank": 4,
+     "text": "",
+     "status": "empty",
+     "gen_score": -29.062407,
+     "tf_logprob": -29.062407,
+     "bytes": 1,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_can",
+     "rank": 1,
+     "text": "ហ្វាល់ខុន",
+     "status": "ok",
+     "gen_score": -1.113737,
+     "tf_logprob": -1.113728,
+     "bytes": 28,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_can",
+     "rank": 2,
+     "text": "ហ្វាល់កុន",
+     "status": "ok",
+     "gen_score": -1.291809,
+     "tf_logprob": -1.291806,
+     "bytes": 28,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_can",
+     "rank": 3,
+     "text": "ហ្វាលខុន",
+     "status": "ok",
+     "gen_score": -2.216942,
+     "tf_logprob": -2.216932,
+     "bytes": 25,
+     "eos": true,
+     "correct": 1
+    },
+    {
+     "source": "beam4_can",
+     "rank": 4,
+     "text": "ហ្វាលកុន",
+     "status": "ok",
+     "gen_score": -2.963423,
+     "tf_logprob": -2.963413,
+     "bytes": 25,
+     "eos": true,
+     "correct": 0
+    }
+   ]
+  },
+  {
+   "model": "e08",
+   "group": "beam_right_greedy_wrong",
+   "id": "garay#default",
+   "english": "garay",
+   "reference_preferred": "ការ៉េ",
+   "reference_accepted": [
+    "ការ៉េ"
+   ],
+   "reference_tf_logprob": {
+    "ការ៉េ": -2.015035
+   },
+   "candidates": [
+    {
+     "source": "greedy",
+     "rank": 1,
+     "text": "ហ្គារ៉េ",
+     "status": "ok",
+     "gen_score": -1.083714,
+     "tf_logprob": -1.083709,
+     "bytes": 22,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_reg",
+     "rank": 1,
+     "text": "ការ៉េ",
+     "status": "ok",
+     "gen_score": -2.015037,
+     "tf_logprob": -2.015034,
+     "bytes": 16,
+     "eos": true,
+     "correct": 1
+    },
+    {
+     "source": "beam4_reg",
+     "rank": 2,
+     "text": "ការ៉ៃ",
+     "status": "ok",
+     "gen_score": -2.840909,
+     "tf_logprob": -2.840905,
+     "bytes": 16,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_reg",
+     "rank": 3,
+     "text": "ការេ",
+     "status": "ok",
+     "gen_score": -3.206567,
+     "tf_logprob": -3.206566,
+     "bytes": 13,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_reg",
+     "rank": 4,
+     "text": "គារ៉េ",
+     "status": "ok",
+     "gen_score": -3.891867,
+     "tf_logprob": -3.891862,
+     "bytes": 16,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_can",
+     "rank": 1,
+     "text": "ហ្គារ៉េ",
+     "status": "ok",
+     "gen_score": -1.083715,
+     "tf_logprob": -1.083709,
+     "bytes": 22,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_can",
+     "rank": 2,
+     "text": "ហ្គារេ",
+     "status": "ok",
+     "gen_score": -1.821594,
+     "tf_logprob": -1.82159,
+     "bytes": 19,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_can",
+     "rank": 3,
+     "text": "ការ៉េ",
+     "status": "ok",
+     "gen_score": -2.015037,
+     "tf_logprob": -2.015035,
+     "bytes": 16,
+     "eos": true,
+     "correct": 1
+    },
+    {
+     "source": "beam4_can",
+     "rank": 4,
+     "text": "ហ្គារ៉ៃ",
+     "status": "ok",
+     "gen_score": -2.059909,
+     "tf_logprob": -2.059902,
+     "bytes": 22,
+     "eos": true,
+     "correct": 0
+    }
+   ]
+  },
+  {
+   "model": "e08",
+   "group": "beam_right_greedy_wrong",
+   "id": "narayan#default",
+   "english": "narayan",
+   "reference_preferred": "ណារ៉ាយ៉ាន",
+   "reference_accepted": [
+    "ណារ៉ាយ៉ាន"
+   ],
+   "reference_tf_logprob": {
+    "ណារ៉ាយ៉ាន": -0.819774
+   },
+   "candidates": [
+    {
+     "source": "greedy",
+     "rank": 1,
+     "text": "ណារ៉ាយ៉ាន់",
+     "status": "ok",
+     "gen_score": -0.787433,
+     "tf_logprob": -0.787424,
+     "bytes": 31,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_reg",
+     "rank": 1,
+     "text": "ណារ៉ាយ៉ាន",
+     "status": "ok",
+     "gen_score": -0.819779,
+     "tf_logprob": -0.819774,
+     "bytes": 28,
+     "eos": true,
+     "correct": 1
+    },
+    {
+     "source": "beam4_reg",
+     "rank": 2,
+     "text": "ណារ៉ាយអាន",
+     "status": "ok",
+     "gen_score": -4.269538,
+     "tf_logprob": -4.269537,
+     "bytes": 28,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_reg",
+     "rank": 3,
+     "text": "ណ",
+     "status": "ok",
+     "gen_score": -9.151605,
+     "tf_logprob": -9.151601,
+     "bytes": 4,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_reg",
+     "rank": 4,
+     "text": "",
+     "status": "empty",
+     "gen_score": -29.091024,
+     "tf_logprob": -29.091019,
+     "bytes": 1,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_can",
+     "rank": 1,
+     "text": "ណារ៉ាយ៉ាន់",
+     "status": "ok",
+     "gen_score": -0.787432,
+     "tf_logprob": -0.787423,
+     "bytes": 31,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_can",
+     "rank": 2,
+     "text": "ណារ៉ាយ៉ាន",
+     "status": "ok",
+     "gen_score": -0.819779,
+     "tf_logprob": -0.819773,
+     "bytes": 28,
+     "eos": true,
+     "correct": 1
+    },
+    {
+     "source": "beam4_can",
+     "rank": 3,
+     "text": "ណារ៉ាយអាន",
+     "status": "ok",
+     "gen_score": -4.269538,
+     "tf_logprob": -4.269537,
+     "bytes": 28,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_can",
+     "rank": 4,
+     "text": "ណារ៉ាយអាន់",
+     "status": "ok",
+     "gen_score": -4.444712,
+     "tf_logprob": -4.44471,
+     "bytes": 31,
+     "eos": true,
+     "correct": 0
+    }
+   ]
+  },
+  {
+   "model": "e08",
+   "group": "both_wrong_different",
+   "id": "bagdad#default",
+   "english": "bagdad",
+   "reference_preferred": "បាកដាដ",
+   "reference_accepted": [
+    "បាកដាដ"
+   ],
+   "reference_tf_logprob": {
+    "បាកដាដ": -1.750007
+   },
+   "candidates": [
+    {
+     "source": "greedy",
+     "rank": 1,
+     "text": "បាកដាត",
+     "status": "ok",
+     "gen_score": -1.630845,
+     "tf_logprob": -1.630844,
+     "bytes": 19,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_reg",
+     "rank": 1,
+     "text": "បាក់ដាត",
+     "status": "ok",
+     "gen_score": -1.573511,
+     "tf_logprob": -1.573508,
+     "bytes": 22,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_reg",
+     "rank": 2,
+     "text": "បាកដាត",
+     "status": "ok",
+     "gen_score": -1.630847,
+     "tf_logprob": -1.630844,
+     "bytes": 19,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_reg",
+     "rank": 3,
+     "text": "បាកដាដ",
+     "status": "ok",
+     "gen_score": -1.750012,
+     "tf_logprob": -1.750008,
+     "bytes": 19,
+     "eos": true,
+     "correct": 1
+    },
+    {
+     "source": "beam4_reg",
+     "rank": 4,
+     "text": "បាក់ដាដ",
+     "status": "ok",
+     "gen_score": -1.797032,
+     "tf_logprob": -1.797025,
+     "bytes": 22,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_can",
+     "rank": 1,
+     "text": "បាក់ដាត",
+     "status": "ok",
+     "gen_score": -1.573511,
+     "tf_logprob": -1.573508,
+     "bytes": 22,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_can",
+     "rank": 2,
+     "text": "បាកដាត",
+     "status": "ok",
+     "gen_score": -1.630847,
+     "tf_logprob": -1.630844,
+     "bytes": 19,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_can",
+     "rank": 3,
+     "text": "បាកដាដ",
+     "status": "ok",
+     "gen_score": -1.750012,
+     "tf_logprob": -1.750007,
+     "bytes": 19,
+     "eos": true,
+     "correct": 1
+    },
+    {
+     "source": "beam4_can",
+     "rank": 4,
+     "text": "បាក់ដាដ",
+     "status": "ok",
+     "gen_score": -1.797032,
+     "tf_logprob": -1.797025,
+     "bytes": 22,
+     "eos": true,
+     "correct": 0
+    }
+   ]
+  },
+  {
+   "model": "e08",
+   "group": "both_wrong_different",
+   "id": "rafale#default",
+   "english": "rafale",
+   "reference_preferred": "រ៉ាហ្វែល",
+   "reference_accepted": [
+    "រ៉ាហ្វែល"
+   ],
+   "reference_tf_logprob": {
+    "រ៉ាហ្វែល": -4.894494
+   },
+   "candidates": [
+    {
+     "source": "greedy",
+     "rank": 1,
+     "text": "រ៉ាហ្វល",
+     "status": "ok",
+     "gen_score": -0.604085,
+     "tf_logprob": -0.60408,
+     "bytes": 22,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_reg",
+     "rank": 1,
+     "text": "រាហ្វល",
+     "status": "ok",
+     "gen_score": -4.536252,
+     "tf_logprob": -4.536245,
+     "bytes": 19,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_reg",
+     "rank": 2,
+     "text": "រ៉ាផល",
+     "status": "ok",
+     "gen_score": -6.330233,
+     "tf_logprob": -6.330221,
+     "bytes": 16,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_reg",
+     "rank": 3,
+     "text": "រ៉ាផាល",
+     "status": "ok",
+     "gen_score": -7.195848,
+     "tf_logprob": -7.195839,
+     "bytes": 19,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_reg",
+     "rank": 4,
+     "text": "រ",
+     "status": "ok",
+     "gen_score": -10.162359,
+     "tf_logprob": -10.162357,
+     "bytes": 4,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_can",
+     "rank": 1,
+     "text": "រ៉ាហ្វល",
+     "status": "ok",
+     "gen_score": -0.604087,
+     "tf_logprob": -0.60408,
+     "bytes": 22,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_can",
+     "rank": 2,
+     "text": "រ៉ាហ្វាល",
+     "status": "ok",
+     "gen_score": -1.136372,
+     "tf_logprob": -1.136373,
+     "bytes": 25,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_can",
+     "rank": 3,
+     "text": "រ៉ាហ្វាល់",
+     "status": "ok",
+     "gen_score": -2.539931,
+     "tf_logprob": -2.539925,
+     "bytes": 28,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_can",
+     "rank": 4,
+     "text": "រាហ្វល",
+     "status": "ok",
+     "gen_score": -4.536252,
+     "tf_logprob": -4.536244,
+     "bytes": 19,
+     "eos": true,
+     "correct": 0
+    }
+   ]
+  },
+  {
+   "model": "e08",
+   "group": "both_wrong_different",
+   "id": "roi#default",
+   "english": "roi",
+   "reference_preferred": "រ៉យ",
+   "reference_accepted": [
+    "រ៉យ"
+   ],
+   "reference_tf_logprob": {
+    "រ៉យ": -3.908824
+   },
+   "candidates": [
+    {
+     "source": "greedy",
+     "rank": 1,
+     "text": "រ៉ូ",
+     "status": "ok",
+     "gen_score": -1.070528,
+     "tf_logprob": -1.070526,
+     "bytes": 10,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_reg",
+     "rank": 1,
+     "text": "រូ",
+     "status": "ok",
+     "gen_score": -1.856267,
+     "tf_logprob": -1.856263,
+     "bytes": 7,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_reg",
+     "rank": 2,
+     "text": "រ",
+     "status": "ok",
+     "gen_score": -5.417308,
+     "tf_logprob": -5.417308,
+     "bytes": 4,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_reg",
+     "rank": 3,
+     "text": "រ៉",
+     "status": "ok",
+     "gen_score": -6.645597,
+     "tf_logprob": -6.645596,
+     "bytes": 7,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_reg",
+     "rank": 4,
+     "text": "",
+     "status": "empty",
+     "gen_score": -27.938454,
+     "tf_logprob": -27.938465,
+     "bytes": 1,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_can",
+     "rank": 1,
+     "text": "រ៉ូ",
+     "status": "ok",
+     "gen_score": -1.070528,
+     "tf_logprob": -1.070526,
+     "bytes": 10,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_can",
+     "rank": 2,
+     "text": "រ៉ូយ",
+     "status": "ok",
+     "gen_score": -1.564086,
+     "tf_logprob": -1.56408,
+     "bytes": 13,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_can",
+     "rank": 3,
+     "text": "រូ",
+     "status": "ok",
+     "gen_score": -1.856267,
+     "tf_logprob": -1.856264,
+     "bytes": 7,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_can",
+     "rank": 4,
+     "text": "រ៉ូអ៊ី",
+     "status": "ok",
+     "gen_score": -2.652213,
+     "tf_logprob": -2.652206,
+     "bytes": 19,
+     "eos": true,
+     "correct": 0
+    }
+   ]
+  },
+  {
+   "model": "e08",
+   "group": "both_wrong_different",
+   "id": "sacramento#default",
+   "english": "sacramento",
+   "reference_preferred": "សាក្រាមែនតូ",
+   "reference_accepted": [
+    "សាក្រាមែនតូ"
+   ],
+   "reference_tf_logprob": {
+    "សាក្រាមែនតូ": -1.983942
+   },
+   "candidates": [
+    {
+     "source": "greedy",
+     "rank": 1,
+     "text": "សាក្រាម៉េនតូ",
+     "status": "ok",
+     "gen_score": -2.31241,
+     "tf_logprob": -2.312404,
+     "bytes": 37,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_reg",
+     "rank": 1,
+     "text": "សាក្រាមិនតូ",
+     "status": "ok",
+     "gen_score": -1.025245,
+     "tf_logprob": -1.025238,
+     "bytes": 34,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_reg",
+     "rank": 2,
+     "text": "សាក្រាមែនតូ",
+     "status": "ok",
+     "gen_score": -1.983949,
+     "tf_logprob": -1.983942,
+     "bytes": 34,
+     "eos": true,
+     "correct": 1
+    },
+    {
+     "source": "beam4_reg",
+     "rank": 3,
+     "text": "សាក្រាមេនតូ",
+     "status": "ok",
+     "gen_score": -2.075434,
+     "tf_logprob": -2.075429,
+     "bytes": 34,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_reg",
+     "rank": 4,
+     "text": "",
+     "status": "empty",
+     "gen_score": -30.047928,
+     "tf_logprob": -30.047937,
+     "bytes": 1,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_can",
+     "rank": 1,
+     "text": "សាក្រាមិនតូ",
+     "status": "ok",
+     "gen_score": -1.025245,
+     "tf_logprob": -1.025239,
+     "bytes": 34,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_can",
+     "rank": 2,
+     "text": "សាក្រាមែនតូ",
+     "status": "ok",
+     "gen_score": -1.983949,
+     "tf_logprob": -1.983944,
+     "bytes": 34,
+     "eos": true,
+     "correct": 1
+    },
+    {
+     "source": "beam4_can",
+     "rank": 3,
+     "text": "សាក្រាមេនតូ",
+     "status": "ok",
+     "gen_score": -2.075434,
+     "tf_logprob": -2.075429,
+     "bytes": 34,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_can",
+     "rank": 4,
+     "text": "សាក្រាម៉េនតូ",
+     "status": "ok",
+     "gen_score": -2.312409,
+     "tf_logprob": -2.312403,
+     "bytes": 37,
+     "eos": true,
+     "correct": 0
+    }
+   ]
+  },
+  {
+   "model": "e08",
+   "group": "both_wrong_different",
+   "id": "saw#default",
+   "english": "saw",
+   "reference_preferred": "ស",
+   "reference_accepted": [
+    "ស"
+   ],
+   "reference_tf_logprob": {
+    "ស": -5.645081
+   },
+   "candidates": [
+    {
+     "source": "greedy",
+     "rank": 1,
+     "text": "សាវ",
+     "status": "ok",
+     "gen_score": -0.923881,
+     "tf_logprob": -0.923875,
+     "bytes": 10,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_reg",
+     "rank": 1,
+     "text": "សា",
+     "status": "ok",
+     "gen_score": -1.177332,
+     "tf_logprob": -1.177327,
+     "bytes": 7,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_reg",
+     "rank": 2,
+     "text": "សូ",
+     "status": "ok",
+     "gen_score": -3.034847,
+     "tf_logprob": -3.034841,
+     "bytes": 7,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_reg",
+     "rank": 3,
+     "text": "ស",
+     "status": "ok",
+     "gen_score": -5.645081,
+     "tf_logprob": -5.645081,
+     "bytes": 4,
+     "eos": true,
+     "correct": 1
+    },
+    {
+     "source": "beam4_reg",
+     "rank": 4,
+     "text": "",
+     "status": "empty",
+     "gen_score": -27.375036,
+     "tf_logprob": -27.375031,
+     "bytes": 1,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_can",
+     "rank": 1,
+     "text": "សាវ",
+     "status": "ok",
+     "gen_score": -0.923882,
+     "tf_logprob": -0.923874,
+     "bytes": 10,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_can",
+     "rank": 2,
+     "text": "សា",
+     "status": "ok",
+     "gen_score": -1.177332,
+     "tf_logprob": -1.177328,
+     "bytes": 7,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_can",
+     "rank": 3,
+     "text": "សូ",
+     "status": "ok",
+     "gen_score": -3.034847,
+     "tf_logprob": -3.034841,
+     "bytes": 7,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_can",
+     "rank": 4,
+     "text": "ស៊ែវ",
+     "status": "ok",
+     "gen_score": -3.946789,
+     "tf_logprob": -3.946787,
+     "bytes": 13,
+     "eos": true,
+     "correct": 0
+    }
+   ]
+  },
+  {
+   "model": "e08",
+   "group": "agree",
+   "id": "building#default",
+   "english": "building",
+   "reference_preferred": "បៀលឌីង",
+   "reference_accepted": [
+    "បៀលឌីង"
+   ],
+   "reference_tf_logprob": {
+    "បៀលឌីង": -8.158766
+   },
+   "candidates": [
+    {
+     "source": "greedy",
+     "rank": 1,
+     "text": "ប៊ុយលឌីង",
+     "status": "ok",
+     "gen_score": -0.730356,
+     "tf_logprob": -0.730351,
+     "bytes": 25,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_reg",
+     "rank": 1,
+     "text": "ប៊ុយលឌីង",
+     "status": "ok",
+     "gen_score": -0.730357,
+     "tf_logprob": -0.730351,
+     "bytes": 25,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_reg",
+     "rank": 2,
+     "text": "ប៊ុលឌីង",
+     "status": "ok",
+     "gen_score": -1.699345,
+     "tf_logprob": -1.69934,
+     "bytes": 22,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_reg",
+     "rank": 3,
+     "text": "ប៊ូលឌីង",
+     "status": "ok",
+     "gen_score": -2.309623,
+     "tf_logprob": -2.309617,
+     "bytes": 22,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_reg",
+     "rank": 4,
+     "text": "",
+     "status": "empty",
+     "gen_score": -28.659149,
+     "tf_logprob": -28.659147,
+     "bytes": 1,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_can",
+     "rank": 1,
+     "text": "ប៊ុយលឌីង",
+     "status": "ok",
+     "gen_score": -0.730357,
+     "tf_logprob": -0.730351,
+     "bytes": 25,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_can",
+     "rank": 2,
+     "text": "ប៊ុលឌីង",
+     "status": "ok",
+     "gen_score": -1.699345,
+     "tf_logprob": -1.699341,
+     "bytes": 22,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_can",
+     "rank": 3,
+     "text": "ប៊ូលឌីង",
+     "status": "ok",
+     "gen_score": -2.309623,
+     "tf_logprob": -2.309616,
+     "bytes": 22,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_can",
+     "rank": 4,
+     "text": "ប៊ុយល់ឌីង",
+     "status": "ok",
+     "gen_score": -2.881239,
+     "tf_logprob": -2.881235,
+     "bytes": 28,
+     "eos": true,
+     "correct": 0
+    }
+   ]
+  },
+  {
+   "model": "e08",
+   "group": "agree",
+   "id": "dall#default",
+   "english": "dall",
+   "reference_preferred": "ដាល់",
+   "reference_accepted": [
+    "ដាល់"
+   ],
+   "reference_tf_logprob": {
+    "ដាល់": -0.938339
+   },
+   "candidates": [
+    {
+     "source": "greedy",
+     "rank": 1,
+     "text": "ដាល",
+     "status": "ok",
+     "gen_score": -0.619706,
+     "tf_logprob": -0.619703,
+     "bytes": 10,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_reg",
+     "rank": 1,
+     "text": "ដាល",
+     "status": "ok",
+     "gen_score": -0.619705,
+     "tf_logprob": -0.619703,
+     "bytes": 10,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_reg",
+     "rank": 2,
+     "text": "ដល",
+     "status": "ok",
+     "gen_score": -4.118585,
+     "tf_logprob": -4.118579,
+     "bytes": 7,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_reg",
+     "rank": 3,
+     "text": "តាល",
+     "status": "ok",
+     "gen_score": -4.939539,
+     "tf_logprob": -4.939539,
+     "bytes": 10,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_reg",
+     "rank": 4,
+     "text": "ឌាល",
+     "status": "ok",
+     "gen_score": -5.123315,
+     "tf_logprob": -5.123311,
+     "bytes": 10,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_can",
+     "rank": 1,
+     "text": "ដាល",
+     "status": "ok",
+     "gen_score": -0.619705,
+     "tf_logprob": -0.619701,
+     "bytes": 10,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_can",
+     "rank": 2,
+     "text": "ដាល់",
+     "status": "ok",
+     "gen_score": -0.938347,
+     "tf_logprob": -0.93834,
+     "bytes": 13,
+     "eos": true,
+     "correct": 1
+    },
+    {
+     "source": "beam4_can",
+     "rank": 3,
+     "text": "ដល",
+     "status": "ok",
+     "gen_score": -4.118585,
+     "tf_logprob": -4.11858,
+     "bytes": 7,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_can",
+     "rank": 4,
+     "text": "តាល",
+     "status": "ok",
+     "gen_score": -4.939539,
+     "tf_logprob": -4.939537,
+     "bytes": 10,
+     "eos": true,
+     "correct": 0
+    }
+   ]
+  },
+  {
+   "model": "e08",
+   "group": "agree",
+   "id": "hung#default",
+   "english": "hung",
+   "reference_preferred": "ហុង",
+   "reference_accepted": [
+    "ហឹង",
+    "ហុង",
+    "ហ៊ុង"
+   ],
+   "reference_tf_logprob": {
+    "ហុង": -0.286647,
+    "ហឹង": -4.569698,
+    "ហ៊ុង": -2.431785
+   },
+   "candidates": [
+    {
+     "source": "greedy",
+     "rank": 1,
+     "text": "ហុង",
+     "status": "ok",
+     "gen_score": -0.286652,
+     "tf_logprob": -0.286647,
+     "bytes": 10,
+     "eos": true,
+     "correct": 1
+    },
+    {
+     "source": "beam4_reg",
+     "rank": 1,
+     "text": "ហុង",
+     "status": "ok",
+     "gen_score": -0.286652,
+     "tf_logprob": -0.286647,
+     "bytes": 10,
+     "eos": true,
+     "correct": 1
+    },
+    {
+     "source": "beam4_reg",
+     "rank": 2,
+     "text": "ហាង",
+     "status": "ok",
+     "gen_score": -2.216585,
+     "tf_logprob": -2.216579,
+     "bytes": 10,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_reg",
+     "rank": 3,
+     "text": "ហឹង",
+     "status": "ok",
+     "gen_score": -4.569702,
+     "tf_logprob": -4.569696,
+     "bytes": 10,
+     "eos": true,
+     "correct": 1
+    },
+    {
+     "source": "beam4_reg",
+     "rank": 4,
+     "text": "",
+     "status": "empty",
+     "gen_score": -26.855839,
+     "tf_logprob": -26.855837,
+     "bytes": 1,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_can",
+     "rank": 1,
+     "text": "ហុង",
+     "status": "ok",
+     "gen_score": -0.286652,
+     "tf_logprob": -0.286647,
+     "bytes": 10,
+     "eos": true,
+     "correct": 1
+    },
+    {
+     "source": "beam4_can",
+     "rank": 2,
+     "text": "ហាង",
+     "status": "ok",
+     "gen_score": -2.216585,
+     "tf_logprob": -2.216579,
+     "bytes": 10,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_can",
+     "rank": 3,
+     "text": "ហ៊ុង",
+     "status": "ok",
+     "gen_score": -2.43179,
+     "tf_logprob": -2.431787,
+     "bytes": 13,
+     "eos": true,
+     "correct": 1
+    },
+    {
+     "source": "beam4_can",
+     "rank": 4,
+     "text": "ហឹង",
+     "status": "ok",
+     "gen_score": -4.569702,
+     "tf_logprob": -4.569696,
+     "bytes": 10,
+     "eos": true,
+     "correct": 1
+    }
+   ]
+  },
+  {
+   "model": "e08",
+   "group": "agree",
+   "id": "kidd#default",
+   "english": "kidd",
+   "reference_preferred": "ឃីដ",
+   "reference_accepted": [
+    "ឃីដ"
+   ],
+   "reference_tf_logprob": {
+    "ឃីដ": -0.90804
+   },
+   "candidates": [
+    {
+     "source": "greedy",
+     "rank": 1,
+     "text": "ឃីដ",
+     "status": "ok",
+     "gen_score": -0.908044,
+     "tf_logprob": -0.90804,
+     "bytes": 10,
+     "eos": true,
+     "correct": 1
+    },
+    {
+     "source": "beam4_reg",
+     "rank": 1,
+     "text": "ឃីដ",
+     "status": "ok",
+     "gen_score": -0.908044,
+     "tf_logprob": -0.908038,
+     "bytes": 10,
+     "eos": true,
+     "correct": 1
+    },
+    {
+     "source": "beam4_reg",
+     "rank": 2,
+     "text": "ឃីត",
+     "status": "ok",
+     "gen_score": -1.047358,
+     "tf_logprob": -1.047353,
+     "bytes": 10,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_reg",
+     "rank": 3,
+     "text": "គីដ",
+     "status": "ok",
+     "gen_score": -2.140695,
+     "tf_logprob": -2.140692,
+     "bytes": 10,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_reg",
+     "rank": 4,
+     "text": "គីត",
+     "status": "ok",
+     "gen_score": -2.411856,
+     "tf_logprob": -2.411851,
+     "bytes": 10,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_can",
+     "rank": 1,
+     "text": "ឃីដ",
+     "status": "ok",
+     "gen_score": -0.908044,
+     "tf_logprob": -0.908039,
+     "bytes": 10,
+     "eos": true,
+     "correct": 1
+    },
+    {
+     "source": "beam4_can",
+     "rank": 2,
+     "text": "ឃីត",
+     "status": "ok",
+     "gen_score": -1.047358,
+     "tf_logprob": -1.047353,
+     "bytes": 10,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_can",
+     "rank": 3,
+     "text": "គីដ",
+     "status": "ok",
+     "gen_score": -2.140695,
+     "tf_logprob": -2.140692,
+     "bytes": 10,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_can",
+     "rank": 4,
+     "text": "គីត",
+     "status": "ok",
+     "gen_score": -2.411856,
+     "tf_logprob": -2.411853,
+     "bytes": 10,
+     "eos": true,
+     "correct": 0
+    }
+   ]
+  },
+  {
+   "model": "e08",
+   "group": "agree",
+   "id": "rudy#default",
+   "english": "rudy",
+   "reference_preferred": "រ៉ូឌី",
+   "reference_accepted": [
+    "រ៉ូឌី"
+   ],
+   "reference_tf_logprob": {
+    "រ៉ូឌី": -1.442392
+   },
+   "candidates": [
+    {
+     "source": "greedy",
+     "rank": 1,
+     "text": "រូឌី",
+     "status": "ok",
+     "gen_score": -0.309666,
+     "tf_logprob": -0.309663,
+     "bytes": 13,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_reg",
+     "rank": 1,
+     "text": "រូឌី",
+     "status": "ok",
+     "gen_score": -0.309667,
+     "tf_logprob": -0.309663,
+     "bytes": 13,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_reg",
+     "rank": 2,
+     "text": "រ៉ូឌី",
+     "status": "ok",
+     "gen_score": -1.442398,
+     "tf_logprob": -1.442393,
+     "bytes": 16,
+     "eos": true,
+     "correct": 1
+    },
+    {
+     "source": "beam4_reg",
+     "rank": 3,
+     "text": "រ៉ាឌី",
+     "status": "ok",
+     "gen_score": -4.472209,
+     "tf_logprob": -4.472202,
+     "bytes": 16,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_reg",
+     "rank": 4,
+     "text": "រុយឌី",
+     "status": "ok",
+     "gen_score": -4.67659,
+     "tf_logprob": -4.67659,
+     "bytes": 16,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_can",
+     "rank": 1,
+     "text": "រូឌី",
+     "status": "ok",
+     "gen_score": -0.309667,
+     "tf_logprob": -0.309663,
+     "bytes": 13,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_can",
+     "rank": 2,
+     "text": "រ៉ូឌី",
+     "status": "ok",
+     "gen_score": -1.442398,
+     "tf_logprob": -1.442393,
+     "bytes": 16,
+     "eos": true,
+     "correct": 1
+    },
+    {
+     "source": "beam4_can",
+     "rank": 3,
+     "text": "រ៉ាឌី",
+     "status": "ok",
+     "gen_score": -4.472209,
+     "tf_logprob": -4.472206,
+     "bytes": 16,
+     "eos": true,
+     "correct": 0
+    },
+    {
+     "source": "beam4_can",
+     "rank": 4,
+     "text": "រុយឌី",
+     "status": "ok",
+     "gen_score": -4.67659,
+     "tf_logprob": -4.676589,
+     "bytes": 16,
+     "eos": true,
+     "correct": 0
+    }
+   ]
+  }
+ ],
+ "e07_group_sizes": {
+  "greedy_right_beam_wrong": 10,
+  "beam_right_greedy_wrong": 7,
+  "both_wrong_different": 21,
+  "agree": 214
+ },
+ "e07_mechanism": {
+  "beam4_reg": {
+   "differs_from_greedy": 39,
+   "relation": {
+    "shorter": 21,
+    "longer": 2,
+    "shorter+marks": 7,
+    "same_bytes": 9
+   },
+   "mean_bytes_all_candidates": 15.86,
+   "candidates_finished_in_le_4_bytes": 17
+  },
+  "beam4_can": {
+   "differs_from_greedy": 18,
+   "relation": {
+    "shorter": 6,
+    "longer": 2,
+    "same_bytes": 9,
+    "shorter+marks": 1
+   },
+   "mean_bytes_all_candidates": 16.57,
+   "candidates_finished_in_le_4_bytes": 1
+  }
+ },
+ "e08_group_sizes": {
+  "greedy_right_beam_wrong": 22,
+  "beam_right_greedy_wrong": 11,
+  "both_wrong_different": 29,
+  "agree": 190
+ },
+ "e08_mechanism": {
+  "beam4_reg": {
+   "differs_from_greedy": 63,
+   "relation": {
+    "shorter": 42,
+    "shorter+marks": 12,
+    "same_bytes": 7,
+    "longer": 2
+   },
+   "mean_bytes_all_candidates": 13.27,
+   "candidates_finished_in_le_4_bytes": 177
+  },
+  "beam4_can": {
+   "differs_from_greedy": 19,
+   "relation": {
+    "same_bytes": 7,
+    "shorter": 8,
+    "longer": 3,
+    "shorter+marks": 1
+   },
+   "mean_bytes_all_candidates": 16.44,
+   "candidates_finished_in_le_4_bytes": 3
+  }
+ }
+}
