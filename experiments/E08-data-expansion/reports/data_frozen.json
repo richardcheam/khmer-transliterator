@@ -1,0 +1,57 @@
+{
+ "frozen_at": "2026-10-28T10:29:53+00:00",
+ "arms": {
+  "C": {
+   "path": "data/e08/training/arm_C.tsv",
+   "sha256": "6ee65992fa6a04f676c7b3e3f9c9e5b104c8d9136f667d64f83baff8c7435249",
+   "rows": 2348,
+   "optimisation_rows": 2255,
+   "optimisation_words": 1883,
+   "by_provenance": {
+    "control": 2348
+   },
+   "words_with_alternatives": 320
+  },
+  "R": {
+   "path": "data/e08/training/arm_R.tsv",
+   "sha256": "d00706cf1e16ccb81f9d367301d9a3fa637a46f79e2e8c8f0b2e501b57f8ec88",
+   "rows": 4857,
+   "optimisation_rows": 4764,
+   "optimisation_words": 3585,
+   "by_provenance": {
+    "control": 2348,
+    "recovered": 1292,
+    "attested_alt": 1217
+   },
+   "words_with_alternatives": 840
+  },
+  "RS": {
+   "path": "data/e08/training/arm_RS.tsv",
+   "sha256": "03a4988f84cdc97aff6b8356e019d1076c8d09a1ecec4004a2a909ed3e229b0f",
+   "rows": 5241,
+   "optimisation_rows": 5148,
+   "optimisation_words": 3778,
+   "by_provenance": {
+    "control": 2348,
+    "recovered": 1292,
+    "attested_alt": 1217,
+    "google_ai_mode_synthetic": 384
+   },
+   "words_with_alternatives": 1031
+  }
+ },
+ "synthetic_import_state": "awaiting_regeneration_responses",
+ "synthetic_quarantined_left": {
+  "preferred_non_khmer": 5,
+  "marked_uncertain": 2
+ },
+ "synthetic_missing_left": 0,
+ "conditions": {
+  "provenance_records": true,
+  "protected_overlap": "none (checked at build)",
+  "structural_import": "awaiting_regeneration_responses",
+  "uncertain_and_malformed": "quarantined",
+  "policy": "DATA_POLICY.md",
+  "selection_and_filtering": "scripts/e08.py"
+ }
+}

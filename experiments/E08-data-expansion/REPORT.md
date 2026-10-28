@@ -1,6 +1,15 @@
 # E08 — data expansion for ByT5-small: report of the preparation phase (2026-10-28)
 
-**Update (2026-10-28, after the owner's AI Mode answers):** state `awaiting_regeneration_responses` (optional).
+**Update 2 (2026-10-28): data frozen** (state `data_frozen_ready_for_registration`; `reports/data_frozen.json`).
+- **Replacement round:** `regen_01` fixed 3 of the 8 look-alike-script items. The other 5 used Lao ໂ again despite
+  the added warning, so they stay quarantined. `regen_02.md` is optional.
+- **Synthetic total:** 193 words accepted, 384 rows (preferred + alternatives).
+- **Arm R+S:** 5,148 optimisation rows over 3,778 words. The C and R hashes match `training_registration.json`.
+- **Importer fix:** an answered replacement round's id list is no longer rewritten by a later import (regression
+  test added).
+- **Training:** still not run; it needs the owner's go-ahead.
+
+**Update 1 (2026-10-28, after the owner's AI Mode answers):** state `awaiting_regeneration_responses` (optional).
 - **Accepted:** 190/200 words, with 188 alternatives (`google_ai_mode_synthetic`). By stratum: common 37,
   irregular 38, vowels 39, clusters 39, names 37.
 - **Quarantined:**

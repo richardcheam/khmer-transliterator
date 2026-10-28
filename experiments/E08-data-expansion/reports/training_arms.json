@@ -22,5 +22,19 @@
    "attested_alt": 1217
   },
   "words_with_alternatives": 840
+ },
+ "RS": {
+  "path": "data/e08/training/arm_RS.tsv",
+  "sha256": "03a4988f84cdc97aff6b8356e019d1076c8d09a1ecec4004a2a909ed3e229b0f",
+  "rows": 5241,
+  "optimisation_rows": 5148,
+  "optimisation_words": 3778,
+  "by_provenance": {
+   "control": 2348,
+   "recovered": 1292,
+   "attested_alt": 1217,
+   "google_ai_mode_synthetic": 384
+  },
+  "words_with_alternatives": 1031
  }
 }

@@ -923,15 +923,22 @@ for example write the Khmer vowel ោ, not the Lao letter ໂ.
 
 
 def regen_prompts(ids: list[str], manifest: dict, quarantine: dict) -> None:
-    """Replacement prompts for missing or malformed items only (accepted and uncertain items are not asked again)."""
+    """Replacement prompts for missing or malformed items only (accepted and uncertain items are not asked again).
+
+    A round whose answer file exists (`RESPONSES/regen_NN.*`) keeps its prompt and id list unchanged, so re-importing
+    the same answer gives the same result; new rounds take the next number. Unanswered rounds are rewritten.
+    """
+    answered = {int(p.name[6:8]) for p in RESPONSES.glob("regen_*") if re.match(r"regen_\d\d", p.name)}
     for old in PROMPTS.glob("regen_*"):
-        old.unlink()
+        if int(old.name[6:8]) not in answered:
+            old.unlink()
     lines = ["# Items needing regeneration", "", "| id | english | reason |", "|---|---|---|"]
     lines += [f"| {i} | {manifest[i]['english']} | {quarantine.get(i, {}).get('reason', 'missing')} |" for i in ids]
     (REPORTS / "needs_regeneration.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
+    start = max(answered, default=0)
     for k in range(0, len(ids), PER_BATCH):
         chunk = ids[k:k + PER_BATCH]
-        n = k // PER_BATCH + 1
+        n = start + k // PER_BATCH + 1
         (PROMPTS / f"regen_{n:02d}.md").write_text(
             render_prompt([manifest[i] for i in chunk], f"replacement batch {n:02d}") + REGEN_NOTE, encoding="utf-8")
         write_json(PROMPTS / f"regen_{n:02d}.ids.json", chunk)

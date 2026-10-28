@@ -151,6 +151,10 @@ class TestImporter(unittest.TestCase):
             self.assertEqual(set(acc), {"e08s001", "e08s002", "e08s004"})
             self.assertEqual(s2["state"], "imported_ready_to_freeze")              # uncertain stays quarantined
             self.assertEqual(s2["quarantined"], {"marked_uncertain": 1})
+            s3 = e08.import_responses(env.d / "responses")                   # re-import: same answer, same result
+            self.assertEqual((s3["accepted"], s3["quarantined"]), (s2["accepted"], s2["quarantined"]))
+            self.assertEqual(json.loads((env.d / "exp" / "synthetic" / "prompts" / "regen_01.ids.json").read_text()),
+                             ["e08s002", "e08s004"])                          # an answered round is never rewritten
 
     def test_empty_files_are_skipped(self):
         with Env() as env:
