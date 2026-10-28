@@ -228,3 +228,16 @@ there (`git -C ../pocket-tts-khmer show archive/checkpoints-p0-p6:state/DECISION
   bounded 3-seed replication.
 - **Unchanged:** no training, serving or product-default change.
 - Report: `experiments/E08-data-expansion/REPORT.md`.
+
+## D186 — E08: one exploratory ByT5 run on the expanded data (R+S) (2026-10-28)
+- **Run:** fresh LoRA on ByT5-small, E07 recipe, seed 0, on R+S (5,148 rows: control, recovered, ALT, 193 synthetic
+  words); 3,000 updates in 5.2 h on CPU; checkpoint chosen on dev (update 3,000, dev greedy 54.2% vs E07 52.2%).
+- **Historical eval** (repeatedly examined, mined, unreviewed): top-1 47.5% vs E07 47.2%, **+0.3 [−5.7, +6.5]**;
+  CER 0.191 vs 0.189; vs G mean +6.1 [+0.1, +12.2]; vs default +1.3 [−6.1, +8.8].
+- **Classification: small or uncertain change** (pre-registered rule); no replication proposed.
+- **Limitation:** gains and losses cancel (24 vs 25 items; 56 shared wrong answers); agent inspection of blinded
+  disagreements preferred E07 17–7. More data of this quality does not show a measurable gain; label and
+  reference quality is the likelier bottleneck. Greedy beats beam-4 by about 5 points for both models (noted only).
+- **Unchanged:** serving, product default; no distillation, merge, release or publication; model local only.
+- Report: `experiments/E08-data-expansion/REPORT.md` (update 3).
+

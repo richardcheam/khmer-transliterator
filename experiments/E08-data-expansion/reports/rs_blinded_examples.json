@@ -1,0 +1,245 @@
+{
+ "note": "balanced: 10 per group (rs-only correct, e07-only correct, both wrong and different); A/B order random; key in rs_blinded_key.json; references are mined and unreviewed",
+ "items": [
+  {
+   "item": "b01",
+   "english": "noble",
+   "reference_mined": "ណូបល",
+   "A": "ណុប",
+   "B": "ណូបល",
+   "difference": "both"
+  },
+  {
+   "item": "b02",
+   "english": "kruger",
+   "reference_mined": "គ្រូហ្គើ",
+   "A": "គ្រូហ្គ័រ",
+   "B": "គ្រូហ្គើ",
+   "difference": "both"
+  },
+  {
+   "item": "b03",
+   "english": "off",
+   "reference_mined": "អហ្វ",
+   "A": "អហ្វ",
+   "B": "អូហ្វ",
+   "difference": "vowels_only"
+  },
+  {
+   "item": "b04",
+   "english": "solution",
+   "reference_mined": "សូលូសិន",
+   "A": "សូលូសិន",
+   "B": "សូលូទីន",
+   "difference": "both"
+  },
+  {
+   "item": "b05",
+   "english": "flor",
+   "reference_mined": "ផ្លរ",
+   "A": "ហ្វល",
+   "B": "ផ្លរ",
+   "difference": "consonants_only"
+  },
+  {
+   "item": "b06",
+   "english": "boak",
+   "reference_mined": "បូក",
+   "A": "បូក",
+   "B": "បុក",
+   "difference": "vowels_only"
+  },
+  {
+   "item": "b07",
+   "english": "sarkar",
+   "reference_mined": "សាកា",
+   "A": "សាការ",
+   "B": "សាកា",
+   "difference": "consonants_only"
+  },
+  {
+   "item": "b08",
+   "english": "robben",
+   "reference_mined": "រ៉ូបិន",
+   "A": "រ៉ូបែន",
+   "B": "រ៉ូបិន",
+   "difference": "vowels_only"
+  },
+  {
+   "item": "b09",
+   "english": "accel",
+   "reference_mined": "អាកសែល",
+   "A": "អាក់សែល",
+   "B": "អាកសែល",
+   "difference": "consonants_only"
+  },
+  {
+   "item": "b10",
+   "english": "hamon",
+   "reference_mined": "ហាម៉ុន",
+   "A": "ហាម៉ុន",
+   "B": "ហាមុន",
+   "difference": "consonants_only"
+  },
+  {
+   "item": "b11",
+   "english": "felicity",
+   "reference_mined": "ហ្វេលីស៊ីធី",
+   "A": "ហ្វេលីស៊ីធី",
+   "B": "ហ្វេលីសិតី",
+   "difference": "both"
+  },
+  {
+   "item": "b12",
+   "english": "penicillin",
+   "reference_mined": "ប៉េនីស៊ីលីន",
+   "A": "ពេនីស៊ីលីន",
+   "B": "ប៉េនីស៊ីលីន",
+   "difference": "consonants_only"
+  },
+  {
+   "item": "b13",
+   "english": "kristen",
+   "reference_mined": "គ្រីស្ទិន",
+   "A": "គ្រីស្តេន",
+   "B": "គ្រីស្ទិន",
+   "difference": "both"
+  },
+  {
+   "item": "b14",
+   "english": "arena",
+   "reference_mined": "អារីណា",
+   "A": "អារីណា",
+   "B": "អារេណា",
+   "difference": "vowels_only"
+  },
+  {
+   "item": "b15",
+   "english": "ghent",
+   "reference_mined": "ហ្គែន",
+   "A": "ហ្គែន",
+   "B": "ហ្គិន",
+   "difference": "vowels_only"
+  },
+  {
+   "item": "b16",
+   "english": "kyu",
+   "reference_mined": "ក្យូ",
+   "A": "ឃ្យូ",
+   "B": "គូ",
+   "difference": "consonants_only"
+  },
+  {
+   "item": "b17",
+   "english": "beats",
+   "reference_mined": "ប៊ីត",
+   "A": "ប៊ីត",
+   "B": "បៀត",
+   "difference": "both"
+  },
+  {
+   "item": "b18",
+   "english": "yohei",
+   "reference_mined": "យ៉ូហេ",
+   "A": "យូហេ",
+   "B": "យ៉ូហេ",
+   "difference": "consonants_only"
+  },
+  {
+   "item": "b19",
+   "english": "marx",
+   "reference_mined": "ម៉ាក",
+   "A": "ម៉ាក",
+   "B": "មក",
+   "difference": "both"
+  },
+  {
+   "item": "b20",
+   "english": "napoli",
+   "reference_mined": "ណាប៉ូលី",
+   "A": "ណាប៉ូលី",
+   "B": "ណាបូលី",
+   "difference": "consonants_only"
+  },
+  {
+   "item": "b21",
+   "english": "andrei",
+   "reference_mined": "អានដ្រេ",
+   "A": "អេនដ្រី",
+   "B": "អាន់ឌ្រី",
+   "difference": "both"
+  },
+  {
+   "item": "b22",
+   "english": "manila",
+   "reference_mined": "ម៉ានីល",
+   "A": "មានីឡា",
+   "B": "ម៉ានីឡា",
+   "difference": "consonants_only"
+  },
+  {
+   "item": "b23",
+   "english": "yap",
+   "reference_mined": "យ៉ាប់",
+   "A": "យាប",
+   "B": "យ៉",
+   "difference": "both"
+  },
+  {
+   "item": "b24",
+   "english": "haiti",
+   "reference_mined": "ហៃទី",
+   "A": "ហាយទី",
+   "B": "ហេធី",
+   "difference": "both"
+  },
+  {
+   "item": "b25",
+   "english": "nepal",
+   "reference_mined": "ណេប៉ាល់",
+   "A": "ណេផល",
+   "B": "ណេផាល",
+   "difference": "vowels_only"
+  },
+  {
+   "item": "b26",
+   "english": "loren",
+   "reference_mined": "ឡូរ៉េន",
+   "A": "ឡូរិន",
+   "B": "ឡូរេន",
+   "difference": "vowels_only"
+  },
+  {
+   "item": "b27",
+   "english": "leonard",
+   "reference_mined": "លីអូណាដ",
+   "A": "លីណាត",
+   "B": "ឡេអូណា",
+   "difference": "both"
+  },
+  {
+   "item": "b28",
+   "english": "berger",
+   "reference_mined": "បឺហ្គឺ",
+   "A": "ប៊ែហ្គើ",
+   "B": "ប៊ើជើ",
+   "difference": "both"
+  },
+  {
+   "item": "b29",
+   "english": "grade",
+   "reference_mined": "ហ្គ្រេដ",
+   "A": "ក្រេដ",
+   "B": "ហ្គ្រែត",
+   "difference": "both"
+  },
+  {
+   "item": "b30",
+   "english": "hitler",
+   "reference_mined": "ហ៊ីត្លែ",
+   "A": "ហ៊ីធលើ",
+   "B": "ហ៊ីត្លឺ",
+   "difference": "both"
+  }
+ ]
+}
