@@ -1,0 +1,35 @@
+{
+ "phases": {
+  "diagnose": {
+   "status": "done",
+   "updated": "2026-10-28T18:50:13+00:00"
+  },
+  "review_prepared": {
+   "status": "done",
+   "updated": "2026-10-28T18:52:39+00:00",
+   "items": 60
+  },
+  "review_scored": {
+   "status": "skipped",
+   "updated": "2026-10-28T18:52:46+00:00",
+   "reason": "no judgment file (independent review not collected)"
+  },
+  "confirmation_manifest": {
+   "status": "done",
+   "updated": "2026-10-28T18:53:00+00:00",
+   "n": 120
+  },
+  "register": {
+   "status": "done",
+   "updated": "2026-10-28T18:53:59+00:00"
+  }
+ },
+ "errors": [
+  {
+   "time": "2026-10-28T18:52:45+00:00",
+   "step": "confirm",
+   "error": "KeyError('word')"
+  }
+ ],
+ "updated": "2026-10-28T18:53:59+00:00"
+}

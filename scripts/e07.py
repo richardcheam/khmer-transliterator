@@ -638,8 +638,11 @@ def lr_factor(k: int, cfg: dict) -> float:
 
 
 def fit(run: str, kind: str, cfg: dict, rows: list[tuple[str, str]], evaluate, eval_at, out: Path,
-        guard: Guard | None = None, max_hours: float | None = None, make=None) -> dict:
+        guard: Guard | None = None, max_hours: float | None = None, make=None, order=None) -> dict:
     """Train adapters from the base model; resumable from `out/last.pt` (config, data and base hashes validated).
+
+    `order(epoch) -> [row index]` is the epoch's visiting order; default (E07/E08): a seeded permutation of all
+    rows. A custom order must be deterministic in the epoch (resume rebuilds it) and be named in `cfg`.
 
     `evaluate(model) -> dict` with a `key` tuple (higher is better) runs at the updates in `eval_at` and at the
     stop; the best adapter is saved to `out/best.pt`. Stops at max_updates, the time cap (run cap ∩ remaining
@@ -678,7 +681,7 @@ def fit(run: str, kind: str, cfg: dict, rows: list[tuple[str, str]], evaluate, e
     trk = experiment.Run(out, EXPERIMENT, run, {"cfg": cfg, "ident": ident, "limits": LIMITS},
                          inputs=[e06.E03 / "train.tsv", B.BASE / "config.json"])
     guard = guard or Guard()
-    order = lambda ep: random.Random(f"{cfg['seed']}:order:{ep}").sample(range(len(rows)), len(rows))  # noqa: E731
+    order = order or (lambda ep: random.Random(f"{cfg['seed']}:order:{ep}").sample(range(len(rows)), len(rows)))
     perm = order(st["epoch"])
     seg_start, seg_from = time.perf_counter(), st["elapsed_s"]
     elapsed = lambda: seg_from + time.perf_counter() - seg_start  # noqa: E731

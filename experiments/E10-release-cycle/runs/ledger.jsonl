@@ -1,0 +1,5 @@
+{"time": "2026-10-28T18:50:13+00:00", "event": "step", "step": "diagnose", "seconds": 515.0}
+{"time": "2026-10-28T18:52:39+00:00", "event": "step", "step": "review", "seconds": 0.2}
+{"time": "2026-10-28T18:52:46+00:00", "event": "step", "step": "import", "seconds": 0.0}
+{"time": "2026-10-28T18:53:00+00:00", "event": "step", "step": "confirm", "seconds": 4.4}
+{"time": "2026-10-28T18:53:59+00:00", "event": "step", "step": "register", "seconds": 1.3}

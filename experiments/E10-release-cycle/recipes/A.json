@@ -1,0 +1,59 @@
+{
+ "adapter": {
+  "r": 16,
+  "alpha": 32,
+  "dropout": 0.05,
+  "targets": [
+   "attn",
+   "ffn"
+  ]
+ },
+ "base_dropout": 0.1,
+ "optimizer": "AdamW",
+ "lr": 0.002,
+ "betas": [
+  0.9,
+  0.999
+ ],
+ "weight_decay": 0.0,
+ "grad_clip": 1.0,
+ "batch": 32,
+ "grad_accumulation": 1,
+ "warmup": 100,
+ "schedule": "linear",
+ "max_updates": 3000,
+ "max_hours": 6.0,
+ "eval_at": [
+  600,
+  1200,
+  1800,
+  2400,
+  3000
+ ],
+ "select": "highest dev greedy top-1 macro (exact reference agreement, NFC), then lower dev mean CER, then earlier update",
+ "seed": 0,
+ "input": "lower-cased English word as UTF-8 bytes + EOS (unchanged from E06); no pronunciation, no prefix",
+ "fixes": [
+  "max_new_tokens 121 with a no_eos status (latent E06 defect)",
+  "LoRA wrapper exposes the frozen base weight so FFN layers can be adapted"
+ ],
+ "decode": {
+  "selection": "greedy",
+  "primary_top1": "beam 4, sum log-prob, length_penalty 0",
+  "oracle": "beam-4 top-4",
+  "max_new_tokens": 121
+ },
+ "metrics": [
+  "top-1 exact macro by family (NFC)",
+  "top-4 oracle at equal beam-4 budget",
+  "mean CER (khmer_translit.evaluation)",
+  "validity statuses and orthography",
+  "distinct top-1 and most frequent share"
+ ],
+ "rationale": "reports/diagnosis.json: (1) the 1,031 words with several spellings take 46.6% of the draws (one word up to 147 draws vs a median of 19), so alternatives multiply exposure; (2) E08 was still improving at its last checkpoint with the LR decayed to 0, its final train loss (0.147) is twice E07's and it reproduces only 57% of its control rows: under-fitted at 3,000 updates. The two changes are combined for performance discovery; their separate contributions stay unresolved (no ablation).",
+ "sampler": "word_uniform_spelling",
+ "changes_from_e08": [
+  "word-level sampler: each epoch visits every English word once (seeded order) and draws one of its spellings uniformly (seeded), instead of visiting every row",
+  "peak learning rate 2e-3 instead of 1e-3 (same warm-up and linear decay)"
+ ]
+}
