@@ -152,6 +152,17 @@ class TestImporter(unittest.TestCase):
             self.assertEqual(s2["state"], "imported_ready_to_freeze")              # uncertain stays quarantined
             self.assertEqual(s2["quarantined"], {"marked_uncertain": 1})
 
+    def test_empty_files_are_skipped(self):
+        with Env() as env:
+            ok = "| e08s001 | coffee | កាហ្វេ | | | no | |\n| e08s002 | london | ឡុងដ៍ | | | no | |\n" \
+                 "| e08s003 | taxi | តាក់ស៊ី | | | no | |"                       # TEST FIXTURE
+            (env.d / "responses" / "batch_01.md").write_text(ok, encoding="utf-8")
+            (env.d / "responses" / "batch_02.md").write_text("", encoding="utf-8")       # not filled in yet
+            s = e08.import_responses(env.d / "responses")
+            self.assertEqual(s["files"]["batch_02.md"], {"skipped": "empty file (not filled in yet)"})
+            self.assertEqual(s["state"], "awaiting_ai_mode_responses")
+            self.assertEqual(s["missing"], 0)                       # unfilled batches are not "missing"
+
     def test_refuses_protected_overlap(self):
         with Env() as env:
             prot = {"words": {"coffee"}, "stems": set(), "held_targets": set(), "counts": {}}

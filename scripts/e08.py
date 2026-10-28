@@ -796,8 +796,12 @@ def import_responses(directory: Path) -> dict:
     accepted: dict[str, dict] = {}
     quarantine: dict[str, dict] = {}
     per_file = {}
+    covered: set[str] = set()                    # ids of batches that have a non-empty response file
     for p in files:
         text = p.read_text(encoding="utf-8", errors="replace")
+        if not text.strip():
+            per_file[p.name] = {"skipped": "empty file (not filled in yet)"}
+            continue
         shutil.copyfile(p, IMPORTED / "raw" / p.name)
         kind, num = p.name[:5], int(p.name[6:8])
         if kind == "batch":
@@ -805,6 +809,7 @@ def import_responses(directory: Path) -> dict:
         else:
             reg = PROMPTS / f"regen_{num:02d}.ids.json"
             ids = set(json.loads(reg.read_text())) if reg.exists() else set()
+        covered |= ids
         res = parse_response(text, ids, manifest)
         stats = Counter()
         for cid, cells in res["records"].items():
@@ -825,7 +830,8 @@ def import_responses(directory: Path) -> dict:
                                         "status": "quarantined", "reason": pr["problem"], "file": p.name}
         per_file[p.name] = {"batch_items": len(ids), "rows_found": len(res["records"]), "missing": len(res["missing"]),
                             "unparsed_id_lines": len(res["unparsed_id_lines"]), **stats}
-    missing = sorted(set(manifest) - set(accepted) - set(quarantine))
+    missing = sorted(covered - set(accepted) - set(quarantine))
+    not_provided = sorted(set(manifest) - covered - set(accepted) - set(quarantine))
     regenerate = sorted([i for i in quarantine if quarantine[i]["reason"] != "marked_uncertain"] + missing)
     write_jsonl(IMPORTED / "accepted.jsonl", [accepted[i] for i in sorted(accepted)])
     write_jsonl(IMPORTED / "quarantine.jsonl", [quarantine[i] for i in sorted(quarantine)])
@@ -833,8 +839,9 @@ def import_responses(directory: Path) -> dict:
                "accepted": len(accepted), "accepted_alternatives": sum(len(r["alternatives"]) for r in accepted.values()),
                "quarantined": dict(Counter(q["reason"] for q in quarantine.values())), "missing": len(missing),
                "needs_regeneration": len(regenerate), "source": SOURCE,
+               "batches_not_provided": sorted({manifest[i]["batch"] for i in not_provided}),
                "accepted_per_category": dict(Counter(r["category"] for r in accepted.values())),
-               "state": state_name(len(files), len(accepted), regenerate)}
+               "state": state_name(len(covered), len(accepted), regenerate, not_provided)}
     write_json(IMPORTED / "import_summary.json", summary)
     write_json(REPORTS / "import_summary.json", summary)
     regen_prompts(regenerate, manifest, quarantine)
@@ -842,8 +849,8 @@ def import_responses(directory: Path) -> dict:
     return summary
 
 
-def state_name(n_files: int, n_accepted: int, regenerate: list[str]) -> str:
-    if n_files == 0:
+def state_name(n_covered: int, n_accepted: int, regenerate: list[str], not_provided: list[str] = ()) -> str:
+    if n_covered == 0 or not_provided:
         return "awaiting_ai_mode_responses"
     return "awaiting_regeneration_responses" if regenerate else "imported_ready_to_freeze"
 
