@@ -187,3 +187,26 @@ there (`git -C ../pocket-tts-khmer show archive/checkpoints-p0-p6:state/DECISION
   - product default and serving unchanged;
   - reliable reviewed supervision/evaluation remains the blocker.
 - Report: `experiments/E06-reference-model/REPORT.md`.
+
+## D184 — E07: why E06's ByT5 collapsed, and one corrected adaptation (2026-10-28)
+- **Diagnosis:** no pipeline bug (ten boundary checks pass); an adaptation limitation.
+  - E06's per-byte loss was dominated by near-deterministic UTF-8 lead/block bytes.
+  - On the informative final byte, the input helped by 0.04 nats, so decoding followed a Khmer letter model
+    (ហ្វេន for 89% of eval words).
+  - One latent defect (no room for EOS at the 120-byte limit) never triggered; it is fixed in E07.
+- **Gate:** a 32-pair memorisation from the base model passed on attempt 1 (32/32 after 100 updates,
+  input-dependent, reload identical).
+- **Full run** (registered before training): LoRA on attention + FFN, 3,000 updates × batch 32, 4.67 h CPU;
+  selected update 1,200 (dev 52.2%).
+- **Historical E03 eval:**
+  - top-1 47.2% vs G mean 41.3% (+5.8 [+0.05, +11.6]);
+  - vs product default 46.2% (+1.0 [−6.1, +8.0]);
+  - top-4 oracle at equal beam −1.4 [−6.8, +4.1];
+  - one run, mined unreviewed references.
+- **Outcome:** a marginal "promising ByT5 research candidate"; phonetic quality unverified.
+- **Cost:** about 0.5 s/word and 2 GB RSS vs 15 ms and 0.13 GB for the letters model.
+- **Decision:**
+  - product default and serving unchanged;
+  - no distillation;
+  - the wall-time cap was exceeded only by post-training analysis after an idle session (reported).
+- Report: `experiments/E07-byt5-diagnosis/REPORT.md`.

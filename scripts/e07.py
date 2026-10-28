@@ -1018,7 +1018,10 @@ def analyse() -> dict:
            **{f"byt5_e07_minus_{g}_top1": e05.contrast(fm, ["byt5_e07_beam4"], [g], idx) for g in gs},
            "cer_reduction_byt5_e07_vs_G_mean_pp": e05.contrast(fc, ["byt5_e07_beam4"], gs, idx)}
     strata = {}
-    for name, key in (("length", lambda i: len_bin(i.word)), ("source", lambda i: "+".join(sorted(i.sources)))):
+    e02_train = {line.split("\t")[0].lower() for line in
+                 e06.guard(ROOT / "data/e02/train.tsv").read_text(encoding="utf-8").splitlines()[1:]}
+    for name, key in (("length", lambda i: len_bin(i.word)), ("source", lambda i: "+".join(sorted(i.sources))),
+                      ("in_default_e02_training", lambda i: str(i.word.lower() in e02_train))):
         for v in sorted({key(i) for i in prim}):
             sub = [i for i in prim if key(i) == v]
             strata[f"{name}={v}"] = {"items": len(sub), **{s: round(e06.macro(sub, {i.id: per[s][i.id]["top1"] for i in sub}), 4)
