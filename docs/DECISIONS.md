@@ -336,3 +336,11 @@ there (`git -C ../pocket-tts-khmer show archive/checkpoints-p0-p6:state/DECISION
   - the code stays PolyForm Noncommercial 1.0.0 (D190).
 - **Still needed:** publication approval. The open questions on page rights, Chhunneng-influenced mining and
   LLM-suggested selection items are recorded in `release/e02/NOTICES.md`.
+
+## D192 — en-km-phonetic-transliterator uploaded to Hugging Face, private (owner, 2026-10-29)
+- **Upload:** the owner approved it ("let do on hf first", private first). Repository
+  `ric912/en-km-phonetic-transliterator` (private), commit `b7f31150`: public card, `model.npz` `8901050b…`, weights
+  `LICENSE` (CC BY-NC-SA 4.0) and the `khmer-translit` 0.2.0 wheel (PolyForm Noncommercial).
+- **Verified on the Hub:** metadata parsed; a fresh download installs offline and reproduces the quick start.
+- **Not done:** the repository is not public yet (the owner switches it after review); nothing on PyPI (later); no
+  serving change.

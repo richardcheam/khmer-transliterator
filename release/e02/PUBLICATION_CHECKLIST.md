@@ -12,6 +12,15 @@
 | **Hugging Face folder:** card, `model.npz`, notices; no unsupported licence identifier | Prepared, **not uploaded** | `huggingface/` |
 | **Bundle** with per-file and archive checksums | Done | `SHA256SUMS`, `.tar.gz.sha256` |
 
+## Uploaded (private) — 2026-10-29
+- https://huggingface.co/ric912/en-km-phonetic-transliterator, **private**, first commit `b7f31150`.
+- **Files:** `README.md`, `model.npz` (`8901050b…`), `LICENSE` (CC BY-NC-SA 4.0), wheel (`1bc8242a…`).
+- **Checked on the Hub:**
+  - the metadata parses (licence `cc-by-nc-sa-4.0`, languages en/km, FineWeb-2 dataset link);
+  - a fresh `hf download` plus a clean install runs the quick start, and the hashes match.
+- **Next:** the owner reviews the page and makes it public (`hf repos settings ric912/en-km-phonetic-transliterator
+  --public`, or the repository settings page).
+
 ## Remaining before upload (owner)
 1. ~~Choose a code licence~~: **done**, PolyForm Noncommercial 1.0.0 (`LICENSE`, `pyproject.toml`). Rebuild the
    wheel and bundle so they carry it.
@@ -23,7 +32,7 @@
    - the indirect Chhunneng influence through mining;
    - the LLM-suggested selection items.
 4. **Approve publication explicitly** (repository rule: no publishing without the owner's yes), including:
-   - repository name: **`en-km-phonetic-transliterator`** (chosen 2026-10-29), i.e. `<hf-username>/en-km-phonetic-transliterator`.
+   - repository name: **`en-km-phonetic-transliterator`** (chosen 2026-10-29), i.e. `ric912/en-km-phonetic-transliterator`.
      Visibility: start private, check the card renders, then make it public;
    - whether `evidence/` (hashes, counts, model outputs on test words) is uploaded.
 5. **Optional but recommended:** an independent phonetic review of a sample, so the card can report more than
