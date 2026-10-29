@@ -11,7 +11,18 @@ sys.path.insert(0, str(ROOT / "scripts"))
 sys.path.insert(0, str(ROOT / "src"))
 
 try:
+    import e07
+    import e09
+    # e11 rebinds e07/e09 bookkeeping globals on import; restore them so later test modules see the originals
+    saved = {m: {k: getattr(m, k) for k in ("LEDGER", "EXPERIMENT", "STATE", "LIMITS") if hasattr(m, k)}
+             for m in (e07, e09)}
+    saved_checkpoints = dict(e09.CHECKPOINTS)
     import e11
+    for m, attrs in saved.items():
+        for k, v in attrs.items():
+            setattr(m, k, v)
+    e09.CHECKPOINTS.clear()
+    e09.CHECKPOINTS.update(saved_checkpoints)
 except ImportError:                                   # research extras (torch) not installed
     e11 = None
 

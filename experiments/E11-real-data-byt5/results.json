@@ -1,0 +1,598 @@
+{
+ "label": "Historical mined-reference agreement only. Eval has been examined repeatedly since E03 and its references are unreviewed web-mined spellings; no number here measures phonetic accuracy.",
+ "frozen": "2026-10-29T15:19:30+00:00",
+ "selected": {
+  "run": "r_s0",
+  "update": 3000,
+  "dev_top1": 0.53,
+  "dev_cer": 0.1568,
+  "checkpoint_sha256": "286292a4f21131d0dd238d48919485192b0b0eb268d005bbc804d3ff78229713"
+ },
+ "dev": {
+  "items": 253,
+  "families": 250,
+  "table": {
+   "e07": {
+    "top1_macro": 0.522,
+    "top4_macro": 0.522,
+    "mean_cer": 0.1858,
+    "correct_items": 133,
+    "no_output": 0,
+    "distinct_top1": 241,
+    "most_common_top1": [
+     "វី",
+     3
+    ],
+    "share_most_common_top1": 0.0119,
+    "invalid_orthography_top1": 1,
+    "raw_rank1_status": {
+     "ok": 253
+    },
+    "top1_empty_or_none": 0,
+    "truncated_no_eos_any": 0,
+    "repeated_top1": 1,
+    "mean_top1_codepoints": 5.146,
+    "mean_top1_bytes": 15.439,
+    "distinct_candidates_per_item": 1,
+    "generation_seconds": null
+   },
+   "e11": {
+    "top1_macro": 0.53,
+    "top4_macro": 0.53,
+    "mean_cer": 0.1568,
+    "correct_items": 135,
+    "no_output": 0,
+    "distinct_top1": 244,
+    "most_common_top1": [
+     "សា",
+     3
+    ],
+    "share_most_common_top1": 0.0119,
+    "invalid_orthography_top1": 0,
+    "raw_rank1_status": {
+     "ok": 253
+    },
+    "top1_empty_or_none": 0,
+    "truncated_no_eos_any": 0,
+    "repeated_top1": 0,
+    "mean_top1_codepoints": 5.119,
+    "mean_top1_bytes": 15.356,
+    "distinct_candidates_per_item": 1,
+    "generation_seconds": 19.5
+   },
+   "e08": {
+    "top1_macro": 0.542,
+    "top4_macro": 0.542,
+    "mean_cer": 0.1513,
+    "correct_items": 138,
+    "no_output": 0,
+    "distinct_top1": 243,
+    "most_common_top1": [
+     "អាសា",
+     2
+    ],
+    "share_most_common_top1": 0.0079,
+    "invalid_orthography_top1": 0,
+    "raw_rank1_status": {
+     "ok": 253
+    },
+    "top1_empty_or_none": 0,
+    "truncated_no_eos_any": 0,
+    "repeated_top1": 0,
+    "mean_top1_codepoints": 5.079,
+    "mean_top1_bytes": 15.237,
+    "distinct_candidates_per_item": 1,
+    "generation_seconds": null
+   }
+  },
+  "contrasts": {
+   "e11_minus_e07": {
+    "top1": {
+     "plus": [
+      "e11"
+     ],
+     "minus": [
+      "e07"
+     ],
+     "diff_pp": 0.8,
+     "ci95_pp": [
+      -4.0,
+      6.0
+     ]
+    },
+    "cer_reduction": {
+     "plus": [
+      "e11"
+     ],
+     "minus": [
+      "e07"
+     ],
+     "diff_pp": 2.938,
+     "ci95_pp": [
+      0.175,
+      5.869
+     ]
+    }
+   },
+   "e08_minus_e07 (historical reference)": {
+    "top1": {
+     "plus": [
+      "e08"
+     ],
+     "minus": [
+      "e07"
+     ],
+     "diff_pp": 2.0,
+     "ci95_pp": [
+      -3.2,
+      7.2
+     ]
+    },
+    "cer_reduction": {
+     "plus": [
+      "e08"
+     ],
+     "minus": [
+      "e07"
+     ],
+     "diff_pp": 3.489,
+     "ci95_pp": [
+      0.952,
+      6.045
+     ]
+    }
+   },
+   "e11_minus_e08 (historical reference)": {
+    "top1": {
+     "plus": [
+      "e11"
+     ],
+     "minus": [
+      "e08"
+     ],
+     "diff_pp": -1.2,
+     "ci95_pp": [
+      -5.2,
+      3.2
+     ]
+    },
+    "cer_reduction": {
+     "plus": [
+      "e11"
+     ],
+     "minus": [
+      "e08"
+     ],
+     "diff_pp": -0.551,
+     "ci95_pp": [
+      -2.578,
+      1.524
+     ]
+    }
+   }
+  },
+  "error_kinds": {
+   "e07": {
+    "vowels_only": 43,
+    "both": 18,
+    "consonant_added": 21,
+    "consonant_dropped": 11,
+    "consonants_changed": 17,
+    "marks_only": 10
+   },
+   "e11": {
+    "vowels_only": 51,
+    "consonant_added": 18,
+    "consonant_dropped": 11,
+    "consonants_changed": 23,
+    "marks_only": 10,
+    "both": 5
+   },
+   "e08": {
+    "vowels_only": 47,
+    "consonant_added": 17,
+    "consonant_dropped": 12,
+    "consonants_changed": 22,
+    "marks_only": 10,
+    "both": 7
+   }
+  },
+  "missing_ending": {
+   "e07": 5,
+   "e11": 3,
+   "e08": 4
+  },
+  "length_bins_top1": {
+   "le4": {
+    "items": 100,
+    "e07": 0.67,
+    "e11": 0.64,
+    "e08": 0.67
+   },
+   "5to8": {
+    "items": 146,
+    "e07": 0.434,
+    "e11": 0.462,
+    "e08": 0.476
+   },
+   "ge9": {
+    "items": 7,
+    "e07": 0.286,
+    "e11": 0.429,
+    "e08": 0.143
+   }
+  },
+  "operational": {
+   "e07": {
+    "items": 276,
+    "rank1_status": {
+     "ok": 276
+    },
+    "no_output": 0,
+    "orthography_not_ok": 1,
+    "repeated": 1,
+    "truncated_no_eos": 0,
+    "mean_codepoints": 5.2,
+    "distinct_top1": 262,
+    "max_share_one_output": 0.0109
+   },
+   "e11": {
+    "items": 276,
+    "rank1_status": {
+     "ok": 276
+    },
+    "no_output": 0,
+    "orthography_not_ok": 0,
+    "repeated": 0,
+    "truncated_no_eos": 0,
+    "mean_codepoints": 5.17,
+    "distinct_top1": 264,
+    "max_share_one_output": 0.0109
+   },
+   "e08": {
+    "items": 276,
+    "rank1_status": {
+     "ok": 276
+    },
+    "no_output": 0,
+    "orthography_not_ok": 0,
+    "repeated": 0,
+    "truncated_no_eos": 0,
+    "mean_codepoints": 5.13,
+    "distinct_top1": 265,
+    "max_share_one_output": 0.0072
+   }
+  },
+  "e07_vs_e11_item_outcomes": {
+   "both_right": 114,
+   "only_e07": 19,
+   "only_e11": 21,
+   "both_wrong": 99
+  }
+ },
+ "eval": {
+  "items": 228,
+  "families": 222,
+  "table": {
+   "e07": {
+    "top1_macro": 0.4985,
+    "top4_macro": 0.4985,
+    "mean_cer": 0.1782,
+    "correct_items": 115,
+    "no_output": 0,
+    "distinct_top1": 220,
+    "most_common_top1": [
+     "ប៊ីត",
+     2
+    ],
+    "share_most_common_top1": 0.0088,
+    "invalid_orthography_top1": 0,
+    "raw_rank1_status": {
+     "ok": 228
+    },
+    "top1_empty_or_none": 0,
+    "truncated_no_eos_any": 0,
+    "repeated_top1": 0,
+    "mean_top1_codepoints": 5.557,
+    "mean_top1_bytes": 16.671,
+    "distinct_candidates_per_item": 1,
+    "generation_seconds": 17.5
+   },
+   "e11": {
+    "top1_macro": 0.5233,
+    "top4_macro": 0.5233,
+    "mean_cer": 0.1625,
+    "correct_items": 120,
+    "no_output": 0,
+    "distinct_top1": 222,
+    "most_common_top1": [
+     "ប៊ីត",
+     2
+    ],
+    "share_most_common_top1": 0.0088,
+    "invalid_orthography_top1": 0,
+    "raw_rank1_status": {
+     "ok": 228
+    },
+    "top1_empty_or_none": 0,
+    "truncated_no_eos_any": 0,
+    "repeated_top1": 0,
+    "mean_top1_codepoints": 5.561,
+    "mean_top1_bytes": 16.684,
+    "distinct_candidates_per_item": 1,
+    "generation_seconds": 18.1
+   },
+   "e08": {
+    "top1_macro": 0.524,
+    "top4_macro": 0.524,
+    "mean_cer": 0.1611,
+    "correct_items": 120,
+    "no_output": 0,
+    "distinct_top1": 225,
+    "most_common_top1": [
+     "ប៊ីត",
+     2
+    ],
+    "share_most_common_top1": 0.0088,
+    "invalid_orthography_top1": 0,
+    "raw_rank1_status": {
+     "ok": 228
+    },
+    "top1_empty_or_none": 0,
+    "truncated_no_eos_any": 0,
+    "repeated_top1": 0,
+    "mean_top1_codepoints": 5.592,
+    "mean_top1_bytes": 16.776,
+    "distinct_candidates_per_item": 1,
+    "generation_seconds": null
+   }
+  },
+  "contrasts": {
+   "e11_minus_e07": {
+    "top1": {
+     "plus": [
+      "e11"
+     ],
+     "minus": [
+      "e07"
+     ],
+     "diff_pp": 2.477,
+     "ci95_pp": [
+      -2.703,
+      7.658
+     ]
+    },
+    "cer_reduction": {
+     "plus": [
+      "e11"
+     ],
+     "minus": [
+      "e07"
+     ],
+     "diff_pp": 1.656,
+     "ci95_pp": [
+      -0.657,
+      4.059
+     ]
+    }
+   },
+   "e08_minus_e07 (historical reference)": {
+    "top1": {
+     "plus": [
+      "e08"
+     ],
+     "minus": [
+      "e07"
+     ],
+     "diff_pp": 2.553,
+     "ci95_pp": [
+      -2.402,
+      7.508
+     ]
+    },
+    "cer_reduction": {
+     "plus": [
+      "e08"
+     ],
+     "minus": [
+      "e07"
+     ],
+     "diff_pp": 1.848,
+     "ci95_pp": [
+      -0.588,
+      4.384
+     ]
+    }
+   },
+   "e11_minus_e08 (historical reference)": {
+    "top1": {
+     "plus": [
+      "e11"
+     ],
+     "minus": [
+      "e08"
+     ],
+     "diff_pp": -0.075,
+     "ci95_pp": [
+      -4.73,
+      4.58
+     ]
+    },
+    "cer_reduction": {
+     "plus": [
+      "e11"
+     ],
+     "minus": [
+      "e08"
+     ],
+     "diff_pp": -0.191,
+     "ci95_pp": [
+      -1.864,
+      1.522
+     ]
+    }
+   }
+  },
+  "error_kinds": {
+   "e07": {
+    "vowels_only": 46,
+    "both": 21,
+    "consonant_added": 12,
+    "marks_only": 8,
+    "consonant_dropped": 15,
+    "consonants_changed": 11
+   },
+   "e11": {
+    "vowels_only": 47,
+    "consonant_dropped": 8,
+    "consonant_added": 9,
+    "both": 20,
+    "marks_only": 8,
+    "consonants_changed": 16
+   },
+   "e08": {
+    "vowels_only": 53,
+    "consonant_added": 8,
+    "marks_only": 7,
+    "both": 18,
+    "consonant_dropped": 10,
+    "consonants_changed": 12
+   }
+  },
+  "missing_ending": {
+   "e07": 8,
+   "e11": 4,
+   "e08": 6
+  },
+  "length_bins_top1": {
+   "le4": {
+    "items": 87,
+    "e07": 0.529,
+    "e11": 0.54,
+    "e08": 0.575
+   },
+   "5to8": {
+    "items": 132,
+    "e07": 0.48,
+    "e11": 0.508,
+    "e08": 0.508
+   },
+   "ge9": {
+    "items": 9,
+    "e07": 0.556,
+    "e11": 0.667,
+    "e08": 0.333
+   }
+  },
+  "operational": {
+   "e07": {
+    "items": 245,
+    "rank1_status": {
+     "ok": 245
+    },
+    "no_output": 0,
+    "orthography_not_ok": 0,
+    "repeated": 0,
+    "truncated_no_eos": 0,
+    "mean_codepoints": 5.65,
+    "distinct_top1": 237,
+    "max_share_one_output": 0.0082
+   },
+   "e11": {
+    "items": 245,
+    "rank1_status": {
+     "ok": 245
+    },
+    "no_output": 0,
+    "orthography_not_ok": 0,
+    "repeated": 0,
+    "truncated_no_eos": 0,
+    "mean_codepoints": 5.67,
+    "distinct_top1": 238,
+    "max_share_one_output": 0.0082
+   },
+   "e08": {
+    "items": 245,
+    "rank1_status": {
+     "ok": 245
+    },
+    "no_output": 0,
+    "orthography_not_ok": 0,
+    "repeated": 0,
+    "truncated_no_eos": 0,
+    "mean_codepoints": 5.7,
+    "distinct_top1": 241,
+    "max_share_one_output": 0.0082
+   }
+  },
+  "e07_vs_e11_item_outcomes": {
+   "both_right": 100,
+   "only_e07": 15,
+   "only_e11": 20,
+   "both_wrong": 93
+  }
+ },
+ "training": {
+  "history": [
+   {
+    "update": 600,
+    "dev_top1": 0.318,
+    "dev_cer": 0.2833
+   },
+   {
+    "update": 1200,
+    "dev_top1": 0.49,
+    "dev_cer": 0.1903
+   },
+   {
+    "update": 1800,
+    "dev_top1": 0.502,
+    "dev_cer": 0.1733
+   },
+   {
+    "update": 2400,
+    "dev_top1": 0.526,
+    "dev_cer": 0.1611
+   },
+   {
+    "update": 3000,
+    "dev_top1": 0.53,
+    "dev_cer": 0.1568
+   }
+  ],
+  "selected_update": 3000,
+  "updates": 3000,
+  "active_training_hours": 4.599,
+  "segments": [
+   {
+    "time": "2026-10-29T15:17:04+00:00",
+    "event": "segment",
+    "run": "r_s0",
+    "kind": "full",
+    "hours": 4.5994,
+    "updates_to": 3000,
+    "stop": "max_updates",
+    "t": 1793287024.4002564
+   }
+  ],
+  "peak_rss_mb": 4603,
+  "min_available_mb": 2671
+ },
+ "decision": {
+  "class": "uncertain_alternative",
+  "eval_top1_diff_pp": 2.477,
+  "ci95_pp": [
+   -2.703,
+   7.658
+  ],
+  "eval_cer_reduction_pp": 1.656,
+  "dev_not_below_e07": true,
+  "rule": {
+   "primary": "E11 greedy − E07 greedy on the historical eval split (paired family bootstrap, 10,000, seed 20261027)",
+   "useful_real_data_only_candidate": "eval exact-agreement difference CI lower bound > 0 and eval CER not higher (CER-reduction point estimate ≥ 0); dev top-1 not below E07's",
+   "regression_relative_to_e07": "eval difference CI upper bound < 0, or point ≤ −3.0 points with eval CER higher",
+   "uncertain_alternative": "anything else",
+   "note": "classification of historical reference agreement only; phonetic quality and publication permissions are reported separately; no tuning after evaluation"
+  }
+ }
+}

@@ -1,0 +1,176 @@
+# E11 report: ByT5-small on the real-data pool R, no AI Mode labels (2026-10-29)
+
+**Outcome: uncertain alternative** (registered rule, `results.json` → `decision`).
+- **Eval:** E11 agrees with the historical references 2.5 points more often than E07, but the 95% interval
+  includes 0 (+2.5 [−2.7, +7.7]).
+- **E08 without AI Mode:** E11 matches E08 (eval −0.1 [−4.7, +4.6]) without any Google AI Mode label.
+- **Phonetic quality is unresolved.** The blinded review batch is prepared but has no judgments.
+- **Nothing was published, packaged, served, merged or tagged.**
+
+## 1. Data (`reports/data_checks.json`)
+E08's frozen arm R was reused unchanged (`data/e08/training/arm_R.tsv`, sha256 `d00706cf…ec88`). It was not
+relabelled or filtered.
+
+| Check | Result |
+|---|---|
+| Optimisation rows / words | 4,764 / 3,585, plus 93 train-val rows |
+| Sources | E03 control 2,255 · recovered mined 1,292 · ALT-attested (CC BY 4.0) 1,217 |
+| Control rows = E07's training rows | yes |
+| Exact / NFC duplicates | 0 / 0 |
+| Pairs with several sources | 0, so keeping one provenance per pair lost nothing (all sources in `data/e11/pair_sources.json`, local) |
+| `google_ai_mode_synthetic` rows | 0; R ⊂ R+S, and R+S − R = the 384 AI Mode rows |
+| R pairs identical to an AI Mode spelling | 0 |
+| Pairs in E08 quarantine files | 0 (of 2,054 quarantined) |
+| Dev/eval, protected-family, train-val-family overlap | 0 |
+| Byte-limit rejections | 0 |
+| Words with several spellings | 840 (max 8) |
+
+**Limitation.** The mined and ALT rows carry uncertain vowel quality, and nothing here checks it. Vowel-only
+differences are the largest error kind for every model (§4.4), and some of them are likely reference noise rather
+than model errors.
+
+## 2. Run (`registration.json`, frozen in c234de2 before training)
+- **Recipe:** E07's recipe unchanged (cfg hash `f5d7cf92…`): LoRA r16/α32 on attention + FFN, AdamW 1e-3 with
+  100 warm-up and linear decay, batch 32, 3,000 updates.
+- **Initialisation:** the pinned `google/byt5-small` base, a fresh adapter and seed 0. Nothing came from E08 or E10.
+- **Sampling:** row-level, as in E07, giving 96,000 example draws, or 20.15 epochs. E07 made 42.6 epochs over its
+  smaller set.
+  - **Draw shares:** control 47.4%, recovered 27.1%, ALT 25.5%.
+  - **Draws per word:** min 18, median 20, max 161.
+- **Resources:**
+  - CPU, 6 threads, one job.
+  - Memory guard: 3 consecutive readings with RSS > 6.5 GiB or MemAvailable < 0.4 GiB trigger a resumable stop. It
+    never triggered.
+  - Peak RSS was 4,603 MB. The lowest available memory was 2,671 MB.
+- **Time:** 4.60 h active training in one segment, with no idle gap, at about 5.5 s/update. Freezing took 66 s and
+  scoring 1 s.
+
+| Update | 600 | 1,200 | 1,800 | 2,400 | **3,000** |
+|---|---|---|---|---|---|
+| Dev exact | 31.8% | 49.0% | 50.2% | 52.6% | **53.0%** |
+| Dev CER | 0.283 | 0.190 | 0.173 | 0.161 | **0.157** |
+
+- **Selected:** update 3,000, by dev exact, then CER (sha256 `286292a4…`).
+- **Under-training:** the curve was still rising when the learning rate reached 0, the same pattern as E08 (E10
+  §1).
+
+## 3. Freeze (`reports/frozen.json`, commit 14858ee)
+- **Committed before any score was computed:** greedy dev and eval predictions for E07 (`24c9d200…`), E11 and E08
+  (`d5da8c29…`), with file hashes.
+- **Decoding:** greedy (`num_beams=1`, `max_new_tokens=121`, decoding hash `9115a497…`).
+- **Hash check:** `evaluate` verifies the hashes before scoring.
+
+## 4. Results (historical mined-reference agreement only)
+> **Caveat.** Eval has been examined repeatedly since E03, and its references are unreviewed web-mined
+> spellings. These numbers measure agreement with those references, not phonetic accuracy. Nothing was tuned
+> after evaluation.
+
+### 4.1 Exact agreement and CER (greedy, family-macro)
+| Split | E07 | **E11** | E08 (historical) |
+|---|---|---|---|
+| Dev (253 items, 250 families) exact | 52.2% | **53.0%** | 54.2% |
+| Dev CER | 0.186 | **0.157** | 0.151 |
+| Eval (228 items, 222 families) exact | 49.9% | **52.3%** | 52.4% |
+| Eval CER | 0.178 | **0.163** | 0.161 |
+
+Dev was used for checkpoint selection, so the eval rows are the primary result.
+
+### 4.2 Paired family bootstrap (10,000 resamples, seed 20261027; points, 95% CI)
+| Contrast | Eval exact | Eval CER reduction | Dev exact | Dev CER reduction |
+|---|---|---|---|---|
+| **E11 − E07 (primary)** | **+2.5 [−2.7, +7.7]** | +1.7 [−0.7, +4.1] | +0.8 [−4.0, +6.0] | +2.9 [+0.2, +5.9] |
+| E08 − E07 (reference) | +2.6 [−2.4, +7.5] | +1.8 [−0.6, +4.4] | +2.0 [−3.2, +7.2] | +3.5 [+1.0, +6.0] |
+| E11 − E08 (reference) | −0.1 [−4.7, +4.6] | −0.2 [−1.9, +1.5] | −1.2 [−5.2, +3.2] | −0.6 [−2.6, +1.5] |
+
+**Item outcomes, E07 vs E11:**
+- Eval: both right 100 · only E07 15 · only E11 20 · both wrong 93.
+- Dev: 114 · 19 · 21 · 99.
+
+The two models disagree on 35 eval items and 40 dev items in total. The net difference is 5 eval items, which is
+within noise.
+
+### 4.3 Validity and endings (all prediction ids: dev 276, eval 245)
+| | E07 | E11 | E08 |
+|---|---|---|---|
+| Empty or no output | 0 | 0 | 0 |
+| Invalid orthography (dev / eval) | 1 / 0 | 0 / 0 | 0 / 0 |
+| Repeated output (dev / eval) | 1 / 0 | 0 / 0 | 0 / 0 |
+| Truncated (no end token) | 0 | 0 | 0 |
+| Missing ending (dev / eval) | 5 / 8 | **3 / 4** | 4 / 6 |
+
+A missing ending means the consonant skeleton is a proper prefix of the nearest reference's.
+
+### 4.4 Error kinds of wrong top-1 items (eval)
+| Kind | E07 | E11 | E08 |
+|---|---|---|---|
+| Vowels only | 46 | 47 | 53 |
+| Consonants changed | 11 | 16 | 12 |
+| Consonant dropped | 15 | 8 | 10 |
+| Consonant added | 12 | 9 | 8 |
+| Marks only | 8 | 8 | 7 |
+| Both | 21 | 20 | 18 |
+
+- **E11 vs E07:** E11 drops and adds fewer consonants (17 vs 27). It changes more consonants (16 vs 11).
+- **Vowels:** vowel-only differences are unchanged and remain the largest class.
+
+### 4.5 English word length (eval exact)
+| Bin | Items | E07 | E11 | E08 |
+|---|---|---|---|---|
+| ≤ 4 letters | 87 | 52.9% | 54.0% | 57.5% |
+| 5–8 letters | 132 | 48.0% | 50.8% | 50.8% |
+| ≥ 9 letters | 9 | 55.6% | 66.7% | 33.3% |
+
+The ≥ 9 bin has 9 items, which is too few to interpret.
+
+## 5. Review (`review/review_manifest.json`; files local in `data/e11/review/`)
+- **Batch:** 60 dev words, 40 representative and 20 disagreement, reported separately. The candidates are the
+  109 distinct greedy outputs of E07, E11 and E08, at most 3 per word, with origins hidden. Each word shows its
+  intended English reading (ARPAbet) and a `vowels_or_marks` or `consonants_or_syllables` tag.
+- **Representative sample:** 21 words with one shared output, 10 differing in vowels or marks, 9 in consonants or
+  syllables.
+- **Disagreement sample:** 8 vowel or mark differences, 12 consonant or syllable differences.
+- **Status:** `import` returned `no_judgments`. No reviewer was contacted and no judgment was invented.
+  **Phonetic quality is unresolved.**
+
+## 6. Decision
+| Axis | Finding |
+|---|---|
+| **Reference agreement** | Uncertain alternative to E07: eval +2.5 [−2.7, +7.7], CER +1.7 [−0.7, +4.1], dev not below E07. Equal to E08 within noise. Fewer missing endings, no invalid or repeated outputs. |
+| **Phonetic quality** | Unresolved: no review judgments. Vowel quality of the references is itself unverified. |
+| **Permissions** | Improved over E08: no Google AI Mode labels, so that blocker is gone. Still open: CC BY-SA (Wikipedia) and page rights in the mined E03 and recovered pairs; ALT is CC BY 4.0 (attribution); ByT5 base Apache 2.0. The adapter has no licence and is not published. |
+
+**What improved:**
+- E11 reaches E08's agreement without synthetic labels. The 384 AI Mode rows contributed nothing measurable, so
+  E11 is the cleaner ByT5 candidate.
+- Dev CER improved over E07, the only interval that excludes 0.
+- Fewer dropped or added consonants and missing endings.
+
+**What did not:**
+- No contrast against E07 is detectable on eval.
+- Vowel-only mismatches did not decrease.
+- The model is still under-trained at 3,000 updates.
+- Phonetic quality is not measured.
+
+**Second seed:** recommended only after review, not launched. A second seed tests seed stability, but with
+222 eval families the item-level interval would stay about ±5 points. It cannot by itself turn +2.5 into a
+detectable result.
+
+**Strongest evidence for the next quality step:**
+1. **Review judgments on vowels.** Vowel-only differences are 40–50% of all mismatches for every model, and they
+   did not respond to doubling the real data. The 60-word blinded batch would show whether these are model errors
+   or reference noise. That decides whether the next step is better labels (reviewed vowel choices) or more
+   training.
+2. **Under-training.** Dev was still rising at the final update for E11 and E08 alike. A longer schedule is the
+   obvious training-side hypothesis, but it needs a new registered experiment. E10's higher learning rate did not
+   help.
+
+## Files
+| File | Content |
+|---|---|
+| `PLAN.md`, `registration.json` | Plan, frozen recipe, exposure, decision rule |
+| `reports/data_checks.json` | Data verification |
+| `reports/frozen.json`, `predictions/` | Frozen greedy predictions and hashes |
+| `results.json`, `results_per_item_{dev,eval}.jsonl` | Scores, contrasts, validity, lengths, error kinds |
+| `runs/ledger.jsonl`, `state.json` | Run ledger and step state |
+| `review/README.md`, `review/review_manifest.json` | Review instructions and manifest |
+| Local only | `models/e11/r_s0/` (weights), `data/e11/` (pair sources, review batch, origin key) |

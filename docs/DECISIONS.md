@@ -350,3 +350,16 @@ there (`git -C ../pocket-tts-khmer show archive/checkpoints-p0-p6:state/DECISION
   private page. Tag `v0.2.0` marks this release.
 - Anonymous access was checked (model page, card and `model.npz` reachable without login).
 - Weights CC BY-NC-SA 4.0, code PolyForm Noncommercial 1.0.0. Serving is unchanged and nothing is on PyPI.
+
+## D194 — E11: ByT5-small on real-data pool R (no AI Mode labels) is an uncertain alternative to E07 (2026-10-29)
+- **Run:** E07's recipe unchanged on E08's arm R (4,764 rows: E03 control 2,255 + recovered 1,292 + ALT 1,217;
+  0 AI Mode rows, verified from the files), fresh adapter on the pinned base, seed 0, 3,000 updates, 4.6 h CPU.
+  Selected update 3,000 (dev 53.0%, CER 0.157); still rising at the end.
+- **Result (greedy, historical references, frozen before scoring):** eval E11 − E07 +2.5 [−2.7, +7.7], CER
+  reduction +1.7 [−0.7, +4.1] → registered class **uncertain alternative**. E11 − E08 −0.1 [−4.7, +4.6]: the 384
+  AI Mode rows added nothing measurable. Fewer missing endings (eval 4 vs 8); vowel-only mismatches unchanged
+  (≈ 43% of errors).
+- **Phonetic quality:** unresolved; blinded 60-word batch in `data/e11/review/` (local), no judgments.
+- **Permissions:** AI Mode blocker gone; CC BY-SA and page-rights questions on mined pairs remain; adapter unlicensed.
+- **Next:** review judgments on vowel choices before more training; second seed recommended, not launched.
+  Nothing published, packaged or served. Report: `experiments/E11-real-data-byt5/REPORT.md`.
