@@ -6,7 +6,7 @@ permitted.
 
 | Asset | In the bundle | Stated terms | Publication status |
 |---|---|---|---|
-| Package code (`khmer_translit`, wheel + sdist) | yes | **No code licence chosen** (the owner's decision; open since 0.1.0) | **Blocked** until a licence is chosen |
+| Package code (`khmer_translit`, wheel + sdist) | yes | **PolyForm Noncommercial 1.0.0** (owner, 2026-10-29; `LICENSE`) | Code licence settled; publication still blocked by the adapter questions |
 | Adapter weights (`adapter/adapter.safetensors`) | yes | Derived from the data in `DATA_PROVENANCE.md` | **Blocked** (see below) |
 | Base model `google/byt5-small` | no (pinned by revision; fetched by the user) | Apache 2.0 (Hub metadata) | Not redistributed; users obtain it from the Hub |
 | Documents, results and evaluation summaries | yes | Project-authored | Needs the owner's decision (part of the repository) |
@@ -25,7 +25,7 @@ permitted.
 3. **FineWeb-2 (ODC-By 1.0) and the Common Crawl terms of use:** attribution is required; the terms of the
    underlying web pages also apply to the mined pairs.
 4. **ALT (CC BY 4.0):** attribution is required (text in `DATA_PROVENANCE.md`).
-5. **No code licence** has been chosen for the package.
+5. **Code licence:** PolyForm Noncommercial 1.0.0, chosen 2026-10-29. The adapter weights have no licence yet.
 
 ## Wording rules for any public text
 - This is a **research preview with unverified phonetic quality**.

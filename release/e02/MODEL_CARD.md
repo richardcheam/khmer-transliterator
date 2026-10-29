@@ -22,7 +22,7 @@ This is **E02** (`letters_s0`), a small model trained from scratch and run with 
 ByT5-based model (`khmer-translit-byt5`, E08/E10), which is a different architecture, a different training set and
 a separate bundle.
 
-**Publication status: unresolved.** No licence has been chosen for the code or the weights, so this card has no
+**Publication status: unresolved.** The code is licensed PolyForm Noncommercial 1.0.0. No licence has been chosen for the weights yet, so this card has no
 `license` field. See `NOTICES.md`, `LICENSING_DECISION.md` and `PROVENANCE_AUDIT.md`.
 
 ## Model details

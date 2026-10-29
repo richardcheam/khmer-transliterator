@@ -3,6 +3,8 @@ name = "khmer-translit"
 version = "0.2.0"
 description = "Latin → Khmer transliteration for Khmer TTS: a small learned model (NumPy inference), rules and the Google Khmer lexicon"
 requires-python = ">=3.10,<3.13"
+license = "PolyForm-Noncommercial-1.0.0"   # code only (owner, 2026-10-29); model weights are licensed separately
+license-files = ["LICENSE"]
 dependencies = ["numpy>=2"]   # serving needs NumPy only
 
 [project.optional-dependencies]

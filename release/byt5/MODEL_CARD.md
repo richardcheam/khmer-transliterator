@@ -129,7 +129,7 @@ Laptop CPU, 6 threads, `HF_HUB_OFFLINE=1` with a local base:
 - Unverified phonetic quality and vowel errors; see `LIMITATIONS.md`.
 - **Base model:** Apache 2.0. That does not settle the training data's terms.
 - **Blockers:** the Google AI Mode rows face a restrictive terms clause; Wikipedia's CC BY-SA share-alike question
-  is open; no code licence has been chosen. See `NOTICES.md`.
+  is open; the code is PolyForm Noncommercial 1.0.0; the adapter has no licence yet. See `NOTICES.md`.
 - **Attribution:** FineWeb-2 (ODC-By), Khmer Wikipedia (CC BY-SA 4.0), ALT (NICT, CC BY 4.0; Riza et al. 2016).
 
 ## Citation

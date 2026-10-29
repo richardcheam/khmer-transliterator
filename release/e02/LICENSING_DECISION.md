@@ -1,12 +1,13 @@
 # Licensing decision needed (owner): E02 letters-only release
 
-**Status: no licence has been chosen**, for the code or for the model. Checked 2026-10-29:
-- no `LICENSE` file;
-- no `license` field in `pyproject.toml`;
-- no licence decision in `docs/DECISIONS.md` (D178–D188 all record it as open).
-
-This document does not choose a licence and applies none. The Hugging Face card therefore carries **no `license`
-field**: an identifier must not be invented for a licence that does not exist.
+**Status (2026-10-29):**
+- **Code: decided.** The owner chose **PolyForm Noncommercial 1.0.0**: research, study and other non-commercial use;
+  commercial use needs the owner's permission.
+  - Applied as `LICENSE` (the official 1.0.0 text plus a `Required Notice:` line).
+  - `pyproject.toml` has `license = "PolyForm-Noncommercial-1.0.0"`; the wheel's metadata carries
+    `License-Expression` and the licence file.
+- **Weights: not decided.** The owner wants research/study only. The open question is how to square that with the
+  Wikipedia CC BY-SA rows (see below). The Hugging Face card therefore still has **no `license` field**.
 
 ## Two separate choices
 ### 1. Code (`khmer_translit` package)

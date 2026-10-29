@@ -310,3 +310,14 @@ there (`git -C ../pocket-tts-khmer show archive/checkpoints-p0-p6:state/DECISION
 - **Bundle:** `dist/khmer-translit-e02-letters-0.2.0/` (local); `dist/english-phonetic-0.1.0` untouched.
 - **Not done:** no upload, merge, tag or serving change.
 - Documents: `release/e02/`; evidence: `experiments/E02-release/reports/`.
+
+## D190 — Code licence: PolyForm Noncommercial 1.0.0 (owner, 2026-10-29)
+- **Decision:** the owner wants research/study-only terms and chose PolyForm Noncommercial 1.0.0 for the
+  `khmer_translit` code.
+- **Applied:**
+  - `LICENSE`: the official text, plus `Required Notice: Copyright 2026 Richard (khmer-transliterator project)`;
+  - `pyproject.toml`: `license = "PolyForm-Noncommercial-1.0.0"`, `license-files`.
+- **Scope:** code only. Model weights stay unlicensed until the owner decides how research-only terms fit the
+  Wikipedia CC BY-SA training rows. The options are a non-commercial licence on the current weights, accepting the
+  share-alike risk, or a retrain without those rows.
+- **Pending:** the local bundles predate this. They need a rebuild before any use.

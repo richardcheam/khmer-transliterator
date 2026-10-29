@@ -13,7 +13,8 @@
 | **Bundle** with per-file and archive checksums | Done | `SHA256SUMS`, `.tar.gz.sha256` |
 
 ## Remaining before upload (owner)
-1. **Choose a code licence** and add `LICENSE` and the `pyproject.toml` `license` field. Rebuild the wheel.
+1. ~~Choose a code licence~~: **done**, PolyForm Noncommercial 1.0.0 (`LICENSE`, `pyproject.toml`). Rebuild the
+   wheel and bundle so they carry it.
 2. **Choose a weights licence,** or decide to retrain without the Wikipedia rows (`LICENSING_DECISION.md`). Then add
    the `license` field (and `LICENSE` file, if custom) to `huggingface/README.md`.
 3. **Decide on the open data questions** in `NOTICES.md`:
