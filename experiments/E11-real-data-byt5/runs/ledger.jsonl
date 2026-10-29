@@ -1,0 +1,2 @@
+{"time": "2026-10-29T10:40:10+00:00", "event": "step", "step": "verify", "seconds": 1.2}
+{"time": "2026-10-29T10:40:20+00:00", "event": "step", "step": "register", "seconds": 0.1}

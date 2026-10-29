@@ -1,0 +1,60 @@
+{
+ "arm": "data/e08/training/arm_R.tsv",
+ "sha256": "d00706cf1e16ccb81f9d367301d9a3fa637a46f79e2e8c8f0b2e501b57f8ec88",
+ "matches_registered_hash": true,
+ "rows": 4857,
+ "optimisation_rows": 4764,
+ "train_val_rows": 93,
+ "optimisation_words": 3585,
+ "rows_by_provenance": {
+  "control": 2348,
+  "recovered": 1292,
+  "attested_alt": 1217
+ },
+ "optimisation_rows_by_provenance": {
+  "control": 2255,
+  "recovered": 1292,
+  "attested_alt": 1217
+ },
+ "source_file_rows": {
+  "recovered.jsonl": 1309,
+  "alt_eligible.jsonl": 1222
+ },
+ "dropped_from_source_files": {
+  "recovered:train_val_family": 17,
+  "attested_alt:train_val_family": 5
+ },
+ "control_equals_e07_training_rows": true,
+ "dedup": {
+  "exact_duplicate_pairs": 0,
+  "nfc_duplicate_pairs": 0,
+  "targets_not_nfc": 0,
+  "pairs_with_several_sources": {},
+  "pairs_without_a_source_record": 0
+ },
+ "synthetic": {
+  "ai_mode_rows_in_R": 0,
+  "R_is_subset_of_RS": true,
+  "RS_minus_R_by_provenance": {
+   "google_ai_mode_synthetic": 384
+  },
+  "R_pairs_identical_to_an_ai_mode_spelling": 0,
+  "those_pairs_by_source": {}
+ },
+ "quarantine": {
+  "known_quarantined_pairs": 2054,
+  "R_pairs_also_in_a_quarantine_file": 0,
+  "those_pairs_by_source": {}
+ },
+ "families": {
+  "dev_eval_word_overlap": 0,
+  "added_rows_in_e08_protected_families": 0,
+  "added_rows_in_train_val_families": 0
+ },
+ "byte_limit_rejections": 0,
+ "alternatives": {
+  "words_with_several_spellings": 840,
+  "max_spellings_per_word": 8
+ },
+ "ok": true
+}
