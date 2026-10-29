@@ -20,7 +20,7 @@ datasets:
 *sounds* in Khmer script. It does not translate.
 
 ```
-coffee   → ខូហ្វ៊ី      computer → កំពូទែរ      Johnson → ចនសុន
+coffee   → ខូហ្វ៊ី    Johnson → ចនសុន
 ```
 
 > **Research preview. Phonetic quality has not been independently validated. Reported exact-match results measure
@@ -29,8 +29,7 @@ coffee   → ខូហ្វ៊ី      computer → កំពូទែរ      
 ## Model
 - **Type:** a small character-level Transformer encoder–decoder (sequence to sequence), trained from scratch. It
   has no pretrained base model.
-- **Size:** 2.6 million parameters. d_model 192, 3 encoder and 3 decoder layers, 4 attention heads, feed-forward
-  512.
+- **Size:** 2.6 million parameters. d_model 192, 3 encoder and 3 decoder layers, 4 attention heads, feed-forward 512.
 - **Vocabulary:** input letters a–z; output 78 Khmer characters.
 - **File:** `model.npz` (10.5 MB), NumPy arrays plus a JSON metadata entry.
 - **Runtime:** CPU only, through the `khmer-translit` Python package (included here as a wheel). Inference uses
@@ -144,7 +143,7 @@ How to read these numbers:
 - **`khmer-translit` package (the wheel):**
   [PolyForm Noncommercial 1.0.0](https://polyformproject.org/licenses/noncommercial/1.0.0). The licence is included
   in the wheel.
-- **Copyright:** 2026 Richard (khmer-transliterator project).
+- **Copyright:** 2026 Richard Cheam (khmer-transliterator project).
 
 ## Data attribution
 Training pairs were mined from Khmer Wikipedia (dump of 2026-10-01; text available under CC BY-SA 4.0,
