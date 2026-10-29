@@ -1,0 +1,177 @@
+{
+ "checked_utc": "2026-10-29T08:50:39Z",
+ "checkpoint": {
+  "path": "models/e02/letters_s0/model.npz",
+  "sha256": "8901050b1093cf90f60523c7941d6c12dbd8571d71698e37abcf874ba437904b",
+  "matches_report": true,
+  "bytes": 10481758,
+  "meta": {
+   "format": "khmer-translit-english-v1",
+   "encoder_version": "en-phonetic-src-v1",
+   "mode": "letters",
+   "arm": "letters",
+   "seed": 0,
+   "epoch": 27,
+   "heads": 4,
+   "layers": 3,
+   "max_src": 80,
+   "max_tgt": 40,
+   "beam": 4,
+   "pronunciation": null,
+   "input_policy": "one English word; NFKC, lower case, accents removed, apostrophes/hyphens dropped; a-z, <= 32 letters",
+   "data_manifest_sha256": "6cdc7c8a6f24b6c8bb68d651e3c9dcb8f1329da702be548b6ece7dd76ffdffad",
+   "config_sha256": "941a8453d4b579737837c38372fdb94c6cfb0b7ba00f3b2f06838713364dacaf",
+   "checkpoint_sha256": "199df48c4efc4d2f79f5a4a205173ada84eb37349972934f5bcf0ab1e8dad848",
+   "training_sources": {
+    "mined_web": 10031
+   },
+   "evidence_status": "inconclusive (benchmark unqualified; see experiments/E02-english-phonetic)"
+  },
+  "best_pt_sha256": "199df48c4efc4d2f79f5a4a205173ada84eb37349972934f5bcf0ab1e8dad848",
+  "best_pt_matches_done_and_meta": true,
+  "parity": {
+   "fixtures": 12,
+   "source_ids_equal": 12,
+   "greedy_equal": 12,
+   "max_abs_logprob_gap": 4.098933596097254e-06,
+   "ok": true,
+   "npz_sha256": "8901050b1093cf90f60523c7941d6c12dbd8571d71698e37abcf874ba437904b"
+  }
+ },
+ "training_run": {
+  "arm": "letters",
+  "seed": 0,
+  "mode": "letters",
+  "init_sha256": "40dba049ea71fdd71701624ef9cb7876b4c29fe48df5eb81c9bb61be39b3ff67",
+  "p2g_init_file_sha256": null,
+  "best_epoch": 27,
+  "supervised_steps": 3080,
+  "replay_steps": 0,
+  "train_rows": 9735,
+  "dev_items": 86,
+  "params": 2609169,
+  "config_init": null,
+  "git_commit": "b9c7ea4e3740d2a2c41a468ce1998766c65ad333",
+  "git_dirty": true,
+  "inputs_rehashed": {
+   "experiments/E02-english-phonetic/config.yaml": true,
+   "data/e02/manifest.json": true,
+   "data/e02/train.tsv": true,
+   "data/e02/p2g.tsv": true,
+   "data/e02/dev_references.jsonl": true,
+   "data/e02/vocab.json": true,
+   "data/src/cmudict/cmudict.dict": true
+  }
+ },
+ "data_build": {
+  "manifest_sha256": "6cdc7c8a6f24b6c8bb68d651e3c9dcb8f1329da702be548b6ece7dd76ffdffad",
+  "manifest_matches_meta": true,
+  "inputs_rehashed": {
+   "/home/richard/projects/pocket-tts-khmer/configs/latin_khmer.tsv": true,
+   "datasets/build/latin_audit.json": true,
+   "data/mined_kmwiki.tsv": true,
+   "data/mined_fineweb.tsv": true,
+   "data/synth/examples.tsv": true,
+   "data/lexicon/km_lexicon.tsv": true,
+   "data/src/cmudict/cmudict.dict": true,
+   "data/list_split.json": true,
+   "data/e2/reserve.json": true,
+   "data/benchmark/v1/pick_test.tsv": true,
+   "data/benchmark/v1/dev41.tsv": true,
+   "data/benchmark/v1/list_test.tsv": true
+  },
+  "outputs_rehashed": {
+   "train.tsv": true,
+   "p2g.tsv": true,
+   "references.jsonl": true,
+   "dev_references.jsonl": true,
+   "vocab.json": true
+  },
+  "counts": {
+   "mined_rows_in": {
+    "mined_kmwiki.tsv": 3532,
+    "mined_fineweb.tsv": 63805
+   },
+   "supervised_dropped": {
+    "mined:bad_khmer_or_length": 29,
+    "mined:heldout_related": 940,
+    "mined:heldout_target": 22,
+    "mined:khmer_like_romanisation": 13433,
+    "mined:no_english_reading": 17641,
+    "mined:noise_filter": 23326,
+    "owner_examples:heldout_related": 150
+   },
+   "supervised_kept": {
+    "mined_web": 10031
+   }
+  }
+ },
+ "train_tsv": {
+  "rows": 10031,
+  "by_part": {
+   "train": 9735,
+   "train_val": 296
+  },
+  "by_source_column": {
+   "mined_web": 10031
+  },
+  "by_tier": {
+   "proxy": 10031
+  },
+  "by_mined_file": {
+   "fineweb": 9338,
+   "kmwiki": 224,
+   "fineweb+kmwiki": 469
+  }
+ },
+ "exclusion_checks": {
+  "note": "set intersections only; a training row is attributed to the mined files above, so an identical pair here is a coincidence of spelling, not a copied label",
+  "llm_drafts.tsv": {
+   "rows": 2400,
+   "identical_pairs_in_train": 251,
+   "words_in_train": 631
+  },
+  "llm_drafts_r2.tsv": {
+   "rows": 1857,
+   "identical_pairs_in_train": 69,
+   "words_in_train": 239
+  },
+  "synth/synthetic_pairs.tsv (Gemini)": {
+   "rows": 3988,
+   "identical_pairs_in_train": 92,
+   "words_in_train": 509
+  },
+  "synth/examples.tsv (owner picks)": {
+   "rows": 151,
+   "identical_pairs_in_train": 0,
+   "words_in_train": 0
+  },
+  "owner_picks.tsv": {
+   "rows": 151,
+   "identical_pairs_in_train": 0,
+   "words_in_train": 0
+  },
+  "pairs.tsv (Chhunneng-derived romanisation pairs)": {
+   "rows": 28068,
+   "identical_pairs_in_train": 0,
+   "words_in_train": 16
+  }
+ },
+ "selection_data": {
+  "file": "data/e02/dev_references.jsonl",
+  "sha256": "58541efdfe6ec1d300d7c8293cc6af6a8d12fca1ba29d61c8559b2ef5afb2989",
+  "items": 103,
+  "primary_items_used_for_selection": 86,
+  "provenance_of_primary": {
+   "loanword_list:owner_added": 43,
+   "loanword_list:owner_confirmed": 21,
+   "loanword_list:owner_chosen": 5,
+   "loanword_list:llm_suggested_owner_verified": 17
+  },
+  "flags": {
+   "candidate_anchored": 50,
+   "pronunciation_ambiguous": 17,
+   "dictionary_miss": 8
+  }
+ }
+}

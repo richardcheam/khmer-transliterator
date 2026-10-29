@@ -1,0 +1,279 @@
+{
+ "checked_utc": "2026-10-29T08:51:38Z",
+ "wheel": "khmer_translit-0.2.0-py3-none-any.whl",
+ "wheel_sha256": "ef294f34c9eeeb383676dd9db1b40b6cbccd4da2a969314d1e3bae23afa2b7e6",
+ "built_from_commit": "37be7eb8a3f2af6e405dbd608fdabe6750133139",
+ "hardware": {
+  "cpu": "Intel(R) Core(TM) i7-8750H CPU @ 2.20GHz",
+  "logical_cpus": 12,
+  "os": "Linux-7.0.0-34-generic-x86_64-with-glibc2.39",
+  "note": "laptop, CPU only, other programs running; NumPy default threading"
+ },
+ "venv": {
+  "created": true,
+  "pyvenv_cfg": [
+   "home = /home/richard/.local/share/uv/python/cpython-3.10-linux-x86_64-gnu/bin",
+   "implementation = CPython",
+   "uv = 0.12.19",
+   "version_info = 3.10",
+   "include-system-site-packages = false"
+  ]
+ },
+ "install": {
+  "returncode": 0,
+  "how": "offline from the uv cache",
+  "log": "Using Python 3.10.21 environment at: venv\nResolved 2 packages in 4ms\nInstalled 2 packages in 12ms\n + khmer-translit==0.2.0 (from file:///home/richard/projects/khmer-transliterator/dist/khmer-translit-e02-letters-0.2.0/wheel/khmer_translit-0.2.0-py3-none-any.whl)\n + numpy==2.2.6\n"
+ },
+ "environment": {
+  "packages": [
+   "khmer-translit @ file:///home/richard/projects/khmer-transliterator/dist/khmer-translit-e02-letters-0.2.0/wheel/khmer_translit-0.2.0-py3-none-any.whl",
+   "numpy==2.2.6"
+  ],
+  "pth_files": {
+   "_virtualenv.pth": "import _virtualenv"
+  },
+  "system_site_packages": false,
+  "pth_points_into_checkout": false,
+  "pythonpath_set": false
+ },
+ "performance": {
+  "load_s": 0.14774404931813478,
+  "rss_after_load_mib": 52.578125,
+  "single_answer_ms": {
+   "p50": 16.664069145917892,
+   "p95": 29.64434726163745,
+   "max": 42.90988389402628,
+   "n": 309
+  },
+  "top4_ms": {
+   "p50": 19.29436670616269,
+   "p95": 43.2691196911037,
+   "n": 103
+  },
+  "batch16_ms_per_word": 13.298212030667413,
+  "peak_rss_mib": 64.5546875,
+  "conditions": "own fresh process; 103 dev words; the single answer (beam 4, top 1) timed over 3 passes one word at a time after a warm pass; top-4 one pass; batches of 16 one pass; sockets disabled",
+  "peak_rss_mib_api_check_with_400_word_batches": 363.29296875
+ },
+ "info": {
+  "format": "khmer-translit-english-v1",
+  "encoder_version": "en-phonetic-src-v1",
+  "mode": "letters",
+  "arm": "letters",
+  "seed": 0,
+  "epoch": 27,
+  "heads": 4,
+  "layers": 3,
+  "max_src": 80,
+  "max_tgt": 40,
+  "beam": 4,
+  "pronunciation": null,
+  "input_policy": "one English word; NFKC, lower case, accents removed, apostrophes/hyphens dropped; a-z, <= 32 letters",
+  "data_manifest_sha256": "6cdc7c8a6f24b6c8bb68d651e3c9dcb8f1329da702be548b6ece7dd76ffdffad",
+  "config_sha256": "941a8453d4b579737837c38372fdb94c6cfb0b7ba00f3b2f06838713364dacaf",
+  "checkpoint_sha256": "199df48c4efc4d2f79f5a4a205173ada84eb37349972934f5bcf0ab1e8dad848",
+  "training_sources": {
+   "mined_web": 10031
+  },
+  "evidence_status": "inconclusive (benchmark unqualified; see experiments/E02-english-phonetic)",
+  "parameters": 2609169,
+  "n_src_tokens": 157,
+  "n_tgt_chars": 78
+ },
+ "checks": {
+  "clean_environment": {
+   "ok": true
+  },
+  "cli_single_json": {
+   "ok": true,
+   "output": {
+    "id": 1,
+    "backend": "e02",
+    "input": "coffee",
+    "normalized": "coffee",
+    "status": "ok",
+    "candidates": [
+     {
+      "text": "ខូហ្វ៊ី",
+      "log_score": -1.6165986741551936
+     },
+     {
+      "text": "កូហ្វ៊ី",
+      "log_score": -1.6696176475814446
+     },
+     {
+      "text": "កូហ្វី",
+      "log_score": -2.6094601861724205
+     }
+    ],
+    "pronunciation": null,
+    "message": ""
+   },
+   "stderr_tail": "HEAVY_MODULES=\n"
+  },
+  "cli_batch_jsonl_alignment": {
+   "ok": true,
+   "statuses": [
+    "ok",
+    "empty",
+    "unsupported_multiword",
+    "ok",
+    "unsupported_characters",
+    "too_long",
+    "ok",
+    "ok"
+   ],
+   "exit": 1
+  },
+  "cli_repeat_determinism": {
+   "ok": true
+  },
+  "corrupt_checkpoint_refused": {
+   "ok": true,
+   "stderr": ".npz: not a readable model file (This file contains pickled (object) data. If you trust the file you can load it unsafely using the `allow_pickle=` keyword argument or `pickle.load()`.)\nHEAVY_MODULES="
+  },
+  "truncated_checkpoint_refused": {
+   "ok": true,
+   "stderr": "khmer-translit: error: /tmp/e02-install-024mg9g5/elsewhere/truncated.npz: not a readable model file (File is not a zip file)\nHEAVY_MODULES="
+  },
+  "missing_checkpoint_refused": {
+   "ok": true,
+   "stderr": "khmer-translit: error: model file not found: /tmp/e02-install-024mg9g5/elsewhere/absent.npz\nHEAVY_MODULES="
+  },
+  "expected_hash_enforced": {
+   "ok": true
+  },
+  "top_k_bound": {
+   "ok": true,
+   "stderr": "khmer-translit: error: top_k must be between 1 and 8\nHEAVY_MODULES="
+  },
+  "cli_inspect": {
+   "ok": true,
+   "output": {
+    "format": "khmer-translit-english-v1",
+    "encoder_version": "en-phonetic-src-v1",
+    "mode": "letters",
+    "arm": "letters",
+    "seed": 0,
+    "epoch": 27,
+    "heads": 4,
+    "layers": 3,
+    "max_src": 80,
+    "max_tgt": 40,
+    "beam": 4,
+    "pronunciation": null,
+    "input_policy": "one English word; NFKC, lower case, accents removed, apostrophes/hyphens dropped; a-z, <= 32 letters",
+    "data_manifest_sha256": "6cdc7c8a6f24b6c8bb68d651e3c9dcb8f1329da702be548b6ece7dd76ffdffad",
+    "config_sha256": "941a8453d4b579737837c38372fdb94c6cfb0b7ba00f3b2f06838713364dacaf",
+    "checkpoint_sha256": "199df48c4efc4d2f79f5a4a205173ada84eb37349972934f5bcf0ab1e8dad848",
+    "training_sources": {
+     "mined_web": 10031
+    },
+    "evidence_status": "inconclusive (benchmark unqualified; see experiments/E02-english-phonetic)",
+    "parameters": 2609169,
+    "n_src_tokens": 157,
+    "n_tgt_chars": 78,
+    "model_sha256": "8901050b1093cf90f60523c7941d6c12dbd8571d71698e37abcf874ba437904b",
+    "requires": [
+     "nothing besides numpy"
+    ]
+   }
+  },
+  "api_single": {
+   "ok": true,
+   "output": [
+    "ខូហ្វ៊ី",
+    "កូហ្វ៊ី",
+    "កូហ្វី"
+   ]
+  },
+  "api_edge_inputs": {
+   "ok": true,
+   "statuses": {
+    "": [
+     "empty",
+     []
+    ],
+    "   ": [
+     "empty",
+     []
+    ],
+    "new york": [
+     "unsupported_multiword",
+     []
+    ],
+    "c3po": [
+     "unsupported_characters",
+     []
+    ],
+    "café": [
+     "ok",
+     [
+      "កាហ្វ"
+     ]
+    ],
+    "ខ្មែរ": [
+     "unsupported_characters",
+     []
+    ],
+    "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa": [
+     "ok",
+     [
+      "អាអាអាអាអាអា"
+     ]
+    ],
+    "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa": [
+     "too_long",
+     []
+    ],
+    "o'neil": [
+     "ok",
+     [
+      "អូណេល"
+     ]
+    ],
+    "wi-fi": [
+     "ok",
+     [
+      "វីហ្វ៊ី"
+     ]
+    ],
+    "COFFEE": [
+     "ok",
+     [
+      "ខូហ្វ៊ី"
+     ]
+    ]
+   }
+  },
+  "api_determinism": {
+   "ok": true
+  },
+  "api_imports_from_fresh_venv": {
+   "ok": true,
+   "package_file": "/tmp/e02-install-024mg9g5/venv/lib/python3.10/site-packages/khmer_translit/__init__.py",
+   "numpy": [
+    "2.2.6",
+    "/tmp/e02-install-024mg9g5/venv/lib/python3.10/site-packages/numpy/__init__.py"
+   ]
+  },
+  "no_heavy_or_speech_modules": {
+   "ok": true,
+   "found": []
+  },
+  "parity_recorded_e02_outputs": {
+   "ok": true,
+   "items": 400,
+   "candidate_lists_equal": 400,
+   "max_abs_log_score_gap": 0.0,
+   "what": "letters_s0 top-4 beam outputs recorded by english_phonetic_eval.py on the 400-item exploratory proxy track (data/e02/results/predictions.json); inputs and outputs only"
+  },
+  "parity_e02_training_commit_code": {
+   "ok": true,
+   "items": 103,
+   "what": "package source at b9c7ea4 (the E02 training commit) vs the installed wheel, dev inputs, top-4 with scores"
+  }
+ },
+ "ok": true,
+ "offline_method": "Python-level: socket.socket/create_connection/getaddrinfo replaced before the package is imported (OS-level network namespaces are not permitted on this machine)"
+}

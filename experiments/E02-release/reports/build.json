@@ -1,0 +1,12 @@
+{
+ "commit": "37be7eb8a3f2af6e405dbd608fdabe6750133139",
+ "working_tree_dirty_ignored": false,
+ "files": [
+  "khmer_translit-0.2.0-py3-none-any.whl",
+  "khmer_translit-0.2.0.tar.gz"
+ ],
+ "sha256": {
+  "khmer_translit-0.2.0-py3-none-any.whl": "ef294f34c9eeeb383676dd9db1b40b6cbccd4da2a969314d1e3bae23afa2b7e6",
+  "khmer_translit-0.2.0.tar.gz": "f29746439d4cd40d1875871755a4f7b0f1b946651893bf75bfb83d7400ee33ba"
+ }
+}

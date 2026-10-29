@@ -284,3 +284,29 @@ there (`git -C ../pocket-tts-khmer show archive/checkpoints-p0-p6:state/DECISION
 - **Compute:** training 5.39 h (one attempt), inference about 0.3 h, CPU only. Memory guard relaxed and threads set
   to 12 for later runs at the owner's request.
 - Report: `experiments/E10-release-cycle/REPORT.md`.
+
+## D189 — E02 letters model prepared as a local Hugging Face release candidate (2026-10-29)
+- **Checkpoint:** `models/e02/letters_s0/model.npz`, sha256 `8901050b…904b`, verified. Lineage: `best.pt`
+  `199df48c…` → config `941a8453…` → data manifest `6cdc7c8a…`, every recorded input and output re-hashed.
+- **Training data** (verified from `train.tsv`, the data builder and the training code, not from the report):
+  - 9,735 optimisation rows, all web-mined: FineWeb-2 9,338 only, Khmer Wikipedia 224 only, both 469;
+  - random initialisation, no P2G or auxiliary data;
+  - no Chhunneng, LLM or owner labels. The owner's 150 picks were all dropped as held-out-related.
+- **Indirect influences:**
+  - the mining aligner and filter used a Chhunneng-trained model (exact file not recorded);
+  - checkpoint selection used 86 owner-verified dev items, 17 of them LLM-suggested;
+  - the training commit `b9c7ea4` was dirty, with no diff recorded.
+- **Upstream sources:** the Wikipedia dump matches Wikimedia's sha1 for `kmwiki-20261001`; the FineWeb-2 shard
+  matches the Hub LFS hash at revision `af9c1333`.
+- **Permissions:** recorded source by source (`release/e02/NOTICES.md`). Unresolved:
+  - CC BY-SA and the weights;
+  - rights in the underlying web pages (ODC-By covers the database only);
+  - no code or model licence chosen. The Hugging Face card has no `license` field.
+- **Package:** wheel built from a clean `git archive`. Isolated install (only khmer-translit + numpy 2.2.6 from the
+  uv cache) passes 17/17 checks:
+  - bit-identical to the recorded E02 outputs (400 items) and to the training-commit code (103 dev inputs);
+  - refusals instead of truncation; no torch, transformers or PEFT imports;
+  - 0.15 s load, 17 ms per word p50, 65 MiB.
+- **Bundle:** `dist/khmer-translit-e02-letters-0.2.0/` (local); `dist/english-phonetic-0.1.0` untouched.
+- **Not done:** no upload, merge, tag or serving change.
+- Documents: `release/e02/`; evidence: `experiments/E02-release/reports/`.
