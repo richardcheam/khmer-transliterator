@@ -8,8 +8,29 @@
    "status": "done",
    "updated": "2026-10-29T10:40:20+00:00",
    "cfg_hash": "f5d7cf9230f15987c2252487cda366e80207a4a93f81c5da3795a7a300a3c3f6"
+  },
+  "train": {
+   "status": "done",
+   "updated": "2026-10-29T15:17:05+00:00",
+   "stop": "max_updates",
+   "best": {
+    "key": [
+     0.53,
+     -0.15676499609305933
+    ],
+    "update": 3000,
+    "dev_top1": 0.53,
+    "dev_cer": 0.1568,
+    "dev_correct": 135,
+    "dev_distinct": 244,
+    "elapsed_s": 16557.3
+   }
+  },
+  "freeze": {
+   "status": "done",
+   "updated": "2026-10-29T15:19:30+00:00"
   }
  },
  "errors": [],
- "updated": "2026-10-29T10:40:20+00:00"
+ "updated": "2026-10-29T15:19:30+00:00"
 }
