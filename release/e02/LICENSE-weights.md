@@ -2,8 +2,7 @@
 
 Copyright 2026 Richard (khmer-transliterator project).
 
-The model weights of en-km-phonetic-transliterator (`model.npz`, sha256
-`8901050b1093cf90f60523c7941d6c12dbd8571d71698e37abcf874ba437904b`) are licensed under the **Creative Commons
+The model weights of en-km-phonetic-transliterator (`model.npz`) are licensed under the **Creative Commons
 Attribution-NonCommercial-ShareAlike 4.0 International License (CC BY-NC-SA 4.0)**:
 https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode.en
 

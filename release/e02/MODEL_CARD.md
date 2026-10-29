@@ -33,7 +33,6 @@ coffee   → ខូហ្វ៊ី      computer → កំពូទែរ      
   512.
 - **Vocabulary:** input letters a–z; output 78 Khmer characters.
 - **File:** `model.npz` (10.5 MB), NumPy arrays plus a JSON metadata entry.
-  sha256 `8901050b1093cf90f60523c7941d6c12dbd8571d71698e37abcf874ba437904b`.
 - **Runtime:** CPU only, through the `khmer-translit` Python package (included here as a wheel). Inference uses
   NumPy only, with beam search of width 4.
 - **Not a Transformers checkpoint:** `AutoModel.from_pretrained` cannot load it. Use the package as shown below.
@@ -73,7 +72,6 @@ for r in tl.predict_many(["computer", "", "new york"], top_k=3):
   - one JSON line per input line, in the same order;
   - exit code 0 when all inputs succeed, 1 when some were refused, 2 for usage errors or a missing or corrupt model
     file;
-  - `--sha256 <hash>` refuses a model file with a different hash.
 
 ## Intended use
 - **Good for:** drafting Khmer spellings of English loanwords and names for a person to review. Examples are
