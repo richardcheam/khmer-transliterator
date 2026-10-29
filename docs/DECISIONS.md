@@ -344,3 +344,9 @@ there (`git -C ../pocket-tts-khmer show archive/checkpoints-p0-p6:state/DECISION
 - **Verified on the Hub:** metadata parsed; a fresh download installs offline and reproduces the quick start.
 - **Not done:** the repository is not public yet (the owner switches it after review); nothing on PyPI (later); no
   serving change.
+
+## D193 — en-km-phonetic-transliterator made public (owner, 2026-10-29)
+- `ric912/en-km-phonetic-transliterator` switched to public at the owner's instruction, after the owner reviewed the
+  private page. Tag `v0.2.0` marks this release.
+- Anonymous access was checked (model page, card and `model.npz` reachable without login).
+- Weights CC BY-NC-SA 4.0, code PolyForm Noncommercial 1.0.0. Serving is unchanged and nothing is on PyPI.

@@ -12,7 +12,7 @@
 | **Hugging Face folder:** card, `model.npz`, notices; no unsupported licence identifier | Prepared, **not uploaded** | `huggingface/` |
 | **Bundle** with per-file and archive checksums | Done | `SHA256SUMS`, `.tar.gz.sha256` |
 
-## Uploaded (private) — 2026-10-29
+## Uploaded — private 2026-10-29, **public since 2026-10-29** (owner: "make it public now")
 - https://huggingface.co/ric912/en-km-phonetic-transliterator, **private**, first commit `b7f31150`.
 - **Files:** `README.md`, `model.npz` (`8901050b…`), `LICENSE` (CC BY-NC-SA 4.0), wheel (`1bc8242a…`).
 - **Checked on the Hub:**
