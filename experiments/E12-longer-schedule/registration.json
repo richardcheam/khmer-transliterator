@@ -1,0 +1,221 @@
+{
+ "registered": "2026-10-29T17:35:25+00:00",
+ "experiment": "E12-longer-schedule",
+ "run": "long_s0",
+ "recipe": {
+  "adapter": {
+   "r": 16,
+   "alpha": 32,
+   "dropout": 0.05,
+   "targets": [
+    "attn",
+    "ffn"
+   ]
+  },
+  "base_dropout": 0.1,
+  "optimizer": "AdamW",
+  "lr": 0.001,
+  "betas": [
+   0.9,
+   0.999
+  ],
+  "weight_decay": 0.0,
+  "grad_clip": 1.0,
+  "batch": 32,
+  "grad_accumulation": 1,
+  "warmup": 100,
+  "schedule": "linear",
+  "max_updates": 6000,
+  "max_hours": 12.0,
+  "eval_at": [
+   1200,
+   2400,
+   3000,
+   3600,
+   4800,
+   6000
+  ],
+  "select": "lowest dev greedy mean CER (historical dev set, against the mined references), then highest dev greedy top-1 exact agreement (family macro), then the earlier update; eligible: the registered checkpoints and, if the run stops early, the final state",
+  "seed": 0,
+  "input": "lower-cased English word as UTF-8 bytes + EOS (unchanged from E06); no pronunciation, no prefix",
+  "fixes": [
+   "max_new_tokens 121 with a no_eos status (latent E06 defect)",
+   "LoRA wrapper exposes the frozen base weight so FFN layers can be adapted"
+  ],
+  "decode": {
+   "selection": "greedy",
+   "headline": "greedy",
+   "max_new_tokens": 121
+  },
+  "metrics": [
+   "top-1 exact macro by family (NFC)",
+   "top-4 oracle at equal beam-4 budget",
+   "mean CER (khmer_translit.evaluation)",
+   "validity statuses and orthography",
+   "distinct top-1 and most frequent share"
+  ],
+  "rationale": "From the audit and the passed tiny gate: the pipeline can learn input-dependent outputs, so E06's collapse is an adaptation limitation. Kept from the tiny diagnostic: FFN + attention adapters (capacity; PEFT notes all-linear targeting can approach full fine-tuning) and lr 1e-3. Changed from E06: FFN targets, 3x the updates and 2x the batch (about 43 epochs vs 7) so cross-attention has time to learn the mapping before the schedule decays. Kept from E06 for generalisation on 2,255 noisy mined pairs: base dropout 0.1 and adapter dropout 0.05 (zero dropout was only for memorisation). Linear decay to 0 after a 100-update warm-up."
+ },
+ "cfg_hash": "a6159bed188529f4a693f3821035e06ec9e20e94e82c7ebdbc9fa5fa6e49b2d7",
+ "discrepancies_vs_e11": {
+  "decode": {
+   "e11": {
+    "selection": "greedy",
+    "primary_top1": "beam 4, sum log-prob, length_penalty 0",
+    "oracle": "beam-4 top-4",
+    "max_new_tokens": 121
+   },
+   "e12": {
+    "selection": "greedy",
+    "headline": "greedy",
+    "max_new_tokens": 121
+   }
+  },
+  "eval_at": {
+   "e11": [
+    600,
+    1200,
+    1800,
+    2400,
+    3000
+   ],
+   "e12": [
+    1200,
+    2400,
+    3000,
+    3600,
+    4800,
+    6000
+   ]
+  },
+  "max_hours": {
+   "e11": 6.0,
+   "e12": 12.0
+  },
+  "max_updates": {
+   "e11": 3000,
+   "e12": 6000
+  },
+  "select": {
+   "e11": "highest dev greedy top-1 macro (exact reference agreement, NFC), then lower dev mean CER, then earlier update",
+   "e12": "lowest dev greedy mean CER (historical dev set, against the mined references), then highest dev greedy top-1 exact agreement (family macro), then the earlier update; eligible: the registered checkpoints and, if the run stops early, the final state"
+  }
+ },
+ "init": "pinned google/byt5-small base + fresh LoRA adapter (seed 0); a fresh 6,000-update schedule, not a resume of E11's exhausted scheduler; nothing from E08/E10/E11 adapters",
+ "data": {
+  "arm": "data/e08/training/arm_R.tsv",
+  "sha256": "d00706cf1e16ccb81f9d367301d9a3fa637a46f79e2e8c8f0b2e501b57f8ec88",
+  "optimisation_hash": "5dd38022c60b0b24eb98cd66bccf1edf23dcc619f23b2c8208a1c2d2a07c1d61",
+  "optimisation_rows": 4764,
+  "train_val_rows": 93
+ },
+ "exposure": {
+  "sampling": "row-level: each epoch a seeded permutation of all optimisation rows (E07's e07.fit default); a word with k spellings is drawn k times per epoch; no source weighting",
+  "effective_batch": 32,
+  "updates": 6000,
+  "draws_total": 192000,
+  "epochs": 40.3,
+  "draws_by_provenance": {
+   "attested_alt": {
+    "draws": 49050,
+    "share": 0.2555
+   },
+   "control": {
+    "draws": 90880,
+    "share": 0.4733
+   },
+   "recovered": {
+    "draws": 52070,
+    "share": 0.2712
+   }
+  },
+  "draws_per_word": {
+   "min": 37,
+   "median": 41,
+   "max": 326
+  },
+  "e07_reference": {
+   "rows": 2255,
+   "epochs": 85.14
+  }
+ },
+ "lr_plan": {
+  "1": 1e-05,
+  "100": 0.001,
+  "101": 0.001,
+  "1200": 0.000813728814,
+  "3000": 0.000508644068,
+  "3600": 0.000406949153,
+  "4800": 0.000203559322,
+  "6000": 1.69492e-07
+ },
+ "limits": {
+  "threads": 6,
+  "rss_max_bytes": 6979321856,
+  "min_available_bytes": 429496729,
+  "pressure_checks": 3,
+  "full_runs": 1,
+  "full_max_updates": 6000,
+  "full_max_hours": 12.0,
+  "training_hours_total": 12.0,
+  "wall_hours_total": 1000000000.0,
+  "inference_hours_total": 4.0
+ },
+ "guard": "stop (resumable) after 3 consecutive readings with process RSS > 6.5 GiB or MemAvailable < 0.4 GiB",
+ "checkpoints": [
+  1200,
+  2400,
+  3000,
+  3600,
+  4800,
+  6000
+ ],
+ "selection": "lowest dev greedy mean CER (historical dev set, against the mined references), then highest dev greedy top-1 exact agreement (family macro), then the earlier update; eligible: the registered checkpoints and, if the run stops early, the final state",
+ "selection_note": "an explicitly imperfect automatic surrogate (mined references), chosen so the run can finish unattended; it does not select for phonetic quality; owner dev judgments are diagnostic only and never rank checkpoints",
+ "evaluation": {
+  "decoding": "greedy for E12 and E11 (identical encoding, length limit, normalisation)",
+  "historical": "dev and eval exact agreement and CER, paired family bootstrap, validity, missing endings, length bins, error kinds (exploratory; no tuning or further run may follow from them)",
+  "dev_judgment_coverage": "E12 dev outputs equal to an owner-judged E11-review candidate take that judgment; others are reported as unknown"
+ },
+ "test": {
+  "manifest_sha256": "e6d751658e1c0d7af77edd7aee3643f5b590fe7fe76920790becff892edb7de7",
+  "n": 120,
+  "analysis": {
+   "primary": "paired difference E12 − E11 in owner-confirmed top-1 acceptability on the 120 test families: share of items whose greedy output is judged `acceptable` (denominator: all 120 items; `uncertain` and `not_acceptable` count as not confirmed)",
+   "per_item_judgment": "each model takes the judgment of the candidate equal to its greedy output; identical outputs are shown once and share one judgment; an empty output counts as not_acceptable (policy rule 9)",
+   "report": [
+    "acceptable / not_acceptable / uncertain counts per model",
+    "confirmed-acceptable share (all items)",
+    "uncertainty rate per model and share of items with any uncertain judgment",
+    "paired table: both acceptable, E12 only, E11 only, neither (primary coding)",
+    "family-level paired bootstrap 95% interval of the primary difference (10,000, seed 20261027; one item per family)",
+    "two-sided exact binomial (McNemar) test on discordant clear pairs: one model acceptable and the other not_acceptable; pairs with an uncertain judgment are not in this test"
+   ],
+   "sensitivity": [
+    "uncertain counted as acceptable (denominator 120)",
+    "items with any uncertain judgment excluded (denominator: items with two clear judgments)"
+   ],
+   "completeness": "scored only when every candidate of every item has an explicit judgment; blanks are missing, never acceptance",
+   "interpretation": "a non-significant difference is not equivalence; one non-independent judge; results hold for this sample and policy",
+   "isolation": "no test judgment enters training or checkpoint choice in this cycle"
+  }
+ },
+ "source_sha256": {
+  "scripts/e12.py": "61b0e8d8f6f0214b2317759107b115f9c30a19bebb168594ac39515d2d07547a",
+  "scripts/e11.py": "f7a61d75ba7f096fbef3cc47f1401d96351d6c477133de7adfad13f6aa7fd67f",
+  "scripts/e07.py": "ae06de993b8722379c46038be10ecfe46200ff829de9efb9e5f9ef08cbfbd05e",
+  "scripts/e06_byt5.py": "aff9e09275fd0569252cf952402cc7c5bd461628e33db84857ed044641940efb",
+  "scripts/e06.py": "49461d352324b14cd39ad358e913fab8b149d4e7654be6d7b285a15183c46afa",
+  "scripts/e09.py": "c266702f3f72a65ea46b2a85435786c3381a6aa49595ac7b6274f7cd8e190d2c",
+  "scripts/e10.py": "68d757e6dd657b3a10b6878171f982dd0a1d726789a57f96a4e5f6d90e0f278f",
+  "experiments/E07-byt5-diagnosis/full_recipe.json": "4df0102426ca82e7d5550c6e0655ce5f0e1fc9c83b848056d90bbde4acdc5c1d",
+  "experiments/E12-longer-schedule/PLAN.md": "81407b009236bd126ddb6c3ced80ef79641e32c8a892ecc3d91b561a2295c60f",
+  "research/requirements-byt5.txt": "f0010e42f369dfa570236e6d9cae5c212467fa7c8cdda3638d81b60ddc171918",
+  "research/requirements-byt5.lock.txt": "86bbd43732b3898c820510871d7c3029d3f1a1a1123621006121cfa02aa54911",
+  "docs/PHONETIC_POLICY.md": "9847667eeaed3470077a28e54fdcf5584c3f2305a503ce14f88528882b4b963c"
+ },
+ "base_sha256": {
+  "pytorch_model.bin": "5c5aaf56299d6f2d4eaadad550a40765198828ead4d74f0a15f91cbe0961931a"
+ },
+ "base_revision": "68377bdc18a2ffec8a0533fef03b1c513a4dd49d"
+}

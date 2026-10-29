@@ -1,0 +1,191 @@
+{
+ "frozen": "2026-10-29T17:34:48+00:00",
+ "sha256": "e6d751658e1c0d7af77edd7aee3643f5b590fe7fe76920790becff892edb7de7",
+ "n": 120,
+ "seed": "e12-test",
+ "before_outputs": "frozen before E12 training; no model has been run on these words",
+ "per_category": {
+  "ordinary": 40,
+  "irregular": 40,
+  "names": 40
+ },
+ "distribution": {
+  "length_bin": {
+   "ordinary": {
+    "5to8": 14,
+    "ge9": 13,
+    "le4": 13
+   },
+   "irregular": {
+    "5to8": 14,
+    "ge9": 20,
+    "le4": 6
+   },
+   "names": {
+    "5to8": 14,
+    "ge9": 13,
+    "le4": 13
+   }
+  },
+  "stressed_vowel": {
+   "ordinary": {
+    "AA": 4,
+    "AE": 3,
+    "AH": 3,
+    "AO": 1,
+    "AY": 5,
+    "EH": 5,
+    "ER": 1,
+    "EY": 4,
+    "IH": 5,
+    "IY": 4,
+    "OW": 2,
+    "OY": 2,
+    "UW": 1
+   },
+   "irregular": {
+    "AA": 1,
+    "AE": 4,
+    "AH": 2,
+    "AO": 1,
+    "AW": 1,
+    "AY": 8,
+    "EH": 5,
+    "ER": 3,
+    "EY": 2,
+    "IH": 2,
+    "IY": 7,
+    "OW": 1,
+    "UH": 1,
+    "UW": 2
+   },
+   "names": {
+    "AA": 5,
+    "AE": 5,
+    "AH": 2,
+    "AO": 1,
+    "AY": 4,
+    "EH": 4,
+    "ER": 4,
+    "EY": 2,
+    "IH": 5,
+    "IY": 4,
+    "UH": 1,
+    "UW": 3
+   }
+  },
+  "cluster": {
+   "ordinary": {
+    "false": 16,
+    "true": 24
+   },
+   "irregular": {
+    "false": 16,
+    "true": 24
+   },
+   "names": {
+    "false": 16,
+    "true": 24
+   }
+  },
+  "syllables": {
+   "ordinary": {
+    "1": 15,
+    "2": 9,
+    "3": 7,
+    "4": 3,
+    "5": 5,
+    "6": 1
+   },
+   "irregular": {
+    "1": 14,
+    "2": 13,
+    "3": 12,
+    "5": 1
+   },
+   "names": {
+    "1": 5,
+    "2": 20,
+    "3": 8,
+    "4": 6,
+    "5": 1
+   }
+  }
+ },
+ "pool": {
+  "names": 1657,
+  "irregular": 2031,
+  "ordinary": 12450
+ },
+ "excluded": {
+  "no_cmudict_or_length": 23530,
+  "historical_family": 19466,
+  "protected_family": 4130,
+  "ambiguous_reading": 2170,
+  "derived_name_form": 278,
+  "earlier_review_or_test_set": 214,
+  "training_family": 92,
+  "offensive": 1,
+  "abbreviation_like": 6
+ },
+ "notes": {
+  "names": {
+   "length_shortfall_filled_from_other_bins": {}
+  },
+  "irregular": {
+   "length_shortfall_filled_from_other_bins": {
+    "le4": 7
+   }
+  },
+  "ordinary": {
+   "length_shortfall_filled_from_other_bins": {}
+  }
+ },
+ "amendments": [
+  "before freezing and before any output: name filter extended to -ize/-ise forms and to plurals of a listed word (anglicize, americanize, cajuns, eurodollars appeared as 'names'); 'dink' excluded as a slur; the set was redrawn with the same seed"
+ ],
+ "cmudict_sha256": "81917843c7f44ce2b094ac63873c2c7a4cf802040792c455ba3ca406891c3d22",
+ "protected_counts": {
+  "e03_exclusions": 1312,
+  "e03_dev": 276,
+  "e03_eval": 245,
+  "e06_pool": 56,
+  "e06_discovery": 200,
+  "e05_review_queue": 56,
+  "e06_review_queue": 56,
+  "input_only_panels_and_reserve": 2866,
+  "words": 4502,
+  "stems": 5674
+ },
+ "sampling": {
+  "sources": "SCOWL lower-case words (ordinary, irregular) and SCOWL capitalised entries not also lower-case (names), each with exactly one CMUdict reading (after stress removal)",
+  "ordinary": "≥ 2 Latin-token hits in the local FineWeb-2 Khmer shard and not irregular",
+  "irregular": "E06's registered spelling-to-sound difficulty rule (e06.is_difficult)",
+  "names": "capitalised SCOWL entries, minus derived forms ending in ['ian', 'ism', 'ist', 'ese', 'ic', 'ish', 'ite', 'ology', 'ize', 'ise', 'ized', 'izes', 'izing']",
+  "quotas": {
+   "per_category": 40,
+   "length_bins": {
+    "le4": 13,
+    "5to8": 14,
+    "ge9": 13
+   },
+   "vowel_cap": 5,
+   "cluster_cap": 24,
+   "order": "sha256(seed:category:word)"
+  },
+  "one_per_family": "family_keys (reference_data.stems plus stripped suffixes), shared across all categories"
+ },
+ "exclusions": [
+  "E03 dev/eval, E02 held-out sets, benchmark panels and the reserve (Latin inputs only, via e08.protected; no reserve target or E02 final reference is opened)",
+  "every historical Latin token in the repository (e06.historical_universe)",
+  "every arm R word (optimisation and train-val) and every E08 synthetic input",
+  "E10 confirmation words and the E10 and E11 review words (and their families)",
+  "romanised-Khmer forms, abbreviations, ambiguous readings"
+ ],
+ "e10_confirmation_audit": {
+  "reused": false,
+  "usage": "E10 used its outputs only for operational diagnostics and an agreement rate; no recipe, data or decoding choice depended on them",
+  "why_not_reused": "unbalanced lengths (6 of 120 words ≤ 4 letters, 61 ≥ 9) and derived forms among the names (ethiopian, sikhism, brazilian)"
+ },
+ "scope": "a single-judge test for this declared sample and docs/PHONETIC_POLICY.md, not a universal English→Khmer benchmark"
+}

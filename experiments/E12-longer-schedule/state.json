@@ -1,0 +1,20 @@
+{
+ "phases": {
+  "verify": {
+   "status": "done",
+   "updated": "2026-10-29T17:33:31+00:00"
+  },
+  "testset": {
+   "status": "done",
+   "updated": "2026-10-29T17:34:48+00:00",
+   "n": 120
+  },
+  "register": {
+   "status": "done",
+   "updated": "2026-10-29T17:35:25+00:00",
+   "cfg_hash": "a6159bed188529f4a693f3821035e06ec9e20e94e82c7ebdbc9fa5fa6e49b2d7"
+  }
+ },
+ "errors": [],
+ "updated": "2026-10-29T17:35:25+00:00"
+}
