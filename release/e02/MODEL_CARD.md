@@ -39,7 +39,9 @@ coffee   → ខូហ្វ៊ី      computer → កំពូទែរ      
 
 ## Quick start
 ```bash
-hf download ric912/en-km-phonetic-transliterator --local-dir en-km-phonetic-transliterator
+hf download ric912/en-km-phonetic-transliterator \
+  --revision v0.2.0 \
+  --local-dir en-km-phonetic-transliterator             # pin the release for reproducible downloads
 cd en-km-phonetic-transliterator
 python -m venv .venv && . .venv/bin/activate
 pip install khmer_translit-0.2.0-py3-none-any.whl          # installs khmer-translit + numpy only

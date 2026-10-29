@@ -20,6 +20,8 @@
   - a fresh `hf download` plus a clean install runs the quick start, and the hashes match.
 - **Tag:** `v0.2.0` → Hub commit `145adf99` (the current card without hashes). Later versions of the same model
   family go into this repo as new tags; another architecture goes into its own repo, linked by `new_version:`.
+- **Card on `main`** (Hub commit `4b021031`) pins the release in its download example (`--revision v0.2.0`). The
+  tag itself was not moved: it still holds the card as first released. Model, licence and wheel are identical.
 - **Next:** the owner reviews the page and makes it public (`hf repos settings ric912/en-km-phonetic-transliterator
   --public`, or the repository settings page).
 
