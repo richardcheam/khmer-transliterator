@@ -9,14 +9,16 @@ CPU only, offline.
 **Status:**
 - This is E02 (`letters_s0`), **not** the ByT5 model.
 - Not published and not served.
-- Publication is **unresolved**: there is no licence, and the open data-permission questions are listed in
-  `PUBLICATION_CHECKLIST.md`.
+- **Licences:** weights CC BY-NC-SA 4.0 (`LICENSE-weights.md`); code PolyForm Noncommercial 1.0.0 (`LICENSE`).
+  Both are for non-commercial research and study.
+- **Publication:** not yet approved. The remaining steps are in `PUBLICATION_CHECKLIST.md`.
 
 ## Contents
 | Path | What |
 |---|---|
 | `checkpoint/model.npz` | The model, sha256 `8901050b1093cf90f60523c7941d6c12dbd8571d71698e37abcf874ba437904b` |
 | `wheel/khmer_translit-0.2.0-py3-none-any.whl`, `wheel/khmer_translit-0.2.0.tar.gz` | The package (code only) |
+| `LICENSE` (code), `LICENSE-weights.md` (weights) | The licences |
 | `requirements.txt` | The tested dependency pin (`numpy==2.2.6`); the wheel declares `numpy>=2` |
 | `MODEL_CARD.md`, `BENCHMARK_CARD.md`, `PROVENANCE_AUDIT.md`, `NOTICES.md`, `LICENSING_DECISION.md`, `PUBLICATION_CHECKLIST.md` | Documents |
 | `evidence/` | Provenance facts, the build record, the isolated install check, historical results and runtime |

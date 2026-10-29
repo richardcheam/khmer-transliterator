@@ -15,8 +15,8 @@
 ## Remaining before upload (owner)
 1. ~~Choose a code licence~~: **done**, PolyForm Noncommercial 1.0.0 (`LICENSE`, `pyproject.toml`). Rebuild the
    wheel and bundle so they carry it.
-2. **Choose a weights licence,** or decide to retrain without the Wikipedia rows (`LICENSING_DECISION.md`). Then add
-   the `license` field (and `LICENSE` file, if custom) to `huggingface/README.md`.
+2. ~~Choose a weights licence~~: **done**, CC BY-NC-SA 4.0 on the current weights (`license: cc-by-nc-sa-4.0` in
+   the card, `LICENSE` in the Hugging Face folder). The ShareAlike risk is accepted (D191).
 3. **Decide on the open data questions** in `NOTICES.md`:
    - Wikipedia CC BY-SA and the weights;
    - rights in the FineWeb-2 underlying pages;

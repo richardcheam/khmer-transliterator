@@ -6,8 +6,10 @@
   - Applied as `LICENSE` (the official 1.0.0 text plus a `Required Notice:` line).
   - `pyproject.toml` has `license = "PolyForm-Noncommercial-1.0.0"`; the wheel's metadata carries
     `License-Expression` and the licence file.
-- **Weights: not decided.** The owner wants research/study only. The open question is how to square that with the
-  Wikipedia CC BY-SA rows (see below). The Hugging Face card therefore still has **no `license` field**.
+- **Weights: decided.** The owner chose **CC BY-NC-SA 4.0** for the current `letters_s0` weights (`8901050b…`),
+  with no retrain.
+  - The owner accepts the risk that Wikipedia's ShareAlike, if it reaches the weights, would call for CC BY-SA.
+  - The Hugging Face card carries `license: cc-by-nc-sa-4.0`; `LICENSE-weights.md` holds the notice.
 
 ## Two separate choices
 ### 1. Code (`khmer_translit` package)
@@ -37,7 +39,7 @@ The choice is constrained by the training data, which the code licence is not:
 
 ## Questions for the owner
 1. Which licence for the code?
-2. Which licence for the weights, given the open CC BY-SA question? Or retrain without Wikipedia rows first?
+2. ~~Which licence for the weights?~~ CC BY-NC-SA 4.0, current weights (2026-10-29).
 3. Is the indirect use of a Chhunneng-trained model during mining (`PROVENANCE_AUDIT.md` §3) acceptable for
    release?
 4. Was the LLM that suggested the 17 owner-verified selection spellings used under terms that allow this? Which

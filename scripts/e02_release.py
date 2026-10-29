@@ -461,6 +461,7 @@ def bundle(replace: bool = False) -> dict:
     for p in sorted(DOCS.glob("*.md")):
         shutil.copy(p, DIST / p.name)
     shutil.copy(DOCS / "requirements.txt", DIST / "requirements.txt")
+    shutil.copy(ROOT / "LICENSE", DIST / "LICENSE")                      # code: PolyForm Noncommercial 1.0.0
     ev = DIST / "evidence"
     ev.mkdir()
     for p in (REPORTS / "provenance_facts.json", REPORTS / "build.json", REPORTS / "install_verify.json",
@@ -471,6 +472,7 @@ def bundle(replace: bool = False) -> dict:
     hf.mkdir()
     shutil.copy(DOCS / "MODEL_CARD.md", hf / "README.md")
     shutil.copy(CHECKPOINT, hf / "model.npz")
+    shutil.copy(DOCS / "LICENSE-weights.md", hf / "LICENSE")               # weights: CC BY-NC-SA 4.0
     for f in ("BENCHMARK_CARD.md", "PROVENANCE_AUDIT.md", "NOTICES.md"):
         shutil.copy(DOCS / f, hf / f)
     files = sorted(p for p in DIST.rglob("*") if p.is_file())

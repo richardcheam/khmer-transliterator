@@ -2,6 +2,7 @@
 language:
 - en
 - km
+license: cc-by-nc-sa-4.0
 library_name: numpy
 pipeline_tag: text2text-generation
 tags:
@@ -22,8 +23,10 @@ This is **E02** (`letters_s0`), a small model trained from scratch and run with 
 ByT5-based model (`khmer-translit-byt5`, E08/E10), which is a different architecture, a different training set and
 a separate bundle.
 
-**Publication status: unresolved.** The code is licensed PolyForm Noncommercial 1.0.0. No licence has been chosen for the weights yet, so this card has no
-`license` field. See `NOTICES.md`, `LICENSING_DECISION.md` and `PROVENANCE_AUDIT.md`.
+**Licences:**
+- **Weights:** **CC BY-NC-SA 4.0** (`LICENSE`), non-commercial research and study.
+- **Package code:** PolyForm Noncommercial 1.0.0.
+- **Publication:** not yet approved. See `NOTICES.md`, `LICENSING_DECISION.md` and `PROVENANCE_AUDIT.md`.
 
 ## Model details
 - **Task:** one English word or name, read as English (US), written phonetically in Khmer script. Sound, not
@@ -142,5 +145,10 @@ Correct-sounding variants count as wrong.
 
 ## Permissions and attribution
 Training text derives from Khmer Wikipedia (CC BY-SA 4.0 / GFDL) and FineWeb-2 (ODC-By 1.0, also subject to
-Common Crawl's Terms of Use). Whether ShareAlike reaches the weights, and what rights in the underlying web pages
-imply, is unresolved. Attribution text and the full source table are in `NOTICES.md`.
+Common Crawl's Terms of Use).
+
+- **Weights licence:** CC BY-NC-SA 4.0, chosen by the owner.
+- **Known risk:** if Wikipedia's ShareAlike condition reaches the weights, it would call for CC BY-SA, and an NC
+  licence would not satisfy that. Whether it does is unresolved, and the owner accepted that risk (D191).
+- **Also unresolved:** what rights in the underlying web pages imply.
+- **Attribution text** and the full source table are in `NOTICES.md`.

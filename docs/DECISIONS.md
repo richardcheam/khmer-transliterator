@@ -321,3 +321,18 @@ there (`git -C ../pocket-tts-khmer show archive/checkpoints-p0-p6:state/DECISION
   Wikipedia CC BY-SA training rows. The options are a non-commercial licence on the current weights, accepting the
   share-alike risk, or a retrain without those rows.
 - **Pending:** the local bundles predate this. They need a rebuild before any use.
+
+## D191 — E02 weights licence: CC BY-NC-SA 4.0 on the current letters_s0 (owner, 2026-10-29)
+- **Decision:** the owner wants research/study-only terms and chose **CC BY-NC-SA 4.0** for the existing weights
+  (`8901050b…`), with no retrain.
+- **Options presented:** retrain without the 224 Wikipedia-only rows or all 693 (est. effect within seed noise; it
+  could only be checked on 86 dev words, since the final test is locked).
+- **Accepted risk:** if Wikipedia's ShareAlike reaches the weights, CC BY-SA would be required, and NC-SA is not
+  BY-SA-compatible. Also, FineWeb-2 may itself contain share-alike pages, so a retrain would not have removed all
+  such content.
+- **Applied:**
+  - `license: cc-by-nc-sa-4.0` in the E02 Hugging Face card;
+  - `release/e02/LICENSE-weights.md`, shipped as `LICENSE` in the Hugging Face folder;
+  - the code stays PolyForm Noncommercial 1.0.0 (D190).
+- **Still needed:** publication approval. The open questions on page rights, Chhunneng-influenced mining and
+  LLM-suggested selection items are recorded in `release/e02/NOTICES.md`.
