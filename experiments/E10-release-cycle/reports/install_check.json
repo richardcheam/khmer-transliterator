@@ -1,14 +1,14 @@
 {
  "wheel": "khmer_translit-0.2.0-py3-none-any.whl",
- "wheel_sha256": "ef294f34c9eeeb383676dd9db1b40b6cbccd4da2a969314d1e3bae23afa2b7e6",
+ "wheel_sha256": "1bc8242a63d5385c86e772357e9fa3af15ecce3d3f6ccd5105ae42322a02a47d",
  "venv": true,
  "install": {
   "returncode": 0,
-  "tail": "Using Python 3.10.21 environment at: venv\nResolved 2 packages in 4ms\nInstalled 2 packages in 14ms\n + khmer-translit==0.2.0 (from file:///home/richard/projects/khmer-transliterator/dist/khmer-translit-byt5-0.2.0/wheel/khmer_translit-0.2.0-py3-none-any.whl)\n + numpy==2.2.6\n",
+  "tail": "Using Python 3.10.21 environment at: venv\nResolved 2 packages in 4ms\nPrepared 1 package in 4ms\nInstalled 2 packages in 10ms\n + khmer-translit==0.2.0 (from file:///home/richard/projects/khmer-transliterator/dist/khmer-translit-byt5-0.2.0/wheel/khmer_translit-0.2.0-py3-none-any.whl)\n + numpy==2.2.6\n",
   "byt5_extra_offline": "unresolvable from uv's cache (index metadata missing)"
  },
  "byt5_extra_source": "torch/transformers/safetensors borrowed from .venv/lib/python3.10/site-packages via a .pth path entry; khmer_translit itself from the wheel",
- "cli_seconds": 8.3,
+ "cli_seconds": 8.2,
  "cli": {
   "returncode": 1,
   "rows": 10,
@@ -55,7 +55,7 @@
   "returncode": 2,
   "stderr": "khmer-translit: error: base model google/byt5-small @ 68377bdc18a2ffec8a0533fef03b1c513a4dd49d is not available offline (not in the cache): pass --base FOLDER or run once online to cache it (OSError)"
  },
- "public_api_present": "True /tmp/kt-install-q9byysjr/venv/lib/python3.10/site-packages/khmer_translit/__init__.py",
+ "public_api_present": "True /tmp/kt-install-0w1bx0d1/venv/lib/python3.10/site-packages/khmer_translit/__init__.py",
  "imports_from_wheel": true,
  "downloads": {
   "hf_home_files": []
