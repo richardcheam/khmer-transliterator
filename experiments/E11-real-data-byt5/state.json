@@ -41,11 +41,10 @@
    "items": 60
   },
   "review_scored": {
-   "status": "skipped",
-   "updated": "2026-10-29T15:20:18+00:00",
-   "reason": "no judgment file (independent review not collected)"
+   "status": "done",
+   "updated": "2026-10-29T17:13:06+00:00"
   }
  },
  "errors": [],
- "updated": "2026-10-29T15:20:18+00:00"
+ "updated": "2026-10-29T17:13:06+00:00"
 }

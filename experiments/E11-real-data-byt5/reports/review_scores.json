@@ -1,0 +1,112 @@
+{
+ "status": "scored",
+ "provenance": {
+  "judge": "project owner",
+  "independent_of_project": false,
+  "date": "2026-10-29",
+  "policy": "docs/PHONETIC_POLICY.md",
+  "items_judged": [
+   "r01",
+   "r02",
+   "r03",
+   "r04",
+   "r05",
+   "r06",
+   "r07",
+   "r08",
+   "r09",
+   "r10",
+   "r11",
+   "r12",
+   "r13",
+   "r14",
+   "r15",
+   "r16",
+   "r17",
+   "r18",
+   "r19",
+   "r20",
+   "r21",
+   "r22",
+   "r23",
+   "r24",
+   "r25",
+   "r26",
+   "r27",
+   "r28",
+   "r29",
+   "r30",
+   "r31",
+   "r32",
+   "r33",
+   "r34",
+   "r35",
+   "r36",
+   "r37",
+   "r38",
+   "r39",
+   "r40"
+  ],
+  "method": "owner replied in chat per item; assistant transcribed using three interpretation rules the owner confirmed: unnamed candidates of an item are not_acceptable; 'ok' without a label = all candidates acceptable; skipped single-candidate items = acceptable. Owner clarified skipped multi-candidate items r11, r22, r23, r29 (both) and r35 (B). No spelling was typed.",
+  "blinded": true,
+  "notes": {
+   "r30": "owner prefers ហ្ស for the z sound (comment only, not a label)"
+  }
+ },
+ "coverage": {
+  "judged_items": 40,
+  "batch_items": 60,
+  "by_sample": {
+   "representative": 28,
+   "disagreement": 12
+  }
+ },
+ "acceptable_items": {
+  "representative": {
+   "e07": {
+    "acceptable": 21,
+    "items": 28,
+    "share": 0.75
+   },
+   "e08": {
+    "acceptable": 25,
+    "items": 28,
+    "share": 0.893
+   },
+   "e11": {
+    "acceptable": 23,
+    "items": 28,
+    "share": 0.821
+   }
+  },
+  "disagreement": {
+   "e07": {
+    "acceptable": 5,
+    "items": 12,
+    "share": 0.417
+   },
+   "e08": {
+    "acceptable": 3,
+    "items": 12,
+    "share": 0.25
+   },
+   "e11": {
+    "acceptable": 6,
+    "items": 12,
+    "share": 0.5
+   }
+  }
+ },
+ "acceptable_share": {
+  "representative": {
+   "e07": 0.75,
+   "e11": 0.821,
+   "e08": 0.893
+  },
+  "disagreement": {
+   "e07": 0.417,
+   "e11": 0.5,
+   "e08": 0.25
+  }
+ }
+}

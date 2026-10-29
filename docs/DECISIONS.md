@@ -363,3 +363,8 @@ there (`git -C ../pocket-tts-khmer show archive/checkpoints-p0-p6:state/DECISION
 - **Permissions:** AI Mode blocker gone; CC BY-SA and page-rights questions on mined pairs remain; adapter unlicensed.
 - **Next:** review judgments on vowel choices before more training; second seed recommended, not launched.
   Nothing published, packaged or served. Report: `experiments/E11-real-data-byt5/REPORT.md`.
+- **Update (owner review, same day):** the owner judged 40 of the 60 blinded dev words (single judge, not
+  independent; transcribed from chat under owner-confirmed rules). Greedy output acceptable: representative 28 words
+  E07 75% / E11 82% / E08 89%; disagreement 12 words 42% / 50% / 25%; no detectable model difference. Against the
+  mined references, 20 of 38 "wrong" spellings were acceptable and 7 of 29 "right" ones were not, so exact
+  agreement with these references is a weak quality measure. Next: a reviewed reference set before further training.

@@ -129,14 +129,43 @@ The ≥ 9 bin has 9 items, which is too few to interpret.
 - **Representative sample:** 21 words with one shared output, 10 differing in vowels or marks, 9 in consonants or
   syllables.
 - **Disagreement sample:** 8 vowel or mark differences, 12 consonant or syllable differences.
-- **Status:** `import` returned `no_judgments`. No reviewer was contacted and no judgment was invented.
-  **Phonetic quality is unresolved.**
+- **Status (update, 2026-10-29):** the project owner judged 40 of the 60 words, blinded (`reports/review_scores.json`;
+  the file and its provenance are local in `data/e11/review/`).
+  - The owner replied in chat. I transcribed the replies using three rules the owner confirmed: candidates not
+    named are not acceptable; "ok" without a label means all candidates; skipped single-spelling words are
+    acceptable. The owner clarified the five skipped two-spelling words. No spelling was typed.
+  - The owner is **not independent** of the project.
+  - Coverage: 28 of 40 representative and 12 of 20 disagreement words. The sample labels are hidden and do not
+    follow the item numbers.
+  - The owner noted for *visa* that ហ្ស would be better for the "z" sound. This is kept as a comment only.
+
+**Share of judged words where the model's greedy spelling was acceptable:**
+| Sample | E07 | E11 | E08 |
+|---|---|---|---|
+| Representative (28 words) | 21 (75%) | **23 (82%)** | 25 (89%) |
+| Disagreement (12 words) | 5 (42%) | **6 (50%)** | 3 (25%) |
+
+These are small, single-judge, dev-only counts. The differences between models are 1–4 words and are not
+detectable.
+
+**Owner judgment vs the old reference spellings** (the 67 judged candidate spellings):
+| | Owner: acceptable | Owner: not acceptable |
+|---|---|---|
+| Matches the reference | 22 | 7 |
+| Differs from the reference | **20** | 18 |
+
+- **Differs but acceptable:** 20 of 38 spellings that "missed" the reference (53%) were acceptable, for example
+  *cameroon* ខេមឺរ៉ុន, *bolt* បូល, *band* បេន, *phi* ហ្វី and *acer* អេស៊ើ. Many were vowel differences.
+- **Matches but not acceptable:** 7 of 29 spellings that matched the reference (24%) were not, for example
+  *band* បាន, *bolt* បុល, *phi* ភី and *acer* អេសឺ.
+- **So exact agreement with the mined references is a weak measure of quality here.** A large part of the
+  "vowel errors" in §4.4 are reference noise, not model errors.
 
 ## 6. Decision
 | Axis | Finding |
 |---|---|
 | **Reference agreement** | Uncertain alternative to E07: eval +2.5 [−2.7, +7.7], CER +1.7 [−0.7, +4.1], dev not below E07. Equal to E08 within noise. Fewer missing endings, no invalid or repeated outputs. |
-| **Phonetic quality** | Unresolved: no review judgments. Vowel quality of the references is itself unverified. |
+| **Phonetic quality** | Partly measured: owner judgments on 40 dev words (single judge, not independent). E11 acceptable on 82% of representative words (E07 75%, E08 89%) and 50% of disagreement words (E07 42%, E08 25%). No detectable difference between models. |
 | **Permissions** | Improved over E08: no Google AI Mode labels, so that blocker is gone. Still open: CC BY-SA (Wikipedia) and page rights in the mined E03 and recovered pairs; ALT is CC BY 4.0 (attribution); ByT5 base Apache 2.0. The adapter has no licence and is not published. |
 
 **What improved:**
@@ -156,10 +185,11 @@ The ≥ 9 bin has 9 items, which is too few to interpret.
 detectable result.
 
 **Strongest evidence for the next quality step:**
-1. **Review judgments on vowels.** Vowel-only differences are 40–50% of all mismatches for every model, and they
-   did not respond to doubling the real data. The 60-word blinded batch would show whether these are model errors
-   or reference noise. That decides whether the next step is better labels (reviewed vowel choices) or more
-   training.
+1. **Better references, not more training.** Vowel-only differences are 40–50% of all mismatches for every model,
+   and they did not respond to doubling the real data. The owner's review (§5) shows that 53% of spellings that
+   missed the reference were acceptable, and 24% that matched it were not. The mined references cannot separate
+   these models. The next step is a small reviewed reference set: acceptable/not judgments on model outputs,
+   which needs no typing. Score future candidates on that instead of exact agreement.
 2. **Under-training.** Dev was still rising at the final update for E11 and E08 alike. A longer schedule is the
    obvious training-side hypothesis, but it needs a new registered experiment. E10's higher learning rate did not
    help.

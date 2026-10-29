@@ -523,6 +523,11 @@ def import_judgments(judgments: str | None = None) -> dict:
         raise FileNotFoundError(f"{prov} is required (who judged, when, under which policy, independence)")
     batch = json.loads((REVIEW_DATA / "review_batch.json").read_text())
     rows = list(csv.DictReader(io.StringIO(path.read_text(encoding="utf-8")), delimiter="\t"))
+    # a partial review is scored on the items it judges (all of their candidates must be judged); coverage is reported
+    judged = {r["item_id"] for r in rows if r.get("judgment")}
+    total = len(batch["items"])
+    batch = {**batch, "items": [it for it in batch["items"] if it["item_id"] in judged]}
+    rows = [r for r in rows if r["item_id"] in judged]
     v = e10.validate_judgments(rows, batch)
     if not v["ok"]:
         return {"status": "invalid", **v}
@@ -533,7 +538,19 @@ def import_judgments(judgments: str | None = None) -> dict:
             k = key[r["item_id"]]
             for o in k["origins"][r["label"]]:
                 acc[k["sample"]][o].append(r["judgment"] == "acceptable")
+    items = defaultdict(lambda: defaultdict(lambda: [0, 0]))   # sample → origin → [items with an acceptable output, items]
+    for it in batch["items"]:
+        k = key[it["item_id"]]
+        ok = {r["label"] for r in rows if r["item_id"] == it["item_id"] and r["judgment"] == "acceptable"}
+        for lb, origins in k["origins"].items():
+            for o in origins:
+                items[k["sample"]][o][0] += lb in ok
+                items[k["sample"]][o][1] += 1
     out = {"status": "scored", "provenance": json.loads(prov.read_text()),
+           "coverage": {"judged_items": len(batch["items"]), "batch_items": total,
+                        "by_sample": dict(Counter(key[it["item_id"]]["sample"] for it in batch["items"]))},
+           "acceptable_items": {s: {o: {"acceptable": a, "items": n, "share": round(a / n, 3)}
+                                    for o, (a, n) in sorted(d.items())} for s, d in items.items()},
            "acceptable_share": {s: {o: round(mean(v), 3) for o, v in d.items()} for s, d in acc.items()}}
     set_state("review_scored", "done")
     return e07.write_json(REPORTS / "review_scores.json", out) and out
