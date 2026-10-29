@@ -18,6 +18,8 @@
 - **Checked on the Hub:**
   - the metadata parses (licence `cc-by-nc-sa-4.0`, languages en/km, FineWeb-2 dataset link);
   - a fresh `hf download` plus a clean install runs the quick start, and the hashes match.
+- **Tag:** `v0.2.0` → Hub commit `145adf99` (the current card without hashes). Later versions of the same model
+  family go into this repo as new tags; another architecture goes into its own repo, linked by `new_version:`.
 - **Next:** the owner reviews the page and makes it public (`hf repos settings ric912/en-km-phonetic-transliterator
   --public`, or the repository settings page).
 
