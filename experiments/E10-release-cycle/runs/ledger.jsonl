@@ -7,3 +7,7 @@
 {"time": "2026-10-28T20:35:58+00:00", "event": "segment", "run": "A_s0", "kind": "full", "hours": 1.6732, "updates_to": 992, "stop": "memory_pressure", "t": 1793219758.9898005}
 {"time": "2026-10-28T21:48:33+00:00", "event": "segment", "run": "A_s0", "kind": "full", "hours": 0.1399, "updates_to": 1075, "stop": "memory_pressure", "t": 1793224113.9371514}
 {"time": "2026-10-28T22:35:21+00:00", "event": "segment", "run": "A_s0", "kind": "full", "hours": 0.5427, "updates_to": 1399, "stop": "memory_pressure", "t": 1793226921.3317752}
+{"time": "2026-10-29T02:11:24+00:00", "event": "segment", "run": "A_s0", "kind": "full", "hours": 3.0373, "updates_to": 3000, "stop": "max_updates", "t": 1793239884.585099}
+{"time": "2026-10-29T02:11:24+00:00", "event": "done", "run": "A_s0", "kind": "full", "stop": "max_updates", "updates": 3000, "t": 1793239884.686297}
+{"time": "2026-10-29T08:04:46+00:00", "event": "step", "step": "gate", "seconds": 0.0}
+{"time": "2026-10-29T08:04:55+00:00", "event": "step", "step": "freeze", "seconds": 0.2}

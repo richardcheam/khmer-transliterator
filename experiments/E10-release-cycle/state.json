@@ -24,8 +24,31 @@
    "updated": "2026-10-28T18:53:59+00:00"
   },
   "train_A_s0": {
-   "status": "running",
-   "updated": "2026-10-28T23:09:00+00:00"
+   "status": "done",
+   "updated": "2026-10-29T02:11:26+00:00",
+   "stop": "max_updates",
+   "best": {
+    "key": [
+     0.554,
+     -0.1412936536454323
+    ],
+    "update": 3000,
+    "dev_top1": 0.554,
+    "dev_cer": 0.1413,
+    "dev_correct": 141,
+    "dev_distinct": 245,
+    "elapsed_s": 19413.7
+   }
+  },
+  "gate": {
+   "status": "failed",
+   "updated": "2026-10-29T08:04:46+00:00",
+   "gain_pp": 1.2
+  },
+  "freeze": {
+   "status": "done",
+   "updated": "2026-10-29T08:04:55+00:00",
+   "release_candidate": "e08"
   }
  },
  "errors": [
@@ -35,5 +58,5 @@
    "error": "KeyError('word')"
   }
  ],
- "updated": "2026-10-28T23:09:00+00:00"
+ "updated": "2026-10-29T08:04:55+00:00"
 }
