@@ -2,8 +2,6 @@
 language:
 - en
 - km
-license: other
-license_name: not-yet-licensed
 base_model: google/byt5-small
 library_name: transformers
 pipeline_tag: text2text-generation
@@ -17,7 +15,7 @@ tags:
 
 # khmer-translit-byt5 0.2.0: English word → Khmer phonetic spelling (research preview)
 
-> **Research preview with unverified phonetic quality.** Not published and not licensed. Publication is blocked by
+> **Research preview with unverified phonetic quality.** Not published. The adapter has no licence yet, so this card has no `license` field; the code is PolyForm Noncommercial 1.0.0. Publication is blocked by
 > open data-terms questions (`NOTICES.md`). All measured numbers are agreement with web-mined, unreviewed
 > references, not phonetic accuracy.
 
