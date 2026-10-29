@@ -49,6 +49,10 @@
    "status": "done",
    "updated": "2026-10-29T08:04:55+00:00",
    "release_candidate": "e08"
+  },
+  "evaluate": {
+   "status": "done",
+   "updated": "2026-10-29T08:11:09+00:00"
   }
  },
  "errors": [
@@ -58,5 +62,5 @@
    "error": "KeyError('word')"
   }
  ],
- "updated": "2026-10-29T08:04:55+00:00"
+ "updated": "2026-10-29T08:11:09+00:00"
 }

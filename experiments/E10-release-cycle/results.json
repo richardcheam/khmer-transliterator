@@ -1,0 +1,362 @@
+{
+ "label": "Track 1 (historical mined-reference agreement) for dev and eval; eval examined repeatedly (E03–E10), exploratory. Confirmation: operational diagnostics only (no references, no independent judgments).",
+ "frozen": "2026-10-29T08:04:55+00:00",
+ "release_candidate": "e08",
+ "dev": {
+  "items": 253,
+  "families": 250,
+  "table": {
+   "e08:single": {
+    "top1_macro": 0.542,
+    "top4_macro": 0.542,
+    "mean_cer": 0.1513,
+    "correct_items": 138,
+    "no_output": 0,
+    "distinct_top1": 243,
+    "most_common_top1": [
+     "អាសា",
+     2
+    ],
+    "share_most_common_top1": 0.0079,
+    "invalid_orthography_top1": 0,
+    "raw_rank1_status": {
+     "ok": 253
+    },
+    "top1_empty_or_none": 0,
+    "truncated_no_eos_any": 0,
+    "repeated_top1": 0,
+    "mean_top1_codepoints": 5.079,
+    "mean_top1_bytes": 15.237,
+    "distinct_candidates_per_item": 1,
+    "generation_seconds": null
+   },
+   "e08:candidates": {
+    "top1_macro": 0.554,
+    "top4_macro": 0.828,
+    "mean_cer": 0.1478,
+    "correct_items": 141,
+    "no_output": 0,
+    "distinct_top1": 244,
+    "most_common_top1": [
+     "សេន",
+     3
+    ],
+    "share_most_common_top1": 0.0119,
+    "invalid_orthography_top1": 0,
+    "raw_rank1_status": {
+     "ok": 253
+    },
+    "top1_empty_or_none": 0,
+    "truncated_no_eos_any": 0,
+    "repeated_top1": 0,
+    "mean_top1_codepoints": 5.036,
+    "mean_top1_bytes": 15.107,
+    "distinct_candidates_per_item": 4,
+    "generation_seconds": null
+   },
+   "A_s0:single": {
+    "top1_macro": 0.554,
+    "top4_macro": 0.554,
+    "mean_cer": 0.1413,
+    "correct_items": 141,
+    "no_output": 0,
+    "distinct_top1": 245,
+    "most_common_top1": [
+     "សា",
+     3
+    ],
+    "share_most_common_top1": 0.0119,
+    "invalid_orthography_top1": 0,
+    "raw_rank1_status": {
+     "ok": 253
+    },
+    "top1_empty_or_none": 0,
+    "truncated_no_eos_any": 0,
+    "repeated_top1": 0,
+    "mean_top1_codepoints": 5.095,
+    "mean_top1_bytes": 15.285,
+    "distinct_candidates_per_item": 1,
+    "generation_seconds": 22.7
+   },
+   "A_s0:candidates": {
+    "top1_macro": 0.558,
+    "top4_macro": 0.796,
+    "mean_cer": 0.1394,
+    "correct_items": 142,
+    "no_output": 0,
+    "distinct_top1": 244,
+    "most_common_top1": [
+     "សា",
+     3
+    ],
+    "share_most_common_top1": 0.0119,
+    "invalid_orthography_top1": 0,
+    "raw_rank1_status": {
+     "ok": 253
+    },
+    "top1_empty_or_none": 0,
+    "truncated_no_eos_any": 0,
+    "repeated_top1": 0,
+    "mean_top1_codepoints": 5.083,
+    "mean_top1_bytes": 15.249,
+    "distinct_candidates_per_item": 4,
+    "generation_seconds": 48.5
+   }
+  },
+  "contrasts": {
+   "A_s0_minus_e08:single": {
+    "top1": {
+     "plus": [
+      "A_s0:single"
+     ],
+     "minus": [
+      "e08:single"
+     ],
+     "diff_pp": 1.2,
+     "ci95_pp": [
+      -3.2,
+      5.6
+     ]
+    },
+    "cer_reduction": {
+     "plus": [
+      "A_s0:single"
+     ],
+     "minus": [
+      "e08:single"
+     ],
+     "diff_pp": 1.015,
+     "ci95_pp": [
+      -1.035,
+      3.079
+     ]
+    }
+   }
+  },
+  "error_kinds_single": {
+   "e08:single": {
+    "vowels_only": 47,
+    "consonant_added": 17,
+    "consonant_dropped": 12,
+    "consonants_changed": 22,
+    "marks_only": 10,
+    "both": 7
+   },
+   "A_s0:single": {
+    "vowels_only": 52,
+    "consonant_added": 16,
+    "consonant_dropped": 9,
+    "consonants_changed": 16,
+    "marks_only": 9,
+    "both": 10
+   }
+  }
+ },
+ "eval": {
+  "items": 228,
+  "families": 222,
+  "table": {
+   "e08:single": {
+    "top1_macro": 0.524,
+    "top4_macro": 0.524,
+    "mean_cer": 0.1611,
+    "correct_items": 120,
+    "no_output": 0,
+    "distinct_top1": 225,
+    "most_common_top1": [
+     "ប៊ីត",
+     2
+    ],
+    "share_most_common_top1": 0.0088,
+    "invalid_orthography_top1": 0,
+    "raw_rank1_status": {
+     "ok": 228
+    },
+    "top1_empty_or_none": 0,
+    "truncated_no_eos_any": 0,
+    "repeated_top1": 0,
+    "mean_top1_codepoints": 5.592,
+    "mean_top1_bytes": 16.776,
+    "distinct_candidates_per_item": 1,
+    "generation_seconds": 24.3
+   },
+   "e08:candidates": {
+    "top1_macro": 0.533,
+    "top4_macro": 0.7913,
+    "mean_cer": 0.1628,
+    "correct_items": 122,
+    "no_output": 0,
+    "distinct_top1": 221,
+    "most_common_top1": [
+     "ប៊ីត",
+     2
+    ],
+    "share_most_common_top1": 0.0088,
+    "invalid_orthography_top1": 0,
+    "raw_rank1_status": {
+     "ok": 228
+    },
+    "top1_empty_or_none": 0,
+    "truncated_no_eos_any": 0,
+    "repeated_top1": 0,
+    "mean_top1_codepoints": 5.531,
+    "mean_top1_bytes": 16.592,
+    "distinct_candidates_per_item": 4,
+    "generation_seconds": 48.2
+   },
+   "A_s0:single": {
+    "top1_macro": 0.53,
+    "top4_macro": 0.53,
+    "mean_cer": 0.1658,
+    "correct_items": 122,
+    "no_output": 0,
+    "distinct_top1": 222,
+    "most_common_top1": [
+     "ប៊ីត",
+     2
+    ],
+    "share_most_common_top1": 0.0088,
+    "invalid_orthography_top1": 0,
+    "raw_rank1_status": {
+     "ok": 228
+    },
+    "top1_empty_or_none": 0,
+    "truncated_no_eos_any": 0,
+    "repeated_top1": 0,
+    "mean_top1_codepoints": 5.535,
+    "mean_top1_bytes": 16.605,
+    "distinct_candidates_per_item": 1,
+    "generation_seconds": 20.6
+   },
+   "A_s0:candidates": {
+    "top1_macro": 0.53,
+    "top4_macro": 0.7868,
+    "mean_cer": 0.1642,
+    "correct_items": 122,
+    "no_output": 0,
+    "distinct_top1": 222,
+    "most_common_top1": [
+     "ប៊ីត",
+     2
+    ],
+    "share_most_common_top1": 0.0088,
+    "invalid_orthography_top1": 0,
+    "raw_rank1_status": {
+     "ok": 228
+    },
+    "top1_empty_or_none": 0,
+    "truncated_no_eos_any": 0,
+    "repeated_top1": 0,
+    "mean_top1_codepoints": 5.513,
+    "mean_top1_bytes": 16.539,
+    "distinct_candidates_per_item": 4,
+    "generation_seconds": 45.0
+   }
+  },
+  "contrasts": {
+   "A_s0_minus_e08:single": {
+    "top1": {
+     "plus": [
+      "A_s0:single"
+     ],
+     "minus": [
+      "e08:single"
+     ],
+     "diff_pp": 0.601,
+     "ci95_pp": [
+      -4.505,
+      5.856
+     ]
+    },
+    "cer_reduction": {
+     "plus": [
+      "A_s0:single"
+     ],
+     "minus": [
+      "e08:single"
+     ],
+     "diff_pp": -0.469,
+     "ci95_pp": [
+      -2.465,
+      1.589
+     ]
+    }
+   }
+  },
+  "error_kinds_single": {
+   "e08:single": {
+    "vowels_only": 53,
+    "consonant_added": 8,
+    "marks_only": 7,
+    "both": 18,
+    "consonant_dropped": 10,
+    "consonants_changed": 12
+   },
+   "A_s0:single": {
+    "vowels_only": 47,
+    "consonant_added": 9,
+    "both": 20,
+    "marks_only": 7,
+    "consonant_dropped": 11,
+    "consonants_changed": 12
+   }
+  }
+ },
+ "confirmation": {
+  "e08:single": {
+   "items": 120,
+   "rank1_status": {
+    "ok": 120
+   },
+   "no_output": 0,
+   "orthography_not_ok": 0,
+   "repeated": 0,
+   "truncated_no_eos": 0,
+   "mean_codepoints": 8.41,
+   "distinct_top1": 120,
+   "max_share_one_output": 0.0083
+  },
+  "e08:candidates": {
+   "items": 120,
+   "rank1_status": {
+    "ok": 120
+   },
+   "no_output": 0,
+   "orthography_not_ok": 0,
+   "repeated": 0,
+   "truncated_no_eos": 0,
+   "mean_codepoints": 8.18,
+   "distinct_top1": 120,
+   "max_share_one_output": 0.0083
+  },
+  "A_s0:single": {
+   "items": 120,
+   "rank1_status": {
+    "ok": 120
+   },
+   "no_output": 0,
+   "orthography_not_ok": 0,
+   "repeated": 0,
+   "truncated_no_eos": 0,
+   "mean_codepoints": 8.46,
+   "distinct_top1": 120,
+   "max_share_one_output": 0.0083
+  },
+  "A_s0:candidates": {
+   "items": 120,
+   "rank1_status": {
+    "ok": 120
+   },
+   "no_output": 0,
+   "orthography_not_ok": 0,
+   "repeated": 0,
+   "truncated_no_eos": 0,
+   "mean_codepoints": 8.18,
+   "distinct_top1": 120,
+   "max_share_one_output": 0.0083
+  }
+ },
+ "confirmation_agreement_with_e08_single": {
+  "A_s0": 0.283
+ }
+}
