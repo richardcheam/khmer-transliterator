@@ -51,6 +51,7 @@ NAME = "khmer-translit-e02-letters-0.2.0"          # distinct from the historica
 DIST = ROOT / "dist" / NAME
 FORBIDDEN_SUFFIXES = (".pt", ".bin", ".safetensors", ".tsv", ".jsonl", ".parquet", ".bz2", ".env")
 FORBIDDEN_NAMES = ("references", "reserve", "cmudict", "wandb", "__pycache__", "origin_key", "review")
+INTERNAL_TERMS = ("E02", "E08", "E10", "letters_s0", "ByT5", "byt5", "D18", "D19", "experiments/", "models/e02")
 HEAVY = ("torch", "transformers", "peft", "safetensors", "wandb", "khmer_tts", "pocket_tts")
 
 
@@ -468,13 +469,17 @@ def bundle(replace: bool = False) -> dict:
               E02 / "results.json", E02 / "reports" / "runtime.json"):
         if p.exists():
             shutil.copy(p, ev / p.name)
-    hf = DIST / "huggingface"
+    hf = DIST / "huggingface"                   # public-facing: no internal project labels (checked below)
     hf.mkdir()
     shutil.copy(DOCS / "MODEL_CARD.md", hf / "README.md")
     shutil.copy(CHECKPOINT, hf / "model.npz")
     shutil.copy(DOCS / "LICENSE-weights.md", hf / "LICENSE")               # weights: CC BY-NC-SA 4.0
-    for f in ("BENCHMARK_CARD.md", "PROVENANCE_AUDIT.md", "NOTICES.md"):
-        shutil.copy(DOCS / f, hf / f)
+    shutil.copy(next(wheel_dir.glob("*.whl")), hf)                       # the package is not on PyPI
+    internal = [f"{p.name}: {t}" for p in hf.glob("*.md") for t in INTERNAL_TERMS
+                if t in p.read_text(encoding="utf-8")] + [f"LICENSE: {t}" for t in INTERNAL_TERMS
+                                                          if t in (hf / "LICENSE").read_text(encoding="utf-8")]
+    if internal:
+        raise RuntimeError(f"internal project labels in the Hugging Face folder: {internal}")
     files = sorted(p for p in DIST.rglob("*") if p.is_file())
     bad = [str(p.relative_to(DIST)) for p in files
            if p.suffix in FORBIDDEN_SUFFIXES or any(n in p.name.lower() for n in FORBIDDEN_NAMES)]

@@ -14,143 +14,145 @@ datasets:
 - HuggingFaceFW/fineweb-2
 ---
 
-# khmer-translit E02 letters model: English word → Khmer phonetic spelling (research preview)
+# en-km-transliterator
+
+**English word → Khmer phonetic spelling.** Give the model one English word or name and it writes how the word
+*sounds* in Khmer script. It does not translate.
+
+```
+coffee   → ខូហ្វ៊ី      computer → កំពូទែរ      Johnson → ចនសុន
+```
 
 > **Research preview. Phonetic quality has not been independently validated. Reported exact-match results measure
 > agreement with the specified reference spellings.**
 
-Planned Hugging Face repository: `en-km-transliterator` (not uploaded yet).
+## Model
+- **Type:** a small character-level Transformer encoder–decoder (sequence to sequence), trained from scratch. It
+  has no pretrained base model.
+- **Size:** 2.6 million parameters. d_model 192, 3 encoder and 3 decoder layers, 4 attention heads, feed-forward
+  512.
+- **Vocabulary:** input letters a–z; output 78 Khmer characters.
+- **File:** `model.npz` (10.5 MB), NumPy arrays plus a JSON metadata entry.
+  sha256 `8901050b1093cf90f60523c7941d6c12dbd8571d71698e37abcf874ba437904b`.
+- **Runtime:** CPU only, through the `khmer-translit` Python package (included here as a wheel). Inference uses
+  NumPy only, with beam search of width 4.
+- **Not a Transformers checkpoint:** `AutoModel.from_pretrained` cannot load it. Use the package as shown below.
 
-This is **E02** (`letters_s0`), a small model trained from scratch and run with NumPy. It is **not** the newer
-ByT5-based model (`khmer-translit-byt5`, E08/E10), which is a different architecture, a different training set and
-a separate bundle.
-
-**Licences:**
-- **Weights:** **CC BY-NC-SA 4.0** (`LICENSE`), non-commercial research and study.
-- **Package code:** PolyForm Noncommercial 1.0.0.
-- **Publication:** not yet approved. See `NOTICES.md`, `LICENSING_DECISION.md` and `PROVENANCE_AUDIT.md`.
-
-## Model details
-- **Task:** one English word or name, read as English (US), written phonetically in Khmer script. Sound, not
-  meaning. Example: `coffee` → ខូហ្វ៊ី.
-- **Architecture:** character-level Transformer encoder–decoder trained from random initialisation.
-  - d 192, 3 encoder + 3 decoder layers, 4 heads, feed-forward 512, GELU, learned positions;
-  - 2,609,169 parameters;
-  - input: `<task:en>` + the letters a–z (157-token source vocabulary); output: 78 Khmer characters.
-- **Weights:** `model.npz`, sha256 `8901050b1093cf90f60523c7941d6c12dbd8571d71698e37abcf874ba437904b`, 10.5 MB,
-  float32 arrays plus `__meta__` JSON. Exported from torch checkpoint `199df48c…d848`.
-- **Inference implementation:** `khmer_translit.english.Transliterator` in the `khmer-translit` package (0.2.0).
-  - Pure NumPy, beam search width 4.
-  - No lookup lists, dictionary or pronunciation resource.
-- **Not a Transformers model:** `AutoModel.from_pretrained` does not load it. Use the package (below).
-
-## Uses
-- **Intended:** drafting Khmer phonetic spellings of English loanwords and names for a person to check (glossaries,
-  text-to-speech front-ends), offline on a CPU.
-- **Out of scope:**
-  - translation;
-  - sentences or phrases;
-  - romanised Khmer chat;
-  - Khmer input;
-  - names to be read in their original language;
-  - publishing spellings without a Khmer-literate check.
-
-## How to use
-Install the wheel; NumPy is its only dependency. No torch, transformers or PEFT is needed.
-
+## Quick start
 ```bash
+hf download <user>/en-km-transliterator --local-dir en-km-transliterator
+cd en-km-transliterator
 python -m venv .venv && . .venv/bin/activate
-pip install khmer_translit-0.2.0-py3-none-any.whl          # from this bundle's wheel/ folder
+pip install khmer_translit-0.2.0-py3-none-any.whl          # installs khmer-translit + numpy only
+
 khmer-translit predict --model model.npz --word coffee --top-k 3 --json
-printf 'computer\nJohnson\n' | khmer-translit predict --model model.npz --input - --jsonl
+printf 'computer\nJohnson\nLondon\n' | khmer-translit predict --model model.npz --input - --jsonl
 ```
 
 ```python
 from khmer_translit.english import Transliterator
 
-tl = Transliterator.from_pretrained("model.npz")      # load once
-print(tl.predict("coffee").text)                       # ខូហ្វ៊ី
+tl = Transliterator.from_pretrained("model.npz")       # load once, reuse
+print(tl.predict("coffee").text)                        # ខូហ្វ៊ី
 for r in tl.predict_many(["computer", "", "new york"], top_k=3):
     print(r.input, r.status, [c.text for c in r.candidates])
 ```
 
-- **Input:** NFKC, lower case, accents removed, apostrophes and hyphens dropped; then letters a–z only, at most 32.
-- **Refusals:** empty input, several words, other characters (digits, Khmer) and more than 32 letters return a
-  `status` (`empty`, `unsupported_multiword`, `unsupported_characters`, `too_long`) with no candidates. Input is
-  never truncated.
-- **Candidates:** at most 8 (`--top-k`).
-- **`log_score`** is a beam log-probability for ranking, not a probability of being correct.
-- **CLI exit codes:** 0 when all inputs succeed, 1 when any input was refused, 2 for usage errors and missing or
-  corrupt models.
+## Inputs and outputs
+- **Input:** a single English word or name, at most 32 letters.
+  - It is normalised before use: Unicode NFKC, lower case, accents removed, apostrophes and hyphens dropped. So
+    `O'Neil` becomes `oneil`, and `Wi-Fi` becomes `wifi`.
+- **Refused inputs:** the following return a status and no output. The model never truncates or guesses:
+  - empty text (`empty`);
+  - several words (`unsupported_multiword`);
+  - digits, Khmer or other characters (`unsupported_characters`);
+  - more than 32 letters (`too_long`).
+- **Output:** up to 8 candidate spellings, best first, each with a `log_score`. The score is a model
+  log-probability for ranking candidates. It is **not** a calibrated confidence.
+- **Command line:**
+  - one JSON line per input line, in the same order;
+  - exit code 0 when all inputs succeed, 1 when some were refused, 2 for usage errors or a missing or corrupt model
+    file;
+  - `--sha256 <hash>` refuses a model file with a different hash.
 
-## Training
-- **Data:** 9,735 English–Khmer word pairs (plus 296 train-val pairs for loss tie-breaks), mined from bracketed forms
-  in Khmer web text:
-  - FineWeb-2 `khm_Khmr` (9,807 rows);
-  - Khmer Wikipedia, dump 2026-10-01 (693 rows; 469 rows occur in both).
-- **Filters:** a word is kept only if it has a CMUdict entry, is not romanised Khmer, passes a noise filter and is
-  unrelated to every evaluation word.
-- **Not used for training:**
-  - no Chhunneng examples;
-  - no LLM-generated labels;
-  - no owner-authored labels;
-  - no pretrained or auxiliary initialisation.
-- **Indirect influences:**
-  - the mining aligner and filter used a Chhunneng-trained model;
-  - checkpoint selection used owner-verified spellings, 17 of 86 of them LLM-suggested.
+## Intended use
+- **Good for:** drafting Khmer spellings of English loanwords and names for a person to review. Examples are
+  glossaries and text-to-speech front-ends.
+- **Not for:**
+  - translation;
+  - sentences;
+  - romanised Khmer ("sok sabay");
+  - names to be read in their original language rather than English;
+  - publishing spellings without a check by a Khmer reader.
 
-  Details and hashes are in `PROVENANCE_AUDIT.md`.
-- **Procedure:**
+## Training data
+- **Size:** 9,735 English–Khmer word pairs, with 296 more held back for validation loss.
+- **Origin:** mined automatically from Khmer web text where a Khmer spelling is followed by the English word in
+  brackets, e.g. "ចនសុន (Johnson)".
+- **Sources:**
+  - [FineWeb-2](https://huggingface.co/datasets/HuggingFaceFW/fineweb-2), Khmer subset `khm_Khmr` (one shard):
+    9,807 pairs;
+  - Khmer Wikipedia, dump of 2026-10-01: 693 pairs.
+  - 469 pairs occur in both, so the source counts add up to more than the total.
+- **Filters:** a pair is kept only if the English word is in the CMU Pronouncing Dictionary, does not look like
+  romanised Khmer, passes a noise filter, and is unrelated to every word used for evaluation.
+- **No synthetic data:** no LLM-generated spellings and no hand-written labels were used for training.
+- **Selection aid:** an older in-house transliteration model helped choose and align the mined pairs. Its outputs
+  were never used as training labels.
+- **Training procedure:**
   - AdamW, learning rate 1e-3 with 500 warm-up steps then cosine decay, weight decay 0.01, label smoothing 0.1,
-    batch 128, gradient clip 1.0;
-  - 40 epochs; epoch 27 selected by dev agreement on 86 items;
-  - seed 0; 0.25 h on a laptop CPU (FP32).
+    batch 128;
+  - 40 epochs; the best epoch (27) was chosen on a separate set of 86 reviewed words;
+  - about 15 minutes on a laptop CPU.
 
-## Evaluation (historical, `en-phonetic-v1`)
-The metric is exact agreement with the owner's single listed spelling per word. Those references are owner-verified
-loanword-list spellings, not independently reviewed under the phonetic policy, so the benchmark is **unqualified**.
-Correct-sounding variants count as wrong.
+## Evaluation
+| Test set | Words | Top answer matches the reference | Reference among the top 4 |
+|---|---|---|---|
+| English loanwords and names, reference spellings checked by the author | 165 | **16.7%** | 40.4% |
+| Same kind of words, spellings suggested by an LLM and spot-checked | 400 | 30.1% | 51.3% |
 
-| Track | Items | Exact match (raw beam-4 top-1, family macro) | Reference spelling among top 4 | Mean CER |
-|---|---|---|---|---|
-| Final primary | 165 (162 families) | 16.7% | 40.4% | 0.353 |
-| Final flagged (ambiguous / possible translation) | 26 | 19.2% | 38.5% | 0.315 |
-| Exploratory proxy (LLM spellings, owner spot check) | 400 | 30.1% | 51.3% | 0.343 |
-| Dev (selection, greedy) | 86 | 20.9% | — | — |
+How to read these numbers:
+- **Exact agreement with one spelling:** each word has a single reference spelling. A spelling that sounds right
+  but is written differently counts as wrong, so these numbers understate usefulness.
+- **Agreement, not accuracy:** the references were not independently reviewed. These numbers measure agreement
+  with those spellings, not phonetic accuracy, and they are not a general benchmark result.
+- **Run-to-run variation:** retraining with other random seeds gave 15.1% and 16.0% on the first test.
 
-- **Seed spread:** letters seeds 0/1/2 give 16.7 / 15.1 / 16.0% on the primary track.
-- **Phone-input models** were +1.65 points [−1.65, +4.94], not adopted.
-- **These numbers are not** phonetic accuracy, production validation or a general benchmark result.
-- **Report:** `experiments/E02-english-phonetic/FINAL_REPORT.md` in the source repository.
-
-## Requirements and cost
-- **Software:** Python ≥ 3.10, NumPy ≥ 2 (tested 2.2.6). CPU only. No network access is needed after installation.
-- **Measured** on an Intel Core i7-8750H laptop (12 logical CPUs), in a fresh process with sockets disabled
-  (`evidence/install_verify.json`):
+## Requirements and speed
+- **Software:** Python 3.10–3.12 and NumPy ≥ 2 (tested with 2.2.6). No GPU, no PyTorch and no network access are
+  needed after installation.
+- **Measured** on an Intel Core i7-8750H laptop, in a fresh process:
 
   | Measure | Value |
   |---|---|
   | Load time | 0.15 s |
-  | Single answer, one word at a time (p50 / p95) | 17 ms / 30 ms |
-  | Top-4 candidates (p50) | 19 ms |
+  | One word (median / 95th percentile) | 17 ms / 30 ms |
   | Batches of 16 | 13 ms per word |
-  | Peak RSS | 65 MiB |
+  | Peak memory | 65 MB |
 
 ## Limitations
-- One reference spelling per word, and no independent review: quality is unverified.
-- **Web-mined training pairs:**
-  - some are conventional or translated Khmer forms rather than sound renderings;
-  - names may follow their original language;
-  - vowel errors were not screened.
-- **One reading per word:** US-English readings are implicit. Ambiguous words (*record*, *live*) get one reading
-  chosen by the model.
+- **Unverified quality:** phonetic quality has not been independently checked.
+- **Pronunciation:** spellings follow a US English reading. Words with two pronunciations (*record*, *live*) get
+  one, chosen implicitly.
+- **Web-mined data:** some training spellings are conventional Khmer forms or translations rather than sound
+  renderings, and some names follow their original language. The model can reproduce these habits.
+- **Word length:** long words (9 letters or more) agree less often with the references.
 
-## Permissions and attribution
-Training text derives from Khmer Wikipedia (CC BY-SA 4.0 / GFDL) and FineWeb-2 (ODC-By 1.0, also subject to
-Common Crawl's Terms of Use).
+## Licence
+- **Model weights:** [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/). Non-commercial use
+  only, with attribution; share adaptations under the same licence. See `LICENSE`.
+- **`khmer-translit` package (the wheel):**
+  [PolyForm Noncommercial 1.0.0](https://polyformproject.org/licenses/noncommercial/1.0.0). The licence is included
+  in the wheel.
+- **Copyright:** 2026 Richard (khmer-transliterator project).
 
-- **Weights licence:** CC BY-NC-SA 4.0, chosen by the owner.
-- **Known risk:** if Wikipedia's ShareAlike condition reaches the weights, it would call for CC BY-SA, and an NC
-  licence would not satisfy that. Whether it does is unresolved, and the owner accepted that risk (D191).
-- **Also unresolved:** what rights in the underlying web pages imply.
-- **Attribution text** and the full source table are in `NOTICES.md`.
+## Data attribution
+Training pairs were mined from Khmer Wikipedia (dump of 2026-10-01; text available under CC BY-SA 4.0,
+https://km.wikipedia.org) and from FineWeb-2 (HuggingFaceFW/fineweb-2, `khm_Khmr`). Contains information from
+FineWeb-2, which is made available under the ODC Attribution License (ODC-By 1.0); its use is also subject to
+Common Crawl's Terms of Use. Data selection used the CMU Pronouncing Dictionary and the Google `language-resources`
+Khmer lexicon (CC BY 4.0, Copyright 2018 Google Inc.).
+
+Rights in the original web pages remain with their authors. The ODC-By licence covers the FineWeb-2 database, not
+the individual pages. Whether Wikipedia's ShareAlike condition applies to model weights is legally unsettled. If
+you represent a source and have concerns, please open a discussion on this repository.
