@@ -368,3 +368,9 @@ there (`git -C ../pocket-tts-khmer show archive/checkpoints-p0-p6:state/DECISION
   E07 75% / E11 82% / E08 89%; disagreement 12 words 42% / 50% / 25%; no detectable model difference. Against the
   mined references, 20 of 38 "wrong" spellings were acceptable and 7 of 29 "right" ones were not, so exact
   agreement with these references is a weak quality measure. Next: a reviewed reference set before further training.
+- **Update (owner review complete):** all 60 words judged. Acceptable greedy output: E07 29/60 (48%), E11 39/60
+  (65%), E08 38/60 (63%); representative 60 / 72.5 / 75%, disagreement 25 / 50 / 40%. Paired by word, E11 vs E07
+  14 vs 4 (exact sign test p = 0.031, post hoc), E11 vs E08 8 vs 7. 28 of 72 reference "misses" were acceptable and
+  8 of 37 reference matches were not. The registered class (reference agreement) stays **uncertain alternative**;
+  the owner's judgment favours E11 over E07 (one non-independent judge, dev words). Next: reviewed references
+  (acceptable/not on model outputs) as the scoring basis before further training.
