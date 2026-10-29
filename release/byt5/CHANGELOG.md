@@ -1,6 +1,9 @@
 # Changelog
 
 ## 0.2.0 (unreleased; local research preview, 2026-10-28)
+- **Checkpoint:** E08 `rs_s0`, kept by the E10 gate. The exploratory candidate A_s0 (word-level sampling, LR
+  2e-3) reached dev 55.4% vs 54.2%, +1.2 points against the required +3.0, so no replication was run. On eval it
+  was +0.6 [−4.5, +5.9], with CER not better.
 - **New backend:** `khmer_translit.byt5`, ByT5-small + LoRA, English word → Khmer phonetic spelling.
   - Optional extra: `pip install 'khmer-translit[byt5]'`.
   - The historical E02 NumPy model stays the default.

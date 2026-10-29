@@ -1,0 +1,41 @@
+{
+ "bundle": "dist/khmer-translit-byt5-0.2.0",
+ "archive": "dist/khmer-translit-byt5-0.2.0.tar.gz",
+ "archive_sha256": "16e5affe396d4d6b47bef98ab0ca1ce6dd6c2b2054355feeaa57ae61b09065ff",
+ "archive_bytes": 46654445,
+ "files": [
+  "BENCHMARK_CARD.md",
+  "CHANGELOG.md",
+  "DATA_PROVENANCE.md",
+  "LIMITATIONS.md",
+  "MODEL_CARD.md",
+  "NOTICES.md",
+  "README.md",
+  "REPRODUCE.md",
+  "adapter/adapter.safetensors",
+  "adapter/adapter_config.json",
+  "evidence/candidates_frozen.json",
+  "evidence/diagnosis.json",
+  "evidence/frozen.json",
+  "evidence/gate.json",
+  "evidence/input_manifest.jsonl",
+  "evidence/install_check.json",
+  "evidence/release_verify.json",
+  "evidence/results.json",
+  "evidence/review_manifest.json",
+  "huggingface/BENCHMARK_CARD.md",
+  "huggingface/DATA_PROVENANCE.md",
+  "huggingface/NOTICES.md",
+  "huggingface/README.md",
+  "huggingface/adapter.safetensors",
+  "huggingface/adapter_config.json",
+  "wheel/khmer_translit-0.2.0-py3-none-any.whl",
+  "wheel/khmer_translit-0.2.0.tar.gz"
+ ],
+ "wheels": [
+  ".gitignore",
+  "khmer_translit-0.2.0-py3-none-any.whl",
+  "khmer_translit-0.2.0.tar.gz"
+ ],
+ "excluded": "model binaries other than the adapter, base weights, restricted data (mined pairs, references, review key/batch), caches, secrets"
+}

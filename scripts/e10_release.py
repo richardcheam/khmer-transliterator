@@ -162,6 +162,7 @@ def bundle() -> dict:
         shutil.rmtree(DIST)
     DIST.mkdir(parents=True)
     wheels = build_wheel()
+    (DIST / "wheel" / ".gitignore").unlink(missing_ok=True)          # written by `uv build`, not a release file
     shutil.copytree(ADAPTER_OUT, DIST / "adapter")
     for p in sorted(RELEASE_DOCS.glob("*.md")):
         shutil.copy(p, DIST / p.name)
@@ -214,8 +215,22 @@ def install() -> dict:
         py = d / "venv" / "bin" / "python"
         r = run("uv", "pip", "install", "--offline", "--python", str(py), f"khmer-translit[byt5] @ {wheel.as_uri()}")
         out["install"] = {"returncode": r.returncode, "tail": (r.stderr or r.stdout)[-600:]}
+        out["byt5_extra_source"] = "resolved offline from uv's cache"
         if r.returncode:
-            return e10.e07.write_json(REPORTS / "install_check.json", out) and out
+            # uv's cache keeps torch's files but not the index metadata needed to resolve it offline, and fetching
+            # torch (1-3 GB) is out of budget. Install the wheel and its base dependency offline, and borrow only
+            # the extra's packages from the research environment through a .pth path entry. Such an entry
+            # does not run the research environment's own .pth hooks, so its editable khmer_translit stays out.
+            r = run("uv", "pip", "install", "--offline", "--python", str(py), wheel.as_uri())
+            out["install"] = {"returncode": r.returncode, "tail": (r.stderr or r.stdout)[-600:],
+                              "byt5_extra_offline": "unresolvable from uv's cache (index metadata missing)"}
+            if r.returncode:
+                return e10.e07.write_json(REPORTS / "install_check.json", out) and out
+            research = next((ROOT / ".venv" / "lib").glob("python3*/site-packages"))
+            site = next((d / "venv" / "lib").glob("python3*/site-packages"))
+            (site / "zz_research_deps.pth").write_text(f"{research}\n", encoding="utf-8")
+            out["byt5_extra_source"] = (f"torch/transformers/safetensors borrowed from {research.relative_to(ROOT)} "
+                                        "via a .pth path entry; khmer_translit itself from the wheel")
         cli = d / "venv" / "bin" / "khmer-translit"
         (d / "words.txt").write_text("\n".join(SMOKE + ["", "new york"]) + "\n", encoding="utf-8")
         t = time.perf_counter()
@@ -235,6 +250,7 @@ def install() -> dict:
                  "print(all(hasattr(t, f) for f in ('guess','guess_many','caps_reads_as_word','configure','word_tag',"
                  "'pick','load')), khmer_translit.__file__)")
         out["public_api_present"] = r4.stdout.strip()
+        out["imports_from_wheel"] = str(site) in r4.stdout if "site" in locals() else str(d) in r4.stdout
         out["downloads"] = {"hf_home_files": [str(p.relative_to(d)) for p in (d / "hf").rglob("*") if p.is_file()]
                             if (d / "hf").exists() else []}
         ref = json.loads((REPORTS / "release_verify.json").read_text())["smoke"]
@@ -242,7 +258,7 @@ def install() -> dict:
     out["ok"] = (out["install"]["returncode"] == 0 and out["cli"]["returncode"] == 1 and out["cli"]["rows"] == 10
                  and out["cli"]["statuses"][-2:] == ["empty", "unsupported_multiword"] and out["cli_top4"]["ok"]
                  and out["offline_without_base_or_cache"]["returncode"] == 2 and out["matches_repo_outputs"]
-                 and not out["downloads"]["hf_home_files"])
+                 and not out["downloads"]["hf_home_files"] and out["imports_from_wheel"])
     e10.set_state("install_check", "done" if out["ok"] else "failed")
     return e10.e07.write_json(REPORTS / "install_check.json", out) and out
 

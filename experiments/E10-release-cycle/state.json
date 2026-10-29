@@ -53,6 +53,25 @@
   "evaluate": {
    "status": "done",
    "updated": "2026-10-29T08:11:09+00:00"
+  },
+  "export": {
+   "status": "done",
+   "updated": "2026-10-29T08:11:51+00:00",
+   "adapter_sha256": "d514a51f1d31014f5100fa763ed1894c0c53782d1c581fdfdd938a7b164388f8",
+   "candidate": "e08"
+  },
+  "release_verify": {
+   "status": "done",
+   "updated": "2026-10-29T08:13:41+00:00"
+  },
+  "bundle": {
+   "status": "done",
+   "updated": "2026-10-29T08:17:28+00:00",
+   "archive_sha256": "16e5affe396d4d6b47bef98ab0ca1ce6dd6c2b2054355feeaa57ae61b09065ff"
+  },
+  "install_check": {
+   "status": "done",
+   "updated": "2026-10-29T08:16:02+00:00"
   }
  },
  "errors": [
@@ -62,5 +81,5 @@
    "error": "KeyError('word')"
   }
  ],
- "updated": "2026-10-29T08:11:09+00:00"
+ "updated": "2026-10-29T08:17:28+00:00"
 }

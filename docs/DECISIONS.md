@@ -261,3 +261,26 @@ there (`git -C ../pocket-tts-khmer show archive/checkpoints-p0-p6:state/DECISION
   recorded; no serving, training or release.
 - Report: `experiments/E09-byt5-decoding/REPORT.md`.
 
+
+## D188 — E10: bounded improvement attempt did not pass its gate; E08 packaged as a local ByT5 research preview (2026-10-29)
+- **Diagnosis:** E08 was under-trained (dev still rising at 3,000; train loss 0.147), and its exposure was skewed
+  towards multi-spelling words (46.6% of draws).
+- **Candidate:** one recipe, A (word-level sampling + LR 2e-3), frozen with its gate before training. A_s0: dev 55.4%
+  vs E08 54.2% (+1.2 [−3.2, +5.6]), CER 0.141 vs 0.151.
+- **Gate:** +3.0 points required, so it **failed**. No replication; E08 `rs_s0` kept as the release candidate.
+- **Historical eval** (frozen first, exploratory): A_s0 − E08 +0.6 [−4.5, +5.9], CER reduction −0.5 [−2.5, +1.6].
+  0 invalid, empty, repeated or truncated outputs.
+- **Confirmation set:** operational diagnostics only. The two models agree on only 28% of 120 fresh words.
+- **Independent review:** a blinded 60-word batch is prepared, not collected. One authoritative phonetic policy
+  (`docs/PHONETIC_POLICY.md`) with three evidence tracks, never pooled.
+- **Product:** `khmer_translit.byt5` and CLI `--backend byt5` (the E02 default is unchanged), extra `[byt5]`,
+  version 0.2.0.
+  - Greedy single answers and canonical-beam candidates; refusals, never truncation; no silent fallback.
+  - Base and adapter hashes are checked; offline use is supported.
+  - Public functions unchanged.
+- **Bundle:** `dist/khmer-translit-byt5-0.2.0/` (local), with checksums. Fresh-venv install verified; the torch
+  stack was borrowed, not installed offline.
+- **Publication blocked:** the Google AI Mode terms on the synthetic rows, CC BY-SA, and no code licence (owner).
+- **Compute:** training 5.39 h (one attempt), inference about 0.3 h, CPU only. Memory guard relaxed and threads set
+  to 12 for later runs at the owner's request.
+- Report: `experiments/E10-release-cycle/REPORT.md`.
