@@ -19,6 +19,8 @@ datasets:
 > **Research preview. Phonetic quality has not been independently validated. Reported exact-match results measure
 > agreement with the specified reference spellings.**
 
+Planned Hugging Face repository: `en-km-transliterator` (not uploaded yet).
+
 This is **E02** (`letters_s0`), a small model trained from scratch and run with NumPy. It is **not** the newer
 ByT5-based model (`khmer-translit-byt5`, E08/E10), which is a different architecture, a different training set and
 a separate bundle.
