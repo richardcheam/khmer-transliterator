@@ -23,7 +23,7 @@
    - the indirect Chhunneng influence through mining;
    - the LLM-suggested selection items.
 4. **Approve publication explicitly** (repository rule: no publishing without the owner's yes), including:
-   - repository name: **`en-km-transliterator`** (chosen 2026-10-29), i.e. `<hf-username>/en-km-transliterator`.
+   - repository name: **`en-km-phonetic-transliterator`** (chosen 2026-10-29), i.e. `<hf-username>/en-km-phonetic-transliterator`.
      Visibility: start private, check the card renders, then make it public;
    - whether `evidence/` (hashes, counts, model outputs on test words) is uploaded.
 5. **Optional but recommended:** an independent phonetic review of a sample, so the card can report more than

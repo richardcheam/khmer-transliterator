@@ -14,7 +14,7 @@ datasets:
 - HuggingFaceFW/fineweb-2
 ---
 
-# en-km-transliterator
+# en-km-phonetic-transliterator
 
 **English word → Khmer phonetic spelling.** Give the model one English word or name and it writes how the word
 *sounds* in Khmer script. It does not translate.
@@ -40,8 +40,8 @@ coffee   → ខូហ្វ៊ី      computer → កំពូទែរ      
 
 ## Quick start
 ```bash
-hf download <user>/en-km-transliterator --local-dir en-km-transliterator
-cd en-km-transliterator
+hf download <user>/en-km-phonetic-transliterator --local-dir en-km-phonetic-transliterator
+cd en-km-phonetic-transliterator
 python -m venv .venv && . .venv/bin/activate
 pip install khmer_translit-0.2.0-py3-none-any.whl          # installs khmer-translit + numpy only
 
