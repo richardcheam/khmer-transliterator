@@ -1,8 +1,8 @@
 """E13: pronunciation-guided adaptation of ByT5-small: owner-accepted difficult examples + the English reading as
 input + replay of the real-data pool R, starting from E11's adapter. One combined recipe, one seed-0 run.
 
-Every source is `word: <word>\\npronunciation: <CMUdict ARPAbet with stress | <no_pron>>` (lower-cased bytes by
-`e06_byt5.encode_src`). The reading comes from the pinned local CMUdict (`khmer_translit.phonetic_source`, first
+Every source is `<word>|<CMUdict ARPAbet with stress | <no_pron>>` (lower-cased bytes by `e06_byt5.encode_src`;
+amended before training from the labelled `word: …\\npronunciation: …` form, see `AMENDMENTS`). The reading comes from the pinned local CMUdict (`khmer_translit.phonetic_source`, first
 reading = the established default); a word without one gets `<no_pron>`. E11 stays the word-only baseline.
 
 Reuses `scripts/e07.py` (model, resumable loop, guard, budget), E09's cached generation, E10's review helpers,
@@ -94,7 +94,16 @@ COLL_PLAN = {"train": {"irregular": 40, "ordinary": 10, "names": 10},
              "dev": {"irregular": 20, "ordinary": 10, "names": 10}}
 CATEGORIES = ("ordinary", "irregular", "names")
 FEASIBLE = {"train_families_accepted": 30, "train_irregular_accepted": 20, "dev_families_accepted": 15}
-MIX = {"block_updates": 100, "batch": 32, "reviewed_share": 0.10, "mask_share": 0.10}
+MIX = {"block_updates": 100, "batch": 32, "reviewed_share": 0.10, "mask_share": 0.10}     # batch = effective batch
+AMENDMENTS = [  # before training, after the registered pipeline smoke failed (no training had started)
+    {"date": "2026-10-30", "what": "source format `word: <w>\\npronunciation: <p>` → `<w>|<p>` (same word and ARPAbet "
+     "reading with stress; only the 22-byte field labels removed)",
+     "why": "measured: labelled sources averaged 39 bytes (max 72); a 32-row batch peaked at 6.1 GB RSS and took "
+            "about 37 s per update (≈ 20 h for 2,000 updates, over the 6 h cap), and the smoke run was killed by the "
+            "system for lack of memory; the compact form averages 18 bytes (max 51)"},
+    {"date": "2026-10-30", "what": "micro-batches 2 × 16 with gradient accumulation (effective batch 32 unchanged)",
+     "why": "a 32-row compact batch still peaked at about 6.3 GB, at the 6.5 GB guard; e07.fit averages the two "
+            "equal-size micro-batch losses, so the update is the mean of the two halves' token-mean losses"}]
 TEST_BATCH_MAX_CANDIDATES = 150
 COMPARED = ("e13", "e11")
 SMOKE_UPDATES = 3
@@ -145,11 +154,11 @@ def source(word: str, phones: str | None) -> str:
 
     Examples:
         >>> source("yacht", "Y AA1 T")
-        'word: yacht\\npronunciation: Y AA1 T'
+        'yacht|Y AA1 T'
         >>> source("yacht", None)
-        'word: yacht\\npronunciation: <no_pron>'
+        'yacht|<no_pron>'
     """
-    s = f"word: {word}\npronunciation: {phones if phones else NO_PRON}"
+    s = f"{word}|{phones if phones else NO_PRON}"
     n = len(B.encode_src(s)) - 1
     if n > SRC_MAX_BYTES:
         raise ValueError(f"source of {word!r} has {n} bytes > {SRC_MAX_BYTES}")
@@ -680,11 +689,12 @@ def recipe() -> dict:
     base = e11.recipe()
     return {"adapter": base["adapter"], "base_dropout": base["base_dropout"], "optimizer": "AdamW", "lr": 3e-4,
             "betas": base["betas"], "weight_decay": base["weight_decay"], "grad_clip": base["grad_clip"],
-            "batch": 32, "grad_accumulation": 1, "warmup": 100, "schedule": "linear", "max_updates": 2000,
+            "batch": 16, "grad_accumulation": 2, "warmup": 100, "schedule": "linear", "max_updates": 2000,
             "max_hours": 6.0, "eval_at": list(EVAL_AT), "seed": 0,
             "init": {"adapter": "models/e11/r_s0/best.pt", "sha256": E11_BEST_SHA,
                      "note": "task adaptation from E11's verified adapter; fresh optimiser and scheduler"},
-            "input": "word: <word>\\npronunciation: <first CMUdict reading | <no_pron>>, lower-cased UTF-8 bytes + EOS",
+            "input": "<word>|<first CMUdict reading | <no_pron>>, lower-cased UTF-8 bytes + EOS",
+            "amendments": AMENDMENTS,
             "limits": {"src_max_bytes": SRC_MAX_BYTES, "tgt_max_bytes": TGT_MAX_BYTES, "over_limit": "refused"},
             "sampling": {**MIX, "R": "R's convention: successive seeded permutations of all optimisation rows "
                                      "(seed:order:k), consumed in order",
@@ -746,8 +756,11 @@ def exposure(cfg: dict, lay: dict, reviewed: list[dict]) -> dict:
     """Actual draw counts of the registered order over the whole run (by source, family, mask)."""
     order = make_order(lay, cfg["seed"])
     per = MIX["block_updates"] * MIX["batch"]
-    blocks = -(-cfg["max_updates"] * cfg["batch"] // per)
-    draws = [i for b in range(blocks) for i in order(b)][: cfg["max_updates"] * cfg["batch"]]
+    eff = cfg["batch"] * cfg["grad_accumulation"]
+    if eff != MIX["batch"]:
+        raise ValueError(f"effective batch {eff} differs from the sampling block's {MIX['batch']}")
+    blocks = -(-cfg["max_updates"] * eff // per)
+    draws = [i for b in range(blocks) for i in order(b)][: cfg["max_updates"] * eff]
     nR, nA = lay["nR"], lay["nA"]
     src = Counter("R" if i < 2 * nR else "reviewed" for i in draws)
     masked = sum((nR <= i < 2 * nR) or i >= 2 * nR + nA for i in draws)
@@ -833,6 +846,7 @@ def register() -> dict:
            "monitor": "historical dev (mined references, pronunciation input) at each checkpoint; never selects",
            "test": {"manifest_sha256": json.loads((TEST / "frozen.json").read_text())["sha256"],
                     "analysis": TEST_ANALYSIS},
+           "amendments": AMENDMENTS,
            "hypothesis": "a bounded combined hypothesis; the learning rate, mix and masking values are not claimed "
                          "optimal; no ablation in this experiment",
            "source_sha256": {f: e06.sha(ROOT / f) for f in files}, "base_sha256": B.BASE_SHA256,
@@ -920,7 +934,8 @@ def pipeline() -> dict:
     cfg, rows, lay, train_ds, dev_ds = registered_rows()
     chk = {}
     ex = rows[0][0]
-    chk["format"] = {"pass": ex.startswith("word: ") and "\npronunciation: " in ex, "example": ex,
+    chk["format"] = {"pass": ex.count("|") == 1 and ex.split("|")[1] in (NO_PRON, pron(ex.split("|")[0])["phones"]),
+                     "example": ex,
                      "yacht": source("yacht", pron("yacht")["phones"]), "missing": source("zzqxv", pron("zzqxv")["phones"])}
     chk["lookup"] = {"pass": pron("yacht")["phones"] == "Y AA1 T" and pron("zzqxv")["phones"] is None,
                      "R_without_cmudict": lay["r_no_pron"], "reviewed_reading_matches_lookup":
@@ -964,12 +979,14 @@ def pipeline() -> dict:
     times, grads = [], []
     guard = e07.Guard(limits=LIMITS)
     longest = sorted(range(len(rows)), key=lambda i: -len(rows[i][0]))[:32]
+    mb, acc = cfg["batch"], cfg["grad_accumulation"]
     for k in range(SMOKE_UPDATES):
         b = [rows[i] for i in (longest if k == 0 else blk[32 * k:32 * (k + 1)])]
         t = time.perf_counter()
-        ids, mask, labels = B.batch_tensors(b)
-        loss = m(input_ids=ids, attention_mask=mask, labels=labels).loss
-        loss.backward()
+        for j in range(acc):                         # as e07.fit: equal micro-batches, mean of their losses
+            ids, mask, labels = B.batch_tensors(b[j * mb:(j + 1) * mb])
+            loss = m(input_ids=ids, attention_mask=mask, labels=labels).loss / acc
+            loss.backward()
         grads.append(round(float(torch.nn.utils.clip_grad_norm_(params, cfg["grad_clip"])), 4))
         opt.step()
         opt.zero_grad()
@@ -979,13 +996,17 @@ def pipeline() -> dict:
     smoke_out = gen_sources(m, [s for s, _ in rows[2 * nR: 2 * nR + 8]])
     SMOKE.mkdir(parents=True, exist_ok=True)
     torch.save(B.lora_state(m), SMOKE / "smoke_adapter.pt")
-    chk["smoke"] = {"pass": all(g > 0 for g in grads) and changed == 4 and all(s == "ok" for _, s in smoke_out),
+    import resource
+    peak = resource.getrusage(resource.RUSAGE_SELF).ru_maxrss * 1024     # true process peak (Linux: KiB)
+    chk["smoke"] = {"pass": all(g > 0 for g in grads) and changed == 4 and all(s == "ok" for _, s in smoke_out)
+                    and peak < LIMITS["rss_max_bytes"], "process_peak_rss_mb": round(peak / 2 ** 20),
                     "updates": SMOKE_UPDATES, "grad_norms": grads, "params_changed_of_4": changed,
                     "seconds_per_update": times, "longest_batch_first": True,
                     "peak_rss_mb": round(guard.peak_rss / 2 ** 20), "generation_status": [s for _, s in smoke_out],
                     "saved": str((SMOKE / "smoke_adapter.pt").relative_to(ROOT)),
                     "e11_unchanged": e06.sha(E11_DIR / "best.pt") == E11_BEST_SHA,
-                    "estimated_training_hours": round(mean(times[1:]) * cfg["max_updates"] / 3600, 2)}
+                    "estimated_training_hours": round(mean(times[1:]) * cfg["max_updates"] / 3600, 2),
+                    "micro_batches": f"{acc} × {mb}"}
     chk["smoke"]["pass"] &= chk["smoke"]["e11_unchanged"]
     out = {"checked": e06.now(), "checks": chk, "ok": all(c["pass"] for c in chk.values()),
            "note": "a falling loss is not taken as evidence that the pronunciation is used (see mechanism)"}

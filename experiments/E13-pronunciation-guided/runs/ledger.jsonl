@@ -6,3 +6,5 @@
 {"time": "2026-10-30T10:14:53+00:00", "event": "step", "step": "import_collection", "seconds": 0.0}
 {"time": "2026-10-30T10:50:14+00:00", "event": "step", "step": "import_collection", "seconds": 0.0}
 {"time": "2026-10-30T10:50:26+00:00", "event": "step", "step": "register", "seconds": 1.6}
+{"time": "2026-10-30T11:01:10+00:00", "event": "step", "step": "register", "seconds": 1.6}
+{"time": "2026-10-30T11:01:59+00:00", "event": "step", "step": "pipeline", "seconds": 47.5}

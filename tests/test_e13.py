@@ -45,6 +45,19 @@ class TestE13(unittest.TestCase):
         self.assertTrue(rec["ambiguous"])
         self.assertEqual(rec["phones"], " ".join(e13.ps.cmudict()[0]["record"][0]))
 
+    def test_compact_source_and_accumulation(self):
+        # regression (amendment 1–2): labelled sources ran out of memory; the compact form keeps word + reading
+        self.assertEqual(e13.source("yacht", "Y AA1 T"), "yacht|Y AA1 T")
+        cfg = e13.recipe()
+        self.assertEqual((cfg["batch"], cfg["grad_accumulation"]), (16, 2))     # effective batch 32
+        r_rows = [(f"r{i}", "ក") for i in range(50)]
+        rev = [{"word": "abc", "pronunciation": "AE1 B K", "accepted": ["ខ"]}]
+        rows, lay = e13.row_sources(r_rows, rev)
+        small = {**cfg, "max_updates": 150}
+        self.assertEqual(e13.exposure(small, lay, rev)["draws_total"], 150 * 32)
+        with self.assertRaises(ValueError):
+            e13.exposure({**small, "grad_accumulation": 1}, lay, rev)
+
     def test_input_limits(self):
         e13.source("supercalifragilistic", "S UW2 P ER0 K AE2 L AH0 F R AE1 JH AH0 L IH2 S T IH0 K")
         with self.assertRaises(ValueError):

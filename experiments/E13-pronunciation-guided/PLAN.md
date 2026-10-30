@@ -39,10 +39,10 @@ A negative result here would add to that evidence, not overturn it.
 ## Input and pronunciation policy
 - **Task:** render the specified English pronunciation in readable Khmer script (`docs/PHONETIC_POLICY.md`,
   unchanged, sha256 `9847667e…`).
-- **Source format:** `word: <word>\npronunciation: <ARPAbet with stress>`. It is lower-cased by the existing byte
-  encoder, which is lossless for ARPAbet.
-  - Example: `word: yacht` / `pronunciation: Y AA1 T`.
-  - A word without a reading gets `pronunciation: <no_pron>`. Phones are never invented.
+- **Source format (amended before training, see below):** `<word>|<ARPAbet with stress>`, e.g. `yacht|Y AA1 T`.
+  It is lower-cased by the existing byte encoder, which is lossless for ARPAbet.
+  - A word without a reading gets `yacht|<no_pron>`. Phones are never invented.
+  - Registered first as `word: <word>\npronunciation: <…>`.
 - **Lookup:** the pinned local CMUdict (`data/src/cmudict/cmudict.dict`, sha256 `81917843…`) through
   `khmer_translit.phonetic_source.get_pronunciation`. The first reading is the established default (policy rule 1).
   No pronunciation model and no external API.
@@ -128,6 +128,25 @@ A negative result here would add to that evidence, not overturn it.
   E11's file.
 - **Defects:** a pipeline defect gets a focused regression test before training. A falling loss is not evidence
   that the pronunciation is used.
+
+## Amendments before training (registration re-frozen; no training had started)
+The first registered smoke run was killed by the system for lack of memory.
+
+| Measurement | Value |
+|---|---|
+| Labelled sources | mean 39 bytes, max 72; 22 bytes are the two field labels |
+| Labelled batch of 32 | 6.1 GB peak, about 37 s per update (≈ 20 h for 2,000 updates, over the 6 h cap) |
+| Compact sources | mean 18 bytes, max 51 |
+| Compact batch of 32 | about 6.3 GB peak, at the 6.5 GB guard; 10–17 s per update |
+
+1. **Format:** the field labels were dropped (`<word>|<reading>`). The same word and the same CMUdict reading with
+   stress are kept, so no information is lost.
+2. **Micro-batches:** 2 × 16 with gradient accumulation; the effective batch stays 32. `e07.fit` averages the two
+   equal-size halves.
+
+Nothing else changed: the learning rate, schedule, mix, masking, data and selection are as first registered. A
+regression test covers both changes. If the 6 h cap stops the run before 2,000 updates, the final state is eligible
+under the registered rule.
 
 ## Training and selection
 - **Compute:** CPU only, 6 threads, one process, one attempt.

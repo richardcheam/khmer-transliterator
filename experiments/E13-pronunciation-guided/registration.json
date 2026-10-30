@@ -1,5 +1,5 @@
 {
- "registered": "2026-10-30T10:50:26+00:00",
+ "registered": "2026-10-30T11:01:10+00:00",
  "experiment": "E13-pronunciation-guided",
  "run": "pron_s0",
  "recipe": {
@@ -21,8 +21,8 @@
   ],
   "weight_decay": 0.0,
   "grad_clip": 1.0,
-  "batch": 32,
-  "grad_accumulation": 1,
+  "batch": 16,
+  "grad_accumulation": 2,
   "warmup": 100,
   "schedule": "linear",
   "max_updates": 2000,
@@ -40,7 +40,19 @@
    "sha256": "286292a4f21131d0dd238d48919485192b0b0eb268d005bbc804d3ff78229713",
    "note": "task adaptation from E11's verified adapter; fresh optimiser and scheduler"
   },
-  "input": "word: <word>\\npronunciation: <first CMUdict reading | <no_pron>>, lower-cased UTF-8 bytes + EOS",
+  "input": "<word>|<first CMUdict reading | <no_pron>>, lower-cased UTF-8 bytes + EOS",
+  "amendments": [
+   {
+    "date": "2026-10-30",
+    "what": "source format `word: <w>\\npronunciation: <p>` → `<w>|<p>` (same word and ARPAbet reading with stress; only the 22-byte field labels removed)",
+    "why": "measured: labelled sources averaged 39 bytes (max 72); a 32-row batch peaked at 6.1 GB RSS and took about 37 s per update (≈ 20 h for 2,000 updates, over the 6 h cap), and the smoke run was killed by the system for lack of memory; the compact form averages 18 bytes (max 51)"
+   },
+   {
+    "date": "2026-10-30",
+    "what": "micro-batches 2 × 16 with gradient accumulation (effective batch 32 unchanged)",
+    "why": "a 32-row compact batch still peaked at about 6.3 GB, at the 6.5 GB guard; e07.fit averages the two equal-size micro-batch losses, so the update is the mean of the two halves' token-mean losses"
+   }
+  ],
   "limits": {
    "src_max_bytes": 192,
    "tgt_max_bytes": 120,
@@ -62,7 +74,7 @@
    "max_new_tokens": 121
   }
  },
- "cfg_hash": "d1e52dfae9e850aea5136f0e050c5eb8fbc22fe5b11fc6a31c058fa9d8a7b3e1",
+ "cfg_hash": "f60c0669e56c44f657cf7c34b6d3562608a330e2d3273f9d4a5523981ce4f1ba",
  "data": {
   "arm_R": {
    "sha256": "d00706cf1e16ccb81f9d367301d9a3fa637a46f79e2e8c8f0b2e501b57f8ec88",
@@ -78,7 +90,7 @@
    "families_with_accepted": 30,
    "sha256": "17538a09781a86dcc4c8f1605e51d769295d492351bd39123fdf1b459e1c27d4"
   },
-  "training_rows_hash": "bbd01f11cbf10280d94d6424e2f0fea576a7e4cbd8fa6b45c6e7322a26824938",
+  "training_rows_hash": "af9516971d2ef9baa0e9b8cb19623f14c3605df6cdde7a1dce05cdd576c9823b",
   "training_rows": 9640,
   "cmudict_sha256": "81917843c7f44ce2b094ac63873c2c7a4cf802040792c455ba3ca406891c3d22"
  },
@@ -165,9 +177,21 @@
    "isolation": "no test judgment enters training, recipe or checkpoint choice"
   }
  },
+ "amendments": [
+  {
+   "date": "2026-10-30",
+   "what": "source format `word: <w>\\npronunciation: <p>` → `<w>|<p>` (same word and ARPAbet reading with stress; only the 22-byte field labels removed)",
+   "why": "measured: labelled sources averaged 39 bytes (max 72); a 32-row batch peaked at 6.1 GB RSS and took about 37 s per update (≈ 20 h for 2,000 updates, over the 6 h cap), and the smoke run was killed by the system for lack of memory; the compact form averages 18 bytes (max 51)"
+  },
+  {
+   "date": "2026-10-30",
+   "what": "micro-batches 2 × 16 with gradient accumulation (effective batch 32 unchanged)",
+   "why": "a 32-row compact batch still peaked at about 6.3 GB, at the 6.5 GB guard; e07.fit averages the two equal-size micro-batch losses, so the update is the mean of the two halves' token-mean losses"
+  }
+ ],
  "hypothesis": "a bounded combined hypothesis; the learning rate, mix and masking values are not claimed optimal; no ablation in this experiment",
  "source_sha256": {
-  "scripts/e13.py": "81c7f0e85bf8d7f8f0250752ae0700729866f5f498bdf53b525fbb4bb01ad666",
+  "scripts/e13.py": "bb1209eae6fa9dcd8b6fa6874eacd452211b5e2b3f8d75702349ccf6adce3102",
   "scripts/e12.py": "61b0e8d8f6f0214b2317759107b115f9c30a19bebb168594ac39515d2d07547a",
   "scripts/e11.py": "f7a61d75ba7f096fbef3cc47f1401d96351d6c477133de7adfad13f6aa7fd67f",
   "scripts/e07.py": "ae06de993b8722379c46038be10ecfe46200ff829de9efb9e5f9ef08cbfbd05e",
@@ -177,7 +201,7 @@
   "scripts/e10.py": "68d757e6dd657b3a10b6878171f982dd0a1d726789a57f96a4e5f6d90e0f278f",
   "scripts/e12_review.py": "b75e6392d74566bac945f7e8762be0675ae603742428222345ae16607aa8647c",
   "src/khmer_translit/phonetic_source.py": "1bee3675b225bb3496fe901abc82d8380bef41120b8c610bf77346c4cb13e322",
-  "experiments/E13-pronunciation-guided/PLAN.md": "2002aa98f36704748e15148503499c5ad4a841b3d0dd3ef4fb12f75b575ab0c8",
+  "experiments/E13-pronunciation-guided/PLAN.md": "f1bd05ece6b333b22fb737a4bba8e8b8e931649627864a38959c8ec5e4674339",
   "research/requirements-byt5.txt": "f0010e42f369dfa570236e6d9cae5c212467fa7c8cdda3638d81b60ddc171918",
   "research/requirements-byt5.lock.txt": "86bbd43732b3898c820510871d7c3029d3f1a1a1123621006121cfa02aa54911",
   "docs/PHONETIC_POLICY.md": "9847667eeaed3470077a28e54fdcf5584c3f2305a503ce14f88528882b4b963c"

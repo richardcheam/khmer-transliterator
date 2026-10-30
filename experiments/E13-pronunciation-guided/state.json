@@ -24,10 +24,14 @@
   },
   "register": {
    "status": "done",
-   "updated": "2026-10-30T10:50:26+00:00",
-   "cfg_hash": "d1e52dfae9e850aea5136f0e050c5eb8fbc22fe5b11fc6a31c058fa9d8a7b3e1"
+   "updated": "2026-10-30T11:01:10+00:00",
+   "cfg_hash": "f60c0669e56c44f657cf7c34b6d3562608a330e2d3273f9d4a5523981ce4f1ba"
+  },
+  "pipeline": {
+   "status": "done",
+   "updated": "2026-10-30T11:01:59+00:00"
   }
  },
  "errors": [],
- "updated": "2026-10-30T10:50:26+00:00"
+ "updated": "2026-10-30T11:01:59+00:00"
 }
