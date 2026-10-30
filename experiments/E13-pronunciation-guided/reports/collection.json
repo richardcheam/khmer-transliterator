@@ -1,0 +1,163 @@
+{
+ "imported": "2026-10-30T10:50:14+00:00",
+ "provenance": {
+  "judge": "Richard",
+  "started": "2026-10-30T10:14:50+00:00",
+  "tool": "scripts/e12_review.py (local page, click answers)",
+  "policy": "docs/PHONETIC_POLICY.md; explicit acceptable / not_acceptable / uncertain per spelling",
+  "policy_sha256": "9847667eeaed3470077a28e54fdcf5584c3f2305a503ce14f88528882b4b963c",
+  "set": "E13 collection review",
+  "timestamps": "every click in review_log.jsonl (UTC)",
+  "blinded": true,
+  "independent": false,
+  "note": "the owner judged each spelling on the page; nothing typed or filled in by an agent"
+ },
+ "judgment_files_sha256": {
+  "judgments_1.tsv": "f33de21bfb15aecc9017b597ecfcbc1093601a272303c09e051cca953995cd88"
+ },
+ "judge": "the owner: a single, project-affiliated judge (not independent)",
+ "judgments": {
+  "acceptable": 92,
+  "not_acceptable": 100,
+  "uncertain": 8
+ },
+ "by_origin": {
+  "beam_alt": {
+   "acceptable": 40,
+   "not_acceptable": 56,
+   "uncertain": 4
+  },
+  "greedy": {
+   "acceptable": 52,
+   "not_acceptable": 44,
+   "uncertain": 4
+  }
+ },
+ "datasets": {
+  "train": {
+   "families": 60,
+   "label_status": {
+    "accepted": 42,
+    "none_acceptable": 16,
+    "uncertain_only": 2
+   },
+   "accepted_spellings": 56,
+   "families_with_two_accepted": 14,
+   "by_category": {
+    "ordinary": {
+     "families": 10,
+     "accepted": 9
+    },
+    "irregular": {
+     "families": 40,
+     "accepted": 23
+    },
+    "names": {
+     "families": 10,
+     "accepted": 10
+    }
+   },
+   "irregular_by_pattern": {
+    "silent_letter": {
+     "families": 7,
+     "accepted": 2
+    },
+    "unusual_vowel": {
+     "families": 7,
+     "accepted": 3
+    },
+    "consonant_digraph": {
+     "families": 6,
+     "accepted": 3
+    },
+    "spelling_dependent_consonant": {
+     "families": 7,
+     "accepted": 6
+    },
+    "cluster_or_ending": {
+     "families": 7,
+     "accepted": 4
+    },
+    "other": {
+     "families": 6,
+     "accepted": 5
+    }
+   }
+  },
+  "dev": {
+   "families": 40,
+   "label_status": {
+    "accepted": 30,
+    "none_acceptable": 9,
+    "uncertain_only": 1
+   },
+   "accepted_spellings": 36,
+   "families_with_two_accepted": 6,
+   "by_category": {
+    "ordinary": {
+     "families": 10,
+     "accepted": 9
+    },
+    "irregular": {
+     "families": 20,
+     "accepted": 11
+    },
+    "names": {
+     "families": 10,
+     "accepted": 10
+    }
+   },
+   "irregular_by_pattern": {
+    "silent_letter": {
+     "families": 3,
+     "accepted": 1
+    },
+    "unusual_vowel": {
+     "families": 3,
+     "accepted": 2
+    },
+    "consonant_digraph": {
+     "families": 4,
+     "accepted": 1
+    },
+    "spelling_dependent_consonant": {
+     "families": 3,
+     "accepted": 2
+    },
+    "cluster_or_ending": {
+     "families": 3,
+     "accepted": 1
+    },
+    "other": {
+     "families": 4,
+     "accepted": 4
+    }
+   }
+  }
+ },
+ "datasets_sha256": {
+  "dev.jsonl": "17538a09781a86dcc4c8f1605e51d769295d492351bd39123fdf1b459e1c27d4",
+  "train.jsonl": "d9841c7efe5368658bcc682e4c57bb3ae4a79dce6b9efa3d7350ca2e81e2839b"
+ },
+ "rules": [
+  "accepted spellings are targets (all alternatives kept)",
+  "rejected spellings never become targets",
+  "uncertain spellings are quarantined",
+  "a family with no accepted spelling stays unlabelled (no invented target)",
+  "no mined spelling is deleted because a candidate was rejected",
+  "train and dev families stay separate"
+ ],
+ "feasibility": {
+  "required": {
+   "train_families_accepted": 30,
+   "train_irregular_accepted": 20,
+   "dev_families_accepted": 15
+  },
+  "got": {
+   "train_families_accepted": 42,
+   "train_irregular_accepted": 23,
+   "dev_families_accepted": 30
+  },
+  "pass": true
+ }
+}

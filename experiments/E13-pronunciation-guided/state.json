@@ -14,8 +14,20 @@
    "status": "awaiting_owner_collection_judgments",
    "updated": "2026-10-30T10:14:37+00:00",
    "items": 100
+  },
+  "import_collection": {
+   "status": "done",
+   "updated": "2026-10-30T10:50:14+00:00",
+   "train_families_accepted": 42,
+   "train_irregular_accepted": 23,
+   "dev_families_accepted": 30
+  },
+  "register": {
+   "status": "done",
+   "updated": "2026-10-30T10:50:26+00:00",
+   "cfg_hash": "d1e52dfae9e850aea5136f0e050c5eb8fbc22fe5b11fc6a31c058fa9d8a7b3e1"
   }
  },
  "errors": [],
- "updated": "2026-10-30T10:14:37+00:00"
+ "updated": "2026-10-30T10:50:26+00:00"
 }
