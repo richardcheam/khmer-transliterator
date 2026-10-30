@@ -1,0 +1,17 @@
+{
+ "created": "2026-10-30T17:11:36+00:00",
+ "items": 120,
+ "candidates": 169,
+ "single_candidate_items": 71,
+ "batches": 2,
+ "max_candidates_per_batch": 150,
+ "sha256": {
+  "origin_key.json": "132246e6ec5b4bddc33c68cbc32c6dee0085643241e1225d3d089e3493a6ec12",
+  "items.json": "b99cea4444419378fbeb5c63acad206a8d6a6025c8ef78e9f88fced98cd4fe60",
+  "batch_1.tsv": "3c4ed076218fd46949ac9916d5faa454ecdfac78218caf6e2d88c6bdb82d9c29",
+  "batch_1.md": "b659fc28b31e8781a6d26e7d5868006ae83d539370e9ec6882d93ac1af6b42e4",
+  "batch_2.tsv": "ac58656572d802214c07dcfb710f2a468a1f8066518069bc8eb186a0edfc3af4",
+  "batch_2.md": "9c9e40fa2b9fd8ab867dd22a3b4c0993cf2447486b5423fd30cbd19806f04290"
+ },
+ "blinding": "no model names, scores or references; labels seeded per item; separate origin key"
+}
