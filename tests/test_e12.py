@@ -143,6 +143,34 @@ class TestE12(unittest.TestCase):
             finally:
                 e12.TEST_DATA = old
 
+    def test_review_page_round_trip(self):
+        import e12_review
+        self.assertEqual(e12_review.JUDGMENTS, e12.e10.JUDGMENTS)
+        self.assertEqual(doctest.testmod(e12_review).failed, 0)
+        items = [{"item_id": "t1", "candidates": [{"label": "A", "text": "ក"}, {"label": "B", "text": "ខ"}]}]
+        with tempfile.TemporaryDirectory() as d:
+            d = Path(d)
+            (d / "batch_1.tsv").write_text("\t".join(e12_review.FIELDS) + "\n"
+                                           "t1\tx\tX\tA\tក\t\nt1\tx\tX\tB\tខ\t\n", encoding="utf-8")
+            (d / "origin_key.json").write_text('{"t1": {"origins": {"A": ["e12"], "B": ["e11"]}}}')
+            store = e12_review.Store(d, "tester")
+            self.assertNotIn("e12", json.dumps(store.state()))        # the page never sees the origin key
+            store.save("t1", "A", "acceptable")
+            with self.assertRaises(ValueError):
+                store.save("t1", "B", "ok")
+            old = e12.TEST_DATA
+            e12.TEST_DATA = d
+            try:
+                seen, prob = e12.read_test_judgments(items)
+                self.assertEqual(prob["missing"], ["t1:B"])           # unanswered stays missing
+                e12_review.Store(d, "tester").save("t1", "B", "uncertain")   # resume keeps A
+                seen, prob = e12.read_test_judgments(items)
+                self.assertEqual(seen, {("t1", "A"): "acceptable", ("t1", "B"): "uncertain"})
+                self.assertEqual(sum(map(len, prob.values())), 0)
+            finally:
+                e12.TEST_DATA = old
+            self.assertFalse(json.loads((d / "judgments.provenance.json").read_text())["independent"])
+
 
 if __name__ == "__main__":
     unittest.main()
