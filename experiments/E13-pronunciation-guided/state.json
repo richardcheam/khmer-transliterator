@@ -71,11 +71,11 @@
    "items": 120
   },
   "import": {
-   "status": "awaiting_owner_test_judgments",
-   "updated": "2026-10-30T17:11:39+00:00",
-   "detail": "awaiting"
+   "status": "scored",
+   "updated": "2026-10-30T23:56:24+00:00",
+   "decision": "uncertain_change"
   }
  },
  "errors": [],
- "updated": "2026-10-30T17:11:39+00:00"
+ "updated": "2026-10-30T23:56:24+00:00"
 }

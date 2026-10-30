@@ -1,0 +1,244 @@
+{
+ "status": "scored",
+ "provenance": {
+  "judge": "Richard",
+  "started": "2026-10-30T17:13:23+00:00",
+  "tool": "scripts/e12_review.py (local page, click answers)",
+  "policy": "docs/PHONETIC_POLICY.md; explicit acceptable / not_acceptable / uncertain per spelling",
+  "policy_sha256": "9847667eeaed3470077a28e54fdcf5584c3f2305a503ce14f88528882b4b963c",
+  "set": "E13 test review",
+  "timestamps": "every click in review_log.jsonl (UTC)",
+  "blinded": true,
+  "independent": false,
+  "note": "the owner judged each spelling on the page; nothing typed or filled in by an agent"
+ },
+ "judgment_files_sha256": {
+  "judgments_1.tsv": "175ef5281d11ae3824cdd1dff44c40a2264a8df3da4356657534cfeae77a5cca",
+  "judgments_2.tsv": "15bd205c53ffb6bada4aed2df8fd268262d84a7e8b1671fee61e9ebaf2865f62"
+ },
+ "track": "single owner judge, blinded, not independent of the project",
+ "analysis": {
+  "n": 120,
+  "models": {
+   "a": "e13",
+   "b": "e11"
+  },
+  "counts": {
+   "e13": {
+    "acceptable": 90,
+    "not_acceptable": 29,
+    "uncertain": 1
+   },
+   "e11": {
+    "acceptable": 90,
+    "not_acceptable": 29,
+    "uncertain": 1
+   }
+  },
+  "confirmed_acceptable_share": {
+   "e13": 0.75,
+   "e11": 0.75
+  },
+  "uncertainty_rate": {
+   "e13": 0.0083,
+   "e11": 0.0083,
+   "any": 0.0083
+  },
+  "primary": {
+   "diff_pp": 0.0,
+   "ci95_pp": [
+    -7.5,
+    7.5
+   ],
+   "bootstrap": {
+    "n": 10000,
+    "seed": 20261027,
+    "unit": "family (one item each)"
+   }
+  },
+  "paired": {
+   "both": 79,
+   "a_only": 11,
+   "b_only": 11,
+   "neither": 19
+  },
+  "exact_test": {
+   "discordant_clear": [
+    11,
+    11
+   ],
+   "p_two_sided": 1.0
+  },
+  "sensitivity": {
+   "uncertain_as_acceptable": {
+    "diff_pp": 0.0,
+    "denominator": 120
+   },
+   "uncertain_excluded": {
+    "diff_pp": 0.0,
+    "denominator": 119
+   }
+  },
+  "interpretation": "a non-significant difference is not equivalence; subgroup differences are not confirmed findings; one non-independent judge; results hold for this declared sample and policy; the combined result does not identify which component caused it",
+  "secondary_groups": {
+   "ordinary": {
+    "n": 40,
+    "counts": {
+     "e13": {
+      "acceptable": 32,
+      "not_acceptable": 8
+     },
+     "e11": {
+      "acceptable": 34,
+      "not_acceptable": 6
+     }
+    },
+    "confirmed_acceptable_share": {
+     "e13": 0.8,
+     "e11": 0.85
+    },
+    "primary": {
+     "diff_pp": -5.0,
+     "ci95_pp": [
+      -22.5,
+      12.5
+     ],
+     "bootstrap": {
+      "n": 10000,
+      "seed": 20261027,
+      "unit": "family (one item each)"
+     }
+    },
+    "paired": {
+     "both": 27,
+     "a_only": 5,
+     "b_only": 7,
+     "neither": 1
+    },
+    "exact_test": {
+     "discordant_clear": [
+      5,
+      7
+     ],
+     "p_two_sided": 0.7744
+    }
+   },
+   "irregular": {
+    "n": 40,
+    "counts": {
+     "e13": {
+      "acceptable": 21,
+      "not_acceptable": 19
+     },
+     "e11": {
+      "not_acceptable": 20,
+      "acceptable": 20
+     }
+    },
+    "confirmed_acceptable_share": {
+     "e13": 0.525,
+     "e11": 0.5
+    },
+    "primary": {
+     "diff_pp": 2.5,
+     "ci95_pp": [
+      -10.0,
+      15.0
+     ],
+     "bootstrap": {
+      "n": 10000,
+      "seed": 20261027,
+      "unit": "family (one item each)"
+     }
+    },
+    "paired": {
+     "both": 17,
+     "a_only": 4,
+     "b_only": 3,
+     "neither": 16
+    },
+    "exact_test": {
+     "discordant_clear": [
+      4,
+      3
+     ],
+     "p_two_sided": 1.0
+    }
+   },
+   "names": {
+    "n": 40,
+    "counts": {
+     "e13": {
+      "acceptable": 37,
+      "uncertain": 1,
+      "not_acceptable": 2
+     },
+     "e11": {
+      "acceptable": 36,
+      "uncertain": 1,
+      "not_acceptable": 3
+     }
+    },
+    "confirmed_acceptable_share": {
+     "e13": 0.925,
+     "e11": 0.9
+    },
+    "primary": {
+     "diff_pp": 2.5,
+     "ci95_pp": [
+      -5.0,
+      10.0
+     ],
+     "bootstrap": {
+      "n": 10000,
+      "seed": 20261027,
+      "unit": "family (one item each)"
+     }
+    },
+    "paired": {
+     "both": 35,
+     "a_only": 2,
+     "b_only": 1,
+     "neither": 2
+    },
+    "exact_test": {
+     "discordant_clear": [
+      2,
+      1
+     ],
+     "p_two_sided": 1.0
+    }
+   }
+  },
+  "decision": {
+   "class": "uncertain_change",
+   "trade_off_groups": []
+  }
+ },
+ "missing_pronunciation_behaviour": {
+  "collection_dev": {
+   "correct": {
+    "cer": 0.0849,
+    "exact": 0.5667,
+    "n": 30
+   },
+   "missing": {
+    "cer": 0.1057,
+    "exact": 0.4667,
+    "n": 30
+   }
+  },
+  "historical_dev": {
+   "correct": {
+    "cer": 0.1651,
+    "exact": 0.5494,
+    "n": 253
+   },
+   "missing": {
+    "cer": 0.167,
+    "exact": 0.5494,
+    "n": 253
+   }
+  }
+ }
+}

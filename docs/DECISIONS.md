@@ -392,3 +392,17 @@ there (`git -C ../pocket-tts-khmer show archive/checkpoints-p0-p6:state/DECISION
   length.
 - Nothing published, packaged, served, merged or tagged; no second seed. Report:
   `experiments/E12-longer-schedule/REPORT.md`.
+
+## D196 — E13: pronunciation-guided ByT5-small (word + CMUdict reading, owner-accepted difficult words, R replay) gives no detectable gain over E11 (2026-10-31)
+- **Change (one combination, no ablations):** input `word|ARPAbet` (first CMUdict reading; `<no_pron>` if none);
+  init from E11; 90% R replay / 10% owner-accepted spellings (42 train families, 23 irregular); 10% reading masked;
+  lr 3e-4, 2,000 updates. Amendment before training: compact source + 2×16 micro-batches (memory).
+- **Run:** stopped on the 6 h cap at update 1,969; the registered rule (collection-dev CER) picked update 800
+  (CER 0.085 vs E11 0.125; checkpoint `e32cd817…`), frozen before test generation.
+- **Historical (exploratory):** dev +1.6 [−2.4, +5.6], eval −1.3 [−4.8, +2.3].
+- **Mechanism:** removing the reading changes 7–10% of outputs, a wrong reading 8–15%. The reading is used only weakly,
+  in line with E02–E05.
+- **Primary test (owner, blinded, 120 fresh families):** E13 90/120 = E11 90/120 (75.0%), 0.0 [−7.5, +7.5],
+  11 vs 11 discordant, p = 1.0. Groups: ordinary 32 vs 34, irregular 21 vs 20, names 37 vs 36 (exploratory).
+- **Decision:** uncertain change; not adopted; no second seed. The cause cannot be separated from the combination.
+  Nothing published, packaged, served, merged or tagged. Report: `experiments/E13-pronunciation-guided/REPORT.md`.
