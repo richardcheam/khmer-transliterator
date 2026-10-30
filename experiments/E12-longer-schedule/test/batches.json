@@ -1,0 +1,30 @@
+{
+ "created": "2026-10-30T02:44:26+00:00",
+ "items": 120,
+ "batches": 4,
+ "per_batch": 30,
+ "candidates": 185,
+ "single_candidate_items": 55,
+ "judgments": [
+  "acceptable",
+  "not_acceptable",
+  "uncertain"
+ ],
+ "local_files": "data/e12/test",
+ "fill_in": "copy batch_<n>.tsv to judgments_<n>.tsv and fill the judgment column, with judgments.provenance.json beside them",
+ "sha256": {
+  "batch_1.md": "a95314535125bca8fa3bf7f07312add035eec355675cbc0ebbb8679760b9b331",
+  "batch_1.tsv": "9e19053ec73a2c5a86d2fbcda7c2fdfb20e13e256129e7b5ffb23ccecb8fda7b",
+  "batch_2.md": "c327abd7d91a581deccaa897233a9dc71a3e305f218f4ce37b626f4f8fbd4177",
+  "batch_2.tsv": "3e2a12184f86894f2457604e1214413d289bf2b8898aa62168963bf77fe09b14",
+  "batch_3.md": "acaacc9404090021daea181e8cd693e836476a25cdaae5acbf23049ea021d115",
+  "batch_3.tsv": "ff66009f633521362bbe465a4617e19f9e7e5dd2377143dfcf26b5e57bdfb57a",
+  "batch_4.md": "cf7e33195dabc19e9da74dc333a1c9c855104b35cc1f497cd41f8c4306bdccd6",
+  "batch_4.tsv": "11572c355a30bd20e11d6cdaf8b18324875d86c079adc5f99e53193fb1f9bfbb",
+  "origin_key.json": "fbbe5c6e5b090963f234ff6957e9d54d73bb461b2931a14dcebb772cf679551e",
+  "predictions_e11.jsonl": "d17e26e80d9d7b2cf0707a892e380cca047fc78886bbff8a0632a66b228cda22",
+  "predictions_e12.jsonl": "03baa2a7be4c397bd0c2fa2c541532b4aa96504278e47a776c41c72294e1a279",
+  "test_items.json": "bdd4dedcdda3143b9e6bf92da18794359df2802aabef02aa7bb15b9012d89b79"
+ },
+ "blinding": "no model names, scores or reference spellings in the batches; labels seeded per item; the origin key is a separate local file read only by `import`"
+}

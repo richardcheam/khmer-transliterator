@@ -35,8 +35,25 @@
    "status": "done",
    "updated": "2026-10-30T02:43:20+00:00",
    "update": 6000
+  },
+  "evaluate": {
+   "status": "done",
+   "updated": "2026-10-30T02:43:40+00:00"
+  },
+  "testgen": {
+   "status": "done",
+   "updated": "2026-10-30T02:44:25+00:00"
+  },
+  "batches": {
+   "status": "awaiting_owner_test_judgments",
+   "updated": "2026-10-30T02:44:26+00:00",
+   "items": 120
+  },
+  "import": {
+   "status": "awaiting_owner_test_judgments",
+   "updated": "2026-10-30T02:44:28+00:00"
   }
  },
  "errors": [],
- "updated": "2026-10-30T02:43:20+00:00"
+ "updated": "2026-10-30T02:44:28+00:00"
 }
