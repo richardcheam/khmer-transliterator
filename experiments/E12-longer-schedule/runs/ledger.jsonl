@@ -4,3 +4,9 @@
 {"time": "2026-10-29T17:34:48+00:00", "event": "step", "step": "testset", "seconds": 5.3}
 {"time": "2026-10-29T17:35:25+00:00", "event": "step", "step": "testset", "seconds": 0.0}
 {"time": "2026-10-29T17:35:25+00:00", "event": "step", "step": "register", "seconds": 0.1}
+{"time": "2026-10-29T17:37:04+00:00", "event": "start", "run": "long_s0", "kind": "full", "cfg_hash": "a6159bed188529f4a693f3821035e06ec9e20e94e82c7ebdbc9fa5fa6e49b2d7", "data_hash": "5dd38022c60b0b24eb98cd66bccf1edf23dcc619f23b2c8208a1c2d2a07c1d61", "t": 1793295424.44453}
+{"time": "2026-10-30T02:42:09+00:00", "event": "segment", "run": "long_s0", "kind": "full", "hours": 9.0829, "updates_to": 6000, "stop": "max_updates", "t": 1793328129.897044}
+{"time": "2026-10-30T02:42:09+00:00", "event": "done", "run": "long_s0", "kind": "full", "stop": "max_updates", "updates": 6000, "t": 1793328129.9627318}
+{"time": "2026-10-30T02:43:01+00:00", "event": "generate", "model": "e12", "setting": "greedy", "split": "dev", "items": 276, "seconds": 18.4, "setting_hash": "9115a49738355ed024ea01dd69864d16346f72d6d44c61d9715253d14cac7bb9", "checkpoint_sha256": "566a673ea44a83f25ea758c4cc87d1a7dd79afff33e09b6720211a77a189982b", "data_hash": "6a0e76197c2d105bdf0c6e2db16df407c0912d7e1e29e3aad67bf58c69b8179d", "file": "e12_greedy_dev_ab2d5d8fb4310e7d.jsonl", "peak_rss_mb": 1967}
+{"time": "2026-10-30T02:43:19+00:00", "event": "generate", "model": "e12", "setting": "greedy", "split": "eval", "items": 245, "seconds": 17.8, "setting_hash": "9115a49738355ed024ea01dd69864d16346f72d6d44c61d9715253d14cac7bb9", "checkpoint_sha256": "566a673ea44a83f25ea758c4cc87d1a7dd79afff33e09b6720211a77a189982b", "data_hash": "c2f7c0fd35f2522b31659283dfb3289e5c90bbab3782c3e328902a5ee9e7c319", "file": "e12_greedy_eval_6e6a3a0c322e8f3e.jsonl", "peak_rss_mb": 1971}
+{"time": "2026-10-30T02:43:20+00:00", "event": "step", "step": "freeze", "seconds": 44.6}
