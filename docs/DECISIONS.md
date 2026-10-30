@@ -375,15 +375,20 @@ there (`git -C ../pocket-tts-khmer show archive/checkpoints-p0-p6:state/DECISION
   the owner's judgment favours E11 over E07 (one non-independent judge, dev words). Next: reviewed references
   (acceptable/not on model outputs) as the scoring basis before further training.
 
-## D195 — E12: longer schedule (6,000 updates) for ByT5-small; blinded test awaiting the owner (2026-10-30)
+## D195 — E12: longer schedule (6,000 updates) for ByT5-small gives no detectable gain over E11 (2026-10-30)
 - **Run:** E11's recipe with linear decay over 6,000 updates (fresh adapter on the pinned base, seed 0, arm R only,
   192,000 draws = 40.3 epochs), one attempt, 9.08 h CPU, no interruption. Registered before training (1f058f5).
 - **Selection (registered rule, dev CER first):** update 6,000 (dev CER 0.154, exact 55.0%; sha256 `566a673e…`),
   frozen with all predictions before scoring (11dc318).
 - **Historical diagnostics (mined references, exploratory):** E12 − E11 eval +0.7 [−4.1, +5.4], dev +2.0
   [−2.4, +6.4]; CER differences ≈ 0.3 points. No detectable change; item flips are mostly churn.
-- **Primary test (pending):** 120 fresh families frozen before training; greedy E12 and E11 outputs hashed; four
-  blinded batches (185 spellings) in `data/e12/test/` (local). State `awaiting_owner_test_judgments`; scoring by
-  `scripts/e12.py import` with the predeclared analysis. Skipped answers are missing, never accepted.
+- **Primary test (owner, blinded, 120 fresh families frozen before training, all 185 spellings judged explicitly):**
+  confirmed acceptable E12 77/120 (64.2%) = E11 77/120 (64.2%), difference 0.0 [−8.3, +8.3]; 14 vs 14 discordant
+  words, exact p = 1.0; sensitivity +0.8 / 0.0. **No detectable difference** (not shown equivalent; ±8 points
+  remain possible). Exploratory: irregular-spelling words weakest for both (E12 19/40, E11 14/40); names E11 36 vs
+  E12 31.
+- **Decision:** E12 is not adopted over E11; longer optimisation of this recipe on R is not the lever. No
+  replication. Next quality work should target the data (irregular spellings, reviewed references), not schedule
+  length.
 - Nothing published, packaged, served, merged or tagged; no second seed. Report:
   `experiments/E12-longer-schedule/REPORT.md`.

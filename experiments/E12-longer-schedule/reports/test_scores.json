@@ -1,0 +1,86 @@
+{
+ "status": "scored",
+ "provenance": {
+  "judge": "Richard",
+  "started": "2026-10-30T09:17:48+00:00",
+  "tool": "scripts/e12_review.py (local page, click answers)",
+  "policy": "docs/PHONETIC_POLICY.md; explicit acceptable / not_acceptable / uncertain per spelling",
+  "blinded": true,
+  "independent": false,
+  "note": "the owner judged each spelling on the page; nothing typed or filled in by an agent"
+ },
+ "items_complete": 120,
+ "items": 120,
+ "candidates_missing": 0,
+ "judgment_files_sha256": {
+  "judgments_1.tsv": "35b4003f3aecfac019620a25df1e52730549534e90eadb4d0cda761bedb01152",
+  "judgments_2.tsv": "ab42a8a203ce7721eae7e01110dd57339a1d766e73e23d0acda8aa87c1be51da",
+  "judgments_3.tsv": "adda77028710f98e3c117e80398518f6acb1a3114252171da45e7fe5637a5512",
+  "judgments_4.tsv": "69b92b6ec7389563f13fe9350b391aaad7f965fc45d55e30b475cb79cfa5cd94"
+ },
+ "track": "single owner judge, blinded, not independent of the project",
+ "analysis": {
+  "n": 120,
+  "models": {
+   "a": "e12",
+   "b": "e11"
+  },
+  "counts": {
+   "e12": {
+    "not_acceptable": 39,
+    "acceptable": 77,
+    "uncertain": 4
+   },
+   "e11": {
+    "not_acceptable": 40,
+    "acceptable": 77,
+    "uncertain": 3
+   }
+  },
+  "confirmed_acceptable_share": {
+   "e12": 0.6417,
+   "e11": 0.6417
+  },
+  "uncertainty_rate": {
+   "e12": 0.0333,
+   "e11": 0.025,
+   "any": 0.0417
+  },
+  "primary": {
+   "diff_pp": 0.0,
+   "ci95_pp": [
+    -8.33,
+    8.33
+   ],
+   "bootstrap": {
+    "n": 10000,
+    "seed": 20261027,
+    "unit": "family (one item each)"
+   }
+  },
+  "paired": {
+   "both": 63,
+   "a_only": 14,
+   "b_only": 14,
+   "neither": 29
+  },
+  "exact_test": {
+   "discordant_clear": [
+    14,
+    14
+   ],
+   "p_two_sided": 1.0
+  },
+  "sensitivity": {
+   "uncertain_as_acceptable": {
+    "diff_pp": 0.83,
+    "denominator": 120
+   },
+   "uncertain_excluded": {
+    "diff_pp": 0.0,
+    "denominator": 115
+   }
+  },
+  "interpretation": "a non-significant difference is not equivalence; one non-independent judge; results hold for this sample and policy"
+ }
+}

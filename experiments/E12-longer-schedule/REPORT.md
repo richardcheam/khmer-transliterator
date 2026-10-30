@@ -1,14 +1,15 @@
 # E12 report: longer schedule for ByT5-small (6,000 updates) (2026-10-30)
 
-**State: `awaiting_owner_test_judgments`.** Training, selection, freezing, the historical diagnostics and the
-blinded test preparation are complete. The primary result (the owner's judgment on 120 fresh words) is not in yet.
+**Outcome: no detectable difference from E11.** On the blinded 120-word test the owner accepted exactly the same share
+of E12 and E11 spellings: 77/120 (64.2%) each, difference 0.0 points [−8.3, +8.3]; 14 words favour each model
+(exact p = 1.0). A non-significant difference is not equivalence: the interval allows about ±8 points either way.
 
 - **Run:** one run, seed 0, all 6,000 updates in 9.08 h of active CPU compute, one segment, no interruption.
 - **Selected:** update 6,000, by the registered rule (lowest dev CER 0.1542; also the highest dev exact, 55.0%).
 - **Historical dev (mined references, exploratory):** E12 55.0% vs E11 53.0% (+2.0 [−2.4, +6.4]), CER 0.154 vs 0.157.
 - **Historical eval (exploratory):** E12 53.0% vs E11 52.3% (+0.7 [−4.1, +5.4]), CER 0.160 vs 0.163. No
   detectable difference.
-- **Blinded test:** 120 words, 185 distinct spellings (55 words where both models agree), in four batches of 30.
+- **Blinded test (primary):** 120 fresh words, 185 spellings; owner-confirmed acceptable E12 64.2% vs E11 64.2%.
 - **Nothing was published, packaged, served, merged or tagged. No second run or seed was launched.**
 
 ## 1. Starting state and registration
@@ -80,7 +81,7 @@ already-judged spelling on 46 of 60 words: 36 acceptable, 9 not acceptable, 1 un
 **unknown**: new spellings that were never judged. Absence from the accepted set is not rejection. For comparison,
 E11 39 / 19 / 2 (fully covered). This cannot rank the models and was not used for selection.
 
-## 5. Blinded test (prepared; awaiting judgments)
+## 5. Blinded test
 - **Outputs** (`test/predictions.json`, hashes; files local in `data/e12/test/`): greedy E12 (`03baa2a7…`) and E11
   (`d17e26e8…`) on the 120 frozen inputs, identical processing. No empty, truncated or repeated output; 120
   distinct spellings each.
@@ -89,12 +90,53 @@ E11 39 / 19 / 2 (fully covered). This cannot rank the models and was not used fo
   Shown: word, CMUdict reading, spellings. Hidden: model identity, scores, references. The origin key
   (`origin_key.json`) is read only by the importer.
 - **How to answer:** `test/README.md`.
-- **Score:** `CUDA_VISIBLE_DEVICES= .venv/bin/python scripts/e12.py import`. It now reports
-  `awaiting_owner_test_judgments`. It rejects unknown ids, edited spellings, invalid values, conflicting duplicates
+- **Score:** `CUDA_VISIBLE_DEVICES= .venv/bin/python scripts/e12.py import`. It rejects unknown ids, edited spellings, invalid values, conflicting duplicates
   and blanks; it scores only when all 185 spellings have an explicit answer.
 - **Analysis (predeclared, `TEST_ANALYSIS`):** E12 − E11 confirmed-acceptable share on 120 items; counts,
   uncertainty rates, paired table, family bootstrap, exact McNemar on clear discordant pairs, two sensitivity
   analyses. A non-significant difference is not equivalence.
+
+### 5.1 Result (`reports/test_scores.json`, judgments local in `data/e12/test/`)
+- **Judging:** the owner, on the local review page (`scripts/e12_review.py`), 2026-10-30 09:20–09:39 UTC;
+  all 185 spellings answered explicitly (197 clicks including changes); single judge, blinded, not independent.
+  Judgment file hashes are in `test_scores.json`.
+
+| | E12 | E11 |
+|---|---|---|
+| Acceptable | 77 | 77 |
+| Not acceptable | 39 | 40 |
+| Uncertain | 4 | 3 |
+| **Confirmed-acceptable share (primary)** | **64.2%** | **64.2%** |
+
+- **Primary:** E12 − E11 = 0.0 points, family bootstrap 95% CI [−8.3, +8.3] (10,000, seed 20261027).
+- **Paired:** both acceptable 63, E12 only 14, E11 only 14, neither 29. Exact McNemar on 14 vs 14 clear
+  discordant pairs: p = 1.0.
+- **Sensitivity:** uncertain counted as acceptable +0.8 points (n = 120); items with any uncertain excluded 0.0
+  (n = 115). Uncertainty rate 4.2% of items.
+- **Agreement:** on the 55 words where both models wrote the same spelling, 50 were acceptable. On the 65 where they
+  differ, each model was acceptable on 27.
+
+**Exploratory breakdown (not predeclared; small cells, no test).** Acceptable E12 / E11:
+
+| Group | n | E12 | E11 |
+|---|---|---|---|
+| Ordinary | 40 | 27 | 27 |
+| Irregular spelling | 40 | 19 | 14 |
+| Names | 40 | 31 | 36 |
+| ≤ 4 letters | 32 | 24 | 28 |
+| 5–8 letters | 42 | 30 | 27 |
+| ≥ 9 letters | 46 | 23 | 22 |
+
+The longer schedule may trade some names and short words for irregular words, but with 40 items per group these
+differences are within noise and were not tested.
+
+### 5.2 Reading
+- The longer schedule changed about half the spellings (65 of 120 differ) without changing how many are acceptable.
+  Together with the historical diagnostics (§4), there is no evidence that more optimisation of this recipe on R
+  improves quality. One seed; this does not rule out a small effect.
+- Irregular-spelling words are the weakest group for both models (35–48% acceptable), against 68% for ordinary words
+  and 78–90% for names.
+- No replication is recommended on this evidence: neither the predeclared result nor the diagnostics warrant it.
 
 ## 6. Limitations
 - One seed; dev-41-scale noise (about ±5 words per retrain) is comparable to every historical difference above.

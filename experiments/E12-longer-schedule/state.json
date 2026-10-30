@@ -50,10 +50,10 @@
    "items": 120
   },
   "import": {
-   "status": "awaiting_owner_test_judgments",
-   "updated": "2026-10-30T02:44:28+00:00"
+   "status": "scored",
+   "updated": "2026-10-30T09:39:07+00:00"
   }
  },
  "errors": [],
- "updated": "2026-10-30T02:44:28+00:00"
+ "updated": "2026-10-30T09:39:07+00:00"
 }
