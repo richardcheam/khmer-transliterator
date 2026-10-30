@@ -1,0 +1,73 @@
+{
+ "frozen": "2026-10-30T10:11:03+00:00",
+ "sha256": "7a03c681e2cc642dd084da04bf7054bfaf6b91bd137bceef6a8887c1a1f71001",
+ "n": 120,
+ "cmudict_sha256": "81917843c7f44ce2b094ac63873c2c7a4cf802040792c455ba3ca406891c3d22",
+ "protected_counts": {
+  "e03_exclusions": 1312,
+  "e03_dev": 276,
+  "e03_eval": 245,
+  "e06_pool": 56,
+  "e06_discovery": 200,
+  "e05_review_queue": 56,
+  "e06_review_queue": 56,
+  "input_only_panels_and_reserve": 2866,
+  "words": 4502,
+  "stems": 5674
+ },
+ "pool": {
+  "names": 1616,
+  "irregular": 1952,
+  "ordinary": 12347
+ },
+ "excluded": {
+  "no_cmudict_or_length": 23530,
+  "historical_family": 19499,
+  "protected_family": 4130,
+  "ambiguous_reading": 2160,
+  "derived_name_form": 271,
+  "earlier_review_or_test_set": 444,
+  "training_family": 92,
+  "abbreviation_like": 6
+ },
+ "before_outputs": "frozen before any E13 candidate, training or test output; no model has been run on these words",
+ "readings": "the first CMUdict reading; words whose readings differ beyond stress (heteronyms) are excluded; names keep their English (CMUdict) reading",
+ "exclusions": [
+  "protected families (E03 dev/eval, E02 held-out, benchmark panels, reserve; Latin inputs only)",
+  "every historical Latin token (e06.historical_universe)",
+  "R and E08 inputs",
+  "E10 confirmation, E10/E11 review and E12 test words and families",
+  "romanised forms, abbreviations, ambiguous readings, derived name forms, offensive"
+ ],
+ "cross_set_family_overlap": 0,
+ "seed": "e13-test",
+ "per_category": {
+  "ordinary": 40,
+  "irregular": 40,
+  "names": 40
+ },
+ "notes": {
+  "names": {
+   "length_shortfall_filled_from_other_bins": {}
+  },
+  "irregular": {
+   "length_shortfall_filled_from_other_bins": {
+    "le4": 13
+   }
+  },
+  "ordinary": {
+   "length_shortfall_filled_from_other_bins": {}
+  }
+ },
+ "selection": "E12's balanced sampler (length quotas 13/14/13, vowel and cluster caps) per category",
+ "distribution": "declared balanced evaluation distribution (40 ordinary, 40 irregular, 40 names); not a sample of real usage",
+ "overlap_audit": {
+  "protected_family": 0,
+  "R_or_E08_word": 0,
+  "R_or_E08_family": 0,
+  "historical_dev_eval_word": 0,
+  "historical_family": 0,
+  "earlier_review_or_test_family": 0,
+  "duplicate_family_keys": 0
+ }
+}

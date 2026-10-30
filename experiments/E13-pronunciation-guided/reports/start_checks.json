@@ -1,0 +1,84 @@
+{
+ "checked": "2026-10-30T10:10:46+00:00",
+ "checks": {
+  "e11_checkpoint": {
+   "pass": true,
+   "sha256": "286292a4f21131d0dd238d48919485192b0b0eb268d005bbc804d3ff78229713",
+   "update": 3000
+  },
+  "e11_recipe": {
+   "pass": true,
+   "cfg_hash": "f5d7cf9230f15987c2252487cda366e80207a4a93f81c5da3795a7a300a3c3f6"
+  },
+  "base": {
+   "pass": true,
+   "revision": "68377bdc18a2ffec8a0533fef03b1c513a4dd49d",
+   "sha256": {
+    "pytorch_model.bin": "5c5aaf56299d6f2d4eaadad550a40765198828ead4d74f0a15f91cbe0961931a"
+   }
+  },
+  "arm_R": {
+   "pass": true,
+   "optimisation_rows": 4764,
+   "train_val_rows": 93,
+   "sha256": "d00706cf1e16ccb81f9d367301d9a3fa637a46f79e2e8c8f0b2e501b57f8ec88"
+  },
+  "cmudict": {
+   "pass": true,
+   "path": "data/src/cmudict/cmudict.dict",
+   "sha256": "81917843c7f44ce2b094ac63873c2c7a4cf802040792c455ba3ca406891c3d22",
+   "entries": 122422,
+   "yacht": {
+    "phones": "Y AA1 T",
+    "status": "dictionary",
+    "ambiguous": false,
+    "pron_id": "cmudict:yacht"
+   }
+  },
+  "policy": {
+   "pass": true,
+   "sha256": "9847667eeaed3470077a28e54fdcf5584c3f2305a503ce14f88528882b4b963c"
+  },
+  "decoding": {
+   "pass": true,
+   "greedy": {
+    "num_beams": 1,
+    "ret": 1,
+    "bs": 32
+   },
+   "canonical_beam": {
+    "num_beams": 4,
+    "ret": 4,
+    "length_penalty": 0.0,
+    "early_stopping": "never",
+    "bs": 16
+   },
+   "max_new_tokens": 121,
+   "do_sample": false,
+   "logits_processors": null
+  },
+  "protected": {
+   "pass": true,
+   "counts": {
+    "e03_exclusions": 1312,
+    "e03_dev": 276,
+    "e03_eval": 245,
+    "e06_pool": 56,
+    "e06_discovery": 200,
+    "e05_review_queue": 56,
+    "e06_review_queue": 56,
+    "input_only_panels_and_reserve": 2866,
+    "words": 4502,
+    "stems": 5674
+   },
+   "access": "Latin inputs only (e08.protected); no reserve target or E02 final reference opened"
+  },
+  "review_sets": {
+   "pass": true,
+   "e11_review_families": 60,
+   "e12_test_families": 120,
+   "in_R": 0
+  }
+ },
+ "ok": true
+}

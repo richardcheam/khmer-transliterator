@@ -1,0 +1,16 @@
+{
+ "phases": {
+  "verify": {
+   "status": "done",
+   "updated": "2026-10-30T10:10:46+00:00"
+  },
+  "inputs": {
+   "status": "done",
+   "updated": "2026-10-30T10:11:03+00:00",
+   "collection": 100,
+   "test": 120
+  }
+ },
+ "errors": [],
+ "updated": "2026-10-30T10:11:03+00:00"
+}
