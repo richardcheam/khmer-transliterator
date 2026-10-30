@@ -30,8 +30,30 @@
   "pipeline": {
    "status": "done",
    "updated": "2026-10-30T11:01:59+00:00"
+  },
+  "train": {
+   "status": "done",
+   "updated": "2026-10-30T17:03:53+00:00",
+   "stop": "time_limit",
+   "best": {
+    "key": [
+     -0.0849,
+     0.5667
+    ],
+    "update": 800,
+    "coll_dev_cer": 0.0849,
+    "coll_dev_exact": 0.5667,
+    "hist_dev_top1": 0.546,
+    "hist_dev_cer": 0.1651,
+    "elapsed_s": 8837.1
+   }
+  },
+  "freeze": {
+   "status": "done",
+   "updated": "2026-10-30T17:06:50+00:00",
+   "update": 800
   }
  },
  "errors": [],
- "updated": "2026-10-30T11:01:59+00:00"
+ "updated": "2026-10-30T17:06:50+00:00"
 }

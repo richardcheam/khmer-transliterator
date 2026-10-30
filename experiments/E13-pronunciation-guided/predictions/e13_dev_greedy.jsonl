@@ -1,0 +1,276 @@
+{"id": "acer#default", "word": "acer", "input": "acer|EY1 S ER0", "prediction": "អេស៊ើ", "status": "ok"}
+{"id": "action#default", "word": "action", "input": "action|AE1 K SH AH0 N", "prediction": "អាក់សិន", "status": "ok"}
+{"id": "aesop#default", "word": "aesop", "input": "aesop|IY1 S AA2 P", "prediction": "អេសុប", "status": "ok"}
+{"id": "akira#default", "word": "akira", "input": "akira|AH0 K IY1 R AH0", "prediction": "អាគីរ៉ា", "status": "ok"}
+{"id": "alain#default", "word": "alain", "input": "alain|AH0 L EY1 N", "prediction": "អាឡែន", "status": "ok"}
+{"id": "aline#default", "word": "aline", "input": "aline|AH0 L AY1 N", "prediction": "អាលីន", "status": "ok"}
+{"id": "amr#default", "word": "amr", "input": "amr|AA1 M ER0", "prediction": "អាម", "status": "ok"}
+{"id": "amsterdam#default", "word": "amsterdam", "input": "amsterdam|AE1 M S T ER0 D AE2 M", "prediction": "អាមស្ទើដាម", "status": "ok"}
+{"id": "amy#default", "word": "amy", "input": "amy|EY1 M IY0", "prediction": "អាមី", "status": "ok"}
+{"id": "angelina#default", "word": "angelina", "input": "angelina|AE0 N JH EH0 L IY1 N AH0", "prediction": "អាង់ហ្គេលីណា", "status": "ok"}
+{"id": "ant#default", "word": "ant", "input": "ant|AE1 N T", "prediction": "អេន", "status": "ok"}
+{"id": "anwar#default", "word": "anwar", "input": "anwar|AE1 N W AA0 R", "prediction": "អេនវ៉ា", "status": "ok"}
+{"id": "aquino#default", "word": "aquino", "input": "aquino|AH0 K IY1 N OW0", "prediction": "អាក្វីណូ", "status": "ok"}
+{"id": "arab#default", "word": "arab", "input": "arab|AE1 R AH0 B", "prediction": "អារ៉ាប់", "status": "ok"}
+{"id": "arabe#default", "word": "arabe", "input": "arabe|AA0 R AA1 B EY0", "prediction": "អារ៉ាបេ", "status": "ok"}
+{"id": "arabs#default", "word": "arabs", "input": "arabs|AE1 R AH0 B Z", "prediction": "អារ៉ាប់", "status": "ok"}
+{"id": "aragon#default", "word": "aragon", "input": "aragon|EH1 R AH0 G AA2 N", "prediction": "អារ៉ាហ្គន", "status": "ok"}
+{"id": "arnaud#default", "word": "arnaud", "input": "arnaud|AA0 R N OW1", "prediction": "អាណូដ", "status": "ok"}
+{"id": "asa#default", "word": "asa", "input": "asa|AA1 S AH0", "prediction": "អាសា", "status": "ok"}
+{"id": "asha#default", "word": "asha", "input": "asha|AA1 SH AH0", "prediction": "អាសា", "status": "ok"}
+{"id": "ashy#default", "word": "ashy", "input": "ashy|AE1 SH IY0", "prediction": "អាស៊ី", "status": "ok"}
+{"id": "ati#default", "word": "ati", "input": "ati|EY2 T IY2 AY1", "prediction": "អាទី", "status": "ok"}
+{"id": "ava#default", "word": "ava", "input": "ava|EY1 V AH0", "prediction": "អាវ៉ា", "status": "ok"}
+{"id": "avery#default", "word": "avery", "input": "avery|EY1 V ER0 IY0", "prediction": "អាវើរី", "status": "ok"}
+{"id": "avi#default", "word": "avi", "input": "avi|AA1 V IY2", "prediction": "អាវី", "status": "ok"}
+{"id": "bagdad#default", "word": "bagdad", "input": "bagdad|B AE1 G D AE0 D", "prediction": "បាក់ដាត", "status": "ok"}
+{"id": "bahrain#default", "word": "bahrain", "input": "bahrain|B AA0 R EY1 N", "prediction": "បារ៉េន", "status": "ok"}
+{"id": "bamboo#default", "word": "bamboo", "input": "bamboo|B AE0 M B UW1", "prediction": "បាំប៊ូ", "status": "ok"}
+{"id": "band#default", "word": "band", "input": "band|B AE1 N D", "prediction": "បាន", "status": "ok"}
+{"id": "barron#default", "word": "barron", "input": "barron|B AE1 R AH0 N", "prediction": "បារ៉ុន", "status": "ok"}
+{"id": "bashar#default", "word": "bashar", "input": "bashar|B AH0 SH AA1 R", "prediction": "បាសា", "status": "ok"}
+{"id": "bassett#default", "word": "bassett", "input": "bassett|B AE1 S IH0 T", "prediction": "បាសេត", "status": "ok"}
+{"id": "bee#default", "word": "bee", "input": "bee|B IY1", "prediction": "ប៊ី", "status": "ok"}
+{"id": "beijing#default", "word": "beijing", "input": "beijing|B EY2 ZH IH1 NG", "prediction": "ប៊ីជីង", "status": "ok"}
+{"id": "belgrade#default", "word": "belgrade", "input": "belgrade|B EH1 L G R EY0 D", "prediction": "ប៊ែលហ្គ្រេដ", "status": "ok"}
+{"id": "bella#default", "word": "bella", "input": "bella|B EH1 L AH0", "prediction": "បេឡា", "status": "ok"}
+{"id": "bhatti#default", "word": "bhatti", "input": "bhatti|B AA1 T IY0", "prediction": "បាទី", "status": "ok"}
+{"id": "biel#default", "word": "biel", "input": "biel|B IY1 L", "prediction": "បៀល", "status": "ok"}
+{"id": "bil#default", "word": "bil", "input": "bil|B IH1 L", "prediction": "ប៊ីល", "status": "ok"}
+{"id": "billy#default", "word": "billy", "input": "billy|B IH1 L IY0", "prediction": "ប៊ីលី", "status": "ok"}
+{"id": "boeing#default", "word": "boeing", "input": "boeing|B OW1 IH0 NG", "prediction": "ប៊ូង", "status": "ok"}
+{"id": "bolt#default", "word": "bolt", "input": "bolt|B OW1 L T", "prediction": "បូល", "status": "ok"}
+{"id": "booth#default", "word": "booth", "input": "booth|B UW1 TH", "prediction": "ប៊ូត", "status": "ok"}
+{"id": "boston#default", "word": "boston", "input": "boston|B AA1 S T AH0 N", "prediction": "បូស្តុន", "status": "ok"}
+{"id": "building#default", "word": "building", "input": "building|B IH1 L D IH0 NG", "prediction": "ប៊ូលឌីង", "status": "ok"}
+{"id": "bussi#default", "word": "bussi", "input": "bussi|B AH1 S IY0", "prediction": "ប៊ូស៊ី", "status": "ok"}
+{"id": "cali#default", "word": "cali", "input": "cali|K AA1 L IY0", "prediction": "កាលី", "status": "ok"}
+{"id": "cameroon#default", "word": "cameroon", "input": "cameroon|K AE1 M ER0 UW2 N", "prediction": "ខេមរូន", "status": "ok"}
+{"id": "cap#default", "word": "cap", "input": "cap|K AE1 P", "prediction": "ខាប", "status": "ok"}
+{"id": "cara#default", "word": "cara", "input": "cara|K EH1 R AH0", "prediction": "ការ៉ា", "status": "ok"}
+{"id": "carbohydrate#default", "word": "carbohydrate", "input": "carbohydrate|K AA2 R B OW0 HH AY1 D R EY2 T", "prediction": "ខាបូហ៊ីដ្រាត", "status": "ok"}
+{"id": "carbohydrates#default", "word": "carbohydrates", "input": "carbohydrates|K AA2 R B OW0 HH AY1 D R EY0 T S", "prediction": "ខាបូហ៊ីដ្រាត", "status": "ok"}
+{"id": "central#default", "word": "central", "input": "central|S EH1 N T R AH0 L", "prediction": "សេនត្រាល់", "status": "ok"}
+{"id": "chana#default", "word": "chana", "input": "chana|CH AE1 N AH0", "prediction": "ឆាណា", "status": "ok"}
+{"id": "chance#default", "word": "chance", "input": "chance|CH AE1 N S", "prediction": "ឆាន", "status": "ok"}
+{"id": "chanda#default", "word": "chanda", "input": "chanda|CH AE1 N D AH0", "prediction": "ឆានដា", "status": "ok"}
+{"id": "charle#default", "word": "charle", "input": "charle|CH AA1 R L", "prediction": "ឆាល", "status": "ok"}
+{"id": "chief#default", "word": "chief", "input": "chief|CH IY1 F", "prediction": "ឈីហ្វ", "status": "ok"}
+{"id": "chinh#default", "word": "chinh", "input": "chinh|CH IH1 N", "prediction": "ឈីន", "status": "ok"}
+{"id": "choe#default", "word": "choe", "input": "choe|CH OW1", "prediction": "ឆូ", "status": "ok"}
+{"id": "chrome#default", "word": "chrome", "input": "chrome|K R OW1 M", "prediction": "ក្រូម", "status": "ok"}
+{"id": "chrysler#default", "word": "chrysler", "input": "chrysler|K R AY1 S L ER0", "prediction": "គ្រីស្លឺ", "status": "ok"}
+{"id": "claudia#default", "word": "claudia", "input": "claudia|K L AO1 D IY0 AH0", "prediction": "ក្លូឌា", "status": "ok"}
+{"id": "clean#default", "word": "clean", "input": "clean|K L IY1 N", "prediction": "គ្លីន", "status": "ok"}
+{"id": "coach#default", "word": "coach", "input": "coach|K OW1 CH", "prediction": "ខូក", "status": "ok"}
+{"id": "colombia#default", "word": "colombia", "input": "colombia|K AH0 L AH1 M B IY0 AH0", "prediction": "កូឡុំប៊ី", "status": "ok"}
+{"id": "coons#default", "word": "coons", "input": "coons|K UW1 N Z", "prediction": "ឃូន", "status": "ok"}
+{"id": "corea#default", "word": "corea", "input": "corea|K AO0 R IY1 AH0", "prediction": "កូរៀ", "status": "ok"}
+{"id": "dairy#default", "word": "dairy", "input": "dairy|D EH1 R IY0", "prediction": "ដេរី", "status": "ok"}
+{"id": "dall#default", "word": "dall", "input": "dall|D AO1 L", "prediction": "ដាល", "status": "ok"}
+{"id": "darcy#default", "word": "darcy", "input": "darcy|D AA1 R S IY2", "prediction": "ដាស៊ី", "status": "ok"}
+{"id": "david#default", "word": "david", "input": "david|D EY1 V IH0 D", "prediction": "ដាវីត", "status": "ok"}
+{"id": "docs#default", "word": "docs", "input": "docs|D AA1 K S", "prediction": "ដុក", "status": "ok"}
+{"id": "dodo#default", "word": "dodo", "input": "dodo|D OW1 D OW0", "prediction": "ដូដូ", "status": "ok"}
+{"id": "doha#default", "word": "doha", "input": "doha|D OW1 HH AA2", "prediction": "ដូហា", "status": "ok"}
+{"id": "dominic#default", "word": "dominic", "input": "dominic|D AA1 M AH0 N IH0 K", "prediction": "ដូមីនិក", "status": "ok"}
+{"id": "dora#default", "word": "dora", "input": "dora|D AO1 R AH0", "prediction": "ដូរ៉ា", "status": "ok"}
+{"id": "du#default", "word": "du", "input": "du|D UW1", "prediction": "ឌូ", "status": "ok"}
+{"id": "dub#default", "word": "dub", "input": "dub|D AH1 B", "prediction": "ឌូប", "status": "ok"}
+{"id": "dynamics#default", "word": "dynamics", "input": "dynamics|D AY0 N AE1 M IH0 K S", "prediction": "ឌីណាមិច", "status": "ok"}
+{"id": "elena#default", "word": "elena", "input": "elena|EH1 L AH0 N AA0", "prediction": "អេឡេណា", "status": "ok"}
+{"id": "elissa#default", "word": "elissa", "input": "elissa|EH0 L IY1 S AH0", "prediction": "អេលីសា", "status": "ok"}
+{"id": "enrique#default", "word": "enrique", "input": "enrique|EH0 N R IY1 K EY0", "prediction": "អេនរិក", "status": "ok"}
+{"id": "esther#default", "word": "esther", "input": "esther|EH1 S T ER0", "prediction": "ស្ទើ", "status": "ok"}
+{"id": "evergreen#default", "word": "evergreen", "input": "evergreen|EH1 V ER0 G R IY2 N", "prediction": "អេវើហ្គ្រីន", "status": "ok"}
+{"id": "falcon#default", "word": "falcon", "input": "falcon|F AE1 L K AH0 N", "prediction": "ហ្វាល់កុន", "status": "ok"}
+{"id": "felipe#default", "word": "felipe", "input": "felipe|F AH0 L IY1 P", "prediction": "ហ្វេលីប", "status": "ok"}
+{"id": "fen#default", "word": "fen", "input": "fen|F EH1 N", "prediction": "ហ្វេន", "status": "ok"}
+{"id": "fong#default", "word": "fong", "input": "fong|F AO1 NG", "prediction": "ហ្វុង", "status": "ok"}
+{"id": "fu#default", "word": "fu", "input": "fu|F UW1", "prediction": "ហ្វូ", "status": "ok"}
+{"id": "garay#default", "word": "garay", "input": "garay|G AE1 R EY0", "prediction": "ហ្គារ៉េ", "status": "ok"}
+{"id": "gavin#default", "word": "gavin", "input": "gavin|G AE1 V IH0 N", "prediction": "ហ្គាវីន", "status": "ok"}
+{"id": "gay#default", "word": "gay", "input": "gay|G EY1", "prediction": "ហ្គេ", "status": "ok"}
+{"id": "geena#default", "word": "geena", "input": "geena|G IY1 N AH0", "prediction": "ជីណា", "status": "ok"}
+{"id": "giang#default", "word": "giang", "input": "giang|JH IY0 AA1 NG", "prediction": "ជាង", "status": "ok"}
+{"id": "gold#default", "word": "gold", "input": "gold|G OW1 L D", "prediction": "ហ្គល", "status": "ok"}
+{"id": "gonzales#default", "word": "gonzales", "input": "gonzales|G AA0 N Z AA1 L AH0 S", "prediction": "ហ្គនហ្សាល់", "status": "ok"}
+{"id": "gout#default", "word": "gout", "input": "gout|G AW1 T", "prediction": "ហ្គូត", "status": "ok"}
+{"id": "gray#default", "word": "gray", "input": "gray|G R EY1", "prediction": "ហ្គ្រេ", "status": "ok"}
+{"id": "greene#default", "word": "greene", "input": "greene|G R IY1 N", "prediction": "ហ្គ្រីន", "status": "ok"}
+{"id": "gregg#default", "word": "gregg", "input": "gregg|G R EH1 G", "prediction": "ហ្គ្រេក", "status": "ok"}
+{"id": "gregory#default", "word": "gregory", "input": "gregory|G R EH1 G ER0 IY0", "prediction": "ហ្គ្រីហ្គ័ររី", "status": "ok"}
+{"id": "ground#default", "word": "ground", "input": "ground|G R AW1 N D", "prediction": "ហ្គ្រុន", "status": "ok"}
+{"id": "gu#default", "word": "gu", "input": "gu|G UW1", "prediction": "ហ្គូ", "status": "ok"}
+{"id": "halifax#default", "word": "halifax", "input": "halifax|HH AE1 L IH0 F AE2 K S", "prediction": "ហាលីហ្វាក់", "status": "ok"}
+{"id": "hanna#default", "word": "hanna", "input": "hanna|HH AE1 N AH0", "prediction": "ហាណា", "status": "ok"}
+{"id": "hatch#default", "word": "hatch", "input": "hatch|HH AE1 CH", "prediction": "ហាច់", "status": "ok"}
+{"id": "hathaway#default", "word": "hathaway", "input": "hathaway|HH AE1 TH AH0 W EY2", "prediction": "ហាតាវ៉ៃ", "status": "ok"}
+{"id": "hausa#default", "word": "hausa", "input": "hausa|HH AW1 S AH0", "prediction": "ហូសា", "status": "ok"}
+{"id": "havard#default", "word": "havard", "input": "havard|HH AE1 V ER0 D", "prediction": "ហាវ៉ាដ", "status": "ok"}
+{"id": "hearn#default", "word": "hearn", "input": "hearn|HH ER1 N", "prediction": "ហៀន", "status": "ok"}
+{"id": "hebrew#default", "word": "hebrew", "input": "hebrew|HH IY1 B R UW0", "prediction": "ហេប្រូ", "status": "ok"}
+{"id": "herman#default", "word": "herman", "input": "herman|HH ER1 M AH0 N", "prediction": "ហឺមែន", "status": "ok"}
+{"id": "him#default", "word": "him", "input": "him|HH IH1 M", "prediction": "ហិម", "status": "ok"}
+{"id": "hole#default", "word": "hole", "input": "hole|HH OW1 L", "prediction": "ហូល", "status": "ok"}
+{"id": "holliday#default", "word": "holliday", "input": "holliday|HH AA1 L IH0 D EY2", "prediction": "ហូលីដេ", "status": "ok"}
+{"id": "holly#default", "word": "holly", "input": "holly|HH AA1 L IY0", "prediction": "ហូលី", "status": "ok"}
+{"id": "holy#default", "word": "holy", "input": "holy|HH OW1 L IY0", "prediction": "ហូលី", "status": "ok"}
+{"id": "hove#default", "word": "hove", "input": "hove|HH OW1 V", "prediction": "ហូវ", "status": "ok"}
+{"id": "hulme#default", "word": "hulme", "input": "hulme|HH AH1 L M", "prediction": "ហាលម", "status": "ok"}
+{"id": "hung#default", "word": "hung", "input": "hung|HH AH1 NG", "prediction": "ហុង", "status": "ok"}
+{"id": "hussain#default", "word": "hussain", "input": "hussain|HH UW0 S EY1 N", "prediction": "ហាស្សាន", "status": "ok"}
+{"id": "ido#default", "word": "ido", "input": "ido|IY1 D OW2", "prediction": "អ៊ីដូ", "status": "ok"}
+{"id": "im#default", "word": "im", "input": "im|AY1 M", "prediction": "អ៊ីម", "status": "ok"}
+{"id": "import#default", "word": "import", "input": "import|IH2 M P AO1 R T", "prediction": "អ៊ីមភត", "status": "ok"}
+{"id": "inter#default", "word": "inter", "input": "inter|IH2 N T ER1", "prediction": "អ៊ីនជើ", "status": "ok"}
+{"id": "jim#default", "word": "jim", "input": "jim|JH IH1 M", "prediction": "ជីម", "status": "ok"}
+{"id": "joanna#default", "word": "joanna", "input": "joanna|JH OW0 AE1 N AH0", "prediction": "ចូណា", "status": "ok"}
+{"id": "jock#default", "word": "jock", "input": "jock|JH AA1 K", "prediction": "ចក", "status": "ok"}
+{"id": "jody#default", "word": "jody", "input": "jody|JH OW1 D IY0", "prediction": "ចូឌី", "status": "ok"}
+{"id": "joon#default", "word": "joon", "input": "joon|JH UW1 N", "prediction": "ជូន", "status": "ok"}
+{"id": "june#default", "word": "june", "input": "june|JH UW1 N", "prediction": "ជូន", "status": "ok"}
+{"id": "kalla#default", "word": "kalla", "input": "kalla|K AE1 L AH0", "prediction": "កាឡា", "status": "ok"}
+{"id": "karel#default", "word": "karel", "input": "karel|K EH1 R AH0 L", "prediction": "ការែល", "status": "ok"}
+{"id": "katrina#default", "word": "katrina", "input": "katrina|K AH0 T R IY1 N AH0", "prediction": "កាទ្រីណា", "status": "ok"}
+{"id": "kent#default", "word": "kent", "input": "kent|K EH1 N T", "prediction": "ខេន", "status": "ok"}
+{"id": "ki#default", "word": "ki", "input": "ki|K IY1", "prediction": "ឃី", "status": "ok"}
+{"id": "kidd#default", "word": "kidd", "input": "kidd|K IH1 D", "prediction": "ឃីដ", "status": "ok"}
+{"id": "kin#default", "word": "kin", "input": "kin|K IH1 N", "prediction": "ឃីន", "status": "ok"}
+{"id": "klein#default", "word": "klein", "input": "klein|K L AY1 N", "prediction": "ក្លេន", "status": "ok"}
+{"id": "koala#default", "word": "koala", "input": "koala|K OW0 AA1 L AH0", "prediction": "កូឡា", "status": "ok"}
+{"id": "koran#default", "word": "koran", "input": "koran|K AO0 R AA1 N", "prediction": "កូរ៉ាន", "status": "ok"}
+{"id": "kwan#default", "word": "kwan", "input": "kwan|K W AA1 N", "prediction": "ក្វាន", "status": "ok"}
+{"id": "label#default", "word": "label", "input": "label|L EY1 B AH0 L", "prediction": "ឡាបែល", "status": "ok"}
+{"id": "lada#default", "word": "lada", "input": "lada|L AA1 D AH0", "prediction": "ឡាដា", "status": "ok"}
+{"id": "lamar#default", "word": "lamar", "input": "lamar|L AH0 M AA1 R", "prediction": "ឡាម៉ា", "status": "ok"}
+{"id": "lassen#default", "word": "lassen", "input": "lassen|L AE1 S AH0 N", "prediction": "ឡាសិន", "status": "ok"}
+{"id": "lauren#default", "word": "lauren", "input": "lauren|L AO1 R AH0 N", "prediction": "ឡូរ៉ែន", "status": "ok"}
+{"id": "le#default", "word": "le", "input": "le|L AH0", "prediction": "លេ", "status": "ok"}
+{"id": "leasing#default", "word": "leasing", "input": "leasing|L IY1 S IH0 NG", "prediction": "លីស៊ីង", "status": "ok"}
+{"id": "lee#default", "word": "lee", "input": "lee|L IY1", "prediction": "លី", "status": "ok"}
+{"id": "lenin#default", "word": "lenin", "input": "lenin|L EH1 N AH0 N", "prediction": "ឡេនីន", "status": "ok"}
+{"id": "levi#default", "word": "levi", "input": "levi|L IY1 V AY0", "prediction": "ឡេវី", "status": "ok"}
+{"id": "libby#default", "word": "libby", "input": "libby|L IH1 B IY2", "prediction": "លីប៊ី", "status": "ok"}
+{"id": "lili#default", "word": "lili", "input": "lili|L IH1 L IY0", "prediction": "លីលី", "status": "ok"}
+{"id": "linde#default", "word": "linde", "input": "linde|L IH1 N D", "prediction": "លីនដ៍", "status": "ok"}
+{"id": "lori#default", "word": "lori", "input": "lori|L AO1 R IY0", "prediction": "ឡូរី", "status": "ok"}
+{"id": "macao#default", "word": "macao", "input": "macao|M AH0 K AW1", "prediction": "ម៉ាកាវ", "status": "ok"}
+{"id": "mahdi#default", "word": "mahdi", "input": "mahdi|M AA1 D IY0", "prediction": "ម៉ាឌី", "status": "ok"}
+{"id": "mala#default", "word": "mala", "input": "mala|M AA1 L AH0", "prediction": "ម៉ាឡា", "status": "ok"}
+{"id": "mani#default", "word": "mani", "input": "mani|M AA1 N IY0", "prediction": "ម៉ានី", "status": "ok"}
+{"id": "march#default", "word": "march", "input": "march|M AA1 R CH", "prediction": "ម៉ាក", "status": "ok"}
+{"id": "marrow#default", "word": "marrow", "input": "marrow|M EH1 R OW0", "prediction": "ម៉ារ៉ូ", "status": "ok"}
+{"id": "martha#default", "word": "martha", "input": "martha|M AA1 R TH AH0", "prediction": "ម៉ាតា", "status": "ok"}
+{"id": "martie#default", "word": "martie", "input": "martie|M AA1 R T IY0", "prediction": "ម៉ារទី", "status": "ok"}
+{"id": "mecca#default", "word": "mecca", "input": "mecca|M EH1 K AH0", "prediction": "ម៉េកា", "status": "ok"}
+{"id": "mee#default", "word": "mee", "input": "mee|M IY1", "prediction": "មី", "status": "ok"}
+{"id": "mehdi#default", "word": "mehdi", "input": "mehdi|M EH1 D IY0", "prediction": "មេឌី", "status": "ok"}
+{"id": "mel#default", "word": "mel", "input": "mel|M EH1 L", "prediction": "មែល", "status": "ok"}
+{"id": "meth#default", "word": "meth", "input": "meth|M EH1 TH", "prediction": "មេត", "status": "ok"}
+{"id": "micronesia#default", "word": "micronesia", "input": "micronesia|M AY2 K R OW0 N IY1 ZH AH0", "prediction": "មីក្រូណេស៊ី", "status": "ok"}
+{"id": "moise#default", "word": "moise", "input": "moise|M OY1 Z", "prediction": "ម៉ូស", "status": "ok"}
+{"id": "mony#default", "word": "mony", "input": "mony|M OW1 N IY0", "prediction": "ម៉ូនី", "status": "ok"}
+{"id": "mora#default", "word": "mora", "input": "mora|M AO1 R AH0", "prediction": "ម៉ូរ៉ា", "status": "ok"}
+{"id": "mory#default", "word": "mory", "input": "mory|M AO1 R IY0", "prediction": "ម៉ូរី", "status": "ok"}
+{"id": "mosul#default", "word": "mosul", "input": "mosul|M OW1 S AH0 L", "prediction": "ម៉ូស៊ុល", "status": "ok"}
+{"id": "motel#default", "word": "motel", "input": "motel|M OW0 T EH1 L", "prediction": "ម៉ូតែល", "status": "ok"}
+{"id": "muhammad#default", "word": "muhammad", "input": "muhammad|M UH0 HH AA1 M AH0 D", "prediction": "មូហាំម៉ាដ", "status": "ok"}
+{"id": "nabi#default", "word": "nabi", "input": "nabi|N AA1 B IY2", "prediction": "ណាប៊ី", "status": "ok"}
+{"id": "nam#default", "word": "nam", "input": "nam|N AE1 M", "prediction": "ណាម", "status": "ok"}
+{"id": "narayan#default", "word": "narayan", "input": "narayan|N AA0 R AA1 Y AA0 N", "prediction": "ណារ៉ាយ៉ាន", "status": "ok"}
+{"id": "naro#default", "word": "naro", "input": "naro|N AA1 R OW0", "prediction": "ណារ៉ូ", "status": "ok"}
+{"id": "netanyahu#default", "word": "netanyahu", "input": "netanyahu|N EH2 T AH0 N Y AA1 HH UW2", "prediction": "ណេតានយ៉ាហ៊ូ", "status": "ok"}
+{"id": "nevada#default", "word": "nevada", "input": "nevada|N AH0 V AA1 D AH0", "prediction": "ណេវ៉ាដា", "status": "ok"}
+{"id": "nicole#default", "word": "nicole", "input": "nicole|N IH0 K OW1 L", "prediction": "នីកូល", "status": "ok"}
+{"id": "nicotine#default", "word": "nicotine", "input": "nicotine|N IH1 K AH0 T IY2 N", "prediction": "នីកូទីន", "status": "ok"}
+{"id": "niki#default", "word": "niki", "input": "niki|N IH1 K IY0", "prediction": "នីគី", "status": "ok"}
+{"id": "nora#default", "word": "nora", "input": "nora|N AO1 R AH0", "prediction": "ណូរ៉ា", "status": "ok"}
+{"id": "nun#default", "word": "nun", "input": "nun|N AH1 N", "prediction": "នុន", "status": "ok"}
+{"id": "phi#default", "word": "phi", "input": "phi|F AY1", "prediction": "ហ្វី", "status": "ok"}
+{"id": "ping#default", "word": "ping", "input": "ping|P IH1 NG", "prediction": "ភីង", "status": "ok"}
+{"id": "ponzi#default", "word": "ponzi", "input": "ponzi|P AA1 N Z IY0", "prediction": "ប៉ុនហ្ស៊ី", "status": "ok"}
+{"id": "pyongyang#default", "word": "pyongyang", "input": "pyongyang|P Y AO1 NG Y AE1 NG", "prediction": "ពុងហ្គ្យាំង", "status": "ok"}
+{"id": "quan#default", "word": "quan", "input": "quan|K W AO1 N", "prediction": "ក្វាន", "status": "ok"}
+{"id": "rafale#default", "word": "rafale", "input": "rafale|R AH0 F EY1 L", "prediction": "រ៉ាហ្វាល", "status": "ok"}
+{"id": "raj#default", "word": "raj", "input": "raj|R AA1 ZH", "prediction": "រ៉ាជេ", "status": "ok"}
+{"id": "ralph#default", "word": "ralph", "input": "ralph|R AE1 L F", "prediction": "រ៉ាល់", "status": "ok"}
+{"id": "rambo#default", "word": "rambo", "input": "rambo|R AE1 M B OW0", "prediction": "រ៉ាមបូ", "status": "ok"}
+{"id": "ranee#default", "word": "ranee", "input": "ranee|R AE1 N IY1", "prediction": "រ៉ានី", "status": "ok"}
+{"id": "ravi#default", "word": "ravi", "input": "ravi|R AA2 V IY1", "prediction": "រ៉ាវី", "status": "ok"}
+{"id": "realty#default", "word": "realty", "input": "realty|R IY1 AH0 L T IY2", "prediction": "រៀលស៊ី", "status": "ok"}
+{"id": "reine#default", "word": "reine", "input": "reine|R EY1 N", "prediction": "រ៉េន", "status": "ok"}
+{"id": "remi#default", "word": "remi", "input": "remi|R EH1 M IY0", "prediction": "រ៉េមី", "status": "ok"}
+{"id": "richie#default", "word": "richie", "input": "richie|R IH1 CH IY0", "prediction": "រីឈី", "status": "ok"}
+{"id": "rihanna#default", "word": "rihanna", "input": "rihanna|R IY2 HH AA1 N AH0", "prediction": "រីហាណា", "status": "ok"}
+{"id": "rio#default", "word": "rio", "input": "rio|R IY1 OW0", "prediction": "រីអូ", "status": "ok"}
+{"id": "rita#default", "word": "rita", "input": "rita|R IY1 T AH0", "prediction": "រីតា", "status": "ok"}
+{"id": "ritchie#default", "word": "ritchie", "input": "ritchie|R IH1 CH IY0", "prediction": "រីចស៊ី", "status": "ok"}
+{"id": "roi#default", "word": "roi", "input": "roi|R OY1", "prediction": "រ៉ូ", "status": "ok"}
+{"id": "roland#default", "word": "roland", "input": "roland|R OW1 L AH0 N D", "prediction": "រ៉ូឡាន", "status": "ok"}
+{"id": "ronaldo#default", "word": "ronaldo", "input": "ronaldo|R OW0 N AA1 L D OW0", "prediction": "រ៉ូណាល់ដូ", "status": "ok"}
+{"id": "rood#default", "word": "rood", "input": "rood|R UW1 D", "prediction": "រូដ", "status": "ok"}
+{"id": "rudy#default", "word": "rudy", "input": "rudy|R UW1 D IY0", "prediction": "រូឌី", "status": "ok"}
+{"id": "sabah#default", "word": "sabah", "input": "sabah|S AA1 B AH0", "prediction": "សាបា", "status": "ok"}
+{"id": "sacramento#default", "word": "sacramento", "input": "sacramento|S AE2 K R AH0 M EH1 N T OW0", "prediction": "សាក្រាមែនតូ", "status": "ok"}
+{"id": "saint#default", "word": "saint", "input": "saint|S EY1 N T", "prediction": "សាន", "status": "ok"}
+{"id": "sanaa#default", "word": "sanaa", "input": "sanaa|S AH0 N AA1", "prediction": "សាណា", "status": "ok"}
+{"id": "saran#default", "word": "saran", "input": "saran|S ER0 AE1 N", "prediction": "សារ៉ាន", "status": "ok"}
+{"id": "sars#default", "word": "sars", "input": "sars|S AA1 R Z", "prediction": "សាស", "status": "ok"}
+{"id": "saw#default", "word": "saw", "input": "saw|S AO1", "prediction": "សា", "status": "ok"}
+{"id": "schmidt#default", "word": "schmidt", "input": "schmidt|SH M IH1 T", "prediction": "ស្មីត", "status": "ok"}
+{"id": "seal#default", "word": "seal", "input": "seal|S IY1 L", "prediction": "សៀល", "status": "ok"}
+{"id": "seattle#default", "word": "seattle", "input": "seattle|S IY0 AE1 T AH0 L", "prediction": "ស៊ីតល", "status": "ok"}
+{"id": "seck#default", "word": "seck", "input": "seck|S EH1 K", "prediction": "សែក", "status": "ok"}
+{"id": "seely#default", "word": "seely", "input": "seely|S IY1 L IY0", "prediction": "ស៊ីលី", "status": "ok"}
+{"id": "seine#default", "word": "seine", "input": "seine|S EY1 N", "prediction": "សេន", "status": "ok"}
+{"id": "sha#default", "word": "sha", "input": "sha|SH AA1", "prediction": "សា", "status": "ok"}
+{"id": "shanghai#default", "word": "shanghai", "input": "shanghai|SH AE1 NG HH AY1", "prediction": "សាងហ្គេ", "status": "ok"}
+{"id": "shap#default", "word": "shap", "input": "shap|SH AE1 P", "prediction": "សាប", "status": "ok"}
+{"id": "shin#default", "word": "shin", "input": "shin|SH IH1 N", "prediction": "ស៊ីន", "status": "ok"}
+{"id": "shun#default", "word": "shun", "input": "shun|SH AH1 N", "prediction": "សុន", "status": "ok"}
+{"id": "skin#default", "word": "skin", "input": "skin|S K IH1 N", "prediction": "ស្គីន", "status": "ok"}
+{"id": "smart#default", "word": "smart", "input": "smart|S M AA1 R T", "prediction": "ស្មាត", "status": "ok"}
+{"id": "smyth#default", "word": "smyth", "input": "smyth|S M AY1 TH", "prediction": "ស្មីត", "status": "ok"}
+{"id": "snapchat#default", "word": "snapchat", "input": "snapchat|S N AE1 P CH AE2 T", "prediction": "ស្នាប់កាត", "status": "ok"}
+{"id": "snowden#default", "word": "snowden", "input": "snowden|S N OW1 D AH0 N", "prediction": "ស្នូដិន", "status": "ok"}
+{"id": "soma#default", "word": "soma", "input": "soma|S OW1 M AA0", "prediction": "សូម៉ា", "status": "ok"}
+{"id": "sonny#default", "word": "sonny", "input": "sonny|S AH1 N IY0", "prediction": "សូនី", "status": "ok"}
+{"id": "sophy#default", "word": "sophy", "input": "sophy|S OW1 F IY0", "prediction": "សូហ្វី", "status": "ok"}
+{"id": "sound#default", "word": "sound", "input": "sound|S AW1 N D", "prediction": "ស៊ុន", "status": "ok"}
+{"id": "sow#default", "word": "sow", "input": "sow|S AW1", "prediction": "សូ", "status": "ok"}
+{"id": "street#default", "word": "street", "input": "street|S T R IY1 T", "prediction": "ស្ទ្រីត", "status": "ok"}
+{"id": "suda#default", "word": "suda", "input": "suda|S UW1 D AH0", "prediction": "ស៊ូដា", "status": "ok"}
+{"id": "suharto#default", "word": "suharto", "input": "suharto|S UW0 HH AA1 R T OW0", "prediction": "ស៊ូហាតូ", "status": "ok"}
+{"id": "sully#default", "word": "sully", "input": "sully|S AH1 L IY0", "prediction": "ស៊ូលី", "status": "ok"}
+{"id": "susan#default", "word": "susan", "input": "susan|S UW1 Z AH0 N", "prediction": "ស៊ូសាន", "status": "ok"}
+{"id": "swensen#default", "word": "swensen", "input": "swensen|S W EH1 N S AH0 N", "prediction": "ស្វេនសិន", "status": "ok"}
+{"id": "sym#default", "word": "sym", "input": "sym|S IH1 M", "prediction": "ស៊ីម", "status": "ok"}
+{"id": "tarr#default", "word": "tarr", "input": "tarr|T AA1 R", "prediction": "ថារ", "status": "ok"}
+{"id": "tasmania#default", "word": "tasmania", "input": "tasmania|T AE2 Z M EY1 N IY0 AH0", "prediction": "តាស្មានី", "status": "ok"}
+{"id": "teng#default", "word": "teng", "input": "teng|T EH1 NG", "prediction": "តេង", "status": "ok"}
+{"id": "thieme#default", "word": "thieme", "input": "thieme|TH IY1 M", "prediction": "ធីម", "status": "ok"}
+{"id": "thornton#default", "word": "thornton", "input": "thornton|TH AO1 R N T AH0 N", "prediction": "ថនតុន", "status": "ok"}
+{"id": "tinto#default", "word": "tinto", "input": "tinto|T IH1 N T OW0", "prediction": "ទីនតូ", "status": "ok"}
+{"id": "titanium#default", "word": "titanium", "input": "titanium|T AY0 T EY1 N IY0 AH0 M", "prediction": "ទីតានីម", "status": "ok"}
+{"id": "torino#default", "word": "torino", "input": "torino|T AO0 R IY1 N OW0", "prediction": "តូរីណូ", "status": "ok"}
+{"id": "travel#default", "word": "travel", "input": "travel|T R AE1 V AH0 L", "prediction": "ត្រាវែល", "status": "ok"}
+{"id": "travels#default", "word": "travels", "input": "travels|T R AE1 V AH0 L Z", "prediction": "ត្រាវែល", "status": "ok"}
+{"id": "trevor#default", "word": "trevor", "input": "trevor|T R EH1 V ER0", "prediction": "ត្រេវើ", "status": "ok"}
+{"id": "vee#default", "word": "vee", "input": "vee|V IY1", "prediction": "វី", "status": "ok"}
+{"id": "view#default", "word": "view", "input": "view|V Y UW1", "prediction": "វៀ", "status": "ok"}
+{"id": "vin#default", "word": "vin", "input": "vin|V IH1 N", "prediction": "វិន", "status": "ok"}
+{"id": "visa#default", "word": "visa", "input": "visa|V IY1 Z AH0", "prediction": "វីហ្សា", "status": "ok"}
+{"id": "vision#default", "word": "vision", "input": "vision|V IH1 ZH AH0 N", "prediction": "វីសិន", "status": "ok"}
+{"id": "vy#default", "word": "vy", "input": "vy|V AY1", "prediction": "វី", "status": "ok"}
+{"id": "walmart#default", "word": "walmart", "input": "walmart|W AO1 L M AA2 R T", "prediction": "វ៉ាល់ម៉ាត", "status": "ok"}
+{"id": "window#default", "word": "window", "input": "window|W IH1 N D OW0", "prediction": "វីនដូ", "status": "ok"}
+{"id": "winny#default", "word": "winny", "input": "winny|W IH1 N IY0", "prediction": "វីនី", "status": "ok"}
+{"id": "xiong#default", "word": "xiong", "input": "xiong|ZH AO1 NG", "prediction": "ស៊ឹង", "status": "ok"}
+{"id": "yassin#default", "word": "yassin", "input": "yassin|Y AE1 S IH0 N", "prediction": "យ៉ាស៊ីន", "status": "ok"}
+{"id": "yo#default", "word": "yo", "input": "yo|Y OW1", "prediction": "យ៉ូ", "status": "ok"}
+{"id": "yoga#default", "word": "yoga", "input": "yoga|Y OW1 G AH0", "prediction": "យ៉ូហ្គា", "status": "ok"}
+{"id": "yoo#default", "word": "yoo", "input": "yoo|Y UW1", "prediction": "យូ", "status": "ok"}
+{"id": "yoon#default", "word": "yoon", "input": "yoon|Y UW1 N", "prediction": "យូន", "status": "ok"}
+{"id": "zen#default", "word": "zen", "input": "zen|Z EH1 N", "prediction": "ហ្សេន", "status": "ok"}
+{"id": "zorn#default", "word": "zorn", "input": "zorn|Z AO1 R N", "prediction": "ហ្សន", "status": "ok"}
