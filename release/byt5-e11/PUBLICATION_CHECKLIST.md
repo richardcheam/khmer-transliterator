@@ -1,4 +1,4 @@
-# Publication checklist (E11 ByT5 adapter): prepared, not executed
+# Publication checklist (E11 ByT5 adapter): executed; public since 2026-10-31 (D200)
 
 Nothing below has been run, and no repository has been created. Each step needs the owner's explicit go-ahead.
 The existing public model `ric912/en-km-phonetic-transliterator` is a different model and must not be touched.

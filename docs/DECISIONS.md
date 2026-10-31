@@ -458,3 +458,13 @@ there (`git -C ../pocket-tts-khmer show archive/checkpoints-p0-p6:state/DECISION
   style), `LICENSE`, the adapter and a config without internal labels (experiment/decision numbers, run names,
   paths). The detailed records stay in the repository and the local bundle. A scan in `bundle()` refuses internal
   terms in the upload folder. Card then shortened to what a new user needs (no hashes or verification notes). Bundle archive `e6051f43…`.
+
+## D200 — ByT5 adapter published: https://huggingface.co/ric912/en-km-phonetic-byt5-lora (owner, 2026-10-31)
+- **Owner instruction:** "squash it and make public".
+- **Squash:** the Hub history (4 commits, the first ones with internal documents) was squashed to one commit
+  `77f36282`.
+- **Public files:** `README.md` (plain card), `LICENSE` (CC BY-NC-SA 4.0), `adapter.safetensors` (`698a23ae…`) and
+  `adapter_config.json`. Each is byte-identical to the local public folder.
+- **Made public; checked anonymously:** the page and the adapter download work without a login, and the card's
+  wheel link (`ric912/en-km-phonetic-transliterator` @ `v0.2.0`) resolves.
+- **Not done:** no tag, no PyPI, no serving change, no merge into `main`. The older public repo is unchanged.
