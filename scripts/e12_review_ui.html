@@ -98,7 +98,7 @@ function render() {
       <span class="ans">${J.map(([v, name], ji) => `<button data-ci="${ci}" data-j="${v}" class="${c.judgment === v ? "sel" : ""}"><kbd>${keys[ci] ? keys[ci][ji] : ""}</kbd> ${name}</button>`).join("")}</span>
     </div>`).join("");
   const quick = it.candidates.length > 1
-    ? `<div class="quick"><button data-all="acceptable"><kbd>Y</kbd> both ok</button><button data-all="not_acceptable"><kbd>N</kbd> neither ok</button></div>`
+    ? `<div class="quick"><button data-all="acceptable"><kbd>Y</kbd> ${it.candidates.length > 2 ? "all" : "both"} ok</button><button data-all="not_acceptable"><kbd>N</kbd> ${it.candidates.length > 2 ? "none" : "neither"} ok</button></div>`
     : "";
   const fin = nw === items.length ? `<div class="finished">All ${items.length} words answered. You can close this page and tell Claude it's done.</div>` : "";
   $("card").innerHTML = `<div class="meta">${esc(it.item_id)} · batch ${esc(it.batch)} · word ${idx + 1} of ${items.length}${it.candidates.length === 1 ? " · one spelling (both models agree)" : ""}</div>

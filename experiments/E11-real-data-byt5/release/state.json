@@ -8,8 +8,13 @@
    "status": "done",
    "updated": "2026-10-31T00:43:09+00:00",
    "words": 23
+  },
+  "export": {
+   "status": "done",
+   "updated": "2026-10-31T00:43:37+00:00",
+   "adapter_sha256": "698a23ae1526d3da8f3b2bd00f0177799a939d2005c165569fcba7d58e76cc3f"
   }
  },
  "errors": [],
- "updated": "2026-10-31T00:43:09+00:00"
+ "updated": "2026-10-31T00:43:37+00:00"
 }

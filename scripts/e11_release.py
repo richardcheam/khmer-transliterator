@@ -450,7 +450,7 @@ def coverage_metrics(cands: list[dict], judg: dict[tuple[str, str], str]) -> dic
     Examples:
         >>> m = coverage_metrics([{"id": "a", "greedy": "ក", "beam": ["ខ", "ក"]}],
         ...                      {("a", "ក"): "not_acceptable", ("a", "ខ"): "acceptable"})
-        >>> m["greedy_top1"]["acceptable"], m["beam_top1"]["acceptable"], m["recoverable_words"]
+        >>> m["greedy_top1"].get("acceptable", 0), m["beam_top1"]["acceptable"], m["recoverable_words"]
         (0, 1, 1)
     """
     def j(r, t):
@@ -698,8 +698,6 @@ EVIDENCE = {"identity.json": REL / "identity.json", "export.json": REL / "export
             "e12_test_scores.json": ROOT / "experiments" / "E12-longer-schedule" / "reports" / "test_scores.json",
             "e13_test_scores.json": ROOT / "experiments" / "E13-pronunciation-guided" / "reports" / "test_scores.json",
             "coverage_frozen.json": COV / "frozen.json", "coverage_results.json": COV / "results.json"}
-HF_FILES = ("README.md", "adapter.safetensors", "adapter_config.json", "NOTICES.md", "DATA_PROVENANCE.md",
-            "EVALUATION.md", "LIMITATIONS.md", "LICENSE-code")
 FORBIDDEN = (".pt", ".bin", ".npz", ".env", ".tsv")
 FORBIDDEN_NAMES = ("origin_key.json", "judgments", "review_batch.json", "items.json", "candidates.jsonl",
                    "reused.json", "arm_R", "review_log.jsonl")
@@ -753,7 +751,7 @@ def bundle() -> dict:
     shutil.copy(DOCS / "MODEL_CARD.md", hf / "README.md")
     for f in (byt5.ADAPTER_FILE, byt5.CONFIG_FILE):
         shutil.copy(ADAPTER_OUT / f, hf / f)
-    for f in ("NOTICES.md", "DATA_PROVENANCE.md", "EVALUATION.md", "LIMITATIONS.md"):
+    for f in ("NOTICES.md", "DATA_PROVENANCE.md", "EVALUATION.md", "LIMITATIONS.md", "REFERENCES.md"):
         shutil.copy(DOCS / f, hf / f)
     shutil.copy(ROOT / "LICENSE", hf / "LICENSE-code")
     hf_files = sorted(p for p in hf.iterdir() if p.is_file())
