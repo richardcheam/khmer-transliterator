@@ -7,7 +7,7 @@ published on arXiv or any other venue.
 
 | File | What it is |
 |---|---|
-| `main.tex` | The report (single column, 11 pt). Every number is a `\val{key}` macro |
+| `main.tex` | The report (two columns, 10 pt; one-column appendix). Every number is a `\val{key}` macro |
 | `references.bib` | Bibliography; each entry checked against its primary record |
 | `tools/extract.py` | Reads the project's committed result files at a pinned revision. Writes `data/results_extract.json`, `generated/values.tex` and the figure CSVs, and asserts the stated relationships |
 | `data/results_extract.json` | The checked results extract: value, source file, JSON field, revision, meaning and denominator for each key |

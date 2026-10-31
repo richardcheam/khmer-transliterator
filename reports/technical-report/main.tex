@@ -1,11 +1,11 @@
 % English-to-Khmer Phonetic Transliteration: Models, Data and Human Acceptability Evaluation
-% Build: see README.md (XeLaTeX or LuaLaTeX, then BibTeX). Numbers come from generated/values.tex,
+% Two-column layout. Build: see README.md (XeLaTeX or LuaLaTeX, then BibTeX). Numbers come from generated/values.tex,
 % which tools/extract.py writes from the project's committed result files.
-\documentclass[11pt,a4paper]{article}
+\documentclass[10pt,a4paper,twocolumn]{article}
 
 \usepackage{iftex}
 \usepackage{fontspec}
-\usepackage[margin=1in]{geometry}
+\usepackage[margin=0.75in,columnsep=0.3in]{geometry}
 \usepackage{microtype}
 \usepackage{amsmath}
 \usepackage{booktabs}
@@ -37,6 +37,7 @@
 \input{generated/values.tex}
 
 \captionsetup{font=small,labelfont=bf,skip=4pt}
+\setlength{\emergencystretch}{2em}
 \renewcommand{\bibfont}{\small\raggedright}
 \setlist{itemsep=1pt,topsep=3pt}
 \newcolumntype{L}{>{\raggedright\arraybackslash}X}
@@ -204,12 +205,12 @@ module, which wraps the base model's linear layers and refuses a base whose revi
 pinned one. Single answers use greedy decoding; candidate lists use beam search with
 \texttt{early\_stopping="never"} and no length penalty (Section~\ref{sec:res-decode}).
 
-\begin{table}[t]
+\begin{table*}[t]
 \centering\small
 \caption{The two released systems. Latency and memory: Intel Core i7-8750H laptop, CPU only; the small model's
 latency is the range of three recorded runs.}
 \label{tab:releases}
-\begin{tabularx}{\linewidth}{@{}lLL@{}}
+\begin{tabularx}{\textwidth}{@{}lLL@{}}
 \toprule
  & Small Transformer & ByT5-small + LoRA adapter \\
 \midrule
@@ -226,7 +227,7 @@ Peak memory & \val{s.t1.peak}\,MiB & \val{b.peak}\,MB \\
 Weights licence & CC BY-NC-SA 4.0 & CC BY-NC-SA 4.0 (base: Apache 2.0) \\
 \bottomrule
 \end{tabularx}
-\end{table}
+\end{table*}
 
 \paragraph{Data separation.}
 For each experiment, training, validation, checkpoint selection and evaluation used disjoint families. The small
@@ -279,12 +280,12 @@ judge and policy; they are not independent, and the 40/40/40 design does not est
 
 Table~\ref{tab:comparisons} lists the principal comparisons; Table~\ref{tab:tests} gives the blinded tests.
 
-\begin{table}[t]
+\begin{table*}[t]
 \centering\small
 \caption{Principal comparisons. $\Delta$ is in percentage points with a 95\% paired family-bootstrap interval,
 conditional on the checkpoints. Reference agreement is exploratory except where marked.}
 \label{tab:comparisons}
-\begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}p{2.3cm}L>{\raggedright\arraybackslash}p{3.3cm}>{\raggedright\arraybackslash}p{4.1cm}@{}}
+\begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}p{2.3cm}L>{\raggedright\arraybackslash}p{3.3cm}>{\raggedright\arraybackslash}p{4.1cm}@{}}
 \toprule
 Question & Comparison (experiment) & $\Delta$ [95\%] & Evidence and limits \\
 \midrule
@@ -309,7 +310,7 @@ Longer training & 6,000 vs 3,000 updates (E12 vs E11) & \val{e12.vs_e11.hist} \v
   one seed; blinded test in Table~\ref{tab:tests} \\
 \bottomrule
 \end{tabularx}
-\end{table}
+\end{table*}
 
 \subsection{Did pronunciation input help?}
 \label{sec:res-pron}
@@ -367,7 +368,7 @@ reject acceptable alternatives and accept unwanted spellings; it is not a one-di
 Figure~\ref{fig:measures} shows the two kinds of evidence side by side, on separate axes because they are measured
 on different items with different definitions.
 
-\begin{figure}[t]
+\begin{figure*}[t]
 \centering
 \pgfplotstableread[col sep=comma]{generated/fig_reference.csv}\figref
 \pgfplotstableread[col sep=comma]{generated/fig_accept.csv}\figacc
@@ -392,7 +393,7 @@ single unreviewed reference per item. (b) Two separate prospective samples; each
 released adapter on the same 120 words, and values are not comparable across samples. No uncertainty bars are drawn
 for individual rates; paired differences are in Table~\ref{tab:tests}.}
 \label{fig:measures}
-\end{figure}
+\end{figure*}
 
 \subsection{Is candidate ranking a plausible remaining opportunity?}
 \label{sec:res-rank}
@@ -406,7 +407,7 @@ top-1; \val{cov.none} words had no acceptable candidate. This oracle is an upper
 sample, not achieved accuracy, and 23 hand-picked hard words cannot show whether ranking or generation is the larger
 limitation in general.
 
-\begin{table}[t]
+\begin{table*}[t]
 \centering\small
 \caption{Prospective blinded tests (one judge). Each sample compares a candidate with the released adapter on its
 own 120 fresh families; the two samples are different and are not pooled. Uncertain (Unc.) counts as not
@@ -430,7 +431,7 @@ Sample & System & Acceptable & Unc. & Ord. & Irreg. & Names & $\Delta$ [95\%] \\
   \val{t2.ordinary.e13} & \val{t2.irregular.e13} & \val{t2.names.e13} & \val{t2.diff} \val{t2.diff.ci} \\
 \bottomrule
 \end{tabular}
-\end{table}
+\end{table*}
 
 \paragraph{Pronunciation-guided training on the second sample.}
 The second test evaluated a model that changed several things at once: CMUdict readings as input, the judge's
@@ -490,7 +491,7 @@ while about a third of the hard words had none; which of the two dominates on or
 \bibliography{references}
 
 % =====================================================================================================
-\clearpage
+\onecolumn
 \appendix
 \section{Experiment inventory}
 \label{app:inventory}
@@ -500,7 +501,7 @@ while about a third of the hard words had none; which of the two dominates on or
 \caption{All experiments, in order. ``Ref.'' = agreement with single reference spellings (exploratory unless
 noted); ``Human'' = blinded judgments by the author. E02d and E11c are diagnostics attached to E02 and E11.}
 \label{tab:inventory}
-\begin{tabularx}{\linewidth}{@{}p{0.8cm}>{\raggedright\arraybackslash}p{4.4cm}L>{\raggedright\arraybackslash}p{2.3cm}@{}}
+\begin{tabularx}{\textwidth}{@{}p{0.8cm}>{\raggedright\arraybackslash}p{4.4cm}L>{\raggedright\arraybackslash}p{2.3cm}@{}}
 \toprule
 Id & Question & Outcome & Evidence \\
 \midrule
@@ -543,12 +544,12 @@ E11c & Candidate coverage, 23 irregular dev words & greedy \val{cov.greedy}, bea
 \node[box] (mine)   at (3.4,0)  {bracket mining,\\ CMUdict, filters};
 \node[box] (repair) at (6.8,0)  {selection repair\\ (\texttt{khmer\_like})};
 \node[box] (screen) at (10.2,0) {consonant screen\\ + recovery rules};
-\node[box] (alt)    at (6.8,-1.6) {ALT Parallel\\ Corpus spellings};
-\node[box] (fam)    at (10.2,-1.6) {family exclusion\\ of all test words};
-\node[box] (train)  at (10.2,-3.2) {training\\ (small model / adapter)};
-\node[box] (sel)    at (6.8,-3.2)  {checkpoint selection\\ (development set)};
-\node[box] (freeze) at (3.4,-3.2)  {freeze inputs,\\ checkpoint, outputs};
-\node[box] (judge)  at (0,-3.2)    {blinded review: acceptable\\ / not / uncertain};
+\node[box] (alt)    at (6.8,-1.35) {ALT Parallel\\ Corpus spellings};
+\node[box] (fam)    at (10.2,-1.35) {family exclusion\\ of all test words};
+\node[box] (train)  at (10.2,-2.7) {training\\ (small model / adapter)};
+\node[box] (sel)    at (6.8,-2.7)  {checkpoint selection\\ (development set)};
+\node[box] (freeze) at (3.4,-2.7)  {freeze inputs,\\ checkpoint, outputs};
+\node[box] (judge)  at (0,-2.7)    {blinded review: acceptable\\ / not / uncertain};
 \draw[arr] (web) -- (mine); \draw[arr] (mine) -- (repair); \draw[arr] (repair) -- (screen);
 \draw[arr] (screen) -- (fam); \draw[arr] (alt) -- (fam); \draw[arr] (fam) -- (train);
 \draw[arr] (train) -- (sel); \draw[arr] (sel) -- (freeze); \draw[arr] (freeze) -- (judge);
@@ -561,6 +562,7 @@ rather than by blinded review.}
 
 \section{Notes on the evidence}
 \label{app:notes}
+{\small
 \begin{itemize}
 \item Every number in this report is generated from the project's committed result files at revision
   \texttt{d7e7d80} by \texttt{tools/extract.py}; \texttt{EVIDENCE\_LEDGER.md} maps each to its file and field.
@@ -568,14 +570,14 @@ rather than by blinded review.}
   they sum to the recorded totals.
 \item The development review's labels were given in chat and transcribed under four interpretation rules the judge
   confirmed (for example, unnamed candidates of an item are not acceptable). The two blinded tests and the coverage
-  diagnostic were clicked directly on the review page.
+  diagnostic were clicked directly on the review page. Pooled 60-word percentages in some project notes mix its two samples
+  and are not used.
 \item The released small model's published latency (17/30\,ms) is from the first of three recorded measurement
   runs; later runs gave \val{s.t2.p50}/\val{s.t2.p95} and \val{s.t3.p50}/\val{s.t3.p95}\,ms (median/95th
   percentile). Table~\ref{tab:releases} gives the range.
 \item Parity checks used all 276 development rows and 245 evaluation rows, including items outside the primary
   scoring sets (253 and 228 items).
-\item Pooled 60-word development-review percentages that appear in some project notes combine two sampling designs
-  and are not used here.
 \end{itemize}
+}
 
 \end{document}

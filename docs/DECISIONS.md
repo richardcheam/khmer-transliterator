@@ -492,7 +492,7 @@ there (`git -C ../pocket-tts-khmer show archive/checkpoints-p0-p6:state/DECISION
 - **Result:** 478 → 128 tracked files; 79 tests pass. Local data, models and bundles are untouched.
 
 ## D202 — Technical report on the English→Khmer phonetic transliterator (2026-10-31)
-- **What:** `reports/technical-report/`: an 11-page independent technical report.
+- **What:** `reports/technical-report/`: an independent technical report (two-column, 8 pages).
   - Contents: LaTeX source, bibliography checked against primary records, compiled PDF, evidence ledger and
     summary.
   - Not submitted or uploaded anywhere.
