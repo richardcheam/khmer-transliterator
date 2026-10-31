@@ -25,7 +25,7 @@ hf upload ric912/en-km-phonetic-byt5-lora huggingface . \
    `adapter`), and no inference widget appears (`inference: false`).
 2. **Check a fresh download** in a new CPU environment:
    - run `hf download ric912/en-km-phonetic-byt5-lora --local-dir a`;
-   - check the hashes against `MANIFEST.json`;
+   - check the adapter sha256 against the card;
    - run the README quick start offline with the base at revision `68377bdc…`.
 3. **Make it public:** only on the owner's instruction, after reviewing the private page. Tag it `v0.2.0-e11` if
    the owner wants a tag.

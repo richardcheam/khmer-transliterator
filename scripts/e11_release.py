@@ -28,6 +28,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import re
 import os
 import platform
 import resource
@@ -723,6 +724,51 @@ def scan(files: list[Path], base: Path) -> list[str]:
     return bad
 
 
+INTERNAL = re.compile(r"\b[ED]\d{2,3}\b|\b(?:r|rs|long|pron|letters)_s\d\b|\barm[ _]?R\b|AI Mode|Chhunneng|"
+                      r"\bowner\b|scripts/|experiments/|data/e\d|models/e\d|evidence/|registration|cov-import|"
+                      r"release candidate|\bphase\b", re.I)
+
+
+def internal_terms(files: list[Path]) -> list[str]:
+    """Internal project labels (experiment and decision numbers, run names, paths) in public text files.
+
+    Examples:
+        >>> import tempfile
+        >>> d = Path(tempfile.mkdtemp())
+        >>> _ = (d / "a.md").write_text("Run E11 r_s0, see D198."), (d / "b.md").write_text("ok")
+        >>> internal_terms([d / "a.md", d / "b.md"])
+        ['a.md: E11', 'a.md: r_s0', 'a.md: D198']
+    """
+    out = []
+    for p in files:
+        if p.suffix in (".md", ".json", "") and p.is_file():
+            out += [f"{p.name}: {m.group(0)}" for m in INTERNAL.finditer(p.read_text(encoding="utf-8"))]
+    return out
+
+
+def public_config(cfg: dict) -> dict:
+    """The adapter configuration as published: every field the loader reads, plus plain training facts.
+
+    Examples:
+        >>> c = public_config({"base": {}, "adapter": {}, "decode": {}, "input": "x", "format": "f",
+        ...                    "adapter_sha256": "a", "provenance": {"run": "r_s0", "update": 3000,
+        ...                    "training_rows": 4764, "checkpoint_sha256": "c", "recipe": {"lr": 0.001}}})
+        >>> sorted(c), c["training"]["steps"]
+        (['adapter', 'adapter_sha256', 'base', 'decode', 'format', 'input', 'name', 'status', 'task', 'training', 'version'], 3000)
+    """
+    p = cfg["provenance"]
+    return {"name": "en-km-phonetic-byt5-lora", "version": cfg.get("version", VERSION),
+            "status": "research preview; quality judged by one non-independent person",
+            "task": "one English word or name → Khmer script approximating its English (US) pronunciation",
+            "base": cfg["base"], "adapter": cfg["adapter"], "decode": cfg["decode"], "input": cfg["input"],
+            "training": {"init": "fresh LoRA adapter on the pinned base, seed 0", "steps": p["update"],
+                         "pairs": p["training_rows"], "recipe": p["recipe"],
+                         "sources": "bracketed pairs mined from FineWeb-2 khm_Khmr and Khmer Wikipedia; Khmer "
+                                    "spellings attested in the ALT Parallel Corpus; no LLM-generated labels",
+                         "checkpoint_sha256": p["checkpoint_sha256"]},
+            "format": cfg["format"], "adapter_sha256": cfg["adapter_sha256"]}
+
+
 def bundle() -> dict:
     """Assemble the local E11 bundle (no upload) from the E11 adapter, E11 documents and E11 evidence."""
     from khmer_translit import byt5
@@ -748,17 +794,16 @@ def bundle() -> dict:
             missing.append(name)
     hf = DIST / "huggingface"
     hf.mkdir()
-    shutil.copy(DOCS / "MODEL_CARD.md", hf / "README.md")
-    for f in (byt5.ADAPTER_FILE, byt5.CONFIG_FILE):
-        shutil.copy(ADAPTER_OUT / f, hf / f)
-    for f in ("NOTICES.md", "DATA_PROVENANCE.md", "EVALUATION.md", "LIMITATIONS.md", "REFERENCES.md"):
-        shutil.copy(DOCS / f, hf / f)
-    shutil.copy(ROOT / "LICENSE", hf / "LICENSE-code")
+    # the public folder: a plain card, the licence and the adapter, with no internal project labels
+    shutil.copy(DOCS / "public" / "README.md", hf / "README.md")
     shutil.copy(DOCS / "LICENSE-weights.md", hf / "LICENSE")             # adapter weights: CC BY-NC-SA 4.0 (D198)
-    hf_files = sorted(p for p in hf.iterdir() if p.is_file())
-    (hf / "MANIFEST.json").write_text(json.dumps({"files": {p.name: {"sha256": sha(p), "bytes": p.stat().st_size}
-                                                            for p in hf_files}, "base": exp | {"base_repo": byt5.BASE_REPO,
-                                                            "base_revision": byt5.BASE_REVISION}}, indent=1) + "\n")
+    shutil.copy(ADAPTER_OUT / byt5.ADAPTER_FILE, hf / byt5.ADAPTER_FILE)
+    internal_cfg = json.loads((ADAPTER_OUT / byt5.CONFIG_FILE).read_text())
+    (hf / byt5.CONFIG_FILE).write_text(json.dumps(public_config(internal_cfg), ensure_ascii=False, indent=1) + "\n",
+                                       encoding="utf-8")
+    leaks = internal_terms(sorted(hf.iterdir()))
+    if leaks:
+        raise RuntimeError(f"public folder holds internal project labels: {leaks[:8]}")
     files = sorted(p for p in DIST.rglob("*") if p.is_file())
     bad = scan(files, DIST)
     if bad:

@@ -454,3 +454,7 @@ there (`git -C ../pocket-tts-khmer show archive/checkpoints-p0-p6:state/DECISION
   (coffee → ខូហ្វី, london → ឡុនដុន, same top-4).
 - **Not done:** made public, tagged, PyPI, serving, merging. Making it public needs the owner's instruction after
   reviewing the private page.
+- **Public folder cleaned (owner, 2026-10-31):** the Hub repo now holds only a plain, self-contained card (E02 card
+  style), `LICENSE`, the adapter and a config without internal labels (experiment/decision numbers, run names,
+  paths). The detailed records stay in the repository and the local bundle. A scan in `bundle()` refuses internal
+  terms in the upload folder. Hub commit `ce21b19e`; bundle archive `e746fd30…`.

@@ -102,6 +102,18 @@ class TestE11Release(unittest.TestCase):
         self.assertEqual(cfg["base"]["revision"], "68377bdc18a2ffec8a0533fef03b1c513a4dd49d")
         self.assertEqual(cfg["decode"]["candidate_beam"], 4)
 
+    def test_public_folder_has_no_internal_labels(self):
+        cfg = json.loads((R.ADAPTER_OUT / "adapter_config.json").read_text())
+        with tempfile.TemporaryDirectory() as d:
+            d = Path(d)
+            (d / "adapter_config.json").write_text(json.dumps(R.public_config(cfg), ensure_ascii=False))
+            for src, name in ((R.DOCS / "public" / "README.md", "README.md"), (R.DOCS / "LICENSE-weights.md", "LICENSE")):
+                (d / name).write_text(src.read_text(encoding="utf-8"), encoding="utf-8")
+            self.assertEqual(R.internal_terms(sorted(d.iterdir())), [])
+        pub = R.public_config(cfg)
+        for k in ("format", "base", "adapter", "adapter_sha256", "decode"):              # what the loader reads
+            self.assertEqual(pub[k], cfg[k])
+
 
 if __name__ == "__main__":
     unittest.main()
