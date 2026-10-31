@@ -56,22 +56,23 @@
 
 \begin{abstract}
 \noindent
-We study a narrow task: given one English word or name, write in Khmer script how it sounds when read in English.
-Two systems are released as research previews: a 2.6M-parameter character-level Transformer trained from scratch,
-and a LoRA adapter for ByT5-small. Both are trained on English--Khmer pairs mined from bracketed web text, the
-adapter additionally on spellings attested in the ALT Parallel Corpus; no LLM-generated labels are used in either
-released model. Early experiments scored models by exact agreement with single mined or curated reference
-spellings. An exploratory blinded review found that such agreement both rejects acceptable alternatives and
-accepts unwanted spellings, so the final evaluation uses blinded acceptable/not acceptable/uncertain judgments by a single
-project-affiliated judge on prospectively frozen samples of 120 word families. On two such samples the released
-adapter's spelling was judged acceptable for \val{t1.e11.share}\% and \val{t2.e11.share}\% of words. A longer
-training schedule and pronunciation-guided training each had the same observed acceptability as the released
-adapter on their own sample (differences \val{t1.diff}\pp{} \val{t1.diff.ci} and \val{t2.diff}\pp{}
-\val{t2.diff.ci}): no difference was detected, and the intervals permit gains or losses. Adding English pronunciation input produced no detectable change in reference agreement in four experiments,
-although the intervals do not exclude gains of a few points. Irregularly spelled words remain the weakest group,
-and in a small diagnostic, alternative beam candidates often contained an acceptable spelling that greedy decoding
-missed.
+We study English-to-Khmer phonetic transliteration: given one English word or name, write it in Khmer script so
+that a Khmer reader pronounces it as in English (for example, \emph{coffee} $\rightarrow$ \km{ខូហ្វី}). We release
+two models: a small character-level Transformer trained from scratch, and a LoRA adapter for ByT5-small. Both are
+trained on English--Khmer word pairs mined from web text, and neither uses LLM-generated labels.
+
+We first scored models by exact match with one reference spelling per word. This proved misleading, because it
+rejects acceptable spelling variants and accepts some poor ones. We therefore evaluate with blinded human
+judgments (acceptable, not acceptable or uncertain) by one project-affiliated judge on fresh samples of 120 words.
+
+On two such samples, the released adapter's spelling was judged acceptable for \val{t1.e11.share}\% and
+\val{t2.e11.share}\% of words. A twice-longer training schedule and pronunciation-guided training each scored the
+same as the released adapter (difference \val{t1.diff} points in both tests; the 95\% intervals,
+\val{t1.diff.ci} and \val{t2.diff.ci}, allow small gains or losses). Adding English pronunciations as input gave no detectable gain in four
+experiments. Irregularly spelled words remain the main weakness (\val{irr.lo}--\val{irr.hi}\% acceptable).
 \end{abstract}
+
+\noindent\textbf{Keywords:} transliteration, Khmer, ByT5, LoRA, human evaluation, low-resource languages
 
 % =====================================================================================================
 \section{Introduction and task}
@@ -104,6 +105,20 @@ targets;
 its results were seen; and
 (iv) a human-acceptability evaluation protocol with frozen inputs, blinded spellings and explicit labels. No new
 architecture or general benchmark is claimed.
+
+\paragraph{Main findings in brief.}
+\begin{itemize}
+\item \emph{Exact match is a poor measure here.} Many spellings that missed the single reference were judged
+  acceptable, and some that matched it were not (Section~\ref{sec:res-ref}).
+\item \emph{The released adapter} was judged acceptable for \val{acc.lo}--\val{acc.hi}\% of words on two separate
+  test samples (Table~\ref{tab:tests}).
+\item \emph{Longer training, pronunciation input and pronunciation-guided training} showed no detectable benefit;
+  the intervals do not rule out small effects (Sections~\ref{sec:res-pron} and \ref{sec:res-train},
+  Table~\ref{tab:tests}).
+\item \emph{A beam-search setting}, not the model, caused an apparent beam-search weakness (Section~\ref{sec:res-decode}).
+\item \emph{Irregular English spellings} are the main remaining error; an acceptable spelling is often among the
+  model's alternatives but not chosen first (Section~\ref{sec:res-rank}).
+\end{itemize}
 
 % =====================================================================================================
 \section{Related work}
@@ -375,6 +390,7 @@ Registered beam-4 kept only \val{e09.cands} distinct candidates per item for the
 registered beam are therefore shifted; this report quotes greedy figures for adapters where they exist.
 
 \subsection{How does reference agreement differ from acceptability?}
+\label{sec:res-ref}
 In the development review, the judge rated \val{x.judged} distinct spellings. Of the \val{x.diff} that
 differed from the mined reference, \val{x.diff.acc} (\val{x.diff.share}\%) were acceptable (for example
 \emph{cameroon} \km{ខេមឺរ៉ុន} and \emph{band} \km{បេន}); of the \val{x.match} that matched it, \val{x.match.not}
