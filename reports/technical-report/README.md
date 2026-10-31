@@ -1,8 +1,8 @@
 # Technical report: English-to-Khmer Phonetic Transliteration
 
-*Models, Data and Human Acceptability Evaluation.* Richard Cheam, independent research, 31 October 2026.
+*Models, Data and Human Acceptability Evaluation.* Richard Cheam (richardcheam912@gmail.com), 31 October 2026.
 
-This is an independent technical report. It has not been peer-reviewed, and it has not been submitted to or
+This is a technical report. It has not been peer-reviewed, and it has not been submitted to or
 published on arXiv or any other venue.
 
 | File | What it is |

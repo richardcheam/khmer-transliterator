@@ -1,6 +1,6 @@
 # Summary: English-to-Khmer phonetic transliteration
 
-*Richard Cheam, independent research. A summary of the technical report `main.pdf` (31 October 2026).*
+*Richard Cheam (richardcheam912@gmail.com). A summary of the technical report `main.pdf` (31 October 2026).*
 
 ## Task
 Given one English word or name, the system writes in Khmer script how it sounds when read in English: *coffee* →
