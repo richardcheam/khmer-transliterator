@@ -3,6 +3,7 @@
  "note": "values read with `git show <revision>:<source>`; see EVIDENCE_LEDGER.md",
  "values": {
   "s.primary.acc": {
+   "kind": "json",
    "value": 0.16666666666666666,
    "fmt": "pct",
    "source": "experiments/E02-english-phonetic/results.json",
@@ -14,6 +15,7 @@
    "rendered": "16.7"
   },
   "s.primary.n": {
+   "kind": "json",
    "value": 165,
    "fmt": "int",
    "source": "experiments/E02-english-phonetic/results.json",
@@ -25,6 +27,7 @@
    "rendered": "165"
   },
   "s.primary.top4": {
+   "kind": "json",
    "value": 0.404320987654321,
    "fmt": "pct",
    "source": "experiments/E02-english-phonetic/results.json",
@@ -36,6 +39,7 @@
    "rendered": "40.4"
   },
   "s.primary.cer": {
+   "kind": "json",
    "value": 0.3528227452150897,
    "fmt": "f3",
    "source": "experiments/E02-english-phonetic/results.json",
@@ -47,6 +51,7 @@
    "rendered": "0.353"
   },
   "s.proxy.acc": {
+   "kind": "json",
    "value": 0.30133333333333334,
    "fmt": "pct",
    "source": "experiments/E02-english-phonetic/results.json",
@@ -58,6 +63,7 @@
    "rendered": "30.1"
   },
   "s.proxy.top4": {
+   "kind": "json",
    "value": 0.5133333333333333,
    "fmt": "pct",
    "source": "experiments/E02-english-phonetic/results.json",
@@ -69,6 +75,7 @@
    "rendered": "51.3"
   },
   "s.proxy.n": {
+   "kind": "json",
    "value": 400,
    "fmt": "int",
    "source": "experiments/E02-english-phonetic/results.json",
@@ -80,6 +87,7 @@
    "rendered": "400"
   },
   "e02.phones": {
+   "kind": "json",
    "value": 1.6460905349794235,
    "fmt": "pp",
    "source": "experiments/E02-english-phonetic/results.json",
@@ -91,6 +99,7 @@
    "rendered": "+1.6"
   },
   "e02.phones.ci": {
+   "kind": "json",
    "value": [
     -1.6460905349794233,
     4.93827160493827
@@ -105,6 +114,7 @@
    "rendered": "[−1.6, +4.9]"
   },
   "e02.families": {
+   "kind": "json",
    "value": 162,
    "fmt": "int",
    "source": "experiments/E02-english-phonetic/results.json",
@@ -116,6 +126,7 @@
    "rendered": "162"
   },
   "s.t1.p50": {
+   "kind": "json",
    "value": 16.664069145917892,
    "fmt": "f0",
    "source": "experiments/E02-release/reports/install_verify.json",
@@ -127,6 +138,7 @@
    "rendered": "17"
   },
   "s.t1.p95": {
+   "kind": "json",
    "value": 29.64434726163745,
    "fmt": "f0",
    "source": "experiments/E02-release/reports/install_verify.json",
@@ -138,6 +150,7 @@
    "rendered": "30"
   },
   "s.t1.load": {
+   "kind": "json",
    "value": 0.14774404931813478,
    "fmt": "f2",
    "source": "experiments/E02-release/reports/install_verify.json",
@@ -149,6 +162,7 @@
    "rendered": "0.15"
   },
   "s.t1.peak": {
+   "kind": "json",
    "value": 64.5546875,
    "fmt": "f0",
    "source": "experiments/E02-release/reports/install_verify.json",
@@ -160,6 +174,7 @@
    "rendered": "65"
   },
   "s.t1.b16": {
+   "kind": "json",
    "value": 13.298212030667413,
    "fmt": "f0",
    "source": "experiments/E02-release/reports/install_verify.json",
@@ -171,6 +186,7 @@
    "rendered": "13"
   },
   "s.t2.p50": {
+   "kind": "json",
    "value": 18.59608991071582,
    "fmt": "f0",
    "source": "experiments/E02-release/reports/install_verify.json",
@@ -182,6 +198,7 @@
    "rendered": "19"
   },
   "s.t2.p95": {
+   "kind": "json",
    "value": 33.60847197473049,
    "fmt": "f0",
    "source": "experiments/E02-release/reports/install_verify.json",
@@ -193,6 +210,7 @@
    "rendered": "34"
   },
   "s.t2.load": {
+   "kind": "json",
    "value": 0.15197545289993286,
    "fmt": "f2",
    "source": "experiments/E02-release/reports/install_verify.json",
@@ -204,6 +222,7 @@
    "rendered": "0.15"
   },
   "s.t2.peak": {
+   "kind": "json",
    "value": 64.46875,
    "fmt": "f0",
    "source": "experiments/E02-release/reports/install_verify.json",
@@ -215,6 +234,7 @@
    "rendered": "64"
   },
   "s.t2.b16": {
+   "kind": "json",
    "value": 13.02770558220235,
    "fmt": "f0",
    "source": "experiments/E02-release/reports/install_verify.json",
@@ -226,6 +246,7 @@
    "rendered": "13"
   },
   "s.t3.p50": {
+   "kind": "json",
    "value": 19.241325091570616,
    "fmt": "f0",
    "source": "experiments/E02-release/reports/install_verify.json",
@@ -237,6 +258,7 @@
    "rendered": "19"
   },
   "s.t3.p95": {
+   "kind": "json",
    "value": 37.96174982562661,
    "fmt": "f0",
    "source": "experiments/E02-release/reports/install_verify.json",
@@ -248,6 +270,7 @@
    "rendered": "38"
   },
   "s.t3.load": {
+   "kind": "json",
    "value": 0.16352580673992634,
    "fmt": "f2",
    "source": "experiments/E02-release/reports/install_verify.json",
@@ -259,6 +282,7 @@
    "rendered": "0.16"
   },
   "s.t3.peak": {
+   "kind": "json",
    "value": 64.57421875,
    "fmt": "f0",
    "source": "experiments/E02-release/reports/install_verify.json",
@@ -270,6 +294,7 @@
    "rendered": "65"
   },
   "s.t3.b16": {
+   "kind": "json",
    "value": 12.935041156100127,
    "fmt": "f0",
    "source": "experiments/E02-release/reports/install_verify.json",
@@ -281,6 +306,7 @@
    "rendered": "13"
   },
   "sens.s0.donor": {
+   "kind": "json",
    "value": 0.3617021276595745,
    "fmt": "pct",
    "source": "experiments/E02-diagnostics-2026-10-27/sensitivity/summary.json",
@@ -292,6 +318,7 @@
    "rendered": "36.2"
   },
   "sens.s0.nopron": {
+   "kind": "json",
    "value": 0.3263157894736842,
    "fmt": "pct",
    "source": "experiments/E02-diagnostics-2026-10-27/sensitivity/summary.json",
@@ -303,6 +330,7 @@
    "rendered": "32.6"
   },
   "sens.s1.donor": {
+   "kind": "json",
    "value": 0.32978723404255317,
    "fmt": "pct",
    "source": "experiments/E02-diagnostics-2026-10-27/sensitivity/summary.json",
@@ -314,6 +342,7 @@
    "rendered": "33.0"
   },
   "sens.s1.nopron": {
+   "kind": "json",
    "value": 0.2631578947368421,
    "fmt": "pct",
    "source": "experiments/E02-diagnostics-2026-10-27/sensitivity/summary.json",
@@ -325,6 +354,7 @@
    "rendered": "26.3"
   },
   "sens.s2.donor": {
+   "kind": "json",
    "value": 0.44680851063829785,
    "fmt": "pct",
    "source": "experiments/E02-diagnostics-2026-10-27/sensitivity/summary.json",
@@ -336,6 +366,7 @@
    "rendered": "44.7"
   },
   "sens.s2.nopron": {
+   "kind": "json",
    "value": 0.35789473684210527,
    "fmt": "pct",
    "source": "experiments/E02-diagnostics-2026-10-27/sensitivity/summary.json",
@@ -347,6 +378,7 @@
    "rendered": "35.8"
   },
   "sens.letters.donor": {
+   "kind": "json",
    "value": 0.0,
    "fmt": "pct",
    "source": "experiments/E02-diagnostics-2026-10-27/sensitivity/summary.json",
@@ -358,6 +390,7 @@
    "rendered": "0.0"
   },
   "e03.phones": {
+   "kind": "json",
    "value": 0.6006006006006004,
    "fmt": "pp",
    "source": "experiments/E03-assessable-phones/results.json",
@@ -369,6 +402,7 @@
    "rendered": "+0.6"
   },
   "e03.phones.ci": {
+   "kind": "json",
    "value": [
     -2.402402402402402,
     3.7537537537537533
@@ -383,6 +417,7 @@
    "rendered": "[−2.4, +3.8]"
   },
   "e04.gp": {
+   "kind": "json",
    "value": 2.2022022022022014,
    "fmt": "pp",
    "source": "experiments/E04-pronunciation-pathways/results.json",
@@ -394,6 +429,7 @@
    "rendered": "+2.2"
   },
   "e04.gp.ci": {
+   "kind": "json",
    "value": [
     -1.4764764764764755,
     6.006006006006003
@@ -408,6 +444,7 @@
    "rendered": "[−1.5, +6.0]"
   },
   "e04.p": {
+   "kind": "json",
    "value": -8.033033033033036,
    "fmt": "pp",
    "source": "experiments/E04-pronunciation-pathways/results.json",
@@ -419,6 +456,7 @@
    "rendered": "−8.0"
   },
   "e04.p.ci": {
+   "kind": "json",
    "value": [
     -14.63963963963964,
     -1.3513513513513513
@@ -433,6 +471,7 @@
    "rendered": "[−14.6, −1.4]"
   },
   "e05.gp_g8": {
+   "kind": "json",
    "value": 1.627,
    "fmt": "pp",
    "source": "experiments/E05-candidate-diversity/results.json",
@@ -444,6 +483,7 @@
    "rendered": "+1.6"
   },
   "e05.gp_g8.ci": {
+   "kind": "json",
    "value": [
     -1.076,
     4.505
@@ -458,6 +498,7 @@
    "rendered": "[−1.1, +4.5]"
   },
   "e05.gp_gg": {
+   "kind": "json",
    "value": 0.751,
    "fmt": "pp",
    "source": "experiments/E05-candidate-diversity/results.json",
@@ -469,6 +510,7 @@
    "rendered": "+0.8"
   },
   "e05.gp_gg.ci": {
+   "kind": "json",
    "value": [
     -2.252,
     3.904
@@ -483,6 +525,7 @@
    "rendered": "[−2.3, +3.9]"
   },
   "e13.dev": {
+   "kind": "json",
    "value": 1.6,
    "fmt": "pp",
    "source": "experiments/E13-pronunciation-guided/results.json",
@@ -494,6 +537,7 @@
    "rendered": "+1.6"
   },
   "e13.dev.ci": {
+   "kind": "json",
    "value": [
     -2.4,
     5.6
@@ -508,6 +552,7 @@
    "rendered": "[−2.4, +5.6]"
   },
   "e13.eval": {
+   "kind": "json",
    "value": -1.276,
    "fmt": "pp",
    "source": "experiments/E13-pronunciation-guided/results.json",
@@ -519,6 +564,7 @@
    "rendered": "−1.3"
   },
   "e13.eval.ci": {
+   "kind": "json",
    "value": [
     -4.805,
     2.252
@@ -533,6 +579,7 @@
    "rendered": "[−4.8, +2.3]"
   },
   "e13.mech.missing": {
+   "kind": "json",
    "value": 0.0711,
    "fmt": "pct",
    "source": "experiments/E13-pronunciation-guided/reports/mechanism.json",
@@ -544,6 +591,7 @@
    "rendered": "7.1"
   },
   "e13.mech.wrong": {
+   "kind": "json",
    "value": 0.0791,
    "fmt": "pct",
    "source": "experiments/E13-pronunciation-guided/reports/mechanism.json",
@@ -555,6 +603,7 @@
    "rendered": "7.9"
   },
   "e13.mech.coll.missing": {
+   "kind": "json",
    "value": 0.1,
    "fmt": "pct",
    "source": "experiments/E13-pronunciation-guided/reports/mechanism.json",
@@ -566,6 +615,7 @@
    "rendered": "10.0"
   },
   "e13.mech.coll.wrong": {
+   "kind": "json",
    "value": 0.15,
    "fmt": "pct",
    "source": "experiments/E13-pronunciation-guided/reports/mechanism.json",
@@ -577,6 +627,7 @@
    "rendered": "15.0"
   },
   "e07.vs_g": {
+   "kind": "json",
    "value": 5.831,
    "fmt": "pp",
    "source": "experiments/E07-byt5-diagnosis/results.json",
@@ -588,6 +639,7 @@
    "rendered": "+5.8"
   },
   "e07.vs_g.ci": {
+   "kind": "json",
    "value": [
     0.05,
     11.637
@@ -602,6 +654,7 @@
    "rendered": "[+0.05, +11.6]"
   },
   "e08.vs_e07": {
+   "kind": "json",
    "value": 0.3,
    "fmt": "pp",
    "source": "experiments/E08-data-expansion/results_rs.json",
@@ -613,6 +666,7 @@
    "rendered": "+0.3"
   },
   "e08.vs_e07.ci": {
+   "kind": "json",
    "value": [
     -5.706,
     6.456
@@ -627,6 +681,7 @@
    "rendered": "[−5.7, +6.5]"
   },
   "e08.vs_e07.greedy": {
+   "kind": "json",
    "value": 2.553,
    "fmt": "pp",
    "source": "experiments/E08-data-expansion/results_rs.json",
@@ -638,6 +693,7 @@
    "rendered": "+2.6"
   },
   "e08.vs_e07.greedy.ci": {
+   "kind": "json",
    "value": [
     -2.402,
     7.508
@@ -652,6 +708,7 @@
    "rendered": "[−2.4, +7.5]"
   },
   "e09.e08.sel_vs_reg": {
+   "kind": "json",
    "value": 5.856,
    "fmt": "pp",
    "source": "experiments/E09-byt5-decoding/results.json",
@@ -663,6 +720,7 @@
    "rendered": "+5.9"
   },
   "e09.e08.sel_vs_reg.ci": {
+   "kind": "json",
    "value": [
     1.351,
     10.36
@@ -677,6 +735,7 @@
    "rendered": "[+1.4, +10.4]"
   },
   "e09.e08.greedy_vs_reg": {
+   "kind": "json",
    "value": 4.955,
    "fmt": "pp",
    "source": "experiments/E09-byt5-decoding/results.json",
@@ -688,6 +747,7 @@
    "rendered": "+5.0"
   },
   "e09.e08.greedy_vs_reg.ci": {
+   "kind": "json",
    "value": [
     0.0,
     9.91
@@ -702,6 +762,7 @@
    "rendered": "[0.0, +9.9]"
   },
   "e09.e08.sel_vs_greedy": {
+   "kind": "json",
    "value": 0.901,
    "fmt": "pp",
    "source": "experiments/E09-byt5-decoding/results.json",
@@ -713,6 +774,7 @@
    "rendered": "+0.9"
   },
   "e09.e08.sel_vs_greedy.ci": {
+   "kind": "json",
    "value": [
     -1.351,
     3.604
@@ -727,6 +789,7 @@
    "rendered": "[−1.4, +3.6]"
   },
   "h.e07.top1": {
+   "kind": "json",
    "value": 0.4985,
    "fmt": "pct",
    "source": "experiments/E11-real-data-byt5/results.json",
@@ -738,6 +801,7 @@
    "rendered": "49.9"
   },
   "h.e07.cer": {
+   "kind": "json",
    "value": 0.1782,
    "fmt": "f3",
    "source": "experiments/E11-real-data-byt5/results.json",
@@ -749,6 +813,7 @@
    "rendered": "0.178"
   },
   "h.e08.top1": {
+   "kind": "json",
    "value": 0.524,
    "fmt": "pct",
    "source": "experiments/E11-real-data-byt5/results.json",
@@ -760,6 +825,7 @@
    "rendered": "52.4"
   },
   "h.e08.cer": {
+   "kind": "json",
    "value": 0.1611,
    "fmt": "f3",
    "source": "experiments/E11-real-data-byt5/results.json",
@@ -771,6 +837,7 @@
    "rendered": "0.161"
   },
   "h.e11.top1": {
+   "kind": "json",
    "value": 0.5233,
    "fmt": "pct",
    "source": "experiments/E11-real-data-byt5/results.json",
@@ -782,6 +849,7 @@
    "rendered": "52.3"
   },
   "h.e11.cer": {
+   "kind": "json",
    "value": 0.1625,
    "fmt": "f3",
    "source": "experiments/E11-real-data-byt5/results.json",
@@ -793,6 +861,7 @@
    "rendered": "0.163"
   },
   "h.e12.top1": {
+   "kind": "json",
    "value": 0.53,
    "fmt": "pct",
    "source": "experiments/E12-longer-schedule/results.json",
@@ -804,6 +873,7 @@
    "rendered": "53.0"
   },
   "h.e13.top1": {
+   "kind": "json",
    "value": 0.5105,
    "fmt": "pct",
    "source": "experiments/E13-pronunciation-guided/results.json",
@@ -815,6 +885,7 @@
    "rendered": "51.1"
   },
   "h.items": {
+   "kind": "json",
    "value": 228,
    "fmt": "int",
    "source": "experiments/E11-real-data-byt5/results.json",
@@ -826,6 +897,7 @@
    "rendered": "228"
   },
   "h.families": {
+   "kind": "json",
    "value": 222,
    "fmt": "int",
    "source": "experiments/E11-real-data-byt5/results.json",
@@ -837,6 +909,7 @@
    "rendered": "222"
   },
   "d.items": {
+   "kind": "json",
    "value": 253,
    "fmt": "int",
    "source": "experiments/E11-real-data-byt5/results.json",
@@ -848,6 +921,7 @@
    "rendered": "253"
   },
   "d.e11.top1": {
+   "kind": "json",
    "value": 0.53,
    "fmt": "pct",
    "source": "experiments/E11-real-data-byt5/results.json",
@@ -859,6 +933,7 @@
    "rendered": "53.0"
   },
   "e11.vs_e07": {
+   "kind": "json",
    "value": 2.477,
    "fmt": "pp",
    "source": "experiments/E11-real-data-byt5/results.json",
@@ -870,6 +945,7 @@
    "rendered": "+2.5"
   },
   "e11.vs_e07.ci": {
+   "kind": "json",
    "value": [
     -2.703,
     7.658
@@ -884,6 +960,7 @@
    "rendered": "[−2.7, +7.7]"
   },
   "e11.vs_e08": {
+   "kind": "json",
    "value": -0.075,
    "fmt": "pp",
    "source": "experiments/E11-real-data-byt5/results.json",
@@ -895,6 +972,7 @@
    "rendered": "−0.1"
   },
   "e11.vs_e08.ci": {
+   "kind": "json",
    "value": [
     -4.73,
     4.58
@@ -909,6 +987,7 @@
    "rendered": "[−4.7, +4.6]"
   },
   "e12.vs_e11.hist": {
+   "kind": "json",
    "value": 0.676,
    "fmt": "pp",
    "source": "experiments/E12-longer-schedule/results.json",
@@ -920,6 +999,7 @@
    "rendered": "+0.7"
   },
   "e12.vs_e11.hist.ci": {
+   "kind": "json",
    "value": [
     -4.054,
     5.405
@@ -934,6 +1014,7 @@
    "rendered": "[−4.1, +5.4]"
   },
   "e11.update": {
+   "kind": "json",
    "value": 3000,
    "fmt": "int",
    "source": "experiments/E11-real-data-byt5/results.json",
@@ -945,6 +1026,7 @@
    "rendered": "3,000"
   },
   "e11.sha": {
+   "kind": "json",
    "value": "286292a4f21131d0dd238d48919485192b0b0eb268d005bbc804d3ff78229713",
    "fmt": "raw",
    "source": "experiments/E11-real-data-byt5/results.json",
@@ -956,6 +1038,7 @@
    "rendered": "286292a4f21131d0dd238d48919485192b0b0eb268d005bbc804d3ff78229713"
   },
   "e12.update": {
+   "kind": "json",
    "value": 6000,
    "fmt": "int",
    "source": "experiments/E12-longer-schedule/results.json",
@@ -967,6 +1050,7 @@
    "rendered": "6,000"
   },
   "e13.update": {
+   "kind": "json",
    "value": 800,
    "fmt": "int",
    "source": "experiments/E13-pronunciation-guided/results.json",
@@ -978,6 +1062,7 @@
    "rendered": "800"
   },
   "rev.representative.e07": {
+   "kind": "json",
    "value": 24,
    "fmt": "int",
    "source": "experiments/E11-real-data-byt5/reports/review_scores.json",
@@ -989,6 +1074,7 @@
    "rendered": "24"
   },
   "rev.representative.e08": {
+   "kind": "json",
    "value": 30,
    "fmt": "int",
    "source": "experiments/E11-real-data-byt5/reports/review_scores.json",
@@ -1000,6 +1086,7 @@
    "rendered": "30"
   },
   "rev.representative.e11": {
+   "kind": "json",
    "value": 29,
    "fmt": "int",
    "source": "experiments/E11-real-data-byt5/reports/review_scores.json",
@@ -1011,6 +1098,7 @@
    "rendered": "29"
   },
   "rev.disagreement.e07": {
+   "kind": "json",
    "value": 5,
    "fmt": "int",
    "source": "experiments/E11-real-data-byt5/reports/review_scores.json",
@@ -1022,6 +1110,7 @@
    "rendered": "5"
   },
   "rev.disagreement.e08": {
+   "kind": "json",
    "value": 8,
    "fmt": "int",
    "source": "experiments/E11-real-data-byt5/reports/review_scores.json",
@@ -1033,6 +1122,7 @@
    "rendered": "8"
   },
   "rev.disagreement.e11": {
+   "kind": "json",
    "value": 10,
    "fmt": "int",
    "source": "experiments/E11-real-data-byt5/reports/review_scores.json",
@@ -1044,6 +1134,7 @@
    "rendered": "10"
   },
   "t1.e11.acceptable": {
+   "kind": "json",
    "value": 77,
    "fmt": "int",
    "source": "experiments/E12-longer-schedule/reports/test_scores.json",
@@ -1055,6 +1146,7 @@
    "rendered": "77"
   },
   "t1.e11.not_acceptable": {
+   "kind": "json",
    "value": 40,
    "fmt": "int",
    "source": "experiments/E12-longer-schedule/reports/test_scores.json",
@@ -1066,6 +1158,7 @@
    "rendered": "40"
   },
   "t1.e11.uncertain": {
+   "kind": "json",
    "value": 3,
    "fmt": "int",
    "source": "experiments/E12-longer-schedule/reports/test_scores.json",
@@ -1077,6 +1170,7 @@
    "rendered": "3"
   },
   "t1.e11.share": {
+   "kind": "json",
    "value": 0.6417,
    "fmt": "pct",
    "source": "experiments/E12-longer-schedule/reports/test_scores.json",
@@ -1088,6 +1182,7 @@
    "rendered": "64.2"
   },
   "t1.e12.acceptable": {
+   "kind": "json",
    "value": 77,
    "fmt": "int",
    "source": "experiments/E12-longer-schedule/reports/test_scores.json",
@@ -1099,6 +1194,7 @@
    "rendered": "77"
   },
   "t1.e12.not_acceptable": {
+   "kind": "json",
    "value": 39,
    "fmt": "int",
    "source": "experiments/E12-longer-schedule/reports/test_scores.json",
@@ -1110,6 +1206,7 @@
    "rendered": "39"
   },
   "t1.e12.uncertain": {
+   "kind": "json",
    "value": 4,
    "fmt": "int",
    "source": "experiments/E12-longer-schedule/reports/test_scores.json",
@@ -1121,6 +1218,7 @@
    "rendered": "4"
   },
   "t1.e12.share": {
+   "kind": "json",
    "value": 0.6417,
    "fmt": "pct",
    "source": "experiments/E12-longer-schedule/reports/test_scores.json",
@@ -1132,6 +1230,7 @@
    "rendered": "64.2"
   },
   "t1.diff": {
+   "kind": "json",
    "value": 0.0,
    "fmt": "pp",
    "source": "experiments/E12-longer-schedule/reports/test_scores.json",
@@ -1143,6 +1242,7 @@
    "rendered": "0.0"
   },
   "t1.diff.ci": {
+   "kind": "json",
    "value": [
     -8.33,
     8.33
@@ -1157,6 +1257,7 @@
    "rendered": "[−8.3, +8.3]"
   },
   "t1.paired.both": {
+   "kind": "json",
    "value": 63,
    "fmt": "int",
    "source": "experiments/E12-longer-schedule/reports/test_scores.json",
@@ -1168,6 +1269,7 @@
    "rendered": "63"
   },
   "t1.paired.a_only": {
+   "kind": "json",
    "value": 14,
    "fmt": "int",
    "source": "experiments/E12-longer-schedule/reports/test_scores.json",
@@ -1179,6 +1281,7 @@
    "rendered": "14"
   },
   "t1.paired.b_only": {
+   "kind": "json",
    "value": 14,
    "fmt": "int",
    "source": "experiments/E12-longer-schedule/reports/test_scores.json",
@@ -1190,6 +1293,7 @@
    "rendered": "14"
   },
   "t1.paired.neither": {
+   "kind": "json",
    "value": 29,
    "fmt": "int",
    "source": "experiments/E12-longer-schedule/reports/test_scores.json",
@@ -1201,6 +1305,7 @@
    "rendered": "29"
   },
   "t1.p": {
+   "kind": "json",
    "value": 1.0,
    "fmt": "f2",
    "source": "experiments/E12-longer-schedule/reports/test_scores.json",
@@ -1212,6 +1317,7 @@
    "rendered": "1.00"
   },
   "t2.e11.acceptable": {
+   "kind": "json",
    "value": 90,
    "fmt": "int",
    "source": "experiments/E13-pronunciation-guided/reports/test_scores.json",
@@ -1223,6 +1329,7 @@
    "rendered": "90"
   },
   "t2.e11.not_acceptable": {
+   "kind": "json",
    "value": 29,
    "fmt": "int",
    "source": "experiments/E13-pronunciation-guided/reports/test_scores.json",
@@ -1234,6 +1341,7 @@
    "rendered": "29"
   },
   "t2.e11.uncertain": {
+   "kind": "json",
    "value": 1,
    "fmt": "int",
    "source": "experiments/E13-pronunciation-guided/reports/test_scores.json",
@@ -1245,6 +1353,7 @@
    "rendered": "1"
   },
   "t2.e11.share": {
+   "kind": "json",
    "value": 0.75,
    "fmt": "pct",
    "source": "experiments/E13-pronunciation-guided/reports/test_scores.json",
@@ -1256,6 +1365,7 @@
    "rendered": "75.0"
   },
   "t2.e13.acceptable": {
+   "kind": "json",
    "value": 90,
    "fmt": "int",
    "source": "experiments/E13-pronunciation-guided/reports/test_scores.json",
@@ -1267,6 +1377,7 @@
    "rendered": "90"
   },
   "t2.e13.not_acceptable": {
+   "kind": "json",
    "value": 29,
    "fmt": "int",
    "source": "experiments/E13-pronunciation-guided/reports/test_scores.json",
@@ -1278,6 +1389,7 @@
    "rendered": "29"
   },
   "t2.e13.uncertain": {
+   "kind": "json",
    "value": 1,
    "fmt": "int",
    "source": "experiments/E13-pronunciation-guided/reports/test_scores.json",
@@ -1289,6 +1401,7 @@
    "rendered": "1"
   },
   "t2.e13.share": {
+   "kind": "json",
    "value": 0.75,
    "fmt": "pct",
    "source": "experiments/E13-pronunciation-guided/reports/test_scores.json",
@@ -1300,6 +1413,7 @@
    "rendered": "75.0"
   },
   "t2.diff": {
+   "kind": "json",
    "value": 0.0,
    "fmt": "pp",
    "source": "experiments/E13-pronunciation-guided/reports/test_scores.json",
@@ -1311,6 +1425,7 @@
    "rendered": "0.0"
   },
   "t2.diff.ci": {
+   "kind": "json",
    "value": [
     -7.5,
     7.5
@@ -1325,6 +1440,7 @@
    "rendered": "[−7.5, +7.5]"
   },
   "t2.paired.both": {
+   "kind": "json",
    "value": 79,
    "fmt": "int",
    "source": "experiments/E13-pronunciation-guided/reports/test_scores.json",
@@ -1336,6 +1452,7 @@
    "rendered": "79"
   },
   "t2.paired.a_only": {
+   "kind": "json",
    "value": 11,
    "fmt": "int",
    "source": "experiments/E13-pronunciation-guided/reports/test_scores.json",
@@ -1347,6 +1464,7 @@
    "rendered": "11"
   },
   "t2.paired.b_only": {
+   "kind": "json",
    "value": 11,
    "fmt": "int",
    "source": "experiments/E13-pronunciation-guided/reports/test_scores.json",
@@ -1358,6 +1476,7 @@
    "rendered": "11"
   },
   "t2.paired.neither": {
+   "kind": "json",
    "value": 19,
    "fmt": "int",
    "source": "experiments/E13-pronunciation-guided/reports/test_scores.json",
@@ -1369,6 +1488,7 @@
    "rendered": "19"
   },
   "t2.p": {
+   "kind": "json",
    "value": 1.0,
    "fmt": "f2",
    "source": "experiments/E13-pronunciation-guided/reports/test_scores.json",
@@ -1380,6 +1500,7 @@
    "rendered": "1.00"
   },
   "t2.ordinary.e11": {
+   "kind": "json",
    "value": 34,
    "fmt": "int",
    "source": "experiments/E13-pronunciation-guided/reports/test_scores.json",
@@ -1391,6 +1512,7 @@
    "rendered": "34"
   },
   "t2.ordinary.e13": {
+   "kind": "json",
    "value": 32,
    "fmt": "int",
    "source": "experiments/E13-pronunciation-guided/reports/test_scores.json",
@@ -1402,6 +1524,7 @@
    "rendered": "32"
   },
   "t2.irregular.e11": {
+   "kind": "json",
    "value": 20,
    "fmt": "int",
    "source": "experiments/E13-pronunciation-guided/reports/test_scores.json",
@@ -1413,6 +1536,7 @@
    "rendered": "20"
   },
   "t2.irregular.e13": {
+   "kind": "json",
    "value": 21,
    "fmt": "int",
    "source": "experiments/E13-pronunciation-guided/reports/test_scores.json",
@@ -1424,6 +1548,7 @@
    "rendered": "21"
   },
   "t2.names.e11": {
+   "kind": "json",
    "value": 36,
    "fmt": "int",
    "source": "experiments/E13-pronunciation-guided/reports/test_scores.json",
@@ -1435,6 +1560,7 @@
    "rendered": "36"
   },
   "t2.names.e13": {
+   "kind": "json",
    "value": 37,
    "fmt": "int",
    "source": "experiments/E13-pronunciation-guided/reports/test_scores.json",
@@ -1446,72 +1572,79 @@
    "rendered": "37"
   },
   "t1.ordinary.e12": {
+   "kind": "transcribed",
    "value": 27,
    "fmt": "int",
-   "source": null,
-   "field": null,
-   "revision": null,
-   "meaning": "e12 acceptable in group ordinary (E12 REPORT.md §5.1 table)",
+   "source": "experiments/E12-longer-schedule/REPORT.md",
+   "field": "§5.1 table",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "e12 acceptable in group ordinary",
    "denominator": "40 words",
-   "derived_from": "experiments/E12-longer-schedule/REPORT.md §5.1 (no JSON field)",
+   "derived_from": "",
    "rendered": "27"
   },
   "t1.ordinary.e11": {
+   "kind": "transcribed",
    "value": 27,
    "fmt": "int",
-   "source": null,
-   "field": null,
-   "revision": null,
-   "meaning": "e11 acceptable in group ordinary (E12 REPORT.md §5.1 table)",
+   "source": "experiments/E12-longer-schedule/REPORT.md",
+   "field": "§5.1 table",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "e11 acceptable in group ordinary",
    "denominator": "40 words",
-   "derived_from": "experiments/E12-longer-schedule/REPORT.md §5.1 (no JSON field)",
+   "derived_from": "",
    "rendered": "27"
   },
   "t1.irregular.e12": {
+   "kind": "transcribed",
    "value": 19,
    "fmt": "int",
-   "source": null,
-   "field": null,
-   "revision": null,
-   "meaning": "e12 acceptable in group irregular (E12 REPORT.md §5.1 table)",
+   "source": "experiments/E12-longer-schedule/REPORT.md",
+   "field": "§5.1 table",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "e12 acceptable in group irregular",
    "denominator": "40 words",
-   "derived_from": "experiments/E12-longer-schedule/REPORT.md §5.1 (no JSON field)",
+   "derived_from": "",
    "rendered": "19"
   },
   "t1.irregular.e11": {
+   "kind": "transcribed",
    "value": 14,
    "fmt": "int",
-   "source": null,
-   "field": null,
-   "revision": null,
-   "meaning": "e11 acceptable in group irregular (E12 REPORT.md §5.1 table)",
+   "source": "experiments/E12-longer-schedule/REPORT.md",
+   "field": "§5.1 table",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "e11 acceptable in group irregular",
    "denominator": "40 words",
-   "derived_from": "experiments/E12-longer-schedule/REPORT.md §5.1 (no JSON field)",
+   "derived_from": "",
    "rendered": "14"
   },
   "t1.names.e12": {
+   "kind": "transcribed",
    "value": 31,
    "fmt": "int",
-   "source": null,
-   "field": null,
-   "revision": null,
-   "meaning": "e12 acceptable in group names (E12 REPORT.md §5.1 table)",
+   "source": "experiments/E12-longer-schedule/REPORT.md",
+   "field": "§5.1 table",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "e12 acceptable in group names",
    "denominator": "40 words",
-   "derived_from": "experiments/E12-longer-schedule/REPORT.md §5.1 (no JSON field)",
+   "derived_from": "",
    "rendered": "31"
   },
   "t1.names.e11": {
+   "kind": "transcribed",
    "value": 36,
    "fmt": "int",
-   "source": null,
-   "field": null,
-   "revision": null,
-   "meaning": "e11 acceptable in group names (E12 REPORT.md §5.1 table)",
+   "source": "experiments/E12-longer-schedule/REPORT.md",
+   "field": "§5.1 table",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "e11 acceptable in group names",
    "denominator": "40 words",
-   "derived_from": "experiments/E12-longer-schedule/REPORT.md §5.1 (no JSON field)",
+   "derived_from": "",
    "rendered": "36"
   },
   "cov.words": {
+   "kind": "json",
    "value": 23,
    "fmt": "int",
    "source": "experiments/E11-real-data-byt5/coverage/results.json",
@@ -1523,6 +1656,7 @@
    "rendered": "23"
   },
   "cov.greedy": {
+   "kind": "json",
    "value": 8,
    "fmt": "int",
    "source": "experiments/E11-real-data-byt5/coverage/results.json",
@@ -1534,6 +1668,7 @@
    "rendered": "8"
   },
   "cov.beam1": {
+   "kind": "json",
    "value": 10,
    "fmt": "int",
    "source": "experiments/E11-real-data-byt5/coverage/results.json",
@@ -1545,6 +1680,7 @@
    "rendered": "10"
   },
   "cov.any4": {
+   "kind": "json",
    "value": 15,
    "fmt": "int",
    "source": "experiments/E11-real-data-byt5/coverage/results.json",
@@ -1556,6 +1692,7 @@
    "rendered": "15"
   },
   "cov.any5": {
+   "kind": "json",
    "value": 15,
    "fmt": "int",
    "source": "experiments/E11-real-data-byt5/coverage/results.json",
@@ -1567,6 +1704,7 @@
    "rendered": "15"
   },
   "cov.recov": {
+   "kind": "json",
    "value": 7,
    "fmt": "int",
    "source": "experiments/E11-real-data-byt5/coverage/results.json",
@@ -1578,6 +1716,7 @@
    "rendered": "7"
   },
   "cov.none": {
+   "kind": "json",
    "value": 8,
    "fmt": "int",
    "source": "experiments/E11-real-data-byt5/coverage/results.json",
@@ -1589,6 +1728,7 @@
    "rendered": "8"
   },
   "cov.cands": {
+   "kind": "json",
    "value": 93,
    "fmt": "int",
    "source": "experiments/E11-real-data-byt5/coverage/results.json",
@@ -1600,6 +1740,7 @@
    "rendered": "93"
   },
   "cov.unc": {
+   "kind": "json",
    "value": 6,
    "fmt": "int",
    "source": "experiments/E11-real-data-byt5/coverage/results.json",
@@ -1611,6 +1752,7 @@
    "rendered": "6"
   },
   "cov.coverage": {
+   "kind": "json",
    "value": 1.0,
    "fmt": "pct",
    "source": "experiments/E11-real-data-byt5/coverage/results.json",
@@ -1622,6 +1764,7 @@
    "rendered": "100.0"
   },
   "cov.gain_vs_greedy": {
+   "kind": "derived",
    "value": 7,
    "fmt": "int",
    "source": null,
@@ -1633,6 +1776,7 @@
    "rendered": "7"
   },
   "cov.gain_vs_beam1": {
+   "kind": "derived",
    "value": 5,
    "fmt": "int",
    "source": null,
@@ -1643,7 +1787,872 @@
    "derived_from": "cov.any4 − cov.beam1 (beam top-1 is one of the 4)",
    "rendered": "5"
   },
+  "s.anch.primary": {
+   "kind": "json",
+   "value": 82,
+   "fmt": "int",
+   "source": "experiments/E02-english-phonetic/results.json",
+   "field": "runs.letters_s0.primary.strata.candidate_anchored.n",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "primary items whose reference was chosen from an earlier model's candidates",
+   "denominator": "165 items",
+   "derived_from": "",
+   "rendered": "82"
+  },
+  "s.anch.flagged": {
+   "kind": "json",
+   "value": 12,
+   "fmt": "int",
+   "source": "experiments/E02-english-phonetic/results.json",
+   "field": "runs.letters_s0.final_flagged.strata.candidate_anchored.n",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "flagged items whose reference was chosen from an earlier model's candidates",
+   "denominator": "26 items",
+   "derived_from": "",
+   "rendered": "12"
+  },
+  "s.flagged.n": {
+   "kind": "json",
+   "value": 26,
+   "fmt": "int",
+   "source": "experiments/E02-english-phonetic/results.json",
+   "field": "runs.letters_s0.final_flagged.n_items",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "flagged-track items",
+   "denominator": "",
+   "derived_from": "",
+   "rendered": "26"
+  },
+  "s.anch.final": {
+   "kind": "derived",
+   "value": 94,
+   "fmt": "int",
+   "source": null,
+   "field": null,
+   "revision": null,
+   "meaning": "candidate-anchored items in both final tracks",
+   "denominator": "191 items",
+   "derived_from": "s.anch.primary + s.anch.flagged",
+   "rendered": "94"
+  },
+  "s.final.n": {
+   "kind": "derived",
+   "value": 191,
+   "fmt": "int",
+   "source": null,
+   "field": null,
+   "revision": null,
+   "meaning": "items in both final tracks",
+   "denominator": "",
+   "derived_from": "s.primary.n + s.flagged.n",
+   "rendered": "191"
+  },
+  "s.seed.0": {
+   "kind": "json",
+   "value": 0.6172839506172849,
+   "fmt": "pp",
+   "source": "experiments/E02-english-phonetic/results.json",
+   "field": "comparisons.confirmatory.seed_gains_pp.0",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "phones − letters, seed 0",
+   "denominator": "",
+   "derived_from": "",
+   "rendered": "+0.6"
+  },
+  "s.seed.1": {
+   "kind": "json",
+   "value": 1.543209876543207,
+   "fmt": "pp",
+   "source": "experiments/E02-english-phonetic/results.json",
+   "field": "comparisons.confirmatory.seed_gains_pp.1",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "phones − letters, seed 1",
+   "denominator": "",
+   "derived_from": "",
+   "rendered": "+1.5"
+  },
+  "s.seed.2": {
+   "kind": "json",
+   "value": 2.7777777777777786,
+   "fmt": "pp",
+   "source": "experiments/E02-english-phonetic/results.json",
+   "field": "comparisons.confirmatory.seed_gains_pp.2",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "phones − letters, seed 2",
+   "denominator": "",
+   "derived_from": "",
+   "rendered": "+2.8"
+  },
+  "s.power.min": {
+   "kind": "derived",
+   "value": 0.22,
+   "fmt": "f2",
+   "source": "experiments/E02-english-phonetic/results.json",
+   "field": "power.power_primary",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "simulated power for a true +5-point gain, minimum over the registered discordance grid",
+   "denominator": "",
+   "derived_from": "min over power.power_primary",
+   "rendered": "0.22"
+  },
+  "s.power.max": {
+   "kind": "derived",
+   "value": 0.4975,
+   "fmt": "f2",
+   "source": "experiments/E02-english-phonetic/results.json",
+   "field": "power.power_primary",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "same, maximum over the grid",
+   "denominator": "",
+   "derived_from": "max over power.power_primary",
+   "rendered": "0.50"
+  },
+  "s.dev.n": {
+   "kind": "transcribed",
+   "value": 86,
+   "fmt": "int",
+   "source": "experiments/E02-english-phonetic/RESULTS.md",
+   "field": "Selection",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "primary-eligible development items used to select the epoch",
+   "denominator": "",
+   "derived_from": "",
+   "rendered": "86"
+  },
+  "s.train": {
+   "kind": "json",
+   "value": 9735,
+   "fmt": "int",
+   "source": "experiments/E02-english-phonetic/reports/data_build.json",
+   "field": "train_rows.train",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "small model training pairs",
+   "denominator": "",
+   "derived_from": "",
+   "rendered": "9,735"
+  },
+  "s.trainval": {
+   "kind": "json",
+   "value": 296,
+   "fmt": "int",
+   "source": "experiments/E02-english-phonetic/reports/data_build.json",
+   "field": "train_rows.train_val",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "small model validation-loss pairs",
+   "denominator": "",
+   "derived_from": "",
+   "rendered": "296"
+  },
+  "s.epoch": {
+   "kind": "json",
+   "value": 27,
+   "fmt": "int",
+   "source": "experiments/E02-release/reports/provenance_facts.json",
+   "field": "checkpoint.meta.epoch",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "selected epoch of the released small model",
+   "denominator": "",
+   "derived_from": "",
+   "rendered": "27"
+  },
+  "sens.min": {
+   "kind": "derived",
+   "value": 0.32978723404255317,
+   "fmt": "pct",
+   "source": null,
+   "field": null,
+   "revision": null,
+   "meaning": "minimum donor-phone change rate over seeds 0–2",
+   "denominator": "94 words",
+   "derived_from": "min(sens.s0.donor, sens.s1.donor, sens.s2.donor)",
+   "rendered": "33.0"
+  },
+  "sens.max": {
+   "kind": "derived",
+   "value": 0.44680851063829785,
+   "fmt": "pct",
+   "source": null,
+   "field": null,
+   "revision": null,
+   "meaning": "maximum donor-phone change rate over seeds 0–2",
+   "denominator": "94 words",
+   "derived_from": "max(sens.s0.donor, sens.s1.donor, sens.s2.donor)",
+   "rendered": "44.7"
+  },
+  "sens.closer.min": {
+   "kind": "derived",
+   "value": 2,
+   "fmt": "int",
+   "source": "experiments/E02-diagnostics-2026-10-27/sensitivity/posthoc.json",
+   "field": "toward_given_phones.phones_s*|donor.closer_to_given_phones",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "changed outputs closer to the donor's consonants, minimum over seeds",
+   "denominator": "",
+   "derived_from": "min over seeds 0–2",
+   "rendered": "2"
+  },
+  "sens.closer.max": {
+   "kind": "derived",
+   "value": 7,
+   "fmt": "int",
+   "source": "experiments/E02-diagnostics-2026-10-27/sensitivity/posthoc.json",
+   "field": "toward_given_phones.phones_s*|donor.closer_to_given_phones",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "same, maximum over seeds",
+   "denominator": "",
+   "derived_from": "max over seeds 0–2",
+   "rendered": "7"
+  },
+  "ov.primary": {
+   "kind": "json",
+   "value": 110,
+   "fmt": "int",
+   "source": "experiments/E07-byt5-diagnosis/results.json",
+   "field": "strata.in_default_e02_training=True.items",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "primary historical-eval items whose word is in the small model's training file",
+   "denominator": "228 items",
+   "derived_from": "",
+   "rendered": "110"
+  },
+  "ov.primary.not": {
+   "kind": "json",
+   "value": 118,
+   "fmt": "int",
+   "source": "experiments/E07-byt5-diagnosis/results.json",
+   "field": "strata.in_default_e02_training=False.items",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "primary items not in it",
+   "denominator": "",
+   "derived_from": "",
+   "rendered": "118"
+  },
+  "ov.primary.n": {
+   "kind": "json",
+   "value": 228,
+   "fmt": "int",
+   "source": "experiments/E07-byt5-diagnosis/results.json",
+   "field": "historical_eval.items",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "primary historical-eval items",
+   "denominator": "",
+   "derived_from": "",
+   "rendered": "228"
+  },
+  "ov.full": {
+   "kind": "json",
+   "value": 122,
+   "fmt": "int",
+   "source": "experiments/E03-assessable-phones/reports/overlap.json",
+   "field": "eval.e02_train_words",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "words of the full eval partition that occur in the small model's training data",
+   "denominator": "245 words",
+   "derived_from": "",
+   "rendered": "122"
+  },
+  "ov.full.n": {
+   "kind": "json",
+   "value": 245,
+   "fmt": "int",
+   "source": "experiments/E03-assessable-phones/reports/overlap.json",
+   "field": "eval.words",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "words in the full eval partition (incl. non-primary)",
+   "denominator": "",
+   "derived_from": "",
+   "rendered": "245"
+  },
+  "d.recovered": {
+   "kind": "json",
+   "value": 11377,
+   "fmt": "int",
+   "source": "experiments/E03-assessable-phones/reports/data_audit.json",
+   "field": "recovery.recovered:khmer_target_known_only",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "rows recovered by the selection repair",
+   "denominator": "",
+   "derived_from": "",
+   "rendered": "11,377"
+  },
+  "d.romanised": {
+   "kind": "json",
+   "value": 1507,
+   "fmt": "int",
+   "source": "experiments/E03-assessable-phones/reports/data_audit.json",
+   "field": "recovery.excluded:latin_romanised",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "rows still excluded (romanised Latin side)",
+   "denominator": "",
+   "derived_from": "",
+   "rendered": "1,507"
+  },
+  "d.dacs": {
+   "kind": "json",
+   "value": 2967,
+   "fmt": "int",
+   "source": "experiments/E03-assessable-phones/reports/data_audit.json",
+   "field": "retained.pairs",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "dictionary-assessable, consonant-screened pairs",
+   "denominator": "",
+   "derived_from": "",
+   "rendered": "2,967"
+  },
+  "d.rows": {
+   "kind": "json",
+   "value": 10031,
+   "fmt": "int",
+   "source": "experiments/E02-diagnostics-2026-10-27/compat/summary.json",
+   "field": "rows",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "small model training rows audited",
+   "denominator": "",
+   "derived_from": "",
+   "rendered": "10,031"
+  },
+  "d.lexhits": {
+   "kind": "json",
+   "value": 0,
+   "fmt": "int",
+   "source": "experiments/E02-diagnostics-2026-10-27/compat/summary.json",
+   "field": "coverage.google_exact_target_hits",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "training targets found by exact lexicon lookup",
+   "denominator": "",
+   "derived_from": "",
+   "rendered": "0"
+  },
+  "d.heldout": {
+   "kind": "json",
+   "value": 30980,
+   "fmt": "int",
+   "source": "experiments/E02-diagnostics-2026-10-27/compat/summary.json",
+   "field": "orthography_validation.heldout.all.headwords",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "held-out lexicon headwords",
+   "denominator": "",
+   "derived_from": "",
+   "rendered": "30,980"
+  },
+  "d.consrate": {
+   "kind": "json",
+   "value": 0.8856571004293509,
+   "fmt": "pct",
+   "source": "experiments/E02-diagnostics-2026-10-27/compat/summary.json",
+   "field": "orthography_validation.heldout.all.rate",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "consonant-class agreement",
+   "denominator": "headwords",
+   "derived_from": "",
+   "rendered": "88.6"
+  },
+  "d.r.rows": {
+   "kind": "json",
+   "value": 4764,
+   "fmt": "int",
+   "source": "experiments/E08-data-expansion/reports/training_arms.json",
+   "field": "R.optimisation_rows",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "released adapter: optimised training rows",
+   "denominator": "",
+   "derived_from": "",
+   "rendered": "4,764"
+  },
+  "d.r.words": {
+   "kind": "json",
+   "value": 3585,
+   "fmt": "int",
+   "source": "experiments/E08-data-expansion/reports/training_arms.json",
+   "field": "R.optimisation_words",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "released adapter: training words",
+   "denominator": "",
+   "derived_from": "",
+   "rendered": "3,585"
+  },
+  "d.r.recovered": {
+   "kind": "json",
+   "value": 1292,
+   "fmt": "int",
+   "source": "experiments/E08-data-expansion/reports/training_arms.json",
+   "field": "R.by_provenance.recovered",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "released adapter: recovered pairs",
+   "denominator": "",
+   "derived_from": "",
+   "rendered": "1,292"
+  },
+  "d.r.alt": {
+   "kind": "json",
+   "value": 1217,
+   "fmt": "int",
+   "source": "experiments/E08-data-expansion/reports/training_arms.json",
+   "field": "R.by_provenance.attested_alt",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "released adapter: ALT-attested pairs",
+   "denominator": "",
+   "derived_from": "",
+   "rendered": "1,217"
+  },
+  "d.r.control": {
+   "kind": "derived",
+   "value": 2255,
+   "fmt": "int",
+   "source": null,
+   "field": null,
+   "revision": null,
+   "meaning": "released adapter: screened mined pairs optimised",
+   "denominator": "",
+   "derived_from": "d.r.rows − d.r.recovered − d.r.alt (the 93 train-val rows of the control part are not optimised; identity.json records control:train = 2,255)",
+   "rendered": "2,255"
+  },
+  "d.synth.rows": {
+   "kind": "json",
+   "value": 384,
+   "fmt": "int",
+   "source": "experiments/E08-data-expansion/reports/training_arms.json",
+   "field": "RS.by_provenance.google_ai_mode_synthetic",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "synthetic rows (historical arm)",
+   "denominator": "",
+   "derived_from": "",
+   "rendered": "384"
+  },
+  "d.synth.words": {
+   "kind": "transcribed",
+   "value": 193,
+   "fmt": "int",
+   "source": "experiments/E08-data-expansion/REPORT.md",
+   "field": "Update 3",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "words covered by the synthetic rows",
+   "denominator": "",
+   "derived_from": "",
+   "rendered": "193"
+  },
+  "x.tensors": {
+   "kind": "json",
+   "value": 256,
+   "fmt": "int",
+   "source": "experiments/E11-real-data-byt5/release/export.json",
+   "field": "tensors",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "adapter tensors",
+   "denominator": "",
+   "derived_from": "",
+   "rendered": "256"
+  },
+  "x.params": {
+   "kind": "json",
+   "value": 6258688,
+   "fmt": "int",
+   "source": "experiments/E11-real-data-byt5/release/export.json",
+   "field": "parameters",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "adapter parameters",
+   "denominator": "",
+   "derived_from": "",
+   "rendered": "6,258,688"
+  },
+  "x.hours": {
+   "kind": "json",
+   "value": 4.599,
+   "fmt": "f1",
+   "source": "experiments/E11-real-data-byt5/results.json",
+   "field": "training.active_training_hours",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "released adapter training time (active hours)",
+   "denominator": "",
+   "derived_from": "",
+   "rendered": "4.6"
+  },
+  "x.params.m": {
+   "kind": "derived",
+   "value": 6.258688,
+   "fmt": "f2",
+   "source": null,
+   "field": null,
+   "revision": null,
+   "meaning": "adapter parameters in millions",
+   "denominator": "",
+   "derived_from": "x.params / 10^6",
+   "rendered": "6.26"
+  },
+  "sens.n": {
+   "kind": "json",
+   "value": 94,
+   "fmt": "int",
+   "source": "experiments/E02-diagnostics-2026-10-27/sensitivity/summary.json",
+   "field": "aggregate.phones_s0.donor.n",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "words in the donor-phone condition",
+   "denominator": "",
+   "derived_from": "",
+   "rendered": "94"
+  },
+  "e06.correct": {
+   "kind": "json",
+   "value": 0,
+   "fmt": "int",
+   "source": "experiments/E07-byt5-diagnosis/results.json",
+   "field": "historical_eval.systems.byt5_e06.correct_items",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "collapsed attention-only adapter: correct eval items",
+   "denominator": "228 items",
+   "derived_from": "",
+   "rendered": "0"
+  },
+  "e06.top": {
+   "kind": "json",
+   "value": 204,
+   "fmt": "int",
+   "source": "experiments/E07-byt5-diagnosis/results.json",
+   "field": "historical_eval.systems.byt5_e06.most_common_top1.1",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "eval words given the single most common output by the collapsed attention-only adapter",
+   "denominator": "228 items",
+   "derived_from": "",
+   "rendered": "204"
+  },
+  "e09.cands": {
+   "kind": "json",
+   "value": 3.601,
+   "fmt": "f2",
+   "source": "experiments/E09-byt5-decoding/reports/dev_comparison.json",
+   "field": "table.e08:beam4_reg.distinct_candidates_per_item",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "distinct candidates per item, registered beam-4, synthetic-data adapter (dev)",
+   "denominator": "",
+   "derived_from": "",
+   "rendered": "3.60"
+  },
+  "vow.min": {
+   "kind": "derived",
+   "value": 0.40707964601769914,
+   "fmt": "pct0",
+   "source": "experiments/E11-real-data-byt5/results.json",
+   "field": "eval.error_kinds",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "vowel-only share of reference mismatches, minimum over adapters",
+   "denominator": "",
+   "derived_from": "vowels_only / all kinds",
+   "rendered": "41"
+  },
+  "vow.max": {
+   "kind": "derived",
+   "value": 0.49074074074074076,
+   "fmt": "pct0",
+   "source": "experiments/E11-real-data-byt5/results.json",
+   "field": "eval.error_kinds",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "same, maximum over adapters",
+   "denominator": "",
+   "derived_from": "vowels_only / all kinds",
+   "rendered": "49"
+  },
+  "e01.gain": {
+   "kind": "json",
+   "value": 4.666666666666667,
+   "fmt": "f2",
+   "source": "experiments/E01-unified/results.json",
+   "field": "gate.english_mean_pp",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "E01 aux-task gain on the English panels (points)",
+   "denominator": "",
+   "derived_from": "",
+   "rendered": "4.67"
+  },
+  "x.judged": {
+   "kind": "transcribed",
+   "value": 109,
+   "fmt": "int",
+   "source": "experiments/E11-real-data-byt5/REPORT.md",
+   "field": "§5 table 'Owner judgment vs the old reference spellings'",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "distinct judged candidate spellings",
+   "denominator": "",
+   "derived_from": "",
+   "rendered": "109"
+  },
+  "x.diff": {
+   "kind": "transcribed",
+   "value": 72,
+   "fmt": "int",
+   "source": "experiments/E11-real-data-byt5/REPORT.md",
+   "field": "§5 table 'Owner judgment vs the old reference spellings'",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "judged spellings that differ from the mined reference",
+   "denominator": "",
+   "derived_from": "",
+   "rendered": "72"
+  },
+  "x.diff.acc": {
+   "kind": "transcribed",
+   "value": 28,
+   "fmt": "int",
+   "source": "experiments/E11-real-data-byt5/REPORT.md",
+   "field": "§5 table 'Owner judgment vs the old reference spellings'",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "of those, judged acceptable",
+   "denominator": "",
+   "derived_from": "",
+   "rendered": "28"
+  },
+  "x.match": {
+   "kind": "transcribed",
+   "value": 37,
+   "fmt": "int",
+   "source": "experiments/E11-real-data-byt5/REPORT.md",
+   "field": "§5 table 'Owner judgment vs the old reference spellings'",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "judged spellings that match the mined reference",
+   "denominator": "",
+   "derived_from": "",
+   "rendered": "37"
+  },
+  "x.match.not": {
+   "kind": "transcribed",
+   "value": 8,
+   "fmt": "int",
+   "source": "experiments/E11-real-data-byt5/REPORT.md",
+   "field": "§5 table 'Owner judgment vs the old reference spellings'",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "of those, judged not acceptable",
+   "denominator": "",
+   "derived_from": "",
+   "rendered": "8"
+  },
+  "x.diff.unc": {
+   "kind": "transcribed",
+   "value": 3,
+   "fmt": "int",
+   "source": "experiments/E11-real-data-byt5/REPORT.md",
+   "field": "§5 table 'Owner judgment vs the old reference spellings'",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "differing spellings judged uncertain",
+   "denominator": "",
+   "derived_from": "",
+   "rendered": "3"
+  },
+  "x.match.acc": {
+   "kind": "transcribed",
+   "value": 28,
+   "fmt": "int",
+   "source": "experiments/E11-real-data-byt5/REPORT.md",
+   "field": "§5 table 'Owner judgment vs the old reference spellings'",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "matching spellings judged acceptable",
+   "denominator": "",
+   "derived_from": "",
+   "rendered": "28"
+  },
+  "x.match.unc": {
+   "kind": "transcribed",
+   "value": 1,
+   "fmt": "int",
+   "source": "experiments/E11-real-data-byt5/REPORT.md",
+   "field": "§5 table 'Owner judgment vs the old reference spellings'",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "matching spellings judged uncertain",
+   "denominator": "",
+   "derived_from": "",
+   "rendered": "1"
+  },
+  "x.diff.share": {
+   "kind": "derived",
+   "value": 0.3888888888888889,
+   "fmt": "pct0",
+   "source": null,
+   "field": null,
+   "revision": null,
+   "meaning": "share of differing spellings judged acceptable",
+   "denominator": "",
+   "derived_from": "x.diff.acc / x.diff",
+   "rendered": "39"
+  },
+  "x.match.share": {
+   "kind": "derived",
+   "value": 0.21621621621621623,
+   "fmt": "pct0",
+   "source": null,
+   "field": null,
+   "revision": null,
+   "meaning": "share of matching spellings judged not acceptable",
+   "denominator": "",
+   "derived_from": "x.match.not / x.match",
+   "rendered": "22"
+  },
+  "t1.changed": {
+   "kind": "transcribed",
+   "value": 65,
+   "fmt": "int",
+   "source": "experiments/E12-longer-schedule/REPORT.md",
+   "field": "§5.2",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "test-1 words whose spelling differs between E12 and E11",
+   "denominator": "120 words",
+   "derived_from": "",
+   "rendered": "65"
+  },
+  "e13.families": {
+   "kind": "transcribed",
+   "value": 42,
+   "fmt": "int",
+   "source": "experiments/E13-pronunciation-guided/REPORT.md",
+   "field": "summary 'Data'",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "difficult training families with accepted spellings",
+   "denominator": "",
+   "derived_from": "",
+   "rendered": "42"
+  },
+  "cov.reused": {
+   "kind": "json",
+   "value": 43,
+   "fmt": "int",
+   "source": "experiments/E11-real-data-byt5/coverage/batches.json",
+   "field": "reused_judgments",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "coverage judgments reused from earlier reviews",
+   "denominator": "",
+   "derived_from": "",
+   "rendered": "43"
+  },
+  "cov.reused.e13": {
+   "kind": "json",
+   "value": 40,
+   "fmt": "int",
+   "source": "experiments/E11-real-data-byt5/coverage/batches.json",
+   "field": "reused_by_source.e13_collection",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "reused from the E13 collection review",
+   "denominator": "",
+   "derived_from": "",
+   "rendered": "40"
+  },
+  "cov.reused.dev": {
+   "kind": "json",
+   "value": 3,
+   "fmt": "int",
+   "source": "experiments/E11-real-data-byt5/coverage/batches.json",
+   "field": "reused_by_source.e11_review",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "reused from the chat-transcribed dev review",
+   "denominator": "",
+   "derived_from": "",
+   "rendered": "3"
+  },
+  "cov.new": {
+   "kind": "json",
+   "value": 50,
+   "fmt": "int",
+   "source": "experiments/E11-real-data-byt5/coverage/batches.json",
+   "field": "new_judgments_needed",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "new coverage judgments clicked on the review page",
+   "denominator": "",
+   "derived_from": "",
+   "rendered": "50"
+  },
+  "cov.clicked": {
+   "kind": "derived",
+   "value": 90,
+   "fmt": "int",
+   "source": null,
+   "field": null,
+   "revision": null,
+   "meaning": "coverage judgments given by clicks on the review page (new plus reused from the clicked E13 collection review)",
+   "denominator": "",
+   "derived_from": "cov.new + cov.reused.e13",
+   "rendered": "90"
+  },
+  "t1.hw": {
+   "kind": "derived",
+   "value": 8.579359611765904,
+   "fmt": "f1",
+   "source": null,
+   "field": null,
+   "revision": null,
+   "meaning": "normal-approximation 95% half-width of the released adapter's rate, test 1 (points)",
+   "denominator": "",
+   "derived_from": "1.96·sqrt(p(1−p)/120)",
+   "rendered": "8.6"
+  },
+  "t2.hw": {
+   "kind": "derived",
+   "value": 7.74758026741253,
+   "fmt": "f1",
+   "source": null,
+   "field": null,
+   "revision": null,
+   "meaning": "same, test 2 (points)",
+   "denominator": "",
+   "derived_from": "1.96·sqrt(p(1−p)/120)",
+   "rendered": "7.7"
+  },
+  "irr.lo": {
+   "kind": "derived",
+   "value": 0.35,
+   "fmt": "pct0",
+   "source": null,
+   "field": null,
+   "revision": null,
+   "meaning": "released adapter, irregular group acceptable share, lower of the two tests",
+   "denominator": "",
+   "derived_from": "min(t1, t2 irregular)/40",
+   "rendered": "35"
+  },
+  "irr.hi": {
+   "kind": "derived",
+   "value": 0.5,
+   "fmt": "pct0",
+   "source": null,
+   "field": null,
+   "revision": null,
+   "meaning": "same, higher",
+   "denominator": "",
+   "derived_from": "max(t1, t2 irregular)/40",
+   "rendered": "50"
+  },
+  "acc.lo": {
+   "kind": "derived",
+   "value": 0.6417,
+   "fmt": "pct0",
+   "source": null,
+   "field": null,
+   "revision": null,
+   "meaning": "released adapter acceptable share, lower of the two tests",
+   "denominator": "",
+   "derived_from": "min(t1, t2)",
+   "rendered": "64"
+  },
+  "acc.hi": {
+   "kind": "derived",
+   "value": 0.75,
+   "fmt": "pct0",
+   "source": null,
+   "field": null,
+   "revision": null,
+   "meaning": "same, higher",
+   "denominator": "",
+   "derived_from": "max(t1, t2)",
+   "rendered": "75"
+  },
+  "cov.none.share": {
+   "kind": "derived",
+   "value": 0.34782608695652173,
+   "fmt": "pct0",
+   "source": null,
+   "field": null,
+   "revision": null,
+   "meaning": "hard words with no acceptable candidate",
+   "denominator": "",
+   "derived_from": "cov.none / cov.words",
+   "rendered": "35"
+  },
   "par.dev": {
+   "kind": "json",
    "value": 0,
    "fmt": "int",
    "source": "experiments/E11-real-data-byt5/release/verify.json",
@@ -1655,6 +2664,7 @@
    "rendered": "0"
   },
   "par.dev.n": {
+   "kind": "json",
    "value": 276,
    "fmt": "int",
    "source": "experiments/E11-real-data-byt5/release/verify.json",
@@ -1666,6 +2676,7 @@
    "rendered": "276"
   },
   "par.eval": {
+   "kind": "json",
    "value": 0,
    "fmt": "int",
    "source": "experiments/E11-real-data-byt5/release/verify.json",
@@ -1677,6 +2688,7 @@
    "rendered": "0"
   },
   "par.eval.n": {
+   "kind": "json",
    "value": 245,
    "fmt": "int",
    "source": "experiments/E11-real-data-byt5/release/verify.json",
@@ -1688,6 +2700,7 @@
    "rendered": "245"
   },
   "par.top4": {
+   "kind": "json",
    "value": 0,
    "fmt": "int",
    "source": "experiments/E11-real-data-byt5/release/verify.json",
@@ -1699,6 +2712,7 @@
    "rendered": "0"
   },
   "b.lat1": {
+   "kind": "json",
    "value": 554.1,
    "fmt": "f0",
    "source": "experiments/E11-real-data-byt5/release/verify.json",
@@ -1710,6 +2724,7 @@
    "rendered": "554"
   },
   "b.lat4": {
+   "kind": "json",
    "value": 819.9,
    "fmt": "f0",
    "source": "experiments/E11-real-data-byt5/release/verify.json",
@@ -1721,6 +2736,7 @@
    "rendered": "820"
   },
   "b.load": {
+   "kind": "json",
    "value": 7.06,
    "fmt": "f1",
    "source": "experiments/E11-real-data-byt5/release/verify.json",
@@ -1732,6 +2748,7 @@
    "rendered": "7.1"
   },
   "b.peak": {
+   "kind": "json",
    "value": 2019,
    "fmt": "f0",
    "source": "experiments/E11-real-data-byt5/release/verify.json",
@@ -1743,6 +2760,7 @@
    "rendered": "2019"
   },
   "b.rss": {
+   "kind": "json",
    "value": 713,
    "fmt": "f0",
    "source": "experiments/E11-real-data-byt5/release/verify.json",
@@ -1754,6 +2772,7 @@
    "rendered": "713"
   },
   "b.wps": {
+   "kind": "json",
    "value": 14.5,
    "fmt": "f1",
    "source": "experiments/E11-real-data-byt5/release/verify.json",
@@ -1765,6 +2784,7 @@
    "rendered": "14.5"
   },
   "b.i.load": {
+   "kind": "json",
    "value": 5.49,
    "fmt": "f1",
    "source": "experiments/E11-real-data-byt5/release/install_check.json",
@@ -1776,6 +2796,7 @@
    "rendered": "5.5"
   },
   "b.i.wps": {
+   "kind": "json",
    "value": 14.1,
    "fmt": "f1",
    "source": "experiments/E11-real-data-byt5/release/install_check.json",
@@ -1787,6 +2808,7 @@
    "rendered": "14.1"
   },
   "b.i.par": {
+   "kind": "json",
    "value": 0,
    "fmt": "int",
    "source": "experiments/E11-real-data-byt5/release/install_check.json",
@@ -1798,6 +2820,7 @@
    "rendered": "0"
   },
   "b.i.checks": {
+   "kind": "json",
    "value": true,
    "fmt": "raw",
    "source": "experiments/E11-real-data-byt5/release/install_check.json",
@@ -1809,6 +2832,7 @@
    "rendered": "True"
   },
   "b.i.nchecks": {
+   "kind": "json",
    "value": 19,
    "fmt": "int",
    "source": "experiments/E11-real-data-byt5/release/install_check.json",
@@ -1818,6 +2842,30 @@
    "denominator": "",
    "derived_from": "",
    "rendered": "19"
+  },
+  "slow.lo": {
+   "kind": "derived",
+   "value": 28.797392973872903,
+   "fmt": "f0",
+   "source": null,
+   "field": null,
+   "revision": null,
+   "meaning": "adapter greedy median latency / small-model median latency, lowest over the small model's three timing runs",
+   "denominator": "",
+   "derived_from": "b.lat1 / s.t*.p50",
+   "rendered": "29"
+  },
+  "slow.hi": {
+   "kind": "derived",
+   "value": 33.251182238147095,
+   "fmt": "f0",
+   "source": null,
+   "field": null,
+   "revision": null,
+   "meaning": "same, highest",
+   "denominator": "",
+   "derived_from": "b.lat1 / s.t*.p50",
+   "rendered": "33"
   }
  }
 }

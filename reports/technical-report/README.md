@@ -7,13 +7,13 @@ published on arXiv or any other venue.
 
 | File | What it is |
 |---|---|
-| `main.tex` | The report (two columns, 10 pt; one-column appendix). Every number is a `\val{key}` macro |
+| `main.tex` | The report (two columns, 10 pt; one-column appendix). Empirical values are `\val{key}` macros; architecture and recipe settings, sample-design constants, dates and bibliographic data are literal |
 | `references.bib` | Bibliography; each entry checked against its primary record |
-| `tools/extract.py` | Reads the project's committed result files at a pinned revision. Writes `data/results_extract.json`, `generated/values.tex` and the figure CSVs, and asserts the stated relationships |
+| `tools/extract.py` | Builds every empirical value at a pinned revision, by kind: `json` (read from a committed result file), `derived` (computed from those) or `transcribed` (copied from a committed report's text or table, with file and section). Writes `data/results_extract.json`, `generated/values.tex` and the figure CSVs. Asserts the stated relationships and fails if `main.tex` uses an undefined `\val` key |
 | `data/results_extract.json` | The checked results extract: value, source file, JSON field, revision, meaning and denominator for each key |
 | `generated/` | `values.tex` (macros) and `fig_*.csv` (figure data), generated |
 | `EVIDENCE_LEDGER.md` | Claim → file, field, revision, definition, limitation; reconciled discrepancies |
-| `SUMMARY.md` | A plain-language summary of about 700 words |
+| `SUMMARY.md` | A plain-language summary of about 800 words |
 | `main.pdf` | The compiled report |
 | `tools/build.sh` | Extracts, compiles and writes `technical-report-src.tar.gz` (portable sources) |
 

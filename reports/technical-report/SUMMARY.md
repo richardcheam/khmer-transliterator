@@ -37,12 +37,15 @@ word in brackets. Nobody reviewed the training spellings.
   release.
 
 ## Evaluation
-**Reference agreement was weak.** Early experiments counted exact matches with one reference spelling. In a blinded
-development review, 28 of 72 spellings that missed the reference were acceptable, and 8 of 37 that matched it were
-not. Agreement errs in both directions.
+**Reference agreement was weak.** Early experiments counted exact matches with one reference spelling. In an
+exploratory, post hoc development review (one judge, answers given in chat and transcribed under three confirmed
+rules), 28 of 72 spellings that missed the reference were acceptable, and 8 of 37 that matched it were not.
+Agreement errs in both directions. The same review suggested a preference for the expanded real-data model; its
+representative (40 words) and disagreement-enriched (20 words) samples are reported separately.
 
 **Final evaluation.** One judge affiliated with the project (the author) marked each spelling acceptable, not
-acceptable or uncertain, without knowing its model. Inputs, checkpoints and predictions were frozen first.
+acceptable or uncertain, without knowing its model, by clicking on a local review page. Inputs, checkpoints and
+predictions were frozen first.
 
 Each of two tests drew 120 fresh word families (40 everyday words, 40 irregular spellings, 40 names) and compared
 one candidate model with the released adapter on that sample.
@@ -52,14 +55,15 @@ one candidate model with the released adapter on that sample.
   second.
   - These are two samples of the same model, not an improvement.
   - Irregular spellings were weakest: 14 and 20 of 40.
-- **Longer training:** changed about half the spellings but not how many were acceptable. 77 vs 77, difference
-  0.0 [−8.3, +8.3] points.
-- **Pronunciation-guided training:** giving the CMUdict reading plus some accepted difficult spellings also left
-  acceptability unchanged. 90 vs 90, 0.0 [−7.5, +7.5]. Several ingredients changed together, so no single one can
-  be credited or blamed.
+- **Longer training:** changed 65 of 120 spellings. The models had equal observed acceptability, 77 vs 77,
+  difference 0.0 [−8.3, +8.3] points: no difference was detected, and the interval permits gains or losses.
+- **Pronunciation-guided training:** giving the CMUdict reading plus some accepted difficult spellings also gave
+  equal observed acceptability, 90 vs 90, 0.0 [−7.5, +7.5]; the interval again permits gains or losses. Several
+  ingredients changed together, so no single one can be credited or blamed.
 - **English pronunciation input:** no detectable change in agreement in four experiments. In the small model's
   registered comparison it gave +1.6 [−1.6, +4.9] over three seeds.
-  - The models mostly react to supplied phones with vowel or diacritic edits.
+  - Another word's phones change 33.0–44.7% of the small model's outputs (by seed), mostly with vowel or
+    diacritic edits rather than the consonants the phones dictate.
   - That shows weak use of pronunciation here, not that it cannot help.
 - **Decoding:** an apparent beam-search deficit was a configuration error. With `early_stopping=True`, junk byte
   hypotheses ended the search. Corrected beam search is about as good as greedy decoding.
@@ -71,18 +75,19 @@ one candidate model with the released adapter on that sample.
 ## Limits
 - **Data and references:** the data are mined and unreviewed, and references give one spelling per word.
 - **Repeated use:** much reference evidence comes from an evaluation set examined many times.
-- **Human tests:** one non-independent judge; samples of 120 (each rate about ±8 points).
+- **Human tests:** one non-independent judge; samples of 120 (each rate about ±7.7–8.6 points).
 - **Replication:** one seed per adapter.
 - **Scope:** single words only.
 - **Permissions:** rights in web pages stay with their authors. Whether Wikipedia's share-alike reaches trained
   weights is unsettled.
 - **No head-to-head comparison:** the two released models were trained on different data and never compared on a
-  common clean test set.
+  common clean test set. 110 of the 228 primary historical evaluation words occur in the small model's training
+  data.
 
 ## Bottom line
-- **Established:** a documented pipeline, two released models, and a measurement protocol that separated models
-  where reference agreement could not.
+- **Established:** a documented pipeline, two released models, and a blinded acceptability protocol; an
+  exploratory review suggested a preference between models that reference agreement did not distinguish.
 - **Negative results:** pronunciation input, longer training and pronunciation-guided training gave no detectable
   gain within these data and models.
 - **Remaining errors:** they concentrate in irregular spellings. Acceptable alternatives are often generated but
-  not chosen, while about a third of hard words have none.
+  not chosen, while 8 of 23 hard words (35%) have none.

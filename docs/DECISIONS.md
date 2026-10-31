@@ -505,3 +505,24 @@ there (`git -C ../pocket-tts-khmer show archive/checkpoints-p0-p6:state/DECISION
   - rounding is half-up.
 - **Toolchain:** Tectonic 0.15.0 in `~/.local/opt/tectonic` (owner-approved download), Noto Serif Khmer; the
   source archive rebuilds to identical text.
+
+## D203 — Technical report correction pass (2026-10-31)
+- **Numbers corrected:**
+  - candidate-anchored references are 82/165 primary (12/26 flagged, 94/191 combined), not 94 in the primary set;
+  - the donor-phone sensitivity range is 33.0–44.7%, not 36.2–44.7%;
+  - the historical-eval overlap is 110/228 primary items, with 122/245 for the full partition, each now labelled;
+  - power is 0.22–0.50 over the registered grid, not 0.29;
+  - the vowel share is 41–49%.
+- **Procedures described accurately:**
+  - the tests and new coverage judgments were clicks on the review page;
+  - the development review was chat answers transcribed under **three** confirmed rules, not four;
+  - 3 of the 93 coverage judgments were reused from the development review.
+- **Claims narrowed:**
+  - "equal observed acceptability; no difference detected; intervals permit gains or losses";
+  - "the exploratory development review suggested a preference…";
+  - "no pipeline defect explaining the collapse".
+- **Traceability:** `tools/extract.py` records each value as json, derived or transcribed (with section). It fails on
+  undefined `\val` keys and checks the sums, ranges, paired denominators and rounding. The documentation no longer
+  claims every number comes from JSON.
+- **Layout:** `\raggedbottom` and a compact appendix figure; still 8 pages, two columns.
+- **Unchanged:** historical records, models, Hub repositories, tags and serving.
