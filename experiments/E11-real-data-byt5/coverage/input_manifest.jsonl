@@ -1,0 +1,23 @@
+{"id": "a01", "pool": "A_e13_dev_irregular", "word": "oscillate", "reading": "AA1 S AH0 L EY2 T", "source_id": "c003", "pattern": "spelling_dependent_consonant"}
+{"id": "a02", "pool": "A_e13_dev_irregular", "word": "rhetoric", "reading": "R EH1 T ER0 IH0 K", "source_id": "c007", "pattern": "silent_letter"}
+{"id": "a03", "pool": "A_e13_dev_irregular", "word": "manslaughter", "reading": "M AE1 N S L AO2 T ER0", "source_id": "c016", "pattern": "silent_letter"}
+{"id": "a04", "pool": "A_e13_dev_irregular", "word": "impeached", "reading": "IH2 M P IY1 CH T", "source_id": "c020", "pattern": "unusual_vowel"}
+{"id": "a05", "pool": "A_e13_dev_irregular", "word": "typewritten", "reading": "T AY1 P R IH2 T AH0 N", "source_id": "c032", "pattern": "cluster_or_ending"}
+{"id": "a06", "pool": "A_e13_dev_irregular", "word": "outbidding", "reading": "AW1 T B IH2 D IH0 NG", "source_id": "c039", "pattern": "unusual_vowel"}
+{"id": "a07", "pool": "A_e13_dev_irregular", "word": "plainclothes", "reading": "P L EY1 N K L OW1 Z", "source_id": "c042", "pattern": "consonant_digraph"}
+{"id": "a08", "pool": "A_e13_dev_irregular", "word": "undercarriage", "reading": "AH1 N D ER0 K AE2 R IH0 JH", "source_id": "c044", "pattern": "spelling_dependent_consonant"}
+{"id": "a09", "pool": "A_e13_dev_irregular", "word": "mellowing", "reading": "M EH1 L OW0 IH0 NG", "source_id": "c052", "pattern": "other"}
+{"id": "a10", "pool": "A_e13_dev_irregular", "word": "outperformed", "reading": "AW1 T P ER0 F AO2 R M D", "source_id": "c053", "pattern": "unusual_vowel"}
+{"id": "a11", "pool": "A_e13_dev_irregular", "word": "proffered", "reading": "P R AA1 F ER0 D", "source_id": "c056", "pattern": "cluster_or_ending"}
+{"id": "a12", "pool": "A_e13_dev_irregular", "word": "underpinned", "reading": "AH1 N D ER0 P IH2 N D", "source_id": "c061", "pattern": "cluster_or_ending"}
+{"id": "a13", "pool": "A_e13_dev_irregular", "word": "rightfully", "reading": "R AY1 T F AH0 L IY0", "source_id": "c066", "pattern": "silent_letter"}
+{"id": "a14", "pool": "A_e13_dev_irregular", "word": "deterred", "reading": "D IH0 T ER1 D", "source_id": "c068", "pattern": "other"}
+{"id": "a15", "pool": "A_e13_dev_irregular", "word": "assessor", "reading": "AH0 S EH1 S ER0", "source_id": "c069", "pattern": "other"}
+{"id": "a16", "pool": "A_e13_dev_irregular", "word": "blancmange", "reading": "B L AH0 M AA1 N JH", "source_id": "c072", "pattern": "spelling_dependent_consonant"}
+{"id": "a17", "pool": "A_e13_dev_irregular", "word": "perchance", "reading": "P ER0 CH AE1 N S", "source_id": "c074", "pattern": "consonant_digraph"}
+{"id": "a18", "pool": "A_e13_dev_irregular", "word": "superhighways", "reading": "S UW2 P ER0 HH AY1 W EY2 Z", "source_id": "c082", "pattern": "consonant_digraph"}
+{"id": "a19", "pool": "A_e13_dev_irregular", "word": "opportune", "reading": "AA2 P ER0 T UW1 N", "source_id": "c083", "pattern": "other"}
+{"id": "a20", "pool": "A_e13_dev_irregular", "word": "birthrates", "reading": "B ER1 TH R EY2 T S", "source_id": "c084", "pattern": "consonant_digraph"}
+{"id": "b01", "pool": "B_e11_review_representative", "word": "schmidt", "reading": "SH M IH1 T", "source_id": "schmidt#default"}
+{"id": "b02", "pool": "B_e11_review_representative", "word": "shanghai", "reading": "SH AE1 NG HH AY1", "source_id": "shanghai#default"}
+{"id": "c01", "pool": "C_historical_dev", "word": "thieme", "reading": "TH IY1 M", "source_id": "thieme#default"}
