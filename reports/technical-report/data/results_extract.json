@@ -1,0 +1,1823 @@
+{
+ "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+ "note": "values read with `git show <revision>:<source>`; see EVIDENCE_LEDGER.md",
+ "values": {
+  "s.primary.acc": {
+   "value": 0.16666666666666666,
+   "fmt": "pct",
+   "source": "experiments/E02-english-phonetic/results.json",
+   "field": "runs.letters_s0.primary.primary_macro",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "family-macro exact agreement, beam-4 top-1, owner reference list (primary track)",
+   "denominator": "165 items / 162 families",
+   "derived_from": "",
+   "rendered": "16.7"
+  },
+  "s.primary.n": {
+   "value": 165,
+   "fmt": "int",
+   "source": "experiments/E02-english-phonetic/results.json",
+   "field": "runs.letters_s0.primary.n_items",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "primary items",
+   "denominator": "",
+   "derived_from": "",
+   "rendered": "165"
+  },
+  "s.primary.top4": {
+   "value": 0.404320987654321,
+   "fmt": "pct",
+   "source": "experiments/E02-english-phonetic/results.json",
+   "field": "runs.letters_s0.primary.topk_macro",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "any of 4 beam candidates matches",
+   "denominator": "165 items",
+   "derived_from": "",
+   "rendered": "40.4"
+  },
+  "s.primary.cer": {
+   "value": 0.3528227452150897,
+   "fmt": "f3",
+   "source": "experiments/E02-english-phonetic/results.json",
+   "field": "runs.letters_s0.primary.mean_cer",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "mean character error rate vs reference",
+   "denominator": "165 items",
+   "derived_from": "",
+   "rendered": "0.353"
+  },
+  "s.proxy.acc": {
+   "value": 0.30133333333333334,
+   "fmt": "pct",
+   "source": "experiments/E02-english-phonetic/results.json",
+   "field": "runs.letters_s0.final_proxy.primary_macro",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "exact agreement, LLM-suggested spot-checked spellings (proxy track)",
+   "denominator": "400 items",
+   "derived_from": "",
+   "rendered": "30.1"
+  },
+  "s.proxy.top4": {
+   "value": 0.5133333333333333,
+   "fmt": "pct",
+   "source": "experiments/E02-english-phonetic/results.json",
+   "field": "runs.letters_s0.final_proxy.topk_macro",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "top-4 agreement, proxy track",
+   "denominator": "400 items",
+   "derived_from": "",
+   "rendered": "51.3"
+  },
+  "s.proxy.n": {
+   "value": 400,
+   "fmt": "int",
+   "source": "experiments/E02-english-phonetic/results.json",
+   "field": "runs.letters_s0.final_proxy.n_items",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "proxy items",
+   "denominator": "",
+   "derived_from": "",
+   "rendered": "400"
+  },
+  "e02.phones": {
+   "value": 1.6460905349794235,
+   "fmt": "pp",
+   "source": "experiments/E02-english-phonetic/results.json",
+   "field": "comparisons.confirmatory.mean_gain_pp",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "phones − letters, family-macro top-1, mean over 3 paired seeds; paired family bootstrap conditional on the 6 models",
+   "denominator": "162 families",
+   "derived_from": "",
+   "rendered": "+1.6"
+  },
+  "e02.phones.ci": {
+   "value": [
+    -1.6460905349794233,
+    4.93827160493827
+   ],
+   "fmt": "ci",
+   "source": "experiments/E02-english-phonetic/results.json",
+   "field": "comparisons.confirmatory.ci95_pp",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "95% interval of phones − letters, family-macro top-1, mean over 3 paired seeds; paired family bootstrap conditional on the 6 models",
+   "denominator": "162 families",
+   "derived_from": "",
+   "rendered": "[−1.6, +4.9]"
+  },
+  "e02.families": {
+   "value": 162,
+   "fmt": "int",
+   "source": "experiments/E02-english-phonetic/results.json",
+   "field": "comparisons.confirmatory.families",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "families in the confirmatory comparison",
+   "denominator": "",
+   "derived_from": "",
+   "rendered": "162"
+  },
+  "s.t1.p50": {
+   "value": 16.664069145917892,
+   "fmt": "f0",
+   "source": "experiments/E02-release/reports/install_verify.json",
+   "field": "performance.single_answer_ms.p50",
+   "revision": "3ea7019",
+   "meaning": "single answer latency p50 (ms)",
+   "denominator": "",
+   "derived_from": "",
+   "rendered": "17"
+  },
+  "s.t1.p95": {
+   "value": 29.64434726163745,
+   "fmt": "f0",
+   "source": "experiments/E02-release/reports/install_verify.json",
+   "field": "performance.single_answer_ms.p95",
+   "revision": "3ea7019",
+   "meaning": "single answer latency p95 (ms)",
+   "denominator": "",
+   "derived_from": "",
+   "rendered": "30"
+  },
+  "s.t1.load": {
+   "value": 0.14774404931813478,
+   "fmt": "f2",
+   "source": "experiments/E02-release/reports/install_verify.json",
+   "field": "performance.load_s",
+   "revision": "3ea7019",
+   "meaning": "cold load (s)",
+   "denominator": "",
+   "derived_from": "",
+   "rendered": "0.15"
+  },
+  "s.t1.peak": {
+   "value": 64.5546875,
+   "fmt": "f0",
+   "source": "experiments/E02-release/reports/install_verify.json",
+   "field": "performance.peak_rss_mib",
+   "revision": "3ea7019",
+   "meaning": "peak RSS (MiB)",
+   "denominator": "",
+   "derived_from": "",
+   "rendered": "65"
+  },
+  "s.t1.b16": {
+   "value": 13.298212030667413,
+   "fmt": "f0",
+   "source": "experiments/E02-release/reports/install_verify.json",
+   "field": "performance.batch16_ms_per_word",
+   "revision": "3ea7019",
+   "meaning": "batch-16 ms per word",
+   "denominator": "",
+   "derived_from": "",
+   "rendered": "13"
+  },
+  "s.t2.p50": {
+   "value": 18.59608991071582,
+   "fmt": "f0",
+   "source": "experiments/E02-release/reports/install_verify.json",
+   "field": "performance.single_answer_ms.p50",
+   "revision": "03452be",
+   "meaning": "single answer latency p50 (ms)",
+   "denominator": "",
+   "derived_from": "",
+   "rendered": "19"
+  },
+  "s.t2.p95": {
+   "value": 33.60847197473049,
+   "fmt": "f0",
+   "source": "experiments/E02-release/reports/install_verify.json",
+   "field": "performance.single_answer_ms.p95",
+   "revision": "03452be",
+   "meaning": "single answer latency p95 (ms)",
+   "denominator": "",
+   "derived_from": "",
+   "rendered": "34"
+  },
+  "s.t2.load": {
+   "value": 0.15197545289993286,
+   "fmt": "f2",
+   "source": "experiments/E02-release/reports/install_verify.json",
+   "field": "performance.load_s",
+   "revision": "03452be",
+   "meaning": "cold load (s)",
+   "denominator": "",
+   "derived_from": "",
+   "rendered": "0.15"
+  },
+  "s.t2.peak": {
+   "value": 64.46875,
+   "fmt": "f0",
+   "source": "experiments/E02-release/reports/install_verify.json",
+   "field": "performance.peak_rss_mib",
+   "revision": "03452be",
+   "meaning": "peak RSS (MiB)",
+   "denominator": "",
+   "derived_from": "",
+   "rendered": "64"
+  },
+  "s.t2.b16": {
+   "value": 13.02770558220235,
+   "fmt": "f0",
+   "source": "experiments/E02-release/reports/install_verify.json",
+   "field": "performance.batch16_ms_per_word",
+   "revision": "03452be",
+   "meaning": "batch-16 ms per word",
+   "denominator": "",
+   "derived_from": "",
+   "rendered": "13"
+  },
+  "s.t3.p50": {
+   "value": 19.241325091570616,
+   "fmt": "f0",
+   "source": "experiments/E02-release/reports/install_verify.json",
+   "field": "performance.single_answer_ms.p50",
+   "revision": "1422153",
+   "meaning": "single answer latency p50 (ms)",
+   "denominator": "",
+   "derived_from": "",
+   "rendered": "19"
+  },
+  "s.t3.p95": {
+   "value": 37.96174982562661,
+   "fmt": "f0",
+   "source": "experiments/E02-release/reports/install_verify.json",
+   "field": "performance.single_answer_ms.p95",
+   "revision": "1422153",
+   "meaning": "single answer latency p95 (ms)",
+   "denominator": "",
+   "derived_from": "",
+   "rendered": "38"
+  },
+  "s.t3.load": {
+   "value": 0.16352580673992634,
+   "fmt": "f2",
+   "source": "experiments/E02-release/reports/install_verify.json",
+   "field": "performance.load_s",
+   "revision": "1422153",
+   "meaning": "cold load (s)",
+   "denominator": "",
+   "derived_from": "",
+   "rendered": "0.16"
+  },
+  "s.t3.peak": {
+   "value": 64.57421875,
+   "fmt": "f0",
+   "source": "experiments/E02-release/reports/install_verify.json",
+   "field": "performance.peak_rss_mib",
+   "revision": "1422153",
+   "meaning": "peak RSS (MiB)",
+   "denominator": "",
+   "derived_from": "",
+   "rendered": "65"
+  },
+  "s.t3.b16": {
+   "value": 12.935041156100127,
+   "fmt": "f0",
+   "source": "experiments/E02-release/reports/install_verify.json",
+   "field": "performance.batch16_ms_per_word",
+   "revision": "1422153",
+   "meaning": "batch-16 ms per word",
+   "denominator": "",
+   "derived_from": "",
+   "rendered": "13"
+  },
+  "sens.s0.donor": {
+   "value": 0.3617021276595745,
+   "fmt": "pct",
+   "source": "experiments/E02-diagnostics-2026-10-27/sensitivity/summary.json",
+   "field": "aggregate.phones_s0.donor.top1_change_rate",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "share of top-1 outputs that change when another word's phones are supplied",
+   "denominator": "94 words",
+   "derived_from": "",
+   "rendered": "36.2"
+  },
+  "sens.s0.nopron": {
+   "value": 0.3263157894736842,
+   "fmt": "pct",
+   "source": "experiments/E02-diagnostics-2026-10-27/sensitivity/summary.json",
+   "field": "aggregate.phones_s0.no_pron.top1_change_rate",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "share of top-1 outputs that change when the phones are removed",
+   "denominator": "95 words",
+   "derived_from": "",
+   "rendered": "32.6"
+  },
+  "sens.s1.donor": {
+   "value": 0.32978723404255317,
+   "fmt": "pct",
+   "source": "experiments/E02-diagnostics-2026-10-27/sensitivity/summary.json",
+   "field": "aggregate.phones_s1.donor.top1_change_rate",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "share of top-1 outputs that change when another word's phones are supplied",
+   "denominator": "94 words",
+   "derived_from": "",
+   "rendered": "33.0"
+  },
+  "sens.s1.nopron": {
+   "value": 0.2631578947368421,
+   "fmt": "pct",
+   "source": "experiments/E02-diagnostics-2026-10-27/sensitivity/summary.json",
+   "field": "aggregate.phones_s1.no_pron.top1_change_rate",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "share of top-1 outputs that change when the phones are removed",
+   "denominator": "95 words",
+   "derived_from": "",
+   "rendered": "26.3"
+  },
+  "sens.s2.donor": {
+   "value": 0.44680851063829785,
+   "fmt": "pct",
+   "source": "experiments/E02-diagnostics-2026-10-27/sensitivity/summary.json",
+   "field": "aggregate.phones_s2.donor.top1_change_rate",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "share of top-1 outputs that change when another word's phones are supplied",
+   "denominator": "94 words",
+   "derived_from": "",
+   "rendered": "44.7"
+  },
+  "sens.s2.nopron": {
+   "value": 0.35789473684210527,
+   "fmt": "pct",
+   "source": "experiments/E02-diagnostics-2026-10-27/sensitivity/summary.json",
+   "field": "aggregate.phones_s2.no_pron.top1_change_rate",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "share of top-1 outputs that change when the phones are removed",
+   "denominator": "95 words",
+   "derived_from": "",
+   "rendered": "35.8"
+  },
+  "sens.letters.donor": {
+   "value": 0.0,
+   "fmt": "pct",
+   "source": "experiments/E02-diagnostics-2026-10-27/sensitivity/summary.json",
+   "field": "aggregate.letters_s0.donor.top1_change_rate",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "letters-only control: change rate under donor phones (must be 0)",
+   "denominator": "94 words",
+   "derived_from": "",
+   "rendered": "0.0"
+  },
+  "e03.phones": {
+   "value": 0.6006006006006004,
+   "fmt": "pp",
+   "source": "experiments/E03-assessable-phones/results.json",
+   "field": "quality.comparisons.eval.mean_gain_pp",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "phones − letters on consonant-screened pairs, eval, 3 paired seeds",
+   "denominator": "E03 eval partition",
+   "derived_from": "",
+   "rendered": "+0.6"
+  },
+  "e03.phones.ci": {
+   "value": [
+    -2.402402402402402,
+    3.7537537537537533
+   ],
+   "fmt": "ci",
+   "source": "experiments/E03-assessable-phones/results.json",
+   "field": "quality.comparisons.eval.ci95_pp",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "95% interval of phones − letters on consonant-screened pairs, eval, 3 paired seeds",
+   "denominator": "E03 eval partition",
+   "derived_from": "",
+   "rendered": "[−2.4, +3.8]"
+  },
+  "e04.gp": {
+   "value": 2.2022022022022014,
+   "fmt": "pp",
+   "source": "experiments/E04-pronunciation-pathways/results.json",
+   "field": "comparisons.GP_vs_G.mean_gain_pp",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "letters+phones − letters, 3 paired seeds",
+   "denominator": "",
+   "derived_from": "",
+   "rendered": "+2.2"
+  },
+  "e04.gp.ci": {
+   "value": [
+    -1.4764764764764755,
+    6.006006006006003
+   ],
+   "fmt": "ci",
+   "source": "experiments/E04-pronunciation-pathways/results.json",
+   "field": "comparisons.GP_vs_G.ci95_pp",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "95% interval of letters+phones − letters, 3 paired seeds",
+   "denominator": "",
+   "derived_from": "",
+   "rendered": "[−1.5, +6.0]"
+  },
+  "e04.p": {
+   "value": -8.033033033033036,
+   "fmt": "pp",
+   "source": "experiments/E04-pronunciation-pathways/results.json",
+   "field": "comparisons.P_vs_G.mean_gain_pp",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "phones-only − letters (one seed for P)",
+   "denominator": "",
+   "derived_from": "",
+   "rendered": "−8.0"
+  },
+  "e04.p.ci": {
+   "value": [
+    -14.63963963963964,
+    -1.3513513513513513
+   ],
+   "fmt": "ci",
+   "source": "experiments/E04-pronunciation-pathways/results.json",
+   "field": "comparisons.P_vs_G.ci95_pp",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "95% interval of phones-only − letters (one seed for P)",
+   "denominator": "",
+   "derived_from": "",
+   "rendered": "[−14.6, −1.4]"
+  },
+  "e05.gp_g8": {
+   "value": 1.627,
+   "fmt": "pp",
+   "source": "experiments/E05-candidate-diversity/results.json",
+   "field": "configs.eval_w8.contrasts.summary.G+P_vs_G8.diff_pp",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "top-8 oracle: pooled letters+phones candidates vs letters top-8 (equal budget)",
+   "denominator": "",
+   "derived_from": "",
+   "rendered": "+1.6"
+  },
+  "e05.gp_g8.ci": {
+   "value": [
+    -1.076,
+    4.505
+   ],
+   "fmt": "ci",
+   "source": "experiments/E05-candidate-diversity/results.json",
+   "field": "configs.eval_w8.contrasts.summary.G+P_vs_G8.ci95_pp",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "95% interval of top-8 oracle: pooled letters+phones candidates vs letters top-8 (equal budget)",
+   "denominator": "",
+   "derived_from": "",
+   "rendered": "[−1.1, +4.5]"
+  },
+  "e05.gp_gg": {
+   "value": 0.751,
+   "fmt": "pp",
+   "source": "experiments/E05-candidate-diversity/results.json",
+   "field": "configs.eval_w8.contrasts.summary.G+P_vs_G+G.diff_pp",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "top-8 oracle: pooled letters+phones vs two letters seeds",
+   "denominator": "",
+   "derived_from": "",
+   "rendered": "+0.8"
+  },
+  "e05.gp_gg.ci": {
+   "value": [
+    -2.252,
+    3.904
+   ],
+   "fmt": "ci",
+   "source": "experiments/E05-candidate-diversity/results.json",
+   "field": "configs.eval_w8.contrasts.summary.G+P_vs_G+G.ci95_pp",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "95% interval of top-8 oracle: pooled letters+phones vs two letters seeds",
+   "denominator": "",
+   "derived_from": "",
+   "rendered": "[−2.3, +3.9]"
+  },
+  "e13.dev": {
+   "value": 1.6,
+   "fmt": "pp",
+   "source": "experiments/E13-pronunciation-guided/results.json",
+   "field": "dev.e13_minus_e11.top1.diff_pp",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "pronunciation-guided − base adapter, historical dev top-1",
+   "denominator": "253 items",
+   "derived_from": "",
+   "rendered": "+1.6"
+  },
+  "e13.dev.ci": {
+   "value": [
+    -2.4,
+    5.6
+   ],
+   "fmt": "ci",
+   "source": "experiments/E13-pronunciation-guided/results.json",
+   "field": "dev.e13_minus_e11.top1.ci95_pp",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "95% interval of pronunciation-guided − base adapter, historical dev top-1",
+   "denominator": "253 items",
+   "derived_from": "",
+   "rendered": "[−2.4, +5.6]"
+  },
+  "e13.eval": {
+   "value": -1.276,
+   "fmt": "pp",
+   "source": "experiments/E13-pronunciation-guided/results.json",
+   "field": "eval.e13_minus_e11.top1.diff_pp",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "pronunciation-guided − base adapter, historical eval top-1",
+   "denominator": "228 items",
+   "derived_from": "",
+   "rendered": "−1.3"
+  },
+  "e13.eval.ci": {
+   "value": [
+    -4.805,
+    2.252
+   ],
+   "fmt": "ci",
+   "source": "experiments/E13-pronunciation-guided/results.json",
+   "field": "eval.e13_minus_e11.top1.ci95_pp",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "95% interval of pronunciation-guided − base adapter, historical eval top-1",
+   "denominator": "228 items",
+   "derived_from": "",
+   "rendered": "[−4.8, +2.3]"
+  },
+  "e13.mech.missing": {
+   "value": 0.0711,
+   "fmt": "pct",
+   "source": "experiments/E13-pronunciation-guided/reports/mechanism.json",
+   "field": "historical_dev.output_changed_vs_correct.missing",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "share of historical-dev outputs that change when the reading is removed",
+   "denominator": "253 items",
+   "derived_from": "",
+   "rendered": "7.1"
+  },
+  "e13.mech.wrong": {
+   "value": 0.0791,
+   "fmt": "pct",
+   "source": "experiments/E13-pronunciation-guided/reports/mechanism.json",
+   "field": "historical_dev.output_changed_vs_correct.mismatched",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "share of historical-dev outputs that change under another word's reading",
+   "denominator": "253 items",
+   "derived_from": "",
+   "rendered": "7.9"
+  },
+  "e13.mech.coll.missing": {
+   "value": 0.1,
+   "fmt": "pct",
+   "source": "experiments/E13-pronunciation-guided/reports/mechanism.json",
+   "field": "collection_dev.output_changed_vs_correct.missing",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "same, collection dev",
+   "denominator": "40 items",
+   "derived_from": "",
+   "rendered": "10.0"
+  },
+  "e13.mech.coll.wrong": {
+   "value": 0.15,
+   "fmt": "pct",
+   "source": "experiments/E13-pronunciation-guided/reports/mechanism.json",
+   "field": "collection_dev.output_changed_vs_correct.mismatched",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "same, collection dev",
+   "denominator": "40 items",
+   "derived_from": "",
+   "rendered": "15.0"
+  },
+  "e07.vs_g": {
+   "value": 5.831,
+   "fmt": "pp",
+   "source": "experiments/E07-byt5-diagnosis/results.json",
+   "field": "historical_eval.contrasts.byt5_e07_minus_G_mean_top1.diff_pp",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "corrected ByT5 adapter (registered beam-4) − mean of 3 small letters models, historical eval top-1",
+   "denominator": "228 items",
+   "derived_from": "",
+   "rendered": "+5.8"
+  },
+  "e07.vs_g.ci": {
+   "value": [
+    0.05,
+    11.637
+   ],
+   "fmt": "ci2",
+   "source": "experiments/E07-byt5-diagnosis/results.json",
+   "field": "historical_eval.contrasts.byt5_e07_minus_G_mean_top1.ci95_pp",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "95% interval of corrected ByT5 adapter (registered beam-4) − mean of 3 small letters models, historical eval top-1",
+   "denominator": "228 items",
+   "derived_from": "",
+   "rendered": "[+0.05, +11.6]"
+  },
+  "e08.vs_e07": {
+   "value": 0.3,
+   "fmt": "pp",
+   "source": "experiments/E08-data-expansion/results_rs.json",
+   "field": "historical_eval.contrasts.rs_minus_e07_top1.diff_pp",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "adapter on real+synthetic data − E07, registered beam-4 top-1",
+   "denominator": "228 items",
+   "derived_from": "",
+   "rendered": "+0.3"
+  },
+  "e08.vs_e07.ci": {
+   "value": [
+    -5.706,
+    6.456
+   ],
+   "fmt": "ci",
+   "source": "experiments/E08-data-expansion/results_rs.json",
+   "field": "historical_eval.contrasts.rs_minus_e07_top1.ci95_pp",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "95% interval of adapter on real+synthetic data − E07, registered beam-4 top-1",
+   "denominator": "228 items",
+   "derived_from": "",
+   "rendered": "[−5.7, +6.5]"
+  },
+  "e08.vs_e07.greedy": {
+   "value": 2.553,
+   "fmt": "pp",
+   "source": "experiments/E08-data-expansion/results_rs.json",
+   "field": "historical_eval.contrasts.rs_minus_e07_greedy_top1.diff_pp",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "same, greedy top-1",
+   "denominator": "228 items",
+   "derived_from": "",
+   "rendered": "+2.6"
+  },
+  "e08.vs_e07.greedy.ci": {
+   "value": [
+    -2.402,
+    7.508
+   ],
+   "fmt": "ci",
+   "source": "experiments/E08-data-expansion/results_rs.json",
+   "field": "historical_eval.contrasts.rs_minus_e07_greedy_top1.ci95_pp",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "95% interval of same, greedy top-1",
+   "denominator": "228 items",
+   "derived_from": "",
+   "rendered": "[−2.4, +7.5]"
+  },
+  "e09.e08.sel_vs_reg": {
+   "value": 5.856,
+   "fmt": "pp",
+   "source": "experiments/E09-byt5-decoding/results.json",
+   "field": "contrasts.e08:selected_minus_beam4_reg.top1.diff_pp",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "canonical beam (selected) − registered beam-4 (early_stopping=True), synthetic-data adapter, historical eval top-1",
+   "denominator": "228 items",
+   "derived_from": "",
+   "rendered": "+5.9"
+  },
+  "e09.e08.sel_vs_reg.ci": {
+   "value": [
+    1.351,
+    10.36
+   ],
+   "fmt": "ci",
+   "source": "experiments/E09-byt5-decoding/results.json",
+   "field": "contrasts.e08:selected_minus_beam4_reg.top1.ci95_pp",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "95% interval of canonical beam (selected) − registered beam-4 (early_stopping=True), synthetic-data adapter, historical eval top-1",
+   "denominator": "228 items",
+   "derived_from": "",
+   "rendered": "[+1.4, +10.4]"
+  },
+  "e09.e08.greedy_vs_reg": {
+   "value": 4.955,
+   "fmt": "pp",
+   "source": "experiments/E09-byt5-decoding/results.json",
+   "field": "contrasts.e08:greedy_minus_beam4_reg.top1.diff_pp",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "greedy − registered beam-4, synthetic-data adapter, historical eval top-1",
+   "denominator": "228 items",
+   "derived_from": "",
+   "rendered": "+5.0"
+  },
+  "e09.e08.greedy_vs_reg.ci": {
+   "value": [
+    0.0,
+    9.91
+   ],
+   "fmt": "ci",
+   "source": "experiments/E09-byt5-decoding/results.json",
+   "field": "contrasts.e08:greedy_minus_beam4_reg.top1.ci95_pp",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "95% interval of greedy − registered beam-4, synthetic-data adapter, historical eval top-1",
+   "denominator": "228 items",
+   "derived_from": "",
+   "rendered": "[0.0, +9.9]"
+  },
+  "e09.e08.sel_vs_greedy": {
+   "value": 0.901,
+   "fmt": "pp",
+   "source": "experiments/E09-byt5-decoding/results.json",
+   "field": "contrasts.e08:selected_minus_greedy.top1.diff_pp",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "canonical beam − greedy, synthetic-data adapter, historical eval top-1",
+   "denominator": "228 items",
+   "derived_from": "",
+   "rendered": "+0.9"
+  },
+  "e09.e08.sel_vs_greedy.ci": {
+   "value": [
+    -1.351,
+    3.604
+   ],
+   "fmt": "ci",
+   "source": "experiments/E09-byt5-decoding/results.json",
+   "field": "contrasts.e08:selected_minus_greedy.top1.ci95_pp",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "95% interval of canonical beam − greedy, synthetic-data adapter, historical eval top-1",
+   "denominator": "228 items",
+   "derived_from": "",
+   "rendered": "[−1.4, +3.6]"
+  },
+  "h.e07.top1": {
+   "value": 0.4985,
+   "fmt": "pct",
+   "source": "experiments/E11-real-data-byt5/results.json",
+   "field": "eval.table.e07.top1_macro",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "e07 greedy family-macro exact agreement, historical eval",
+   "denominator": "228 items / 222 families",
+   "derived_from": "",
+   "rendered": "49.9"
+  },
+  "h.e07.cer": {
+   "value": 0.1782,
+   "fmt": "f3",
+   "source": "experiments/E11-real-data-byt5/results.json",
+   "field": "eval.table.e07.mean_cer",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "e07 mean CER, historical eval",
+   "denominator": "228 items",
+   "derived_from": "",
+   "rendered": "0.178"
+  },
+  "h.e08.top1": {
+   "value": 0.524,
+   "fmt": "pct",
+   "source": "experiments/E11-real-data-byt5/results.json",
+   "field": "eval.table.e08.top1_macro",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "e08 greedy family-macro exact agreement, historical eval",
+   "denominator": "228 items / 222 families",
+   "derived_from": "",
+   "rendered": "52.4"
+  },
+  "h.e08.cer": {
+   "value": 0.1611,
+   "fmt": "f3",
+   "source": "experiments/E11-real-data-byt5/results.json",
+   "field": "eval.table.e08.mean_cer",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "e08 mean CER, historical eval",
+   "denominator": "228 items",
+   "derived_from": "",
+   "rendered": "0.161"
+  },
+  "h.e11.top1": {
+   "value": 0.5233,
+   "fmt": "pct",
+   "source": "experiments/E11-real-data-byt5/results.json",
+   "field": "eval.table.e11.top1_macro",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "e11 greedy family-macro exact agreement, historical eval",
+   "denominator": "228 items / 222 families",
+   "derived_from": "",
+   "rendered": "52.3"
+  },
+  "h.e11.cer": {
+   "value": 0.1625,
+   "fmt": "f3",
+   "source": "experiments/E11-real-data-byt5/results.json",
+   "field": "eval.table.e11.mean_cer",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "e11 mean CER, historical eval",
+   "denominator": "228 items",
+   "derived_from": "",
+   "rendered": "0.163"
+  },
+  "h.e12.top1": {
+   "value": 0.53,
+   "fmt": "pct",
+   "source": "experiments/E12-longer-schedule/results.json",
+   "field": "eval.table.e12.top1_macro",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "e12 greedy exact agreement, historical eval",
+   "denominator": "228 items",
+   "derived_from": "",
+   "rendered": "53.0"
+  },
+  "h.e13.top1": {
+   "value": 0.5105,
+   "fmt": "pct",
+   "source": "experiments/E13-pronunciation-guided/results.json",
+   "field": "eval.table.e13.top1_macro",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "e13 greedy exact agreement, historical eval",
+   "denominator": "228 items",
+   "derived_from": "",
+   "rendered": "51.1"
+  },
+  "h.items": {
+   "value": 228,
+   "fmt": "int",
+   "source": "experiments/E11-real-data-byt5/results.json",
+   "field": "eval.items",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "historical eval items (primary)",
+   "denominator": "",
+   "derived_from": "",
+   "rendered": "228"
+  },
+  "h.families": {
+   "value": 222,
+   "fmt": "int",
+   "source": "experiments/E11-real-data-byt5/results.json",
+   "field": "eval.families",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "historical eval families",
+   "denominator": "",
+   "derived_from": "",
+   "rendered": "222"
+  },
+  "d.items": {
+   "value": 253,
+   "fmt": "int",
+   "source": "experiments/E11-real-data-byt5/results.json",
+   "field": "dev.items",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "historical dev items (primary)",
+   "denominator": "",
+   "derived_from": "",
+   "rendered": "253"
+  },
+  "d.e11.top1": {
+   "value": 0.53,
+   "fmt": "pct",
+   "source": "experiments/E11-real-data-byt5/results.json",
+   "field": "dev.table.e11.top1_macro",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "e11 greedy dev exact agreement",
+   "denominator": "253 items",
+   "derived_from": "",
+   "rendered": "53.0"
+  },
+  "e11.vs_e07": {
+   "value": 2.477,
+   "fmt": "pp",
+   "source": "experiments/E11-real-data-byt5/results.json",
+   "field": "eval.contrasts.e11_minus_e07.top1.diff_pp",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "real-data adapter − E07, greedy top-1, historical eval",
+   "denominator": "222 families",
+   "derived_from": "",
+   "rendered": "+2.5"
+  },
+  "e11.vs_e07.ci": {
+   "value": [
+    -2.703,
+    7.658
+   ],
+   "fmt": "ci",
+   "source": "experiments/E11-real-data-byt5/results.json",
+   "field": "eval.contrasts.e11_minus_e07.top1.ci95_pp",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "95% interval of real-data adapter − E07, greedy top-1, historical eval",
+   "denominator": "222 families",
+   "derived_from": "",
+   "rendered": "[−2.7, +7.7]"
+  },
+  "e11.vs_e08": {
+   "value": -0.075,
+   "fmt": "pp",
+   "source": "experiments/E11-real-data-byt5/results.json",
+   "field": "eval.contrasts.e11_minus_e08 (historical reference).top1.diff_pp",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "real-data adapter − adapter with synthetic rows, greedy top-1",
+   "denominator": "222 families",
+   "derived_from": "",
+   "rendered": "−0.1"
+  },
+  "e11.vs_e08.ci": {
+   "value": [
+    -4.73,
+    4.58
+   ],
+   "fmt": "ci",
+   "source": "experiments/E11-real-data-byt5/results.json",
+   "field": "eval.contrasts.e11_minus_e08 (historical reference).top1.ci95_pp",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "95% interval of real-data adapter − adapter with synthetic rows, greedy top-1",
+   "denominator": "222 families",
+   "derived_from": "",
+   "rendered": "[−4.7, +4.6]"
+  },
+  "e12.vs_e11.hist": {
+   "value": 0.676,
+   "fmt": "pp",
+   "source": "experiments/E12-longer-schedule/results.json",
+   "field": "eval.contrasts.e12_minus_e11.top1.diff_pp",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "6,000-update − 3,000-update schedule, historical eval top-1",
+   "denominator": "222 families",
+   "derived_from": "",
+   "rendered": "+0.7"
+  },
+  "e12.vs_e11.hist.ci": {
+   "value": [
+    -4.054,
+    5.405
+   ],
+   "fmt": "ci",
+   "source": "experiments/E12-longer-schedule/results.json",
+   "field": "eval.contrasts.e12_minus_e11.top1.ci95_pp",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "95% interval of 6,000-update − 3,000-update schedule, historical eval top-1",
+   "denominator": "222 families",
+   "derived_from": "",
+   "rendered": "[−4.1, +5.4]"
+  },
+  "e11.update": {
+   "value": 3000,
+   "fmt": "int",
+   "source": "experiments/E11-real-data-byt5/results.json",
+   "field": "selected.update",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "selected update of the released adapter",
+   "denominator": "",
+   "derived_from": "",
+   "rendered": "3,000"
+  },
+  "e11.sha": {
+   "value": "286292a4f21131d0dd238d48919485192b0b0eb268d005bbc804d3ff78229713",
+   "fmt": "raw",
+   "source": "experiments/E11-real-data-byt5/results.json",
+   "field": "selected.checkpoint_sha256",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "training checkpoint sha256",
+   "denominator": "",
+   "derived_from": "",
+   "rendered": "286292a4f21131d0dd238d48919485192b0b0eb268d005bbc804d3ff78229713"
+  },
+  "e12.update": {
+   "value": 6000,
+   "fmt": "int",
+   "source": "experiments/E12-longer-schedule/results.json",
+   "field": "selected.update",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "selected update of the long-schedule run",
+   "denominator": "",
+   "derived_from": "",
+   "rendered": "6,000"
+  },
+  "e13.update": {
+   "value": 800,
+   "fmt": "int",
+   "source": "experiments/E13-pronunciation-guided/results.json",
+   "field": "selected.update",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "selected update of the pronunciation-guided run",
+   "denominator": "",
+   "derived_from": "",
+   "rendered": "800"
+  },
+  "rev.representative.e07": {
+   "value": 24,
+   "fmt": "int",
+   "source": "experiments/E11-real-data-byt5/reports/review_scores.json",
+   "field": "acceptable_items.representative.e07.acceptable",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "e07 greedy spelling judged acceptable, representative dev sample",
+   "denominator": "40 words",
+   "derived_from": "",
+   "rendered": "24"
+  },
+  "rev.representative.e08": {
+   "value": 30,
+   "fmt": "int",
+   "source": "experiments/E11-real-data-byt5/reports/review_scores.json",
+   "field": "acceptable_items.representative.e08.acceptable",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "e08 greedy spelling judged acceptable, representative dev sample",
+   "denominator": "40 words",
+   "derived_from": "",
+   "rendered": "30"
+  },
+  "rev.representative.e11": {
+   "value": 29,
+   "fmt": "int",
+   "source": "experiments/E11-real-data-byt5/reports/review_scores.json",
+   "field": "acceptable_items.representative.e11.acceptable",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "e11 greedy spelling judged acceptable, representative dev sample",
+   "denominator": "40 words",
+   "derived_from": "",
+   "rendered": "29"
+  },
+  "rev.disagreement.e07": {
+   "value": 5,
+   "fmt": "int",
+   "source": "experiments/E11-real-data-byt5/reports/review_scores.json",
+   "field": "acceptable_items.disagreement.e07.acceptable",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "e07 greedy spelling judged acceptable, disagreement dev sample",
+   "denominator": "20 words",
+   "derived_from": "",
+   "rendered": "5"
+  },
+  "rev.disagreement.e08": {
+   "value": 8,
+   "fmt": "int",
+   "source": "experiments/E11-real-data-byt5/reports/review_scores.json",
+   "field": "acceptable_items.disagreement.e08.acceptable",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "e08 greedy spelling judged acceptable, disagreement dev sample",
+   "denominator": "20 words",
+   "derived_from": "",
+   "rendered": "8"
+  },
+  "rev.disagreement.e11": {
+   "value": 10,
+   "fmt": "int",
+   "source": "experiments/E11-real-data-byt5/reports/review_scores.json",
+   "field": "acceptable_items.disagreement.e11.acceptable",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "e11 greedy spelling judged acceptable, disagreement dev sample",
+   "denominator": "20 words",
+   "derived_from": "",
+   "rendered": "10"
+  },
+  "t1.e11.acceptable": {
+   "value": 77,
+   "fmt": "int",
+   "source": "experiments/E12-longer-schedule/reports/test_scores.json",
+   "field": "analysis.counts.e11.acceptable",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "e11 spellings judged acceptable",
+   "denominator": "120 families, one word each",
+   "derived_from": "",
+   "rendered": "77"
+  },
+  "t1.e11.not_acceptable": {
+   "value": 40,
+   "fmt": "int",
+   "source": "experiments/E12-longer-schedule/reports/test_scores.json",
+   "field": "analysis.counts.e11.not_acceptable",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "e11 spellings judged not_acceptable",
+   "denominator": "120 families, one word each",
+   "derived_from": "",
+   "rendered": "40"
+  },
+  "t1.e11.uncertain": {
+   "value": 3,
+   "fmt": "int",
+   "source": "experiments/E12-longer-schedule/reports/test_scores.json",
+   "field": "analysis.counts.e11.uncertain",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "e11 spellings judged uncertain",
+   "denominator": "120 families, one word each",
+   "derived_from": "",
+   "rendered": "3"
+  },
+  "t1.e11.share": {
+   "value": 0.6417,
+   "fmt": "pct",
+   "source": "experiments/E12-longer-schedule/reports/test_scores.json",
+   "field": "analysis.confirmed_acceptable_share.e11",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "e11 confirmed-acceptable share (uncertain counts as not confirmed)",
+   "denominator": "120 words",
+   "derived_from": "",
+   "rendered": "64.2"
+  },
+  "t1.e12.acceptable": {
+   "value": 77,
+   "fmt": "int",
+   "source": "experiments/E12-longer-schedule/reports/test_scores.json",
+   "field": "analysis.counts.e12.acceptable",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "e12 spellings judged acceptable",
+   "denominator": "120 families, one word each",
+   "derived_from": "",
+   "rendered": "77"
+  },
+  "t1.e12.not_acceptable": {
+   "value": 39,
+   "fmt": "int",
+   "source": "experiments/E12-longer-schedule/reports/test_scores.json",
+   "field": "analysis.counts.e12.not_acceptable",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "e12 spellings judged not_acceptable",
+   "denominator": "120 families, one word each",
+   "derived_from": "",
+   "rendered": "39"
+  },
+  "t1.e12.uncertain": {
+   "value": 4,
+   "fmt": "int",
+   "source": "experiments/E12-longer-schedule/reports/test_scores.json",
+   "field": "analysis.counts.e12.uncertain",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "e12 spellings judged uncertain",
+   "denominator": "120 families, one word each",
+   "derived_from": "",
+   "rendered": "4"
+  },
+  "t1.e12.share": {
+   "value": 0.6417,
+   "fmt": "pct",
+   "source": "experiments/E12-longer-schedule/reports/test_scores.json",
+   "field": "analysis.confirmed_acceptable_share.e12",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "e12 confirmed-acceptable share (uncertain counts as not confirmed)",
+   "denominator": "120 words",
+   "derived_from": "",
+   "rendered": "64.2"
+  },
+  "t1.diff": {
+   "value": 0.0,
+   "fmt": "pp",
+   "source": "experiments/E12-longer-schedule/reports/test_scores.json",
+   "field": "analysis.primary.diff_pp",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "e12 − e11 confirmed-acceptable share, paired family bootstrap (10,000)",
+   "denominator": "120 families",
+   "derived_from": "",
+   "rendered": "0.0"
+  },
+  "t1.diff.ci": {
+   "value": [
+    -8.33,
+    8.33
+   ],
+   "fmt": "ci",
+   "source": "experiments/E12-longer-schedule/reports/test_scores.json",
+   "field": "analysis.primary.ci95_pp",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "95% interval of e12 − e11 confirmed-acceptable share, paired family bootstrap (10,000)",
+   "denominator": "120 families",
+   "derived_from": "",
+   "rendered": "[−8.3, +8.3]"
+  },
+  "t1.paired.both": {
+   "value": 63,
+   "fmt": "int",
+   "source": "experiments/E12-longer-schedule/reports/test_scores.json",
+   "field": "analysis.paired.both",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "paired outcome 'both' (a = e12)",
+   "denominator": "120",
+   "derived_from": "",
+   "rendered": "63"
+  },
+  "t1.paired.a_only": {
+   "value": 14,
+   "fmt": "int",
+   "source": "experiments/E12-longer-schedule/reports/test_scores.json",
+   "field": "analysis.paired.a_only",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "paired outcome 'a_only' (a = e12)",
+   "denominator": "120",
+   "derived_from": "",
+   "rendered": "14"
+  },
+  "t1.paired.b_only": {
+   "value": 14,
+   "fmt": "int",
+   "source": "experiments/E12-longer-schedule/reports/test_scores.json",
+   "field": "analysis.paired.b_only",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "paired outcome 'b_only' (a = e12)",
+   "denominator": "120",
+   "derived_from": "",
+   "rendered": "14"
+  },
+  "t1.paired.neither": {
+   "value": 29,
+   "fmt": "int",
+   "source": "experiments/E12-longer-schedule/reports/test_scores.json",
+   "field": "analysis.paired.neither",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "paired outcome 'neither' (a = e12)",
+   "denominator": "120",
+   "derived_from": "",
+   "rendered": "29"
+  },
+  "t1.p": {
+   "value": 1.0,
+   "fmt": "f2",
+   "source": "experiments/E12-longer-schedule/reports/test_scores.json",
+   "field": "analysis.exact_test.p_two_sided",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "exact two-sided sign test over discordant words",
+   "denominator": "",
+   "derived_from": "",
+   "rendered": "1.00"
+  },
+  "t2.e11.acceptable": {
+   "value": 90,
+   "fmt": "int",
+   "source": "experiments/E13-pronunciation-guided/reports/test_scores.json",
+   "field": "analysis.counts.e11.acceptable",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "e11 spellings judged acceptable",
+   "denominator": "120 families, one word each",
+   "derived_from": "",
+   "rendered": "90"
+  },
+  "t2.e11.not_acceptable": {
+   "value": 29,
+   "fmt": "int",
+   "source": "experiments/E13-pronunciation-guided/reports/test_scores.json",
+   "field": "analysis.counts.e11.not_acceptable",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "e11 spellings judged not_acceptable",
+   "denominator": "120 families, one word each",
+   "derived_from": "",
+   "rendered": "29"
+  },
+  "t2.e11.uncertain": {
+   "value": 1,
+   "fmt": "int",
+   "source": "experiments/E13-pronunciation-guided/reports/test_scores.json",
+   "field": "analysis.counts.e11.uncertain",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "e11 spellings judged uncertain",
+   "denominator": "120 families, one word each",
+   "derived_from": "",
+   "rendered": "1"
+  },
+  "t2.e11.share": {
+   "value": 0.75,
+   "fmt": "pct",
+   "source": "experiments/E13-pronunciation-guided/reports/test_scores.json",
+   "field": "analysis.confirmed_acceptable_share.e11",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "e11 confirmed-acceptable share (uncertain counts as not confirmed)",
+   "denominator": "120 words",
+   "derived_from": "",
+   "rendered": "75.0"
+  },
+  "t2.e13.acceptable": {
+   "value": 90,
+   "fmt": "int",
+   "source": "experiments/E13-pronunciation-guided/reports/test_scores.json",
+   "field": "analysis.counts.e13.acceptable",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "e13 spellings judged acceptable",
+   "denominator": "120 families, one word each",
+   "derived_from": "",
+   "rendered": "90"
+  },
+  "t2.e13.not_acceptable": {
+   "value": 29,
+   "fmt": "int",
+   "source": "experiments/E13-pronunciation-guided/reports/test_scores.json",
+   "field": "analysis.counts.e13.not_acceptable",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "e13 spellings judged not_acceptable",
+   "denominator": "120 families, one word each",
+   "derived_from": "",
+   "rendered": "29"
+  },
+  "t2.e13.uncertain": {
+   "value": 1,
+   "fmt": "int",
+   "source": "experiments/E13-pronunciation-guided/reports/test_scores.json",
+   "field": "analysis.counts.e13.uncertain",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "e13 spellings judged uncertain",
+   "denominator": "120 families, one word each",
+   "derived_from": "",
+   "rendered": "1"
+  },
+  "t2.e13.share": {
+   "value": 0.75,
+   "fmt": "pct",
+   "source": "experiments/E13-pronunciation-guided/reports/test_scores.json",
+   "field": "analysis.confirmed_acceptable_share.e13",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "e13 confirmed-acceptable share (uncertain counts as not confirmed)",
+   "denominator": "120 words",
+   "derived_from": "",
+   "rendered": "75.0"
+  },
+  "t2.diff": {
+   "value": 0.0,
+   "fmt": "pp",
+   "source": "experiments/E13-pronunciation-guided/reports/test_scores.json",
+   "field": "analysis.primary.diff_pp",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "e13 − e11 confirmed-acceptable share, paired family bootstrap (10,000)",
+   "denominator": "120 families",
+   "derived_from": "",
+   "rendered": "0.0"
+  },
+  "t2.diff.ci": {
+   "value": [
+    -7.5,
+    7.5
+   ],
+   "fmt": "ci",
+   "source": "experiments/E13-pronunciation-guided/reports/test_scores.json",
+   "field": "analysis.primary.ci95_pp",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "95% interval of e13 − e11 confirmed-acceptable share, paired family bootstrap (10,000)",
+   "denominator": "120 families",
+   "derived_from": "",
+   "rendered": "[−7.5, +7.5]"
+  },
+  "t2.paired.both": {
+   "value": 79,
+   "fmt": "int",
+   "source": "experiments/E13-pronunciation-guided/reports/test_scores.json",
+   "field": "analysis.paired.both",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "paired outcome 'both' (a = e13)",
+   "denominator": "120",
+   "derived_from": "",
+   "rendered": "79"
+  },
+  "t2.paired.a_only": {
+   "value": 11,
+   "fmt": "int",
+   "source": "experiments/E13-pronunciation-guided/reports/test_scores.json",
+   "field": "analysis.paired.a_only",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "paired outcome 'a_only' (a = e13)",
+   "denominator": "120",
+   "derived_from": "",
+   "rendered": "11"
+  },
+  "t2.paired.b_only": {
+   "value": 11,
+   "fmt": "int",
+   "source": "experiments/E13-pronunciation-guided/reports/test_scores.json",
+   "field": "analysis.paired.b_only",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "paired outcome 'b_only' (a = e13)",
+   "denominator": "120",
+   "derived_from": "",
+   "rendered": "11"
+  },
+  "t2.paired.neither": {
+   "value": 19,
+   "fmt": "int",
+   "source": "experiments/E13-pronunciation-guided/reports/test_scores.json",
+   "field": "analysis.paired.neither",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "paired outcome 'neither' (a = e13)",
+   "denominator": "120",
+   "derived_from": "",
+   "rendered": "19"
+  },
+  "t2.p": {
+   "value": 1.0,
+   "fmt": "f2",
+   "source": "experiments/E13-pronunciation-guided/reports/test_scores.json",
+   "field": "analysis.exact_test.p_two_sided",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "exact two-sided sign test over discordant words",
+   "denominator": "",
+   "derived_from": "",
+   "rendered": "1.00"
+  },
+  "t2.ordinary.e11": {
+   "value": 34,
+   "fmt": "int",
+   "source": "experiments/E13-pronunciation-guided/reports/test_scores.json",
+   "field": "analysis.secondary_groups.ordinary.counts.e11.acceptable",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "e11 acceptable in group ordinary",
+   "denominator": "40 words",
+   "derived_from": "",
+   "rendered": "34"
+  },
+  "t2.ordinary.e13": {
+   "value": 32,
+   "fmt": "int",
+   "source": "experiments/E13-pronunciation-guided/reports/test_scores.json",
+   "field": "analysis.secondary_groups.ordinary.counts.e13.acceptable",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "e13 acceptable in group ordinary",
+   "denominator": "40 words",
+   "derived_from": "",
+   "rendered": "32"
+  },
+  "t2.irregular.e11": {
+   "value": 20,
+   "fmt": "int",
+   "source": "experiments/E13-pronunciation-guided/reports/test_scores.json",
+   "field": "analysis.secondary_groups.irregular.counts.e11.acceptable",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "e11 acceptable in group irregular",
+   "denominator": "40 words",
+   "derived_from": "",
+   "rendered": "20"
+  },
+  "t2.irregular.e13": {
+   "value": 21,
+   "fmt": "int",
+   "source": "experiments/E13-pronunciation-guided/reports/test_scores.json",
+   "field": "analysis.secondary_groups.irregular.counts.e13.acceptable",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "e13 acceptable in group irregular",
+   "denominator": "40 words",
+   "derived_from": "",
+   "rendered": "21"
+  },
+  "t2.names.e11": {
+   "value": 36,
+   "fmt": "int",
+   "source": "experiments/E13-pronunciation-guided/reports/test_scores.json",
+   "field": "analysis.secondary_groups.names.counts.e11.acceptable",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "e11 acceptable in group names",
+   "denominator": "40 words",
+   "derived_from": "",
+   "rendered": "36"
+  },
+  "t2.names.e13": {
+   "value": 37,
+   "fmt": "int",
+   "source": "experiments/E13-pronunciation-guided/reports/test_scores.json",
+   "field": "analysis.secondary_groups.names.counts.e13.acceptable",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "e13 acceptable in group names",
+   "denominator": "40 words",
+   "derived_from": "",
+   "rendered": "37"
+  },
+  "t1.ordinary.e12": {
+   "value": 27,
+   "fmt": "int",
+   "source": null,
+   "field": null,
+   "revision": null,
+   "meaning": "e12 acceptable in group ordinary (E12 REPORT.md §5.1 table)",
+   "denominator": "40 words",
+   "derived_from": "experiments/E12-longer-schedule/REPORT.md §5.1 (no JSON field)",
+   "rendered": "27"
+  },
+  "t1.ordinary.e11": {
+   "value": 27,
+   "fmt": "int",
+   "source": null,
+   "field": null,
+   "revision": null,
+   "meaning": "e11 acceptable in group ordinary (E12 REPORT.md §5.1 table)",
+   "denominator": "40 words",
+   "derived_from": "experiments/E12-longer-schedule/REPORT.md §5.1 (no JSON field)",
+   "rendered": "27"
+  },
+  "t1.irregular.e12": {
+   "value": 19,
+   "fmt": "int",
+   "source": null,
+   "field": null,
+   "revision": null,
+   "meaning": "e12 acceptable in group irregular (E12 REPORT.md §5.1 table)",
+   "denominator": "40 words",
+   "derived_from": "experiments/E12-longer-schedule/REPORT.md §5.1 (no JSON field)",
+   "rendered": "19"
+  },
+  "t1.irregular.e11": {
+   "value": 14,
+   "fmt": "int",
+   "source": null,
+   "field": null,
+   "revision": null,
+   "meaning": "e11 acceptable in group irregular (E12 REPORT.md §5.1 table)",
+   "denominator": "40 words",
+   "derived_from": "experiments/E12-longer-schedule/REPORT.md §5.1 (no JSON field)",
+   "rendered": "14"
+  },
+  "t1.names.e12": {
+   "value": 31,
+   "fmt": "int",
+   "source": null,
+   "field": null,
+   "revision": null,
+   "meaning": "e12 acceptable in group names (E12 REPORT.md §5.1 table)",
+   "denominator": "40 words",
+   "derived_from": "experiments/E12-longer-schedule/REPORT.md §5.1 (no JSON field)",
+   "rendered": "31"
+  },
+  "t1.names.e11": {
+   "value": 36,
+   "fmt": "int",
+   "source": null,
+   "field": null,
+   "revision": null,
+   "meaning": "e11 acceptable in group names (E12 REPORT.md §5.1 table)",
+   "denominator": "40 words",
+   "derived_from": "experiments/E12-longer-schedule/REPORT.md §5.1 (no JSON field)",
+   "rendered": "36"
+  },
+  "cov.words": {
+   "value": 23,
+   "fmt": "int",
+   "source": "experiments/E11-real-data-byt5/coverage/results.json",
+   "field": "overall.words",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "irregular development words in the coverage diagnostic",
+   "denominator": "",
+   "derived_from": "",
+   "rendered": "23"
+  },
+  "cov.greedy": {
+   "value": 8,
+   "fmt": "int",
+   "source": "experiments/E11-real-data-byt5/coverage/results.json",
+   "field": "overall.greedy_top1.acceptable",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "words whose greedy output is acceptable",
+   "denominator": "23",
+   "derived_from": "",
+   "rendered": "8"
+  },
+  "cov.beam1": {
+   "value": 10,
+   "fmt": "int",
+   "source": "experiments/E11-real-data-byt5/coverage/results.json",
+   "field": "overall.beam_top1.acceptable",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "words whose canonical beam top-1 is acceptable",
+   "denominator": "23",
+   "derived_from": "",
+   "rendered": "10"
+  },
+  "cov.any4": {
+   "value": 15,
+   "fmt": "int",
+   "source": "experiments/E11-real-data-byt5/coverage/results.json",
+   "field": "overall.any_acceptable_in_beam4",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "words with ≥1 acceptable among 4 beam candidates",
+   "denominator": "23",
+   "derived_from": "",
+   "rendered": "15"
+  },
+  "cov.any5": {
+   "value": 15,
+   "fmt": "int",
+   "source": "experiments/E11-real-data-byt5/coverage/results.json",
+   "field": "overall.any_acceptable_in_greedy_or_beam4",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "same, greedy output included",
+   "denominator": "23",
+   "derived_from": "",
+   "rendered": "15"
+  },
+  "cov.recov": {
+   "value": 7,
+   "fmt": "int",
+   "source": "experiments/E11-real-data-byt5/coverage/results.json",
+   "field": "overall.recoverable_words",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "greedy not acceptable but an acceptable beam candidate exists",
+   "denominator": "23",
+   "derived_from": "",
+   "rendered": "7"
+  },
+  "cov.none": {
+   "value": 8,
+   "fmt": "int",
+   "source": "experiments/E11-real-data-byt5/coverage/results.json",
+   "field": "overall.acceptable_per_word.0",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "words with no acceptable candidate",
+   "denominator": "23",
+   "derived_from": "",
+   "rendered": "8"
+  },
+  "cov.cands": {
+   "value": 93,
+   "fmt": "int",
+   "source": "experiments/E11-real-data-byt5/coverage/results.json",
+   "field": "overall.distinct_candidates",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "distinct candidate spellings judged",
+   "denominator": "",
+   "derived_from": "",
+   "rendered": "93"
+  },
+  "cov.unc": {
+   "value": 6,
+   "fmt": "int",
+   "source": "experiments/E11-real-data-byt5/coverage/results.json",
+   "field": "overall.candidate_judgments.uncertain",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "candidates judged uncertain",
+   "denominator": "93",
+   "derived_from": "",
+   "rendered": "6"
+  },
+  "cov.coverage": {
+   "value": 1.0,
+   "fmt": "pct",
+   "source": "experiments/E11-real-data-byt5/coverage/results.json",
+   "field": "overall.judgment_coverage",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "share of candidates with a judgment",
+   "denominator": "93",
+   "derived_from": "",
+   "rendered": "100.0"
+  },
+  "cov.gain_vs_greedy": {
+   "value": 7,
+   "fmt": "int",
+   "source": null,
+   "field": null,
+   "revision": null,
+   "meaning": "oracle words added over greedy",
+   "denominator": "",
+   "derived_from": "cov.any4 − cov.greedy (valid because every greedy-acceptable word is in the any-of-4 set: cov.any5 == cov.any4)",
+   "rendered": "7"
+  },
+  "cov.gain_vs_beam1": {
+   "value": 5,
+   "fmt": "int",
+   "source": null,
+   "field": null,
+   "revision": null,
+   "meaning": "oracle words added over beam top-1",
+   "denominator": "",
+   "derived_from": "cov.any4 − cov.beam1 (beam top-1 is one of the 4)",
+   "rendered": "5"
+  },
+  "par.dev": {
+   "value": 0,
+   "fmt": "int",
+   "source": "experiments/E11-real-data-byt5/release/verify.json",
+   "field": "parity.dev.greedy_mismatches_vs_frozen_predictions",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "adapter release verification: parity.dev.greedy_mismatches_vs_frozen_predictions",
+   "denominator": "",
+   "derived_from": "",
+   "rendered": "0"
+  },
+  "par.dev.n": {
+   "value": 276,
+   "fmt": "int",
+   "source": "experiments/E11-real-data-byt5/release/verify.json",
+   "field": "parity.dev.items",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "adapter release verification: parity.dev.items",
+   "denominator": "",
+   "derived_from": "",
+   "rendered": "276"
+  },
+  "par.eval": {
+   "value": 0,
+   "fmt": "int",
+   "source": "experiments/E11-real-data-byt5/release/verify.json",
+   "field": "parity.eval.greedy_mismatches_vs_frozen_predictions",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "adapter release verification: parity.eval.greedy_mismatches_vs_frozen_predictions",
+   "denominator": "",
+   "derived_from": "",
+   "rendered": "0"
+  },
+  "par.eval.n": {
+   "value": 245,
+   "fmt": "int",
+   "source": "experiments/E11-real-data-byt5/release/verify.json",
+   "field": "parity.eval.items",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "adapter release verification: parity.eval.items",
+   "denominator": "",
+   "derived_from": "",
+   "rendered": "245"
+  },
+  "par.top4": {
+   "value": 0,
+   "fmt": "int",
+   "source": "experiments/E11-real-data-byt5/release/verify.json",
+   "field": "parity.dev_top4.mismatches_vs_research_canonical_beam",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "adapter release verification: parity.dev_top4.mismatches_vs_research_canonical_beam",
+   "denominator": "",
+   "derived_from": "",
+   "rendered": "0"
+  },
+  "b.lat1": {
+   "value": 554.1,
+   "fmt": "f0",
+   "source": "experiments/E11-real-data-byt5/release/verify.json",
+   "field": "latency_ms.single_word_greedy.median",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "adapter release verification: latency_ms.single_word_greedy.median",
+   "denominator": "",
+   "derived_from": "",
+   "rendered": "554"
+  },
+  "b.lat4": {
+   "value": 819.9,
+   "fmt": "f0",
+   "source": "experiments/E11-real-data-byt5/release/verify.json",
+   "field": "latency_ms.single_word_top4.median",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "adapter release verification: latency_ms.single_word_top4.median",
+   "denominator": "",
+   "derived_from": "",
+   "rendered": "820"
+  },
+  "b.load": {
+   "value": 7.06,
+   "fmt": "f1",
+   "source": "experiments/E11-real-data-byt5/release/verify.json",
+   "field": "load_seconds",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "adapter release verification: load_seconds",
+   "denominator": "",
+   "derived_from": "",
+   "rendered": "7.1"
+  },
+  "b.peak": {
+   "value": 2019,
+   "fmt": "f0",
+   "source": "experiments/E11-real-data-byt5/release/verify.json",
+   "field": "peak_rss_mb",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "adapter release verification: peak_rss_mb",
+   "denominator": "",
+   "derived_from": "",
+   "rendered": "2019"
+  },
+  "b.rss": {
+   "value": 713,
+   "fmt": "f0",
+   "source": "experiments/E11-real-data-byt5/release/verify.json",
+   "field": "rss_after_load_mb",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "adapter release verification: rss_after_load_mb",
+   "denominator": "",
+   "derived_from": "",
+   "rendered": "713"
+  },
+  "b.wps": {
+   "value": 14.5,
+   "fmt": "f1",
+   "source": "experiments/E11-real-data-byt5/release/verify.json",
+   "field": "parity.dev.greedy_words_per_second",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "adapter release verification: parity.dev.greedy_words_per_second",
+   "denominator": "",
+   "derived_from": "",
+   "rendered": "14.5"
+  },
+  "b.i.load": {
+   "value": 5.49,
+   "fmt": "f1",
+   "source": "experiments/E11-real-data-byt5/release/install_check.json",
+   "field": "api.load_seconds",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "isolated install: load (s)",
+   "denominator": "",
+   "derived_from": "",
+   "rendered": "5.5"
+  },
+  "b.i.wps": {
+   "value": 14.1,
+   "fmt": "f1",
+   "source": "experiments/E11-real-data-byt5/release/install_check.json",
+   "field": "api.greedy_words_per_second",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "isolated install: greedy words/s",
+   "denominator": "",
+   "derived_from": "",
+   "rendered": "14.1"
+  },
+  "b.i.par": {
+   "value": 0,
+   "fmt": "int",
+   "source": "experiments/E11-real-data-byt5/release/install_check.json",
+   "field": "api.greedy_mismatches_vs_frozen_predictions",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "isolated install: dev parity mismatches",
+   "denominator": "",
+   "derived_from": "",
+   "rendered": "0"
+  },
+  "b.i.checks": {
+   "value": true,
+   "fmt": "raw",
+   "source": "experiments/E11-real-data-byt5/release/install_check.json",
+   "field": "ok",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "isolated install: all checks passed",
+   "denominator": "",
+   "derived_from": "",
+   "rendered": "True"
+  },
+  "b.i.nchecks": {
+   "value": 19,
+   "fmt": "int",
+   "source": "experiments/E11-real-data-byt5/release/install_check.json",
+   "field": "checks (count)",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "isolated-install checks",
+   "denominator": "",
+   "derived_from": "",
+   "rendered": "19"
+  }
+ }
+}
