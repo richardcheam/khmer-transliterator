@@ -4,10 +4,8 @@ Nothing below has been run, and no repository has been created. Each step needs 
 The existing public model `ric912/en-km-phonetic-transliterator` is a different model and must not be touched.
 
 ## Before upload (owner)
-1. **Adapter licence:** choose one (`LICENSING_DECISION.md`, decision 1). Then:
-   - add `license: <id>` to the YAML header of `huggingface/README.md`;
-   - add the licence notice as `huggingface/LICENSE`;
-   - rebuild the bundle (`scripts/e11_release.py bundle`) so the checksums are rewritten.
+1. ~~**Adapter licence**~~ **done (D198):** CC BY-NC-SA 4.0, `license: cc-by-nc-sa-4.0` in the card,
+   `huggingface/LICENSE`, bundle rebuilt.
 2. **Data questions:** accept or resolve them for this adapter (`NOTICES.md` §1–3).
 3. **Repository:** confirm the name, `ric912/en-km-phonetic-byt5-lora`, and that it starts private (as D192).
 4. **Wheel:** decide whether the wheel goes into the repository (`package/`) or is linked from the card.

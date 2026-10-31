@@ -430,3 +430,14 @@ there (`git -C ../pocket-tts-khmer show archive/checkpoints-p0-p6:state/DECISION
   (ODC-By + Common Crawl terms), Wikipedia (CC BY-SA 4.0) and ALT (CC BY 4.0); the E02 weights licence is not
   copied. **Owner decisions pending:** the adapter licence, the data questions, the repo name/private start, and
   whether the wheel is uploaded. Nothing published, merged, tagged or served.
+
+## D198 — E11 adapter weights licence: CC BY-NC-SA 4.0, same as E02 (owner, 2026-10-31)
+- **Decision:** the owner chose the E02 terms (D191) for the E11 ByT5 adapter (`adapter.safetensors`, `698a23ae…`):
+  **CC BY-NC-SA 4.0**. The code stays PolyForm Noncommercial 1.0.0; the base `google/byt5-small` stays Apache 2.0
+  and is not redistributed.
+- **Accepted risk (as for E02):** if Wikipedia's share-alike reaches the weights, CC BY-SA would be required, and
+  NC-SA is not BY-SA-compatible; the Common Crawl page-rights and indirect Chhunneng questions are recorded in
+  `release/byt5-e11/NOTICES.md`.
+- **Applied:** `license: cc-by-nc-sa-4.0` in the card, `huggingface/LICENSE` (`release/byt5-e11/LICENSE-weights.md`),
+  bundle rebuilt. Still open: the repository name and private start, and whether the wheel is uploaded. Nothing
+  uploaded.

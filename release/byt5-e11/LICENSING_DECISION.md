@@ -4,11 +4,11 @@
 - **Code:** PolyForm Noncommercial 1.0.0 (D190). It applies to the wheel and sdist unchanged.
 - **Base model:** Apache 2.0 (Google). It's not redistributed, and users download it at the pinned revision.
 
-**Open:**
-- **Adapter weights licence.** The E02 weights licence (CC BY-NC-SA 4.0, D191) was chosen for a different model
-  and is **not** copied here automatically.
+- **Adapter weights (owner, 2026-10-31, D198):** CC BY-NC-SA 4.0, the same terms as E02 (D191), chosen by the
+  owner for this adapter. Licence text: `LICENSE-weights.md`, shipped as `huggingface/LICENSE`. The owner accepts the
+  same share-alike risk as for E02 (row (a) below).
 
-## Decision 1: licence for `adapter.safetensors`
+## Decision 1: licence for `adapter.safetensors` (decided: option (a))
 The training data constrains the choice (`DATA_PROVENANCE.md`, `NOTICES.md`):
 
 | Option | Fits research/non-commercial intent | Wikipedia share-alike, if it reaches the weights | Hub metadata |

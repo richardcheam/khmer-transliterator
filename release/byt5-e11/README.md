@@ -5,7 +5,8 @@
 bundle (`khmer-translit-byt5-0.2.0`) renamed, and it isn't related to the public NumPy model
 `ric912/en-km-phonetic-transliterator`.
 
-**Status:** not published. The adapter licence is undecided (`LICENSING_DECISION.md`).
+**Status:** not published. Adapter weights CC BY-NC-SA 4.0 (`LICENSE-weights.md`, owner decision D198); code
+PolyForm Noncommercial 1.0.0 (`LICENSE-code`).
 
 ## Contents
 | Path | What |

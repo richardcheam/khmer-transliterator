@@ -7,7 +7,7 @@ concludes that publication is permitted.
 | Asset | In the bundle | Stated terms | Status |
 |---|---|---|---|
 | Package code (`khmer_translit`, wheel + sdist) | yes | **PolyForm Noncommercial 1.0.0** (owner, D190; `LICENSE-code`) | Settled |
-| Adapter weights (`adapter.safetensors`) | yes | Derived from the data in `DATA_PROVENANCE.md` | **Licence undecided** |
+| Adapter weights (`adapter.safetensors`) | yes | Derived from the data in `DATA_PROVENANCE.md` | **CC BY-NC-SA 4.0** (owner, D198; `LICENSE-weights.md`) |
 | Base model `google/byt5-small` | **no** (pinned by revision, fetched by the user) | Apache 2.0 (Hub metadata) | Not redistributed |
 | Documents and aggregate evidence | yes | Project-authored | Owner's decision with the release |
 | Training pairs, mined references, review batches, keys, judgments | **no** | Mixed | Kept local |

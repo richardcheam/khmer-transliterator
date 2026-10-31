@@ -2,6 +2,7 @@
 language:
 - en
 - km
+license: cc-by-nc-sa-4.0
 base_model: google/byt5-small
 base_model_relation: adapter
 library_name: khmer-translit
@@ -17,8 +18,8 @@ tags:
 
 # en-km-phonetic-byt5-lora (E11): English word → Khmer phonetic spelling
 
-> **Not published. The adapter licence is undecided** (`LICENSING_DECISION.md`), so this card has no `license`
-> field yet. The package code is PolyForm Noncommercial 1.0.0. It's a research-quality model: one training run,
+> **Not published yet.** Adapter weights: CC BY-NC-SA 4.0 (`LICENSE`); package code: PolyForm Noncommercial 1.0.0.
+> It's a research-quality model: one training run,
 > judged by one project-affiliated person, not independently validated.
 
 **This is a LoRA adapter, not a standalone model.** It needs the base model `google/byt5-small` at revision
@@ -148,7 +149,9 @@ See `EVALUATION.md` §6 for load time, latency, throughput and memory, measured 
 - **Licences:**
   - base model: Apache 2.0;
   - package code: PolyForm Noncommercial 1.0.0 (`LICENSE-code`);
-  - adapter: **undecided** (`LICENSING_DECISION.md`).
+  - adapter weights: [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/) (`LICENSE`).
+    Non-commercial use only, with attribution; share adaptations under the same licence;
+  - copyright: 2026 Richard Cheam (khmer-transliterator project).
 - **Data terms:** FineWeb-2 is ODC-By 1.0 plus the Common Crawl terms, and the rights in the underlying pages are
   not granted. Khmer Wikipedia is CC BY-SA 4.0, and whether its share-alike reaches the weights is open. ALT is
   CC BY 4.0. See `NOTICES.md`.

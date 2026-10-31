@@ -754,6 +754,7 @@ def bundle() -> dict:
     for f in ("NOTICES.md", "DATA_PROVENANCE.md", "EVALUATION.md", "LIMITATIONS.md", "REFERENCES.md"):
         shutil.copy(DOCS / f, hf / f)
     shutil.copy(ROOT / "LICENSE", hf / "LICENSE-code")
+    shutil.copy(DOCS / "LICENSE-weights.md", hf / "LICENSE")             # adapter weights: CC BY-NC-SA 4.0 (D198)
     hf_files = sorted(p for p in hf.iterdir() if p.is_file())
     (hf / "MANIFEST.json").write_text(json.dumps({"files": {p.name: {"sha256": sha(p), "bytes": p.stat().st_size}
                                                             for p in hf_files}, "base": exp | {"base_repo": byt5.BASE_REPO,
