@@ -441,3 +441,16 @@ there (`git -C ../pocket-tts-khmer show archive/checkpoints-p0-p6:state/DECISION
 - **Applied:** `license: cc-by-nc-sa-4.0` in the card, `huggingface/LICENSE` (`release/byt5-e11/LICENSE-weights.md`),
   bundle rebuilt. Still open: the repository name and private start, and whether the wheel is uploaded. Nothing
   uploaded.
+
+## D199 — E11 adapter uploaded to a private Hugging Face repository (owner, 2026-10-31)
+- **Owner decisions:** repository `ric912/en-km-phonetic-byt5-lora`, private first; the wheel is not uploaded there,
+  the card links the byte-identical wheel already public in `ric912/en-km-phonetic-transliterator` at tag `v0.2.0`
+  (sha256 `1bc8242a…`, checked); data questions accepted as for E02 (D198).
+- **Upload:** the bundle's `huggingface/` folder (11 files, adapter `698a23ae…`), commit `2eedb592`; bundle archive
+  sha256 `019ed418…`. The existing public repository is unchanged.
+- **Checked on the Hub (private):** card metadata parses (`license: cc-by-nc-sa-4.0`, `base_model: google/byt5-small`,
+  relation `adapter`, `inference: false`); a fresh download matches `MANIFEST.json` (10/10 hashes); in a new CPU venv
+  with the wheel installed from its public URL, the quick start runs offline and reproduces the verified outputs
+  (coffee → ខូហ្វី, london → ឡុនដុន, same top-4).
+- **Not done:** made public, tagged, PyPI, serving, merging. Making it public needs the owner's instruction after
+  reviewing the private page.

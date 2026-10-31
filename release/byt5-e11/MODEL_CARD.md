@@ -60,9 +60,10 @@ These commands were tested in a fresh virtual environment, with networking disab
 (`evidence/install_check.json`).
 
 ```bash
-# 1. Package (CPU-only PyTorch). The wheel ships in the release bundle.
-uv pip install --torch-backend cpu "khmer-translit[byt5] @ file:///path/to/khmer_translit-0.2.0-py3-none-any.whl"
-# or: pip install --extra-index-url https://download.pytorch.org/whl/cpu "khmer-translit[byt5] @ file:///…whl"
+# 1. Package (CPU-only PyTorch). The wheel is published once, in ric912/en-km-phonetic-transliterator at tag
+#    v0.2.0 (sha256 1bc8242a63d5385c86e772357e9fa3af15ecce3d3f6ccd5105ae42322a02a47d, PolyForm Noncommercial):
+uv pip install --torch-backend cpu "khmer-translit[byt5] @ https://huggingface.co/ric912/en-km-phonetic-transliterator/resolve/v0.2.0/khmer_translit-0.2.0-py3-none-any.whl"
+# or: pip install --extra-index-url https://download.pytorch.org/whl/cpu "khmer-translit[byt5] @ https://huggingface.co/ric912/en-km-phonetic-transliterator/resolve/v0.2.0/khmer_translit-0.2.0-py3-none-any.whl"
 
 # 2. Base model at the pinned revision (about 1.2 GB, once)
 hf download google/byt5-small --revision 68377bdc18a2ffec8a0533fef03b1c513a4dd49d --local-dir byt5-small
