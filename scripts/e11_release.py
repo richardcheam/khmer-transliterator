@@ -764,8 +764,7 @@ def public_config(cfg: dict) -> dict:
             "training": {"init": "fresh LoRA adapter on the pinned base, seed 0", "steps": p["update"],
                          "pairs": p["training_rows"], "recipe": p["recipe"],
                          "sources": "bracketed pairs mined from FineWeb-2 khm_Khmr and Khmer Wikipedia; Khmer "
-                                    "spellings attested in the ALT Parallel Corpus; no LLM-generated labels",
-                         "checkpoint_sha256": p["checkpoint_sha256"]},
+                                    "spellings attested in the ALT Parallel Corpus; no LLM-generated labels"},
             "format": cfg["format"], "adapter_sha256": cfg["adapter_sha256"]}
 
 

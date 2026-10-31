@@ -457,4 +457,4 @@ there (`git -C ../pocket-tts-khmer show archive/checkpoints-p0-p6:state/DECISION
 - **Public folder cleaned (owner, 2026-10-31):** the Hub repo now holds only a plain, self-contained card (E02 card
   style), `LICENSE`, the adapter and a config without internal labels (experiment/decision numbers, run names,
   paths). The detailed records stay in the repository and the local bundle. A scan in `bundle()` refuses internal
-  terms in the upload folder. Hub commit `ce21b19e`; bundle archive `e746fd30…`.
+  terms in the upload folder. Card then shortened to what a new user needs (no hashes or verification notes). Bundle archive `e6051f43…`.
