@@ -1,3 +1,0 @@
-# Runtime requirements of the E02 letters-only model (NumPy inference only).
-# The wheel declares numpy>=2; this is the version the isolated install check used.
-numpy==2.2.6

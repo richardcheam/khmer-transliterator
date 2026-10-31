@@ -468,3 +468,25 @@ there (`git -C ../pocket-tts-khmer show archive/checkpoints-p0-p6:state/DECISION
 - **Made public; checked anonymously:** the page and the adapter download work without a login, and the card's
   wheel link (`ric912/en-km-phonetic-transliterator` @ `v0.2.0`) resolves.
 - **Not done:** no tag, no PyPI, no serving change, no merge into `main`. The older public repo is unchanged.
+
+## D201 — Repository cleanup after the two releases (owner, 2026-10-31)
+- **Owner request:** "clean this repo, remove unnecessary stuff".
+- **Kept:**
+  - the package (`src/khmer_translit`, unchanged) and its tests;
+  - the data and training scripts of the served models and E01 (`translit_*`);
+  - the recipe of the published small model (`english_phonetic_*`);
+  - the benchmark tools (`evaluate.py`, `data_manifest.py`);
+  - the review page, renamed from `scripts/e12_review.py` to `scripts/review.py` and made generic;
+  - the docs; each experiment's plan, report and `results.json`.
+- **Release folders:** the public card and licence of each published model, now in `release/<hub-repo>/`.
+- **Archived** (git tag `archive/research-e02-e13`; bundle
+  `/mnt/hdd/data/khmer-tts-archive/git-bundles/khmer-transliterator-research-e02-e13-2026-10-31.bundle`):
+  - the E02–E13 research and release scripts and their tests;
+  - the finished handoff, and the unpublished E10 release docs;
+  - the internal release documents;
+  - `docs/decisions/`, `research/` pins;
+  - experiment predictions, per-item files, ledgers, state and intermediate reports.
+- **Test change:** `tests/test_byt5_backend.py` no longer compares against the archived research code. It now checks
+  the backend against plain Transformers generation on a model with the adapter merged into its weights: the same
+  texts, statuses and log scores, greedy and beam. It also checks that the adapter changes the model.
+- **Result:** 478 → 128 tracked files; 79 tests pass. Local data, models and bundles are untouched.

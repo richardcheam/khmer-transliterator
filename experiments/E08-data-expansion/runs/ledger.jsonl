@@ -1,3 +1,0 @@
-{"time": "2026-10-28T10:36:36+00:00", "event": "start", "run": "rs_s0", "kind": "full", "cfg_hash": "f5d7cf9230f15987c2252487cda366e80207a4a93f81c5da3795a7a300a3c3f6", "data_hash": "901b59f2b8938cc657a7ce4305586e025f6b62dce5f0b56039225c9fee5b0fc0", "t": 1793183796.4868891}
-{"time": "2026-10-28T15:47:17+00:00", "event": "segment", "run": "rs_s0", "kind": "full", "hours": 5.1757, "updates_to": 3000, "stop": "max_updates", "t": 1793202437.9975052}
-{"time": "2026-10-28T15:47:18+00:00", "event": "done", "run": "rs_s0", "kind": "full", "stop": "max_updates", "updates": 3000, "t": 1793202438.0631688}

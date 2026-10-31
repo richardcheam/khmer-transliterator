@@ -1,6 +1,0 @@
-Task: write the English word below in Khmer script so that a Khmer reader would pronounce it like the
-English pronunciation given. This is phonetic transliteration, not translation: never give a Khmer word that means
-the same thing, unless it is also pronounced like the English word.
-English word: {word}
-Intended English pronunciation (CMUdict ARPAbet, US): {phones}
-Answer with JSON only, no other text: {{"khmer": ["<up to 4 spellings, best first>"], "status": "ok" | "unsupported" | "uncertain"}}

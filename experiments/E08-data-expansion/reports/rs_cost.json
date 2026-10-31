@@ -1,7 +1,0 @@
-{
- "load_s": 6.28,
- "batch1_greedy_ms_median": 484.6,
- "peak_rss_mb": 1868,
- "adapter_bytes": 25100141,
- "threads": 6
-}

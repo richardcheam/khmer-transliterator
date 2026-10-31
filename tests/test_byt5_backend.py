@@ -1,8 +1,8 @@
-"""Tests of the ByT5 backend (`khmer_translit.byt5`) and its CLI profile: parity with the research generation code,
-refusals instead of truncation, adapter/base checks, offline behaviour and stable JSONL alignment.
+"""Tests of the ByT5 backend (`khmer_translit.byt5`) and its CLI profile: parity with plain Transformers generation
+on a model with the adapter merged into its weights, refusals instead of truncation, adapter/base checks, offline
+behaviour and stable JSONL alignment.
 
-A tiny random T5 stands in for google/byt5-small (no download, seconds on CPU); the real-checkpoint parity check is
-in `scripts/e10_release.py verify`."""
+A tiny random T5 stands in for google/byt5-small (no download, seconds on CPU)."""
 from __future__ import annotations
 
 import contextlib
@@ -17,7 +17,6 @@ from unittest import mock
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
-sys.path.insert(0, str(ROOT / "scripts"))
 
 try:
     import torch
@@ -38,26 +37,69 @@ def tiny_base(folder: Path) -> str:
     return byt5.sha256_file(next(folder / f for f in byt5.BASE_WEIGHTS if (folder / f).exists()))
 
 
-def research_model(folder: Path):
-    """The research path (`e07.insert_adapters`) on the same tiny base, with non-zero adapter weights."""
-    import e07
+def adapter_state(folder: Path) -> dict:
+    """Random non-zero LoRA tensors for every attention and feed-forward target of the tiny base."""
+    from transformers.models.t5.modeling_t5 import T5Attention, T5DenseGatedActDense
     m = T5ForConditionalGeneration.from_pretrained(str(folder), dtype=torch.float32)
-    m = e07.insert_adapters(m, ADAPTER, seed=0)
-    g = torch.Generator().manual_seed(5)
-    for k, p in m.named_parameters():
-        if k.endswith((".A", ".B")):
-            p.data = torch.randn(p.shape, generator=g) * 0.5
+    g, state = torch.Generator().manual_seed(5), {}
+    for path, mod in m.named_modules():
+        names = byt5.TARGETS["attn"] if isinstance(mod, T5Attention) else \
+            byt5.TARGETS["ffn"] if isinstance(mod, T5DenseGatedActDense) else ()
+        for n in names:
+            lin = getattr(mod, n)
+            state[f"{path}.{n}.A"] = torch.randn(ADAPTER["r"], lin.in_features, generator=g) * 0.5
+            state[f"{path}.{n}.B"] = torch.randn(lin.out_features, ADAPTER["r"], generator=g) * 0.5
+    return state
+
+
+def merged_model(folder: Path, state: dict):
+    """The same base with `W + (alpha / r) · B · A` written into each target weight: an independent reference."""
+    m = T5ForConditionalGeneration.from_pretrained(str(folder), dtype=torch.float32)
+    mods = dict(m.named_modules())
+    with torch.no_grad():
+        for k, A in state.items():
+            if k.endswith(".A"):
+                mods[k[:-2]].weight += (ADAPTER["alpha"] / ADAPTER["r"]) * state[k[:-2] + ".B"] @ A
     return m.eval()
 
 
 def make_adapter(base: Path, out: Path, sha: str):
-    m = research_model(base)
-    state = {k: v.detach().clone() for k, v in m.state_dict().items() if k.endswith((".A", ".B"))}
+    state = adapter_state(base)
     byt5.export_adapter(state, out, {"base": {"repo": byt5.BASE_REPO, "revision": byt5.BASE_REVISION,
                                               "weights_sha256": sha},
                                      "adapter": {k: ADAPTER[k] for k in ("r", "alpha", "targets")},
                                      "decode": {"single": "greedy", "candidate_beam": 4, "batch_size": 32}})
-    return m
+    return merged_model(base, state)
+
+
+def reference_generate(model, word: str, beam: int) -> list[tuple[str | None, str, float]]:
+    """Plain `generate` with the backend's documented settings: (text, status, log score) per returned sequence.
+
+    Beam scores come from `sequences_scores`; the greedy score is the sum of Transformers' own transition scores up
+    to the first end byte. Neither uses the backend's code."""
+    ids = torch.tensor([byt5.encode(word)])
+    kw = dict(num_beams=beam, num_return_sequences=beam, length_penalty=0.0, early_stopping="never") \
+        if beam > 1 else dict(num_beams=1)
+    with torch.no_grad():
+        g = model.generate(input_ids=ids, attention_mask=torch.ones_like(ids), max_new_tokens=byt5.MAX_NEW_TOKENS,
+                           do_sample=False, output_scores=True, return_dict_in_generate=True, **kw)
+    if beam > 1:
+        scores = g.sequences_scores.tolist()
+    else:
+        step = model.compute_transition_scores(g.sequences, g.scores, normalize_logits=True)[0].tolist()
+        toks = g.sequences[0, 1:].tolist()
+        end = toks.index(byt5.EOS) + 1 if byt5.EOS in toks else len(toks)
+        scores = [sum(step[:end])]
+    out = []
+    for s, sc in zip(g.sequences.tolist(), scores):
+        raw = s[1:]
+        if byt5.EOS in raw:
+            raw = raw[:raw.index(byt5.EOS) + 1]
+        out.append((*byt5.decode(raw), sc))
+    return out
+
+
+WORDS = ["cat", "london", "coffee", "ali", "x"]
 
 
 @unittest.skipIf(torch is None, "the byt5 extra is not installed")
@@ -68,27 +110,26 @@ class TestByT5Backend(unittest.TestCase):
         d = Path(cls.tmp.name)
         cls.base, cls.adapter = d / "base", d / "adapter"
         cls.sha = tiny_base(cls.base)
-        cls.research = make_adapter(cls.base, cls.adapter, cls.sha)
+        cls.reference = make_adapter(cls.base, cls.adapter, cls.sha)
         cls.tl = byt5.ByT5Transliterator.from_pretrained(cls.adapter, base=cls.base, offline=True)
 
     @classmethod
     def tearDownClass(cls):
         cls.tmp.cleanup()
 
-    def test_parity_with_research_generation(self):
-        import e07
-        words = ["cat", "london", "coffee", "ali", "x"]
-        srcs = [byt5.encode(w) for w in words]
-        greedy = e07.gen(self.research, srcs, max_new=byt5.MAX_NEW_TOKENS)
-        beam = e07.gen(self.research, srcs, beam=4, ret=4, bs=16, max_new=byt5.MAX_NEW_TOKENS, early_stopping="never")
-        for w, g, b in zip(words, greedy, beam):
-            r1, r4 = self.tl.predict(w), self.tl.predict(w, top_k=4)
-            want1 = [t for t, s, *_ in g if s == "ok" and t]
-            self.assertEqual([c.text for c in r1.candidates], want1[:1])
-            want4 = list(dict.fromkeys(t for t, s, *_ in b if s == "ok" and t))
-            self.assertEqual([c.text for c in r4.candidates], want4[:4])
-            if r1.candidates:
-                self.assertAlmostEqual(r1.candidates[0].log_score, g[0][2], places=4)
+    def test_parity_with_merged_weights(self):
+        for beam in (1, 4):
+            got = self.tl._generate([byt5.encode(w) for w in WORDS], beam)
+            for w, mine in zip(WORDS, got):
+                ref = reference_generate(self.reference, w, beam)
+                self.assertEqual([(t, st) for t, st, _ in mine], [(t, st) for t, st, _ in ref], (w, beam))
+                for (_, _, a), (_, _, b) in zip(mine, ref):            # merged vs adapter arithmetic: float noise
+                    self.assertLessEqual(abs(a - b), 1e-4 * max(1.0, abs(b)))
+
+    def test_adapter_changes_the_model(self):
+        plain = merged_model(self.base, {})
+        self.assertNotEqual([reference_generate(plain, w, 1)[0][2] for w in WORDS],
+                            [reference_generate(self.reference, w, 1)[0][2] for w in WORDS])
 
     def test_batch_equals_single_and_keeps_order(self):
         words = ["cat", "", "new york", "coffee", "a" * 33, "ខ្មែរ", "london"]

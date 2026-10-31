@@ -1,13 +1,15 @@
 # Experiments
 
 One folder per experiment: `PLAN.md` (committed before training), `config.yaml`, `RESULTS.md`, `results.json`.
+Decided experiments keep only their plan, report and `results.json`. Their one-off scripts, tests, predictions,
+per-item files and run ledgers were archived on 2026-10-31: git tag `archive/research-e02-e13` (and a git bundle in
+`/mnt/hdd/data/khmer-tts-archive/git-bundles/`). Paths such as `scripts/e07.py` in older reports refer to that tag.
 How to run one: `../docs/RESEARCH_PROTOCOL.md`. New experiment: copy `TEMPLATE/`.
 
 | Id | Question | Outcome | Decision |
 |---|---|---|---|
 | [E00-history](E00-history/) | Arms A–T, E2, reranking, ranker, s0/s1 (before this protocol) | B and E served; every later English-spelling route failed its rule | D133–D164 |
 | [E01-unified](E01-unified/) | Does a Khmer-pronunciation side task improve one clean model? | +4.67 pts on English, all seeds positive, no harm elsewhere; **missed the 5-pt rule**. Clean models trail served B/E on real romanised typing (33–35% vs 70%) | D173, D174 |
-
 | [E02-english-phonetic](E02-english-phonetic/) | English words → Khmer phonetic spelling: do English phone inputs, or Khmer P2G transfer, help a clean model? | phones +1.65 pts [−1.65, +4.94] over 3 paired seeds; benchmark unqualified → inconclusive; letters baseline kept (research preview) | D178 |
 | [E02-diagnostics-2026-10-27](E02-diagnostics-2026-10-27/) | Diagnostics (no training): do E02's training targets follow the supplied phones, and do the phone models use them? | 0% of targets readable by exact lookup (by construction); 30% consonant-conflict flags on a validated spelling reading; phone sensitivity shallow and seed-dependent | D179 |
 | [E03-assessable-phones](E03-assessable-phones/) | Repaired `khmer_like` selection; letters vs phones on dictionary-assessable, consonant-screened pairs | phones +0.60 pts [−2.40, +3.75]; donor phones change 34% of outputs but steer consonants +1.4% [−0.8, +3.5]; default unchanged | D180 |

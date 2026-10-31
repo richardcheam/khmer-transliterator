@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Spelling review</title>
+<style>
+  :root { --bg:#f7f7f5; --card:#fff; --ink:#1d1d1b; --muted:#6b6b66; --line:#deddd8; --accent:#2f6fde;
+          --ok:#1f8a4c; --bad:#c23b32; --unsure:#b7791f; --chip:#eef0f4; }
+  @media (prefers-color-scheme: dark) { :root { --bg:#151515; --card:#1f1f1f; --ink:#ecebe7; --muted:#a3a29c;
+          --line:#33332f; --accent:#6d9cff; --ok:#4cc27e; --bad:#ff6b5f; --unsure:#e0a84a; --chip:#2a2c31; } }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--bg); color:var(--ink); font:15px/1.5 system-ui, sans-serif; }
+  header { display:flex; flex-wrap:wrap; gap:10px 14px; align-items:center; padding:10px 16px; border-bottom:1px solid var(--line); }
+  .muted { color:var(--muted); }
+  button { border:1px solid var(--line); background:var(--card); color:var(--ink); border-radius:8px; padding:6px 12px; cursor:pointer; font:inherit; }
+  .bar { flex:1 1 200px; height:8px; background:var(--chip); border-radius:99px; overflow:hidden; min-width:120px; }
+  .bar > div { height:100%; background:var(--ok); width:0; transition:width .2s; }
+  main { max-width:760px; margin:16px auto; padding:0 16px; }
+  .card { background:var(--card); border:1px solid var(--line); border-radius:12px; padding:18px; }
+  .meta { color:var(--muted); font-size:13px; }
+  .word { font-size:2.1em; font-weight:600; margin:2px 0 0; }
+  .reading { font:15px ui-monospace, monospace; color:var(--muted); margin-bottom:14px; }
+  .cand { display:flex; flex-wrap:wrap; align-items:center; gap:10px; padding:12px 0; border-top:1px solid var(--line); }
+  .lab { font-weight:700; width:1.6em; color:var(--muted); }
+  .khmer { font-size:34px; line-height:1.7; flex:1 1 220px; word-break:break-word; }
+  .ans { display:flex; gap:6px; flex-wrap:wrap; }
+  .ans button.sel[data-j="acceptable"] { background:var(--ok); border-color:var(--ok); color:#fff; }
+  .ans button.sel[data-j="not_acceptable"] { background:var(--bad); border-color:var(--bad); color:#fff; }
+  .ans button.sel[data-j="uncertain"] { background:var(--unsure); border-color:var(--unsure); color:#fff; }
+  .quick { display:flex; gap:8px; flex-wrap:wrap; margin-top:12px; padding-top:12px; border-top:1px solid var(--line); }
+  kbd { font:12px ui-monospace, monospace; border:1px solid var(--line); border-bottom-width:2px; border-radius:4px; padding:0 4px; color:var(--muted); background:var(--bg); }
+  .sel kbd { color:inherit; background:transparent; border-color:currentColor; }
+  .status { min-height:22px; font-size:14px; margin-top:8px; }
+  .status.err { color:var(--bad); } .status.ok { color:var(--ok); }
+  .help { color:var(--muted); font-size:13px; margin-top:12px; }
+  .grid { display:flex; flex-wrap:wrap; gap:4px; margin-top:16px; }
+  .grid button { padding:2px 0; width:44px; font-size:12px; }
+  .grid button.done { background:var(--chip); color:var(--muted); }
+  .grid button.cur { outline:2px solid var(--accent); }
+  .finished { padding:12px; border-radius:8px; background:var(--chip); margin-top:12px; }
+</style>
+</head>
+<body>
+<header>
+  <strong id="title">Spelling review</strong>
+  <span class="muted" id="who"></span>
+  <span id="progress" class="muted"></span>
+  <div class="bar"><div id="fill"></div></div>
+  <span>
+    <button id="prev" title="previous (←)">&larr;</button>
+    <button id="next" title="next (→)">&rarr;</button>
+    <button id="todo" title="next unanswered (U)">Next unanswered</button>
+  </span>
+</header>
+<main>
+  <div class="card" id="card"></div>
+  <div class="status" id="status"></div>
+  <div class="help">
+    <b>Question:</b> would a Khmer reader, reading this spelling aloud, say the shown English reading?
+    Approximations are fine; a missing or added syllable, or a sound that changes the word, is not.<br>
+    Spelling A: <kbd>1</kbd> ok <kbd>2</kbd> no <kbd>3</kbd> unsure · Spelling B: <kbd>4</kbd> ok <kbd>5</kbd> no <kbd>6</kbd> unsure ·
+    <kbd>Y</kbd> all ok · <kbd>N</kbd> none ok · <kbd>&larr;</kbd>/<kbd>&rarr;</kbd> move · <kbd>U</kbd> next unanswered.
+    Every click is saved at once; you can stop and come back any time.
+  </div>
+  <div class="grid" id="grid"></div>
+</main>
+<script>
+"use strict";
+const J = [["acceptable", "ok"], ["not_acceptable", "no"], ["uncertain", "unsure"]];
+let S = null, items = [], idx = 0, timer = null;
+const $ = (id) => document.getElementById(id);
+const esc = (t) => String(t ?? "").replace(/[&<>"]/g, c => ({"&": "&amp;", "<": "&lt;", ">": "&gt;", "\"": "&quot;"}[c]));
+const done = (it) => it.candidates.every(c => c.judgment);
+function status(msg, cls) { $("status").textContent = msg; $("status").className = "status " + (cls || ""); }
+
+async function load() {
+  S = await (await fetch("/api/state")).json();
+  $("who").textContent = "reviewer: " + S.reviewer;
+  $("title").textContent = S.title; document.title = S.title;
+  items = Object.entries(S.batches).flatMap(([n, its]) => its.map(it => ({...it, batch: n})));
+  idx = firstTodo(0); render();
+}
+function firstTodo(from) {
+  for (let k = 0; k < items.length; k++) { const i = (from + k) % items.length; if (!done(items[i])) return i; }
+  return Math.min(from, items.length - 1);
+}
+function render() {
+  const it = items[idx];
+  const nc = items.reduce((s, x) => s + x.candidates.length, 0);
+  const na = items.reduce((s, x) => s + x.candidates.filter(c => c.judgment).length, 0);
+  const nw = items.filter(done).length;
+  $("progress").textContent = `${nw} / ${items.length} words · ${na} / ${nc} spellings`;
+  $("fill").style.width = (100 * na / nc) + "%";
+  const keys = [["1", "2", "3"], ["4", "5", "6"]];
+  const cands = it.candidates.map((c, ci) => `
+    <div class="cand"><span class="lab">${esc(c.label)}</span><span class="khmer">${esc(c.text)}</span>
+      <span class="ans">${J.map(([v, name], ji) => `<button data-ci="${ci}" data-j="${v}" class="${c.judgment === v ? "sel" : ""}"><kbd>${keys[ci] ? keys[ci][ji] : ""}</kbd> ${name}</button>`).join("")}</span>
+    </div>`).join("");
+  const quick = it.candidates.length > 1
+    ? `<div class="quick"><button data-all="acceptable"><kbd>Y</kbd> ${it.candidates.length > 2 ? "all" : "both"} ok</button><button data-all="not_acceptable"><kbd>N</kbd> ${it.candidates.length > 2 ? "none" : "neither"} ok</button></div>`
+    : "";
+  const fin = nw === items.length ? `<div class="finished">All ${items.length} words answered. You can close this page and tell Claude it's done.</div>` : "";
+  $("card").innerHTML = `<div class="meta">${esc(it.item_id)} · batch ${esc(it.batch)} · word ${idx + 1} of ${items.length}${it.candidates.length === 1 ? " · one spelling (both models agree)" : ""}</div>
+    <div class="word">${esc(it.word)}</div><div class="reading">${esc(it.reading)}</div>${cands}${quick}${fin}`;
+  document.querySelectorAll("[data-ci]").forEach(b => b.onclick = () => answer([+b.dataset.ci], b.dataset.j));
+  document.querySelectorAll("[data-all]").forEach(b => b.onclick = () => answer(it.candidates.map((_, i) => i), b.dataset.all));
+  $("grid").innerHTML = items.map((x, i) => `<button data-i="${i}" class="${done(x) ? "done" : ""}${i === idx ? " cur" : ""}" title="${esc(x.word)}">${esc(x.item_id)}</button>`).join("");
+  document.querySelectorAll("[data-i]").forEach(b => b.onclick = () => { idx = +b.dataset.i; clearTimeout(timer); render(); });
+}
+async function answer(cis, judgment) {
+  const it = items[idx];
+  clearTimeout(timer);
+  for (const ci of cis) {
+    const c = it.candidates[ci];
+    const res = await fetch("/api/judge", { method: "POST", headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ item_id: it.item_id, label: c.label, judgment }) });
+    const out = await res.json();
+    if (!res.ok) { status("Not saved: " + out.error, "err"); return; }
+    c.judgment = out.saved.judgment;
+  }
+  status("Saved.", "ok"); render();
+  if (done(it)) { const here = idx; timer = setTimeout(() => { if (idx === here) { idx = firstTodo(idx + 1); render(); } }, 350); }
+}
+document.addEventListener("keydown", (e) => {
+  if (e.repeat || !S || e.ctrlKey || e.metaKey || e.altKey) return;   // a held key must never answer several words
+  const it = items[idx], k = e.key.toLowerCase();
+  if (/^[1-6]$/.test(e.key)) {
+    const n = +e.key - 1, ci = Math.floor(n / 3);
+    if (ci < it.candidates.length) answer([ci], J[n % 3][0]);
+  } else if (k === "y") answer(it.candidates.map((_, i) => i), "acceptable");
+  else if (k === "n") answer(it.candidates.map((_, i) => i), "not_acceptable");
+  else if (e.key === "ArrowRight") { clearTimeout(timer); idx = Math.min(idx + 1, items.length - 1); render(); }
+  else if (e.key === "ArrowLeft") { clearTimeout(timer); idx = Math.max(idx - 1, 0); render(); }
+  else if (k === "u") { clearTimeout(timer); idx = firstTodo(idx + 1); render(); }
+});
+$("prev").onclick = () => { clearTimeout(timer); idx = Math.max(idx - 1, 0); render(); };
+$("next").onclick = () => { clearTimeout(timer); idx = Math.min(idx + 1, items.length - 1); render(); };
+$("todo").onclick = () => { clearTimeout(timer); idx = firstTodo(idx + 1); render(); };
+load();
+</script>
+</body>
+</html>

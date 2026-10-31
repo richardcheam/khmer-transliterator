@@ -33,6 +33,7 @@ src/khmer_translit/        the package (what the speech repo imports)
   experiment.py              strict configs, provenance, run records + W&B mirror
   benchmark.py               frozen test panels, scoring, paired bootstrap
   english.py                 E02: English word → Khmer phonetic spelling (Transliterator, local model files)
+  byt5.py                    the ByT5 LoRA adapter backend (optional `[byt5]` extra: torch, transformers)
   phonetic_source.py         E02: input normalisation, CMUdict pronunciation, source encoding
   reference_data.py          E02: benchmark items, lexical families, splits
   evaluation.py              E02: multi-reference scoring, family bootstrap, evidence fields
@@ -48,8 +49,9 @@ scripts/
   data_manifest.py           pin / check the data (datasets/manifest.json)
   translit_try.py            served vs clean on any words
   english_phonetic_*.py      experiment E02: data, train, run (durable queue), eval, bench, wheelcheck, bundle
-experiments/               one folder per experiment: PLAN.md (before training), config.yaml, RESULTS.md, results.json
-  README.md                  index; TEMPLATE/ for a new one; E00-history/; E01-unified/; E02-english-phonetic/
+  review.py, review_ui.html  local blinded review page (click acceptable / not acceptable / uncertain)
+experiments/               one folder per experiment: plan, report, results.json (README.md is the index)
+release/                   the public card and licence of each model published on Hugging Face
 benchmarks/v1.json         the frozen benchmark: panel hashes and descriptions (panel files in data/benchmark/)
 datasets/                  data card, manifest.json (hash of every data file), build/ summaries
 model_cards/               the served models: recipe, results, limits
@@ -59,18 +61,23 @@ data/   (not in git)       pairs, mined pairs, word lists, lexicon, raw sources 
 models/ (not in git)       model (A), model_b (B, served), model_e (E, served), unified/ (clean candidates)
 ```
 
-## English word → Khmer phonetic spelling (E02, research preview)
-A separate, clean model for one English word at a time, spelled as it sounds in English (D178,
-`experiments/E02-english-phonetic/`). It is not served; the evidence is inconclusive (unqualified benchmark), and
-the default is the letters-only model. Offline, NumPy only:
+## English word → Khmer phonetic spelling (published, research preview)
+Two clean models for one English word at a time, spelled as it sounds in English. Neither is served.
+- [ric912/en-km-phonetic-transliterator](https://huggingface.co/ric912/en-km-phonetic-transliterator): the small
+  NumPy model (E02 `letters_s0`).
+- [ric912/en-km-phonetic-byt5-lora](https://huggingface.co/ric912/en-km-phonetic-byt5-lora): a LoRA adapter for
+  `google/byt5-small` (E11), about 35× slower. On two blinded 120-word samples, 64% and 75% of its spellings were
+  judged acceptable.
+
+Their cards are in `release/`. Running the small model locally (offline, NumPy only):
 ```bash
 .venv/bin/python -m khmer_translit.cli predict --model models/e02/letters_s0/model.npz --word coffee --top-k 3
 .venv/bin/python -m khmer_translit.cli inspect --model models/e02/letters_s0/model.npz
 .venv/bin/python -c "from khmer_translit.english import Transliterator as T; print(T.from_pretrained('models/e02/letters_s0').predict('banana').text)"
 ```
-From an installed wheel (or after `uv sync`) the command is simply `khmer-translit`. Measured (2026-10-27): `coffee` → ខូហ្វ៊ី (then កូហ្វ៊ី, កូហ្វី), `banana` → បាណាណា, `chocolate` → ឆូកូឡេត; `hello world` is
-refused (`unsupported_multiword`). The local bundle with wheel, checkpoints, cards and report is built by
-`scripts/english_phonetic_bundle.py` into `dist/english-phonetic-0.1.0/` (local only: CC BY-SA training pairs).
+From an installed wheel (or after `uv sync`) the command is simply `khmer-translit`; add `--backend byt5 --model
+<adapter> --base <byt5-small>` for the adapter. Example: `coffee` → ខូហ្វ៊ី (then កូហ្វ៊ី, កូហ្វី); `hello world` is
+refused (`unsupported_multiword`).
 
 ## How the speech repo uses it
 `pocket-tts-khmer` installs this package in editable mode (`pyproject.toml`: path `../khmer-transliterator`) and
@@ -82,4 +89,5 @@ server. The speech repo's loanword list (`configs/latin_khmer.tsv`) is read here
 ## Licences
 Google Khmer lexicon CC BY 4.0 (`data/lexicon/ATTRIBUTION.md`); Khmer Wikipedia CC BY-SA 4.0; FineWeb-2 ODC-By 1.0;
 CMUdict BSD-style; SCOWL. The Chhunneng pairs (`data/src/chhunneng/`) are of unverified origin: models trained on
-them (A, B, E) are not releasable. Licence for this code: not chosen yet.
+them (A, B, E) are not releasable. This code: PolyForm Noncommercial 1.0.0 (`LICENSE`). Published weights:
+CC BY-NC-SA 4.0.

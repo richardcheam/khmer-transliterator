@@ -131,6 +131,7 @@ lost only on everyday romanised **chat words** (mok, ot, te, rean, nis, laor).
 | Unified clean model (E01): data, train, export, score | `.venv/bin/python scripts/translit_unified.py data`, then `train --arm aux --seed 0` (reads `experiments/E01-unified/config.yaml`; records the run and mirrors it to W&B), `export --arm aux --seed 0`, `score` |
 | Score any exported model on the frozen benchmark | `.venv/bin/python scripts/evaluate.py models/NAME [--known served]` |
 | Check the data is the pinned version | `.venv/bin/python scripts/data_manifest.py check` |
+| Blinded spelling review for the owner (click page) | `.venv/bin/python scripts/review.py --reviewer NAME --data data/<set>` (a folder of `batch_<n>.tsv`) |
 | Blind listening A/B for the owner (needs the speech model) | in the speech repo: `scripts/translit_listen_clean.py gen` / `queue` / `report`, answered in `scripts/review_app.py` |
 | Tests | `.venv/bin/python -m unittest discover -s tests` |
 
