@@ -1,0 +1,17 @@
+{
+ "created": "2026-10-31T23:35:59+00:00",
+ "seed": "e14-typing-v1",
+ "words": 320,
+ "by_origin": {
+  "agent_chat_list": 18,
+  "chhunneng_common": 3,
+  "chhunneng_chat": 299
+ },
+ "by_split": {
+  "test": 160,
+  "train": 160
+ },
+ "words_json_sha256": "ebfdfce0d6fb06b5f29308626523a393a8204fd3ce7b3e52075f562d4e559cd8",
+ "rule": "pool = Chhunneng chat words, then the agent's extra chat list, then the Chhunneng 1000-common list in file order; first 320 unique single Khmer tokens; split by sha256(seed:word), lowest half = test",
+ "test_policy": "test words never enter any training file (Chhunneng, Gemini drafts or typing rows are filtered by Khmer word); their typed answers stay local"
+}

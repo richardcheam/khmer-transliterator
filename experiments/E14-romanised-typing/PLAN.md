@@ -1,0 +1,42 @@
+# E14: romanised Khmer typing with real data (plan, 2026-11-01)
+
+**Question:** can one releasable small model write romanised Khmer chat words (*knhom* → ខ្ញុំ, *ot* → អត់) as
+well as served model B, without losing names or English words?
+
+The data are the Chhunneng pairs, the owner's own typing, and LLM drafts the owner has verified.
+
+## Owner decisions (D204)
+- **Chhunneng:** use the pairs, and release with an honest note. The repository is MIT-licensed, but the original
+  origin of its pairs is undocumented and still needs verifying.
+- **Owner typing:** the owner types common Khmer words in Latin letters on a local page (`scripts/e14.py type`).
+- **Gemini drafts:** Gemini suggests chat spellings for common non-test words, and the owner accepts or rejects
+  each. These rows are labelled "LLM-suggested, owner-verified" and are collected only after the typing is done.
+
+## Frozen before any typing (this commit)
+- **Word list:** 320 words, in `typing_words.json` and `typing_frozen.json`.
+  - Sources: the Chhunneng chat list first, then a short list of everyday chat words chosen by the agent, then the
+    Chhunneng 1000-common list.
+  - Split by `sha256(seed:word)`: 160 **test** and 160 **train**.
+- **Test words never train anything.** They are removed by Khmer word from the Chhunneng pairs, the Gemini prompts
+  (`scripts/e14.py prompts`: 853 words, all test words excluded) and the typing rows.
+- **Typed answers stay local** (`data/e14/`). Only counts and hashes are committed.
+
+## Evaluation (adoption rule frozen in a registration commit before training)
+- **Primary panel:** the owner-typed test. Input is each typed spelling; the output is correct if it equals the
+  Khmer word. This is real typing, and unlike the Chhunneng test split it does not favour Chhunneng-style data.
+- **Guards:**
+  - the frozen benchmark v1 panels: `romanised_test` (Chhunneng style), `names_test2`, `pick_test`;
+  - English must not get worse than served model E's route.
+- **Comparison:** against served model B (and the E01 clean models), paired by word, with family bootstrap.
+- **Serving:** the owner decides by a blinded A/B, as always.
+
+## Model (to be fixed in the registration)
+E01's unified small model with the auxiliary pronunciation task (CPU, about 10 h per seed). The new data is added
+to Chhunneng, the clean rule-romanised pairs and the mined pairs.
+
+## Order of work
+1. **Owner typing** (now). About an hour; it can stop and resume.
+2. **Gemini:** the owner pastes the prompts into Gemini and saves each reply; a verify page follows.
+3. **Registration:** data build, filters and the adoption rule are committed.
+4. **Training,** then the primary and guard scores, then the owner's A/B.
+5. **Release decision** (owner), with the Chhunneng provenance note.

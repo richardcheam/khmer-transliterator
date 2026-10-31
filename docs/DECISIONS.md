@@ -526,3 +526,17 @@ there (`git -C ../pocket-tts-khmer show archive/checkpoints-p0-p6:state/DECISION
   claims every number comes from JSON.
 - **Layout:** `\raggedbottom` and a compact appendix figure; still 8 pages, two columns.
 - **Unchanged:** historical records, models, Hub repositories, tags and serving.
+
+## D204 — Romanised Khmer: use Chhunneng (with an honest note), owner typing and verified Gemini drafts (owner, 2026-11-01)
+- **Owner:** "use chhunneng, typing page and gemini drafts. also we can release and mention honestly the chunneng
+  data and say source need to be verified".
+- **Changes D-earlier policy:** the Chhunneng pairs are no longer a release blocker. Releases that use them must
+  state:
+  - the repository's MIT licence;
+  - that the origin of the pairs is undocumented and unverified.
+- **E14 started:**
+  - 320-word typing list frozen, 160 test / 160 train;
+  - typing page `scripts/e14.py type`;
+  - Gemini prompts for 853 non-test words.
+  - Plan: `experiments/E14-romanised-typing/PLAN.md`.
+  - The adoption rule will be registered before training.

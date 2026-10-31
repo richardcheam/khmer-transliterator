@@ -1,0 +1,1922 @@
+[
+ {
+  "word_id": "w001",
+  "khmer": "ដូច",
+  "origin": "chhunneng_chat",
+  "split": "train"
+ },
+ {
+  "word_id": "w002",
+  "khmer": "ជា",
+  "origin": "chhunneng_chat",
+  "split": "test"
+ },
+ {
+  "word_id": "w003",
+  "khmer": "ខ្ញុំ",
+  "origin": "chhunneng_chat",
+  "split": "train"
+ },
+ {
+  "word_id": "w004",
+  "khmer": "របស់",
+  "origin": "chhunneng_chat",
+  "split": "train"
+ },
+ {
+  "word_id": "w005",
+  "khmer": "គាត់",
+  "origin": "chhunneng_chat",
+  "split": "train"
+ },
+ {
+  "word_id": "w006",
+  "khmer": "ថា",
+  "origin": "chhunneng_chat",
+  "split": "test"
+ },
+ {
+  "word_id": "w007",
+  "khmer": "លោក",
+  "origin": "chhunneng_chat",
+  "split": "test"
+ },
+ {
+  "word_id": "w008",
+  "khmer": "បាន",
+  "origin": "chhunneng_chat",
+  "split": "test"
+ },
+ {
+  "word_id": "w009",
+  "khmer": "គឺ",
+  "origin": "chhunneng_chat",
+  "split": "train"
+ },
+ {
+  "word_id": "w010",
+  "khmer": "សម្រាប់",
+  "origin": "chhunneng_chat",
+  "split": "test"
+ },
+ {
+  "word_id": "w011",
+  "khmer": "នៅ",
+  "origin": "chhunneng_chat",
+  "split": "train"
+ },
+ {
+  "word_id": "w012",
+  "khmer": "លើ",
+  "origin": "chhunneng_chat",
+  "split": "test"
+ },
+ {
+  "word_id": "w013",
+  "khmer": "មាន",
+  "origin": "chhunneng_chat",
+  "split": "test"
+ },
+ {
+  "word_id": "w014",
+  "khmer": "ជាមួយ",
+  "origin": "chhunneng_chat",
+  "split": "train"
+ },
+ {
+  "word_id": "w015",
+  "khmer": "ពួក",
+  "origin": "chhunneng_chat",
+  "split": "train"
+ },
+ {
+  "word_id": "w016",
+  "khmer": "គេ",
+  "origin": "chhunneng_chat",
+  "split": "train"
+ },
+ {
+  "word_id": "w017",
+  "khmer": "ការ",
+  "origin": "chhunneng_chat",
+  "split": "train"
+ },
+ {
+  "word_id": "w018",
+  "khmer": "មួយ",
+  "origin": "chhunneng_chat",
+  "split": "train"
+ },
+ {
+  "word_id": "w019",
+  "khmer": "នេះ",
+  "origin": "chhunneng_chat",
+  "split": "test"
+ },
+ {
+  "word_id": "w020",
+  "khmer": "ពី",
+  "origin": "chhunneng_chat",
+  "split": "train"
+ },
+ {
+  "word_id": "w021",
+  "khmer": "ដោយ",
+  "origin": "chhunneng_chat",
+  "split": "train"
+ },
+ {
+  "word_id": "w022",
+  "khmer": "ក្តៅ",
+  "origin": "chhunneng_chat",
+  "split": "train"
+ },
+ {
+  "word_id": "w023",
+  "khmer": "ពាក្យ",
+  "origin": "chhunneng_chat",
+  "split": "test"
+ },
+ {
+  "word_id": "w024",
+  "khmer": "ប៉ុន្តែ",
+  "origin": "chhunneng_chat",
+  "split": "train"
+ },
+ {
+  "word_id": "w025",
+  "khmer": "ដែល",
+  "origin": "chhunneng_chat",
+  "split": "train"
+ },
+ {
+  "word_id": "w026",
+  "khmer": "ចំនួន",
+  "origin": "chhunneng_chat",
+  "split": "train"
+ },
+ {
+  "word_id": "w027",
+  "khmer": "វា",
+  "origin": "chhunneng_chat",
+  "split": "test"
+ },
+ {
+  "word_id": "w028",
+  "khmer": "អ្នក",
+  "origin": "chhunneng_chat",
+  "split": "train"
+ },
+ {
+  "word_id": "w029",
+  "khmer": "ឬ",
+  "origin": "chhunneng_chat",
+  "split": "test"
+ },
+ {
+  "word_id": "w030",
+  "khmer": "នៃ",
+  "origin": "chhunneng_chat",
+  "split": "test"
+ },
+ {
+  "word_id": "w031",
+  "khmer": "ដើម្បី",
+  "origin": "chhunneng_chat",
+  "split": "train"
+ },
+ {
+  "word_id": "w032",
+  "khmer": "និង",
+  "origin": "chhunneng_chat",
+  "split": "test"
+ },
+ {
+  "word_id": "w033",
+  "khmer": "ក្នុង",
+  "origin": "chhunneng_chat",
+  "split": "train"
+ },
+ {
+  "word_id": "w034",
+  "khmer": "យើង",
+  "origin": "chhunneng_chat",
+  "split": "train"
+ },
+ {
+  "word_id": "w035",
+  "khmer": "អាច",
+  "origin": "chhunneng_chat",
+  "split": "test"
+ },
+ {
+  "word_id": "w036",
+  "khmer": "ចេញ",
+  "origin": "chhunneng_chat",
+  "split": "train"
+ },
+ {
+  "word_id": "w037",
+  "khmer": "ផ្សេង",
+  "origin": "chhunneng_chat",
+  "split": "test"
+ },
+ {
+  "word_id": "w038",
+  "khmer": "ទៀត",
+  "origin": "chhunneng_chat",
+  "split": "test"
+ },
+ {
+  "word_id": "w039",
+  "khmer": "នាក់",
+  "origin": "chhunneng_chat",
+  "split": "test"
+ },
+ {
+  "word_id": "w040",
+  "khmer": "ធ្វើ",
+  "origin": "chhunneng_chat",
+  "split": "test"
+ },
+ {
+  "word_id": "w041",
+  "khmer": "ពេលវេលា",
+  "origin": "chhunneng_chat",
+  "split": "train"
+ },
+ {
+  "word_id": "w042",
+  "khmer": "ពេល",
+  "origin": "chhunneng_chat",
+  "split": "test"
+ },
+ {
+  "word_id": "w043",
+  "khmer": "វេលា",
+  "origin": "chhunneng_chat",
+  "split": "train"
+ },
+ {
+  "word_id": "w044",
+  "khmer": "ប្រសិនបើ",
+  "origin": "chhunneng_chat",
+  "split": "test"
+ },
+ {
+  "word_id": "w045",
+  "khmer": "បើ",
+  "origin": "chhunneng_chat",
+  "split": "test"
+ },
+ {
+  "word_id": "w046",
+  "khmer": "ប្រសិន",
+  "origin": "chhunneng_chat",
+  "split": "test"
+ },
+ {
+  "word_id": "w047",
+  "khmer": "នឹង",
+  "origin": "chhunneng_chat",
+  "split": "test"
+ },
+ {
+  "word_id": "w048",
+  "khmer": "របៀប",
+  "origin": "chhunneng_chat",
+  "split": "test"
+ },
+ {
+  "word_id": "w049",
+  "khmer": "និយាយ",
+  "origin": "chhunneng_chat",
+  "split": "test"
+ },
+ {
+  "word_id": "w050",
+  "khmer": "គ្នា",
+  "origin": "chhunneng_chat",
+  "split": "test"
+ },
+ {
+  "word_id": "w051",
+  "khmer": "ប្រាប់",
+  "origin": "chhunneng_chat",
+  "split": "test"
+ },
+ {
+  "word_id": "w052",
+  "khmer": "មិន",
+  "origin": "chhunneng_chat",
+  "split": "train"
+ },
+ {
+  "word_id": "w053",
+  "khmer": "សំណុំ",
+  "origin": "chhunneng_chat",
+  "split": "train"
+ },
+ {
+  "word_id": "w054",
+  "khmer": "បី",
+  "origin": "chhunneng_chat",
+  "split": "train"
+ },
+ {
+  "word_id": "w055",
+  "khmer": "ចង់",
+  "origin": "chhunneng_chat",
+  "split": "test"
+ },
+ {
+  "word_id": "w056",
+  "khmer": "ខ្យល់",
+  "origin": "chhunneng_chat",
+  "split": "test"
+ },
+ {
+  "word_id": "w057",
+  "khmer": "ល្អ",
+  "origin": "chhunneng_chat",
+  "split": "test"
+ },
+ {
+  "word_id": "w058",
+  "khmer": "ក៏",
+  "origin": "chhunneng_chat",
+  "split": "train"
+ },
+ {
+  "word_id": "w059",
+  "khmer": "លេង",
+  "origin": "chhunneng_chat",
+  "split": "train"
+ },
+ {
+  "word_id": "w060",
+  "khmer": "តូច",
+  "origin": "chhunneng_chat",
+  "split": "test"
+ },
+ {
+  "word_id": "w061",
+  "khmer": "ចុងបញ្ចប់",
+  "origin": "chhunneng_chat",
+  "split": "test"
+ },
+ {
+  "word_id": "w062",
+  "khmer": "ចុង",
+  "origin": "chhunneng_chat",
+  "split": "test"
+ },
+ {
+  "word_id": "w063",
+  "khmer": "បញ្ចប់",
+  "origin": "chhunneng_chat",
+  "split": "test"
+ },
+ {
+  "word_id": "w064",
+  "khmer": "ដាក់",
+  "origin": "chhunneng_chat",
+  "split": "test"
+ },
+ {
+  "word_id": "w065",
+  "khmer": "ផ្ទះ",
+  "origin": "chhunneng_chat",
+  "split": "train"
+ },
+ {
+  "word_id": "w066",
+  "khmer": "អាន",
+  "origin": "chhunneng_chat",
+  "split": "train"
+ },
+ {
+  "word_id": "w067",
+  "khmer": "ដៃ",
+  "origin": "chhunneng_chat",
+  "split": "test"
+ },
+ {
+  "word_id": "w068",
+  "khmer": "កំពង់ផែ",
+  "origin": "chhunneng_chat",
+  "split": "train"
+ },
+ {
+  "word_id": "w069",
+  "khmer": "ទំហំធំ",
+  "origin": "chhunneng_chat",
+  "split": "test"
+ },
+ {
+  "word_id": "w070",
+  "khmer": "ធំ",
+  "origin": "chhunneng_chat",
+  "split": "test"
+ },
+ {
+  "word_id": "w071",
+  "khmer": "ទំហំ",
+  "origin": "chhunneng_chat",
+  "split": "test"
+ },
+ {
+  "word_id": "w072",
+  "khmer": "អក្ខរាវិរុទ្ធ",
+  "origin": "chhunneng_chat",
+  "split": "train"
+ },
+ {
+  "word_id": "w073",
+  "khmer": "បន្ថែម",
+  "origin": "chhunneng_chat",
+  "split": "train"
+ },
+ {
+  "word_id": "w074",
+  "khmer": "សូម្បីតែ",
+  "origin": "chhunneng_chat",
+  "split": "train"
+ },
+ {
+  "word_id": "w075",
+  "khmer": "តែ",
+  "origin": "chhunneng_chat",
+  "split": "train"
+ },
+ {
+  "word_id": "w076",
+  "khmer": "សូម្បី",
+  "origin": "chhunneng_chat",
+  "split": "test"
+ },
+ {
+  "word_id": "w077",
+  "khmer": "ទី",
+  "origin": "chhunneng_chat",
+  "split": "test"
+ },
+ {
+  "word_id": "w078",
+  "khmer": "ត្រូវ",
+  "origin": "chhunneng_chat",
+  "split": "train"
+ },
+ {
+  "word_id": "w079",
+  "khmer": "ខ្ពស់",
+  "origin": "chhunneng_chat",
+  "split": "train"
+ },
+ {
+  "word_id": "w080",
+  "khmer": "តាម",
+  "origin": "chhunneng_chat",
+  "split": "test"
+ },
+ {
+  "word_id": "w081",
+  "khmer": "សកម្មភាព",
+  "origin": "chhunneng_chat",
+  "split": "test"
+ },
+ {
+  "word_id": "w082",
+  "khmer": "ហេតុ",
+  "origin": "chhunneng_chat",
+  "split": "test"
+ },
+ {
+  "word_id": "w083",
+  "khmer": "អ្វី",
+  "origin": "chhunneng_chat",
+  "split": "test"
+ },
+ {
+  "word_id": "w084",
+  "khmer": "សួរ",
+  "origin": "chhunneng_chat",
+  "split": "test"
+ },
+ {
+  "word_id": "w085",
+  "khmer": "បុរស",
+  "origin": "chhunneng_chat",
+  "split": "test"
+ },
+ {
+  "word_id": "w086",
+  "khmer": "ផ្លាស់",
+  "origin": "chhunneng_chat",
+  "split": "test"
+ },
+ {
+  "word_id": "w087",
+  "khmer": "ប្តូរ",
+  "origin": "chhunneng_chat",
+  "split": "test"
+ },
+ {
+  "word_id": "w088",
+  "khmer": "ទៅ",
+  "origin": "chhunneng_chat",
+  "split": "train"
+ },
+ {
+  "word_id": "w089",
+  "khmer": "ពន្លឺ",
+  "origin": "chhunneng_chat",
+  "split": "train"
+ },
+ {
+  "word_id": "w090",
+  "khmer": "ប្រភេទ",
+  "origin": "chhunneng_chat",
+  "split": "test"
+ },
+ {
+  "word_id": "w091",
+  "khmer": "បិទ",
+  "origin": "chhunneng_chat",
+  "split": "train"
+ },
+ {
+  "word_id": "w092",
+  "khmer": "រូបភាព",
+  "origin": "chhunneng_chat",
+  "split": "test"
+ },
+ {
+  "word_id": "w093",
+  "khmer": "ភាព",
+  "origin": "chhunneng_chat",
+  "split": "test"
+ },
+ {
+  "word_id": "w094",
+  "khmer": "រូប",
+  "origin": "chhunneng_chat",
+  "split": "test"
+ },
+ {
+  "word_id": "w095",
+  "khmer": "ព្យាយាម",
+  "origin": "chhunneng_chat",
+  "split": "train"
+ },
+ {
+  "word_id": "w096",
+  "khmer": "ថ្មី",
+  "origin": "chhunneng_chat",
+  "split": "test"
+ },
+ {
+  "word_id": "w097",
+  "khmer": "ម្តង",
+  "origin": "chhunneng_chat",
+  "split": "test"
+ },
+ {
+  "word_id": "w098",
+  "khmer": "សត្វ",
+  "origin": "chhunneng_chat",
+  "split": "test"
+ },
+ {
+  "word_id": "w099",
+  "khmer": "ចំណុច",
+  "origin": "chhunneng_chat",
+  "split": "test"
+ },
+ {
+  "word_id": "w100",
+  "khmer": "ម្តាយ",
+  "origin": "chhunneng_chat",
+  "split": "test"
+ },
+ {
+  "word_id": "w101",
+  "khmer": "ពិភព",
+  "origin": "chhunneng_chat",
+  "split": "test"
+ },
+ {
+  "word_id": "w102",
+  "khmer": "ក្បែរ",
+  "origin": "chhunneng_chat",
+  "split": "test"
+ },
+ {
+  "word_id": "w103",
+  "khmer": "កសាង",
+  "origin": "chhunneng_chat",
+  "split": "train"
+ },
+ {
+  "word_id": "w104",
+  "khmer": "ខ្លួន",
+  "origin": "chhunneng_chat",
+  "split": "train"
+ },
+ {
+  "word_id": "w105",
+  "khmer": "ឯង",
+  "origin": "chhunneng_chat",
+  "split": "test"
+ },
+ {
+  "word_id": "w106",
+  "khmer": "ផែនដី",
+  "origin": "chhunneng_chat",
+  "split": "test"
+ },
+ {
+  "word_id": "w107",
+  "khmer": "ផែន",
+  "origin": "chhunneng_chat",
+  "split": "train"
+ },
+ {
+  "word_id": "w108",
+  "khmer": "ដី",
+  "origin": "chhunneng_chat",
+  "split": "train"
+ },
+ {
+  "word_id": "w109",
+  "khmer": "ឪពុក",
+  "origin": "chhunneng_chat",
+  "split": "train"
+ },
+ {
+  "word_id": "w110",
+  "khmer": "ណាមួយ",
+  "origin": "chhunneng_chat",
+  "split": "train"
+ },
+ {
+  "word_id": "w111",
+  "khmer": "ណា",
+  "origin": "chhunneng_chat",
+  "split": "train"
+ },
+ {
+  "word_id": "w112",
+  "khmer": "ឡើយ",
+  "origin": "chhunneng_chat",
+  "split": "train"
+ },
+ {
+  "word_id": "w113",
+  "khmer": "ការងារ",
+  "origin": "chhunneng_chat",
+  "split": "train"
+ },
+ {
+  "word_id": "w114",
+  "khmer": "ជាផ្នែក",
+  "origin": "chhunneng_chat",
+  "split": "train"
+ },
+ {
+  "word_id": "w115",
+  "khmer": "ផ្នែក",
+  "origin": "chhunneng_chat",
+  "split": "test"
+ },
+ {
+  "word_id": "w116",
+  "khmer": "យក",
+  "origin": "chhunneng_chat",
+  "split": "test"
+ },
+ {
+  "word_id": "w117",
+  "khmer": "ទទួល",
+  "origin": "chhunneng_chat",
+  "split": "test"
+ },
+ {
+  "word_id": "w118",
+  "khmer": "កន្លែង",
+  "origin": "chhunneng_chat",
+  "split": "train"
+ },
+ {
+  "word_id": "w119",
+  "khmer": "បានធ្វើ",
+  "origin": "chhunneng_chat",
+  "split": "test"
+ },
+ {
+  "word_id": "w120",
+  "khmer": "រស់",
+  "origin": "chhunneng_chat",
+  "split": "train"
+ },
+ {
+  "word_id": "w121",
+  "khmer": "បន្ទាប់",
+  "origin": "chhunneng_chat",
+  "split": "train"
+ },
+ {
+  "word_id": "w122",
+  "khmer": "ត្រឡប់",
+  "origin": "chhunneng_chat",
+  "split": "test"
+ },
+ {
+  "word_id": "w123",
+  "khmer": "មក",
+  "origin": "chhunneng_chat",
+  "split": "test"
+ },
+ {
+  "word_id": "w124",
+  "khmer": "វិញ",
+  "origin": "chhunneng_chat",
+  "split": "train"
+ },
+ {
+  "word_id": "w125",
+  "khmer": "តិច",
+  "origin": "chhunneng_chat",
+  "split": "test"
+ },
+ {
+  "word_id": "w126",
+  "khmer": "តួច",
+  "origin": "chhunneng_chat",
+  "split": "train"
+ },
+ {
+  "word_id": "w127",
+  "khmer": "តែមួយ",
+  "origin": "chhunneng_chat",
+  "split": "train"
+ },
+ {
+  "word_id": "w128",
+  "khmer": "គត់",
+  "origin": "chhunneng_chat",
+  "split": "test"
+ },
+ {
+  "word_id": "w129",
+  "khmer": "ជុំ",
+  "origin": "chhunneng_chat",
+  "split": "train"
+ },
+ {
+  "word_id": "w130",
+  "khmer": "ម្នាក់",
+  "origin": "chhunneng_chat",
+  "split": "test"
+ },
+ {
+  "word_id": "w131",
+  "khmer": "កាល",
+  "origin": "chhunneng_chat",
+  "split": "test"
+ },
+ {
+  "word_id": "w132",
+  "khmer": "ឆ្នាំ",
+  "origin": "chhunneng_chat",
+  "split": "train"
+ },
+ {
+  "word_id": "w133",
+  "khmer": "បង្ហាញ",
+  "origin": "chhunneng_chat",
+  "split": "train"
+ },
+ {
+  "word_id": "w134",
+  "khmer": "រៀងរាល់",
+  "origin": "chhunneng_chat",
+  "split": "test"
+ },
+ {
+  "word_id": "w135",
+  "khmer": "រាល់",
+  "origin": "chhunneng_chat",
+  "split": "test"
+ },
+ {
+  "word_id": "w136",
+  "khmer": "រៀង",
+  "origin": "chhunneng_chat",
+  "split": "train"
+ },
+ {
+  "word_id": "w137",
+  "khmer": "ផ្តល់",
+  "origin": "chhunneng_chat",
+  "split": "test"
+ },
+ {
+  "word_id": "w138",
+  "khmer": "ឱ្យ",
+  "origin": "chhunneng_chat",
+  "split": "test"
+ },
+ {
+  "word_id": "w139",
+  "khmer": "ក្រោម",
+  "origin": "chhunneng_chat",
+  "split": "test"
+ },
+ {
+  "word_id": "w140",
+  "khmer": "ឈ្មោះ",
+  "origin": "chhunneng_chat",
+  "split": "train"
+ },
+ {
+  "word_id": "w141",
+  "khmer": "យ៉ាង",
+  "origin": "chhunneng_chat",
+  "split": "test"
+ },
+ {
+  "word_id": "w142",
+  "khmer": "ខ្លាំង",
+  "origin": "chhunneng_chat",
+  "split": "train"
+ },
+ {
+  "word_id": "w143",
+  "khmer": "តាមរយៈ",
+  "origin": "chhunneng_chat",
+  "split": "test"
+ },
+ {
+  "word_id": "w144",
+  "khmer": "រយៈ",
+  "origin": "chhunneng_chat",
+  "split": "test"
+ },
+ {
+  "word_id": "w145",
+  "khmer": "គ្រាន់តែ",
+  "origin": "chhunneng_chat",
+  "split": "train"
+ },
+ {
+  "word_id": "w146",
+  "khmer": "គ្រាន់",
+  "origin": "chhunneng_chat",
+  "split": "train"
+ },
+ {
+  "word_id": "w147",
+  "khmer": "បែបបទ",
+  "origin": "chhunneng_chat",
+  "split": "train"
+ },
+ {
+  "word_id": "w148",
+  "khmer": "បទ",
+  "origin": "chhunneng_chat",
+  "split": "train"
+ },
+ {
+  "word_id": "w149",
+  "khmer": "បែប",
+  "origin": "chhunneng_chat",
+  "split": "train"
+ },
+ {
+  "word_id": "w150",
+  "khmer": "កាត់",
+  "origin": "chhunneng_chat",
+  "split": "test"
+ },
+ {
+  "word_id": "w151",
+  "khmer": "ទោស",
+  "origin": "chhunneng_chat",
+  "split": "test"
+ },
+ {
+  "word_id": "w152",
+  "khmer": "អស្ចារ្យ",
+  "origin": "chhunneng_chat",
+  "split": "test"
+ },
+ {
+  "word_id": "w153",
+  "khmer": "ដ៏",
+  "origin": "chhunneng_chat",
+  "split": "test"
+ },
+ {
+  "word_id": "w154",
+  "khmer": "គិត",
+  "origin": "chhunneng_chat",
+  "split": "test"
+ },
+ {
+  "word_id": "w155",
+  "khmer": "ជួយ",
+  "origin": "chhunneng_chat",
+  "split": "train"
+ },
+ {
+  "word_id": "w156",
+  "khmer": "ទាប",
+  "origin": "chhunneng_chat",
+  "split": "test"
+ },
+ {
+  "word_id": "w157",
+  "khmer": "បន្ទាត់",
+  "origin": "chhunneng_chat",
+  "split": "test"
+ },
+ {
+  "word_id": "w158",
+  "khmer": "ខុស",
+  "origin": "chhunneng_chat",
+  "split": "test"
+ },
+ {
+  "word_id": "w159",
+  "khmer": "វេន",
+  "origin": "chhunneng_chat",
+  "split": "test"
+ },
+ {
+  "word_id": "w160",
+  "khmer": "មូលហេតុ",
+  "origin": "chhunneng_chat",
+  "split": "test"
+ },
+ {
+  "word_id": "w161",
+  "khmer": "ច្រើន",
+  "origin": "chhunneng_chat",
+  "split": "test"
+ },
+ {
+  "word_id": "w162",
+  "khmer": "ន័យ",
+  "origin": "chhunneng_chat",
+  "split": "train"
+ },
+ {
+  "word_id": "w163",
+  "khmer": "មុន",
+  "origin": "chhunneng_chat",
+  "split": "train"
+ },
+ {
+  "word_id": "w164",
+  "khmer": "ផ្លាស់ប្តូរ",
+  "origin": "chhunneng_chat",
+  "split": "train"
+ },
+ {
+  "word_id": "w165",
+  "khmer": "សិទ្ធិ",
+  "origin": "chhunneng_chat",
+  "split": "train"
+ },
+ {
+  "word_id": "w166",
+  "khmer": "ក្មេង",
+  "origin": "chhunneng_chat",
+  "split": "test"
+ },
+ {
+  "word_id": "w167",
+  "khmer": "ប្រុស",
+  "origin": "chhunneng_chat",
+  "split": "train"
+ },
+ {
+  "word_id": "w168",
+  "khmer": "អាយុ",
+  "origin": "chhunneng_chat",
+  "split": "train"
+ },
+ {
+  "word_id": "w169",
+  "khmer": "ផង",
+  "origin": "chhunneng_chat",
+  "split": "test"
+ },
+ {
+  "word_id": "w170",
+  "khmer": "នាង",
+  "origin": "chhunneng_chat",
+  "split": "test"
+ },
+ {
+  "word_id": "w171",
+  "khmer": "ទាំង",
+  "origin": "chhunneng_chat",
+  "split": "train"
+ },
+ {
+  "word_id": "w172",
+  "khmer": "អស់",
+  "origin": "chhunneng_chat",
+  "split": "test"
+ },
+ {
+  "word_id": "w173",
+  "khmer": "នោះ",
+  "origin": "chhunneng_chat",
+  "split": "train"
+ },
+ {
+  "word_id": "w174",
+  "khmer": "ឡើង",
+  "origin": "chhunneng_chat",
+  "split": "train"
+ },
+ {
+  "word_id": "w175",
+  "khmer": "ប្រើ",
+  "origin": "chhunneng_chat",
+  "split": "train"
+ },
+ {
+  "word_id": "w176",
+  "khmer": "វិធី",
+  "origin": "chhunneng_chat",
+  "split": "test"
+ },
+ {
+  "word_id": "w177",
+  "khmer": "អំពី",
+  "origin": "chhunneng_chat",
+  "split": "train"
+ },
+ {
+  "word_id": "w178",
+  "khmer": "សរសេរ",
+  "origin": "chhunneng_chat",
+  "split": "test"
+ },
+ {
+  "word_id": "w179",
+  "khmer": "ដូច្នេះ",
+  "origin": "chhunneng_chat",
+  "split": "train"
+ },
+ {
+  "word_id": "w180",
+  "khmer": "យូរ",
+  "origin": "chhunneng_chat",
+  "split": "test"
+ },
+ {
+  "word_id": "w181",
+  "khmer": "រឿង",
+  "origin": "chhunneng_chat",
+  "split": "test"
+ },
+ {
+  "word_id": "w182",
+  "khmer": "សូម",
+  "origin": "chhunneng_chat",
+  "split": "train"
+ },
+ {
+  "word_id": "w183",
+  "khmer": "មើល",
+  "origin": "chhunneng_chat",
+  "split": "test"
+ },
+ {
+  "word_id": "w184",
+  "khmer": "ពីរ",
+  "origin": "chhunneng_chat",
+  "split": "train"
+ },
+ {
+  "word_id": "w185",
+  "khmer": "បំផុត",
+  "origin": "chhunneng_chat",
+  "split": "train"
+ },
+ {
+  "word_id": "w186",
+  "khmer": "មនុស្ស",
+  "origin": "chhunneng_chat",
+  "split": "train"
+ },
+ {
+  "word_id": "w187",
+  "khmer": "ជាង",
+  "origin": "chhunneng_chat",
+  "split": "test"
+ },
+ {
+  "word_id": "w188",
+  "khmer": "ដឹង",
+  "origin": "chhunneng_chat",
+  "split": "test"
+ },
+ {
+  "word_id": "w189",
+  "khmer": "ទឹក",
+  "origin": "chhunneng_chat",
+  "split": "train"
+ },
+ {
+  "word_id": "w190",
+  "khmer": "ហៅ",
+  "origin": "chhunneng_chat",
+  "split": "test"
+ },
+ {
+  "word_id": "w191",
+  "khmer": "លើក",
+  "origin": "chhunneng_chat",
+  "split": "train"
+ },
+ {
+  "word_id": "w192",
+  "khmer": "ដំបូង",
+  "origin": "chhunneng_chat",
+  "split": "train"
+ },
+ {
+  "word_id": "w193",
+  "khmer": "ចុះ",
+  "origin": "chhunneng_chat",
+  "split": "test"
+ },
+ {
+  "word_id": "w194",
+  "khmer": "ភាគី",
+  "origin": "chhunneng_chat",
+  "split": "train"
+ },
+ {
+  "word_id": "w195",
+  "khmer": "ម្ខាង",
+  "origin": "chhunneng_chat",
+  "split": "train"
+ },
+ {
+  "word_id": "w196",
+  "khmer": "ឥឡូវ",
+  "origin": "chhunneng_chat",
+  "split": "train"
+ },
+ {
+  "word_id": "w197",
+  "khmer": "ស្វែង",
+  "origin": "chhunneng_chat",
+  "split": "train"
+ },
+ {
+  "word_id": "w198",
+  "khmer": "រក",
+  "origin": "chhunneng_chat",
+  "split": "train"
+ },
+ {
+  "word_id": "w199",
+  "khmer": "ក្បាល",
+  "origin": "chhunneng_chat",
+  "split": "train"
+ },
+ {
+  "word_id": "w200",
+  "khmer": "ឈរ",
+  "origin": "chhunneng_chat",
+  "split": "test"
+ },
+ {
+  "word_id": "w201",
+  "khmer": "ផ្ទាល់",
+  "origin": "chhunneng_chat",
+  "split": "test"
+ },
+ {
+  "word_id": "w202",
+  "khmer": "ទំព័រ",
+  "origin": "chhunneng_chat",
+  "split": "train"
+ },
+ {
+  "word_id": "w203",
+  "khmer": "គួរ",
+  "origin": "chhunneng_chat",
+  "split": "train"
+ },
+ {
+  "word_id": "w204",
+  "khmer": "ប្រទេស",
+  "origin": "chhunneng_chat",
+  "split": "test"
+ },
+ {
+  "word_id": "w205",
+  "khmer": "ឃើញ",
+  "origin": "chhunneng_chat",
+  "split": "train"
+ },
+ {
+  "word_id": "w206",
+  "khmer": "ចម្លើយ",
+  "origin": "chhunneng_chat",
+  "split": "test"
+ },
+ {
+  "word_id": "w207",
+  "khmer": "សាលា",
+  "origin": "chhunneng_chat",
+  "split": "train"
+ },
+ {
+  "word_id": "w208",
+  "khmer": "រៀន",
+  "origin": "chhunneng_chat",
+  "split": "train"
+ },
+ {
+  "word_id": "w209",
+  "khmer": "កើនឡើង",
+  "origin": "chhunneng_chat",
+  "split": "test"
+ },
+ {
+  "word_id": "w210",
+  "khmer": "កើន",
+  "origin": "chhunneng_chat",
+  "split": "test"
+ },
+ {
+  "word_id": "w211",
+  "khmer": "សិក្សា",
+  "origin": "chhunneng_chat",
+  "split": "train"
+ },
+ {
+  "word_id": "w212",
+  "khmer": "រោងចក្រ",
+  "origin": "chhunneng_chat",
+  "split": "train"
+ },
+ {
+  "word_id": "w213",
+  "khmer": "គម្រប",
+  "origin": "chhunneng_chat",
+  "split": "train"
+ },
+ {
+  "word_id": "w214",
+  "khmer": "អាហារ",
+  "origin": "chhunneng_chat",
+  "split": "test"
+ },
+ {
+  "word_id": "w215",
+  "khmer": "ព្រះ",
+  "origin": "chhunneng_chat",
+  "split": "test"
+ },
+ {
+  "word_id": "w216",
+  "khmer": "អាទិត្យ",
+  "origin": "chhunneng_chat",
+  "split": "train"
+ },
+ {
+  "word_id": "w217",
+  "khmer": "បួន",
+  "origin": "chhunneng_chat",
+  "split": "test"
+ },
+ {
+  "word_id": "w218",
+  "khmer": "រវាង",
+  "origin": "chhunneng_chat",
+  "split": "test"
+ },
+ {
+  "word_id": "w219",
+  "khmer": "រដ្ឋ",
+  "origin": "chhunneng_chat",
+  "split": "train"
+ },
+ {
+  "word_id": "w220",
+  "khmer": "រក្សា",
+  "origin": "chhunneng_chat",
+  "split": "train"
+ },
+ {
+  "word_id": "w221",
+  "khmer": "ភ្នែក",
+  "origin": "chhunneng_chat",
+  "split": "test"
+ },
+ {
+  "word_id": "w222",
+  "khmer": "ក្រោយ",
+  "origin": "chhunneng_chat",
+  "split": "test"
+ },
+ {
+  "word_id": "w223",
+  "khmer": "អនុញ្ញាត",
+  "origin": "chhunneng_chat",
+  "split": "test"
+ },
+ {
+  "word_id": "w224",
+  "khmer": "ក្រុង",
+  "origin": "chhunneng_chat",
+  "split": "test"
+ },
+ {
+  "word_id": "w225",
+  "khmer": "ដើម",
+  "origin": "chhunneng_chat",
+  "split": "train"
+ },
+ {
+  "word_id": "w226",
+  "khmer": "ឆ្លង",
+  "origin": "chhunneng_chat",
+  "split": "test"
+ },
+ {
+  "word_id": "w227",
+  "khmer": "កសិដ្ឋាន",
+  "origin": "chhunneng_chat",
+  "split": "test"
+ },
+ {
+  "word_id": "w228",
+  "khmer": "លំបាក",
+  "origin": "chhunneng_chat",
+  "split": "train"
+ },
+ {
+  "word_id": "w229",
+  "khmer": "ចាប់",
+  "origin": "chhunneng_chat",
+  "split": "test"
+ },
+ {
+  "word_id": "w230",
+  "khmer": "ផ្តើម",
+  "origin": "chhunneng_chat",
+  "split": "test"
+ },
+ {
+  "word_id": "w231",
+  "khmer": "ឆ្ងាយ",
+  "origin": "chhunneng_chat",
+  "split": "test"
+ },
+ {
+  "word_id": "w232",
+  "khmer": "សមុទ្រ",
+  "origin": "chhunneng_chat",
+  "split": "test"
+ },
+ {
+  "word_id": "w233",
+  "khmer": "គូរ",
+  "origin": "chhunneng_chat",
+  "split": "train"
+ },
+ {
+  "word_id": "w234",
+  "khmer": "ចាកចេញ",
+  "origin": "chhunneng_chat",
+  "split": "train"
+ },
+ {
+  "word_id": "w235",
+  "khmer": "ចាក",
+  "origin": "chhunneng_chat",
+  "split": "test"
+ },
+ {
+  "word_id": "w236",
+  "khmer": "រត់",
+  "origin": "chhunneng_chat",
+  "split": "test"
+ },
+ {
+  "word_id": "w237",
+  "khmer": "ខណៈ",
+  "origin": "chhunneng_chat",
+  "split": "train"
+ },
+ {
+  "word_id": "w238",
+  "khmer": "សារពត៌មាន",
+  "origin": "chhunneng_chat",
+  "split": "test"
+ },
+ {
+  "word_id": "w239",
+  "khmer": "សារ",
+  "origin": "chhunneng_chat",
+  "split": "train"
+ },
+ {
+  "word_id": "w240",
+  "khmer": "ពត៌មាន",
+  "origin": "chhunneng_chat",
+  "split": "test"
+ },
+ {
+  "word_id": "w241",
+  "khmer": "ជិតស្និទ្ធ",
+  "origin": "chhunneng_chat",
+  "split": "test"
+ },
+ {
+  "word_id": "w242",
+  "khmer": "ជិត",
+  "origin": "chhunneng_chat",
+  "split": "train"
+ },
+ {
+  "word_id": "w243",
+  "khmer": "ស្និទ្ធ",
+  "origin": "chhunneng_chat",
+  "split": "train"
+ },
+ {
+  "word_id": "w244",
+  "khmer": "យប់",
+  "origin": "chhunneng_chat",
+  "split": "test"
+ },
+ {
+  "word_id": "w245",
+  "khmer": "ពិតប្រាកដ",
+  "origin": "chhunneng_chat",
+  "split": "test"
+ },
+ {
+  "word_id": "w246",
+  "khmer": "ពិត",
+  "origin": "chhunneng_chat",
+  "split": "test"
+ },
+ {
+  "word_id": "w247",
+  "khmer": "ប្រាកដ",
+  "origin": "chhunneng_chat",
+  "split": "train"
+ },
+ {
+  "word_id": "w248",
+  "khmer": "ជីវិត",
+  "origin": "chhunneng_chat",
+  "split": "train"
+ },
+ {
+  "word_id": "w249",
+  "khmer": "ប៉ុន្មាន",
+  "origin": "chhunneng_chat",
+  "split": "test"
+ },
+ {
+  "word_id": "w250",
+  "khmer": "ភាគខាងជើង",
+  "origin": "chhunneng_chat",
+  "split": "train"
+ },
+ {
+  "word_id": "w251",
+  "khmer": "ភាគ",
+  "origin": "chhunneng_chat",
+  "split": "test"
+ },
+ {
+  "word_id": "w252",
+  "khmer": "ខាង",
+  "origin": "chhunneng_chat",
+  "split": "train"
+ },
+ {
+  "word_id": "w253",
+  "khmer": "ជើង",
+  "origin": "chhunneng_chat",
+  "split": "train"
+ },
+ {
+  "word_id": "w254",
+  "khmer": "សៀវភៅ",
+  "origin": "chhunneng_chat",
+  "split": "test"
+ },
+ {
+  "word_id": "w255",
+  "khmer": "អនុវត្ត",
+  "origin": "chhunneng_chat",
+  "split": "test"
+ },
+ {
+  "word_id": "w256",
+  "khmer": "វិទ្យាសាស្រ្ត",
+  "origin": "chhunneng_chat",
+  "split": "train"
+ },
+ {
+  "word_id": "w257",
+  "khmer": "បរិភោគ",
+  "origin": "chhunneng_chat",
+  "split": "train"
+ },
+ {
+  "word_id": "w258",
+  "khmer": "បន្ទប់",
+  "origin": "chhunneng_chat",
+  "split": "train"
+ },
+ {
+  "word_id": "w259",
+  "khmer": "មិត្តភក្តិ",
+  "origin": "chhunneng_chat",
+  "split": "train"
+ },
+ {
+  "word_id": "w260",
+  "khmer": "មិត្ត",
+  "origin": "chhunneng_chat",
+  "split": "test"
+ },
+ {
+  "word_id": "w261",
+  "khmer": "ភក្តិ",
+  "origin": "chhunneng_chat",
+  "split": "train"
+ },
+ {
+  "word_id": "w262",
+  "khmer": "គំនិត",
+  "origin": "chhunneng_chat",
+  "split": "train"
+ },
+ {
+  "word_id": "w263",
+  "khmer": "ត្រី",
+  "origin": "chhunneng_chat",
+  "split": "train"
+ },
+ {
+  "word_id": "w264",
+  "khmer": "ភ្នំ",
+  "origin": "chhunneng_chat",
+  "split": "test"
+ },
+ {
+  "word_id": "w265",
+  "khmer": "បញ្ឈប់",
+  "origin": "chhunneng_chat",
+  "split": "test"
+ },
+ {
+  "word_id": "w266",
+  "khmer": "មូលដ្ឋាន",
+  "origin": "chhunneng_chat",
+  "split": "test"
+ },
+ {
+  "word_id": "w267",
+  "khmer": "ឮ",
+  "origin": "chhunneng_chat",
+  "split": "train"
+ },
+ {
+  "word_id": "w268",
+  "khmer": "សេះ",
+  "origin": "chhunneng_chat",
+  "split": "train"
+ },
+ {
+  "word_id": "w269",
+  "khmer": "ពណ៌",
+  "origin": "chhunneng_chat",
+  "split": "train"
+ },
+ {
+  "word_id": "w270",
+  "khmer": "មុខ",
+  "origin": "chhunneng_chat",
+  "split": "train"
+ },
+ {
+  "word_id": "w271",
+  "khmer": "ឈើ",
+  "origin": "chhunneng_chat",
+  "split": "train"
+ },
+ {
+  "word_id": "w272",
+  "khmer": "សំខាន់",
+  "origin": "chhunneng_chat",
+  "split": "train"
+ },
+ {
+  "word_id": "w273",
+  "khmer": "បើកចំហរ",
+  "origin": "chhunneng_chat",
+  "split": "train"
+ },
+ {
+  "word_id": "w274",
+  "khmer": "បើក",
+  "origin": "chhunneng_chat",
+  "split": "train"
+ },
+ {
+  "word_id": "w275",
+  "khmer": "ចំហរ",
+  "origin": "chhunneng_chat",
+  "split": "train"
+ },
+ {
+  "word_id": "w276",
+  "khmer": "ហាក់",
+  "origin": "chhunneng_chat",
+  "split": "test"
+ },
+ {
+  "word_id": "w277",
+  "khmer": "រួម",
+  "origin": "chhunneng_chat",
+  "split": "train"
+ },
+ {
+  "word_id": "w278",
+  "khmer": "ស",
+  "origin": "chhunneng_chat",
+  "split": "train"
+ },
+ {
+  "word_id": "w279",
+  "khmer": "កុមារ",
+  "origin": "chhunneng_chat",
+  "split": "train"
+ },
+ {
+  "word_id": "w280",
+  "khmer": "ដើរ",
+  "origin": "chhunneng_chat",
+  "split": "test"
+ },
+ {
+  "word_id": "w281",
+  "khmer": "ឧទាហរណ៏",
+  "origin": "chhunneng_chat",
+  "split": "train"
+ },
+ {
+  "word_id": "w282",
+  "khmer": "បន្ថយ",
+  "origin": "chhunneng_chat",
+  "split": "train"
+ },
+ {
+  "word_id": "w283",
+  "khmer": "បន្ធូរ",
+  "origin": "chhunneng_chat",
+  "split": "test"
+ },
+ {
+  "word_id": "w284",
+  "khmer": "ក្រដាស",
+  "origin": "chhunneng_chat",
+  "split": "test"
+ },
+ {
+  "word_id": "w285",
+  "khmer": "ក្រុម",
+  "origin": "chhunneng_chat",
+  "split": "test"
+ },
+ {
+  "word_id": "w286",
+  "khmer": "តែងតែ",
+  "origin": "chhunneng_chat",
+  "split": "train"
+ },
+ {
+  "word_id": "w287",
+  "khmer": "តែង",
+  "origin": "chhunneng_chat",
+  "split": "train"
+ },
+ {
+  "word_id": "w288",
+  "khmer": "តន្ត្រី",
+  "origin": "chhunneng_chat",
+  "split": "train"
+ },
+ {
+  "word_id": "w289",
+  "khmer": "សញ្ញា",
+  "origin": "chhunneng_chat",
+  "split": "test"
+ },
+ {
+  "word_id": "w290",
+  "khmer": "ញឹកញាប់",
+  "origin": "chhunneng_chat",
+  "split": "train"
+ },
+ {
+  "word_id": "w291",
+  "khmer": "ញាប់",
+  "origin": "chhunneng_chat",
+  "split": "train"
+ },
+ {
+  "word_id": "w292",
+  "khmer": "ញឹក",
+  "origin": "chhunneng_chat",
+  "split": "test"
+ },
+ {
+  "word_id": "w293",
+  "khmer": "លិខិត",
+  "origin": "chhunneng_chat",
+  "split": "train"
+ },
+ {
+  "word_id": "w294",
+  "khmer": "រហូត",
+  "origin": "chhunneng_chat",
+  "split": "train"
+ },
+ {
+  "word_id": "w295",
+  "khmer": "ដល់",
+  "origin": "chhunneng_chat",
+  "split": "train"
+ },
+ {
+  "word_id": "w296",
+  "khmer": "ម៉ា",
+  "origin": "chhunneng_chat",
+  "split": "test"
+ },
+ {
+  "word_id": "w297",
+  "khmer": "ទន្លេ",
+  "origin": "chhunneng_chat",
+  "split": "test"
+ },
+ {
+  "word_id": "w298",
+  "khmer": "រថយន្ត",
+  "origin": "chhunneng_chat",
+  "split": "test"
+ },
+ {
+  "word_id": "w299",
+  "khmer": "ថែ",
+  "origin": "chhunneng_chat",
+  "split": "test"
+ },
+ {
+  "word_id": "w300",
+  "khmer": "អត់",
+  "origin": "agent_chat_list",
+  "split": "test"
+ },
+ {
+  "word_id": "w301",
+  "khmer": "ទេ",
+  "origin": "agent_chat_list",
+  "split": "test"
+ },
+ {
+  "word_id": "w302",
+  "khmer": "ញ៉ាំ",
+  "origin": "agent_chat_list",
+  "split": "train"
+ },
+ {
+  "word_id": "w303",
+  "khmer": "បាយ",
+  "origin": "agent_chat_list",
+  "split": "train"
+ },
+ {
+  "word_id": "w304",
+  "khmer": "អី",
+  "origin": "agent_chat_list",
+  "split": "test"
+ },
+ {
+  "word_id": "w305",
+  "khmer": "ហ្នឹង",
+  "origin": "agent_chat_list",
+  "split": "train"
+ },
+ {
+  "word_id": "w306",
+  "khmer": "ហើយ",
+  "origin": "agent_chat_list",
+  "split": "train"
+ },
+ {
+  "word_id": "w307",
+  "khmer": "ចឹង",
+  "origin": "agent_chat_list",
+  "split": "train"
+ },
+ {
+  "word_id": "w308",
+  "khmer": "ណាស់",
+  "origin": "agent_chat_list",
+  "split": "train"
+ },
+ {
+  "word_id": "w309",
+  "khmer": "ដែរ",
+  "origin": "agent_chat_list",
+  "split": "train"
+ },
+ {
+  "word_id": "w310",
+  "khmer": "បង",
+  "origin": "agent_chat_list",
+  "split": "train"
+ },
+ {
+  "word_id": "w311",
+  "khmer": "ប្អូន",
+  "origin": "agent_chat_list",
+  "split": "train"
+ },
+ {
+  "word_id": "w312",
+  "khmer": "អរគុណ",
+  "origin": "agent_chat_list",
+  "split": "train"
+ },
+ {
+  "word_id": "w313",
+  "khmer": "សុខសប្បាយ",
+  "origin": "agent_chat_list",
+  "split": "test"
+ },
+ {
+  "word_id": "w314",
+  "khmer": "ឆ្ងាញ់",
+  "origin": "agent_chat_list",
+  "split": "test"
+ },
+ {
+  "word_id": "w315",
+  "khmer": "ទិញ",
+  "origin": "agent_chat_list",
+  "split": "train"
+ },
+ {
+  "word_id": "w316",
+  "khmer": "លុយ",
+  "origin": "agent_chat_list",
+  "split": "test"
+ },
+ {
+  "word_id": "w317",
+  "khmer": "ម៉ោង",
+  "origin": "agent_chat_list",
+  "split": "train"
+ },
+ {
+  "word_id": "w318",
+  "khmer": "ដូចជា",
+  "origin": "chhunneng_common",
+  "split": "test"
+ },
+ {
+  "word_id": "w319",
+  "khmer": "របស់គាត់",
+  "origin": "chhunneng_common",
+  "split": "test"
+ },
+ {
+  "word_id": "w320",
+  "khmer": "លោកបាន",
+  "origin": "chhunneng_common",
+  "split": "test"
+ }
+]
