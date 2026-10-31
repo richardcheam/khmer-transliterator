@@ -418,11 +418,12 @@ there (`git -C ../pocket-tts-khmer show archive/checkpoints-p0-p6:state/DECISION
   no `.pth` bridge, no CUDA packages): 19/19 checks, dev parity 0/276. Network off via a Python socket guard
   because AppArmor refuses unprivileged network namespaces here. Laptop CPU, 6 threads: load 5.5–7 s, greedy
   0.55 s/word or 14 words/s batched, peak 2.0 GB.
-- **Bundle:** `dist/khmer-translit-byt5-e11-0.2.0/` (archive sha256 `cf57d6de…`, local; the E10 and E02 bundles are
+- **Bundle:** `dist/khmer-translit-byt5-e11-0.2.0/` (archive sha256 `9c70dace…`, local; the E10 and E02 bundles are
   untouched), with an HF folder for `ric912/en-km-phonetic-byt5-lora` (upload command prepared, not run).
 - **Coverage diagnostic (development only):** 23 irregular dev words frozen before generation; 43 judgments reused
-  exactly, 50 new spellings queued for a blinded owner review (`data/e11/coverage/`). No figure until judged; an
-  oracle "any acceptable in 4" is not system accuracy.
+  exactly, 50 new spellings judged by the owner (blinded; all 93 candidates judged). Greedy acceptable 8/23, beam
+  top-1 10/23, at least one acceptable among 4 beam candidates 15/23 (oracle ceiling, not accuracy); 7 words
+  recoverable by a perfect reranker, 8 with no acceptable candidate. No ranker built.
 - **Evaluation write-up:** mined-reference results (exploratory), the owner's dev review and the two 120-family
   tests (64.2% and 75.0%, two samples of one design, not an improvement) kept separate; no pooled headline.
 - **Licences:** base Apache-2.0; code PolyForm Noncommercial (repository LICENSE); data notices for FineWeb-2

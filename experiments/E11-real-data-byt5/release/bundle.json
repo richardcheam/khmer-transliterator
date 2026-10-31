@@ -1,8 +1,8 @@
 {
  "bundle": "dist/khmer-translit-byt5-e11-0.2.0",
  "archive": "dist/khmer-translit-byt5-e11-0.2.0.tar.gz",
- "archive_sha256": "cf57d6dea8e9df97b72720b255b4d1693251567ace347952e7828bc6e34d0183",
- "archive_bytes": 46678616,
+ "archive_sha256": "9c70daceaa4b14c69552e4b31f1e339e53b0d44997c5c11c926cbf0a8e87c7eb",
+ "archive_bytes": 46679656,
  "files": [
   "CHANGELOG.md",
   "DATA_PROVENANCE.md",
@@ -18,6 +18,7 @@
   "adapter/adapter.safetensors",
   "adapter/adapter_config.json",
   "evidence/coverage_frozen.json",
+  "evidence/coverage_results.json",
   "evidence/e11_dev_review_scores.json",
   "evidence/e11_frozen.json",
   "evidence/e11_results.json",
@@ -46,9 +47,7 @@
   "khmer_translit-0.2.0.tar.gz": "f32a02dc0850881af36d0657af4705df17a62bf3281db1f9e31fa591ee6d5383"
  },
  "adapter_sha256": "698a23ae1526d3da8f3b2bd00f0177799a939d2005c165569fcba7d58e76cc3f",
- "evidence_missing": [
-  "coverage_results.json"
- ],
+ "evidence_missing": [],
  "hf_folder": "dist/khmer-translit-byt5-e11-0.2.0/huggingface",
  "excluded": "training checkpoints (.pt), base weights, arm R and every mined pair, references, review batches, origin keys, judgments, caches, W&B files, secrets"
 }

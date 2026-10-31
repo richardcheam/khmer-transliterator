@@ -220,5 +220,6 @@ detectable result.
 - **Results:** identity 12/12; adapter export bit-identical; parity 0 mismatches (dev, eval, top-4); isolated
   install 19/19.
 - **Bundle:** `dist/khmer-translit-byt5-e11-0.2.0/` (local), documents in `release/byt5-e11/`.
-- **Coverage review:** queued (50 new spellings), not yet judged.
-- Evidence: `release/{identity,export,verify,bundle,install_check}.json`, `coverage/{frozen,generation,batches}.json`.
+- **Coverage (dev diagnostic, 23 irregular words):** greedy acceptable 8, beam top-1 10, any acceptable in 4
+  beam candidates 15 (oracle), recoverable 7, none acceptable 8 (`coverage/results.json`).
+- Evidence: `release/{identity,export,verify,bundle,install_check}.json`, `coverage/{frozen,generation,batches,results}.json`.

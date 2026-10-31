@@ -82,27 +82,48 @@ How to read the two tests:
   not automatically wrong.
 
 ## 5. Candidate coverage on irregular development words (development diagnostic)
-**Status: candidates generated and review queue prepared; owner judgments not yet collected.** No coverage figure
-is reported until they are.
+**Status: scored (2026-10-31). This is a development diagnostic only. It is not system accuracy, not a test, and
+no ranker was built or tested.**
 - **Sample (frozen before generation, commit 1890379):** 23 irregular-spelling development words. 20 come from the
   E13 development collection, 2 from E11's representative dev review and 1 from historical dev. Nothing comes
   from the E12 or E13 test families.
 - **Candidates (E09's exact settings):** the greedy answer, plus up to 4 distinct canonical-beam candidates
   (`num_beams` 4, `early_stopping="never"`, length penalty 0, at most 121 new bytes). Every word has the same limit.
-  - **Candidate counts:** 22 words have 4 distinct spellings and 1 has 5 (its greedy answer isn't in its beam).
-  - **Greedy vs beam:** greedy equals beam top-1 for 14 of 23 words.
+  - **Candidate counts:** 93 distinct spellings. 22 words have 4 and 1 word has 5, because its greedy answer isn't
+    in its beam.
   - **Hash:** candidates sha256 `8c6d7f7d…`.
-- **Judgments:**
-  - **Reused:** 43 earlier owner judgments (40 E13 collection, 3 E11 review). A judgment is reused only for the
-    identical word, reading and spelling under the same policy file, and its provenance is kept.
-  - **New:** 50 spellings wait for a blinded acceptable / not acceptable / uncertain review. The page hides rank,
-    score and origin.
-- **Reported once judged:** greedy top-1 and beam top-1 confirmed acceptable, words with at least one acceptable
-  spelling among the 4 beam candidates, uncertainty, judgment coverage, and words a perfect reranker could recover.
-  - **Not system accuracy:** "at least one acceptable among 4" is an oracle ceiling, not system accuracy.
-  - **No ranker:** no ranker was built or tested.
-  - **Unassessed:** unjudged spellings stay unassessed.
-- **Sample bias:** all 23 words are irregular by construction, so none of these figures describes typical words.
+- **Judgments:** all 93 spellings are judged, so judgment coverage is 100%.
+  - **Reused (43):** earlier owner judgments (40 E13 collection, 3 E11 review), reused only for the identical word,
+    reading and spelling under the same policy file. Their provenance is kept.
+  - **New (50):** the owner judged them on a blinded page (13 acceptable, 33 not acceptable, 4 uncertain).
+  - **Judge:** one, the project owner, not independent.
+
+| Measure (23 irregular dev words) | Words | Share |
+|---|---|---|
+| Greedy answer confirmed acceptable | 8 | 34.8% |
+| Beam top-1 confirmed acceptable | 10 | 43.5% |
+| At least one acceptable among the 4 beam candidates (oracle ceiling) | 15 | 65.2% |
+| Recoverable: greedy not acceptable, but an acceptable spelling is in the beam | 7 | 30.4% |
+| No acceptable spelling among any candidate | 8 | 34.8% |
+
+- **Uncertain:**
+  - candidates: 6 of 93 (6.5%);
+  - greedy answers: 1 word.
+- **Acceptable spellings per word:**
+  - 3 words have three;
+  - 9 words have two;
+  - 3 words have one;
+  - 8 words have none.
+- **By pool:** E13 dev collection greedy 7/20, any-in-4 12/20; E11 review 1/2 and 2/2; historical dev 0/1 and 1/1.
+- **How to read it:**
+  - **Room above greedy:** for these hard words, E11's beam often contains an acceptable spelling that greedy
+    doesn't pick (7 of 23 words). This is the room a perfect reranker over 4 candidates would have. A real ranker
+    would recover fewer, and none was measured.
+  - **Still missing:** for 8 of 23 words, no candidate is acceptable. Reranking can't help those.
+  - **Small sample:** with n = 23, every share carries roughly ±20 points of uncertainty.
+  - **Not representative:** all 23 words are irregular by design, so these figures say nothing about typical
+    words.
+  - **Greedy vs beam top-1:** the gap between them (8 vs 10) is small and within noise.
 
 ## 6. Runtime
 Measured on an Intel Core i7-8750H (12 logical CPUs, 7.6 GiB RAM), Linux, Python 3.10, CPU only, 6 threads, with
