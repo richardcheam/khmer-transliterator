@@ -1,0 +1,44 @@
+{
+ "generated": "2026-10-31T02:24:07+00:00",
+ "checkpoint_sha256": "286292a4f21131d0dd238d48919485192b0b0eb268d005bbc804d3ff78229713",
+ "new_generation": [
+  "beam4_can:dev"
+ ],
+ "cache_files_sha256": {
+  "e11_greedy_e13coll_60a3b92f962e55c3.jsonl": "5c1dcf05e87528a2067edd7bb2ab36741beecc4c4f641894ce5fa8cd67352421",
+  "e11_beam4_can_e13coll_12af5f1330fe2397.jsonl": "b37e51e03b125054955dbe877f11a8f0a9eb28a7627b88679d3073a97ec4a09d",
+  "e11_greedy_dev_a20d1060331336fb.jsonl": "2d8f171eb7ab0e603c8804e29c8d8015596eb4cff4b0479c27f33253bb31d11f",
+  "e11_beam4_can_dev_52d7fd52b4ab29d8.jsonl": "50e113b1cc4b688aa7170a885bbd43eae5a4abcb14bf76f5caf245ebe0f5773c"
+ },
+ "settings": {
+  "greedy": {
+   "num_beams": 1,
+   "ret": 1,
+   "bs": 32,
+   "max_new_tokens": 121,
+   "do_sample": false,
+   "logits_processors": null,
+   "setting_hash": "9115a49738355ed024ea01dd69864d16346f72d6d44c61d9715253d14cac7bb9"
+  },
+  "beam4_can": {
+   "num_beams": 4,
+   "ret": 4,
+   "length_penalty": 0.0,
+   "early_stopping": "never",
+   "bs": 16,
+   "max_new_tokens": 121,
+   "do_sample": false,
+   "logits_processors": null,
+   "setting_hash": "2f9843dd49c20e0307ce209b1a89dfc24b7d8b40aa2716da07c8f1836c55ab9e"
+  }
+ },
+ "batching": "the cached runs' own row sets (E13 collection: 100 words; historical dev: 276 items), so the padding and therefore the numerics match every earlier E11 output",
+ "candidates_per_word": {
+  "4": 22,
+  "5": 1
+ },
+ "beam_fewer_than_4": 0,
+ "greedy_equals_beam_top1": 14,
+ "candidates_sha256": "8c6d7f7d503dd02866787cbdf33a2eac74cade31fb35e907e74116004ce1451b",
+ "local": "data/e11/coverage"
+}

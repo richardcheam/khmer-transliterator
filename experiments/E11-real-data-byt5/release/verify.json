@@ -1,0 +1,150 @@
+{
+ "hardware": {
+  "cpu": "Intel(R) Core(TM) i7-8750H CPU @ 2.20GHz",
+  "logical_cpus": 12,
+  "ram_gib": 7.6,
+  "os": "Linux-7.0.0-34-generic-x86_64-with-glibc2.39",
+  "python": "3.10.21"
+ },
+ "threads": 6,
+ "adapter_sha256": "698a23ae1526d3da8f3b2bd00f0177799a939d2005c165569fcba7d58e76cc3f",
+ "load_seconds": 7.06,
+ "rss_after_load_mb": 713,
+ "parity": {
+  "dev": {
+   "items": 276,
+   "greedy_mismatches_vs_frozen_predictions": 0,
+   "examples": [],
+   "greedy_seconds": 19.01,
+   "greedy_words_per_second": 14.5
+  },
+  "eval": {
+   "items": 245,
+   "greedy_mismatches_vs_frozen_predictions": 0,
+   "examples": [],
+   "greedy_seconds": 17.73,
+   "greedy_words_per_second": 13.8
+  },
+  "dev_top4": {
+   "items": 276,
+   "mismatches_vs_research_canonical_beam": 0,
+   "examples": [],
+   "seconds": 41.27,
+   "words_per_second": 6.7
+  }
+ },
+ "latency_ms": {
+  "single_word_greedy": {
+   "median": 554.1,
+   "max": 920.5,
+   "calls": 24
+  },
+  "single_word_top4": {
+   "median": 819.9,
+   "calls": 8
+  }
+ },
+ "inputs": {
+  "empty": {
+   "status": "empty",
+   "candidates": 0
+  },
+  "multiword": {
+   "status": "unsupported_multiword",
+   "candidates": 0
+  },
+  "khmer_script": {
+   "status": "unsupported_characters",
+   "candidates": 0
+  },
+  "digits": {
+   "status": "unsupported_characters",
+   "candidates": 0
+  },
+  "overlength_33": {
+   "status": "too_long",
+   "candidates": 0
+  },
+  "at_limit_32": {
+   "status": "ok",
+   "candidates": 1
+  },
+  "whitespace": {
+   "status": "empty",
+   "candidates": 0
+  }
+ },
+ "no_silent_truncation": true,
+ "batch_alignment": {
+  "inputs": [
+   "coffee",
+   "",
+   "new york",
+   "london",
+   "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+   "taxi"
+  ],
+  "statuses": [
+   "ok",
+   "empty",
+   "unsupported_multiword",
+   "ok",
+   "too_long",
+   "ok"
+  ],
+  "aligned": true
+ },
+ "smoke": {
+  "coffee": "ខូហ្វី",
+  "london": "ឡុនដុន",
+  "taxi": "តាក់ស៊ី",
+  "doctor": "ដុកទ័រ",
+  "computer": "ខុមភូទ័រ",
+  "elizabeth": "អេលីហ្សាបេត",
+  "o'neil": "អូនៀល",
+  "wi-fi": "វីហ្វី"
+ },
+ "smoke_top4": {
+  "coffee": [
+   "ខូហ្វី",
+   "កូហ្វី",
+   "ខូហ្វ៊ី",
+   "កូហ្វ៊ី"
+  ],
+  "london": [
+   "ឡុនដុន",
+   "ឡនដុន",
+   "ឡុនឌុន",
+   "ឡុនដូន"
+  ],
+  "taxi": [
+   "តាក់ស៊ី",
+   "ថាក់ស៊ី",
+   "តាកស៊ី",
+   "តាក់ស៊ិ"
+  ]
+ },
+ "peak_rss_mb": 2019,
+ "reload_deterministic": true,
+ "errors": {
+  "results": {
+   "missing_adapter": "FileNotFoundError: adapter file not found: /tmp/kt-err-6hxhjxxd/nope/adapter_config.json (an adapter folder holds adapter_config.json and a",
+   "corrupt_adapter": "ModelFormatError: /tmp/kt-err-6hxhjxxd/corrupt/adapter.safetensors: sha256 d993f8d000a9395ba4ea34d06b0ec6f61b38a64f5029a108734621bb337b714",
+   "wrong_base_revision": "ModelFormatError: adapter was trained on base revision 0000000000000000000000000000000000000000, this code pins 68377bdc18a2ffec8a0533fef0",
+   "wrong_base_weights": "ModelFormatError: /tmp/kt-err-6hxhjxxd/fakebase/pytorch_model.bin is not google/byt5-small @ 68377bdc18a2ffec8a0533fef03b1c513a4dd49d (sha",
+   "missing_base_folder": "FileNotFoundError: base model /tmp/kt-err-6hxhjxxd/no-base @ 68377bdc18a2ffec8a0533fef03b1c513a4dd49d is not available offline (not in the ",
+   "missing_base_offline_no_cache": "FileNotFoundError: base model google/byt5-small @ 68377bdc18a2ffec8a0533fef03b1c513a4dd49d is not available offline (not in the cache): pas",
+   "expected_sha_mismatch": "ModelFormatError: /home/richard/projects/khmer-transliterator/models/e11/release/adapter/adapter.safetensors: sha256 698a23ae1526d3da8f3b2"
+  },
+  "ok": true
+ },
+ "decoding": {
+  "top_k=1": "greedy",
+  "top_k>1": "canonical beam (early_stopping='never', length_penalty 0), width max(top_k, 4)",
+  "max_new_tokens": 121,
+  "max_input_bytes": 32,
+  "scores": "summed log-probabilities; not calibrated confidence"
+ },
+ "offline": "HF_HUB_OFFLINE=1 and an empty HF_HOME for the whole check; local base folder",
+ "ok": true
+}

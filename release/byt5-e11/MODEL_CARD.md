@@ -29,7 +29,8 @@ separate, older model and stays unchanged.
 
 ## Model details
 - **Task:** one English word or name → Khmer script that approximates its English (General American) pronunciation.
-  It writes sound, not meaning. For example, `coffee` → កាហ្វេ.
+  It writes sound, not meaning. For example, E11's greedy output for `coffee` is ខូហ្វី and for `london` ឡុនដុន
+  (from the verified smoke check). This is the English sound, not the established Khmer loanword កាហ្វេ.
 - **Architecture:** `google/byt5-small`, frozen (300M parameters; base weights `pytorch_model.bin`, sha256
   `5c5aaf56299d6f2d4eaadad550a40765198828ead4d74f0a15f91cbe0961931a`). LoRA adapters (r 16, α 32) sit on
   attention q/k/v/o and on the gated feed-forward wi_0/wi_1/wo. That's 256 tensors and 6,258,688 parameters.
@@ -78,7 +79,7 @@ khmer-translit inspect --backend byt5 --model e11-adapter --base byt5-small --of
 ```python
 from khmer_translit.byt5 import ByT5Transliterator
 tl = ByT5Transliterator.from_pretrained("e11-adapter", base="byt5-small", offline=True, threads=6)
-tl.predict("coffee").text                                   # one greedy answer
+tl.predict("coffee").text                                   # one greedy answer: ខូហ្វី
 [c.text for c in tl.predict("london", top_k=4).candidates]  # up to 4 distinct canonical-beam candidates
 tl.predict_many(["taxi", "new york", ""])                   # input order kept; refused inputs carry a status
 ```

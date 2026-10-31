@@ -1,0 +1,22 @@
+{
+ "created": "2026-10-31T02:24:17+00:00",
+ "words": 23,
+ "words_with_new_candidates": 23,
+ "new_judgments_needed": 50,
+ "reused_judgments": 43,
+ "reused_by_source": {
+  "e13_collection": 40,
+  "e11_review": 3
+ },
+ "reuse_rule": "identical word, intended reading and NFC candidate text, same policy file (sha256 9847667eeaed…); provenance kept per reused judgment",
+ "reuse_conflicts": 0,
+ "sha256": {
+  "origin_key.json": "9c69929326a38734ed6febf9a9876dbfb2ac1108876f3bdae17162d2b8ee34f9",
+  "items.json": "b245e803ede0ce6fa4e013c8bad977b025c9f73bd6301bc608293fabb70555f1",
+  "reused.json": "03378695fa4121a5c1c0084608f0d6ca90af215fd8732c04eb39224aafd58d93",
+  "batch_1.tsv": "fc9362354cdeeed91433033b06b936c3151992f71194605e6c4ee7e3a87587a5",
+  "batch_1.md": "60bd185108decbf2778ddb1ccdef60adedcbbb9cf69d269bdbd3e37863cf19eb"
+ },
+ "blinding": "no ranks, scores or model origins on the page; labels in seeded order; the origin key is read only by cov-import",
+ "review": "python scripts/e12_review.py --reviewer <name> --data data/e11/coverage --title 'E11 coverage review'"
+}

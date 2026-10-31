@@ -742,8 +742,8 @@ def bundle() -> dict:
     ev.mkdir()
     missing = []
     for name, src in EVIDENCE.items():
-        if src.exists():
-            shutil.copy(src, ev / name)
+        if src.exists():                                  # local absolute paths → <repo>
+            (ev / name).write_text(src.read_text().replace(str(ROOT), "<repo>"))
         else:
             missing.append(name)
     hf = DIST / "huggingface"
@@ -778,10 +778,19 @@ def bundle() -> dict:
 
 
 # ------------------------------------------------------------------ 6. isolated install
+NO_NET = """import socket
+def _no_net(*a, **k):
+    raise OSError("network disabled by the E11 install check")
+socket.socket.connect = socket.socket.connect_ex = _no_net
+socket.create_connection = socket.getaddrinfo = _no_net
+"""
+
+
 def install(force: bool = False) -> dict:
     """Fresh uv venv outside the repository; the wheel with its `byt5` extra resolved from the declared requirements
     (CPU-only torch via uv's `--torch-backend cpu`, official indexes); then the CLI and API with networking disabled
-    (`unshare -rn`), the local base folder and an empty Hugging Face cache."""
+    (`unshare -rn` when the kernel allows it, else a socket guard loaded before any package code), the local base
+    folder and an empty Hugging Face cache."""
     require_quiet("install", force)
     from khmer_translit import byt5
     wheel = next((DIST / "wheel").glob("*.whl"))
@@ -795,7 +804,7 @@ def install(force: bool = False) -> dict:
         env = {k: v for k, v in os.environ.items()
                if not k.startswith(("VIRTUAL_ENV", "PYTHONPATH", "PYTHONHOME", "CONDA", "UV_PROJECT"))}
         env |= {"HF_HOME": str(d / "hf"), "CUDA_VISIBLE_DEVICES": "", "PYTHONNOUSERSITE": "1"}
-        run = lambda *c, **kw: subprocess.run(list(c), cwd=d, env=env, capture_output=True, text=True, **kw)  # noqa: E731
+        run = lambda *c, **kw: subprocess.run(list(c), cwd=d, capture_output=True, text=True, **{"env": env, **kw})  # noqa: E731
         r = run("uv", "venv", "--python", "3.10", str(d / "venv"))
         py = d / "venv" / "bin" / "python"
         cfg_txt = (d / "venv" / "pyvenv.cfg").read_text()
@@ -817,38 +826,52 @@ def install(force: bool = False) -> dict:
         out["environment"] = {"site_packages_mb": round(du(site) / 2 ** 20), "packages": frz,
                               "pth_files": pth, "pth_points_into_repo": any(str(ROOT) in v for v in pth.values()),
                               "nvidia_packages": [x for x in frz if x.lower().startswith(("nvidia", "triton"))]}
-        nonet = ["unshare", "-rn"]
-        probe = run(*nonet, str(py), "-c", "import socket; s=socket.socket(); s.settimeout(3); "
-                    "print(s.connect_ex(('pypi.org', 443)))")
-        out["network_disabled"] = {"returncode": probe.returncode, "probe": (probe.stdout + probe.stderr).strip()[-160:]}
-        r = run(*nonet, str(py), "-c", "import khmer_translit, torch, transformers; print(khmer_translit.__file__); "
-                "print(torch.__version__, torch.version.cuda, transformers.__version__)")
+        probe_src = ("import socket\ntry:\n    s = socket.create_connection(('pypi.org', 443), timeout=3)\n"
+                     "    print('CONNECTED')\nexcept OSError as e:\n    print('BLOCKED', type(e).__name__)\n")
+        probe = run("unshare", "-rn", str(py), "-c", probe_src)
+        if probe.returncode == 0 and "BLOCKED" in probe.stdout:
+            method = "kernel: network namespace without interfaces (unshare -rn)"
+            pyrun = lambda src, *a: run("unshare", "-rn", str(py), "-c", src, *a)  # noqa: E731
+        else:                                   # unprivileged user namespaces refused (AppArmor): guard in Python
+            method = ("Python-level: socket connect/connect_ex/create_connection/getaddrinfo raise before any package "
+                      f"code is imported (unshare -rn refused: {(probe.stderr or probe.stdout).strip()[-90:]})")
+            pyrun = lambda src, *a: run(str(py), "-c", NO_NET + src, *a)  # noqa: E731
+            probe = pyrun(probe_src)
+        out["network_disabled"] = {"method": method, "returncode": probe.returncode,
+                                   "probe": (probe.stdout + probe.stderr).strip()[-160:]}
+        r = pyrun("import khmer_translit, torch, transformers; print(khmer_translit.__file__); "
+                  "print(torch.__version__, torch.version.cuda, transformers.__version__)")
         lines = r.stdout.splitlines()
         out["imports"] = {"khmer_translit": lines[0] if lines else r.stderr[-300:],
                           "from_venv": bool(lines) and lines[0].startswith(str(site)),
                           "torch_transformers": lines[1] if len(lines) > 1 else None}
-        cli = [*nonet, str(d / "venv" / "bin" / "khmer-translit")]
+        cli_main = "import sys\nfrom khmer_translit.cli import main\nsys.exit(main(sys.argv[1:]))\n"
+        cli = lambda *a: pyrun(cli_main, *a)  # noqa: E731
         base_args = ["--backend", "byt5", "--model", str(adapter), "--base", str(BASE_LOCAL), "--offline",
                      "--threads", str(THREADS), "--sha256", exp["adapter_sha256"]]
         c = {}
-        r = run(*cli, "predict", *base_args, "--word", "coffee")
+        r = cli("predict", *base_args, "--word", "coffee")
         c["single_word"] = {"returncode": r.returncode, "stdout": r.stdout.strip()}
-        r = run(*cli, "predict", *base_args, "--word", "london", "--top-k", "4", "--json")
+        r = run(str(d / "venv" / "bin" / "khmer-translit"), "predict", *base_args, "--word", "coffee",
+                env=env | {"HF_HUB_OFFLINE": "1"})   # the installed console script itself (offline flags only)
+        c["console_script"] = {"returncode": r.returncode, "stdout": r.stdout.strip(),
+                               "same_as_guarded": r.stdout.strip() == c["single_word"]["stdout"]}
+        r = cli("predict", *base_args, "--word", "london", "--top-k", "4", "--json")
         c["top4_json"] = {"returncode": r.returncode, "candidates": [x["text"] for x in json.loads(r.stdout)["candidates"]]
                           if r.returncode == 0 else r.stderr[-300:]}
         words = SMOKE + ["", "new york", "b" * 33, "ខ្មែរ"]
         (d / "words.txt").write_text("\n".join(words) + "\n", encoding="utf-8")
-        r = run(*cli, "predict", *base_args, "--input", "words.txt", "--jsonl")
+        r = cli("predict", *base_args, "--input", "words.txt", "--jsonl")
         rows = [json.loads(x) for x in r.stdout.splitlines() if x.startswith("{")]
         c["batch_jsonl"] = {"returncode": r.returncode, "rows": len(rows), "ids": [x["id"] for x in rows],
                             "inputs_aligned": [x["input"] for x in rows] == words,
                             "statuses": [x["status"] for x in rows]}
-        r = run(*cli, "inspect", *base_args)
+        r = cli("inspect", *base_args)
         info = json.loads(r.stdout) if r.returncode == 0 else {}
         c["inspect"] = {"returncode": r.returncode, "candidate": info.get("provenance", {}).get("candidate"),
                         "checkpoint_sha256": info.get("provenance", {}).get("checkpoint_sha256"),
                         "base_revision": info.get("base", {}).get("revision")}
-        r = run(*cli, "predict", "--backend", "byt5", "--model", str(d / "missing"), "--base", str(BASE_LOCAL),
+        r = cli("predict", "--backend", "byt5", "--model", str(d / "missing"), "--base", str(BASE_LOCAL),
                 "--offline", "--word", "coffee")
         c["missing_adapter"] = {"returncode": r.returncode, "stderr": r.stderr.strip()[-200:]}
         bad = d / "corrupt"
@@ -856,12 +879,12 @@ def install(force: bool = False) -> dict:
         raw = bytearray((bad / byt5.ADAPTER_FILE).read_bytes())
         raw[100] ^= 0xFF
         (bad / byt5.ADAPTER_FILE).write_bytes(bytes(raw))
-        r = run(*cli, "predict", "--backend", "byt5", "--model", str(bad), "--base", str(BASE_LOCAL), "--offline",
+        r = cli("predict", "--backend", "byt5", "--model", str(bad), "--base", str(BASE_LOCAL), "--offline",
                 "--word", "coffee")
         c["corrupt_adapter"] = {"returncode": r.returncode, "stderr": r.stderr.strip()[-200:]}
-        r = run(*cli, "predict", "--backend", "byt5", "--model", str(adapter), "--offline", "--word", "coffee")
+        r = cli("predict", "--backend", "byt5", "--model", str(adapter), "--offline", "--word", "coffee")
         c["missing_base_offline"] = {"returncode": r.returncode, "stderr": r.stderr.strip()[-200:]}
-        r = run(*cli, "predict", "--model", str(adapter), "--word", "coffee")
+        r = cli("predict", "--model", str(adapter), "--word", "coffee")
         c["default_backend_is_not_byt5"] = {"returncode": r.returncode, "stderr": r.stderr.strip()[-160:]}
         out["cli"] = c
         # Python API in the isolated environment: dev parity, determinism on reload, timing
@@ -887,7 +910,7 @@ print(json.dumps({{"preds": [r.text if r.status == "ok" else None for r in out],
                   "top4": top4, "peak_rss_mb": round(resource.getrusage(resource.RUSAGE_SELF).ru_maxrss / 1024)}},
                  ensure_ascii=False))
 """
-        r = run(*nonet, str(py), "-c", script)
+        r = pyrun(script)
         if r.returncode == 0:
             res = json.loads(r.stdout.splitlines()[-1])
             mism = [i for (i, _), p in zip(rows, res["preds"]) if p != fz.get(i)]
@@ -908,7 +931,8 @@ print(json.dumps({{"preds": [r.text if r.status == "ok" else None for r in out],
         "no_repo_pth_bridge": not out["environment"]["pth_points_into_repo"],
         "cpu_only_torch": not out["environment"]["nvidia_packages"] and "None" in (out["imports"]["torch_transformers"] or ""),
         "imports_from_venv": out["imports"]["from_venv"],
-        "network_disabled": out["network_disabled"]["probe"] not in ("0",),
+        "network_disabled": "BLOCKED" in out["network_disabled"]["probe"],
+        "console_script": c["console_script"]["returncode"] == 0 and c["console_script"]["same_as_guarded"],
         "single_word": c["single_word"]["returncode"] == 0, "top4": c["top4_json"]["returncode"] == 0,
         "batch_aligned": c["batch_jsonl"]["inputs_aligned"] and c["batch_jsonl"]["ids"] == list(range(1, len(words) + 1))
         and c["batch_jsonl"]["statuses"][-4:] == ["empty", "unsupported_multiword", "too_long", "unsupported_characters"],

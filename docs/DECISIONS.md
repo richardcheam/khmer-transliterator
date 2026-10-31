@@ -406,3 +406,26 @@ there (`git -C ../pocket-tts-khmer show archive/checkpoints-p0-p6:state/DECISION
   11 vs 11 discordant, p = 1.0. Groups: ordinary 32 vs 34, irregular 21 vs 20, names 37 vs 36 (exploratory).
 - **Decision:** uncertain change; not adopted; no second seed. The cause cannot be separated from the combination.
   Nothing published, packaged, served, merged or tagged. Report: `experiments/E13-pronunciation-guided/REPORT.md`.
+
+## D197 — E11 ByT5-small adapter prepared for a possible Hugging Face release; local bundle verified, publication pending owner decisions (2026-10-31)
+- **Candidate:** E11 `r_s0`, update 3,000 (checkpoint `286292a4…`), arm R only (4,764 rows, no Google AI Mode
+  labels), fresh LoRA r16/α32 on attention + FFN of `google/byt5-small` @ `68377bdc…`. Identity checks 12/12; gap:
+  training ran from a dirty tree (pinned by the registered source hash).
+- **Export:** `adapter.safetensors` (256 tensors, 6,258,688 parameters, bit-identical to the checkpoint; sha256
+  `698a23ae…`). Project format, not PEFT; loads only through `khmer_translit.byt5`; the base stays separate.
+- **Verification:** greedy parity 0 mismatches on 276 dev + 245 eval words, top-4 parity 0/276; refusal statuses,
+  batch alignment, error exits, deterministic reload, offline. Isolated install (fresh uv venv, CPU torch 2.14.1,
+  no `.pth` bridge, no CUDA packages): 19/19 checks, dev parity 0/276. Network off via a Python socket guard
+  because AppArmor refuses unprivileged network namespaces here. Laptop CPU, 6 threads: load 5.5–7 s, greedy
+  0.55 s/word or 14 words/s batched, peak 2.0 GB.
+- **Bundle:** `dist/khmer-translit-byt5-e11-0.2.0/` (archive sha256 `cf57d6de…`, local; the E10 and E02 bundles are
+  untouched), with an HF folder for `ric912/en-km-phonetic-byt5-lora` (upload command prepared, not run).
+- **Coverage diagnostic (development only):** 23 irregular dev words frozen before generation; 43 judgments reused
+  exactly, 50 new spellings queued for a blinded owner review (`data/e11/coverage/`). No figure until judged; an
+  oracle "any acceptable in 4" is not system accuracy.
+- **Evaluation write-up:** mined-reference results (exploratory), the owner's dev review and the two 120-family
+  tests (64.2% and 75.0%, two samples of one design, not an improvement) kept separate; no pooled headline.
+- **Licences:** base Apache-2.0; code PolyForm Noncommercial (repository LICENSE); data notices for FineWeb-2
+  (ODC-By + Common Crawl terms), Wikipedia (CC BY-SA 4.0) and ALT (CC BY 4.0); the E02 weights licence is not
+  copied. **Owner decisions pending:** the adapter licence, the data questions, the repo name/private start, and
+  whether the wheel is uploaded. Nothing published, merged, tagged or served.

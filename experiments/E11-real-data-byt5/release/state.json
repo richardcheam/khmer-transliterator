@@ -13,8 +13,30 @@
    "status": "done",
    "updated": "2026-10-31T00:43:37+00:00",
    "adapter_sha256": "698a23ae1526d3da8f3b2bd00f0177799a939d2005c165569fcba7d58e76cc3f"
+  },
+  "cov_generate": {
+   "status": "done",
+   "updated": "2026-10-31T02:24:07+00:00"
+  },
+  "cov_batches": {
+   "status": "awaiting_owner_coverage_judgments",
+   "updated": "2026-10-31T02:24:17+00:00",
+   "new": 50
+  },
+  "verify": {
+   "status": "done",
+   "updated": "2026-10-31T02:26:36+00:00"
+  },
+  "bundle": {
+   "status": "done",
+   "updated": "2026-10-31T02:31:15+00:00",
+   "archive_sha256": "cf57d6dea8e9df97b72720b255b4d1693251567ace347952e7828bc6e34d0183"
+  },
+  "install_check": {
+   "status": "done",
+   "updated": "2026-10-31T02:30:14+00:00"
   }
  },
  "errors": [],
- "updated": "2026-10-31T00:43:37+00:00"
+ "updated": "2026-10-31T02:31:15+00:00"
 }

@@ -1,0 +1,210 @@
+{
+ "wheel": "khmer_translit-0.2.0-py3-none-any.whl",
+ "wheel_sha256": "1bc8242a63d5385c86e772357e9fa3af15ecce3d3f6ccd5105ae42322a02a47d",
+ "hardware": {
+  "cpu": "Intel(R) Core(TM) i7-8750H CPU @ 2.20GHz",
+  "logical_cpus": 12,
+  "ram_gib": 7.6,
+  "os": "Linux-7.0.0-34-generic-x86_64-with-glibc2.39",
+  "python": "3.10.21"
+ },
+ "venv": {
+  "returncode": 0,
+  "system_site_packages": false
+ },
+ "install": {
+  "returncode": 0,
+  "seconds": 0.3,
+  "tail": "ongroup==1.3.1\n + filelock==4.1.0\n + fsspec==2026.9.0\n + h11==0.16.0\n + hf-xet==1.8.0\n + httpcore2==2.14.0\n + httpx2==2.14.0\n + huggingface-hub==2.4.0\n + idna==3.20\n + jinja2==3.1.6\n + khmer-translit==0.2.0 (from file:///home/richard/projects/khmer-transliterator/dist/khmer-translit-byt5-e11-0.2.0/wheel/khmer_translit-0.2.0-py3-none-any.whl)\n + markdown-it-py==4.2.0\n + markupsafe==3.0.4\n + mdurl==0.1.2\n + mpmath==1.3.0\n + networkx==3.4.2\n + numpy==2.2.6\n + packaging==26.3\n + pygments==2.21.0\n + pyyaml==6.0.3\n + regex==2026.9.29\n + rich==15.0.0\n + safetensors==0.8.0\n + setuptools==84.2.1\n + shellingham==1.5.4\n + sympy==1.14.0\n + tokenizers==0.23.3\n + tomli==2.5.0\n + torch==2.14.1+cpu\n + tqdm==4.70.1\n + transformers==5.20.2\n + truststore==0.10.5\n + typer==0.27.3\n + typing-extensions==4.16.0\n",
+  "uv_cache_growth_mb": 0.0,
+  "command": "uv pip install --torch-backend cpu 'khmer-translit[byt5] @ file://…whl'"
+ },
+ "environment": {
+  "site_packages_mb": 867,
+  "packages": [
+   "annotated-doc==0.0.5",
+   "anyio==4.15.1",
+   "click==8.5.0",
+   "exceptiongroup==1.3.1",
+   "filelock==4.1.0",
+   "fsspec==2026.9.0",
+   "h11==0.16.0",
+   "hf-xet==1.8.0",
+   "httpcore2==2.14.0",
+   "httpx2==2.14.0",
+   "huggingface-hub==2.4.0",
+   "idna==3.20",
+   "jinja2==3.1.6",
+   "khmer-translit @ file:///home/richard/projects/khmer-transliterator/dist/khmer-translit-byt5-e11-0.2.0/wheel/khmer_translit-0.2.0-py3-none-any.whl",
+   "markdown-it-py==4.2.0",
+   "markupsafe==3.0.4",
+   "mdurl==0.1.2",
+   "mpmath==1.3.0",
+   "networkx==3.4.2",
+   "numpy==2.2.6",
+   "packaging==26.3",
+   "pygments==2.21.0",
+   "pyyaml==6.0.3",
+   "regex==2026.9.29",
+   "rich==15.0.0",
+   "safetensors==0.8.0",
+   "setuptools==84.2.1",
+   "shellingham==1.5.4",
+   "sympy==1.14.0",
+   "tokenizers==0.23.3",
+   "tomli==2.5.0",
+   "torch==2.14.1+cpu",
+   "tqdm==4.70.1",
+   "transformers==5.20.2",
+   "truststore==0.10.5",
+   "typer==0.27.3",
+   "typing-extensions==4.16.0"
+  ],
+  "pth_files": {
+   "_virtualenv.pth": "import _virtualenv",
+   "distutils-precedence.pth": "import os; var = 'SETUPTOOLS_USE_DISTUTILS'; enabled = os.environ.get(var, 'local') == 'local'; enabled and __import__('_distutils_hack').add_shim(); \n"
+  },
+  "pth_points_into_repo": false,
+  "nvidia_packages": []
+ },
+ "network_disabled": {
+  "method": "Python-level: socket connect/connect_ex/create_connection/getaddrinfo raise before any package code is imported (unshare -rn refused: unshare: write failed /proc/self/uid_map: Operation not permitted)",
+  "returncode": 0,
+  "probe": "BLOCKED OSError"
+ },
+ "imports": {
+  "khmer_translit": "/tmp/kt-e11-install-s5yn21my/venv/lib/python3.10/site-packages/khmer_translit/__init__.py",
+  "from_venv": true,
+  "torch_transformers": "2.14.1+cpu None 5.20.2"
+ },
+ "cli": {
+  "single_word": {
+   "returncode": 0,
+   "stdout": "coffee\tខូហ្វី"
+  },
+  "console_script": {
+   "returncode": 0,
+   "stdout": "coffee\tខូហ្វី",
+   "same_as_guarded": true
+  },
+  "top4_json": {
+   "returncode": 0,
+   "candidates": [
+    "ឡុនដុន",
+    "ឡនដុន",
+    "ឡុនឌុន",
+    "ឡុនដូន"
+   ]
+  },
+  "batch_jsonl": {
+   "returncode": 1,
+   "rows": 12,
+   "ids": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12
+   ],
+   "inputs_aligned": true,
+   "statuses": [
+    "ok",
+    "ok",
+    "ok",
+    "ok",
+    "ok",
+    "ok",
+    "ok",
+    "ok",
+    "empty",
+    "unsupported_multiword",
+    "too_long",
+    "unsupported_characters"
+   ]
+  },
+  "inspect": {
+   "returncode": 0,
+   "candidate": "e11",
+   "checkpoint_sha256": "286292a4f21131d0dd238d48919485192b0b0eb268d005bbc804d3ff78229713",
+   "base_revision": "68377bdc18a2ffec8a0533fef03b1c513a4dd49d"
+  },
+  "missing_adapter": {
+   "returncode": 2,
+   "stderr": "khmer-translit: error: adapter file not found: /tmp/kt-e11-install-s5yn21my/missing/adapter_config.json (an adapter folder holds adapter_config.json and adapter.safetensors)"
+  },
+  "corrupt_adapter": {
+   "returncode": 2,
+   "stderr": "khmer-translit: error: /tmp/kt-e11-install-s5yn21my/corrupt/adapter.safetensors: sha256 4d7a0eab2d46d7c88dc38d1c05981e3a70eddb8279d9f57f5eccfc4aea372992 differs from the recorded/expected value"
+  },
+  "missing_base_offline": {
+   "returncode": 2,
+   "stderr": "khmer-translit: error: base model google/byt5-small @ 68377bdc18a2ffec8a0533fef03b1c513a4dd49d is not available offline (not in the cache): pass --base FOLDER or run once online to cache it (OSError)"
+  },
+  "default_backend_is_not_byt5": {
+   "returncode": 2,
+   "stderr": "khmer-translit: error: model file not found: /home/richard/projects/khmer-transliterator/dist/khmer-translit-byt5-e11-0.2.0/adapter/model.npz"
+  }
+ },
+ "api": {
+  "dev_items": 276,
+  "greedy_mismatches_vs_frozen_predictions": 0,
+  "examples": [],
+  "load_seconds": 5.49,
+  "greedy_dev_seconds": 19.52,
+  "greedy_words_per_second": 14.1,
+  "single_word_ms_median": 551.05,
+  "reload_deterministic": true,
+  "top4": {
+   "coffee": [
+    "ខូហ្វី",
+    "កូហ្វី",
+    "ខូហ្វ៊ី",
+    "កូហ្វ៊ី"
+   ],
+   "london": [
+    "ឡុនដុន",
+    "ឡនដុន",
+    "ឡុនឌុន",
+    "ឡុនដូន"
+   ],
+   "taxi": [
+    "តាក់ស៊ី",
+    "ថាក់ស៊ី",
+    "តាកស៊ី",
+    "តាក់ស៊ិ"
+   ]
+  },
+  "peak_rss_mb": 2837,
+  "threads": 6
+ },
+ "hf_home_files": [],
+ "checks": {
+  "install": true,
+  "no_system_site_packages": true,
+  "no_repo_pth_bridge": true,
+  "cpu_only_torch": true,
+  "imports_from_venv": true,
+  "network_disabled": true,
+  "console_script": true,
+  "single_word": true,
+  "top4": true,
+  "batch_aligned": true,
+  "inspect_names_e11": true,
+  "missing_adapter_exit_2": true,
+  "corrupt_adapter_exit_2": true,
+  "missing_base_exit_2": true,
+  "default_backend_refuses_adapter": true,
+  "dev_parity": true,
+  "reload_deterministic": true,
+  "top4_matches_repo": true,
+  "no_hub_downloads": true
+ },
+ "ok": true
+}

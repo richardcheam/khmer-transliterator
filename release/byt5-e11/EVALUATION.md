@@ -82,10 +82,52 @@ How to read the two tests:
   not automatically wrong.
 
 ## 5. Candidate coverage on irregular development words (development diagnostic)
-COVERAGE_PENDING
+**Status: candidates generated and review queue prepared; owner judgments not yet collected.** No coverage figure
+is reported until they are.
+- **Sample (frozen before generation, commit 1890379):** 23 irregular-spelling development words. 20 come from the
+  E13 development collection, 2 from E11's representative dev review and 1 from historical dev. Nothing comes
+  from the E12 or E13 test families.
+- **Candidates (E09's exact settings):** the greedy answer, plus up to 4 distinct canonical-beam candidates
+  (`num_beams` 4, `early_stopping="never"`, length penalty 0, at most 121 new bytes). Every word has the same limit.
+  - **Candidate counts:** 22 words have 4 distinct spellings and 1 has 5 (its greedy answer isn't in its beam).
+  - **Greedy vs beam:** greedy equals beam top-1 for 14 of 23 words.
+  - **Hash:** candidates sha256 `8c6d7f7d…`.
+- **Judgments:**
+  - **Reused:** 43 earlier owner judgments (40 E13 collection, 3 E11 review). A judgment is reused only for the
+    identical word, reading and spelling under the same policy file, and its provenance is kept.
+  - **New:** 50 spellings wait for a blinded acceptable / not acceptable / uncertain review. The page hides rank,
+    score and origin.
+- **Reported once judged:** greedy top-1 and beam top-1 confirmed acceptable, words with at least one acceptable
+  spelling among the 4 beam candidates, uncertainty, judgment coverage, and words a perfect reranker could recover.
+  - **Not system accuracy:** "at least one acceptable among 4" is an oracle ceiling, not system accuracy.
+  - **No ranker:** no ranker was built or tested.
+  - **Unassessed:** unjudged spellings stay unassessed.
+- **Sample bias:** all 23 words are irregular by construction, so none of these figures describes typical words.
 
 ## 6. Runtime
-RUNTIME_PENDING
+Measured on an Intel Core i7-8750H (12 logical CPUs, 7.6 GiB RAM), Linux, Python 3.10, CPU only, 6 threads, with
+the local base folder and networking disabled.
+- **Software:** torch 2.14.1+cpu, transformers 5.20.2.
+- **Load:** 5.5–7.1 s.
+- **Memory:** 0.7 GB resident after load; peak 2.0 GB for one model; 2.8 GB with a second copy loaded for the
+  reload check.
+- **Greedy:**
+  - one word: median 0.55 s per call (max 0.92 s);
+  - batch: 14 words/s (276 dev words in 19.0–19.5 s).
+- **Canonical beam, top-4:**
+  - one word: median 0.82 s;
+  - batch: 6.7 words/s.
+- **Parity:** 0 mismatches against E11's frozen research predictions in every case:
+  - greedy, 276 dev words and 245 eval words;
+  - top-4, 276 dev words;
+  - the same 276 dev words again in a fresh, isolated install.
+- **Reload:** a second load gives identical outputs.
+- **Network-off method:** this machine refuses unprivileged network namespaces (AppArmor), so the socket
+  functions were disabled inside Python before any package code loaded. The installed console script gave the same
+  output.
+- **Install size:** 867 MB of site-packages, mostly CPU PyTorch; no CUDA packages.
+
+These are single-machine figures, not a benchmark.
 
 ## 7. Methods and references
 - **Multiple accepted outputs:** the NEWS 2018 whitepaper (Chen et al., W18-2408) defines ACC, mean F-score, MRR

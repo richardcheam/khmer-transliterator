@@ -213,3 +213,12 @@ detectable result.
 | `runs/ledger.jsonl`, `state.json` | Run ledger and step state |
 | `review/README.md`, `review/review_manifest.json` | Review instructions and manifest |
 | Local only | `models/e11/r_s0/` (weights), `data/e11/` (pair sources, review batch, origin key) |
+
+## Release preparation (D197, 2026-10-31)
+- **Script:** `scripts/e11_release.py` (steps identity → cov-select → cov-generate → cov-batches → export → verify →
+  bundle → install; `cov-import` after the owner's coverage review).
+- **Results:** identity 12/12; adapter export bit-identical; parity 0 mismatches (dev, eval, top-4); isolated
+  install 19/19.
+- **Bundle:** `dist/khmer-translit-byt5-e11-0.2.0/` (local), documents in `release/byt5-e11/`.
+- **Coverage review:** queued (50 new spellings), not yet judged.
+- Evidence: `release/{identity,export,verify,bundle,install_check}.json`, `coverage/{frozen,generation,batches}.json`.
