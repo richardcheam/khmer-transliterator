@@ -26,6 +26,8 @@ from http import HTTPStatus
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 
+from khmer_translit.lexicon import segment
+
 ROOT = Path(__file__).resolve().parents[1]
 CHH = ROOT / "data" / "src" / "chhunneng"
 DATA = ROOT / "data" / "e14" / "typing"
@@ -165,7 +167,21 @@ def drafts() -> list[dict]:
             if w not in typed:
                 out.append({"word_id": f"g{len(out) + 1:03d}", "khmer": w, "split": "train",
                             "gemini": list(dict.fromkeys(sp)), "key_ok": key.strip() == w})
+    vocab = {k: 1 for k in {x["khmer"] for x in words} | {x["khmer"] for x in out}}
+    for x in out:                                       # split compounds into known words, for the spaced suggestion
+        seg = segment(x["khmer"], {k: 1 for k in vocab if k != x["khmer"]})
+        x["pieces"] = [p for p, _ in seg] if len(seg) > 1 and all(ok for _, ok in seg) else []
     return out
+
+
+def known_spellings(typist: str) -> dict[str, str]:
+    """The owner's usual spelling (first variant) of each *train* typing word; test words are never included."""
+    f = DATA / f"typed_{re.sub(r'[^A-Za-z0-9_-]', '_', typist)}.tsv"
+    if not f.exists():
+        return {}
+    with open(f, encoding="utf-8") as fh:
+        return {r["khmer"]: r["typed"].split(",")[0] for r in csv.DictReader(fh, delimiter="\t")
+                if r["split"] == "train" and r["typed"]}
 
 
 class Store:
@@ -182,6 +198,7 @@ class Store:
         self.words = words if words is not None else json.loads((DATA / "words.json").read_text(encoding="utf-8"))
         self.path = folder / f"{prefix}_{self.typist}.tsv"
         self.log = folder / f"{prefix}_log_{self.typist}.jsonl" if prefix != "typed" else DATA / f"review_log_{self.typist}.jsonl"
+        self.extra: dict = {}
         self.lock = threading.Lock()
         self.answers: dict[str, dict] = {}
         if self.path.exists():
@@ -192,7 +209,8 @@ class Store:
 
     def state(self) -> dict:
         return {"typist": self.typist,
-                "words": [{"word_id": w["word_id"], "khmer": w["khmer"], "gemini": w.get("gemini", [])} for w in self.words],
+                "words": [{"word_id": w["word_id"], "khmer": w["khmer"], "gemini": w.get("gemini", []),
+                           "pieces": w.get("pieces", [])} for w in self.words], **self.extra,
                 "answers": {k: {"typed": v["typed"], "skipped": v["skipped"] == "1"} for k, v in self.answers.items()}}
 
     def save(self, word_id: str, typed: str, skipped: bool) -> dict:
@@ -270,10 +288,15 @@ VERIFY_PAGE = (PAGE
 them with commas, the usual one first (e.g. <i>knhom, khnhom</i>). Press <b>Skip</b> if you would never type it.</p>''',
 '''<p class="mut">Gemini suggested the spellings under each word. Click (or press 1, 2, 3) the ones a Cambodian would
 really type; they go into the box, and you can edit or add your own. Only what is in the box is kept. Box empty and
-<b>Skip</b> = drop the word.</p>''')
+<b>Skip</b> = drop the word. A <b>★</b> button joins your own spellings of the word's parts with spaces.</p>''')
+    .replace('<div class="km" id="km"></div>', '<div class="km" id="km"></div><p class="mut" id="pieces"></p>')
     .replace('<div class="err" id="err">', '<div id="chips" class="row" style="flex-wrap:wrap"></div><div class="err" id="err">')
     .replace("$('bar').style.width", "chips(w);$('bar').style.width")
-    .replace("$('t').addEventListener", '''function chips(w){const c=$('chips');c.innerHTML='';w.gemini.forEach((g,k)=>{const b=document.createElement('button');
+    .replace("$('t').addEventListener", '''function known(){const k={...S.known};S.words.forEach(x=>{const a=S.answers[x.word_id];if(a&&!a.skipped&&a.typed)k[x.khmer]=a.typed.split(',')[0]});return k}
+function chips(w){const c=$('chips');c.innerHTML='';$('pieces').textContent=w.pieces.length?'parts: '+w.pieces.join(' · '):'';
+const K=known();if(w.pieces.length&&w.pieces.every(p=>K[p])){const sp=w.pieces.map(p=>K[p]).join(' ');const b=document.createElement('button');
+b.textContent='★  '+sp;b.onclick=()=>add(sp);c.appendChild(b)}
+w.gemini.forEach((g,k)=>{const b=document.createElement('button');
 b.textContent=(k+1)+'  '+g;b.onclick=()=>add(g);c.appendChild(b)})}
 function add(g){const v=$('t').value.split(',').map(x=>x.trim()).filter(x=>x);if(!v.includes(g))v.push(g);$('t').value=v.join(', ');$('t').focus()}
 document.addEventListener('keydown',e=>{const k=parseInt(e.key);const g=S&&S.words[i].gemini;
@@ -337,6 +360,7 @@ def main() -> int:
         (GEMINI / "drafts.json").write_text(json.dumps({"model": GEMINI_MODEL, "words": words}, ensure_ascii=False,
                                                        indent=1) + "\n", encoding="utf-8")
         store = Store(a.typist, words, GEMINI, "verified")
+        store.extra = {"known": known_spellings(a.typist)}
         page = VERIFY_PAGE
     else:
         store, page = Store(a.typist), PAGE
