@@ -293,8 +293,7 @@ really type; they go into the box, and you can edit or add your own. Only what i
     .replace('<div class="err" id="err">', '<div id="chips" class="row" style="flex-wrap:wrap"></div><div class="err" id="err">')
     .replace("$('bar').style.width", "chips(w);$('bar').style.width")
     .replace("$('t').addEventListener", '''function known(){const k={...S.known};S.words.forEach(x=>{const a=S.answers[x.word_id];if(a&&!a.skipped&&a.typed)k[x.khmer]=a.typed.split(',')[0]});return k}
-function chips(w){const c=$('chips');c.innerHTML='';$('pieces').textContent=w.pieces.length?'parts: '+w.pieces.join(' · '):'';
-const K=known();if(w.pieces.length&&w.pieces.every(p=>K[p])){const sp=w.pieces.map(p=>K[p]).join(' ');const b=document.createElement('button');
+function chips(w){const c=$('chips');c.innerHTML='';const K=known();$('pieces').textContent=w.pieces.length?'parts: '+w.pieces.map(p=>K[p]?p+' = '+K[p]:p).join('  ·  '):'';if(w.pieces.length&&w.pieces.every(p=>K[p])){const sp=w.pieces.map(p=>K[p]).join(' ');const b=document.createElement('button');
 b.textContent='★  '+sp;b.onclick=()=>add(sp);c.appendChild(b)}
 w.gemini.forEach((g,k)=>{const b=document.createElement('button');
 b.textContent=(k+1)+'  '+g;b.onclick=()=>add(g);c.appendChild(b)})}
