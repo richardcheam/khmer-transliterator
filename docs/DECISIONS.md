@@ -540,3 +540,14 @@ there (`git -C ../pocket-tts-khmer show archive/checkpoints-p0-p6:state/DECISION
   - Gemini prompts for 853 non-test words.
   - Plan: `experiments/E14-romanised-typing/PLAN.md`.
   - The adoption rule will be registered before training.
+
+## D205 — E14 registered: one model with Chhunneng + owner romanised typing, against served B (2026-11-02)
+- **Data:** E01's sources plus the Chhunneng train split, the owner's typing (train half) and 400 owner-checked
+  Gemini spellings. 181,785 pairs per epoch. The 160 owner-typed test words are filtered out of every source by
+  Khmer word and typed spelling.
+- **Recipe:** E01's aux arm unchanged; romanised validation is the Chhunneng val split; seeds 0, 1, 2.
+- **Rule** (written before any owner-test score, for any model): it goes to the owner's blinded A/B if
+  - the mean over seeds on the owner test is E14 − B ≥ −3 points;
+  - `romanised_test` E14 − B ≥ −5 points;
+  - `names_test2` E14 − B ≥ −3 points.
+- Details: `experiments/E14-romanised-typing/REGISTRATION.md`; code `scripts/e14_train.py`.

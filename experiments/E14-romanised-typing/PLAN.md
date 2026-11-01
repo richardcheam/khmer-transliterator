@@ -37,7 +37,7 @@ to Chhunneng, the clean rule-romanised pairs and the mined pairs.
 ## Order of work
 1. **Owner typing** (now). About an hour; it can stop and resume.
 2. **Gemini:** the owner pastes the prompts into Gemini and saves each reply; a verify page follows.
-3. **Registration:** data build, filters and the adoption rule are committed.
+3. **Registration:** data build, filters and the adoption rule are committed (`REGISTRATION.md`, D205).
 4. **Training,** then the primary and guard scores, then the owner's A/B.
 5. **Release decision** (owner), with the Chhunneng provenance note.
 
