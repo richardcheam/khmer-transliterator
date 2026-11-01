@@ -4,6 +4,8 @@ word the way they would write it in Latin letters when chatting.
 
     .venv/bin/python scripts/e14.py select                      # once: freeze the 320 words and the test/train split
     .venv/bin/python scripts/e14.py type --typist "Richard"     # open http://127.0.0.1:8767
+    .venv/bin/python scripts/e14.py prompts                     # Gemini prompt files (owner pastes the replies)
+    .venv/bin/python scripts/e14.py verify --typist "Richard"   # check Gemini's spellings, http://127.0.0.1:8768
 
 The page shows one Khmer word at a time. The typist enters one or more spellings separated by commas (the first is
 the one they would normally type) or presses "skip" when they would not type the word. Every answer rewrites
@@ -35,6 +37,7 @@ EXTRA = ["អត់", "ទេ", "ញ៉ាំ", "បាយ", "អី", "ហ្�
          "អរគុណ", "សុខសប្បាយ", "ឆ្ងាញ់", "ទិញ", "លុយ", "ម៉ោង"]
 KHMER_WORD = re.compile(r"^[ក-៿᧠-᧿]+$")
 FIELDS = ("word_id", "khmer", "split", "typed", "skipped", "answered_at")
+GEMINI_MODEL = "Gemini 3.6 Flash, medium thinking, free web app (owner-run, 2026-11-01)"
 
 
 def now() -> str:
@@ -129,14 +132,56 @@ def prompts(batch: int = 100) -> dict:
     return out
 
 
-class Store:
-    """The typist's answers, rewritten to TSV on every save (resume-safe)."""
+def drafts() -> list[dict]:
+    """Gemini's suggested spellings, read from reply_<nn>.txt and aligned with prompt_<nn>.md line by line.
 
-    def __init__(self, typist: str) -> None:
+    Gemini occasionally garbles the Khmer key (e.g. a Latin letter inside it), so rows are matched by position, and a
+    file whose line count differs from its prompt is an error. Words the owner already typed (train half of the
+    typing list) are left out: their labels exist. Test words were never in the prompts; this is checked again.
+
+    Returns:
+        [{"word_id": "g001", "khmer": ..., "split": "train", "gemini": ["knhom", "khnhom"], "key_ok": bool}, ...]
+
+    Raises:
+        SystemExit: a reply file is missing or has a different number of rows than its prompt, or a test word leaked.
+    """
+    words = json.loads((DATA / "words.json").read_text(encoding="utf-8"))
+    test = {w["khmer"] for w in words if w["split"] == "test"}
+    typed = {w["khmer"] for w in words if w["split"] == "train"}
+    out = []
+    for pf in sorted(GEMINI.glob("prompt_*.md")):
+        pw = [x.strip() for x in pf.read_text(encoding="utf-8").split("\n\n", 1)[1].splitlines() if x.strip()]
+        rf = pf.with_name(pf.name.replace("prompt_", "reply_").replace(".md", ".txt"))
+        if not rf.exists():
+            raise SystemExit(f"missing {rf.name}")
+        rl = [x.strip().strip("`").strip() for x in rf.read_text(encoding="utf-8").splitlines() if x.strip()]
+        if len(rl) != len(pw):
+            raise SystemExit(f"{rf.name}: {len(rl)} rows for {len(pw)} prompt words")
+        for w, line in zip(pw, rl):
+            if w in test:
+                raise SystemExit(f"test word {w} in a Gemini prompt")
+            key, _, val = line.partition("=")
+            sp = [v.strip().lower() for v in val.split(",") if v.strip()]
+            if w not in typed:
+                out.append({"word_id": f"g{len(out) + 1:03d}", "khmer": w, "split": "train",
+                            "gemini": list(dict.fromkeys(sp)), "key_ok": key.strip() == w})
+    return out
+
+
+class Store:
+    """The typist's answers, rewritten to TSV on every save (resume-safe).
+
+    Args:
+        typist: name used in the file names.
+        words: the word list (default: the frozen typing list).
+        folder, prefix: where to write `<prefix>_<typist>.tsv` (default: the typing folder, `typed`).
+    """
+
+    def __init__(self, typist: str, words: list[dict] | None = None, folder: Path = DATA, prefix: str = "typed") -> None:
         self.typist = re.sub(r"[^A-Za-z0-9_-]", "_", typist)
-        self.words = json.loads((DATA / "words.json").read_text(encoding="utf-8"))
-        self.path = DATA / f"typed_{self.typist}.tsv"
-        self.log = DATA / f"review_log_{self.typist}.jsonl"
+        self.words = words if words is not None else json.loads((DATA / "words.json").read_text(encoding="utf-8"))
+        self.path = folder / f"{prefix}_{self.typist}.tsv"
+        self.log = folder / f"{prefix}_log_{self.typist}.jsonl" if prefix != "typed" else DATA / f"review_log_{self.typist}.jsonl"
         self.lock = threading.Lock()
         self.answers: dict[str, dict] = {}
         if self.path.exists():
@@ -146,7 +191,8 @@ class Store:
                         self.answers[r["word_id"]] = r
 
     def state(self) -> dict:
-        return {"typist": self.typist, "words": [{"word_id": w["word_id"], "khmer": w["khmer"]} for w in self.words],
+        return {"typist": self.typist,
+                "words": [{"word_id": w["word_id"], "khmer": w["khmer"], "gemini": w.get("gemini", [])} for w in self.words],
                 "answers": {k: {"typed": v["typed"], "skipped": v["skipped"] == "1"} for k, v in self.answers.items()}}
 
     def save(self, word_id: str, typed: str, skipped: bool) -> dict:
@@ -165,12 +211,14 @@ class Store:
             raise ValueError("Latin letters only (a-z, apostrophe, hyphen, space)")
         w = ids[word_id]
         row = {"word_id": word_id, "khmer": w["khmer"], "split": w["split"],
+               **({"gemini": ",".join(w["gemini"])} if "gemini" in w else {}),
                "typed": ",".join(dict.fromkeys(variants)) if not skipped else "", "skipped": "1" if skipped else "0",
                "answered_at": now()}
         with self.lock:
             self.answers[word_id] = row
             with open(self.path, "w", encoding="utf-8", newline="") as f:
-                wr = csv.DictWriter(f, FIELDS, delimiter="\t")
+                wr = csv.DictWriter(f, FIELDS + (("gemini",) if self.words and "gemini" in self.words[0] else ()),
+                                    delimiter="\t")
                 wr.writeheader()
                 for x in self.words:
                     if x["word_id"] in self.answers:
@@ -216,7 +264,24 @@ $('t').addEventListener('keydown',e=>{if(e.key==='Enter')send(false)});load();
 </script></body></html>"""
 
 
-def make_handler(store: Store):
+VERIFY_PAGE = (PAGE
+    .replace("<title>Romanised Khmer typing</title>", "<title>Check Gemini spellings</title>")
+    .replace('''<p class="mut">Type each Khmer word the way <b>you</b> would write it in Latin letters when chatting. Several ways? Separate
+them with commas, the usual one first (e.g. <i>knhom, khnhom</i>). Press <b>Skip</b> if you would never type it.</p>''',
+'''<p class="mut">Gemini suggested the spellings under each word. Click (or press 1, 2, 3) the ones a Cambodian would
+really type; they go into the box, and you can edit or add your own. Only what is in the box is kept. Box empty and
+<b>Skip</b> = drop the word.</p>''')
+    .replace('<div class="err" id="err">', '<div id="chips" class="row" style="flex-wrap:wrap"></div><div class="err" id="err">')
+    .replace("$('bar').style.width", "chips(w);$('bar').style.width")
+    .replace("$('t').addEventListener", '''function chips(w){const c=$('chips');c.innerHTML='';w.gemini.forEach((g,k)=>{const b=document.createElement('button');
+b.textContent=(k+1)+'  '+g;b.onclick=()=>add(g);c.appendChild(b)})}
+function add(g){const v=$('t').value.split(',').map(x=>x.trim()).filter(x=>x);if(!v.includes(g))v.push(g);$('t').value=v.join(', ');$('t').focus()}
+document.addEventListener('keydown',e=>{const k=parseInt(e.key);const g=S&&S.words[i].gemini;
+if(g&&k>=1&&k<=g.length){e.preventDefault();add(g[k-1])}});
+$('t').addEventListener'''))
+
+
+def make_handler(store: Store, page: str = PAGE):
     class Handler(BaseHTTPRequestHandler):
         def log_message(self, *a):
             pass
@@ -232,7 +297,7 @@ def make_handler(store: Store):
         def do_GET(self):
             if self.path == "/api/state":
                 return self.json(store.state())
-            b = PAGE.encode()
+            b = page.encode()
             self.send_response(HTTPStatus.OK)
             self.send_header("Content-Type", "text/html; charset=utf-8")
             self.send_header("Content-Length", str(len(b)))
@@ -260,12 +325,22 @@ def main() -> int:
     t = sub.add_parser("type")
     t.add_argument("--typist", required=True)
     t.add_argument("--port", type=int, default=8767)
+    v = sub.add_parser("verify")
+    v.add_argument("--typist", required=True)
+    v.add_argument("--port", type=int, default=8768)
     a = ap.parse_args()
     if a.cmd in ("select", "prompts"):
         print(json.dumps(select() if a.cmd == "select" else prompts(), ensure_ascii=False, indent=1))
         return 0
-    store = Store(a.typist)
-    srv = ThreadingHTTPServer(("127.0.0.1", a.port), make_handler(store))
+    if a.cmd == "verify":
+        words = drafts()
+        (GEMINI / "drafts.json").write_text(json.dumps({"model": GEMINI_MODEL, "words": words}, ensure_ascii=False,
+                                                       indent=1) + "\n", encoding="utf-8")
+        store = Store(a.typist, words, GEMINI, "verified")
+        page = VERIFY_PAGE
+    else:
+        store, page = Store(a.typist), PAGE
+    srv = ThreadingHTTPServer(("127.0.0.1", a.port), make_handler(store, page))
     print(f"typing page: open http://127.0.0.1:{a.port}  ({len(store.answers)}/{len(store.words)} answered; Ctrl+C stops)")
     try:
         srv.serve_forever()
