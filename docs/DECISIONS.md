@@ -551,3 +551,16 @@ there (`git -C ../pocket-tts-khmer show archive/checkpoints-p0-p6:state/DECISION
   - `romanised_test` E14 − B ≥ −5 points;
   - `names_test2` E14 − B ≥ −3 points.
 - Details: `experiments/E14-romanised-typing/REGISTRATION.md`; code `scripts/e14_train.py`.
+
+## D206 — E14 result: not adopted; new data helps, but served B stays well ahead (2026-11-02)
+- **Owner test (160 words):**
+  - E14 41.4% (3 seeds: 40.0 / 41.7 / 42.7) against B 63.1%;
+  - mean −21.7 points, CI [−28.8, −15.0] (rule ≥ −3).
+- **Guards:** both fail. `romanised_test` −5.7 (rule ≥ −5); `names_test2` −7.9 (rule ≥ −3).
+- **No A/B and no serving change.**
+- **Diagnostics:**
+  - the clean E01 aux models score 24.0% on the owner test, so the new data adds +17.4 points;
+  - B saw 130 of the 160 test words in training, yet still leads on the 30 it never saw (60.0% vs 43–52%);
+  - the re-ranking list does not explain the gap.
+- **Hypothesis (untested):** the 108k rule-romanised rows drown out the chat conventions; B had none.
+- Details: `experiments/E14-romanised-typing/RESULTS.md`.
