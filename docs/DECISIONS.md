@@ -564,3 +564,13 @@ there (`git -C ../pocket-tts-khmer show archive/checkpoints-p0-p6:state/DECISION
   - the re-ranking list does not explain the gap.
 - **Hypothesis (untested):** the 108k rule-romanised rows drown out the chat conventions; B had none.
 - Details: `experiments/E14-romanised-typing/RESULTS.md`.
+
+## D207 — E15 registered: E14 without the rule-romanised dictionary rows (2026-11-02)
+- **Owner:** "yes go ahead prep everything and only train on my command".
+- **Change:** this tests D206's hypothesis. The only change from E14 is that source `roman` (107,617 rows) is
+  dropped, leaving 74,168 pairs per epoch.
+- **Same as E14:** recipe, seeds, owner test, guards and thresholds (vs B: owner test ≥ −3, `romanised_test` ≥ −5,
+  `names_test2` ≥ −3).
+- **Hypothesis check:** E15 − E14 on the owner test is ≥ +5 points with a CI that excludes 0.
+- **Owner test:** this is its second use, declared.
+- Plan: `experiments/E15-real-typing-mix/PLAN.md`; run `scripts/e15_run.sh`.

@@ -46,6 +46,9 @@ REPORT = EXPERIMENT / "results.json"
 TYPING = ROOT / "data" / "e14" / "typing"
 GEMINI = ROOT / "data" / "e14" / "gemini"
 TYPIST = "Richard"
+NAME = "e14"                 # candidate prefix in the report (E15 reuses this script with its own settings)
+DROP: set[str] = set()       # training sources left out (E15: {"roman"})
+REFS = {"e01_aux": ROOT / "models" / "unified"}   # owner-test-only references, folders with aux_s<seed>/translit.npz
 REPEATED = {"list_train", "owner_examples", "llm_drafts", "owner_typing", "owner_checked_llm"}
 CONFIG_KEYS = {**tu.CONFIG_KEYS, "paths": {"runs_dir": "models/e14"}}
 
@@ -141,6 +144,7 @@ def build() -> dict:
         "owner_typing": owner_rows(ans["owner_typing"], vocab),
         "owner_checked_llm": owner_rows(ans["owner_checked_llm"], vocab),
     }
+    sources = {k: v for k, v in sources.items() if k not in DROP}
     kept, excl = {}, {}
     for name, rows in sources.items():
         good, by, by_set, seen = [], {"latin_related": 0, "khmer_target": 0, "bad_chars_or_length": 0,
@@ -296,16 +300,17 @@ def score() -> dict:
     test = test_panel()
     items = [s for _, sp in test for s in sp]
     P = benchmark.load("v1")
-    models = {f"e14_aux_s{s}": (D / f"aux_s{s}" / "translit.npz", google) for s in runs()}
+    models = {f"{NAME}_aux_s{s}": (D / f"aux_s{s}" / "translit.npz", google) for s in runs()}
     models["served_b"] = (ROOT / "models/model_b/translit.npz", known_served)
-    for s in (0, 1, 2):
-        models[f"e01_aux_s{s}"] = (ROOT / f"models/unified/aux_s{s}/translit.npz", google)
+    for ref, folder in REFS.items():
+        for s in (0, 1, 2):
+            models[f"{ref}_s{s}"] = (folder / f"aux_s{s}" / "translit.npz", google)
     out: dict = {"owner_test": {"words": len(test), "items": len(items)}, "models": {}, "per_word": {}}
     for name, (npz, known) in models.items():
         ws = word_scores(spell_items(npz, items, known), test)
         res = {"owner_test": round(float(100 * sum(ws) / len(ws)), 2)}
         out["per_word"][name] = [str(x) for x in ws]
-        if not name.startswith("e01"):
+        if not any(name.startswith(ref) for ref in REFS):
             for p in ("romanised_test", "names_test2", "pick_test", "dev41", "list_test"):
                 _raw, rer = tu.predict(npz, [a for a, _ in P[p]], known)
                 c = sum(r in f for r, (_a, f) in zip(rer, P[p]))
@@ -321,23 +326,28 @@ def score() -> dict:
     seeds = runs()
     if seeds:
         b = [Fraction(x) for x in out["per_word"]["served_b"]]
-        e = {s: [Fraction(x) for x in out["per_word"][f"e14_aux_s{s}"]] for s in seeds}
-        guards = {s: {p: (out["models"][f"e14_aux_s{s}"][p]["correct"], out["models"]["served_b"][p]["correct"],
+        e = {s: [Fraction(x) for x in out["per_word"][f"{NAME}_aux_s{s}"]] for s in seeds}
+        guards = {s: {p: (out["models"][f"{NAME}_aux_s{s}"][p]["correct"], out["models"]["served_b"][p]["correct"],
                           len(P[p])) for p in ("romanised_test", "names_test2")} for s in seeds}
         g = gate(e, b, guards)
         diff = [sum(e[s][i] for s in seeds) / len(seeds) - b[i] for i in range(len(b))]
         g["primary_word_bootstrap_95ci_pp"] = list(benchmark.paired_bootstrap(diff))
-        g["words_e14_better_worse_tied"] = [sum(d > 0 for d in diff), sum(d < 0 for d in diff), sum(d == 0 for d in diff)]
-        e01 = [Fraction(x) for s in (0, 1, 2) for x in out["per_word"][f"e01_aux_s{s}"]]
-        g["diagnostic_e14_minus_e01_aux_pp"] = float(Fraction(100) * (
-            sum(sum(v) for v in e.values()) / len(seeds) - sum(e01) / 3) / len(b))
+        g[f"words_{NAME}_better_worse_tied"] = [sum(d > 0 for d in diff), sum(d < 0 for d in diff),
+                                                sum(d == 0 for d in diff)]
+        for ref in REFS:
+            rw = [[Fraction(x) for x in out["per_word"][f"{ref}_s{s}"]] for s in (0, 1, 2)]
+            g[f"diagnostic_{NAME}_minus_{ref}_pp"] = float(Fraction(100) * (
+                sum(sum(v) for v in e.values()) / len(seeds) - sum(map(sum, rw)) / 3) / len(b))
+            if ref != "e01_aux":
+                rd = [sum(e[s][i] for s in seeds) / len(seeds) - sum(r[i] for r in rw) / 3 for i in range(len(b))]
+                g[f"diagnostic_{NAME}_minus_{ref}_word_bootstrap_95ci_pp"] = list(benchmark.paired_bootstrap(rd))
         out["gate"] = g
     REPORT.write_text(json.dumps(out, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
     return out
 
 
-def main() -> int:
-    ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
+def main(doc: str | None = None) -> int:
+    ap = argparse.ArgumentParser(description=(doc or __doc__).splitlines()[0])
     ap.add_argument("mode", choices=["data", "train", "export", "score"])
     ap.add_argument("--seed", type=int, default=0)
     ap.add_argument("--config", type=Path, default=CONFIG)
@@ -360,7 +370,7 @@ def main() -> int:
         out = a.out or ROOT / cfg["paths"]["runs_dir"] / f"aux_s{a.seed}"
         inputs = [a.config, D / "manifest.json", D / "spell_train.tsv", D / "aux_train.tsv"] + \
                  [D / f"val_{n}.tsv" for n in ("romanised", "names", "english")]
-        run = Run(out, "E14-romanised-typing" + ("-smoke" if a.set else ""), f"aux_s{a.seed}", cfg, inputs,
+        run = Run(out, EXPERIMENT.name + ("-smoke" if a.set else ""), f"aux_s{a.seed}", cfg, inputs,
                   job_type="smoke" if a.set else "train")
         r = tu.train("aux", a.seed, out=out, cfg=cfg, run=run)
         print(json.dumps({k: v for k, v in r.items() if k != "log"}))
