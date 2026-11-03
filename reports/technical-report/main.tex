@@ -289,8 +289,8 @@ project-affiliated judge. Spellings were shown without model identity, rank or s
 order, and identical spellings from two systems were shown once. In the two prospective tests and for the new
 candidate-coverage judgments, the judge answered each spelling with an explicit click on a local review page;
 unanswered spellings count as \emph{missing}, never as rejections, and an unjudged spelling stays unassessed. The
-earlier development review was answered in chat instead and transcribed under three interpretation rules the judge
-confirmed, including rules for unnamed and skipped candidates (Appendix~\ref{app:notes}).
+earlier development review was answered in free text instead and mapped to the same three labels under fixed
+rules confirmed by the judge (for example, a candidate the reply does not name is not acceptable).
 
 Two sampling designs were used and are never pooled. A development review of 60 words used a representative sample of 40 words and an
 enriched sample of 20 words where the compared systems disagreed, reported separately; it was a post hoc
@@ -305,6 +305,7 @@ judge and policy; they are not independent, and the 40/40/40 design does not est
 \label{sec:results}
 
 Table~\ref{tab:comparisons} lists the principal comparisons; Table~\ref{tab:tests} gives the blinded tests.
+Appendix~\ref{app:inventory} lists every experiment behind them.
 
 \begin{table*}[t]
 \centering\small
@@ -313,26 +314,26 @@ conditional on the checkpoints. Reference agreement is exploratory except where 
 \label{tab:comparisons}
 \begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}p{2.3cm}L>{\raggedright\arraybackslash}p{3.3cm}>{\raggedright\arraybackslash}p{4.1cm}@{}}
 \toprule
-Question & Comparison (experiment) & $\Delta$ [95\%] & Evidence and limits \\
+Question & Comparison & $\Delta$ [95\%] & Evidence and limits \\
 \midrule
-Pronunciation input & small model, letters + phones vs letters (E02) & \val{e02.phones} \val{e02.phones.ci} &
+Pronunciation input & small model, letters + phones vs letters & \val{e02.phones} \val{e02.phones.ci} &
   curated references, \val{e02.families} families; 3 paired seeds, all positive; registered, inconclusive \\
- & same, on consonant-screened pairs (E03) & \val{e03.phones} \val{e03.phones.ci} & mined references; 3 seeds \\
- & letters + phones vs letters (E04) & \val{e04.gp} \val{e04.gp.ci} & mined references; 3 seeds \\
- & pooled letters+phones candidates vs letters top-8 (E05) & \val{e05.gp_g8} \val{e05.gp_g8.ci} &
+ & same, on consonant-screened pairs & \val{e03.phones} \val{e03.phones.ci} & mined references; 3 seeds \\
+ & same, rerun alongside a phones-only arm & \val{e04.gp} \val{e04.gp.ci} & mined references; 3 seeds \\
+ & pooled letters+phones candidates vs letters top-8 & \val{e05.gp_g8} \val{e05.gp_g8.ci} &
   top-8 oracle, equal budget \\
- & adapter with CMUdict reading vs released adapter (E13) & \val{e13.eval} \val{e13.eval.ci} &
+ & adapter with CMUdict reading vs released adapter & \val{e13.eval} \val{e13.eval.ci} &
   mined references; several ingredients changed \\
 \midrule
-ByT5 adaptation & corrected adapter vs mean of 3 small letters models (E07) & \val{e07.vs_g} \val{e07.vs_g.ci} &
+ByT5 adaptation & corrected adapter vs mean of 3 small letters models & \val{e07.vs_g} \val{e07.vs_g.ci} &
   registered beam-4; one adapter run \\
 \midrule
-More data & + recovered, ALT and synthetic rows vs screened mined pairs only (E08 vs E07) & \val{e08.vs_e07} \val{e08.vs_e07.ci} &
+More data & + recovered, ALT and synthetic rows vs screened mined pairs only & \val{e08.vs_e07} \val{e08.vs_e07.ci} &
   registered beam-4; greedy \val{e08.vs_e07.greedy} \val{e08.vs_e07.greedy.ci} \\
- & real data only vs E07, greedy (E11 vs E07) & \val{e11.vs_e07} \val{e11.vs_e07.ci} & one run each \\
- & real data only vs with synthetic rows (E11 vs E08) & \val{e11.vs_e08} \val{e11.vs_e08.ci} & one run each \\
+ & released adapter (real data only) vs first corrected adapter, greedy & \val{e11.vs_e07} \val{e11.vs_e07.ci} & one run each \\
+ & real data only vs with synthetic rows & \val{e11.vs_e08} \val{e11.vs_e08.ci} & one run each \\
 \midrule
-Longer training & 6,000 vs 3,000 updates (E12 vs E11) & \val{e12.vs_e11.hist} \val{e12.vs_e11.hist.ci} &
+Longer training & 6,000 vs 3,000 updates & \val{e12.vs_e11.hist} \val{e12.vs_e11.hist.ci} &
   one seed; blinded test in Table~\ref{tab:tests} \\
 \bottomrule
 \end{tabularx}
@@ -452,14 +453,14 @@ percentage points, 95\% paired family bootstrap.}
 Sample & System & Acceptable & Unc. & Ord. & Irreg. & Names & $\Delta$ [95\%] \\
  & & of 120 & & of 40 & of 40 & of 40 & \\
 \midrule
-\multirow{2}{*}{1 (E12)} & Released adapter (E11) & \val{t1.e11.acceptable} (\val{t1.e11.share}\%) &
+\multirow{2}{*}{1} & Released adapter & \val{t1.e11.acceptable} (\val{t1.e11.share}\%) &
   \val{t1.e11.uncertain} & \val{t1.ordinary.e11} & \val{t1.irregular.e11} & \val{t1.names.e11} & \\
- & 6,000 updates (E12) & \val{t1.e12.acceptable} (\val{t1.e12.share}\%) & \val{t1.e12.uncertain} &
+ & 6,000 updates & \val{t1.e12.acceptable} (\val{t1.e12.share}\%) & \val{t1.e12.uncertain} &
   \val{t1.ordinary.e12} & \val{t1.irregular.e12} & \val{t1.names.e12} & \val{t1.diff} \val{t1.diff.ci} \\
 \midrule
-\multirow{2}{*}{2 (E13)} & Released adapter (E11) & \val{t2.e11.acceptable} (\val{t2.e11.share}\%) &
+\multirow{2}{*}{2} & Released adapter & \val{t2.e11.acceptable} (\val{t2.e11.share}\%) &
   \val{t2.e11.uncertain} & \val{t2.ordinary.e11} & \val{t2.irregular.e11} & \val{t2.names.e11} & \\
- & Pronunciation-guided (E13) & \val{t2.e13.acceptable} (\val{t2.e13.share}\%) & \val{t2.e13.uncertain} &
+ & Pronunciation-guided & \val{t2.e13.acceptable} (\val{t2.e13.share}\%) & \val{t2.e13.uncertain} &
   \val{t2.ordinary.e13} & \val{t2.irregular.e13} & \val{t2.names.e13} & \val{t2.diff} \val{t2.diff.ci} \\
 \bottomrule
 \end{tabular}
@@ -493,8 +494,8 @@ Before release the adapter export was verified to be bit-identical to the traini
 \val{b.i.nchecks} checks with network access blocked at the socket level, including refusal of empty, multi-word,
 non-Latin and over-long inputs and of corrupt or mismatched files. The published repositories were re-downloaded and
 the quick-start commands re-run. Both interfaces share one command (\texttt{khmer-translit predict}); exact usage is
-in each model card and in the report's companion README. Training data, judgments and references are not
-distributed.
+in each model card and in the report's companion README. Every reported value is generated by script from the
+project's recorded results. Training data, judgments and references are not distributed.
 
 % =====================================================================================================
 \section{Limitations and conclusion}
@@ -598,30 +599,5 @@ small model used the mining and filter steps before the selection repair and was
 rather than by blinded review.}
 \label{fig:pipeline}
 \end{figure}
-
-\section{Notes on the evidence}
-\label{app:notes}
-{\footnotesize
-\begin{itemize}
-\item Empirical values are generated by \texttt{tools/extract.py} from the project's committed files at revision
-  \texttt{d7e7d80}. Most are read from JSON results or derived from them. A few exist only in a committed report's
-  text or table and are recorded as labelled transcriptions with file and section: the first test's per-group
-  counts, the development review's reference cross-table, the number of changed test-1 spellings, the number of
-  synthetic-label words, the development-set size of the small model and the number of difficult E13 families.
-  \texttt{EVIDENCE\_LEDGER.md} maps every value to its source. Architecture and recipe settings, sample-design
-  constants, dates and bibliographic data are written literally.
-\item The development review was answered in chat. Its labels were transcribed under three rules the judge
-  confirmed: candidates of an item not named in the reply are not acceptable; ``ok'' without a label means all of
-  the item's candidates are acceptable; a skipped single-candidate item is acceptable. The judge then clarified the
-  skipped multi-candidate items, and a second reply used ``not sure'' (all candidates uncertain) and ``maybe C too''
-  (C uncertain), after which the judge confirmed three items. No spelling was typed. The two prospective tests and
-  the new coverage judgments were clicked on the review page. Pooled 60-word percentages in some project notes mix
-  the review's two samples and are not used.
-\item The released small model's published latency (\val{s.t1.p50}/\val{s.t1.p95}\,ms) is from the first of three recorded measurement
-  runs; later runs gave \val{s.t2.p50}/\val{s.t2.p95} and \val{s.t3.p50}/\val{s.t3.p95}\,ms (median/95th
-  percentile); Table~\ref{tab:releases} gives the range. Parity checks used all \val{par.dev.n} development rows and \val{par.eval.n} evaluation rows, including
-  items outside the primary scoring sets (\val{d.items} and \val{h.items} items).
-\end{itemize}
-}
 
 \end{document}
