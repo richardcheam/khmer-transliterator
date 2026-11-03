@@ -8,7 +8,7 @@ published on arXiv or any other venue.
 
 | File | What it is |
 |---|---|
-| `main.tex` | The report (two columns, 10 pt; one-column appendix with methods and worked examples). Empirical values are `\val{key}` macros; architecture and recipe settings, sample-design constants, dates and bibliographic data are literal. Both figures are TikZ drawings in the source |
+| `main.tex` | The report (two columns, 10 pt; one-column appendix with methods and worked examples). Empirical values are `\val{key}` macros; architecture and recipe settings, sample-design constants, dates and bibliographic data are literal. All three figures (model architectures, data and review pipeline, candidate coverage) are TikZ drawings in the source |
 | `references.bib` | Bibliography; each entry checked against its primary record |
 | `tools/extract.py` | Builds every empirical value at a pinned revision, by kind: `json` (read from a committed result file), `derived` (computed from those) or `transcribed` (copied from a committed report's text or table, with file and section). Writes `data/results_extract.json` and `generated/values.tex`. Asserts the stated relationships and fails if `main.tex` uses an undefined `\val` key |
 | `data/results_extract.json` | The checked results extract: value, source file, JSON field, revision, meaning and denominator for each key |

@@ -178,3 +178,25 @@ Table 2) moved unchanged to Appendix A as Table 3; the main text now has an outc
 observed outcome, main limitation) whose only numbers are `t1.e11.acceptable`, `t1.changed` and
 `t2.e11.acceptable`. The abstract and introduction now say "we found no suitable curated training dataset or
 established benchmark" instead of stating that none exists.
+
+## 8. Architecture figure (Figure 1, added 2026-11-04)
+
+Drawn from the implementation, not from a generic Transformer or PEFT diagram. Figures are now numbered
+1 (architectures), 2 (data and review pipeline) and 3 (candidate coverage).
+
+| Element in Figure 1 | Verified against |
+|---|---|
+| Small model input = task marker + one token per letter, no end symbol | `src/khmer_translit/phonetic_source.py` `encode_source` (letters mode: `<task:en>` then the letters; doctest `['<task:en>', 'o', 'n', 'e']`); `translit.Transliterator.encode_ids` adds nothing else |
+| Small model: encoder and decoder, 3 layers each, width 192, feed-forward 512, 4 heads; learned embeddings and positions; decoder cross-attends to the encoder states | `models/e02/letters_s0/model.npz`: `enc.0-2`, `dec.0-2`, `src_emb (157, 192)`, `tgt_emb (81, 192)`, `enc.0.ff1 (512, 192)`, meta `heads 4`, `layers 3`; `translit.py` `decode_step` (self, cross, ff) |
+| Small model output = one Khmer Unicode character per step; start symbol first, stops at the end symbol | `translit.py` (`PAD, BOS, EOS = 0, 1, 2`; beam search starts from `[BOS]`, stops at `EOS`); target vocabulary = 78 Khmer characters + 3 specials; all 7 characters of ខូហ្វ៊ី are in it |
+| Small model fully trained | trained from scratch (E02); no frozen part |
+| ByT5 input = UTF-8 bytes, token id = byte + 3, then an end symbol | `src/khmer_translit/byt5.py` `encode` (`OFFSET = 3`, `EOS` appended; doctest `encode("ab") == [100, 101, 1]`); `coffee` bytes 63 6F 66 66 65 65 computed with Python |
+| ByT5 sizes: 12 encoder layers, 4 decoder layers, width 1472, gated feed-forward | base `config.json` at the pinned revision (`num_layers 12`, `num_decoder_layers 4`, `d_model 1472`, `feed_forward_proj gated-gelu`) |
+| ByT5 generation starts from the start symbol and stops at the end symbol | `config.json` `decoder_start_token_id 0`, `eos_token_id 1`; `byt5.decode` stops at EOS |
+| LoRA placement: q, k, v, o of every `T5Attention` (encoder self-attention, decoder self- and cross-attention) and wi_0, wi_1, wo of every gated feed-forward block; everything else frozen | `byt5.py` `TARGETS` and the loop over `T5Attention` / `T5DenseGatedActDense` after `requires_grad_(False)`; released `adapter_config.json` targets `["attn", "ffn"]`; 128 wrapped layers × (A, B) = 256 tensors = `x.tensors` |
+| Output bytes E1 9E 81 = ខ (U+1781); ខូហ្វី is 18 bytes | computed with Python from the displayed text |
+| coffee → ខូហ្វ៊ី (small model) | recorded first candidate in `experiments/E02-release/reports/install_verify.json` (`cli_single_json`) at the archived revision; also the model card |
+| coffee → ខូហ្វី (adapter) | recorded greedy output in `experiments/E11-real-data-byt5/release/verify.json` `smoke.coffee`; also the model card |
+
+The two outputs differ; the figure shows each as recorded and makes no quality comparison. *coffee* is a training
+word for both models, so the example illustrates the mechanism, not evaluation. No model was run for the figure.
