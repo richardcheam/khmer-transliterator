@@ -170,7 +170,12 @@ def prompts() -> dict:
 
 
 def read_replies() -> tuple[list[tuple[str, list[str]]], dict]:
-    """(Khmer word, Gemini spellings) for every answered prompt, aligned by position; reports skipped files."""
+    """(Khmer word, Gemini spellings) for every answered prompt; reports partial and skipped files.
+
+    Rows are aligned by position when the reply has one line per word (Gemini may garble a key). Otherwise lines
+    are matched by their Khmer key, unmatched words are skipped, and the file is skipped if under 90% match.
+    Spaced spellings (`rieb chom`) are joined, as for the owner's spaced answers.
+    """
     test = {w["khmer"] for w in test_words()}
     rows, report = [], {"answered": [], "missing": [], "bad_length": []}
     for pf in sorted(GEMINI.glob("prompt_*.md")):
@@ -180,15 +185,22 @@ def read_replies() -> tuple[list[tuple[str, list[str]]], dict]:
             report["missing"].append(pf.name)
             continue
         rl = [x.strip().strip("`").strip() for x in rf.read_text(encoding="utf-8").splitlines() if "=" in x]
-        if len(rl) != len(pw):
-            report["bad_length"].append(f"{rf.name}: {len(rl)} rows for {len(pw)} words")
-            continue
+        if any(w in test for w in pw):
+            raise SystemExit(f"test word in {pf.name}")
+        if len(rl) == len(pw):
+            pairs = list(zip(pw, rl))
+        else:                       # a line is missing or extra: match by the Khmer key, skip unmatched words
+            by_key = {}
+            for line in rl:
+                by_key.setdefault(line.partition("=")[0].strip(), line)
+            pairs = [(w, by_key[w]) for w in pw if w in by_key]
+            report["bad_length"].append(f"{rf.name}: {len(rl)} rows for {len(pw)} words, {len(pairs)} matched by key")
+            if len(pairs) < 0.9 * len(pw):
+                continue
         report["answered"].append(rf.name)
-        for w, line in zip(pw, rl):
-            if w in test:
-                raise SystemExit(f"test word {w} in a prompt")
-            rows.append((w, list(dict.fromkeys(v.strip().lower() for v in line.partition("=")[2].split(",")
-                                              if v.strip()))))
+        for w, line in pairs:
+            rows.append((w, list(dict.fromkeys(v.strip().lower().replace(" ", "")
+                                               for v in line.partition("=")[2].split(",") if v.strip()))))
     return rows, report
 
 

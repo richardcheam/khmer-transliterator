@@ -587,3 +587,14 @@ there (`git -C ../pocket-tts-khmer show archive/checkpoints-p0-p6:state/DECISION
   seen.
 - **Next:** mixing the existing sources differently is exhausted; the lever is more real chat-typing data.
 - Details: `experiments/E15-real-typing-mix/RESULTS.md`.
+
+## D209 — E16 registered: E15 plus bulk Gemini spellings with an automatic filter (2026-11-03)
+- **Owner:** "i want geimini in bulk and we can use automatic filter instead"; "go ahead and train when data is ready
+  automatically".
+- **Data:** Gemini (`gemini-3.6-flash`, API, owner's free key) spells 10,000 common Khmer words that have no owner
+  label. Fixed rules drop spellings that are malformed, that clash with trusted data, or that Gemini gives for
+  several words (kept only for the most common one). No hand checking. Added once to E15's mix.
+- **Same as E15:** recipe, seeds and thresholds vs B (owner test ≥ −3, `romanised_test` ≥ −5, `names_test2` ≥ −3).
+- **Owner test:** its third use, declared; no E16 choice was made from it.
+- **Data check:** E16 − E15 ≥ +5 points with a CI that excludes 0.
+- Plan: `experiments/E16-gemini-bulk/PLAN.md`; run `scripts/e16_run.sh`.

@@ -49,6 +49,7 @@ TYPIST = "Richard"
 NAME = "e14"                 # candidate prefix in the report (E15 reuses this script with its own settings)
 DROP: set[str] = set()       # training sources left out (E15: {"roman"})
 REFS = {"e01_aux": ROOT / "models" / "unified"}   # owner-test-only references, folders with aux_s<seed>/translit.npz
+EXTRA: dict = {}             # extra training sources: name -> (file, loader returning [(latin, khmer)]) (E16)
 REPEATED = {"list_train", "owner_examples", "llm_drafts", "owner_typing", "owner_checked_llm"}
 CONFIG_KEYS = {**tu.CONFIG_KEYS, "paths": {"runs_dir": "models/e14"}}
 
@@ -144,6 +145,7 @@ def build() -> dict:
         "owner_typing": owner_rows(ans["owner_typing"], vocab),
         "owner_checked_llm": owner_rows(ans["owner_checked_llm"], vocab),
     }
+    sources.update({k: load() for k, (_f, load) in EXTRA.items()})
     sources = {k: v for k, v in sources.items() if k not in DROP}
     kept, excl = {}, {}
     for name, rows in sources.items():
@@ -214,6 +216,7 @@ def build() -> dict:
         "input_sha256": {str(p.relative_to(ROOT)): tu.sha(p) for p in inputs},
         "owner_files_sha256": {f.name: tu.sha(f) for f in (TYPING / f"typed_{TYPIST}.tsv",
                                                             GEMINI / f"verified_{TYPIST}.tsv")},
+        **({"extra_inputs_sha256": {str(f.relative_to(ROOT)): tu.sha(f) for f, _l in EXTRA.values()}} if EXTRA else {}),
         "output_sha256": {f: tu.sha(D / f) for f in ("spell_train.tsv", "aux_train.tsv", "val_romanised.tsv",
                                                     "val_names.tsv", "val_english.tsv")},
     }
