@@ -200,3 +200,11 @@ Drawn from the implementation, not from a generic Transformer or PEFT diagram. F
 
 The two outputs differ; the figure shows each as recorded and makes no quality comparison. *coffee* is a training
 word for both models, so the example illustrates the mechanism, not evaluation. No model was run for the figure.
+
+**Figure 1 redesign (2026-11-04).** Two rows per panel (word → tokens → embeddings → encoder; decoder → generated
+units → Khmer text), one encoder-states arrow between rows, and a separate dashed feedback path. In panel B the
+attention and feed-forward parts are drawn frozen with a separate trained block labelled "LoRA adapter" beside each,
+matching `byt5.py` (the adapter adds `B·A·x` to a frozen linear layer). The panel A output shows all 7 characters
+of ខូហ្វ៊ី; panel B shows the first three output bytes (E1 9E 81 = ខ) as a labelled excerpt with "ខ: 3 bytes;
+complete output: 18 bytes". Layer counts and the byte-to-token offset (+3) moved to the caption. The figure is a
+full-width float on its own page (page 2); the PDF stays at 9 pages.

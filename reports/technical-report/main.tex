@@ -118,112 +118,131 @@ Figure~\ref{fig:arch} shows how each model turns the same English word into Khme
 encoder--decoder models: the encoder reads the whole input, and the decoder writes the output one unit at a time,
 feeding each new unit back in to predict the next. They differ in their units and in what is trained.
 
-\begin{figure*}[t]
+\begin{figure*}[p]
 \centering
 \begin{tikzpicture}[x=1mm, y=1mm, font=\small,
-  tok/.style={draw=cText, fill=cText!8, inner sep=0pt, minimum height=5.6mm, minimum width=4.4mm,
-    font=\footnotesize, anchor=west},
-  spc/.style={tok, draw=black!45, fill=black!5, font=\scriptsize\itshape},
-  byte/.style={tok, minimum width=5.2mm, font=\scriptsize\ttfamily},
-  word/.style={draw=cText, fill=cText!8, rounded corners=2pt, minimum height=9mm, minimum width=15mm,
-    font=\large, inner sep=2pt},
-  trained/.style={draw=cModel!90!black, fill=cModel!18, line width=0.8pt},
-  frozen/.style={draw=cFrozen, line width=0.8pt, pattern=north east lines, pattern color=cFrozen!45},
-  adapt/.style={draw=cModel!90!black, fill=cModel!30, rounded corners=1pt, inner sep=1pt, minimum width=17mm,
-    minimum height=3.6mm, font=\scriptsize},
-  blab/.style={font=\footnotesize\bfseries, align=center, fill=white, inner sep=1.2pt, rounded corners=1pt},
-  note/.style={font=\scriptsize, text=cMuted, align=center},
-  arr/.style={-{Stealth[length=2mm]}, thick, black!65},
+  tok/.style={draw=cText, fill=cText!8, inner sep=0pt, minimum height=6.4mm, minimum width=5.2mm,
+    font=\small, anchor=west},
+  spc/.style={tok, draw=black!45, fill=black!5, minimum width=7.6mm, font=\footnotesize\itshape},
+  byte/.style={tok, minimum width=6.4mm, font=\footnotesize\ttfamily},
+  word/.style={draw=cText, fill=cText!8, rounded corners=2pt, minimum height=11mm, minimum width=19mm,
+    font=\Large, inner sep=2pt},
+  trained/.style={draw=cModel!90!black, fill=cModel!18, line width=0.9pt, rounded corners=1.5pt},
+  frozen/.style={draw=cFrozen, line width=0.9pt, pattern=north east lines, pattern color=cFrozen!40,
+    rounded corners=1.5pt},
+  sub/.style={draw=cFrozen, fill=white, line width=0.6pt, minimum height=5.6mm, minimum width=19mm,
+    font=\footnotesize, inner sep=1pt},
+  lora/.style={draw=cModel!90!black, fill=cModel!45, line width=0.6pt, rounded corners=1pt, minimum height=5.6mm,
+    minimum width=16mm, font=\scriptsize, align=center, inner sep=0.5pt},
+  head/.style={font=\normalsize\bfseries, fill=white, inner sep=1.5pt, rounded corners=1pt},
+  lab/.style={font=\footnotesize, fill=white, inner sep=1pt},
+  note/.style={font=\footnotesize, text=cMuted, align=center},
+  arr/.style={-{Stealth[length=2.6mm, width=2mm]}, line width=1pt, black!70},
+  fb/.style={-{Stealth[length=2.6mm, width=2mm]}, line width=1pt, cModel!85!black, dashed},
   ptitle/.style={font=\normalsize\bfseries, anchor=west},
-  pnote/.style={font=\footnotesize\itshape, anchor=east}]
-% ======================= Panel A =======================
+  pnote/.style={font=\small\itshape, anchor=east}]
+% ======================================================== Panel A
 \node[ptitle] at (0,0) {A.\ Small character-level Transformer};
 \node[pnote, text=cModel!80!black] at (171,0) {Entire model trained from scratch};
-\node[word, font=\large\sffamily] (wa) at (8,-23.3) {coffee};
-\node[spc, minimum width=6.4mm] (a0) at (19,-23.3) {en};
+% row 1: word -> tokens -> embeddings -> encoder
+\node[word, font=\Large\sffamily] (wa) at (10,-16) {coffee};
+\node[spc] (a0) at (30,-16) {en};
 \foreach \c [count=\i from 1, remember=\i as \j (initially 0)] in {c,o,f,f,e,e}
-  \node[tok, font=\footnotesize\sffamily] (a\i) at ([xshift=0.5mm]a\j.east) {\c};
-\node[note, anchor=north west] at ([yshift=-1mm]a0.south west) {task marker + one token per letter};
-% encoder and decoder blocks
-\draw[trained] (60,-26) rectangle (80,-5);
-\draw[trained] (60,-26) -- (80,-26) (60,-20.5) -- (80,-20.5);
-\node[blab, fill=cModel!18] at (70,-12) {encoder\\[-1pt]{\scriptsize\mdseries 3 layers}};
-\node[font=\scriptsize] at (70,-23.3) {embeddings};
-\draw[trained] (88,-26) rectangle (108,-5);
-\draw[trained] (88,-20.5) -- (108,-20.5);
-\node[blab, fill=cModel!18] at (98,-12) {decoder\\[-1pt]{\scriptsize\mdseries 3 layers}};
-\node[font=\scriptsize] at (98,-23.3) {embeddings};
-\draw[arr] (a6.east) -- (60,-23.3);
-\draw[arr] (80,-12) -- (88,-12);
-% outputs
-\node[tok] (o1) at (112,-12) {\km{ខ}};
+  \node[tok, font=\small\sffamily] (a\i) at ([xshift=0.6mm]a\j.east) {\c};
+\node[note, anchor=north west] at ([yshift=-1.2mm]a0.south west) {task marker + one token per letter};
+\draw[arr] (wa) -- node[lab, above=1.5mm] {split} (a0);
+\node[trained, minimum width=20mm, minimum height=11mm, font=\small, align=center] (ea) at (99,-16)
+  {character\\embeddings};
+\draw[arr] (a6) -- (ea);
+\node[trained, minimum width=34mm, minimum height=13mm, font=\normalsize\bfseries] (ena) at (142,-16) {encoder};
+\draw[arr] (ea) -- (ena);
+% connector to row 2
+\draw[arr] (ena.south) -- ++(0,-6) -| node[pos=0.25, lab, above=0.6mm] {encoder states} (49,-37.5);
+% row 2: decoder -> generated units -> Khmer text
+\node[trained, minimum width=34mm, minimum height=13mm, font=\normalsize\bfseries] (dea) at (49,-44) {decoder};
+\node[tok] (o1) at (82,-44) {\km{ខ}};
 \foreach \c [count=\i from 2, remember=\i as \j (initially 1)] in {ូ,ហ,្,វ,៊,ី}
-  \node[tok] (o\i) at ([xshift=0.5mm]o\j.east) {\km{\c}};
-\node[spc, minimum width=6.4mm] (o8) at ([xshift=0.5mm]o7.east) {end};
-\draw[arr] (108,-12) -- (o1.west);
-\node[note, above=0.8mm of o4.north east] {one Khmer character per step};
-\node[word] (ra) at (163.5,-12) {\km{ខូហ្វ៊ី}};
-\draw[arr] (o8.east) -- (ra.west);
-% feedback loop
-\draw[arr, cModel!85!black] (o4.south) |- (110,-31) -| node[pos=0.75, right, font=\scriptsize, text=cModel!85!black,
-  align=left] {} (104,-26);
-\node[font=\scriptsize, text=cModel!85!black, anchor=north west] at (105,-31.6) {previous outputs fed back
-  (first input: \textit{start})};
-% ======================= Panel B =======================
-\draw[black!20, thick] (0,-39) -- (171,-39);
-\node[ptitle] at (0,-44) {B.\ Adapted ByT5};
-\node[pnote, text=cFrozen] at (171,-44) {Pretrained base frozen; only adapters trained};
-\node[word, font=\large\sffamily] (wb) at (8,-69.3) {coffee};
-\foreach \c [count=\i from 1, remember=\i as \j (initially 0)] in {63,6F,66,66,65,65}
-  {\ifnum\i=1 \node[byte] (b1) at (17.5,-69.3) {\c}; \else \node[byte] (b\i) at ([xshift=0.5mm]b\j.east) {\c}; \fi}
-\node[spc, minimum width=6.4mm] (b7) at ([xshift=0.5mm]b6.east) {end};
-\node[note, anchor=north west] at ([yshift=-1mm]b1.south west) {UTF-8 bytes (hex); model token = byte + 3};
+  \node[tok] (o\i) at ([xshift=0.6mm]o\j.east) {\km{\c}};
+\node[spc] (o8) at ([xshift=0.6mm]o7.east) {end};
+\draw[arr] (dea) -- node[lab, above=1.5mm] {generate} (o1);
+\node[note, anchor=south west] at ([yshift=1.2mm]o1.north west) {one Khmer character per step};
+\node[word] (ra) at (158,-44) {\km{ខូហ្វ៊ី}};
+\draw[arr] (o8) -- node[lab, above=1.5mm] {join} (ra);
+% feedback
+\draw[fb] (o4.south) -- ++(0,-8) -| (49,-50.5);
+\node[font=\footnotesize, text=cModel!85!black, anchor=north west] at (52,-58.5)
+  {each output is fed back to predict the next (first input: \textit{start})};
+% ======================================================== separator
+\draw[black!25, thick] (0,-69) -- (171,-69);
+% ======================================================== Panel B
+\node[ptitle] at (0,-76) {B.\ Adapted ByT5};
+\node[pnote, text=cFrozen] at (171,-76) {Pretrained base frozen; only LoRA adapters trained};
+% row 1
+\node[word, font=\Large\sffamily] (wb) at (10,-96) {coffee};
+\node[byte] (b1) at (30,-96) {63};
+\foreach \c [count=\i from 2, remember=\i as \j (initially 1)] in {6F,66,66,65,65}
+  \node[byte] (b\i) at ([xshift=0.6mm]b\j.east) {\c};
+\node[spc] (b7) at ([xshift=0.6mm]b6.east) {end};
+\node[note, anchor=north west] at ([yshift=-1.2mm]b1.south west) {UTF-8 bytes (hex)};
+\draw[arr] (wb) -- node[lab, above=1.5mm] {UTF-8} (b1);
+\node[frozen, minimum width=20mm, minimum height=11mm] (eb) at (102,-96) {};
+\node[lab, align=center, font=\small] at (eb) {byte\\embeddings};
+\draw[arr] (b7) -- (eb);
 % frozen encoder with adapters
-\draw[frozen] (60,-72) rectangle (80,-49);
-\draw[frozen] (60,-66.5) -- (80,-66.5);
-\node[blab, draw=cFrozen!60] at (70,-53.5) {encoder\\[-1pt]{\scriptsize\mdseries 12 layers}};
-\node[adapt] at (70,-59.2) {attention};
-\node[adapt] at (70,-63.2) {feed-forward};
-\node[font=\scriptsize, fill=white, inner sep=0.8pt] at (70,-69.3) {embeddings};
-\draw[frozen] (88,-72) rectangle (108,-49);
-\draw[frozen] (88,-66.5) -- (108,-66.5);
-\node[blab, draw=cFrozen!60] at (98,-52.3) {decoder\\[-1pt]{\scriptsize\mdseries 4 layers}};
-\node[adapt] at (98,-57.4) {self-attention};
-\node[adapt] at (98,-61.0) {cross-attention};
-\node[adapt] at (98,-64.6) {feed-forward};
-\node[font=\scriptsize, fill=white, inner sep=0.8pt] at (98,-69.3) {embeddings};
-\draw[arr] (b7.east) -- (60,-69.3);
-\draw[arr] (80,-53.5) -- (88,-53.5);
-% outputs
-\node[byte] (p1) at (112,-56) {E1};
-\node[byte] (p2) at ([xshift=0.5mm]p1.east) {9E};
-\node[byte] (p3) at ([xshift=0.5mm]p2.east) {81};
-\node[anchor=west, font=\footnotesize] (p4) at ([xshift=0.3mm]p3.east) {…};
-\node[spc, minimum width=6.4mm] (p5) at ([xshift=0.3mm]p4.east) {end};
-\draw[arr] (108,-56) -- (p1.west);
-\draw[decorate, decoration={brace, amplitude=1.6mm, mirror}, thick, black!55] ([yshift=-0.8mm]p1.south west) --
-  node[below=1.9mm, font=\scriptsize, align=center] {\km{ខ} = 3 bytes\\ (18 bytes in all)} ([yshift=-0.8mm]p3.south east);
-\node[note, above=0.8mm of p3.north] {one byte per step};
-\node[word] (rb) at (163.5,-56) {\km{ខូហ្វី}};
-\draw[arr] (p5.east) -- node[above, font=\scriptsize] {UTF-8} (rb.west);
-\draw[arr, cModel!85!black] (p4.south) |- (110,-76) -| (104,-72);
-\node[font=\scriptsize, text=cModel!85!black, anchor=north west] at (105,-76.6) {previous outputs fed back
-  (first input: \textit{start})};
-% legend
-\draw[trained] (0,-87) rectangle (6,-84);
-\node[font=\scriptsize, anchor=west] at (7,-85.5) {trained weights};
-\draw[frozen] (32,-87) rectangle (38,-84);
-\node[font=\scriptsize, anchor=west] at (39,-85.5) {frozen pretrained weights};
-\node[adapt, minimum width=6mm] at (78,-85.5) {};
-\node[font=\scriptsize, anchor=west] at (82,-85.5) {trained LoRA adapters (in every layer)};
+\node[frozen, minimum width=43mm, minimum height=22mm] (enb) at (148,-96) {};
+\node[head] at (148,-88.6) {encoder};
+\node[sub] (s1) at (139,-95.2) {attention};
+\node[lora, anchor=west] (l1) at ([xshift=1mm]s1.east) {LoRA adapter};
+\node[sub] (s2) at (139,-102.4) {feed-forward};
+\node[lora, anchor=west] (l2) at ([xshift=1mm]s2.east) {LoRA adapter};
+\draw[arr] (eb) -- (enb);
+% connector
+\draw[arr] (enb.south) -- ++(0,-6) -| node[pos=0.25, lab, above=0.6mm] {encoder states} (47,-117.5);
+% frozen decoder with adapters
+\node[frozen, minimum width=43mm, minimum height=29mm] (deb) at (47,-132) {};
+\node[head] at (47,-121.2) {decoder};
+\node[sub, minimum width=21mm] (t1) at (37.5,-127.6) {self-attention};
+\node[lora, anchor=west] at ([xshift=1mm]t1.east) {LoRA adapter};
+\node[sub, minimum width=21mm] (t2) at (37.5,-134.4) {cross-attention};
+\node[lora, anchor=west] at ([xshift=1mm]t2.east) {LoRA adapter};
+\node[sub, minimum width=21mm] (t3) at (37.5,-141.2) {feed-forward};
+\node[lora, anchor=west] at ([xshift=1mm]t3.east) {LoRA adapter};
+% generated bytes
+\node[byte] (p1) at (84,-132) {E1};
+\node[byte] (p2) at ([xshift=0.6mm]p1.east) {9E};
+\node[byte] (p3) at ([xshift=0.6mm]p2.east) {81};
+\node[anchor=west, font=\normalsize] (p4) at ([xshift=6.5mm]p3.east) {…};
+\node[spc] (p5) at ([xshift=0.6mm]p4.east) {end};
+\draw[arr] (deb.east |- p1) -- node[lab, above=1.5mm] {generate} (p1);
+\node[note, anchor=south west] at ([yshift=1.2mm]p1.north west) {one byte per step (excerpt)};
+\draw[decorate, decoration={brace, amplitude=1.8mm, mirror}, thick, black!60] ([yshift=-1mm]p1.south west) --
+  node[below=2.4mm, font=\footnotesize, align=center] {\km{ខ}: 3 bytes;\\
+  complete output: 18 bytes} ([yshift=-1mm]p3.south east);
+\node[word] (rb) at (158,-132) {\km{ខូហ្វី}};
+\draw[arr] (p5) -- node[lab, above=1.5mm] {decode} (rb);
+% feedback
+\draw[fb] (p4.south) ++(0,-1) -- ++(0,-15) -| (47,-146.5);
+\node[font=\footnotesize, text=cModel!85!black, anchor=north west] at (52,-155.5)
+  {each output is fed back to predict the next (first input: \textit{start})};
+% ======================================================== legend
+\draw[trained] (0,-167) rectangle (7,-163);
+\node[font=\footnotesize, anchor=west] at (8.5,-165) {trained weights};
+\draw[frozen] (40,-167) rectangle (47,-163);
+\node[font=\footnotesize, anchor=west] at (48.5,-165) {frozen pretrained weights};
+\node[lora, minimum width=7mm, minimum height=4mm] at (95.5,-165) {};
+\node[font=\footnotesize, anchor=west] at (100,-165) {trained LoRA adapter};
+\draw[fb] (136,-165) -- (146,-165);
+\node[font=\footnotesize, anchor=west] at (147.5,-165) {feedback};
 \end{tikzpicture}
-\caption{How the two released models turn an English word into Khmer script. (A)~The small model reads a task
-marker and one token per letter, and its decoder writes one Khmer character at a time; all of its weights are
-trained from scratch. (B)~The adapted ByT5 reads the UTF-8 bytes of the same word and writes Khmer as bytes, three
-per Khmer character, which are then decoded into text. Its pretrained weights stay frozen; only the small adapters
-added to the attention and feed-forward blocks are trained. In both, generation starts from a start symbol, each
-output is fed back to predict the next, and it stops when the model emits an end symbol. The outputs shown are the
-recorded spellings of \emph{coffee} by each released model.}
+\caption{How the two released models turn an English word into Khmer script; both read the same English spelling
+and write Khmer text. (A)~The small model reads a task marker and one token per letter; its encoder (3 layers)
+passes its states to the decoder (3 layers), which writes one Khmer character at a time. All of its weights are
+trained from scratch. (B)~The adapted ByT5 reads the UTF-8 bytes of the word (the model's token for each byte is
+the byte value plus 3) and writes Khmer as bytes, three per Khmer character, which are then decoded into text. Its
+pretrained encoder (12 layers) and decoder (4 layers) stay frozen; only the small LoRA adapters added beside every
+attention and feed-forward block are trained. In both models, generation starts from a start symbol, each output is
+fed back to predict the next (dashed arrows), and generation stops when the model emits an end symbol. The outputs
+are the recorded spellings of \emph{coffee} by each released model.}
 \label{fig:arch}
 \end{figure*}
 
