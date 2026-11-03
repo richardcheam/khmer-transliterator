@@ -1,0 +1,8 @@
+{
+ "created": "2026-11-03T21:52:51+00:00",
+ "seed": "e16-test-v1",
+ "words": 150,
+ "rule": "pool = E14 word pool then FineWeb-2 frequency order; drop words with owner labels; first 3000; lowest 150 by sha256(seed:word)",
+ "test_words_sha256": "76d603dc04bda2656ca0979119f3d7cd6773c57f54f57abf75cb4778029776dd",
+ "policy": "test words never enter a prompt or any training file; typed answers stay local"
+}
