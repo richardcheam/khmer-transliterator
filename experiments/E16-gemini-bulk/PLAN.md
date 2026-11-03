@@ -53,3 +53,8 @@ If the rule fails, the result is recorded and serving is unchanged. There is no 
 
 ## Run
 `scripts/e16_run.sh`: waits for the Gemini fetch, then filter → data → three seeds → score (about 11–12 h).
+
+## Progress
+- 2026-11-03: the free Gemini key's daily quota stopped the fetch at 17 of 40 replies (HTTP 429). The completeness
+  check worked as registered: nothing was trained. `scripts/e16_resume.sh` retries the resuming fetch hourly and
+  starts `e16_run.sh` once at least 36 replies are in. No rule, prompt or setting changed.
