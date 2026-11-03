@@ -1727,6 +1727,42 @@
    "derived_from": "",
    "rendered": "8"
   },
+  "cov.two": {
+   "kind": "json",
+   "value": 9,
+   "fmt": "int",
+   "source": "experiments/E11-real-data-byt5/coverage/results.json",
+   "field": "overall.acceptable_per_word.2",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "words with exactly 2 acceptable candidates",
+   "denominator": "23",
+   "derived_from": "",
+   "rendered": "9"
+  },
+  "cov.three": {
+   "kind": "json",
+   "value": 3,
+   "fmt": "int",
+   "source": "experiments/E11-real-data-byt5/coverage/results.json",
+   "field": "overall.acceptable_per_word.3",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "words with exactly 3 acceptable candidates",
+   "denominator": "23",
+   "derived_from": "",
+   "rendered": "3"
+  },
+  "cov.multi": {
+   "kind": "derived",
+   "value": 12,
+   "fmt": "int",
+   "source": "experiments/E11-real-data-byt5/coverage/results.json",
+   "field": "overall.acceptable_per_word",
+   "revision": "d7e7d80c4187b363219343d9e088a01ad6ae56fa",
+   "meaning": "words for which the reviewer accepted two or three different candidate spellings",
+   "denominator": "23",
+   "derived_from": "acceptable_per_word.2 + acceptable_per_word.3",
+   "rendered": "12"
+  },
   "cov.cands": {
    "kind": "json",
    "value": 93,

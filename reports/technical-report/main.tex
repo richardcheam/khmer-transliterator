@@ -1,6 +1,6 @@
-% English-to-Khmer Phonetic Transliteration: Models, Data and Human Acceptability Evaluation
-% Two-column layout. Build: see README.md (XeLaTeX or LuaLaTeX, then BibTeX). Numbers come from generated/values.tex,
-% which tools/extract.py writes from the project's committed result files.
+% English-to-Khmer Phonetic Transliteration: Learning from Noisy Web Pairs and Measuring Acceptability
+% Two-column layout. Build: see README.md (XeLaTeX or LuaLaTeX, then BibTeX). Empirical values come from
+% generated/values.tex, which tools/extract.py writes from the project's committed result files.
 \documentclass[10pt,a4paper,twocolumn]{article}
 
 \usepackage{iftex}
@@ -8,29 +8,24 @@
 \usepackage[margin=0.75in,columnsep=0.3in]{geometry}
 \usepackage{microtype}
 \usepackage{amsmath}
+\usepackage{amssymb}
 \usepackage{booktabs}
 \usepackage{tabularx}
 \usepackage{array}
-\usepackage{multirow}
 \usepackage{xcolor}
-% Figure colours: one fixed colour per system, the same in every panel (colour-blind-checked palette).
-\definecolor{cRel}{HTML}{2A78D6}   % released adapter
-\definecolor{cLong}{HTML}{EB6834}  % longer schedule
-\definecolor{cPron}{HTML}{1BAF7A}  % pronunciation-guided
-\definecolor{cFirst}{HTML}{6250D6} % first corrected adapter
-\definecolor{cSynth}{HTML}{E87BA4} % + synthetic rows
+% Figure colours (colour-blind-checked palette): text and data, model, judgment.
+\definecolor{cText}{HTML}{2A78D6}
+\definecolor{cModel}{HTML}{EB6834}
+\definecolor{cJudge}{HTML}{1BAF7A}
+\definecolor{cMuted}{HTML}{5F6368}
 \usepackage{caption}
 \usepackage{float}
 \usepackage{enumitem}
 \usepackage{tikz}
-\usetikzlibrary{positioning,arrows.meta}
-\usepackage{pgfplots}
-\usepackage{pgfplotstable}
-\usepgfplotslibrary{groupplots}
-\pgfplotsset{compat=1.18}
+\usetikzlibrary{positioning,arrows.meta,fit,calc}
 \usepackage[numbers,sort&compress]{natbib}
 \usepackage[hidelinks]{hyperref}
-\usepackage{url}
+\usepackage{xurl}
 
 % Khmer: Noto Serif Khmer, shaped by HarfBuzz (XeTeX shapes natively; LuaTeX needs the HarfBuzz renderer)
 \ifLuaTeX
@@ -48,573 +43,521 @@
 \renewcommand{\bibfont}{\small\raggedright}
 \setlist{itemsep=1pt,topsep=3pt}
 \newcolumntype{L}{>{\raggedright\arraybackslash}X}
-\newcommand{\pp}{\,pp}
 
-\title{English-to-Khmer Phonetic Transliteration:\\ Models, Data and Human Acceptability Evaluation}
+\title{English-to-Khmer Phonetic Transliteration:\\ Learning from Noisy Web Pairs and Measuring Acceptability}
 \author{Richard Cheam\\ \small \href{mailto:richardcheam912@gmail.com}{\texttt{richardcheam912@gmail.com}}}
-\date{Technical report, 31 October 2026}
+\date{Technical report, November 2026}
 
-\hypersetup{pdftitle={English-to-Khmer Phonetic Transliteration: Models, Data and Human Acceptability Evaluation},
-  pdfauthor={Richard Cheam}}
+\hypersetup{pdftitle={English-to-Khmer Phonetic Transliteration: Learning from Noisy Web Pairs and Measuring
+  Acceptability}, pdfauthor={Richard Cheam}}
 
 \begin{document}
 \maketitle
 
 \begin{abstract}
 \noindent
-We study English-to-Khmer phonetic transliteration: given one English word or name, write it in Khmer script so
-that a Khmer reader pronounces it as in English (for example, \emph{coffee} $\rightarrow$ \km{ខូហ្វី}). We release
-two models: a small character-level Transformer trained from scratch, and a LoRA adapter for ByT5-small. Both are
-trained on English--Khmer word pairs mined from web text, and neither uses LLM-generated labels.
-
-We first scored models by exact match with one reference spelling per word. This proved misleading, because it
-rejects acceptable spelling variants and accepts some poor ones. We therefore evaluate with blinded human
-judgments (acceptable, not acceptable or uncertain) by one project-affiliated judge on fresh samples of 120 words.
-
-On two such samples, the released adapter's spelling was judged acceptable for \val{t1.e11.share}\% and
-\val{t2.e11.share}\% of words. A twice-longer training schedule and pronunciation-guided training each scored the
-same as the released adapter (difference \val{t1.diff} points in both tests; the 95\% intervals,
-\val{t1.diff.ci} and \val{t2.diff.ci}, allow small gains or losses). Adding English pronunciations as input gave no detectable gain in four
-experiments. Irregularly spelled words remain the main weakness (\val{irr.lo}--\val{irr.hi}\% acceptable).
+A Khmer speech system that meets an English word such as \emph{taxi} must first write it in Khmer script, in a way
+a Khmer reader would pronounce like the English word. No labelled dataset or reliable test exists for this task, so
+we trained models on English--Khmer word pairs found in web text and asked how to tell whether their spellings are
+any good. We built a small character-level model from scratch and adapted a pretrained byte-level model, and we
+released both. The central lesson concerns measurement. Scoring a spelling by exact agreement with one reference
+spelling proved misleading: it rejected spellings a Khmer reader accepted and rewarded references the reader
+rejected. Blinded human review, in which spellings are judged acceptable, not acceptable or uncertain, changed which
+conclusions we could draw. Under that review, cleaner and larger real data looked encouraging, whereas longer
+training and adding English pronunciation information gave no clear improvement. Irregularly spelled English words
+remain the main weakness, and acceptable spellings are often present among a model's alternatives without being
+chosen first.
 \end{abstract}
 
-\noindent\textbf{Keywords:} transliteration, Khmer, ByT5, LoRA, human evaluation, low-resource languages
-
 % =====================================================================================================
-\section{Introduction and task}
+\section{Problem and motivation}
 \label{sec:intro}
 
-A Khmer text-to-speech front-end receives English words inside Khmer text---names, product terms, loanwords---and
-needs them in Khmer script before a Khmer-only speech model can read them. This report documents a transliterator
-for that step. Its input is one English word or name; its output is a Khmer-script spelling that a Khmer reader
-would pronounce close to the word's \emph{English} pronunciation. For example, the released adapter writes
-\emph{coffee} as \km{ខូហ្វី} and \emph{london} as \km{ឡុនដុន}.
+Khmer text often contains English words and names. A Khmer text-to-speech system reads only Khmer script, so a
+front end must rewrite each English word in Khmer letters before the speech model sees it. The spelling has to make
+a Khmer reader say something close to the \emph{English} pronunciation: \emph{london} becomes \km{ឡុនដុន}, read
+roughly as ``lon-don''.
 
-The task differs from three neighbouring ones.
-It is not \emph{translation}: meaning is ignored.
-It is not \emph{romanised-Khmer conversion}, where Latin letters encode a Khmer word (\emph{sok sabay}).
-And it is not reproducing \emph{established loan spellings} regardless of pronunciation: the usual Khmer form of
-\emph{coffee} is \km{កាហ្វេ}, which does not follow the English pronunciation; the task's target does.
+This task is not translation; the meaning of the word plays no part. Nor is it the conversion of \emph{romanised
+Khmer}---Khmer words typed in Latin letters, such as \emph{sok sabay} for \km{សុខសប្បាយ}---back into Khmer script.
+Here the input is a genuine English word and the target is a Khmer approximation of its English sound.
 
-Three properties make the task hard to measure. First, English spelling underdetermines pronunciation
-(\emph{record}, \emph{live}, irregular names), so a target requires a declared reading; this project uses the first
-General American reading in CMUdict \citep{cmudict}. Second, Khmer adaptation is many-to-one and one-to-many: the
-script has two consonant series, inherent vowels, subscript consonants and series-shifting diacritics
-(as in \km{ម៉} and \km{ប៊}), so several spellings can render the same sound acceptably. Third, the available supervision is
-web text written by many people under different conventions.
+The target also differs from established loan spellings. Khmer writers usually spell \emph{coffee} \km{កាហ្វេ},
+a form that does not follow the English vowel sounds. A pronunciation-based spelling such as
+\km{ខូហ្វី} is closer to English. Both appear in our web data, and only the second follows the task's target.
 
-The contributions are proportionate to a small project:
-(i) two implemented and released systems with a common command-line and Python interface;
-(ii) a documented data pipeline, including the repair of a selection error that silently removed dictionary-word
-targets;
-(iii) a set of controlled comparisons of pronunciation input, data, schedule and decoding, each registered before
-its results were seen; and
-(iv) a human-acceptability evaluation protocol with frozen inputs, blinded spellings and explicit labels. No new
-architecture or general benchmark is claimed.
+More than one spelling can be right. Khmer has two series of consonant letters, inherent vowels, stacked
+consonants and small marks that shift a consonant's series, and many English sounds have no exact equivalent.
+English \emph{f}, for example, can reasonably be written \km{ហ្វ} or \km{ផ}. A useful system therefore needs to
+produce \emph{an} acceptable spelling, not \emph{the} spelling.
 
-\paragraph{Main findings in brief.}
-\begin{itemize}
-\item \emph{Exact match is a poor measure here.} Many spellings that missed the single reference were judged
-  acceptable, and some that matched it were not (Section~\ref{sec:res-ref}).
-\item \emph{The released adapter} was judged acceptable for \val{acc.lo}--\val{acc.hi}\% of words on two separate
-  test samples (Table~\ref{tab:tests}).
-\item \emph{Longer training, pronunciation input and pronunciation-guided training} showed no detectable benefit;
-  the intervals do not rule out small effects (Sections~\ref{sec:res-pron} and \ref{sec:res-train},
-  Table~\ref{tab:tests}).
-\item \emph{A beam-search setting}, not the model, caused an apparent beam-search weakness (Section~\ref{sec:res-decode}).
-\item \emph{Irregular English spellings} are the main remaining error; an acceptable spelling is often among the
-  model's alternatives but not chosen first (Section~\ref{sec:res-rank}).
-\end{itemize}
+The central engineering difficulty is supervision. There is no curated English--Khmer phonetic dictionary to learn
+from, and no test set that lists every acceptable spelling of each word. We had to build training data from noisy
+web text and, just as importantly, find a way of measuring quality that a Khmer reader would agree with.
 
 % =====================================================================================================
-\section{Related work}
-\label{sec:related}
-
-\paragraph{Grapheme, phoneme and hybrid transliteration.}
-\citet{oh-choi-2005-ensemble} distinguish grapheme-based, phoneme-based and hybrid models for English--Korean and
-English--Japanese transliteration and report gains from combining source graphemes and phonemes dynamically.
-\citet{ngo-etal-2015-phonology} model target-language phonology explicitly for low-resource transliteration into
-Vietnamese, motivated by phonologically invalid outputs. These works motivate the project's \emph{hypothesis} that
-supplying CMUdict phones would help; whether it does for Khmer with small mined data is what
-Section~\ref{sec:res-pron} tests.
-
-\paragraph{Byte-level pretrained models.}
-ByT5 \citep{xue-etal-2022-byt5} operates on UTF-8 bytes and is reported to be more robust to noise and stronger on
-spelling- and pronunciation-sensitive tasks than token-based counterparts. \citet{kirov-etal-2024-context} fine-tune
-ByT5 for single-word transliteration of romanised South Asian languages and find its fine-tuning sensitive to noisy
-training items: removing the 10\% least representative pairs helped, while non-pretrained models did not benefit.
-The adapter released here uses ByT5-small with LoRA \citep{hu-etal-2022-lora}. Khmer characters are three UTF-8
-bytes each, a detail that matters for adaptation (Section~\ref{sec:models}).
-
-\paragraph{Evaluation with multiple references.}
-The NEWS 2018 shared task \citep{chen-etal-2018-news} scores transliteration against reference \emph{lists}, where
-any listed variant counts (ACC), alongside mean F-score, MRR and MAP. This project has one mined spelling per item
-for most of its history, so only exact agreement and character error rate are computed against it; the human
-evaluation instead judges each produced spelling, which admits any number of acceptable variants.
-
-\paragraph{Candidate generation and rescoring.}
-\citet{grundkiewicz-heafield-2018-neural} apply NMT techniques to named-entity transliteration, including
-ensembling and rescoring n-best lists with right-to-left models. Rescoring can only help when acceptable spellings
-are already in the candidate list; Section~\ref{sec:res-rank} measures that presence for the released adapter. No
-reranker is built here.
-
-% =====================================================================================================
-\section{Data and models}
+\section{Building a transliterator with limited data}
 \label{sec:data}
 
-\subsection{Mined pairs and the selection repair}
+\subsection{Two kinds of model}
+We tried two approaches with different costs (Table~\ref{tab:models}).
 
-Training pairs come from Khmer web text in which a Khmer spelling is followed by the English word in brackets, e.g.
-``\km{ចនសុន} (Johnson)'', mined from the Khmer subset of FineWeb-2 \citep{penedo-etal-2025-fineweb2,fineweb2-card}
-and a Khmer Wikipedia dump of 2026-10-01 \citep{wikimedia-tou}. A pair is kept when the English word is in CMUdict,
-passes a noise filter, does not look like romanised Khmer, and belongs to no word family used for evaluation. A
-\emph{family} groups an English word with its plurals and other inflections; exclusion and bootstrap resampling both
-operate on families so that \emph{band} and \emph{bands} cannot fall on opposite sides of a split.
+The first is a \emph{small character-level model}: a standard encoder--decoder Transformer of 2.6 million
+parameters, trained from scratch to map English letters to Khmer letters. It runs in tens of milliseconds on a CPU
+with nothing but NumPy.
 
-The original miner labelled a pair \texttt{khmer\_like}, and dropped it, if its Latin side was a known romanised
-Khmer word \emph{or} its Khmer side was a known Khmer word. The second condition removed exactly the pairs whose
-Khmer spelling is in the Google Khmer lexicon \citep{google-langres-km}, including established loans; a later
-diagnostic found \val{d.lexhits} of \val{d.rows} training targets covered by exact lexicon lookup, by construction.
-Separating the two conditions recovered \val{d.recovered} rows; \val{d.romanised} romanised-Latin rows stayed
-excluded.
+The second adapts \emph{ByT5-small} \citep{xue-etal-2022-byt5}, a 300-million-parameter text-to-text model that
+reads and writes raw UTF-8 bytes instead of a fixed vocabulary of word pieces. Working on bytes suits a task about
+spelling, and ByT5 has been used for transliteration of romanised South Asian text \citep{kirov-etal-2024-context}.
+We adapted it with \emph{LoRA} \citep{hu-etal-2022-lora}, which keeps the pretrained weights frozen and trains a
+small set of additional low-rank matrices---here about six million parameters---in the attention and feed-forward
+layers.
 
-\paragraph{Consonant screening and its limits.}
-To check that a mined spelling plausibly renders the English word, a rule-based reader maps Khmer consonants to
-sound classes and compares them with the CMUdict reading. On \val{d.heldout} held-out lexicon headwords its consonant
-classes agreed with the lexicon's own transcriptions for \val{d.consrate}\%. The screen does not read vowels at all.
-After the repair, \val{d.dacs} dictionary-assessable, consonant-screened pairs remained. A later audit recovered
-\val{d.r.recovered} pairs that the screen had rejected because of documented weaknesses (for example doubled letters
-and glides), and added \val{d.r.alt} names and loanwords whose Khmer spelling occurs verbatim in the human translations of the ALT Parallel Corpus
-\citep{riza-etal-2016-alt,nict-alt}, passed through the same screen. None of these spellings was reviewed by a
-person, and vowel quality is unassessed throughout.
+Byte-level adaptation has a pitfall that an engineer can easily mistake for a bug. Every Khmer character takes
+three UTF-8 bytes, and two of them are almost free to predict. Our first adaptation, which adapted only the attention
+layers for a short time, produced the same spelling (\km{ហ្វេន}) for \val{e06.top} of \val{h.items} evaluation
+words while its training loss fell steadily: the model had learned to write plausible Khmer bytes without reading
+the input. An audit of the training and decoding pipeline found no defect that explained the collapse. Adapting the
+feed-forward layers as well and training longer produced the first working adapter, one that follows its input; we
+did not isolate which of the two changes mattered.
 
-\paragraph{Synthetic labels (historical only).}
-One data-expansion experiment added \val{d.synth.rows} rows for \val{d.synth.words} words whose spellings
-were suggested by Google's AI Mode. They were
-used only in historical runs. The released adapter's training file contains none (verified row by row), and the
-released small model never used them.
-
-\subsection{The two released models}
-\label{sec:models}
-
-Table~\ref{tab:releases} summarises the releases.
-
-\paragraph{Small character-level Transformer.}
-An encoder--decoder with $d_\text{model}=192$, three encoder and three decoder layers, four heads and feed-forward
-width 512 (2.6M parameters), trained from scratch on \val{s.train} mined pairs (\val{s.trainval} more held out for validation
-loss) with AdamW, learning rate $10^{-3}$, cosine decay and label smoothing 0.1. The epoch (\val{s.epoch} of 40) was
-selected on \val{s.dev.n} development items; final scores come from separate test items. Inference runs in NumPy with beam search of width 4.
-The released weights are the letters-only seed-0 run (\texttt{letters\_s0}); the file on the Hub is byte-identical
-to the recorded checkpoint (sha256 \texttt{8901050b\ldots}).
-
-\paragraph{ByT5-small with a LoRA adapter.}
-The base \texttt{google/byt5-small} (revision \texttt{68377bdc}) is frozen. LoRA matrices of rank 16 and
-$\alpha=32$ are added to every attention projection (q, k, v, o) and gated feed-forward layer (wi\_0, wi\_1, wo):
-\val{x.tensors} tensors, \val{x.params} parameters. Training used \val{d.r.rows} pairs over \val{d.r.words}
-words---\val{d.r.control} screened mined pairs, \val{d.r.recovered} recovered pairs and \val{d.r.alt} ALT-attested
-pairs---with AdamW at $10^{-3}$, 100 warm-up steps then linear decay, batch 32 and \val{e11.update} updates
-(\val{x.hours} hours on six CPU threads, one seed). Checkpoints were selected by greedy exact agreement on
-\val{d.items} development items, then CER. The selected checkpoint was the last one evaluated;
-that alone does not show the model was under-trained, and a twice-longer schedule did not change acceptability
-(Section~\ref{sec:res-train}).
-
-An earlier ByT5 attempt with attention-only adapters and 1,000 updates produced nearly the same output for
-every input (\km{ហ្វេន} for \val{e06.top} of \val{h.items} evaluation words). The audit found no pipeline
-defect explaining the collapse: two of the three UTF-8 bytes of a Khmer character are almost free to predict, so a falling per-byte loss coexisted with an
-input-independent letter model. Adding feed-forward adapters and training longer produced an input-dependent model;
-which change mattered was not isolated.
-
-The adapter is stored in a project format (\texttt{adapter.safetensors} with keys ending in \texttt{.A}/\texttt{.B}
-plus a JSON configuration), not as a PEFT checkpoint. It loads only through the package's \texttt{khmer\_translit.byt5}
-module, which wraps the base model's linear layers and refuses a base whose revision or weight hash differs from the
-pinned one. Single answers use greedy decoding; candidate lists use beam search with
-\texttt{early\_stopping="never"} and no length penalty (Section~\ref{sec:res-decode}).
-
-\begin{table*}[t]
+\begin{table}[t]
 \centering\small
-\caption{The two released systems. Latency and memory: Intel Core i7-8750H laptop, CPU only; the small model's
-latency is the range of three recorded runs.}
-\label{tab:releases}
-\begin{tabularx}{\textwidth}{@{}lLL@{}}
+\caption{The two released models. Training data are paired English words and Khmer spellings.}
+\label{tab:models}
+\setlength{\tabcolsep}{3pt}
+\begin{tabularx}{\columnwidth}{@{}lLL@{}}
 \toprule
- & Small Transformer & ByT5-small + LoRA adapter \\
+ & Small model & Adapted ByT5 \\
 \midrule
-Repository & \texttt{ric912/en-km-phonetic-}\newline\texttt{transliterator} (tag v0.2.0) &
-  \texttt{ric912/en-km-phonetic-byt5-lora} \\
-Parameters & 2.6M, trained from scratch & 300M frozen base + \val{x.params.m}M adapter \\
-Training pairs & \val{s.train} mined (FineWeb-2, Wikipedia) & \val{d.r.rows} (mined, recovered, ALT-attested) \\
-Runtime & NumPy only & PyTorch, Transformers, safetensors; base fetched separately (1.2\,GB) \\
-Decoding & beam 4 & greedy; beam $\ge 4$ for candidates \\
-Load time & \val{s.t1.load}--\val{s.t3.load}\,s & \val{b.i.load}--\val{b.load}\,s \\
-One word (median) & \val{s.t1.p50}--\val{s.t3.p50}\,ms & \val{b.lat1}\,ms (greedy), \val{b.lat4}\,ms (top-4) \\
-Batched & \val{s.t1.b16}\,ms per word (batches of 16) & \val{b.wps} words/s (greedy) \\
-Peak memory & \val{s.t1.peak}\,MiB & \val{b.peak}\,MB \\
-Weights licence & CC BY-NC-SA 4.0 & CC BY-NC-SA 4.0 (base: Apache 2.0) \\
+Approach & Transformer trained from scratch & pretrained byte model + LoRA adapter \\
+Size & 2.6M parameters & 300M frozen + 6M trained \\
+Training pairs & about 9,700 & about 4,800 (3,585 words) \\
+Data & mined web pairs & mined, recovered and corpus-attested pairs \\
+Decoding & beam search (width 4) & greedy; beam search for candidates \\
 \bottomrule
 \end{tabularx}
-\end{table*}
+\end{table}
 
-\paragraph{Data separation.}
-For each experiment, training, validation, checkpoint selection and evaluation used disjoint families. The small
-model's final references were opened once, after all seven of its comparison runs were frozen. The adapter
-experiments share a \emph{historical} development set (\val{d.items} items) and evaluation set (\val{h.items} items,
-\val{h.families} families) that were examined repeatedly across eleven experiments; scores on them are
-exploratory. The human tests (Section~\ref{sec:eval})
-used fresh families excluded from all training files. The two released models were trained on different data and
-were never evaluated on a common, clean test set. The historical evaluation set overlaps the small model's training
-words: \val{ov.primary} of its \val{ov.primary.n} primary evaluation words occur in that training file
-(\val{ov.full} of \val{ov.full.n} words in the full evaluation partition). It therefore gives no clean unseen-word
-comparison between the released models, and no head-to-head comparison is reported.
-
-% =====================================================================================================
-\section{Evaluation methodology}
-\label{sec:eval}
-
-\paragraph{Reference agreement.}
-Early experiments scored the top output against one reference spelling per item: exact agreement, averaged over
-families, and character error rate (CER). For the small model the references were a curated primary list of \val{s.primary.n}
-items in \val{e02.families} families, spellings checked by the author, \val{s.anch.primary} of whose references were
-chosen from an earlier model's candidates (\val{s.anch.final} of \val{s.final.n} items across the primary and a
-\val{s.flagged.n}-item flagged track); and an exploratory list of \val{s.proxy.n} LLM-suggested, spot-checked
-spellings. For the adapters they were the mined spellings
-themselves. Agreement is not phonetic accuracy: one acceptable spelling per item cannot admit legitimate variants,
-and an unreviewed reference can itself be wrong.
-
-\paragraph{Intervals.}
-Paired differences between two systems use a family-level bootstrap with 10,000 resamples. These intervals are
-\emph{conditional} on the trained checkpoints: they describe item sampling, not training-seed variation, and
-exclude the extra uncertainty of checkpoint selection. Where three paired seeds exist, their per-seed differences
-are reported as well. Intervals for differences are not intervals for either model's own rate, and a difference
-whose interval includes zero is not evidence of equivalence.
-
-\paragraph{Human acceptability.}
-A spelling is \emph{acceptable} if a Khmer reader would pronounce it close to the declared General American
-reading, \emph{not acceptable} otherwise, and \emph{uncertain} when the judge cannot decide; the policy file was
-fixed before the reviews and unchanged across them. The judge is the project's author---a single,
-project-affiliated judge. Spellings were shown without model identity, rank or score, with labels in seeded random
-order, and identical spellings from two systems were shown once. In the two prospective tests and for the new
-candidate-coverage judgments, the judge answered each spelling with an explicit click on a local review page;
-unanswered spellings count as \emph{missing}, never as rejections, and an unjudged spelling stays unassessed. The
-earlier development review was answered in free text instead and mapped to the same three labels under fixed
-rules confirmed by the judge (for example, a candidate the reply does not name is not acceptable).
-
-Two sampling designs were used and are never pooled. A development review of 60 words used a representative sample of 40 words and an
-enriched sample of 20 words where the compared systems disagreed, reported separately; it was a post hoc
-review of existing models. Two prospective tests then each drew 120 fresh
-families---40 ordinary words, 40 irregular spellings and 40 names---frozen before the candidate model was trained,
-with all predictions frozen before review. ``Confirmed acceptable'' counts uncertain as not acceptable; sensitivity
-analyses recount uncertain both ways. These judgments are useful task-specific evidence of acceptability for this
-judge and policy; they are not independent, and the 40/40/40 design does not estimate performance on everyday text.
-
-% =====================================================================================================
-\section{Results}
-\label{sec:results}
-
-Table~\ref{tab:comparisons} lists the principal comparisons; Table~\ref{tab:tests} gives the blinded tests.
-Appendix~\ref{app:inventory} lists every experiment behind them.
-
-\begin{table*}[t]
-\centering\small
-\caption{Principal comparisons. $\Delta$ is in percentage points with a 95\% paired family-bootstrap interval,
-conditional on the checkpoints. Reference agreement is exploratory except where marked.}
-\label{tab:comparisons}
-\begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}p{2.3cm}L>{\raggedright\arraybackslash}p{3.3cm}>{\raggedright\arraybackslash}p{4.1cm}@{}}
-\toprule
-Question & Comparison & $\Delta$ [95\%] & Evidence and limits \\
-\midrule
-Pronunciation input & small model, letters + phones vs letters & \val{e02.phones} \val{e02.phones.ci} &
-  curated references, \val{e02.families} families; 3 paired seeds, all positive; registered, inconclusive \\
- & same, on consonant-screened pairs & \val{e03.phones} \val{e03.phones.ci} & mined references; 3 seeds \\
- & same, rerun alongside a phones-only arm & \val{e04.gp} \val{e04.gp.ci} & mined references; 3 seeds \\
- & pooled letters+phones candidates vs letters top-8 & \val{e05.gp_g8} \val{e05.gp_g8.ci} &
-  top-8 oracle, equal budget \\
- & adapter with CMUdict reading vs released adapter & \val{e13.eval} \val{e13.eval.ci} &
-  mined references; several ingredients changed \\
-\midrule
-ByT5 adaptation & corrected adapter vs mean of 3 small letters models & \val{e07.vs_g} \val{e07.vs_g.ci} &
-  registered beam-4; one adapter run \\
-\midrule
-More data & + recovered, ALT and synthetic rows vs screened mined pairs only & \val{e08.vs_e07} \val{e08.vs_e07.ci} &
-  registered beam-4; greedy \val{e08.vs_e07.greedy} \val{e08.vs_e07.greedy.ci} \\
- & released adapter (real data only) vs first corrected adapter, greedy & \val{e11.vs_e07} \val{e11.vs_e07.ci} & one run each \\
- & real data only vs with synthetic rows & \val{e11.vs_e08} \val{e11.vs_e08.ci} & one run each \\
-\midrule
-Longer training & 6,000 vs 3,000 updates & \val{e12.vs_e11.hist} \val{e12.vs_e11.hist.ci} &
-  one seed; blinded test in Table~\ref{tab:tests} \\
-\bottomrule
-\end{tabularx}
-\end{table*}
-
-\subsection{Did pronunciation input help?}
-\label{sec:res-pron}
-
-No experiment detected a benefit. In the small model's registered comparison, adding CMUdict phones next to the
-letters changed curated-reference agreement by \val{e02.phones}\pp{} on average over three paired seeds (per seed
-\val{s.seed.0}, \val{s.seed.1}, \val{s.seed.2}), with interval \val{e02.phones.ci}. The interval excludes the
-registered 5-point threshold and includes zero; with simulated power of only \val{s.power.min}--\val{s.power.max}
-for a true 5-point gain across the registered discordance assumptions, the result is inconclusive, not null.
-Repeating the comparison on dictionary-assessable, consonant-screened pairs and with a phones-only arm gave the
-same picture (Table~\ref{tab:comparisons}); a phones-only model scored \val{e04.p}\pp{} against letters (one seed) but got different
-words right, and pooling the two models' candidates did not beat a letters model's own top-8 list at equal budget.
-
-Sensitivity diagnostics explain part of this. Supplying another word's phones changed the small model's top output
-for \val{sens.min}--\val{sens.max}\% of \val{sens.n} words, depending on the seed, but the changed outputs
-moved toward the donor's consonants in only \val{sens.closer.min}--\val{sens.closer.max} cases per seed; most changes were vowel or diacritic edits, and
-letters-only controls, as intended, never changed. The pronunciation-guided adapter behaved similarly:
-removing the reading changed \val{e13.mech.missing}\% of historical-development outputs and a wrong reading
-\val{e13.mech.wrong}\%. These diagnostics show weak dependence on the supplied phones in these models and data; they
-do not show that pronunciation information cannot help Khmer transliteration.
-
-\subsection{Did more real data help?}
-Recovering screened-out pairs and adding ALT-attested spellings roughly doubled the adapter's data. Against the
-first corrected adapter, the released real-data adapter's greedy agreement on the historical evaluation set was
-\val{h.e11.top1}\% vs \val{h.e07.top1}\% (\val{e11.vs_e07}\pp, \val{e11.vs_e07.ci}), and a version that also
-used the synthetic labels was indistinguishable (\val{e11.vs_e08}\pp). Reference agreement did not
-distinguish these models. The exploratory development review suggested a preference for the expanded real-data
-model: its greedy spelling was acceptable for \val{rev.representative.e11} of 40 representative words against
-\val{rev.representative.e07} for the first corrected adapter, and for \val{rev.disagreement.e11} of 20 words in the
-disagreement-enriched sample, reported separately, against \val{rev.disagreement.e07}; the synthetic-label version
-scored \val{rev.representative.e08} and \val{rev.disagreement.e08}. The review was post hoc and had one judge, so it
-is development evidence, not a registered test.
-
-\subsection{Did longer training help?}
-\label{sec:res-train}
-Doubling the schedule to 6,000 updates changed \val{t1.changed} of 120 test spellings. The two models had equal
-observed acceptability, \val{t1.e12.acceptable} vs \val{t1.e11.acceptable} of 120 (\val{t1.diff}\pp,
-\val{t1.diff.ci}; \val{t1.paired.a_only} vs \val{t1.paired.b_only} discordant words, exact $p=\val{t1.p}$): no
-difference was detected, and the interval permits gains or losses. Historical agreement moved by
-\val{e12.vs_e11.hist}\pp. One seed was run.
-
-\subsection{How did decoding configuration affect results?}
-\label{sec:res-decode}
-For the adapters, greedy decoding had beaten the registered beam-4 search. An inference-only audit traced
-this to \texttt{early\_stopping=True}: at the byte level, junk hypotheses (an immediate end symbol, or one letter
-and an end symbol) finish within the first steps and fill the beam's finished set before real spellings end.
-Registered beam-4 kept only \val{e09.cands} distinct candidates per item for the synthetic-data adapter and often dropped the series-shifting diacritics (\emph{mani}
-\km{ម៉ានី} became \km{មានី}). With \texttt{early\_stopping="never"}, beam top-1 was about as good as greedy
-(\val{e09.e08.sel_vs_greedy}\pp, \val{e09.e08.sel_vs_greedy.ci}) and \val{e09.e08.sel_vs_reg}\pp{}
-\val{e09.e08.sel_vs_reg.ci} above the registered beam on the historical evaluation set. Earlier ByT5 comparisons that used the
-registered beam are therefore shifted; this report quotes greedy figures for adapters where they exist.
-
-\subsection{How does reference agreement differ from acceptability?}
-\label{sec:res-ref}
-In the development review, the judge rated \val{x.judged} distinct spellings. Of the \val{x.diff} that
-differed from the mined reference, \val{x.diff.acc} (\val{x.diff.share}\%) were acceptable (for example
-\emph{cameroon} \km{ខេមឺរ៉ុន} and \emph{band} \km{បេន}); of the \val{x.match} that matched it, \val{x.match.not}
-(\val{x.match.share}\%) were not acceptable (\emph{band} \km{បាន}). Exact agreement can therefore both
-reject acceptable alternatives and accept unwanted spellings; it is not a one-directional underestimate.
-Figure~\ref{fig:measures} shows the two kinds of evidence side by side, on separate axes because they are measured
-on different items with different definitions.
+\subsection{Where the paired examples come from}
+Khmer news and encyclopaedia text sometimes writes a foreign word in Khmer script followed by the original in
+brackets. Searching the Khmer part of the FineWeb-2 web corpus \citep{penedo-etal-2025-fineweb2} and Khmer
+Wikipedia for this pattern yields paired examples such as
+\km{ហ្វេសប៊ុក}~(Facebook), shown in context in Figure~\ref{fig:pipeline}. We kept a pair only if the English word has an entry in the
+CMU Pronouncing Dictionary \citep{cmudict}, so that its intended pronunciation is known, and passed it through
+the checks described below. A further set of names and loanwords was taken from human translations in the ALT
+Parallel Corpus \citep{riza-etal-2016-alt}, where the Khmer spelling occurs verbatim. None of these spellings was
+reviewed by a person before training.
 
 \begin{figure*}[t]
 \centering
-\pgfplotstableread[col sep=comma]{generated/fig_reference.csv}\figref
-\pgfplotstableread[col sep=comma]{generated/fig_accept.csv}\figacc
-\begin{tikzpicture}
-\begin{groupplot}[group style={group size=2 by 1, horizontal sep=4.25cm},
-  width=4.45cm, height=4.4cm, xmin=0, xmax=100, xtick={0,25,50,75,100}, xmajorgrids, grid style={gray!25},
-  tick label style={font=\scriptsize}, label style={font=\scriptsize}, title style={font=\small},
-  ytick=data, yticklabel style={font=\scriptsize, align=right}, ymin=0.4]
-\nextgroupplot[title={(a) Agreement with mined spellings}, xlabel={greedy exact agreement, \% (\val{h.items} items)},
-  yticklabels from table={\figref}{label}, ymax=5.6]
-\addplot[scatter, only marks, mark=*, mark size=3pt, point meta=explicit symbolic, scatter/classes={
-  rel={draw=white, fill=cRel}, long={draw=white, fill=cLong}, pron={draw=white, fill=cPron}, first={draw=white, fill=cFirst}, synth={draw=white, fill=cSynth}}, line width=0.4pt] table[x=top1, y=y, meta=cls]{\figref};
-\nextgroupplot[title={(b) Blinded acceptability}, xlabel={confirmed acceptable, \% (120 words each)},
-  yticklabels from table={\figacc}{label}, ymax=6.1,
-  extra y ticks={3}, extra y tick labels={}, extra y tick style={grid=major, grid style={black!60, dashed}}]
-\addplot[scatter, only marks, mark=square*, mark size=3pt, point meta=explicit symbolic, scatter/classes={
-  rel={draw=white, fill=cRel}, long={draw=white, fill=cLong}, pron={draw=white, fill=cPron}}, line width=0.4pt] table[x=share, y=y, meta=cls]{\figacc};
-\node[font=\scriptsize, anchor=west, gray!60!black] at (axis cs:1,5.65) {test sample 1};
-\node[font=\scriptsize, anchor=west, gray!60!black] at (axis cs:1,2.6) {test sample 2};
-\end{groupplot}
+\begin{tikzpicture}[
+  font=\small,
+  node distance=5mm,
+  txt/.style={draw=cText, fill=cText!8, rounded corners=2pt, align=center, inner sep=4pt},
+  mdl/.style={draw=cModel, fill=cModel!10, rounded corners=2pt, align=center, inner sep=4pt, minimum height=13mm},
+  jdg/.style={draw=cJudge, rounded corners=2pt, align=center, inner sep=3pt, font=\footnotesize, minimum width=22mm},
+  note/.style={align=left, font=\footnotesize, text=cMuted},
+  act/.style={font=\footnotesize\bfseries, text=black, above, midway},
+  arr/.style={-{Stealth[length=2.2mm]}, thick, black!65},
+  panel/.style={font=\normalsize\bfseries, anchor=west}]
+% ---------------- Panel A: training ----------------
+\node[panel] (pa) at (0,0) {A.\ Learning from paired examples (training)};
+\node[txt, text width=37mm, below=3mm of pa.south west, anchor=north west] (src)
+  {\km{…ត្រូវបានចែករំលែក}\\\km{តាមបណ្តាញសង្គម\textbf{ហ្វេសប៊ុក}}\\\textbf{(Facebook)}\\[2pt]
+   {\footnotesize\itshape ``…was shared on the social\\ network Facebook''}\\[1pt]
+   {\scriptsize\color{cMuted} Khmer web text (recorded match)}};
+\node[txt, right=12mm of src, text width=22mm] (pair) {\textsf{facebook}\\[1pt]$\downarrow$\\ \km{ហ្វេសប៊ុក}};
+\node[txt, right=12mm of pair, text width=31mm, font=\footnotesize] (more)
+  {\textsf{facebook} $\rightarrow$ \km{ហ្វេសប៊ុក}\\ \textsf{taxi} $\rightarrow$ \km{តាក់ស៊ី}\\
+   \textsf{google} $\rightarrow$ \km{ហ្គូហ្គល}\\ {\color{cMuted}… about 4,800 pairs}};
+\node[mdl, right=12mm of more, text width=26mm] (train) {pretrained byte model\\ + small adapter};
+\draw[arr] (src) -- node[act] {Extract} (pair);
+\draw[arr] (pair) -- node[act] {Check} (more);
+\draw[arr] (more) -- node[act] {Learn} (train);
+\node[note, below=1.5mm of more, text width=36mm] {Keep words with a known English pronunciation; drop unrelated
+  matches; keep evaluation words out. Consonants are checked, vowels are not.};
+\node[note, below=1.5mm of train, text width=30mm] {Learn how English spellings correspond to Khmer spellings.};
+% ---------------- Panel B: evaluation ----------------
+\node[panel] (pb) at (0,-5.25) {B.\ Spelling and reviewing a different word (development review)};
+\node[txt, below=3mm of pb.south west, anchor=north west, text width=30mm] (word)
+  {\textsf{\large band}\\[2pt] {\footnotesize reading shown to the reviewer:}\\ {\footnotesize\texttt{B AE1 N D}}};
+\node[mdl, right=16mm of word, text width=28mm] (gen) {adapted model\\ (from panel A)};
+\node[txt, right=14mm of gen, text width=18mm, minimum height=13mm] (out) {\km{\Large បេន}};
+\node[jdg, right=16mm of out, yshift=6.5mm, fill=cJudge!25, line width=1pt] (j1) {\textbf{acceptable} \checkmark};
+\node[jdg, below=1.2mm of j1, draw=black!30, text=black!60] (j2) {not acceptable};
+\node[jdg, below=1.2mm of j2, draw=black!30, text=black!60] (j3) {uncertain};
+\node[draw=black!25, dashed, rounded corners=2pt, inner sep=2.5mm, fit=(j1)(j2)(j3)] (choices) {};
+\draw[arr] (word) -- node[act] {Generate} (gen);
+\draw[arr] (gen) -- (out);
+\draw[arr] (out) -- node[act] {Review} (out -| choices.west);
+\node[note, below=1.5mm of word, text width=34mm] {Its word family was kept out of training and checkpoint
+  selection.};
+\node[note, below=1.5mm of choices, text width=40mm] {Model identity hidden; the reviewer may accept several
+  spellings or none.};
 \end{tikzpicture}
-\caption{Two different measures, not a common benchmark. (a) Historical evaluation set, examined repeatedly,
-single unreviewed reference per item. (b) Two separate prospective samples; each compares its candidate with the
-released adapter on the same 120 words, and values are not comparable across samples. No uncertainty bars are drawn
-for individual rates; paired differences are in Table~\ref{tab:tests}.}
-\label{fig:measures}
+\caption{How the adapted model is trained and evaluated. (A)~A Khmer spelling followed by its English original in
+brackets is extracted as a training pair; after checks, thousands of such pairs teach the model the correspondence.
+(B)~A word whose family never entered training is spelled by the model, and a Khmer reader judges the result against
+the English reading. Both panels use recorded data: the Facebook match and training pairs come from the mining
+records, and \emph{band}, its output and the judgment from the development review.}
+\label{fig:pipeline}
 \end{figure*}
 
-\subsection{Is candidate ranking a plausible remaining opportunity?}
-\label{sec:res-rank}
-For \val{cov.words} irregularly spelled development words (frozen before generation, none from test families), the judge rated
-every distinct candidate among the adapter's greedy output and four canonical beam candidates
-(all \val{cov.cands} distinct spellings judged: \val{cov.clicked} by clicks on the review page and
-\val{cov.reused.dev} reused from the chat-transcribed development review; earlier judgments were reused only for
-the identical word, reading and spelling). The greedy output was acceptable for \val{cov.greedy} words and beam top-1 for
-\val{cov.beam1}; at least one of the four beam candidates was acceptable for \val{cov.any4}. A perfect selector over
-those four would add \val{cov.gain_vs_greedy} words relative to greedy and \val{cov.gain_vs_beam1} relative to beam
-top-1; \val{cov.none} words had no acceptable candidate. This oracle is an upper bound for a reranker on this
-sample, not achieved accuracy, and \val{cov.words} hand-picked hard words cannot show whether ranking or generation is the larger
-limitation in general.
+\paragraph{A filtering mistake that changed what the model could learn.}
+The miner was also meant to discard romanised Khmer that happens to sit in brackets. Its rule dropped a pair if the
+Latin side was a known romanised Khmer word \emph{or} if the Khmer side was a known Khmer word. The second
+condition quietly removed every pair whose Khmer spelling appears in a Khmer dictionary, which includes well-known
+loans such as \km{ហ្វេសប៊ុក}. As a result, none of the small model's training targets could be found in the
+dictionary---a sign that, once noticed, revealed the error. Splitting the two conditions returned
+\val{d.recovered} candidate pairs to the pool. The general lesson is to inspect what a filter actually removes,
+not only how much.
+
+\paragraph{What automatic checks can and cannot verify.}
+To discard unrelated matches, a rule-based reader converts the Khmer consonants into sound classes and compares
+them with the consonants of the English pronunciation. On held-out dictionary words it agreed with the
+dictionary's own transcriptions for about \val{d.consrate}\% of words, so it is a useful consonant check. It does not
+read vowels at all, and vowel differences turned out to be the largest single kind of disagreement between model
+outputs and references (\val{vow.min}--\val{vow.max}\% of mismatches). Some valid pairs failed the consonant check
+because of doubled letters or glides; a later pass recovered \val{d.r.recovered} of them, which also admits some
+noise (the recovered pairs include a truncated \emph{hotel} $\rightarrow$ \km{តែល}).
+
+\paragraph{Keeping evaluation words separate.}
+English words come in families---\emph{share}, \emph{shares}, \emph{sharing}, \emph{shared}---and a model that
+has seen \emph{shared} has nearly seen \emph{share}. We therefore grouped words into families with a simple
+suffix-stripping rule (removing endings such as \emph{-s}, \emph{-ed} and \emph{-ing}, and joining words that share
+a stem) and kept every family on one side of each split. This is a heuristic, not a full morphological analysis:
+irregular forms such as \emph{ran} and \emph{run} are not grouped. Evaluation words were removed from all training
+files by family before training.
+
+The released adapter was trained on \val{d.r.rows} pairs: screened web pairs, recovered pairs and ALT-attested
+spellings. In one earlier experiment we also added \val{d.synth.rows} spellings suggested by Google's AI Mode; they made no measurable difference and are not used by either released model.
+
+% =====================================================================================================
+\section{Measuring acceptable transliteration}
+\label{sec:eval}
+
+Our first metric was the usual one: how often the model's first answer exactly matched a reference spelling, with
+references taken from the mined data. For a task with several acceptable answers and noisy references, this metric
+fails in two directions.
+
+It can reject an acceptable spelling. For the development word \emph{band}, the released adapter wrote \km{បេន},
+which a Khmer reader pronounces close to the English word. The mined reference was \km{បាន}, so the metric scored
+the adapter as wrong. It can also reward an unacceptable one. Earlier models wrote \km{បាន} for \emph{band}; it
+matched the reference and scored as correct, yet \km{បាន} is also an everyday Khmer word read roughly ``baan'', and
+the reviewer judged it not acceptable. The same pattern appeared for \emph{phi}: the released adapter's \km{ភី}
+matched the reference and was rejected, while an earlier model's \km{ហ្វី} missed it and was accepted.
+
+These were not isolated cases. In the development review described below, \val{x.diff.acc} of the \val{x.diff}
+spellings that differed from the mined reference were acceptable, and \val{x.match.not} of the \val{x.match} that
+matched it were not. In a separate diagnostic on hard words, the reviewer accepted two or three different candidate
+spellings for \val{cov.multi} of \val{cov.words} words. Exact agreement with one reference therefore measures resemblance to a
+noisy label, not phonetic acceptability. Shared tasks with reference \emph{lists} \citep{chen-etal-2018-news}
+address the first failure but not the second.
+
+\paragraph{Blinded review.}
+We replaced single-reference scoring with human judgments under a written policy fixed before any review. For each
+word the reviewer saw the English word and its intended reading in the dictionary's pronunciation symbols (for
+example \texttt{B AE1 N D} for \emph{band}). Below it were the candidate spellings from the compared models, with model identities,
+ranks and scores hidden, in random order and with duplicates shown once. Each spelling received one of three
+labels: \emph{acceptable} if a Khmer reader would pronounce it close to the intended reading, \emph{not
+acceptable}, or \emph{uncertain}. The reviewer could accept several spellings or none and never had to type a
+spelling. ``Acceptable'' in our results means confirmed acceptable; uncertain answers stay uncertain and count as
+not confirmed.
+
+\paragraph{Development review and prospective tests.}
+Two kinds of review must be kept apart. The \emph{development review} looked back at existing models on 60
+development words: 40 sampled to be representative and 20 chosen because the models disagreed. Its answers were
+given in free text and mapped to the three labels under rules the reviewer confirmed, for example that a candidate
+not named in the reply is not acceptable. It guided decisions but is exploratory. The two \emph{prospective tests}
+each used 120 fresh words---40 ordinary words, 40 irregularly spelled words and 40 names---chosen and frozen
+before the candidate model was trained, with all outputs frozen before review. Each spelling was judged with an
+explicit click on a review page. The two test samples are different, so their rates are not comparable with each
+other.
+
+All judgments come from one reviewer, the project's author, who is a Khmer reader but not independent of the
+project. The results are therefore task-specific evidence for one reader and one policy. The 40/40/40 design
+deliberately over-represents hard words and names, so the rates do not estimate performance on everyday text.
+
+% =====================================================================================================
+\section{What changed model quality?}
+\label{sec:results}
+
+Table~\ref{tab:comparisons} collects the principal comparisons with their paired differences and intervals. The
+intervals come from resampling word families and describe uncertainty from the choice of words, not from
+retraining. Reference agreement for the adapted models is measured on a fixed \emph{historical} evaluation set of
+\val{h.items} words that was examined across many experiments, so those comparisons are exploratory.
 
 \begin{table*}[t]
 \centering\small
-\caption{Prospective blinded tests (one judge). Each sample compares a candidate with the released adapter on its
-own 120 fresh families; the two samples are different and are not pooled. Uncertain (Unc.) counts as not
-confirmed. Ord.\ = ordinary words, Irreg.\ = irregular spellings. $\Delta$: candidate minus released adapter,
-percentage points, 95\% paired family bootstrap.}
-\label{tab:tests}
-\setlength{\tabcolsep}{4pt}
-\begin{tabular}{@{}llcccccc@{}}
+\caption{Principal comparisons. Each row compares two systems on the same words. Acceptability counts are
+confirmed-acceptable spellings out of the words reviewed; reference agreement is the share of first answers that
+exactly match the mined reference. Differences are in percentage points with a 95\% paired family-bootstrap
+interval; an interval that includes zero means no clear difference, not equivalence. The two test samples contain
+different words.}
+\label{tab:comparisons}
+\begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}p{2.3cm}L>{\raggedright\arraybackslash}p{4.4cm}
+  >{\raggedright\arraybackslash}p{2.5cm}>{\raggedright\arraybackslash}p{2.9cm}@{}}
 \toprule
-Sample & System & Acceptable & Unc. & Ord. & Irreg. & Names & $\Delta$ [95\%] \\
- & & of 120 & & of 40 & of 40 & of 40 & \\
+Question & Comparison & Evidence & Result & Difference [95\%] \\
 \midrule
-\multirow{2}{*}{1} & Released adapter & \val{t1.e11.acceptable} (\val{t1.e11.share}\%) &
-  \val{t1.e11.uncertain} & \val{t1.ordinary.e11} & \val{t1.irregular.e11} & \val{t1.names.e11} & \\
- & 6,000 updates & \val{t1.e12.acceptable} (\val{t1.e12.share}\%) & \val{t1.e12.uncertain} &
-  \val{t1.ordinary.e12} & \val{t1.irregular.e12} & \val{t1.names.e12} & \val{t1.diff} \val{t1.diff.ci} \\
+More real data & released adapter vs first working adapter & reference agreement, \val{h.items} historical
+  evaluation words & \val{h.e11.top1}\% vs \val{h.e07.top1}\% & \val{e11.vs_e07} \val{e11.vs_e07.ci} \\
+ & same models & development review, 40 representative words & \val{rev.representative.e11} vs
+  \val{rev.representative.e07} acceptable & exploratory \\
+ & same models & development review, 20 words where models disagreed & \val{rev.disagreement.e11} vs
+  \val{rev.disagreement.e07} acceptable & exploratory \\
 \midrule
-\multirow{2}{*}{2} & Released adapter & \val{t2.e11.acceptable} (\val{t2.e11.share}\%) &
-  \val{t2.e11.uncertain} & \val{t2.ordinary.e11} & \val{t2.irregular.e11} & \val{t2.names.e11} & \\
- & Pronunciation-guided & \val{t2.e13.acceptable} (\val{t2.e13.share}\%) & \val{t2.e13.uncertain} &
-  \val{t2.ordinary.e13} & \val{t2.irregular.e13} & \val{t2.names.e13} & \val{t2.diff} \val{t2.diff.ci} \\
+Longer training & twice the training updates vs released adapter & test sample 1, 120 fresh words &
+  \val{t1.e12.acceptable} vs \val{t1.e11.acceptable} acceptable & \val{t1.diff} \val{t1.diff.ci} \\
+\midrule
+Pronunciation & small model, letters + pronunciation vs letters only & curated references, \val{e02.families}
+  word families, three paired training runs & & \val{e02.phones} \val{e02.phones.ci} \\
+ & pronunciation-guided adapter vs released adapter & test sample 2, 120 fresh words &
+  \val{t2.e13.acceptable} vs \val{t2.e11.acceptable} acceptable & \val{t2.diff} \val{t2.diff.ci} \\
+\midrule
+Decoding & corrected beam search vs original beam setting & reference agreement, \val{h.items} historical
+  evaluation words; one earlier adapter & & \val{e09.e08.sel_vs_reg} \val{e09.e08.sel_vs_reg.ci} \\
+ & corrected beam search vs greedy decoding & same & & \val{e09.e08.sel_vs_greedy} \val{e09.e08.sel_vs_greedy.ci} \\
 \bottomrule
-\end{tabular}
+\end{tabularx}
 \end{table*}
 
-\paragraph{Pronunciation-guided training on the second sample.}
-The second test evaluated a model that changed several things at once: CMUdict readings as input, the judge's
-accepted spellings of \val{e13.families} difficult training families mixed into 10\% of batches, replay of the
-original data, and initialisation from the released adapter. The models had equal observed acceptability
-(\val{t2.e13.acceptable} vs \val{t2.e11.acceptable}; \val{t2.paired.a_only} vs \val{t2.paired.b_only} discordant
-words; \val{t2.diff}\pp{} \val{t2.diff.ci}): no difference was detected, and the interval permits gains or
-losses. Because the
-ingredients were not varied separately, this result cannot attribute any effect, or its absence, to one of them.
-Across both samples, irregular spellings were the weakest group (\val{t1.irregular.e11}/40 and
-\val{t2.irregular.e11}/40 for the released adapter).
+\subsection{More real data: encouraging, if measured well}
+\emph{Why we tried it.} The filtering mistake and the consonant check had discarded many genuine pairs. Recovering
+them and adding corpus-attested spellings roughly doubled the adapter's data.
+
+\emph{What happened.} Reference agreement barely moved: the larger-data adapter and the first working adapter
+matched the mined references about equally often. The development review told a different story. The larger-data
+model's spelling was acceptable more often in both the representative and the disagreement-enriched samples, which
+are reported separately because they were drawn differently. A version that also used the AI-suggested spellings
+performed like the real-data version, so the gain did not depend on them.
+
+\emph{What it means.} The data change looked useful only once we measured acceptability, so the strength of this
+conclusion rests on the evaluation. Because the review was post hoc and had one reviewer, we treat it as an
+encouraging development result rather than an established improvement, and we released the real-data model.
+
+\subsection{Longer training: no demonstrated benefit}
+\emph{Why we tried it.} The selected checkpoint of the released adapter was the last one evaluated, which raised the
+possibility that it was under-trained.
+
+\emph{What happened.} Doubling the number of training updates changed \val{t1.changed} of the 120 test spellings
+but did not change the overall acceptance rate: both models were acceptable for \val{t1.e11.acceptable} of 120
+words, each winning on 14 words the other lost. The sample was too small to rule out modest differences in either
+direction.
+
+\emph{What it means.} More training rearranged the errors without reducing them. With noisy, incomplete
+supervision, training longer is not a reliable fix; the model may simply fit the noise differently.
+
+\subsection{Pronunciation alongside letters: no clear benefit}
+\label{sec:res-pron}
+\emph{Why we tried it.} English spelling is a poor guide to English sound, and earlier transliteration work gained
+from combining letters with pronunciation \citep{oh-choi-2005-ensemble,ngo-etal-2015-phonology}. Supplying the
+dictionary pronunciation seemed likely to help with words like \emph{colonel}.
+
+\emph{What happened.} For the small model, we gave the pronunciation symbols as a second input next to the letters.
+Across three comparisons on different data the differences were small and uncertain; the registered comparison is
+in Table~\ref{tab:comparisons}. A diagnostic explains part of this. When we swapped in another word's pronunciation,
+the model's first answer changed for \val{sens.min}--\val{sens.max}\% of words, depending on the training run, but
+the changed answers rarely moved towards the other word's consonants; most changes were vowel or diacritic edits.
+
+For the adapted model, we appended the pronunciation to the input. A \emph{word-only} input such as
+\texttt{fire} became the \emph{pronunciation-guided} input \texttt{fire|F AY1 ER0}, where the symbols spell the
+English sounds and the digits mark stress (1 for primary stress, 0 for none). No audio is involved, and the output
+is still Khmer text. This model also received the reviewer's accepted spellings for 42 difficult training word families and
+started from the released adapter. On the second test sample it was acceptable for exactly as many words as the
+released adapter. Removing the pronunciation changed only about \val{e13.mech.missing}\% of its development outputs,
+so the model still relied mainly on the letters.
+
+\emph{What it means.} In these models and data, extra pronunciation input was largely ignored. This does not show
+that pronunciation cannot help Khmer transliteration, and because the second test changed several ingredients
+together, it cannot isolate the effect of pronunciation. A model may need training data in which spelling and sound
+disagree often enough to force it to read the pronunciation.
+
+\subsection{A decoding setting, not the model, caused a beam-search deficit}
+\label{sec:res-decode}
+\emph{Why we looked.} For the adapted models, beam search---which keeps several partial spellings and returns the
+most probable complete one---scored worse than simply taking the most likely byte at each step (greedy decoding).
+That is unusual.
+
+\emph{What happened.} The beam search had been called with early stopping enabled. At the byte level, junk
+hypotheses that end after one or two bytes finish first and fill the set of completed answers before real spellings
+end. The search then returned truncated or less probable spellings: for the development word \emph{mani}, greedy
+decoding gave \km{ម៉ានី} but the beam returned \km{មានី}, dropping the mark that sets the consonant's series. With
+early stopping disabled, beam search matched greedy decoding and clearly beat the original beam setting
+(Table~\ref{tab:comparisons}).
+
+\emph{What it means.} Check generation settings before attributing a difference to model quality. Earlier beam-search
+comparisons in this project were shifted by the defect, so we report greedy results for the adapted models.
+
+\subsection{Acceptable spellings are often generated but not chosen}
+\label{sec:res-rank}
+\emph{Why we looked.} Irregularly spelled words were the weakest group in both tests: the released adapter was
+acceptable for \val{t1.irregular.e11} and \val{t2.irregular.e11} of 40 such words. We wanted to know whether the
+model could not produce an acceptable spelling at all, or produced one without ranking it first.
+
+\emph{What happened.} For \val{cov.words} irregular development words, the reviewer judged every distinct spelling
+among the model's greedy answer and its four beam-search candidates (Figure~\ref{fig:coverage}). The greedy answer was
+acceptable for \val{cov.greedy} words and the top beam candidate for \val{cov.beam1}, but at least one of the four
+candidates was acceptable for \val{cov.any4}. For \val{cov.none} words no candidate was acceptable.
+
+\begin{figure}[t]
+\centering
+\begin{tikzpicture}[x=1.75mm, font=\footnotesize]
+\foreach \y/\lab/\key/\col in {0/{greedy answer}/cov.greedy/cModel, 1/{top beam candidate}/cov.beam1/cModel,
+    2/{any of four candidates}/cov.any4/cJudge, 3/{no acceptable candidate}/cov.none/cMuted} {
+  \fill[\col!85] (0,-\y*0.62-0.22) rectangle (\val{\key},-\y*0.62+0.22);
+  \node[anchor=east] at (-0.6,-\y*0.62) {\lab};
+  \node[anchor=west] at (\val{\key}+0.4,-\y*0.62) {\val{\key}};
+}
+\draw[black!40] (0,0.4) -- (0,-2.26);
+\draw[black!25, dashed] (\val{cov.words},0.4) -- (\val{cov.words},-2.26) node[below, black!60] {all \val{cov.words}};
+\end{tikzpicture}
+\caption{Candidate coverage on \val{cov.words} hard development words: the number of words whose greedy answer, top
+beam candidate or any of four beam candidates was acceptable, and the number with no acceptable candidate. The gap
+between the first and third bars is what a perfect selector could gain; it is a best-case limit, not the accuracy
+of an implemented selector.}
+\label{fig:coverage}
+\end{figure}
+
+\emph{What it means.} There are two separate problems: \emph{selecting} an acceptable candidate that already exists,
+and \emph{generating} one when none does. A perfect selector over four candidates would have added
+\val{cov.gain_vs_greedy} words here, which suggests that rescoring candidates \citep{grundkiewicz-heafield-2018-neural}
+is worth trying. But this is a best-case limit on 23 hand-picked hard words, not the performance of a selector we
+built, and it cannot tell us whether selection or generation matters more on ordinary text.
 
 % =====================================================================================================
-\section{Released systems and reproducibility}
-\label{sec:release}
+\section{Practical lessons and limitations}
+\label{sec:lessons}
 
-Both models are published under CC BY-NC-SA 4.0 for the weights \citep{release-small,release-byt5}; the
-\texttt{khmer-translit} package that runs them is under PolyForm Noncommercial 1.0.0 and its wheel is attached to
-the small model's repository. The small model needs only NumPy and answers in tens of milliseconds. The adapter
-needs PyTorch and Transformers and a separate download of the pinned base; its median single-word latency is \val{slow.lo}--\val{slow.hi} times
-the small model's and its peak memory \val{b.peak}\,MB, so it suits drafting rather than high-volume use on a CPU.
-
-Before release the adapter export was verified to be bit-identical to the training checkpoint (sha256
-\texttt{286292a4\ldots}), and the packaged loader reproduced the frozen research predictions with
-\val{par.dev} mismatches on \val{par.dev.n} development and \val{par.eval} on \val{par.eval.n} evaluation words
-(greedy) and \val{par.top4} mismatches in top-4 lists. A fresh, isolated CPU-only installation passed all
-\val{b.i.nchecks} checks with network access blocked at the socket level, including refusal of empty, multi-word,
-non-Latin and over-long inputs and of corrupt or mismatched files. The published repositories were re-downloaded and
-the quick-start commands re-run. Both interfaces share one command (\texttt{khmer-translit predict}); exact usage is
-in each model card and in the report's companion README. Every reported value is generated by script from the
-project's recorded results. Training data, judgments and references are not distributed.
-
-% =====================================================================================================
-\section{Limitations and conclusion}
-\label{sec:conclusion}
+Several lessons should transfer to other low-resource transliteration projects.
+\begin{itemize}
+\item \emph{Audit what filtering rules remove.} Our miner silently discarded every pair whose Khmer side was a
+  dictionary word. Looking at examples of dropped data, not just counts, would have caught it at once.
+\item \emph{Check the generation configuration before blaming the model.} A single decoding flag produced an
+  apparent beam-search deficit that looked like a modelling problem.
+\item \emph{Do not confuse agreement with one reference with acceptability.} When several spellings are valid and
+  references are noisy, exact matching rejects good outputs and rewards bad references. Blinded judgments with
+  explicit ``uncertain'' answers were more informative than any automatic score we had.
+\item \emph{More training does not repair conflicting or incomplete supervision.} A longer schedule changed many
+  outputs without improving them.
+\item \emph{Treat candidate coverage as an opportunity, not a result.} Acceptable alternatives in a beam show that
+  a selector could help; they are not the accuracy of one.
+\end{itemize}
 
 \paragraph{Limitations.}
-\emph{Supervision} is mined and unreviewed; the consonant screen ignores vowels, which were the largest class of
-reference disagreement for every adapter (\val{vow.min}--\val{vow.max}\% of mismatches). \emph{References} cover one spelling per item,
-and much of the reference-based evidence comes from a historical evaluation set examined across many experiments.
-\emph{Human evaluation} rests on one project-affiliated judge, samples of 120 words (each rate is uncertain by
-about $\pm$\val{t2.hw}--\val{t1.hw} points, normal approximation), a 40/40/40 design that over-represents hard words and names, and one training seed per
-adapter. \emph{Pronunciation policy} fixes one General American reading per word, and CMUdict coverage limits which
-words can be checked. \emph{Permissions}: rights in the mined web pages remain with their authors; FineWeb-2 is
-distributed under ODC-By 1.0 and Common Crawl's terms \citep{fineweb2-card}, and whether Wikipedia's share-alike
-condition \citep{wikimedia-tou} extends to trained weights is legally unsettled. \emph{Scope}: single words only; sentences, context and romanised Khmer are out of scope.
+Irregular English spellings remain the main weakness: on the two tests, the released adapter was acceptable for
+\val{irr.lo}--\val{irr.hi}\% of irregular words. The training data are mined and unreviewed, and the automatic
+checks do not cover vowels. All human judgments come from one project-affiliated reviewer on samples of 120 words,
+so differences of several percentage points cannot be resolved, and each adapter was trained once. Much of the
+reference-based evidence uses one historical evaluation set that was examined across many experiments. The two
+released models were trained on different data and were never evaluated on a common, untouched test, so we do not
+compare them with each other. Only single words are handled; sentence context is out of scope.
 
-\paragraph{Conclusion.}
-Two English-to-Khmer phonetic transliterators are documented and released with their evidence. Within this
-project's data and models, English pronunciation input, more training updates and pronunciation-guided training
-produced no detectable gain, and a decoding configuration error---not model quality---explained an apparent beam
-search deficit for byte-level models. The most informative measurement change was moving from single-reference
-agreement to blinded acceptability judgments; an exploratory development review suggested a preference between
-models that agreement did not distinguish. On two separate 120-word samples, the released adapter's spelling was
-judged acceptable for \val{acc.lo}--\val{acc.hi}\% of words, and for \val{irr.lo}--\val{irr.hi}\% of irregularly
-spelled words. The candidate diagnostic indicates that acceptable alternatives are often already generated, while
-\val{cov.none.share}\% of the hard words had none; which of the two dominates on ordinary text remains unmeasured.
+\paragraph{Availability.}
+{\raggedright
+Code and documentation:
+\url{https://github.com/richardcheam/khmer-transliterator}.
+Small model: \url{https://huggingface.co/ric912/en-km-phonetic-transliterator}
+\citep{release-small}. Adapter: \url{https://huggingface.co/ric912/en-km-phonetic-byt5-lora}
+\citep{release-byt5}. Both models are released under CC BY-NC-SA 4.0. Training pairs come from FineWeb-2 (ODC-By
+1.0, with Common Crawl's terms) \citep{fineweb2-card}, Khmer Wikipedia \citep{wikimedia-tou} and the ALT Parallel
+Corpus (CC BY 4.0) \citep{nict-alt}; rights in the underlying web text remain with its authors, and the
+repository's notices give details. Training pairs, judgments and references are not distributed.\par}
+
+% =====================================================================================================
+\section{Conclusion}
+\label{sec:conclusion}
+
+Spelling English words in Khmer script is a small task with an awkward property: many answers are right, and no
+reliable list of them exists. With only noisy web pairs for supervision, the most consequential change in this
+project was not a model but a measurement---replacing exact agreement with one reference by blinded judgments of
+acceptability. Under that measurement, cleaner and larger real data looked encouraging, while longer training and
+added pronunciation information showed no clear benefit. The released adapter produces an acceptable spelling for
+\val{t1.e11.share}\% and \val{t2.e11.share}\% of words in two separate, deliberately hard 120-word samples,
+and for about half or fewer of the irregularly spelled ones. Acceptable alternatives are often among its candidates, which points to candidate
+selection and reviewed data as the next steps.
 
 \bibliographystyle{plainnat}
 \bibliography{references}
 
 % =====================================================================================================
+\clearpage
 \onecolumn
 \appendix
-\section{Experiment inventory}
-\label{app:inventory}
+\section{Methods in brief}
+\label{app:methods}
+
+\paragraph{Models and training.} \emph{Small model:} encoder--decoder Transformer, model width 192, three encoder
+and three decoder layers, four attention heads, feed-forward width 512; AdamW, learning rate $10^{-3}$ with cosine
+decay, label smoothing 0.1, 40 epochs with the epoch chosen on \val{s.dev.n} development items; beam search of width
+4. \emph{Adapted model:} ByT5-small frozen; LoRA rank 16, $\alpha=32$, on all attention projections and
+feed-forward layers (\val{x.params} trained parameters); AdamW, learning rate $10^{-3}$, 100 warm-up steps then
+linear decay, batch 32, \val{e11.update} updates on a laptop CPU, one training run; checkpoint chosen by exact
+agreement on \val{d.items} development items, then character error rate. Single answers use greedy decoding;
+candidate lists use beam search with early stopping disabled. Full configurations are in the repository's
+experiment folders and model cards.
+
+\paragraph{Data.} The adapter's \val{d.r.rows} pairs (\val{d.r.words} words) are \val{d.r.control} screened web
+pairs, \val{d.r.recovered} pairs recovered from the consonant check and \val{d.r.alt} ALT-attested pairs. The small
+model used \val{s.train} web pairs mined before the filtering repair.
+
+\paragraph{Evaluation and statistics.} Paired differences use a bootstrap over word families with 10,000
+resamples; the intervals are conditional on the trained checkpoints and do not include variation between training
+runs. The small model's curated references cover \val{s.primary.n} items in \val{e02.families} families; for
+\val{s.anch.primary} of them, and \val{s.anch.final} of \val{s.final.n} items across both final reference tracks, the
+reference was chosen from an earlier model's candidates. The historical evaluation set overlaps the small model's
+training words: \val{ov.primary} of its \val{ov.primary.n} primary items (\val{ov.full} of \val{ov.full.n} words in
+the full partition), which is one reason the two released models are not compared. The development review's free-text
+answers were mapped to labels under three rules the reviewer confirmed; the prospective tests and the
+candidate-coverage judgments were clicks on a review page (3 of the 93 coverage judgments were reused from the
+development review for the identical word, reading and spelling). Further comparisons behind
+Section~\ref{sec:res-pron}: on consonant-screened pairs, letters + pronunciation vs letters \val{e03.phones}
+\val{e03.phones.ci}; in a second three-run comparison \val{e04.gp} \val{e04.gp.ci}; pooling candidates from both
+models vs a letters model's own eight candidates \val{e05.gp_g8} \val{e05.gp_g8.ci}; the pronunciation-guided adapter
+on the historical evaluation set \val{e13.eval} \val{e13.eval.ci}. Sources for every number are listed in the
+report's evidence ledger.
+
+\clearpage
+\section{Worked examples}
+\label{app:examples}
+
+All examples are recorded outputs, judgments or training pairs from the project; none comes from a protected
+reference set. ``Reference'' is the mined spelling used for exact-agreement scoring.
 
 \begin{table}[H]
-\centering\footnotesize
-\caption{All experiments, in the order they were run, grouped by model. ``Ref.'' = agreement with single reference
-spellings (exploratory unless noted); ``Human'' = blinded judgments by the author.}
-\label{tab:inventory}
-\begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}p{4.9cm}L>{\raggedright\arraybackslash}p{2.6cm}@{}}
+\centering\small
+\renewcommand{\arraystretch}{1.15}
+\begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}p{2.0cm}>{\raggedright\arraybackslash}p{2.1cm}
+  >{\raggedright\arraybackslash}p{2.9cm}>{\raggedright\arraybackslash}p{2.0cm}>{\raggedright\arraybackslash}p{2.3cm}L@{}}
 \toprule
-Question & Outcome & Evidence \\
+English word (role) & Intended reading & Input and system & Output & Reference / judgment & Lesson \\
 \midrule
-\multicolumn{3}{@{}l}{\emph{Small Transformer}} \\
-Khmer-pronunciation side task in one model for names, romanised Khmer and English &
-  +\val{e01.gain} pts on English, missed its 5-point rule & Ref., registered \\
-Phones vs letters (released model: letters only) & \val{e02.phones} \val{e02.phones.ci};
-  inconclusive; letters kept & Ref. (curated), registered \\
-Do targets follow the phones; do models use them? & \val{d.lexhits} of \val{d.rows} targets found by
-  exact lexicon lookup (by construction); shallow sensitivity & diagnostics \\
-Selection repair; phones vs letters on screened pairs & \val{d.recovered} rows recovered; \val{e03.phones}
-  \val{e03.phones.ci} & Ref., registered \\
-Letters vs phones-only vs both & both $-$ letters \val{e04.gp} \val{e04.gp.ci} & Ref., registered \\
-Pooling letters and phones candidates (inference only) & no clear advantage at equal budget & Ref. (oracle) \\
-\midrule
-\multicolumn{3}{@{}l}{\emph{ByT5-small + LoRA adapter}} \\
-Attention-only LoRA, 1,000 updates & input ignored; \val{e06.correct} of \val{h.items} eval
-  items correct & Ref. \\
-Why the first adapter collapsed; corrected adapter & no pipeline defect explaining the collapse; \val{e07.vs_g}
-  \val{e07.vs_g.ci} vs small letters models & Ref., registered \\
-Data expansion (recovered, ALT, \val{d.synth.rows} synthetic rows) & \val{e08.vs_e07} \val{e08.vs_e07.ci} vs
-  corrected adapter & Ref. \\
-Why greedy beat beam (inference only) & \texttt{early\_stopping=True} defect; canonical beam $\approx$ greedy &
-  Ref. \\
-Word-level sampling + higher learning rate & development gate failed; not adopted & Ref. \\
-Real data only, no synthetic labels (released adapter) & \val{e11.vs_e07} \val{e11.vs_e07.ci} vs corrected adapter;
-  post hoc dev review \val{rev.representative.e11}/40 representative, \val{rev.disagreement.e11}/20
-  disagreement-enriched & Ref.; Human (dev) \\
-Candidate coverage of the released adapter, \val{cov.words} irregular dev words & greedy \val{cov.greedy}, beam
-  top-1 \val{cov.beam1}, any of 4 \val{cov.any4} & Human (dev diagnostic) \\
-6,000-update schedule & equal observed acceptability, \val{t1.diff} \val{t1.diff.ci} & Human (test 1),
-  registered \\
-Pronunciation-guided adapter & equal observed acceptability, \val{t2.diff} \val{t2.diff.ci} & Human (test 2),
-  registered \\
+\emph{facebook} (training pair) & \texttt{F EY1 S B UH2 K} & bracket match in web text &
+  \km{ហ្វេសប៊ុក} & --- & A genuine loan that the original filter discarded because its Khmer side is a dictionary
+  word. \\
+\emph{coffee} (training pairs) & \texttt{K AA1 F IY0} & three mined spellings &
+  \km{កាហ្វេ}, \km{កូហ្វី}, \km{ខូហ្វី} & --- & Web data mixes the established loan with pronunciation-based
+  spellings. \\
+\emph{hotel} (training pair) & \texttt{HH OW0 T EH1 L} & pair recovered after the consonant check &
+  \km{តែល} & --- & Recovered pairs are unreviewed and can be truncated. \\
+\emph{band} (development) & \texttt{B AE1 N D} & \texttt{band}; released adapter & \km{បេន} & ref.\ \km{បាន};
+  acceptable & Exact matching rejects an acceptable spelling. \\
+\emph{band} (development) & \texttt{B AE1 N D} & \texttt{band}; earlier adapters & \km{បាន} & matches ref.;
+  not acceptable & Exact matching rewards a poor reference. \\
+\emph{phi} (development) & \texttt{F AY1} & \texttt{phi}; released vs first working adapter & \km{ភី} vs \km{ហ្វី} &
+  \km{ភី} matches ref.\ but not acceptable; \km{ហ្វី} acceptable & The same failure in the opposite direction for
+  the released model. \\
+\emph{cameroon} (development) & \texttt{K AE1 M ER0 UW2 N} & \texttt{cameroon}; released adapter & \km{ខេមឺរ៉ុន} & differs from ref.;
+  acceptable & Vowel choices often differ from the reference without being wrong. \\
+\emph{mani} (development) & \texttt{M AA1 N IY0} & \texttt{mani}; greedy vs original beam setting & \km{ម៉ានី} vs \km{មានី} & ---
+  & The early-stopping beam dropped a series mark. \\
+\emph{fire} (input format) & \texttt{F AY1 ER0} & word-only \texttt{fire}; pronunciation-guided
+  \texttt{fire|F AY1 ER0} & --- & --- & The pronunciation is text appended to the input; no audio is used. \\
+(evaluation words) & --- & first adaptation, attention layers only & \km{ហ្វេន} for \val{e06.top} of
+  \val{h.items} words & --- & A falling byte-level loss can hide a model that ignores its input. \\
 \bottomrule
 \end{tabularx}
 \end{table}
-
-\section{Data and evaluation pipeline}
-\label{app:pipeline}
-
-\begin{figure}[H]
-\centering
-\begin{tikzpicture}[font=\scriptsize,
-  box/.style={draw, rounded corners=1.5pt, align=center, inner sep=2pt, minimum height=8mm, text width=2.55cm},
-  src/.style={box, draw=cRel, fill=cRel!12},
-  prep/.style={box, draw=cPron!80!black, fill=cPron!14},
-  fit/.style={box, draw=cLong, fill=cLong!12},
-  eval/.style={box, draw=cFirst, fill=cFirst!12},
-  arr/.style={-{Stealth[length=2mm]}, gray!70!black, semithick}]
-\node[src] (web)    at (0,0)    {Khmer web text\\ FineWeb-2, Wikipedia};
-\node[prep] (mine)   at (3.4,0)  {bracket mining,\\ CMUdict, filters};
-\node[prep] (repair) at (6.8,0)  {selection repair\\ (\texttt{khmer\_like})};
-\node[prep] (screen) at (10.2,0) {consonant screen\\ + recovery rules};
-\node[src] (alt)    at (6.8,-1.2) {ALT Parallel\\ Corpus spellings};
-\node[prep] (fam)    at (10.2,-1.2) {family exclusion\\ of all test words};
-\node[fit] (train)  at (10.2,-2.4) {training\\ (small model / adapter)};
-\node[fit] (sel)    at (6.8,-2.4)  {checkpoint selection\\ (development set)};
-\node[eval] (freeze) at (3.4,-2.4)  {freeze inputs,\\ checkpoint, outputs};
-\node[eval] (judge)  at (0,-2.4)    {blinded review: acceptable\\ / not / uncertain};
-\draw[arr] (web) -- (mine); \draw[arr] (mine) -- (repair); \draw[arr] (repair) -- (screen);
-\draw[arr] (screen) -- (fam); \draw[arr] (alt) -- (fam); \draw[arr] (fam) -- (train);
-\draw[arr] (train) -- (sel); \draw[arr] (sel) -- (freeze); \draw[arr] (freeze) -- (judge);
-\end{tikzpicture}
-\caption{Data and evaluation pipeline of the released adapter: data sources (blue), data preparation (green),
-training and selection (orange) and evaluation (violet). ALT spellings pass the same consonant screen. The
-small model used the mining and filter steps before the selection repair and was evaluated against reference lists
-rather than by blinded review.}
-\label{fig:pipeline}
-\end{figure}
 
 \end{document}

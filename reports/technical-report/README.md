@@ -1,19 +1,20 @@
 # Technical report: English-to-Khmer Phonetic Transliteration
 
-*Models, Data and Human Acceptability Evaluation.* Richard Cheam (richardcheam912@gmail.com), 31 October 2026.
+*Learning from Noisy Web Pairs and Measuring Acceptability.* Richard Cheam (richardcheam912@gmail.com),
+November 2026. Written for ML engineers and practitioners; earlier version 31 October 2026.
 
 This is a technical report. It has not been peer-reviewed, and it has not been submitted to or
 published on arXiv or any other venue.
 
 | File | What it is |
 |---|---|
-| `main.tex` | The report (two columns, 10 pt; one-column appendix). Empirical values are `\val{key}` macros; architecture and recipe settings, sample-design constants, dates and bibliographic data are literal |
+| `main.tex` | The report (two columns, 10 pt; one-column appendix with methods and worked examples). Empirical values are `\val{key}` macros; architecture and recipe settings, sample-design constants, dates and bibliographic data are literal. Both figures are TikZ drawings in the source |
 | `references.bib` | Bibliography; each entry checked against its primary record |
-| `tools/extract.py` | Builds every empirical value at a pinned revision, by kind: `json` (read from a committed result file), `derived` (computed from those) or `transcribed` (copied from a committed report's text or table, with file and section). Writes `data/results_extract.json`, `generated/values.tex` and the figure CSVs. Asserts the stated relationships and fails if `main.tex` uses an undefined `\val` key |
+| `tools/extract.py` | Builds every empirical value at a pinned revision, by kind: `json` (read from a committed result file), `derived` (computed from those) or `transcribed` (copied from a committed report's text or table, with file and section). Writes `data/results_extract.json` and `generated/values.tex`. Asserts the stated relationships and fails if `main.tex` uses an undefined `\val` key |
 | `data/results_extract.json` | The checked results extract: value, source file, JSON field, revision, meaning and denominator for each key |
-| `generated/` | `values.tex` (macros) and `fig_*.csv` (figure data), generated |
-| `EVIDENCE_LEDGER.md` | Claim → file, field, revision, definition, limitation; reconciled discrepancies |
-| `SUMMARY.md` | A plain-language summary of about 800 words |
+| `generated/` | `values.tex` (macros), generated |
+| `EVIDENCE_LEDGER.md` | Claim → file, field, revision, definition, limitation; example and figure provenance; reconciled discrepancies; operational details kept out of the paper |
+| `SUMMARY.md` | A practitioner's summary of about 700 words |
 | `main.pdf` | The compiled report |
 | `tools/build.sh` | Extracts, compiles and writes `technical-report-src.tar.gz` (portable sources) |
 
@@ -35,8 +36,8 @@ From the portable archive (no repository needed), run `tools/build.sh --no-extra
 included in the archive.
 
 **Requirements:**
-- XeLaTeX or LuaLaTeX, with `fontspec`, `pgfplots`, `natbib`, `booktabs`, `tabularx`, `multirow`, `caption`,
-  `enumitem`, `microtype` and `hyperref`, plus BibTeX;
+- XeLaTeX or LuaLaTeX, with `fontspec`, TikZ, `natbib`, `booktabs`, `tabularx`, `caption`, `enumitem`,
+  `microtype`, `amssymb`, `xurl` and `hyperref`, plus BibTeX;
 - the font **Noto Serif Khmer**, with Khmer shaping by HarfBuzz. XeTeX shapes natively; LuaLaTeX uses
   `Renderer=HarfBuzz`;
 - Python 3.10+ and git, for `extract.py` only.
@@ -47,7 +48,9 @@ Tectonic (`tectonic main.tex`) also works.
 **Included:** only aggregate numbers that are already committed in the repository.
 
 **Not included:** training pairs, judgments, review keys, model weights, and protected reference or reserve
-spellings. The Khmer examples in the text are recorded outputs and examples from the project reports.
+spellings. The Khmer examples are recorded model outputs from committed prediction files, judgments quoted in
+committed reports, and a handful of individual training pairs and one mining match, each listed with its source in
+`EVIDENCE_LEDGER.md` §6. Full training files and judgment files are not distributed.
 
 ## Using the released models
 The models are in two Hugging Face repositories:

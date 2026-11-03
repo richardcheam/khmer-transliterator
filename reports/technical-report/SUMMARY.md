@@ -1,93 +1,67 @@
 # Summary: English-to-Khmer phonetic transliteration
 
-*Richard Cheam (richardcheam912@gmail.com). A summary of the technical report `main.pdf` (31 October 2026).*
+*Richard Cheam (richardcheam912@gmail.com). A practitioner's summary of the technical report `main.pdf`
+(November 2026).*
 
-## Task
-Given one English word or name, the system writes in Khmer script how it sounds when read in English: *coffee* →
-ខូហ្វី, *london* → ឡុនដុន.
+## The problem
+Khmer text often contains English words and names. A Khmer text-to-speech system reads only Khmer script, so each
+English word must first be rewritten in Khmer letters so that a Khmer reader says something close to the English
+pronunciation: *london* → ឡុនដុន.
 
-It is not translation, not conversion of romanised Khmer (*sok sabay*), and not reproduction of established loan
-spellings (the usual Khmer *coffee*, កាហ្វេ, follows another reading). Each word needs a declared pronunciation:
-the first General American reading in the CMU Pronouncing Dictionary. Khmer often allows several acceptable
-spellings of one sound.
+This is not translation, and it is not turning romanised Khmer (*sok sabay*) back into Khmer script. It also
+differs from established loan spellings: Khmer writers usually spell *coffee* កាហ្វេ, but a spelling closer to the
+English sound is ខូហ្វី. Several spellings can be acceptable for one word, because Khmer offers more than one way
+to approximate many English sounds.
 
-## Released systems
-Both are research previews with one command-line and Python interface. Both weights are licensed CC BY-NC-SA 4.0.
+The hard part is supervision: no curated dictionary to learn from and no test set listing every acceptable spelling.
 
-1. **Small character-level Transformer:** 2.6M parameters, trained from scratch on 9,735 mined pairs. NumPy only;
-   about 17–19 ms per word and 65 MiB.
-   - Its file on Hugging Face is byte-identical to the recorded checkpoint.
-2. **LoRA adapter for ByT5-small:** 6.26M parameters on a frozen 300M base, trained on 4,764 pairs. Needs PyTorch
-   and the pinned base; about 0.55 s per word on a laptop CPU, about 2 GB.
-   - It is stored in the project's own format, so it loads through the `khmer_translit` package, not PEFT or
-     `AutoModel`.
-   - Its tensors are bit-identical to the training checkpoint.
+## What we built
+- **A small character-level Transformer** (2.6M parameters), trained from scratch on about 9,700 web pairs. It
+  needs only NumPy and answers in tens of milliseconds.
+- **An adapted ByT5-small**, a 300M-parameter pretrained model that reads and writes raw bytes. We adapted it with
+  LoRA, which trains about 6M extra parameters while the pretrained weights stay frozen. It was trained on about
+  4,800 pairs.
 
-## Data
-Pairs were mined from Khmer web text (FineWeb-2, Khmer Wikipedia) where a Khmer spelling is followed by the English
-word in brackets. Nobody reviewed the training spellings.
+Training pairs come from web text where a Khmer spelling is followed by the English word in brackets, for example
+ហ្វេសប៊ុក (Facebook). They are mined automatically and never reviewed by a person. Evaluation words are kept out of
+training by word family (*share*, *sharing*, *shared*), using a simple suffix-stripping rule.
 
-- **A selection error:** a rule meant to drop romanised-Khmer pairs also dropped every pair whose Khmer side was a
-  dictionary word. Fixing it recovered 11,377 candidate rows.
-- **Screening without vowels:** a consonant screen checks Khmer consonants against the English pronunciation. Vowels
-  were never checked, and vowel differences were the largest class of disagreement.
-- **Adapter data:** it adds 1,292 pairs recovered from known screen weaknesses and 1,217 spellings attested in the
-  ALT Parallel Corpus.
-- **No LLM labels:** the adapter contains none. A historical experiment used 384 such rows; they are not in the
-  release.
+## The central lesson: how you measure decides what you learn
+Scoring a spelling by exact match with one reference is misleading here. For *band*, the released model wrote
+បេន, which a Khmer reader accepts, but the mined reference was បាន, so exact matching scored it wrong. Older
+models wrote បាន, which matched the reference and scored as right, yet the reader rejected it. In a review of 109
+spellings, 28 of the 72 that missed the reference were acceptable, and 8 of the 37 that matched it were not.
 
-## Evaluation
-**Reference agreement was weak.** Early experiments counted exact matches with one reference spelling. In an
-exploratory, post hoc development review (one judge, answers given in chat and transcribed under three confirmed
-rules), 28 of 72 spellings that missed the reference were acceptable, and 8 of 37 that matched it were not.
-Agreement errs in both directions. The same review suggested a preference for the expanded real-data model; its
-representative (40 words) and disagreement-enriched (20 words) samples are reported separately.
+We therefore switched to blinded human review. The reviewer sees the English word and its dictionary
+pronunciation, then judges each candidate spelling as acceptable, not acceptable or uncertain, without knowing
+which model produced it. An exploratory development review guided decisions; two prospective tests of 120 fresh
+words each, frozen before training, gave the main results. One reviewer, the author, made all judgments, so the
+results reflect one reader and one policy.
 
-**Final evaluation.** One judge affiliated with the project (the author) marked each spelling acceptable, not
-acceptable or uncertain, without knowing its model, by clicking on a local review page. Inputs, checkpoints and
-predictions were frozen first.
+## What changed quality, and what did not
+- **More real data looked encouraging.** Recovering wrongly filtered pairs and adding corpus-attested spellings
+  roughly doubled the data. Exact matching barely moved, but the development review favoured the larger-data model.
+  This is development evidence, not a confirmed result.
+- **Training twice as long did not help.** It changed 65 of 120 test spellings but left the acceptance rate the
+  same (77 of 120 for both models). The sample cannot rule out modest differences.
+- **Adding English pronunciation as input gave no clear benefit.** The models largely ignored it. For example,
+  removing it from the pronunciation-guided input (`fire|F AY1 ER0`) changed only about 7% of outputs. This does not
+  show that pronunciation cannot help.
+- **A decoding flag caused an apparent beam-search deficit.** With early stopping on, byte-level beam search
+  returned truncated spellings. Turning it off made beam search as good as greedy decoding.
+- **Acceptable spellings are often generated but not chosen.** On 23 hard words, the first answer was acceptable
+  for 8, but one of four candidates was acceptable for 15; 8 had none. That points to candidate selection as an
+  opportunity, not an achieved result.
 
-Each of two tests drew 120 fresh word families (40 everyday words, 40 irregular spellings, 40 names) and compared
-one candidate model with the released adapter on that sample.
+## Lessons for similar projects
+Inspect examples of what filters remove, check generation settings before blaming the model, do not equate
+one-reference agreement with acceptability, and do not expect more training to repair noisy supervision.
 
-## Findings
-- **Released adapter:** acceptable for 77 of 120 words (64.2%) on the first sample and 90 of 120 (75.0%) on the
-  second.
-  - These are two samples of the same model, not an improvement.
-  - Irregular spellings were weakest: 14 and 20 of 40.
-- **Longer training:** changed 65 of 120 spellings. The models had equal observed acceptability, 77 vs 77,
-  difference 0.0 [−8.3, +8.3] points: no difference was detected, and the interval permits gains or losses.
-- **Pronunciation-guided training:** giving the CMUdict reading plus some accepted difficult spellings also gave
-  equal observed acceptability, 90 vs 90, 0.0 [−7.5, +7.5]; the interval again permits gains or losses. Several
-  ingredients changed together, so no single one can be credited or blamed.
-- **English pronunciation input:** no detectable change in agreement in four experiments. In the small model's
-  registered comparison it gave +1.6 [−1.6, +4.9] over three seeds.
-  - Another word's phones change 33.0–44.7% of the small model's outputs (by seed), mostly with vowel or
-    diacritic edits rather than the consonants the phones dictate.
-  - That shows weak use of pronunciation here, not that it cannot help.
-- **Decoding:** an apparent beam-search deficit was a configuration error. With `early_stopping=True`, junk byte
-  hypotheses ended the search. Corrected beam search is about as good as greedy decoding.
-- **Candidate ranking:** on 23 hard irregular development words, the single answer was acceptable for 8, beam
-  top-1 for 10, and at least one of four beam candidates for 15; 8 words had none.
-  - A perfect selector could add 7 words over greedy.
-  - This is a small upper bound, not an achieved result.
+## Where things stand
+On two separate, deliberately hard 120-word samples, the released adapter's spelling was acceptable for 64.2% and
+75.0% of words, and for 35–50% of irregularly spelled words. These two samples contain different words, so the
+rates are not a trend. Irregular spellings, unreviewed training data and a single reviewer are the main
+limitations. The two released models have never been compared on a common, untouched test.
 
-## Limits
-- **Data and references:** the data are mined and unreviewed, and references give one spelling per word.
-- **Repeated use:** much reference evidence comes from an evaluation set examined many times.
-- **Human tests:** one non-independent judge; samples of 120 (each rate about ±7.7–8.6 points).
-- **Replication:** one seed per adapter.
-- **Scope:** single words only.
-- **Permissions:** rights in web pages stay with their authors. Whether Wikipedia's share-alike reaches trained
-  weights is unsettled.
-- **No head-to-head comparison:** the two released models were trained on different data and never compared on a
-  common clean test set. 110 of the 228 primary historical evaluation words occur in the small model's training
-  data.
-
-## Bottom line
-- **Established:** a documented pipeline, two released models, and a blinded acceptability protocol; an
-  exploratory review suggested a preference between models that reference agreement did not distinguish.
-- **Negative results:** pronunciation input, longer training and pronunciation-guided training gave no detectable
-  gain within these data and models.
-- **Remaining errors:** they concentrate in irregular spellings. Acceptable alternatives are often generated but
-  not chosen, while 8 of 23 hard words (35%) have none.
+Code: https://github.com/richardcheam/khmer-transliterator. Models: https://huggingface.co/ric912/en-km-phonetic-transliterator
+and https://huggingface.co/ric912/en-km-phonetic-byt5-lora (CC BY-NC-SA 4.0).

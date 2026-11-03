@@ -15,7 +15,7 @@ The script writes:
 
 - `data/results_extract.json`: each value with its kind, source, field or section, revision and meaning;
 - `generated/values.tex`: one LaTeX macro per value (`\\val{key}`);
-- `generated/*.csv`: the data behind the figures.
+- (no figure data files: the coverage chart in `main.tex` reads its four values from `values.tex`).
 
 It asserts the relationships the report states (sums, ranges, paired denominators, rounding of derived
 percentages) and fails if `main.tex` uses a `\\val{key}` that the extract does not define. No model is run and no
@@ -27,7 +27,6 @@ Run from the repository root (needs only Python 3.10+ and git):
 """
 from __future__ import annotations
 
-import csv
 import json
 import subprocess
 from decimal import ROUND_HALF_UP, Decimal
@@ -285,6 +284,13 @@ def build() -> None:
     get("cov.recov", E11C, c + "recoverable_words", "int", "greedy not acceptable but an acceptable beam candidate "
         "exists", "23")
     get("cov.none", E11C, c + "acceptable_per_word.0", "int", "words with no acceptable candidate", "23")
+    get("cov.two", E11C, c + "acceptable_per_word.2", "int", "words with exactly 2 acceptable candidates", "23")
+    get("cov.three", E11C, c + "acceptable_per_word.3", "int", "words with exactly 3 acceptable candidates", "23")
+    put("cov.multi", VALUES["cov.two"]["value"] + VALUES["cov.three"]["value"], "int", src=E11C,
+        path=c + "acceptable_per_word", kind="derived",
+        meaning="words for which the reviewer accepted two or three different candidate spellings", n="23",
+        derived="acceptable_per_word.2 + acceptable_per_word.3")
+    assert VALUES["cov.multi"]["value"] == 12
     get("cov.cands", E11C, c + "distinct_candidates", "int", "distinct candidate spellings judged")
     get("cov.unc", E11C, c + "candidate_judgments.uncertain", "int", "candidates judged uncertain", "93")
     get("cov.coverage", E11C, c + "judgment_coverage", "pct", "share of candidates with a judgment", "93")
@@ -482,30 +488,14 @@ def write() -> None:
             lines.append(f"\\@namedef{{val@{k}}}{{{txt}}}")
     lines += ["\\newcommand{\\val}[1]{\\@ifundefined{val@#1}{\\textbf{??#1}}{\\@nameuse{val@#1}}}", "\\makeatother"]
     (OUT / "generated" / "values.tex").write_text("\n".join(lines) + "\n", encoding="utf-8")
-    # figure 2: two kinds of evidence, drawn in separate panels (no shared axis, no trend lines)
-    V = lambda k: VALUES[k]["value"]  # noqa: E731
-    with open(OUT / "generated" / "fig_reference.csv", "w", newline="") as f:
-        w = csv.writer(f)
-        w.writerow(["label", "y", "top1", "cls"])
-        for i, (lab, k, c) in enumerate((("First corrected adapter", "h.e07.top1", "first"),
-                                         ("+ recovered/ALT/synthetic", "h.e08.top1", "synth"),
-                                         ("Released adapter", "h.e11.top1", "rel"),
-                                         ("Longer schedule", "h.e12.top1", "long"),
-                                         ("Pronunciation-guided", "h.e13.top1", "pron"))):
-            w.writerow([lab, 5 - i, q(100 * V(k)), c])
-    with open(OUT / "generated" / "fig_accept.csv", "w", newline="") as f:
-        w = csv.writer(f)
-        w.writerow(["label", "y", "share", "sample", "cls"])
-        rows = (("Released adapter", "t1.e11.share", 1, "rel"), ("Longer schedule", "t1.e12.share", 1, "long"),
-                ("Released adapter", "t2.e11.share", 2, "rel"), ("Pronunciation-guided", "t2.e13.share", 2, "pron"))
-        for i, (lab, k, s, c) in enumerate(rows):
-            w.writerow([lab, [5, 4, 2, 1][i], q(100 * V(k)), s, c])
 
 
 def check_tex() -> None:
     """Every `\\val{key}` in main.tex must exist; derived percentages must match their counts when rounded."""
     import re
-    used = set(re.findall(r"\\val\{([^}]+)\}", (OUT / "main.tex").read_text(encoding="utf-8")))
+    tex = (OUT / "main.tex").read_text(encoding="utf-8")
+    used = {k for k in re.findall(r"\\val\{([^}]+)\}", tex) if not k.startswith("\\")}
+    used |= set(re.findall(r"/((?:cov|t[12])\.[a-z0-9_.]+)/", tex))   # keys passed through a TikZ \foreach list
     missing = sorted(used - set(VALUES))
     assert not missing, f"main.tex uses undefined values: {missing}"
     for share, num, den in (("t1.e11.share", "t1.e11.acceptable", 120), ("t2.e11.share", "t2.e11.acceptable", 120),

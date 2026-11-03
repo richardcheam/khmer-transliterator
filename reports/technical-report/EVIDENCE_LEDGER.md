@@ -13,8 +13,11 @@ literally.
 - **Revision:** `d7e7d80c4187b363219343d9e088a01ad6ae56fa`, the git tag `archive/research-e02-e13`, which is the
   repository before the 2026-10-31 cleanup.
 - **Exceptions:** the small model's three timing runs are read at commits `3ea7019`, `03452be` and `1422153`.
-- **Not read:** no protected final reference spelling, reserve target, judgment file or training pair was opened.
-  The report uses the committed aggregate files only.
+- **Not read:** no protected final reference spelling, reserve target or judgment file was opened. The numbers use
+  the committed aggregate files only. For the worked examples (§6), individual rows were looked up in the local
+  training file of the released adapter (`data/e08/training/arm_R.tsv`), the mining record
+  (`data/mined_fineweb.tsv`) and the CMU Pronouncing Dictionary (`data/src/cmudict/cmudict.dict`); nothing else
+  was read from them.
 
 ## 1. Headline claims
 
@@ -26,6 +29,7 @@ literally.
 | Pronunciation-guided model, same sample | 90/120; Δ 0.0 [−7.5, +7.5]; 11 vs 11 (`t2.*`) | same | `analysis.primary`, `analysis.paired` | As above | Several ingredients changed together; no attribution |
 | Groups, test sample 2 | ordinary 34/32, irregular 20/21, names 36/37 (E11/E13) | same | `analysis.secondary_groups.<g>.counts` | 40 words per group | Exploratory; not tested |
 | Groups, test sample 1 | ordinary 27/27, irregular 14/19, names 36/31 (E11/E12) | `experiments/E12-longer-schedule/REPORT.md` §5.1 | **table only (no JSON field)**, transcribed | 40 words per group | Transcribed; `extract.py` asserts that they sum to the JSON totals (77, 77) |
+| Several acceptable spellings: 12 of 23 words had 2 or 3 accepted candidates (`cov.multi`) | 9 + 3 | `experiments/E11-real-data-byt5/coverage/results.json` | `overall.acceptable_per_word.2`, `.3` (derived sum) | Words of 23 | Names no spellings; individual judgments stay private |
 | Coverage: 23 words; greedy 8; beam top-1 10; any of 4: 15; none: 8 | `cov.*` | `experiments/E11-real-data-byt5/coverage/results.json` | `overall.words`, `overall.greedy_top1.acceptable`, `overall.beam_top1.acceptable`, `overall.any_acceptable_in_beam4`, `overall.acceptable_per_word.0` | Words of 23 irregular development words; 93 distinct candidates, 100% judged | Development diagnostic; oracle, not reranker accuracy |
 | Oracle adds 7 over greedy, 5 over beam top-1 | `cov.gain_vs_greedy`, `cov.gain_vs_beam1` | derived | 15 − 8; 15 − 10 | Valid because `any_acceptable_in_greedy_or_beam4` = `any_acceptable_in_beam4` = 15, and `recoverable_words` = 7 (asserted) | As above |
 | Development review | representative 29/24/30 of 40; disagreement 10/5/8 of 20 (E11/E07/E08) | `experiments/E11-real-data-byt5/reports/review_scores.json` | `acceptable_items.<sample>.<model>.acceptable` | Greedy spelling acceptable; samples reported separately | Post hoc dev review; labels given in chat and transcribed under 3 confirmed rules plus clarifications (`provenance.method`; see §5) |
@@ -40,13 +44,13 @@ literally.
 | Corrected adapter vs small letters models | +5.8 [+0.05, +11.6] (`e07.vs_g`) | `experiments/E07-byt5-diagnosis/results.json` | `historical_eval.contrasts.byt5_e07_minus_G_mean_top1` | Registered beam-4 top-1; 228 items | Registered beam had the early-stopping defect; one adapter run |
 | More data (with synthetic rows) | +0.3 [−5.7, +6.5]; greedy +2.6 [−2.4, +7.5] (`e08.*`) | `experiments/E08-data-expansion/results_rs.json` | `historical_eval.contrasts.rs_minus_e07_*` | 228 items | One run |
 | Real data vs E07 / vs E08 | +2.5 [−2.7, +7.7]; −0.1 [−4.7, +4.6] (`e11.*`) | `experiments/E11-real-data-byt5/results.json` | `eval.contrasts.*.top1` | Greedy; 222 families | Historical set examined repeatedly |
-| Greedy agreement, historical eval | E07 49.9, E08 52.4, E11 52.3, E12 53.0, E13 51.1 (`h.*.top1`) | E11/E12/E13 `results.json` | `eval.table.<m>.top1_macro` | 228 items, 222 families | Figure 1a; exploratory |
+| Greedy agreement, historical eval | E07 49.9, E08 52.4, E11 52.3, E12 53.0, E13 51.1 (`h.*.top1`) | E11/E12/E13 `results.json` | `eval.table.<m>.top1_macro` | 228 items, 222 families | Table 2 uses E11 vs E07 only; the former dot chart was removed in the rewrite; exploratory |
 | Decoding | canonical − registered beam +5.9 [+1.4, +10.4]; canonical − greedy +0.9 [−1.4, +3.6] (`e09.*`) | `experiments/E09-byt5-decoding/results.json` | `contrasts.e08:selected_minus_beam4_reg.top1`, `contrasts.e08:selected_minus_greedy.top1` | 228 items | "3.60 candidates per item" is from E09 REPORT §3, the *mani* example from §4 |
 | Longer schedule, historical | +0.7 [−4.1, +5.4] (`e12.vs_e11.hist`) | `experiments/E12-longer-schedule/results.json` | `eval.contrasts.e12_minus_e11.top1` | 222 families | "65 of 120 spellings changed" is from E12 REPORT §5.2 |
-| Release parity | 0/276 dev, 0/245 eval greedy, 0 top-4 (`par.*`) | `experiments/E11-real-data-byt5/release/verify.json` | `parity.*` | All dev/eval rows, including non-primary items | — |
-| Isolated install | 19/19 checks, dev parity 0, load 5.5 s, 14.1 words/s (`b.i.*`) | `.../release/install_check.json` | `checks`, `api.*` | Fresh uv venv, CPU torch | Network blocked by a Python socket guard (unprivileged namespaces refused); one machine |
-| Adapter runtime | 554 ms greedy, 820 ms top-4, 14.5 words/s, peak 2,019 MB, load 7.1 s (`b.*`) | `.../release/verify.json` | `latency_ms.*`, `parity.dev.greedy_words_per_second`, `peak_rss_mb`, `load_seconds` | i7-8750H, 6 threads | Single machine |
-| Small model runtime | load 0.15–0.16 s; p50 17–19 ms; batch-16 13 ms/word; peak 65 MiB (`s.t1..t3.*`) | `experiments/E02-release/reports/install_verify.json` at 3 commits | `performance.*` | 103 dev words, fresh process | Range over 3 runs (see §3) |
+| Release parity (kept here, not in the paper) | 0/276 dev, 0/245 eval greedy, 0 top-4 (`par.*`) | `experiments/E11-real-data-byt5/release/verify.json` | `parity.*` | All dev/eval rows, including non-primary items | — |
+| Isolated install (kept here, not in the paper) | 19/19 checks, dev parity 0, load 5.5 s, 14.1 words/s (`b.i.*`) | `.../release/install_check.json` | `checks`, `api.*` | Fresh uv venv, CPU torch | Network blocked by a Python socket guard (unprivileged namespaces refused); one machine |
+| Adapter runtime (kept here, not in the paper) | 554 ms greedy, 820 ms top-4, 14.5 words/s, peak 2,019 MB, load 7.1 s (`b.*`) | `.../release/verify.json` | `latency_ms.*`, `parity.dev.greedy_words_per_second`, `peak_rss_mb`, `load_seconds` | i7-8750H, 6 threads | Single machine |
+| Small model runtime (kept here, not in the paper) | load 0.15–0.16 s; p50 17–19 ms; batch-16 13 ms/word; peak 65 MiB (`s.t1..t3.*`) | `experiments/E02-release/reports/install_verify.json` at 3 commits | `performance.*` | 103 dev words, fresh process | Range over 3 runs (see §3) |
 
 ## 2. Numbers taken from report prose or tables (no JSON field)
 
@@ -68,8 +72,8 @@ literally.
 
 1. **Small model latency.** The public card gives 17 ms p50 / 30 ms p95, which is the first of three recorded
    install checks (`3ea7019`: 16.7 / 29.6 ms). The two later runs measured 18.6 / 33.6 ms (`03452be`) and
-   19.2 / 38.0 ms (`1422153`), and the experiment report gives 18 / 32 ms. The report gives the 17–19 ms range and
-   notes this in its appendix.
+   19.2 / 38.0 ms (`1422153`), and the experiment report gives 18 / 32 ms. The first version gave the 17–19 ms range; the
+   rewritten report no longer quotes latency ("tens of milliseconds" only).
 2. **Pooled development review.** Project notes (decision D194, the E11 report's "All 60" row) quote 65% / 48% /
    63% over 60 words. These figures pool the representative and the disagreement-enriched samples, so they are
    not used.
@@ -124,3 +128,45 @@ not changed.
 - also: the cross-table totals (28 + 41 + 3 = 72; 28 + 8 + 1 = 37; 72 + 37 = 109), the coverage provenance
   (50 new + 43 reused = 93; 40 + 3 = 43), the arm R composition (4,764 − 1,292 − 1,217 = 2,255), the
   small-model dev scores being multiples of 1/86, and the earlier test, group and coverage relationships.
+
+## 6. Worked examples and figure provenance (rewrite, 2026-11-03)
+
+Every example in the report is a recorded artifact. Role = training, development or test, as recorded.
+
+| Example in the report | Role | Verified against |
+|---|---|---|
+| Figure 1A source text ``…ត្រូវបានចែករំលែកតាមបណ្តាញសង្គមហ្វេសប៊ុក (Facebook)'' and the pair facebook → ហ្វេសប៊ុក | training | `data/mined_fineweb.tsv` (`source_phrase`, class `khmer_like`, 1,576 occurrences in the FineWeb-2 mining run); the pair is in `data/e08/training/arm_R.tsv` (provenance `control`). The English gloss is the author's translation |
+| facebook was dropped by the old filter because its Khmer side is a dictionary word | training | `scripts/translit_mine.py` rule (`khmer_like` if Latin is romanised Khmer *or* Khmer is known); ហ្វេសប៊ុក is a key of the Google lexicon (`khmer_translit.lexicon.keys()`) |
+| Figure 1A pairs taxi → តាក់ស៊ី, google → ហ្គូហ្គល | training | `arm_R.tsv`, provenance `control` |
+| coffee: កាហ្វេ, កូហ្វី, ខូហ្វី | training | `arm_R.tsv` (provenance `control`; a fourth spelling ខូហ្វ៊ី is `recovered`) |
+| hotel → តែល | training (recovered) | `arm_R.tsv`, provenance `recovered` |
+| london → ឡុនដុន (intro) | training word; released model's output | `arm_R.tsv` (`recovered`); release smoke output in the adapter card |
+| Figure 1B: band, reading `B AE1 N D`, released adapter output បេន, judged acceptable | development | output: `experiments/E11-real-data-byt5/predictions/e11_dev_greedy.jsonl` and `results_per_item_dev.jsonl` (`correct: 0`, reference differs); judgment: E11 REPORT §5 ("Differs but acceptable … *band* បេន"); reading: CMUdict |
+| band → បាន by earlier adapters, matches the reference, not acceptable | development | E07/E08 dev predictions (`correct: 1`); E11 REPORT §5 ("Matches but not acceptable … *band* បាន") |
+| phi: released ភី matches the reference, not acceptable; earlier ហ្វី acceptable | development | `results_per_item_dev.jsonl` (E11 `correct: 1`, E07 `correct: 0`); E11 REPORT §5; reading `F AY1` from CMUdict |
+| cameroon → ខេមឺរ៉ុន, differs, acceptable | development | E11 dev predictions; E11 REPORT §5 |
+| mani: greedy ម៉ានី, original beam មានី | development (40-item disagreement inspection) | E09 REPORT §4 |
+| `fire` → `fire\|F AY1 ER0` input format | format example | E13 REPORT "What was changed" |
+| ហ្វេន for 204 of 228 words | historical evaluation | E07 REPORT §1 (`e06.top`) |
+| share / shares / sharing / shared as one family | rule example | `src/khmer_translit/reference_data.py` `stems` and `group_families` docstring at the revision (suffix stripping, joined transitively) |
+| *colonel* (irregular spelling) and *sok sabay* (romanised Khmer) | illustrations only | not data claims |
+| Figure 2 (coverage bars) | development diagnostic | `cov.greedy`, `cov.beam1`, `cov.any4`, `cov.none` |
+
+Multiple accepted spellings: the committed records count words with two or three accepted candidates (`cov.multi`)
+but do not name the spellings, and the judgment files were not opened, so the report gives the count only.
+
+## 7. What the practitioner rewrite moved out of the paper (2026-11-03)
+
+The rewrite changed presentation only; no value was recomputed or changed. Moved out of the main text and kept
+here or in the repository:
+- release checks (export parity, isolated install, hashes of model files and checkpoints), latency and memory
+  figures (§1 rows marked "kept here"; §4);
+- hashes, revisions, update numbers and checkpoint identifiers (§1, §4, `data/results_extract.json`);
+- the experiment-by-experiment inventory with its intervals (the experiment folders and `docs/DECISIONS.md`);
+- per-seed scores, power estimates and discordant-pair counts other than the test-1 split (§1);
+- the former Figure 1 (reference agreement and acceptability dot charts) and Table 1 (release comparison).
+
+Kept in the paper: the corrected D203 values (candidate-anchored 82/165 and 94/191, sensitivity 33.0–44.7%,
+overlap 110/228 and 122/245) in Appendix A and §4.3; the chat-transcribed vs click distinction in §3 and Appendix A;
+"no clear difference / not equivalence" wording in Table 2 and §4; "no pipeline defect explaining the collapse" in
+§2.1. Paired differences and intervals appear once, in Table 2, with four further comparisons in Appendix A.
