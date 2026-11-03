@@ -13,6 +13,12 @@
 \usepackage{array}
 \usepackage{multirow}
 \usepackage{xcolor}
+% Figure colours: one fixed colour per system, the same in every panel (colour-blind-checked palette).
+\definecolor{cRel}{HTML}{2A78D6}   % released adapter
+\definecolor{cLong}{HTML}{EB6834}  % longer schedule
+\definecolor{cPron}{HTML}{1BAF7A}  % pronunciation-guided
+\definecolor{cFirst}{HTML}{6250D6} % first corrected adapter
+\definecolor{cSynth}{HTML}{E87BA4} % + synthetic rows
 \usepackage{caption}
 \usepackage{float}
 \usepackage{enumitem}
@@ -411,11 +417,13 @@ on different items with different definitions.
   ytick=data, yticklabel style={font=\scriptsize, align=right}, ymin=0.4]
 \nextgroupplot[title={(a) Agreement with mined spellings}, xlabel={greedy exact agreement, \% (\val{h.items} items)},
   yticklabels from table={\figref}{label}, ymax=5.6]
-\addplot[only marks, mark=*, mark size=2pt, black] table[x=top1, y=y]{\figref};
+\addplot[scatter, only marks, mark=*, mark size=3pt, point meta=explicit symbolic, scatter/classes={
+  rel={draw=white, fill=cRel}, long={draw=white, fill=cLong}, pron={draw=white, fill=cPron}, first={draw=white, fill=cFirst}, synth={draw=white, fill=cSynth}}, line width=0.4pt] table[x=top1, y=y, meta=cls]{\figref};
 \nextgroupplot[title={(b) Blinded acceptability}, xlabel={confirmed acceptable, \% (120 words each)},
   yticklabels from table={\figacc}{label}, ymax=6.1,
   extra y ticks={3}, extra y tick labels={}, extra y tick style={grid=major, grid style={black!60, dashed}}]
-\addplot[only marks, mark=square*, mark size=2pt, black] table[x=share, y=y]{\figacc};
+\addplot[scatter, only marks, mark=square*, mark size=3pt, point meta=explicit symbolic, scatter/classes={
+  rel={draw=white, fill=cRel}, long={draw=white, fill=cLong}, pron={draw=white, fill=cPron}}, line width=0.4pt] table[x=share, y=y, meta=cls]{\figacc};
 \node[font=\scriptsize, anchor=west, gray!60!black] at (axis cs:1,5.65) {test sample 1};
 \node[font=\scriptsize, anchor=west, gray!60!black] at (axis cs:1,2.6) {test sample 2};
 \end{groupplot}
@@ -583,22 +591,27 @@ Pronunciation-guided adapter & equal observed acceptability, \val{t2.diff} \val{
 \centering
 \begin{tikzpicture}[font=\scriptsize,
   box/.style={draw, rounded corners=1.5pt, align=center, inner sep=2pt, minimum height=8mm, text width=2.55cm},
-  arr/.style={-{Stealth[length=2mm]}}]
-\node[box] (web)    at (0,0)    {Khmer web text\\ FineWeb-2, Wikipedia};
-\node[box] (mine)   at (3.4,0)  {bracket mining,\\ CMUdict, filters};
-\node[box] (repair) at (6.8,0)  {selection repair\\ (\texttt{khmer\_like})};
-\node[box] (screen) at (10.2,0) {consonant screen\\ + recovery rules};
-\node[box] (alt)    at (6.8,-1.2) {ALT Parallel\\ Corpus spellings};
-\node[box] (fam)    at (10.2,-1.2) {family exclusion\\ of all test words};
-\node[box] (train)  at (10.2,-2.4) {training\\ (small model / adapter)};
-\node[box] (sel)    at (6.8,-2.4)  {checkpoint selection\\ (development set)};
-\node[box] (freeze) at (3.4,-2.4)  {freeze inputs,\\ checkpoint, outputs};
-\node[box] (judge)  at (0,-2.4)    {blinded review: acceptable\\ / not / uncertain};
+  src/.style={box, draw=cRel, fill=cRel!12},
+  prep/.style={box, draw=cPron!80!black, fill=cPron!14},
+  fit/.style={box, draw=cLong, fill=cLong!12},
+  eval/.style={box, draw=cFirst, fill=cFirst!12},
+  arr/.style={-{Stealth[length=2mm]}, gray!70!black, semithick}]
+\node[src] (web)    at (0,0)    {Khmer web text\\ FineWeb-2, Wikipedia};
+\node[prep] (mine)   at (3.4,0)  {bracket mining,\\ CMUdict, filters};
+\node[prep] (repair) at (6.8,0)  {selection repair\\ (\texttt{khmer\_like})};
+\node[prep] (screen) at (10.2,0) {consonant screen\\ + recovery rules};
+\node[src] (alt)    at (6.8,-1.2) {ALT Parallel\\ Corpus spellings};
+\node[prep] (fam)    at (10.2,-1.2) {family exclusion\\ of all test words};
+\node[fit] (train)  at (10.2,-2.4) {training\\ (small model / adapter)};
+\node[fit] (sel)    at (6.8,-2.4)  {checkpoint selection\\ (development set)};
+\node[eval] (freeze) at (3.4,-2.4)  {freeze inputs,\\ checkpoint, outputs};
+\node[eval] (judge)  at (0,-2.4)    {blinded review: acceptable\\ / not / uncertain};
 \draw[arr] (web) -- (mine); \draw[arr] (mine) -- (repair); \draw[arr] (repair) -- (screen);
 \draw[arr] (screen) -- (fam); \draw[arr] (alt) -- (fam); \draw[arr] (fam) -- (train);
 \draw[arr] (train) -- (sel); \draw[arr] (sel) -- (freeze); \draw[arr] (freeze) -- (judge);
 \end{tikzpicture}
-\caption{Data and evaluation pipeline of the released adapter (ALT spellings pass the same consonant screen). The
+\caption{Data and evaluation pipeline of the released adapter: data sources (blue), data preparation (green),
+training and selection (orange) and evaluation (violet). ALT spellings pass the same consonant screen. The
 small model used the mining and filter steps before the selection repair and was evaluated against reference lists
 rather than by blinded review.}
 \label{fig:pipeline}

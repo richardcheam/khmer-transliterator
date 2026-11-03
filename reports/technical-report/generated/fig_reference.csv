@@ -1,6 +1,6 @@
-label,y,top1
-First corrected adapter,5,49.9
-+ recovered/ALT/synthetic,4,52.4
-Released adapter,3,52.3
-Longer schedule,2,53.0
-Pronunciation-guided,1,51.1
+label,y,top1,cls
+First corrected adapter,5,49.9,first
++ recovered/ALT/synthetic,4,52.4,synth
+Released adapter,3,52.3,rel
+Longer schedule,2,53.0,long
+Pronunciation-guided,1,51.1,pron

@@ -486,20 +486,20 @@ def write() -> None:
     V = lambda k: VALUES[k]["value"]  # noqa: E731
     with open(OUT / "generated" / "fig_reference.csv", "w", newline="") as f:
         w = csv.writer(f)
-        w.writerow(["label", "y", "top1"])
-        for i, (lab, k) in enumerate((("First corrected adapter", "h.e07.top1"),
-                                      ("+ recovered/ALT/synthetic", "h.e08.top1"),
-                                      ("Released adapter", "h.e11.top1"),
-                                      ("Longer schedule", "h.e12.top1"),
-                                      ("Pronunciation-guided", "h.e13.top1"))):
-            w.writerow([lab, 5 - i, q(100 * V(k))])
+        w.writerow(["label", "y", "top1", "cls"])
+        for i, (lab, k, c) in enumerate((("First corrected adapter", "h.e07.top1", "first"),
+                                         ("+ recovered/ALT/synthetic", "h.e08.top1", "synth"),
+                                         ("Released adapter", "h.e11.top1", "rel"),
+                                         ("Longer schedule", "h.e12.top1", "long"),
+                                         ("Pronunciation-guided", "h.e13.top1", "pron"))):
+            w.writerow([lab, 5 - i, q(100 * V(k)), c])
     with open(OUT / "generated" / "fig_accept.csv", "w", newline="") as f:
         w = csv.writer(f)
-        w.writerow(["label", "y", "share", "sample"])
-        rows = (("Released adapter", "t1.e11.share", 1), ("Longer schedule", "t1.e12.share", 1),
-                ("Released adapter", "t2.e11.share", 2), ("Pronunciation-guided", "t2.e13.share", 2))
-        for i, (lab, k, s) in enumerate(rows):
-            w.writerow([lab, [5, 4, 2, 1][i], q(100 * V(k)), s])
+        w.writerow(["label", "y", "share", "sample", "cls"])
+        rows = (("Released adapter", "t1.e11.share", 1, "rel"), ("Longer schedule", "t1.e12.share", 1, "long"),
+                ("Released adapter", "t2.e11.share", 2, "rel"), ("Pronunciation-guided", "t2.e13.share", 2, "pron"))
+        for i, (lab, k, s, c) in enumerate(rows):
+            w.writerow([lab, [5, 4, 2, 1][i], q(100 * V(k)), s, c])
 
 
 def check_tex() -> None:
