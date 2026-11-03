@@ -79,7 +79,7 @@ a Khmer reader say something close to the \emph{English} pronunciation: \emph{lo
 roughly as ``lon-don''.
 
 This task is not translation; the meaning of the word plays no part. Nor is it the conversion of \emph{romanised
-Khmer}---Khmer words typed in Latin letters, such as \emph{sok sabay} for \km{សុខសប្បាយ}---back into Khmer script.
+Khmer} (Khmer words typed in Latin letters, such as \emph{sok sabay} for \km{សុខសប្បាយ}) back into Khmer script.
 Here the input is a genuine English word and the target is a Khmer approximation of its English sound.
 
 The target also differs from established loan spellings. Khmer writers usually spell \emph{coffee} \km{កាហ្វេ},
@@ -110,7 +110,7 @@ The second adapts \emph{ByT5-small} \citep{xue-etal-2022-byt5}, a 300-million-pa
 reads and writes raw UTF-8 bytes instead of a fixed vocabulary of word pieces. Working on bytes suits a task about
 spelling, and ByT5 has been used for transliteration of romanised South Asian text \citep{kirov-etal-2024-context}.
 We adapted it with \emph{LoRA} \citep{hu-etal-2022-lora}, which keeps the pretrained weights frozen and trains a
-small set of additional low-rank matrices---here about six million parameters---in the attention and feed-forward
+small set of additional low-rank matrices (here about six million parameters) in the attention and feed-forward
 layers.
 
 Byte-level adaptation has a pitfall that an engineer can easily mistake for a bug. Every Khmer character takes
@@ -209,7 +209,7 @@ The miner was also meant to discard romanised Khmer that happens to sit in brack
 Latin side was a known romanised Khmer word \emph{or} if the Khmer side was a known Khmer word. The second
 condition quietly removed every pair whose Khmer spelling appears in a Khmer dictionary, which includes well-known
 loans such as \km{ហ្វេសប៊ុក}. As a result, none of the small model's training targets could be found in the
-dictionary---a sign that, once noticed, revealed the error. Splitting the two conditions returned
+dictionary, a sign that revealed the error once noticed. Splitting the two conditions returned
 \val{d.recovered} candidate pairs to the pool. The general lesson is to inspect what a filter actually removes,
 not only how much.
 
@@ -223,7 +223,7 @@ because of doubled letters or glides; a later pass recovered \val{d.r.recovered}
 noise (the recovered pairs include a truncated \emph{hotel} $\rightarrow$ \km{តែល}).
 
 \paragraph{Keeping evaluation words separate.}
-English words come in families---\emph{share}, \emph{shares}, \emph{sharing}, \emph{shared}---and a model that
+English words come in families such as \emph{share}, \emph{shares}, \emph{sharing} and \emph{shared}, and a model that
 has seen \emph{shared} has nearly seen \emph{share}. We therefore grouped words into families with a simple
 suffix-stripping rule (removing endings such as \emph{-s}, \emph{-ed} and \emph{-ing}, and joining words that share
 a stem) and kept every family on one side of each split. This is a heuristic, not a full morphological analysis:
@@ -270,7 +270,7 @@ Two kinds of review must be kept apart. The \emph{development review} looked bac
 development words: 40 sampled to be representative and 20 chosen because the models disagreed. Its answers were
 given in free text and mapped to the three labels under rules the reviewer confirmed, for example that a candidate
 not named in the reply is not acceptable. It guided decisions but is exploratory. The two \emph{prospective tests}
-each used 120 fresh words---40 ordinary words, 40 irregularly spelled words and 40 names---chosen and frozen
+each used 120 fresh words (40 ordinary words, 40 irregularly spelled words and 40 names), chosen and frozen
 before the candidate model was trained, with all outputs frozen before review. Each spelling was judged with an
 explicit click on a review page. The two test samples are different, so their rates are not comparable with each
 other.
@@ -376,8 +376,8 @@ disagree often enough to force it to read the pronunciation.
 
 \subsection{A decoding setting, not the model, caused a beam-search deficit}
 \label{sec:res-decode}
-\emph{Why we looked.} For the adapted models, beam search---which keeps several partial spellings and returns the
-most probable complete one---scored worse than simply taking the most likely byte at each step (greedy decoding).
+\emph{Why we looked.} For the adapted models, beam search, which keeps several partial spellings and returns the
+most probable complete one, scored worse than simply taking the most likely byte at each step (greedy decoding).
 That is unusual.
 
 \emph{What happened.} The beam search had been called with early stopping enabled. At the byte level, junk
@@ -471,7 +471,7 @@ repository's notices give details. Training pairs, judgments and references are 
 
 Spelling English words in Khmer script is a small task with an awkward property: many answers are right, and no
 reliable list of them exists. With only noisy web pairs for supervision, the most consequential change in this
-project was not a model but a measurement---replacing exact agreement with one reference by blinded judgments of
+project was not a model but a measurement: replacing exact agreement with one reference by blinded judgments of
 acceptability. Under that measurement, cleaner and larger real data looked encouraging, while longer training and
 added pronunciation information showed no clear benefit. The released adapter produces an acceptable spelling for
 \val{t1.e11.share}\% and \val{t2.e11.share}\% of words in two separate, deliberately hard 120-word samples,
@@ -534,13 +534,13 @@ reference set. ``Reference'' is the mined spelling used for exact-agreement scor
 English word (role) & Intended reading & Input and system & Output & Reference / judgment & Lesson \\
 \midrule
 \emph{facebook} (training pair) & \texttt{F EY1 S B UH2 K} & bracket match in web text &
-  \km{ហ្វេសប៊ុក} & --- & A genuine loan that the original filter discarded because its Khmer side is a dictionary
+  \km{ហ្វេសប៊ុក} & n/a & A genuine loan that the original filter discarded because its Khmer side is a dictionary
   word. \\
 \emph{coffee} (training pairs) & \texttt{K AA1 F IY0} & three mined spellings &
-  \km{កាហ្វេ}, \km{កូហ្វី}, \km{ខូហ្វី} & --- & Web data mixes the established loan with pronunciation-based
+  \km{កាហ្វេ}, \km{កូហ្វី}, \km{ខូហ្វី} & n/a & Web data mixes the established loan with pronunciation-based
   spellings. \\
 \emph{hotel} (training pair) & \texttt{HH OW0 T EH1 L} & pair recovered after the consonant check &
-  \km{តែល} & --- & Recovered pairs are unreviewed and can be truncated. \\
+  \km{តែល} & n/a & Recovered pairs are unreviewed and can be truncated. \\
 \emph{band} (development) & \texttt{B AE1 N D} & \texttt{band}; released adapter & \km{បេន} & ref.\ \km{បាន};
   acceptable & Exact matching rejects an acceptable spelling. \\
 \emph{band} (development) & \texttt{B AE1 N D} & \texttt{band}; earlier adapters & \km{បាន} & matches ref.;
@@ -550,12 +550,12 @@ English word (role) & Intended reading & Input and system & Output & Reference /
   the released model. \\
 \emph{cameroon} (development) & \texttt{K AE1 M ER0 UW2 N} & \texttt{cameroon}; released adapter & \km{ខេមឺរ៉ុន} & differs from ref.;
   acceptable & Vowel choices often differ from the reference without being wrong. \\
-\emph{mani} (development) & \texttt{M AA1 N IY0} & \texttt{mani}; greedy vs original beam setting & \km{ម៉ានី} vs \km{មានី} & ---
+\emph{mani} (development) & \texttt{M AA1 N IY0} & \texttt{mani}; greedy vs original beam setting & \km{ម៉ានី} vs \km{មានី} & n/a
   & The early-stopping beam dropped a series mark. \\
 \emph{fire} (input format) & \texttt{F AY1 ER0} & word-only \texttt{fire}; pronunciation-guided
-  \texttt{fire|F AY1 ER0} & --- & --- & The pronunciation is text appended to the input; no audio is used. \\
-(evaluation words) & --- & first adaptation, attention layers only & \km{ហ្វេន} for \val{e06.top} of
-  \val{h.items} words & --- & A falling byte-level loss can hide a model that ignores its input. \\
+  \texttt{fire|F AY1 ER0} & n/a & n/a & The pronunciation is text appended to the input; no audio is used. \\
+(evaluation words) & n/a & first adaptation, attention layers only & \km{ហ្វេន} for \val{e06.top} of
+  \val{h.items} words & n/a & A falling byte-level loss can hide a model that ignores its input. \\
 \bottomrule
 \end{tabularx}
 \end{table}
