@@ -13,7 +13,7 @@ differs from established loan spellings: Khmer writers usually spell *coffee* �
 English sound is ខូហ្វី. Several spellings can be acceptable for one word, because Khmer offers more than one way
 to approximate many English sounds.
 
-The hard part is supervision: no curated dictionary to learn from and no test set listing every acceptable spelling.
+The hard part is supervision: we found no suitable curated dictionary to learn from and no established benchmark.
 
 ## What we built
 - **A small character-level Transformer** (2.6M parameters), trained from scratch on about 9,700 web pairs. It
@@ -27,7 +27,8 @@ Training pairs come from web text where a Khmer spelling is followed by the Engl
 training by word family (*share*, *sharing*, *shared*), using a simple suffix-stripping rule.
 
 ## The central lesson: how you measure decides what you learn
-Scoring a spelling by exact match with one reference is misleading here. For *band*, the released model wrote
+Scoring a spelling by exact match with one reference is misleading here. For the development word *band* (excluded from training, but part of the set
+used to select the checkpoint), the released model wrote
 បេន, which a Khmer reader accepts, but the mined reference was បាន, so exact matching scored it wrong. Older
 models wrote បាន, which matched the reference and scored as right, yet the reader rejected it. In a review of 109
 spellings, 28 of the 72 that missed the reference were acceptable, and 8 of the 37 that matched it were not.

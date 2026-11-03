@@ -57,9 +57,9 @@
 \begin{abstract}
 \noindent
 A Khmer speech system that meets an English word such as \emph{taxi} must first write it in Khmer script, in a way
-a Khmer reader would pronounce like the English word. No labelled dataset or reliable test exists for this task, so
-we trained models on English--Khmer word pairs found in web text and asked how to tell whether their spellings are
-any good. We built a small character-level model from scratch and adapted a pretrained byte-level model, and we
+a Khmer reader would pronounce like the English word. We found no suitable curated training dataset or established
+benchmark for this task, so we trained models on English--Khmer word pairs found in web text and asked how to tell
+whether their spellings are any good. We built a small character-level model from scratch and adapted a pretrained byte-level model, and we
 released both. The central lesson concerns measurement. Scoring a spelling by exact agreement with one reference
 spelling proved misleading: it rejected spellings a Khmer reader accepted and rewarded references the reader
 rejected. Blinded human review, in which spellings are judged acceptable, not acceptable or uncertain, changed which
@@ -91,8 +91,8 @@ consonants and small marks that shift a consonant's series, and many English sou
 English \emph{f}, for example, can reasonably be written \km{ហ្វ} or \km{ផ}. A useful system therefore needs to
 produce \emph{an} acceptable spelling, not \emph{the} spelling.
 
-The central engineering difficulty is supervision. There is no curated English--Khmer phonetic dictionary to learn
-from, and no test set that lists every acceptable spelling of each word. We had to build training data from noisy
+The central engineering difficulty is supervision. We found no curated English--Khmer phonetic dictionary to learn
+from and no established test set that lists the acceptable spellings of each word. We had to build training data from noisy
 web text and, just as importantly, find a way of measuring quality that a Khmer reader would agree with.
 
 % =====================================================================================================
@@ -175,11 +175,13 @@ reviewed by a person before training.
 \draw[arr] (src) -- node[act] {Extract} (pair);
 \draw[arr] (pair) -- node[act] {Check} (more);
 \draw[arr] (more) -- node[act] {Learn} (train);
-\node[note, below=1.5mm of more, text width=36mm] {Keep words with a known English pronunciation; drop unrelated
-  matches; keep evaluation words out. Consonants are checked, vowels are not.};
+\node[note, below=1.5mm of more, text width=36mm] {Drop unrelated matches and evaluation words. Consonants are
+  checked, vowels are not.};
 \node[note, below=1.5mm of train, text width=30mm] {Learn how English spellings correspond to Khmer spellings.};
 % ---------------- Panel B: evaluation ----------------
-\node[panel] (pb) at (0,-5.25) {B.\ Spelling and reviewing a different word (development review)};
+\coordinate (endA) at (current bounding box.south);
+\draw[black!20, thick] ($(current bounding box.west |- endA)+(0,-4mm)$) -- ($(current bounding box.east |- endA)+(0,-4mm)$);
+\node[panel] (pb) at ($(0,0 |- endA)+(0,-9mm)$) {B.\ Spelling and reviewing a different word (development review, exploratory)};
 \node[txt, below=3mm of pb.south west, anchor=north west, text width=30mm] (word)
   {\textsf{\large band}\\[2pt] {\footnotesize reading shown to the reviewer:}\\ {\footnotesize\texttt{B AE1 N D}}};
 \node[mdl, right=16mm of word, text width=28mm] (gen) {adapted model\\ (from panel A)};
@@ -191,16 +193,18 @@ reviewed by a person before training.
 \draw[arr] (word) -- node[act] {Generate} (gen);
 \draw[arr] (gen) -- (out);
 \draw[arr] (out) -- node[act] {Review} (out -| choices.west);
-\node[note, below=1.5mm of word, text width=34mm] {Its word family was kept out of training and checkpoint
-  selection.};
+\node[note, below=1.5mm of word, text width=42mm] {Excluded from training; included in the development set used
+  to select the checkpoint.};
 \node[note, below=1.5mm of choices, text width=40mm] {Model identity hidden; the reviewer may accept several
   spellings or none.};
 \end{tikzpicture}
 \caption{How the adapted model is trained and evaluated. (A)~A Khmer spelling followed by its English original in
 brackets is extracted as a training pair; after checks, thousands of such pairs teach the model the correspondence.
-(B)~A word whose family never entered training is spelled by the model, and a Khmer reader judges the result against
-the English reading. Both panels use recorded data: the Facebook match and training pairs come from the mining
-records, and \emph{band}, its output and the judgment from the development review.}
+(B)~A development word, excluded from training but part of the set used to select the checkpoint, is spelled by
+the model, and a Khmer reader judges the result against the English reading. This review is exploratory; the main
+results come from two separate prospective tests of fresh words. Both panels use recorded data: the Facebook match
+and training pairs come from the mining records, and \emph{band}, its output and the judgment from the
+development review.}
 \label{fig:pipeline}
 \end{figure*}
 
@@ -267,7 +271,8 @@ not confirmed.
 
 \paragraph{Development review and prospective tests.}
 Two kinds of review must be kept apart. The \emph{development review} looked back at existing models on 60
-development words: 40 sampled to be representative and 20 chosen because the models disagreed. Its answers were
+development words, the set also used to select checkpoints: 40 sampled to be representative and 20 chosen because
+the models disagreed. Its answers were
 given in free text and mapped to the three labels under rules the reviewer confirmed, for example that a candidate
 not named in the reply is not acceptable. It guided decisions but is exploratory. The two \emph{prospective tests}
 each used 120 fresh words (40 ordinary words, 40 irregularly spelled words and 40 names), chosen and frozen
@@ -283,42 +288,31 @@ deliberately over-represents hard words and names, so the rates do not estimate 
 \section{What changed model quality?}
 \label{sec:results}
 
-Table~\ref{tab:comparisons} collects the principal comparisons with their paired differences and intervals. The
-intervals come from resampling word families and describe uncertainty from the choice of words, not from
-retraining. Reference agreement for the adapted models is measured on a fixed \emph{historical} evaluation set of
+Table~\ref{tab:outcomes} summarises what we observed and the main limitation of each finding; the sections below
+explain them. Reference agreement for the adapted models is measured on a fixed \emph{historical} evaluation set of
 \val{h.items} words that was examined across many experiments, so those comparisons are exploratory.
 
 \begin{table*}[t]
 \centering\small
-\caption{Principal comparisons. Each row compares two systems on the same words. Acceptability counts are
-confirmed-acceptable spellings out of the words reviewed; reference agreement is the share of first answers that
-exactly match the mined reference. Differences are in percentage points with a 95\% paired family-bootstrap
-interval; an interval that includes zero means no clear difference, not equivalence. The two test samples contain
-different words.}
-\label{tab:comparisons}
-\begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}p{2.3cm}L>{\raggedright\arraybackslash}p{4.4cm}
-  >{\raggedright\arraybackslash}p{2.5cm}>{\raggedright\arraybackslash}p{2.9cm}@{}}
+\caption{What we observed. ``No clear benefit'' means the samples could not detect a difference; it does not mean
+the methods are equivalent. Paired differences and intervals are in Appendix~\ref{app:methods},
+Table~\ref{tab:comparisons}.}
+\label{tab:outcomes}
+\begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}p{2.6cm}L>{\raggedright\arraybackslash}p{5.6cm}@{}}
 \toprule
-Question & Comparison & Evidence & Result & Difference [95\%] \\
+Question & Observed outcome & Main limitation \\
 \midrule
-More real data & released adapter vs first working adapter & reference agreement, \val{h.items} historical
-  evaluation words & \val{h.e11.top1}\% vs \val{h.e07.top1}\% & \val{e11.vs_e07} \val{e11.vs_e07.ci} \\
- & same models & development review, 40 representative words & \val{rev.representative.e11} vs
-  \val{rev.representative.e07} acceptable & exploratory \\
- & same models & development review, 20 words where models disagreed & \val{rev.disagreement.e11} vs
-  \val{rev.disagreement.e07} acceptable & exploratory \\
-\midrule
-Longer training & twice the training updates vs released adapter & test sample 1, 120 fresh words &
-  \val{t1.e12.acceptable} vs \val{t1.e11.acceptable} acceptable & \val{t1.diff} \val{t1.diff.ci} \\
-\midrule
-Pronunciation & small model, letters + pronunciation vs letters only & curated references, \val{e02.families}
-  word families, three paired training runs & & \val{e02.phones} \val{e02.phones.ci} \\
- & pronunciation-guided adapter vs released adapter & test sample 2, 120 fresh words &
-  \val{t2.e13.acceptable} vs \val{t2.e11.acceptable} acceptable & \val{t2.diff} \val{t2.diff.ci} \\
-\midrule
-Decoding & corrected beam search vs original beam setting & reference agreement, \val{h.items} historical
-  evaluation words; one earlier adapter & & \val{e09.e08.sel_vs_reg} \val{e09.e08.sel_vs_reg.ci} \\
- & corrected beam search vs greedy decoding & same & & \val{e09.e08.sel_vs_greedy} \val{e09.e08.sel_vs_greedy.ci} \\
+More real data & Encouraging: the development review preferred the larger-data adapter, while agreement with
+  mined references barely moved. & Exploratory, post hoc review of development words by one reviewer; not a
+  confirmed improvement. \\
+Longer training & Equal observed acceptance on test sample 1 (\val{t1.e11.acceptable} of 120 for both models),
+  although \val{t1.changed} spellings changed. No clear benefit detected. & One training run and 120 words; modest
+  differences in either direction cannot be ruled out. \\
+Pronunciation input & No clear benefit detected, for the small model or for the pronunciation-guided adapter
+  (\val{t2.e11.acceptable} of 120 for both on test sample 2). & The adapter experiment changed several ingredients
+  together, so the effect of pronunciation is not isolated. \\
+Decoding & Disabling early stopping removed the apparent beam-search deficit. & Measured by reference agreement;
+  beam search then showed no clear advantage over greedy decoding. \\
 \bottomrule
 \end{tabularx}
 \end{table*}
@@ -357,7 +351,7 @@ dictionary pronunciation seemed likely to help with words like \emph{colonel}.
 
 \emph{What happened.} For the small model, we gave the pronunciation symbols as a second input next to the letters.
 Across three comparisons on different data the differences were small and uncertain; the registered comparison is
-in Table~\ref{tab:comparisons}. A diagnostic explains part of this. When we swapped in another word's pronunciation,
+in Appendix~\ref{app:methods}. A diagnostic explains part of this. When we swapped in another word's pronunciation,
 the model's first answer changed for \val{sens.min}--\val{sens.max}\% of words, depending on the training run, but
 the changed answers rarely moved towards the other word's consonants; most changes were vowel or diacritic edits.
 
@@ -385,7 +379,7 @@ hypotheses that end after one or two bytes finish first and fill the set of comp
 end. The search then returned truncated or less probable spellings: for the development word \emph{mani}, greedy
 decoding gave \km{ម៉ានី} but the beam returned \km{មានី}, dropping the mark that sets the consonant's series. With
 early stopping disabled, beam search matched greedy decoding and clearly beat the original beam setting
-(Table~\ref{tab:comparisons}).
+(Table~\ref{tab:comparisons} in Appendix~\ref{app:methods}).
 
 \emph{What it means.} Check generation settings before attributing a difference to model quality. Earlier beam-search
 comparisons in this project were shifted by the defect, so we report greedy results for the adapted models.
@@ -469,8 +463,8 @@ repository's notices give details. Training pairs, judgments and references are 
 \section{Conclusion}
 \label{sec:conclusion}
 
-Spelling English words in Khmer script is a small task with an awkward property: many answers are right, and no
-reliable list of them exists. With only noisy web pairs for supervision, the most consequential change in this
+Spelling English words in Khmer script is a small task with an awkward property: many answers are right, and we
+found no reliable list of them. With only noisy web pairs for supervision, the most consequential change in this
 project was not a model but a measurement: replacing exact agreement with one reference by blinded judgments of
 acceptability. Under that measurement, cleaner and larger real data looked encouraging, while longer training and
 added pronunciation information showed no clear benefit. The released adapter produces an acceptable spelling for
@@ -502,6 +496,41 @@ experiment folders and model cards.
 pairs, \val{d.r.recovered} pairs recovered from the consonant check and \val{d.r.alt} ALT-attested pairs. The small
 model used \val{s.train} web pairs mined before the filtering repair.
 
+\begin{table}[H]
+\centering\small
+\caption{Detailed comparisons behind Table~\ref{tab:outcomes}. Each row compares two systems on the same words. Acceptability counts are
+confirmed-acceptable spellings out of the words reviewed; reference agreement is the share of first answers that
+exactly match the mined reference. Differences are in percentage points with a 95\% paired family-bootstrap
+interval; an interval that includes zero means no clear difference, not equivalence. The two test samples contain
+different words.}
+\label{tab:comparisons}
+\begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}p{2.3cm}L>{\raggedright\arraybackslash}p{4.4cm}
+  >{\raggedright\arraybackslash}p{2.5cm}>{\raggedright\arraybackslash}p{2.9cm}@{}}
+\toprule
+Question & Comparison & Evidence & Result & Difference [95\%] \\
+\midrule
+More real data & released adapter vs first working adapter & reference agreement, \val{h.items} historical
+  evaluation words & \val{h.e11.top1}\% vs \val{h.e07.top1}\% & \val{e11.vs_e07} \val{e11.vs_e07.ci} \\
+ & same models & development review, 40 representative words & \val{rev.representative.e11} vs
+  \val{rev.representative.e07} acceptable & exploratory \\
+ & same models & development review, 20 words where models disagreed & \val{rev.disagreement.e11} vs
+  \val{rev.disagreement.e07} acceptable & exploratory \\
+\midrule
+Longer training & twice the training updates vs released adapter & test sample 1, 120 fresh words &
+  \val{t1.e12.acceptable} vs \val{t1.e11.acceptable} acceptable & \val{t1.diff} \val{t1.diff.ci} \\
+\midrule
+Pronunciation & small model, letters + pronunciation vs letters only & curated references, \val{e02.families}
+  word families, three paired training runs & & \val{e02.phones} \val{e02.phones.ci} \\
+ & pronunciation-guided adapter vs released adapter & test sample 2, 120 fresh words &
+  \val{t2.e13.acceptable} vs \val{t2.e11.acceptable} acceptable & \val{t2.diff} \val{t2.diff.ci} \\
+\midrule
+Decoding & corrected beam search vs original beam setting & reference agreement, \val{h.items} historical
+  evaluation words; one earlier adapter & & \val{e09.e08.sel_vs_reg} \val{e09.e08.sel_vs_reg.ci} \\
+ & corrected beam search vs greedy decoding & same & & \val{e09.e08.sel_vs_greedy} \val{e09.e08.sel_vs_greedy.ci} \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
 \paragraph{Evaluation and statistics.} Paired differences use a bootstrap over word families with 10,000
 resamples; the intervals are conditional on the trained checkpoints and do not include variation between training
 runs. The small model's curated references cover \val{s.primary.n} items in \val{e02.families} families; for
@@ -523,7 +552,8 @@ report's evidence ledger.
 \label{app:examples}
 
 All examples are recorded outputs, judgments or training pairs from the project; none comes from a protected
-reference set. ``Reference'' is the mined spelling used for exact-agreement scoring.
+reference set. ``Reference'' is the mined spelling used for exact-agreement scoring. Development words were
+excluded from training but belong to the set used to select checkpoints; they are not test words.
 
 \begin{table}[H]
 \centering\small

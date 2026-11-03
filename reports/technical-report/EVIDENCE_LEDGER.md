@@ -141,7 +141,7 @@ Every example in the report is a recorded artifact. Role = training, development
 | coffee: កាហ្វេ, កូហ្វី, ខូហ្វី | training | `arm_R.tsv` (provenance `control`; a fourth spelling ខូហ្វ៊ី is `recovered`) |
 | hotel → តែល | training (recovered) | `arm_R.tsv`, provenance `recovered` |
 | london → ឡុនដុន (intro) | training word; released model's output | `arm_R.tsv` (`recovered`); release smoke output in the adapter card |
-| Figure 1B: band, reading `B AE1 N D`, released adapter output បេន, judged acceptable | development | output: `experiments/E11-real-data-byt5/predictions/e11_dev_greedy.jsonl` and `results_per_item_dev.jsonl` (`correct: 0`, reference differs); judgment: E11 REPORT §5 ("Differs but acceptable … *band* បេន"); reading: CMUdict |
+| Figure 1B: band, reading `B AE1 N D`, released adapter output បេន, judged acceptable | development: excluded from training, but in the dev set used for checkpoint selection (E11 REPORT §5: "the words are dev items (the selection set)"; §3: "Dev was used for checkpoint selection"). Exploratory, not a test example | output: `experiments/E11-real-data-byt5/predictions/e11_dev_greedy.jsonl` and `results_per_item_dev.jsonl` (`correct: 0`, reference differs); judgment: E11 REPORT §5 ("Differs but acceptable … *band* បេន"); reading: CMUdict |
 | band → បាន by earlier adapters, matches the reference, not acceptable | development | E07/E08 dev predictions (`correct: 1`); E11 REPORT §5 ("Matches but not acceptable … *band* បាន") |
 | phi: released ភី matches the reference, not acceptable; earlier ហ្វី acceptable | development | `results_per_item_dev.jsonl` (E11 `correct: 1`, E07 `correct: 0`); E11 REPORT §5; reading `F AY1` from CMUdict |
 | cameroon → ខេមឺរ៉ុន, differs, acceptable | development | E11 dev predictions; E11 REPORT §5 |
@@ -170,3 +170,11 @@ Kept in the paper: the corrected D203 values (candidate-anchored 82/165 and 94/1
 overlap 110/228 and 122/245) in Appendix A and §4.3; the chat-transcribed vs click distinction in §3 and Appendix A;
 "no clear difference / not equivalence" wording in Table 2 and §4; "no pipeline defect explaining the collapse" in
 §2.1. Paired differences and intervals appear once, in Table 2, with four further comparisons in Appendix A.
+
+**Editorial pass (2026-11-04).** Figure 1B's note previously said *band*'s family was kept out of training and
+checkpoint selection; the second half was wrong and now reads "excluded from training; included in the development
+set used to select the checkpoint". The detailed comparison table (all paired differences and intervals, the former
+Table 2) moved unchanged to Appendix A as Table 3; the main text now has an outcomes table (Table 2: question,
+observed outcome, main limitation) whose only numbers are `t1.e11.acceptable`, `t1.changed` and
+`t2.e11.acceptable`. The abstract and introduction now say "we found no suitable curated training dataset or
+established benchmark" instead of stating that none exists.
