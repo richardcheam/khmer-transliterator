@@ -40,3 +40,7 @@ If the rule fails, the result is recorded and serving is unchanged. There is no 
 ```
 scripts/e15_run.sh        # seeds 0, 1, 2 one after another, export each, then score (about 13-14 h)
 ```
+
+## Progress
+- 2026-11-03: trained (seed 1 restarted from scratch after the launching session closed and killed it at epoch 10)
+  and scored. Rule fails; see `RESULTS.md` (D208).

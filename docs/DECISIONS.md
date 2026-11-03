@@ -574,3 +574,16 @@ there (`git -C ../pocket-tts-khmer show archive/checkpoints-p0-p6:state/DECISION
 - **Hypothesis check:** E15 − E14 on the owner test is ≥ +5 points with a CI that excludes 0.
 - **Owner test:** this is its second use, declared.
 - Plan: `experiments/E15-real-typing-mix/PLAN.md`; run `scripts/e15_run.sh`.
+
+## D208 — E15 result: not adopted; dropping the rule rows does not close the gap (2026-11-03)
+- **Owner test (160 words, second use):**
+  - E15 44.0% (3 seeds: 45.7 / 45.2 / 41.1) against B 63.1%;
+  - mean −19.1 points, CI [−25.8, −12.3] (rule ≥ −3).
+- **Guards:** `romanised_test` −2.1 (passes, rule ≥ −5); `names_test2` −9.9 (fails, rule ≥ −3).
+- **Hypothesis check:** E15 − E14 = +2.6 points, CI [−2.4, +7.6]; the bar was ≥ +5 with the CI excluding 0, so not
+  supported (and not a clear negative).
+- **No A/B and no serving change.**
+- Seed 1 was restarted from scratch after the launching session closed and killed it at epoch 10; no score had been
+  seen.
+- **Next:** mixing the existing sources differently is exhausted; the lever is more real chat-typing data.
+- Details: `experiments/E15-real-typing-mix/RESULTS.md`.
