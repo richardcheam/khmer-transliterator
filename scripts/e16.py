@@ -5,9 +5,11 @@
     .venv/bin/python scripts/e16.py select                    # once: freeze the fresh test words (owner types them)
     .venv/bin/python scripts/e16.py prompts                   # Gemini prompt files in data/e16/gemini/
     .venv/bin/python scripts/e16.py type --typist "Richard"   # typing page for the test words, http://127.0.0.1:8769
+    .venv/bin/python scripts/e16.py fetch                     # send the prompts to the Gemini API (free key)
     .venv/bin/python scripts/e16.py filter                    # read the replies, apply the automatic filter
 
-The owner pastes each `prompt_<nn>.md` into Gemini and saves the answer as `reply_<nn>.txt` next to it. No reply is
+`fetch` sends each `prompt_<nn>.md` to the Gemini API (key in GEMINI_API_KEY, owner's free tier) and saves the answer as
+`reply_<nn>.txt` next to it; the owner may also paste replies by hand. No reply is
 checked by hand: `filter` keeps or drops every suggested spelling by fixed rules (see `filter_rows`). Test words are
 chosen before any prompt is written and never appear in a prompt.
 """
@@ -266,15 +268,81 @@ def run_filter() -> dict:
             "dropped": drop, "kept_words": len({kh for _, kh in kept})}
 
 
+GEMINI_API_MODEL = "gemini-3.6-flash"
+GEMINI_THINKING = "medium"   # as in the owner's app runs for E14
+
+
+def fetch(limit: int | None = None, pause: float = 20.0) -> dict:
+    """Send every unanswered prompt to the Gemini API and save the reply text; resumable and rate-limit tolerant.
+
+    The key is read from the environment (GEMINI_API_KEY) and sent in a header, never written anywhere. Each call is
+    logged (file, model version, token counts, time) to `fetch_log.jsonl`. On HTTP 429/5xx it waits and retries.
+
+    Args:
+        limit: send at most this many prompts (None = all).
+        pause: seconds between calls.
+
+    Raises:
+        SystemExit: no key in the environment, or a non-retryable API error.
+    """
+    import os
+    import time
+    import urllib.error
+    import urllib.request
+    key = os.environ.get("GEMINI_API_KEY")
+    if not key:
+        raise SystemExit("GEMINI_API_KEY is not set")
+    url = f"https://generativelanguage.googleapis.com/v1beta/models/{GEMINI_API_MODEL}:generateContent"
+    done, sent = [], 0
+    for pf in sorted(GEMINI.glob("prompt_*.md")):
+        rf = pf.with_name(pf.name.replace("prompt_", "reply_").replace(".md", ".txt"))
+        if rf.exists():
+            continue
+        if limit is not None and sent >= limit:
+            break
+        body = json.dumps({"contents": [{"parts": [{"text": pf.read_text(encoding="utf-8")}]}],
+                           "generationConfig": {"thinkingConfig": {"thinkingLevel": GEMINI_THINKING}}}).encode()
+        for attempt in range(8):
+            req = urllib.request.Request(url, body, {"Content-Type": "application/json", "x-goog-api-key": key})
+            try:
+                with urllib.request.urlopen(req, timeout=600) as r:
+                    d = json.load(r)
+                break
+            except urllib.error.HTTPError as e:
+                if e.code in (429, 500, 502, 503, 504) and attempt < 7:
+                    time.sleep(min(600, 30 * 2 ** attempt))
+                    continue
+                raise SystemExit(f"{pf.name}: HTTP {e.code} {e.read()[:300]!r}")
+            except (urllib.error.URLError, TimeoutError):
+                time.sleep(60)
+        else:
+            raise SystemExit(f"{pf.name}: gave up")
+        cand = (d.get("candidates") or [{}])[0]
+        text = "".join(p.get("text", "") for p in cand.get("content", {}).get("parts", []) if not p.get("thought"))
+        rf.write_text(text, encoding="utf-8")
+        with open(GEMINI / "fetch_log.jsonl", "a", encoding="utf-8") as f:
+            f.write(json.dumps({"file": rf.name, "model": d.get("modelVersion"), "finish": cand.get("finishReason"),
+                                "usage": d.get("usageMetadata"), "at": e14.now()}) + "\n")
+        done.append(rf.name)
+        sent += 1
+        time.sleep(pause)
+    return {"fetched": done, "model": GEMINI_API_MODEL}
+
+
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     sub = ap.add_subparsers(dest="cmd", required=True)
     for c in ("freq", "select", "prompts", "filter"):
         sub.add_parser(c)
+    fe = sub.add_parser("fetch")
+    fe.add_argument("--limit", type=int)
     t = sub.add_parser("type")
     t.add_argument("--typist", required=True)
     t.add_argument("--port", type=int, default=8769)
     a = ap.parse_args()
+    if a.cmd == "fetch":
+        print(json.dumps(fetch(a.limit), ensure_ascii=False, indent=1))
+        return 0
     if a.cmd != "type":
         fn = {"freq": freq, "select": select, "prompts": prompts, "filter": run_filter}[a.cmd]
         print(json.dumps(fn(), ensure_ascii=False, indent=1))
