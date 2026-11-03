@@ -487,17 +487,17 @@ def write() -> None:
     with open(OUT / "generated" / "fig_reference.csv", "w", newline="") as f:
         w = csv.writer(f)
         w.writerow(["label", "y", "top1"])
-        for i, (lab, k) in enumerate((("First corrected adapter (E07)", "h.e07.top1"),
-                                      ("+ recovered/ALT/synthetic (E08)", "h.e08.top1"),
-                                      ("Released adapter (E11)", "h.e11.top1"),
-                                      ("Longer schedule (E12)", "h.e12.top1"),
-                                      ("Pronunciation-guided (E13)", "h.e13.top1"))):
+        for i, (lab, k) in enumerate((("First corrected adapter", "h.e07.top1"),
+                                      ("+ recovered/ALT/synthetic", "h.e08.top1"),
+                                      ("Released adapter", "h.e11.top1"),
+                                      ("Longer schedule", "h.e12.top1"),
+                                      ("Pronunciation-guided", "h.e13.top1"))):
             w.writerow([lab, 5 - i, q(100 * V(k))])
     with open(OUT / "generated" / "fig_accept.csv", "w", newline="") as f:
         w = csv.writer(f)
         w.writerow(["label", "y", "share", "sample"])
-        rows = (("Released adapter (E11)", "t1.e11.share", 1), ("Longer schedule (E12)", "t1.e12.share", 1),
-                ("Released adapter (E11)", "t2.e11.share", 2), ("Pronunciation-guided (E13)", "t2.e13.share", 2))
+        rows = (("Released adapter", "t1.e11.share", 1), ("Longer schedule", "t1.e12.share", 1),
+                ("Released adapter", "t2.e11.share", 2), ("Pronunciation-guided", "t2.e13.share", 2))
         for i, (lab, k, s) in enumerate(rows):
             w.writerow([lab, [5, 4, 2, 1][i], q(100 * V(k)), s])
 

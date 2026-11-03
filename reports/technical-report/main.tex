@@ -534,40 +534,44 @@ spelled words. The candidate diagnostic indicates that acceptable alternatives a
 
 \begin{table}[H]
 \centering\footnotesize
-\caption{All experiments, in order. ``Ref.'' = agreement with single reference spellings (exploratory unless
-noted); ``Human'' = blinded judgments by the author. E02d and E11c are diagnostics attached to E02 and E11.}
+\caption{All experiments, in the order they were run, grouped by model. ``Ref.'' = agreement with single reference
+spellings (exploratory unless noted); ``Human'' = blinded judgments by the author.}
 \label{tab:inventory}
-\begin{tabularx}{\textwidth}{@{}p{0.8cm}>{\raggedright\arraybackslash}p{4.4cm}L>{\raggedright\arraybackslash}p{2.3cm}@{}}
+\begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}p{4.9cm}L>{\raggedright\arraybackslash}p{2.6cm}@{}}
 \toprule
-Id & Question & Outcome & Evidence \\
+Question & Outcome & Evidence \\
 \midrule
-E01 & Khmer-pronunciation side task in one model for names, romanised Khmer and English &
+\multicolumn{3}{@{}l}{\emph{Small Transformer}} \\
+Khmer-pronunciation side task in one model for names, romanised Khmer and English &
   +\val{e01.gain} pts on English, missed its 5-point rule & Ref., registered \\
-E02 & Phones vs letters, small model (released: \texttt{letters\_s0}) & \val{e02.phones} \val{e02.phones.ci};
+Phones vs letters (released model: letters only) & \val{e02.phones} \val{e02.phones.ci};
   inconclusive; letters kept & Ref. (curated), registered \\
-E02d & Do targets follow the phones; do models use them? & \val{d.lexhits} of \val{d.rows} targets found by
+Do targets follow the phones; do models use them? & \val{d.lexhits} of \val{d.rows} targets found by
   exact lexicon lookup (by construction); shallow sensitivity & diagnostics \\
-E03 & Selection repair; phones vs letters on screened pairs & \val{d.recovered} rows recovered; \val{e03.phones}
+Selection repair; phones vs letters on screened pairs & \val{d.recovered} rows recovered; \val{e03.phones}
   \val{e03.phones.ci} & Ref., registered \\
-E04 & Letters vs phones-only vs both & both $-$ letters \val{e04.gp} \val{e04.gp.ci} & Ref., registered \\
-E05 & Pooling letters and phones candidates (inference only) & no clear advantage at equal budget & Ref. (oracle) \\
-E06 & ByT5-small + attention-only LoRA, 1,000 updates & input ignored; \val{e06.correct} of \val{h.items} eval
+Letters vs phones-only vs both & both $-$ letters \val{e04.gp} \val{e04.gp.ci} & Ref., registered \\
+Pooling letters and phones candidates (inference only) & no clear advantage at equal budget & Ref. (oracle) \\
+\midrule
+\multicolumn{3}{@{}l}{\emph{ByT5-small + LoRA adapter}} \\
+Attention-only LoRA, 1,000 updates & input ignored; \val{e06.correct} of \val{h.items} eval
   items correct & Ref. \\
-E07 & Why E06 collapsed; corrected adapter & no pipeline defect explaining the collapse; \val{e07.vs_g} \val{e07.vs_g.ci} vs small letters models &
-  Ref., registered \\
-E08 & Data expansion (recovered, ALT, \val{d.synth.rows} synthetic rows) & \val{e08.vs_e07} \val{e08.vs_e07.ci} vs E07 & Ref. \\
-E09 & Why greedy beat beam (inference only) & \texttt{early\_stopping=True} defect; canonical beam $\approx$ greedy &
+Why the first adapter collapsed; corrected adapter & no pipeline defect explaining the collapse; \val{e07.vs_g}
+  \val{e07.vs_g.ci} vs small letters models & Ref., registered \\
+Data expansion (recovered, ALT, \val{d.synth.rows} synthetic rows) & \val{e08.vs_e07} \val{e08.vs_e07.ci} vs
+  corrected adapter & Ref. \\
+Why greedy beat beam (inference only) & \texttt{early\_stopping=True} defect; canonical beam $\approx$ greedy &
   Ref. \\
-E10 & Word-level sampling + higher learning rate & development gate failed; not adopted & Ref. \\
-E11 & Real data only, no synthetic labels (released adapter) & \val{e11.vs_e07} \val{e11.vs_e07.ci} vs E07;
+Word-level sampling + higher learning rate & development gate failed; not adopted & Ref. \\
+Real data only, no synthetic labels (released adapter) & \val{e11.vs_e07} \val{e11.vs_e07.ci} vs corrected adapter;
   post hoc dev review \val{rev.representative.e11}/40 representative, \val{rev.disagreement.e11}/20
-  disagreement-enriched & Ref.; Human (dev, chat) \\
-E12 & 6,000-update schedule & equal observed acceptability, \val{t1.diff} \val{t1.diff.ci} & Human (test 1),
+  disagreement-enriched & Ref.; Human (dev) \\
+Candidate coverage of the released adapter, \val{cov.words} irregular dev words & greedy \val{cov.greedy}, beam
+  top-1 \val{cov.beam1}, any of 4 \val{cov.any4} & Human (dev diagnostic) \\
+6,000-update schedule & equal observed acceptability, \val{t1.diff} \val{t1.diff.ci} & Human (test 1),
   registered \\
-E13 & Pronunciation-guided adapter & equal observed acceptability, \val{t2.diff} \val{t2.diff.ci} & Human (test 2),
+Pronunciation-guided adapter & equal observed acceptability, \val{t2.diff} \val{t2.diff.ci} & Human (test 2),
   registered \\
-E11c & Candidate coverage, \val{cov.words} irregular dev words & greedy \val{cov.greedy}, beam top-1 \val{cov.beam1}, any of 4
-  \val{cov.any4} & Human (dev diagnostic) \\
 \bottomrule
 \end{tabularx}
 \end{table}
