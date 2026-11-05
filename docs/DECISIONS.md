@@ -598,3 +598,15 @@ there (`git -C ../pocket-tts-khmer show archive/checkpoints-p0-p6:state/DECISION
 - **Owner test:** its third use, declared; no E16 choice was made from it.
 - **Data check:** E16 − E15 ≥ +5 points with a CI that excludes 0.
 - Plan: `experiments/E16-gemini-bulk/PLAN.md`; run `scripts/e16_run.sh`.
+
+## D210 — E16 result: not adopted; bulk Gemini data gives the first clear gain (2026-11-06)
+- **Owner test (160 words, third use):**
+  - E16 50.6% (3 seeds: 51.9 / 50.6 / 49.2) against B 63.1%;
+  - mean −12.6 points, CI [−19.5, −5.9] (rule ≥ −3).
+- **Guards:** `romanised_test` −3.2 (passes); `names_test2` −6.0 (fails).
+- **Data check:** E16 − E15 = +6.5 points, CI [+3.1, +10.1]: supported.
+- **No A/B and no serving change.**
+- **Diagnostic (not registered):** on the 30 owner-test words B never saw in training, E16 61.1% vs B 60.0%; the gap
+  is on the 130 words B was trained on.
+- **Next:** more LLM spellings, and a fresh test B never saw (the 150 frozen words) for a fair comparison.
+- Details: `experiments/E16-gemini-bulk/RESULTS.md`.

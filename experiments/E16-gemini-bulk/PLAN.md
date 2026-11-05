@@ -58,3 +58,5 @@ If the rule fails, the result is recorded and serving is unchanged. There is no 
 - 2026-11-03: the free Gemini key's daily quota stopped the fetch at 17 of 40 replies (HTTP 429). The completeness
   check worked as registered: nothing was trained. `scripts/e16_resume.sh` retries the resuming fetch hourly and
   starts `e16_run.sh` once at least 36 replies are in. No rule, prompt or setting changed.
+- 2026-11-05: all 40 replies in; data built and seeds 0-2 trained by `e16_run.sh`.
+- 2026-11-06: scored. Rule fails (owner test −12.6 vs B); data check passes (+6.5 vs E15). See `RESULTS.md` (D210).
