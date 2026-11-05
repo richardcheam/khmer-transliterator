@@ -103,7 +103,7 @@ web text and, just as importantly, find a way of measuring quality that a Khmer 
 \subsection{Two kinds of model}
 We tried two approaches with different costs (Table~\ref{tab:models}).
 
-The first is a \emph{small character-level model}: a standard encoder--decoder Transformer of 2.6 million
+The first is a \emph{small character-level model}: a standard encoder--decoder Transformer \citep{vaswani-etal-2017-attention} of 2.6 million
 parameters, trained from scratch to map English letters to Khmer letters. It runs in tens of milliseconds on a CPU
 with nothing but NumPy.
 
@@ -117,6 +117,64 @@ layers.
 Figure~\ref{fig:arch} shows how each model turns the same English word into Khmer script. Both are
 encoder--decoder models: the encoder reads the whole input, and the decoder writes the output one unit at a time,
 feeding each new unit back in to predict the next. They differ in their units and in what is trained.
+
+\subsection{What the models learn}
+\label{sec:objective}
+Let $x$ be the token sequence of the English input and $y=(y_1,\dots,y_T)$ the token sequence of its Khmer
+spelling, whose last token $y_T$ is the end symbol (the \emph{end} boxes in Figure~\ref{fig:arch}). The tokens
+differ between the models. For the small model, $x$ is the task marker followed by one token per letter, and each
+$y_t$ is one Khmer Unicode character. For ByT5, $x$ is the word's UTF-8 bytes followed by an end symbol, and each
+$y_t$ is one byte. Both models factorise the probability of a spelling autoregressively
+\citep{sutskever-etal-2014-sequence}:
+\begin{equation}
+  p_\theta(y\mid x)=\prod_{t=1}^{T} p_\theta(y_t\mid y_{<t},x),
+  \label{eq:factor}
+\end{equation}
+where $\theta$ denotes the trained weights and $y_{<t}=(y_1,\dots,y_{t-1})$ is the output prefix, which is empty at
+$t=1$, when the decoder sees only the start symbol. In words, each output token is predicted from the whole input
+(through the encoder states) and from the tokens already written; this is the feedback loop drawn as dashed arrows
+in Figure~\ref{fig:arch}. During training the decoder receives the reference prefix; at inference it receives the
+prefix it has generated itself. Each Khmer character costs one token in the small model but three in ByT5 (in
+Figure~\ref{fig:arch}, 7 characters versus 18 bytes, each followed by the end symbol), so sequence lengths and
+per-token losses of the two models are not directly comparable.
+
+Training minimises the negative log-likelihood of the recorded spelling,
+\begin{equation}
+  \mathcal{L}(x,y)=-\sum_{t=1}^{T}\log p_\theta(y_t\mid y_{<t},x).
+  \label{eq:nll}
+\end{equation}
+In both models the padding that makes a batch rectangular is excluded, and the loss is averaged over all real
+target tokens in a batch, so a longer spelling contributes more terms. The small model replaces the one-hot target
+in Equation~\eqref{eq:nll} with label smoothing of 0.1 \citep{szegedy-etal-2016-rethinking}
+(Equation~\eqref{eq:smooth} in Appendix~\ref{app:methods}); the adapted model uses Equation~\eqref{eq:nll}
+unchanged. A word with several mined spellings appears as several training pairs, each with its own loss: training
+raises the probability of every recorded spelling, but it does not sum probability over a set of accepted
+spellings.
+
+For ByT5, LoRA \citep{hu-etal-2022-lora} keeps each pretrained weight matrix $W_0\in\mathbb{R}^{d_{\text{out}}\times
+d_{\text{in}}}$ of an adapted projection frozen and learns a low-rank correction:
+\begin{equation}
+  W_{\text{adapted}} = W_0 + \frac{\alpha}{r}\,BA,
+  \label{eq:lora}
+\end{equation}
+where $A\in\mathbb{R}^{r\times d_{\text{in}}}$ and $B\in\mathbb{R}^{d_{\text{out}}\times r}$ are learned,
+the rank is $r=16$ and the scale is $\alpha=32$, so $\alpha/r=2$. $B$ starts at zero, so training begins from the unchanged
+pretrained model. Only $A$ and $B$, the orange \emph{LoRA adapter} blocks in Figure~\ref{fig:arch}B, are learned:
+$\theta$ is every weight of the small model but only the adapter matrices of ByT5. The adapted projections and
+their sizes are listed in Appendix~\ref{app:methods}.
+
+At inference the ideal answer is the most probable spelling, which can only be searched for approximately:
+\begin{equation}
+  \hat{y}\approx\operatorname*{arg\,max}_{y}\ \sum_{t=1}^{T}\log p_\theta(y_t\mid y_{<t},x).
+  \label{eq:decode}
+\end{equation}
+Greedy decoding takes the most probable token at each step. Beam search of width 4 keeps the four prefixes with the
+highest summed log-probability, with no length normalisation, and completes each candidate at the end symbol. The
+small model answers with its top beam candidate and the adapted model with its greedy answer.
+
+Equation~\eqref{eq:nll} rewards reproducing one recorded spelling, whereas the human evaluation of
+Section~\ref{sec:eval} accepts any spelling a Khmer reader would pronounce close to the English word, and may
+accept several for one word. A lower training loss need not mean more acceptable spellings.
 
 \begin{figure*}[p]
 \centering
@@ -149,7 +207,7 @@ feeding each new unit back in to predict the next. They differ in their units an
 \node[spc] (a0) at (30,-16) {en};
 \foreach \c [count=\i from 1, remember=\i as \j (initially 0)] in {c,o,f,f,e,e}
   \node[tok, font=\small\sffamily] (a\i) at ([xshift=0.6mm]a\j.east) {\c};
-\node[note, anchor=north west] at ([yshift=-1.2mm]a0.south west) {task marker + one token per letter};
+\node[note, anchor=north west] at ([yshift=-1.2mm]a0.south west) {task marker + one token per letter: input $x$};
 \draw[arr] (wa) -- node[lab, above=1.5mm] {split} (a0);
 \node[trained, minimum width=20mm, minimum height=11mm, font=\small, align=center] (ea) at (99,-16)
   {character\\embeddings};
@@ -165,13 +223,13 @@ feeding each new unit back in to predict the next. They differ in their units an
   \node[tok] (o\i) at ([xshift=0.6mm]o\j.east) {\km{\c}};
 \node[spc] (o8) at ([xshift=0.6mm]o7.east) {end};
 \draw[arr] (dea) -- node[lab, above=1.5mm] {generate} (o1);
-\node[note, anchor=south west] at ([yshift=1.2mm]o1.north west) {one Khmer character per step};
+\node[note, anchor=south west] at ([yshift=1.2mm]o1.north west) {one Khmer character $y_t$ per step};
 \node[word] (ra) at (158,-44) {\km{ខូហ្វ៊ី}};
 \draw[arr] (o8) -- node[lab, above=1.5mm] {join} (ra);
 % feedback
 \draw[fb] (o4.south) -- ++(0,-8) -| (49,-50.5);
 \node[font=\footnotesize, text=cModel!85!black, anchor=north west] at (52,-58.5)
-  {each output is fed back to predict the next (first input: \textit{start})};
+  {each output is fed back: $y_t$ is predicted from $x$ and $y_{<t}$ (first input: \textit{start})};
 % ======================================================== separator
 \draw[black!25, thick] (0,-69) -- (171,-69);
 % ======================================================== Panel B
@@ -183,7 +241,7 @@ feeding each new unit back in to predict the next. They differ in their units an
 \foreach \c [count=\i from 2, remember=\i as \j (initially 1)] in {6F,66,66,65,65}
   \node[byte] (b\i) at ([xshift=0.6mm]b\j.east) {\c};
 \node[spc] (b7) at ([xshift=0.6mm]b6.east) {end};
-\node[note, anchor=north west] at ([yshift=-1.2mm]b1.south west) {UTF-8 bytes (hex)};
+\node[note, anchor=north west] at ([yshift=-1.2mm]b1.south west) {UTF-8 bytes (hex): input $x$};
 \draw[arr] (wb) -- node[lab, above=1.5mm] {UTF-8} (b1);
 \node[frozen, minimum width=20mm, minimum height=11mm] (eb) at (102,-96) {};
 \node[lab, align=center, font=\small] at (eb) {byte\\embeddings};
@@ -214,7 +272,7 @@ feeding each new unit back in to predict the next. They differ in their units an
 \node[anchor=west, font=\normalsize] (p4) at ([xshift=6.5mm]p3.east) {…};
 \node[spc] (p5) at ([xshift=0.6mm]p4.east) {end};
 \draw[arr] (deb.east |- p1) -- node[lab, above=1.5mm] {generate} (p1);
-\node[note, anchor=south west] at ([yshift=1.2mm]p1.north west) {one byte per step (excerpt)};
+\node[note, anchor=south west] at ([yshift=1.2mm]p1.north west) {one byte $y_t$ per step (excerpt)};
 \draw[decorate, decoration={brace, amplitude=1.8mm, mirror}, thick, black!60] ([yshift=-1mm]p1.south west) --
   node[below=2.4mm, font=\footnotesize, align=center] {\km{ខ}: 3 bytes;\\
   complete output: 18 bytes} ([yshift=-1mm]p3.south east);
@@ -223,7 +281,7 @@ feeding each new unit back in to predict the next. They differ in their units an
 % feedback
 \draw[fb] (p4.south) ++(0,-1) -- ++(0,-15) -| (47,-146.5);
 \node[font=\footnotesize, text=cModel!85!black, anchor=north west] at (52,-155.5)
-  {each output is fed back to predict the next (first input: \textit{start})};
+  {each output is fed back: $y_t$ is predicted from $x$ and $y_{<t}$ (first input: \textit{start})};
 % ======================================================== legend
 \draw[trained] (0,-167) rectangle (7,-163);
 \node[font=\footnotesize, anchor=west] at (8.5,-165) {trained weights};
@@ -242,14 +300,15 @@ the byte value plus 3) and writes Khmer as bytes, three per Khmer character, whi
 pretrained encoder (12 layers) and decoder (4 layers) stay frozen; only the small LoRA adapters added beside every
 attention and feed-forward block are trained. In both models, generation starts from a start symbol, each output is
 fed back to predict the next (dashed arrows), and generation stops when the model emits an end symbol. The outputs
-are the recorded spellings of \emph{coffee} by each released model.}
+are the recorded spellings of \emph{coffee} by each released model. Notation as in Section~\ref{sec:objective}: $x$ is the
+input sequence, $y_t$ the output token at step $t$, and the final \emph{end} token is $y_T$.}
 \label{fig:arch}
 \end{figure*}
 
 Byte-level adaptation has a pitfall that an engineer can easily mistake for a bug. Every Khmer character takes
 three UTF-8 bytes, and two of them are almost free to predict. Our first adaptation, which adapted only the attention
 layers for a short time, produced the same spelling (\km{ហ្វេន}) for \val{e06.top} of \val{h.items} evaluation
-words while its training loss fell steadily: the model had learned to write plausible Khmer bytes without reading
+words while its per-byte training loss (Equation~\eqref{eq:nll}) fell steadily: the model had learned to write plausible Khmer bytes without reading
 the input. An audit of the training and decoding pipeline found no defect that explained the collapse. Adapting the
 feed-forward layers as well and training longer produced the first working adapter, one that follows its input; we
 did not isolate which of the two changes mattered.
@@ -628,6 +687,32 @@ linear decay, batch 32, \val{e11.update} updates on a laptop CPU, one training r
 agreement on \val{d.items} development items, then character error rate. Single answers use greedy decoding;
 candidate lists use beam search with early stopping disabled. Full configurations are in the repository's
 experiment folders and model cards.
+
+\paragraph{Training objectives.} Both models are trained with teacher forcing: the decoder input is the start
+symbol followed by the reference $y_1,\dots,y_{T-1}$, and the targets are $y_1,\dots,y_T$, ending with the end
+symbol. Batches are right-padded; padded source positions are masked in encoder self-attention and in
+cross-attention, and padded target positions are excluded from the loss. For a batch with $N$ real target tokens
+and per-token losses $\ell_{n,t}$, the loss is $\frac{1}{N}\sum_{n}\sum_{t\le T_n}\ell_{n,t}$, a mean over tokens,
+not over words. Each recorded (word, spelling) pair is one example: 2,264 of the small model's 6,717 training words
+and 840 of the adapter's 3,585 have more than one recorded spelling, and their pairs are trained independently.
+For the adapted model $\ell_{n,t}=-\log p_\theta(y_{n,t}\mid y_{n,<t},x_n)$, as in Equation~\eqref{eq:nll}. For the
+small model, with smoothing $\varepsilon=0.1$ spread uniformly over all $K=81$ output classes (78 Khmer characters
+plus the padding, start and end symbols),
+\begin{equation}
+  \ell_{n,t}=-(1-\varepsilon)\log p_\theta(y_{n,t}\mid y_{n,<t},x_n)
+  -\frac{\varepsilon}{K}\sum_{c=1}^{K}\log p_\theta(c\mid y_{n,<t},x_n).
+  \label{eq:smooth}
+\end{equation}
+
+\paragraph{LoRA details.} In Equation~\eqref{eq:lora}, a projection computes $h=W_0z+\frac{\alpha}{r}BAz$ for its
+input $z$. ByT5-small has 6 attention heads of size 64, so its attention projections map between the model width
+1472 and an inner width of 384: $W_0\in\mathbb{R}^{384\times1472}$ for the query, key and value projections and
+$\mathbb{R}^{1472\times384}$ for the output projection. Its gated feed-forward blocks have two input projections
+$W_0\in\mathbb{R}^{3584\times1472}$ and one output projection $W_0\in\mathbb{R}^{1472\times3584}$. Adapters sit on
+all 128 such projections (four in each of 20 attention blocks: 12 encoder self-attention, 4 decoder self-attention,
+4 cross-attention; three in each of 16 feed-forward blocks), giving 256 matrices and \val{x.params} parameters. $A$
+is initialised with Kaiming-uniform values and $B$ with zeros; during training, dropout of 0.05 is applied to $z$
+on the adapter path only, and the frozen model keeps its dropout of 0.1. At inference there is no dropout.
 
 \paragraph{Data.} The adapter's \val{d.r.rows} pairs (\val{d.r.words} words) are \val{d.r.control} screened web
 pairs, \val{d.r.recovered} pairs recovered from the consonant check and \val{d.r.alt} ALT-attested pairs. The small

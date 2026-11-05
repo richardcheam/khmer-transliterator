@@ -207,4 +207,28 @@ attention and feed-forward parts are drawn frozen with a separate trained block 
 matching `byt5.py` (the adapter adds `B·A·x` to a frozen linear layer). The panel A output shows all 7 characters
 of ខូហ្វ៊ី; panel B shows the first three output bytes (E1 9E 81 = ខ) as a labelled excerpt with "ខ: 3 bytes;
 complete output: 18 bytes". Layer counts and the byte-to-token offset (+3) moved to the caption. The figure is a
-full-width float on its own page (page 2); the PDF stays at 9 pages.
+full-width float on its own page (page 2 at the time; page 3 after the formulation was added); the PDF was then 9 pages.
+
+## 9. Mathematical formulation (Section 2.2 and Appendix A, added 2026-11-05)
+
+Every equation describes the code that trained the released models, read at the archived revision
+(`archive/research-e02-e13`) where the scripts were removed from `main`. No model was run and no number changed;
+the new counts below were recomputed from the local training files.
+
+| Statement in the report | Verified against |
+|---|---|
+| Eq. (1) autoregressive factorisation; teacher forcing in training, own prefix at inference | small: `scripts/english_phonetic_train.py` `train` (`model(S, Tt[:, :-1])` against `Tt[:, 1:]`), `scripts/translit_train.py` `Model.forward` (causal decoder mask); ByT5: HF `T5ForConditionalGeneration` builds decoder inputs with `_shift_right(labels)` (start id 0), audited in archived `scripts/e07.py` check 5; inference: `translit.py` `beam_search`, `byt5.py` `_generate` |
+| Targets end with the end symbol; small-model input has no end symbol, ByT5 input does | `english_phonetic_train.py` `target_ids` = BOS + chars + EOS; `phonetic_source.encode_source`; archived `scripts/e06_byt5.py` `encode_src`/`encode_tgt` (bytes + 3, then EOS = 1) |
+| Padding excluded from the loss; padded sources masked in encoder self- and cross-attention | small: `CrossEntropyLoss(ignore_index=PAD)`, `pad` mask passed to every encoder block and to decoder cross-attention in `translit_train.Model.forward`; ByT5: labels padded with −100, `attention_mask = ids != PAD` (`e06_byt5.batch_tensors`), HF `CrossEntropyLoss(ignore_index=-100)` (`modeling_t5.py`, transformers 5.19 in `.venv`); e07 audit check 4 (`manual mean == model loss`) |
+| Loss is a mean over real target tokens of the batch | PyTorch default `reduction="mean"` with `ignore_index` in both; ByT5 `grad_accumulation 1` (`experiments/E07-byt5-diagnosis/full_recipe.json`, reused unchanged by E11 `recipe()`) |
+| Small model: label smoothing 0.1 over all K = 81 classes (Eq. 5) | `models/e02/letters_s0/config.json` `train.label_smoothing 0.1`; `nn.CrossEntropyLoss(label_smoothing=…)` spreads ε uniformly over all logits; `n_tgt = len(tgt) + 3 = 81` (`build_model`) |
+| ByT5: plain negative log-likelihood, no smoothing | `e07.fit` uses `model(..., labels=labels).loss` |
+| Several spellings per word are separate examples, not marginalised | rows are `(word, khmer)` pairs visited in a seeded permutation (`english_phonetic_train.py` order RNG; `e07.fit` default order); counts: `data/e02/train.tsv` split `train` 9,735 rows / 6,717 words / 2,264 with >1 spelling; `data/e08/training/arm_R.tsv` part `train` 4,764 rows / 3,585 words / 840 with >1 spelling (recomputed 2026-11-05; transcribed, not `\val`) |
+| Eq. (3) `W0 + (α/r) B A`, A ∈ R^{r×d_in}, B ∈ R^{d_out×r}, B = 0 at start, A Kaiming-uniform, adapter dropout 0.05, base dropout 0.1 | archived `e06_byt5.lora_linear_cls` (`base(x) + (drop(x) @ A.T @ B.T) * alpha / r`, `A (r, in)`, `B (out, r)` zeros, `kaiming_uniform_(A, a=√5)`); `full_recipe.json` (`r 16`, `alpha 32`, `dropout 0.05`, `base_dropout 0.1`); inference wrapper `src/khmer_translit/byt5.py` `LoRALinear` (same scaling, no dropout); released `adapter_config.json` `r 16, alpha 32` |
+| Projection shapes 384×1472 (q, k, v), 1472×384 (o), 3584×1472 (wi_0, wi_1), 1472×3584 (wo); 128 projections, 256 matrices, 6,258,688 parameters | base `config.json` (`d_model 1472`, `num_heads 6`, `d_kv 64`, `d_ff 3584`); 20 attention × 4 × 16·1856 + 16 FFN × 3 × 16·5056 = 6,258,688 = `x.params` (`release/export.json`) |
+| Eq. (4) and decoding: small model answers with beam-4 top candidate, sum of log-probabilities, no length normalisation; ByT5 single answer greedy, candidates beam with `length_penalty 0`, `early_stopping "never"` | `translit.py` `beam_search` (scores are summed `logp`); `english.py` uses the model's `beam 4`; `byt5.py` `predict_many` (`top_k 1 → greedy`) and `_generate`; released `adapter_config.json` `decode` |
+
+Citations added: Vaswani et al. 2017 (Transformer), Sutskever et al. 2014 (sequence-to-sequence factorisation),
+Szegedy et al. 2016 (label smoothing); Hu et al. 2022 (LoRA) was already cited. Figure 1 gained the notation
+labels (input x, output y_t, feedback "y_t is predicted from x and y_<t") and a caption sentence; the figure now
+floats to page 3 and the PDF is 11 pages.
