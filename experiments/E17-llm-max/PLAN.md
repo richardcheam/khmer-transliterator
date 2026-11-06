@@ -75,3 +75,13 @@ score (one model). Logs and a DONE marker in `models/e17/`.
 ## Provenance note
 The training rows are LLM outputs (Google Gemini, Anthropic Claude, OpenAI GPT) checked only by fixed rules. Any
 release of a model trained on them must say so and respect the providers' terms.
+
+## Progress
+- 2026-11-06 10:10 UTC: owner moved the collection deadline earlier ("we can proceed to training") with Gemini at 26
+  of 33 new-word prompts (one more, reply_013, was cut off at 200 of 500 lines and skipped by the reader). Claude
+  and GPT: 106 of 106 each. The words of the 7 missing Gemini prompts still have Claude and GPT spellings. Decided
+  before any training; no other change.
+- Filter: 26,301 words, 80,169 spellings, kept 65,600 (23,504 words); dropped 197 format, 687 trusted clashes,
+  13,685 given for several words. Kept by source: Claude only 16,689, Gemini only 15,069, GPT only 11,019, all three
+  9,041, Claude+GPT 7,113, Claude+Gemini 4,113, Gemini+GPT 2,556. After the leak filter 60,859 rows; 135,027 spelling
+  pairs per epoch (E16: 86,776). Seed 0 training started.
