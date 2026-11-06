@@ -1,0 +1,38 @@
+experiment: E17-llm-max
+description: E15 plus automatically filtered Gemini and Claude spellings for as many common words as the free tools allow, vs served B and E16 (registered D211)
+
+paths:
+  runs_dir: models/e17            # data stage output and one folder per run: aux_s<seed>
+
+data:                             # fixed by the data stage (scripts/e16_train.py data)
+  max_in: 48                      # longest Latin input (the longest is 32: no truncation)
+  aux_max: 48                     # longest phone sequence of the side task
+  loan_repeat: 4                  # loans + owner typing + owner-checked Gemini rows repeated 4x; bulk LLM rows once
+  roman_val_n: 1000               # E01 only (schema key); E14 validates on the whole pruned Chhunneng val split
+
+model:                            # translit_train.Model (letters-only encoder-decoder)
+  d: 192
+  layers: 3                       # 3 encoder + 3 decoder; the aux decoder has the same design
+  heads: 4
+  ff: 512
+  dropout: 0.1
+
+train:
+  seeds: [0]                      # owner: one model only (D211); E14-E16 used seeds 0-2
+  epochs: 40
+  batch: 128
+  lr: 0.001                       # AdamW, linear warm-up then cosine to 0
+  weight_decay: 0.01
+  warmup: 500
+  label_smoothing: 0.1
+  grad_clip: 1.0
+  threads: 12
+
+aux:                              # aux arm only; fixed in advance, never tuned
+  weight: 0.5                     # loss = spell + 0.5 * aux on aux steps
+  every: 8                        # one aux batch on every 8th spelling step
+  batch: 128
+
+eval:
+  benchmark: v1                   # khmer_translit.benchmark; the reserve stays sealed
+  beam: 4

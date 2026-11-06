@@ -169,8 +169,10 @@ def prompts() -> dict:
     return out
 
 
-def read_replies() -> tuple[list[tuple[str, list[str]]], dict]:
+def read_replies(folder: Path | None = None) -> tuple[list[tuple[str, list[str]]], dict]:
     """(Khmer word, Gemini spellings) for every answered prompt; reports partial and skipped files.
+
+    `folder` holds the `prompt_*.md` / `reply_*.txt` pairs (default: `data/e16/gemini/`).
 
     Rows are aligned by position when the reply has one line per word (Gemini may garble a key). Otherwise lines
     are matched by their Khmer key, unmatched words are skipped, and the file is skipped if under 90% match.
@@ -178,7 +180,7 @@ def read_replies() -> tuple[list[tuple[str, list[str]]], dict]:
     """
     test = {w["khmer"] for w in test_words()}
     rows, report = [], {"answered": [], "missing": [], "bad_length": []}
-    for pf in sorted(GEMINI.glob("prompt_*.md")):
+    for pf in sorted((folder or GEMINI).glob("prompt_*.md")):
         pw = [x.strip() for x in pf.read_text(encoding="utf-8").split("\n\n", 1)[1].splitlines() if x.strip()]
         rf = pf.with_name(pf.name.replace("prompt_", "reply_").replace(".md", ".txt"))
         if not rf.exists():
@@ -284,7 +286,7 @@ GEMINI_API_MODEL = "gemini-3.6-flash"
 GEMINI_THINKING = "medium"   # as in the owner's app runs for E14
 
 
-def fetch(limit: int | None = None, pause: float = 20.0) -> dict:
+def fetch(limit: int | None = None, pause: float = 20.0, folder: Path | None = None) -> dict:
     """Send every unanswered prompt to the Gemini API and save the reply text; resumable and rate-limit tolerant.
 
     The key is read from the environment (GEMINI_API_KEY) and sent in a header, never written anywhere. Each call is
@@ -293,6 +295,7 @@ def fetch(limit: int | None = None, pause: float = 20.0) -> dict:
     Args:
         limit: send at most this many prompts (None = all).
         pause: seconds between calls.
+        folder: folder of the prompt files (default: `data/e16/gemini/`).
 
     Raises:
         SystemExit: no key in the environment, or a non-retryable API error.
@@ -306,7 +309,8 @@ def fetch(limit: int | None = None, pause: float = 20.0) -> dict:
         raise SystemExit("GEMINI_API_KEY is not set")
     url = f"https://generativelanguage.googleapis.com/v1beta/models/{GEMINI_API_MODEL}:generateContent"
     done, sent = [], 0
-    for pf in sorted(GEMINI.glob("prompt_*.md")):
+    folder = folder or GEMINI
+    for pf in sorted(folder.glob("prompt_*.md")):
         rf = pf.with_name(pf.name.replace("prompt_", "reply_").replace(".md", ".txt"))
         if rf.exists():
             continue
@@ -332,8 +336,9 @@ def fetch(limit: int | None = None, pause: float = 20.0) -> dict:
         cand = (d.get("candidates") or [{}])[0]
         text = "".join(p.get("text", "") for p in cand.get("content", {}).get("parts", []) if not p.get("thought"))
         rf.write_text(text, encoding="utf-8")
-        with open(GEMINI / "fetch_log.jsonl", "a", encoding="utf-8") as f:
-            f.write(json.dumps({"file": rf.name, "model": d.get("modelVersion"), "finish": cand.get("finishReason"),
+        with open(folder / "fetch_log.jsonl", "a", encoding="utf-8") as f:
+            f.write(json.dumps({"file": rf.name, "model": d.get("modelVersion"), "thinking": GEMINI_THINKING,
+                                "finish": cand.get("finishReason"),
                                 "usage": d.get("usageMetadata"), "at": e14.now()}) + "\n")
         done.append(rf.name)
         sent += 1

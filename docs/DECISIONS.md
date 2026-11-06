@@ -610,3 +610,16 @@ there (`git -C ../pocket-tts-khmer show archive/checkpoints-p0-p6:state/DECISION
   is on the 130 words B was trained on.
 - **Next:** more LLM spellings, and a fresh test B never saw (the 150 frozen words) for a fair comparison.
 - Details: `experiments/E16-gemini-bulk/RESULTS.md`.
+
+## D211 — E17 registered: as much LLM data as the free tools allow, Gemini, Claude and GPT (2026-11-06)
+- **Owner:** "add maximum data as we can then if it looks like we getting performance"; "plus GPT too because i
+  have codex".
+- **Data:** E16's 10,000 words plus up to 20,000 new words from the whole FineWeb-2 shard. Gemini (free key, 500
+  words per call) spells the new words; Claude (`claude -p`) and GPT (`codex exec`) spell all of them, on the
+  owner's existing subscriptions (no extra cost). New prompt: explicit chat-spelling rules plus 30 examples of the
+  owner's own typing (training half). Merged per word, E16's automatic filter, no hand checks, counted once.
+- **Collection deadline:** 2026-11-09 11:00 UTC; training needs at least 95% of the Claude and of the GPT replies.
+- **One model only (seed 0), owner's choice** ("let train once only"); otherwise E16's recipe and thresholds vs B.
+  Owner test fourth use, declared. Data check: E17 − E16 ≥ +3 with a
+  CI excluding 0. B-seen/unseen split of the owner test registered as a diagnostic.
+- Plan: `experiments/E17-llm-max/PLAN.md`; run `scripts/e17_run.sh`.

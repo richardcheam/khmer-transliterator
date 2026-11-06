@@ -326,6 +326,10 @@ def score() -> dict:
     b_train = {l.split("\t")[1] for l in (ROOT / "data/pairs.tsv").read_text(encoding="utf-8").splitlines()[1:]
                if l.split("\t")[3] == "train"}
     out["served_b_saw_test_words"] = sum(km in b_train for km, _ in test)
+    unseen = [km not in b_train for km, _ in test]           # owner-test words B was never trained on
+    out["b_unseen_owner_test_pct"] = {
+        name: round(float(100 * sum(Fraction(x) for x, u in zip(ws, unseen) if u) / sum(unseen)), 2)
+        for name, ws in out["per_word"].items()}
     seeds = runs()
     if seeds:
         b = [Fraction(x) for x in out["per_word"]["served_b"]]
