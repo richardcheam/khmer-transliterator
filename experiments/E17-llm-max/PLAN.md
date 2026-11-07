@@ -78,10 +78,13 @@ release of a model trained on them must say so and respect the providers' terms.
 
 ## Progress
 - 2026-11-06 10:10 UTC: owner moved the collection deadline earlier ("we can proceed to training") with Gemini at 26
-  of 33 new-word prompts (one more, reply_013, was cut off at 200 of 500 lines and skipped by the reader). Claude
+  of 33 new-word prompts (one more, reply_013, was cut off at 200 of 500 lines; the reader used those 200 lines). Claude
   and GPT: 106 of 106 each. The words of the 7 missing Gemini prompts still have Claude and GPT spellings. Decided
   before any training; no other change.
 - Filter: 26,301 words, 80,169 spellings, kept 65,600 (23,504 words); dropped 197 format, 687 trusted clashes,
   13,685 given for several words. Kept by source: Claude only 16,689, Gemini only 15,069, GPT only 11,019, all three
   9,041, Claude+GPT 7,113, Claude+Gemini 4,113, Gemini+GPT 2,556. After the leak filter 60,859 rows; 135,027 spelling
   pairs per epoch (E16: 86,776). Seed 0 training started.
+- 2026-11-07: seed 0 finished (best epoch 30, 314 min) and was scored. Owner test 54.8% vs B 63.1% (−8.3): rule
+  fails, not adopted. Guards pass (romanised −4.5, names +0.4). Data check not supported (E17 − E16 +4.2, CI
+  [−1.3, +9.9]). B-unseen words: E17 65.0%, B 60.0%. See `RESULTS.md` (D212).

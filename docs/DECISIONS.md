@@ -623,3 +623,16 @@ there (`git -C ../pocket-tts-khmer show archive/checkpoints-p0-p6:state/DECISION
   Owner test fourth use, declared. Data check: E17 − E16 ≥ +3 with a
   CI excluding 0. B-seen/unseen split of the owner test registered as a diagnostic.
 - Plan: `experiments/E17-llm-max/PLAN.md`; run `scripts/e17_run.sh`.
+
+## D212 — E17 result: not adopted; best owner-test score so far, names level with B (2026-11-07)
+- **Owner test (160 words, fourth use):** E17 (one model, seed 0) 54.8% against B 63.1%: −8.3 points, CI
+  [−15.8, −1.4] (rule ≥ −3).
+- **Guards:** `romanised_test` −4.5 (passes); `names_test2` +0.4 (passes).
+- **Data check:** E17 − E16 = +4.2 points, CI [−1.3, +9.9]: not supported (bar ≥ +3 with the CI excluding 0).
+- **No A/B and no serving change.**
+- **Registered diagnostic:** on the 30 owner-test words B never saw, E17 65.0% vs B 60.0%; the gap is on the 130
+  words B was trained on.
+- **Next:** the owner types the 150 frozen fresh words (`scripts/e16.py type`); B, E16 and E17 are then scored once
+  on them with the same thresholds.
+- Details: `experiments/E17-llm-max/RESULTS.md`.
+
