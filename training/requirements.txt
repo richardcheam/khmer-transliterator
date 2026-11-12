@@ -1,0 +1,7 @@
+# Training only. Install with the PyTorch build for your machine, e.g. CUDA 12.6:
+#   pip install -e '.[byt5]' -r training/requirements.txt \
+#     --index-url https://download.pytorch.org/whl/cu126 --extra-index-url https://pypi.org/simple
+torch==2.14.0
+transformers==5.19.0
+safetensors>=0.8
+pyyaml>=6.0

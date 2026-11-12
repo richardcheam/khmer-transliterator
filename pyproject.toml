@@ -1,0 +1,22 @@
+[project]
+name = "khmer-translit"
+version = "0.2.1"
+description = "English word -> Khmer phonetic spelling: a small NumPy model and a ByT5 LoRA adapter"
+readme = "README.md"
+requires-python = ">=3.10,<3.13"
+license = "PolyForm-Noncommercial-1.0.0"   # code; model weights and training data are licensed separately
+license-files = ["LICENSE"]
+dependencies = ["numpy>=2"]
+
+[project.optional-dependencies]
+byt5 = ["torch>=2.14,<3", "transformers>=5.19,<6", "safetensors>=0.8"]   # the ByT5 adapter backend (tested versions)
+
+[project.scripts]
+khmer-translit = "khmer_translit.cli:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/khmer_translit"]

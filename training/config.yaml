@@ -1,0 +1,35 @@
+# Training settings of the two published models. Changing them gives a different model.
+
+data:                               # relative to the repository root
+  small: training-data/small
+  byt5: training-data/byt5
+
+small_model:                        # English word -> Khmer spelling, NumPy at run time (train_small_model.py)
+  model: {d: 192, layers: 3, heads: 4, ff: 512, dropout: 0.1}
+  epochs: 40
+  batch: 128
+  lr: 0.001                         # AdamW; linear warm-up, then cosine decay to 0 at the last step
+  weight_decay: 0.01
+  warmup: 500
+  label_smoothing: 0.1
+  grad_clip: 1.0
+  threads: 6                        # CPU threads (the released run used 6; results depend slightly on this)
+  released_seed: 0
+
+byt5_adapter:                       # LoRA adapter for google/byt5-small (train_byt5_adapter.py)
+  base: google/byt5-small
+  base_revision: 68377bdc18a2ffec8a0533fef03b1c513a4dd49d
+  base_weights_sha256: 5c5aaf56299d6f2d4eaadad550a40765198828ead4d74f0a15f91cbe0961931a   # pytorch_model.bin
+  adapter: {r: 16, alpha: 32, dropout: 0.05, targets: [attn, ffn]}   # q/k/v/o of every attention; wi_0/wi_1/wo
+  base_dropout: 0.1
+  lr: 0.001                         # AdamW (betas 0.9, 0.999), no weight decay
+  betas: [0.9, 0.999]
+  weight_decay: 0.0
+  grad_clip: 1.0
+  batch: 32
+  warmup: 100                       # linear warm-up, then linear decay to 0 at max_updates
+  max_updates: 3000
+  eval_at: [600, 1200, 1800, 2400, 3000]   # keep the best: development top-1, then lower character error, then earlier
+  max_new_tokens: 121               # longest Khmer target in bytes + end mark
+  threads: 6
+  released_seed: 0
