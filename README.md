@@ -4,7 +4,7 @@
 in Khmer script. It does not translate.
 
 ```
-coffee → ខូហ្វ៊ី    Johnson → ចនសុន    computer → កំពូទែរ
+coffee → ខូហ្វ៊ី    Johnson → ចនសុន
 ```
 
 Two models, both research previews (their quality has not been independently validated):
