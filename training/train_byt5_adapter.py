@@ -159,12 +159,12 @@ def lr_factor(k: int, warmup: int, total: int) -> float:
 
 
 def train(seed: int, out: Path, device: str = "cpu", resume: bool = False, base: str | None = None,
-          cfg: dict | None = None, data=None, stop_after: int | None = None) -> dict:
+          cfg: dict | None = None, data=None, stop_after: int | None = None, data_dir: str | None = None) -> dict:
     """Train the adapter; see the module docstring. `cfg`, `data`, `stop_after` are for tests and checks."""
     cfg = cfg or yaml.safe_load(CONFIG.read_text(encoding="utf-8"))
     c = cfg["byt5_adapter"]
     torch.set_num_threads(c["threads"])
-    rows, dev = data or load_data(ROOT / cfg["data"]["byt5"])
+    rows, dev = data or load_data(Path(data_dir) if data_dir else ROOT / cfg["data"]["byt5"])
     dev_ = torch.device(device)
     model = build(base or c["base"], None if base else c["base_revision"], c["adapter"], c["base_dropout"], seed)
     model.to(dev_)
@@ -249,9 +249,10 @@ def main() -> None:
     ap.add_argument("--device", default="cpu", help="cpu or cuda")
     ap.add_argument("--base", default=None, help="local folder of google/byt5-small (default: download the pinned revision)")
     ap.add_argument("--resume", action="store_true", help="continue from <out>/last.pt")
+    ap.add_argument("--data", default=None, help="prepared data folder (default: training-data/byt5)")
     ap.add_argument("--stop-after", type=int, default=None, help="stop after this many updates (quick checks)")
     a = ap.parse_args()
-    r = train(a.seed, a.out, a.device, a.resume, a.base, stop_after=a.stop_after)
+    r = train(a.seed, a.out, a.device, a.resume, a.base, stop_after=a.stop_after, data_dir=a.data)
     print(json.dumps({k: v for k, v in r.items() if k != "log"}))
 
 

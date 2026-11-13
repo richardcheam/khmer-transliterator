@@ -1,0 +1,11 @@
+{
+ "_note": "released models' results from the project records (small model: model.npz of v0.2.0; adapter: adapter of v0.2.0)",
+ "small_final_top1_pct": 16.666666666666664,
+ "small_final_top4_pct": 40.4320987654321,
+ "small_flagged_top1_pct": 19.230769230769234,
+ "small_proxy_top1_pct": 30.133333333333333,
+ "small_proxy_top4_pct": 51.33333333333333,
+ "byt5_eval_top1_pct": 52.33,
+ "byt5_eval_cer": 0.1625,
+ "byt5_dev_top1_pct": 53.0
+}

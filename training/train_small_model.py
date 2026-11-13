@@ -100,13 +100,13 @@ def mean_loss(model, pairs, loss_fn) -> float:
 
 
 def train(seed: int, out: Path, device: str = "cpu", resume: bool = False, epochs: int | None = None,
-          stop_after: int | None = None, cfg: dict | None = None, data=None) -> dict:
+          stop_after: int | None = None, cfg: dict | None = None, data=None, data_dir: str | None = None) -> dict:
     """Train the small model; see the module docstring. `epochs`, `stop_after`, `data` are for tests and pilots."""
     cfg = cfg or yaml.safe_load(CONFIG.read_text(encoding="utf-8"))
     c, m = cfg["small_model"], cfg["small_model"]["model"]
     epochs = epochs or c["epochs"]
     torch.set_num_threads(c["threads"])
-    tr, tv, dev, vocab, chars = data or load_data(ROOT / cfg["data"]["small"])
+    tr, tv, dev, vocab, chars = data or load_data(Path(data_dir) if data_dir else ROOT / cfg["data"]["small"])
     dev_ = torch.device(device)
     tr_tgt = [target(k, chars) for _w, k in tr]
     tv_pairs = [(source(w, vocab), target(k, chars)) for w, k in tv]
@@ -183,9 +183,10 @@ def main() -> None:
     ap.add_argument("--out", type=Path, required=True, help="run folder")
     ap.add_argument("--device", default="cpu", help="cpu or cuda")
     ap.add_argument("--resume", action="store_true", help="continue from <out>/last.pt")
+    ap.add_argument("--data", default=None, help="prepared data folder (default: training-data/small)")
     ap.add_argument("--stop-after", type=int, default=None, help="stop after this many epochs (quick checks)")
     a = ap.parse_args()
-    r = train(a.seed, a.out, a.device, a.resume, stop_after=a.stop_after)
+    r = train(a.seed, a.out, a.device, a.resume, stop_after=a.stop_after, data_dir=a.data)
     print(json.dumps({k: v for k, v in r.items() if k != "log"}))
 
 

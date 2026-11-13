@@ -19,6 +19,8 @@ jobs:
           python-version: ${{ matrix.python }}
       - run: pip install -e ".[hub]"
       - run: python -m unittest discover -s tests
+      - name: the raw inputs rebuild the published training data exactly
+        run: python pipeline/prepare.py --out /tmp/data --check
 
   model:                                  # the published small model, from the pinned commit (cached)
     runs-on: ubuntu-latest

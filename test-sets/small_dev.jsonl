@@ -1,0 +1,103 @@
+{"id": "always#default", "word": "always", "family": "always", "accepted": ["អលវ៉េ"], "preferred": "អលវ៉េ", "flags": ["candidate_anchored", "pronunciation_ambiguous"], "tier": "attested", "split": "dev"}
+{"id": "amber#default", "word": "amber", "family": "amber", "accepted": ["អេមប៊ើ"], "preferred": "អេមប៊ើ", "flags": ["candidate_anchored"], "tier": "attested", "split": "dev"}
+{"id": "archive#default", "word": "archive", "family": "archive", "accepted": ["អាខាយ"], "preferred": "អាខាយ", "flags": ["candidate_anchored"], "tier": "attested", "split": "dev"}
+{"id": "aspirin#default", "word": "aspirin", "family": "aspirin", "accepted": ["អាស្ពីរីន"], "preferred": "អាស្ពីរីន", "flags": ["candidate_anchored"], "tier": "attested", "split": "dev"}
+{"id": "aum#default", "word": "aum", "family": "aum", "accepted": ["អ៊ុម"], "preferred": "អ៊ុម", "flags": ["dictionary_miss"], "tier": "attested", "split": "dev"}
+{"id": "automotive#default", "word": "automotive", "family": "automotive", "accepted": ["អូតូម៉ូធីវ"], "preferred": "អូតូម៉ូធីវ", "flags": ["candidate_anchored"], "tier": "attested", "split": "dev"}
+{"id": "benz#default", "word": "benz", "family": "benz", "accepted": ["បេន"], "preferred": "បេន", "flags": ["pronunciation_ambiguous"], "tier": "attested", "split": "dev"}
+{"id": "berry#default", "word": "berry", "family": "berry", "accepted": ["ប៊ឺរី"], "preferred": "ប៊ឺរី", "flags": ["candidate_anchored"], "tier": "attested", "split": "dev"}
+{"id": "bishop#default", "word": "bishop", "family": "bishop", "accepted": ["ប៊ិសប"], "preferred": "ប៊ិសប", "flags": ["candidate_anchored"], "tier": "attested", "split": "dev"}
+{"id": "brands#default", "word": "brands", "family": "brands", "accepted": ["ប្រេន"], "preferred": "ប្រេន", "flags": ["candidate_anchored"], "tier": "attested", "split": "dev"}
+{"id": "bye#default", "word": "bye", "family": "bye", "accepted": ["បាយ"], "preferred": "បាយ", "flags": [], "tier": "attested", "split": "dev"}
+{"id": "cambosport#default", "word": "cambosport", "family": "cambosport", "accepted": ["ខេមបូស្ប៉ត"], "preferred": "ខេមបូស្ប៉ត", "flags": ["dictionary_miss"], "tier": "attested", "split": "dev"}
+{"id": "chase#default", "word": "chase", "family": "chase", "accepted": ["ឈេស"], "preferred": "ឈេស", "flags": ["candidate_anchored"], "tier": "attested", "split": "dev"}
+{"id": "chuck#default", "word": "chuck", "family": "chuck", "accepted": ["ឈុក"], "preferred": "ឈុក", "flags": ["candidate_anchored"], "tier": "attested", "split": "dev"}
+{"id": "cold#default", "word": "cold", "family": "cold", "accepted": ["ខូល"], "preferred": "ខូល", "flags": ["candidate_anchored"], "tier": "attested", "split": "dev"}
+{"id": "cookie#default", "word": "cookie", "family": "cookie", "accepted": ["ខុកឃី"], "preferred": "ខុកឃី", "flags": [], "tier": "attested", "split": "dev"}
+{"id": "corporation#default", "word": "corporation", "family": "corporation", "accepted": ["ខបភើរេសិន"], "preferred": "ខបភើរេសិន", "flags": [], "tier": "attested", "split": "dev"}
+{"id": "crew#default", "word": "crew", "family": "crew", "accepted": ["ឃ្រូ"], "preferred": "ឃ្រូ", "flags": ["candidate_anchored"], "tier": "attested", "split": "dev"}
+{"id": "dome#default", "word": "dome", "family": "dome", "accepted": ["ដូម"], "preferred": "ដូម", "flags": [], "tier": "attested", "split": "dev"}
+{"id": "dropbox#default", "word": "dropbox", "family": "dropbox", "accepted": ["ដ្រប់បក់"], "preferred": "ដ្រប់បក់", "flags": [], "tier": "attested", "split": "dev"}
+{"id": "emirates#default", "word": "emirates", "family": "emirate", "accepted": ["អេមីរ៉ាត"], "preferred": "អេមីរ៉ាត", "flags": ["pronunciation_ambiguous"], "tier": "attested", "split": "dev"}
+{"id": "europa#default", "word": "europa", "family": "europa", "accepted": ["អឺរ៉ុប"], "preferred": "អឺរ៉ុប", "flags": [], "tier": "attested", "split": "dev"}
+{"id": "evolution#default", "word": "evolution", "family": "evolution", "accepted": ["អេវ៉ូលូស្យុង"], "preferred": "អេវ៉ូលូស្យុង", "flags": ["pronunciation_ambiguous"], "tier": "attested", "split": "dev"}
+{"id": "father#default", "word": "father", "family": "father", "accepted": ["ហ្វាឌើ"], "preferred": "ហ្វាឌើ", "flags": [], "tier": "attested", "split": "dev"}
+{"id": "fedora#default", "word": "fedora", "family": "fedora", "accepted": ["ហ្វេដូរ៉ា"], "preferred": "ហ្វេដូរ៉ា", "flags": ["candidate_anchored"], "tier": "attested", "split": "dev"}
+{"id": "first#default", "word": "first", "family": "first", "accepted": ["ហ្វ៊ិសត"], "preferred": "ហ្វ៊ិសត", "flags": [], "tier": "attested", "split": "dev"}
+{"id": "foot#default", "word": "foot", "family": "foot", "accepted": ["ហ្វូដ"], "preferred": "ហ្វូដ", "flags": ["candidate_anchored"], "tier": "attested", "split": "dev"}
+{"id": "formula#default", "word": "formula", "family": "formula", "accepted": ["ហ្វម៉ូឡា"], "preferred": "ហ្វម៉ូឡា", "flags": [], "tier": "attested", "split": "dev"}
+{"id": "foster#default", "word": "foster", "family": "foster", "accepted": ["ហ្វស្ទ័រ"], "preferred": "ហ្វស្ទ័រ", "flags": ["candidate_anchored"], "tier": "attested", "split": "dev"}
+{"id": "framework#default", "word": "framework", "family": "framework", "accepted": ["ហ្វ្រេមវើក"], "preferred": "ហ្វ្រេមវើក", "flags": [], "tier": "attested", "split": "dev"}
+{"id": "franchise#default", "word": "franchise", "family": "franchise", "accepted": ["ហ្វ្រេនឆាយ"], "preferred": "ហ្វ្រេនឆាយ", "flags": ["candidate_anchored"], "tier": "attested", "split": "dev"}
+{"id": "grab#default", "word": "grab", "family": "grab", "accepted": ["ក្រេប"], "preferred": "ក្រេប", "flags": [], "tier": "attested", "split": "dev"}
+{"id": "grand#default", "word": "grand", "family": "grand", "accepted": ["ហ្គ្រែន"], "preferred": "ហ្គ្រែន", "flags": [], "tier": "attested", "split": "dev"}
+{"id": "health#default", "word": "health", "family": "health", "accepted": ["ហែលស៍"], "preferred": "ហែលស៍", "flags": [], "tier": "attested", "split": "dev"}
+{"id": "hulk#default", "word": "hulk", "family": "hulk", "accepted": ["ហ៊ុក"], "preferred": "ហ៊ុក", "flags": ["candidate_anchored"], "tier": "attested", "split": "dev"}
+{"id": "ice#default", "word": "ice", "family": "ice", "accepted": ["អាយស៍"], "preferred": "អាយស៍", "flags": ["candidate_anchored"], "tier": "attested", "split": "dev"}
+{"id": "inch#default", "word": "inch", "family": "inch", "accepted": ["អ៊ីញ"], "preferred": "អ៊ីញ", "flags": [], "tier": "attested", "split": "dev"}
+{"id": "job#default", "word": "job", "family": "job", "accepted": ["ជប"], "preferred": "ជប", "flags": ["pronunciation_ambiguous"], "tier": "attested", "split": "dev"}
+{"id": "jobs#default", "word": "jobs", "family": "job", "accepted": ["ជប"], "preferred": "ជប", "flags": ["candidate_anchored", "pronunciation_ambiguous"], "tier": "attested", "split": "dev"}
+{"id": "joel#default", "word": "joel", "family": "joel", "accepted": ["ចូអែល"], "preferred": "ចូអែល", "flags": [], "tier": "attested", "split": "dev"}
+{"id": "johnny#default", "word": "johnny", "family": "johnny", "accepted": ["ចននី"], "preferred": "ចននី", "flags": [], "tier": "attested", "split": "dev"}
+{"id": "killer#default", "word": "killer", "family": "killer", "accepted": ["ឃីលឡឺ"], "preferred": "ឃីលឡឺ", "flags": ["candidate_anchored"], "tier": "attested", "split": "dev"}
+{"id": "kitchen#default", "word": "kitchen", "family": "kitchen", "accepted": ["ឃីតឆេន"], "preferred": "ឃីតឆេន", "flags": ["candidate_anchored"], "tier": "attested", "split": "dev"}
+{"id": "lagos#default", "word": "lagos", "family": "lagos", "accepted": ["ឡាហ្គោស"], "preferred": "ឡាហ្គោស", "flags": [], "tier": "attested", "split": "dev"}
+{"id": "laptop#default", "word": "laptop", "family": "laptop", "accepted": ["ឡេបថប"], "preferred": "ឡេបថប", "flags": [], "tier": "attested", "split": "dev"}
+{"id": "let#default", "word": "let", "family": "let", "accepted": ["លេត"], "preferred": "លេត", "flags": ["candidate_anchored"], "tier": "attested", "split": "dev"}
+{"id": "manager#default", "word": "manager", "family": "manager", "accepted": ["ម៉ែនណេជ័រ"], "preferred": "ម៉ែនណេជ័រ", "flags": ["pronunciation_ambiguous"], "tier": "attested", "split": "dev"}
+{"id": "mateen#default", "word": "mateen", "family": "mateen", "accepted": ["ម៉ាទីន"], "preferred": "ម៉ាទីន", "flags": ["dictionary_miss"], "tier": "attested", "split": "dev"}
+{"id": "metropolitan#default", "word": "metropolitan", "family": "metropolitan", "accepted": ["មេត្រូប៉ូលីថាន"], "preferred": "មេត្រូប៉ូលីថាន", "flags": ["candidate_anchored"], "tier": "attested", "split": "dev"}
+{"id": "microsoft#default", "word": "microsoft", "family": "microsoft", "accepted": ["ម៉ៃក្រូសូហ្វ"], "preferred": "ម៉ៃក្រូសូហ្វ", "flags": [], "tier": "attested", "split": "dev"}
+{"id": "mister#default", "word": "mister", "family": "mister", "accepted": ["មីស្ទ័រ"], "preferred": "មីស្ទ័រ", "flags": ["candidate_anchored"], "tier": "attested", "split": "dev"}
+{"id": "mom#default", "word": "mom", "family": "mom", "accepted": ["ម៉ាំ"], "preferred": "ម៉ាំ", "flags": [], "tier": "attested", "split": "dev"}
+{"id": "natural#default", "word": "natural", "family": "natural", "accepted": ["ណាត់ឆឺរ៉ល"], "preferred": "ណាត់ឆឺរ៉ល", "flags": ["candidate_anchored", "pronunciation_ambiguous"], "tier": "attested", "split": "dev"}
+{"id": "niko#default", "word": "niko", "family": "niko", "accepted": ["នីកូ"], "preferred": "នីកូ", "flags": [], "tier": "attested", "split": "dev"}
+{"id": "north#default", "word": "north", "family": "north", "accepted": ["ណត"], "preferred": "ណត", "flags": [], "tier": "attested", "split": "dev"}
+{"id": "open#default", "word": "open", "family": "open", "accepted": ["អូផេន"], "preferred": "អូផេន", "flags": ["candidate_anchored"], "tier": "attested", "split": "dev"}
+{"id": "paing#default", "word": "paing", "family": "paing", "accepted": ["ផាំង"], "preferred": "ផាំង", "flags": ["dictionary_miss"], "tier": "attested", "split": "dev"}
+{"id": "pan#default", "word": "pan", "family": "pan", "accepted": ["ផាន"], "preferred": "ផាន", "flags": ["candidate_anchored"], "tier": "attested", "split": "dev"}
+{"id": "pang#default", "word": "pang", "family": "pang", "accepted": ["ផាង"], "preferred": "ផាង", "flags": ["candidate_anchored"], "tier": "attested", "split": "dev"}
+{"id": "panther#default", "word": "panther", "family": "panther", "accepted": ["ផេនធ័រ"], "preferred": "ផេនធ័រ", "flags": ["candidate_anchored"], "tier": "attested", "split": "dev"}
+{"id": "patricia#default", "word": "patricia", "family": "patricia", "accepted": ["ប៉ាទ្រីសៀ"], "preferred": "ប៉ាទ្រីសៀ", "flags": [], "tier": "attested", "split": "dev"}
+{"id": "pear#default", "word": "pear", "family": "pear", "accepted": ["ភា"], "preferred": "ភា", "flags": ["candidate_anchored"], "tier": "attested", "split": "dev"}
+{"id": "pneumatic#default", "word": "pneumatic", "family": "pneumatic", "accepted": ["ញូម៉ាទិក"], "preferred": "ញូម៉ាទិក", "flags": ["candidate_anchored"], "tier": "attested", "split": "dev"}
+{"id": "poker#default", "word": "poker", "family": "poker", "accepted": ["ផូកឺ"], "preferred": "ផូកឺ", "flags": [], "tier": "attested", "split": "dev"}
+{"id": "polo#default", "word": "polo", "family": "polo", "accepted": ["ប៉ូឡូ"], "preferred": "ប៉ូឡូ", "flags": ["candidate_anchored"], "tier": "attested", "split": "dev"}
+{"id": "post#default", "word": "post", "family": "post", "accepted": ["ប៉ុស្តិ៍"], "preferred": "ប៉ុស្តិ៍", "flags": [], "tier": "attested", "split": "dev"}
+{"id": "power#default", "word": "power", "family": "power", "accepted": ["ផូវ៉ែ"], "preferred": "ផូវ៉ែ", "flags": [], "tier": "attested", "split": "dev"}
+{"id": "punch#default", "word": "punch", "family": "punch", "accepted": ["ផាញ់"], "preferred": "ផាញ់", "flags": ["candidate_anchored"], "tier": "attested", "split": "dev"}
+{"id": "rapid#default", "word": "rapid", "family": "rapid", "accepted": ["រ៉ាភីត"], "preferred": "រ៉ាភីត", "flags": ["candidate_anchored", "pronunciation_ambiguous"], "tier": "attested", "split": "dev"}
+{"id": "record#default", "word": "record", "family": "record", "accepted": ["រីខត"], "preferred": "រីខត", "flags": ["candidate_anchored", "pronunciation_ambiguous"], "tier": "attested", "split": "dev"}
+{"id": "related#default", "word": "related", "family": "related", "accepted": ["រីឡេតធីត"], "preferred": "រីឡេតធីត", "flags": ["pronunciation_ambiguous"], "tier": "attested", "split": "dev"}
+{"id": "report#default", "word": "report", "family": "report", "accepted": ["រីផត"], "preferred": "រីផត", "flags": ["pronunciation_ambiguous"], "tier": "attested", "split": "dev"}
+{"id": "reports#default", "word": "reports", "family": "report", "accepted": ["រីផតស៍"], "preferred": "រីផតស៍", "flags": ["candidate_anchored", "pronunciation_ambiguous"], "tier": "attested", "split": "dev"}
+{"id": "rights#default", "word": "rights", "family": "right", "accepted": ["រ៉ាយ"], "preferred": "រ៉ាយ", "flags": [], "tier": "attested", "split": "dev"}
+{"id": "roulette#default", "word": "roulette", "family": "roulette", "accepted": ["រ៉ូឡេត"], "preferred": "រ៉ូឡេត", "flags": ["candidate_anchored"], "tier": "attested", "split": "dev"}
+{"id": "safety#default", "word": "safety", "family": "safety", "accepted": ["សេហ្វធី"], "preferred": "សេហ្វធី", "flags": ["candidate_anchored"], "tier": "attested", "split": "dev"}
+{"id": "scooter#default", "word": "scooter", "family": "scooter", "accepted": ["ស្គូទ័រ"], "preferred": "ស្គូទ័រ", "flags": ["candidate_anchored"], "tier": "attested", "split": "dev"}
+{"id": "secure#default", "word": "secure", "family": "secure", "accepted": ["ស៊ីឃ្យួរ"], "preferred": "ស៊ីឃ្យួរ", "flags": ["candidate_anchored"], "tier": "attested", "split": "dev"}
+{"id": "shan#default", "word": "shan", "family": "shan", "accepted": ["ស្ហាន់"], "preferred": "ស្ហាន់", "flags": ["candidate_anchored"], "tier": "attested", "split": "dev"}
+{"id": "sheriff#default", "word": "sheriff", "family": "sheriff", "accepted": ["សឺរីហ្វ"], "preferred": "សឺរីហ្វ", "flags": ["candidate_anchored", "pronunciation_ambiguous"], "tier": "attested", "split": "dev"}
+{"id": "sir#default", "word": "sir", "family": "sir", "accepted": ["សឺ"], "preferred": "សឺ", "flags": [], "tier": "attested", "split": "dev"}
+{"id": "sokly#default", "word": "sokly", "family": "sokly", "accepted": ["សុខលី"], "preferred": "សុខលី", "flags": ["dictionary_miss"], "tier": "attested", "split": "dev"}
+{"id": "sponsor#default", "word": "sponsor", "family": "sponsor", "accepted": ["ស្ពនសឺរ"], "preferred": "ស្ពនសឺរ", "flags": ["candidate_anchored"], "tier": "attested", "split": "dev"}
+{"id": "start#default", "word": "start", "family": "start", "accepted": ["ស្តាត"], "preferred": "ស្តាត", "flags": [], "tier": "attested", "split": "dev"}
+{"id": "success#default", "word": "success", "family": "success", "accepted": ["សាក់សេស"], "preferred": "សាក់សេស", "flags": ["candidate_anchored"], "tier": "attested", "split": "dev"}
+{"id": "tangmo#default", "word": "tangmo", "family": "tangmo", "accepted": ["តាំងម៉ូ"], "preferred": "តាំងម៉ូ", "flags": ["dictionary_miss"], "tier": "attested", "split": "dev"}
+{"id": "ten#default", "word": "ten", "family": "ten", "accepted": ["តេន"], "preferred": "តេន", "flags": [], "tier": "attested", "split": "dev"}
+{"id": "tools#default", "word": "tools", "family": "tool", "accepted": ["ធូល"], "preferred": "ធូល", "flags": [], "tier": "attested", "split": "dev"}
+{"id": "top#default", "word": "top", "family": "top", "accepted": ["ថប"], "preferred": "ថប", "flags": ["pronunciation_ambiguous"], "tier": "attested", "split": "dev"}
+{"id": "tours#default", "word": "tours", "family": "tours", "accepted": ["ធួស៍"], "preferred": "ធួស៍", "flags": ["candidate_anchored", "pronunciation_ambiguous"], "tier": "attested", "split": "dev"}
+{"id": "tryptophan#default", "word": "tryptophan", "family": "tryptophan", "accepted": ["ទ្រីបតូហ្វាន"], "preferred": "ទ្រីបតូហ្វាន", "flags": ["dictionary_miss"], "tier": "attested", "split": "dev"}
+{"id": "tusk#default", "word": "tusk", "family": "tusk", "accepted": ["ទូសក៍"], "preferred": "ទូសក៍", "flags": ["candidate_anchored"], "tier": "attested", "split": "dev"}
+{"id": "universe#default", "word": "universe", "family": "universe", "accepted": ["យូនីវើស៍"], "preferred": "យូនីវើស៍", "flags": [], "tier": "attested", "split": "dev"}
+{"id": "victory#default", "word": "victory", "family": "victory", "accepted": ["វិកធឺរី"], "preferred": "វិកធឺរី", "flags": ["candidate_anchored", "pronunciation_ambiguous"], "tier": "attested", "split": "dev"}
+{"id": "walkie#default", "word": "walkie", "family": "walkie", "accepted": ["វ៉កឃី"], "preferred": "វ៉កឃី", "flags": [], "tier": "attested", "split": "dev"}
+{"id": "wave#default", "word": "wave", "family": "wave", "accepted": ["វ៉េវ"], "preferred": "វ៉េវ", "flags": ["candidate_anchored"], "tier": "attested", "split": "dev"}
+{"id": "weibo#default", "word": "weibo", "family": "weibo", "accepted": ["វ៉េបូ"], "preferred": "វ៉េបូ", "flags": ["dictionary_miss"], "tier": "attested", "split": "dev"}
+{"id": "welterweight#default", "word": "welterweight", "family": "welterweight", "accepted": ["វ៉ែលធ័រវ៉េត"], "preferred": "វ៉ែលធ័រវ៉េត", "flags": ["candidate_anchored"], "tier": "attested", "split": "dev"}
+{"id": "wilfried#default", "word": "wilfried", "family": "wilfried", "accepted": ["វីលហ្វ្រីដ"], "preferred": "វីលហ្វ្រីដ", "flags": [], "tier": "attested", "split": "dev"}
+{"id": "wolves#default", "word": "wolves", "family": "wolves", "accepted": ["វូលស៍"], "preferred": "វូលស៍", "flags": [], "tier": "attested", "split": "dev"}
+{"id": "yellow#default", "word": "yellow", "family": "yellow", "accepted": ["យ៉េលឡូ"], "preferred": "យ៉េលឡូ", "flags": ["candidate_anchored"], "tier": "attested", "split": "dev"}
+{"id": "young#default", "word": "young", "family": "young", "accepted": ["យ៉ាំង"], "preferred": "យ៉ាំង", "flags": [], "tier": "attested", "split": "dev"}
+{"id": "zuckerberg#default", "word": "zuckerberg", "family": "zuckerberg", "accepted": ["ហ្សាកឺបឺក"], "preferred": "ហ្សាកឺបឺក", "flags": [], "tier": "attested", "split": "dev"}

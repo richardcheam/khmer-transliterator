@@ -55,9 +55,12 @@ irregular English spelling are the weakest group for both models; spellings foll
 models write the English sound, not established Khmer forms (`coffee` gives ខូហ្វ៊ី, not the usual កាហ្វេ).
 Details and caveats: the model cards and the report.
 
-## Train them yourself
-[`TRAINING.md`](TRAINING.md) retrains both models from scratch with the code in [`training/`](training/) and the
-exact training data in [`training-data/`](training-data/README.md).
+## Reproduce them
+[`TRAINING.md`](TRAINING.md) runs the whole pipeline: prepare the training data from raw inputs
+([`training-data/raw/`](training-data/raw/README.md); the result is checked byte for byte against the published
+training files), train the small model and the ByT5 adapter, and evaluate on every published test set
+([`test-sets/`](test-sets/README.md)) next to the published models' numbers. `pipeline/run_all.sh` does it in one
+command. In our check, retraining the small model on a CPU gave exactly the published model.
 
 ## Repository
 | Path | What it is |
@@ -65,7 +68,9 @@ exact training data in [`training-data/`](training-data/README.md).
 | `src/khmer_translit/` | the package: `english.py` (small model), `nnet.py` (its NumPy network), `byt5.py` (ByT5 adapter backend), `phonetic_source.py` (input normalisation and encoding), `cli.py` (`khmer-translit`) |
 | `tests/` | package tests |
 | `training/` | training code and settings (PyTorch), with its own tests |
-| `training-data/` | the training and development data of both models, with sources and notices |
+| `training-data/` | raw inputs (`raw/`) and the prepared training and development data of both models, with sources and notices |
+| `test-sets/` | the test sets behind the published numbers, and what each was used for |
+| `pipeline/` | data preparation, evaluation and the run-everything script |
 | `report/` | the technical report (PDF) |
 
 ## Licence
