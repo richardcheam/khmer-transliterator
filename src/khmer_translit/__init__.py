@@ -5,4 +5,8 @@
 
 The command line is `khmer-translit` (`khmer_translit.cli`).
 """
-__version__ = "0.2.1"
+try:
+    from importlib.metadata import PackageNotFoundError, version as _version
+    __version__ = _version("khmer-translit")
+except PackageNotFoundError:          # a source checkout without installing
+    __version__ = "0+unknown"

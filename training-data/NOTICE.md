@@ -2,8 +2,7 @@
 
 **Licence of these files:** CC BY-SA 4.0 (https://creativecommons.org/licenses/by-sa/4.0/), because part of the
 data is derived from Khmer Wikipedia (CC BY-SA). This covers the author's rights only; the sources below keep their
-own terms. The trained model weights are licensed separately (CC BY-NC-SA 4.0, see their model cards), and the code
-under PolyForm Noncommercial 1.0.0 (`LICENSE`).
+own terms. The trained model weights are also CC BY-SA 4.0 (see their model cards), and the code is MIT (`LICENSE`).
 
 | Source | Used for | Licence and notice |
 |---|---|---|

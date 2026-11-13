@@ -18,25 +18,25 @@ Technical report: [`report/khmer-transliterator-technical-report.pdf`](report/kh
 
 ## Use
 ```bash
-pip install git+https://github.com/richardcheam/khmer-transliterator                 # NumPy only
-hf download ric912/en-km-phonetic-transliterator model.npz --local-dir small-model
+pip install "khmer-translit[hub]"          # NumPy + huggingface_hub; the model (10 MB) downloads on first use
 
-khmer-translit predict --model small-model/model.npz --word coffee --top-k 3 --json
-printf 'computer\nJohnson\nLondon\n' | khmer-translit predict --model small-model/model.npz --input - --jsonl
+khmer-translit predict --word coffee --top-k 3 --json
+printf 'computer\nJohnson\nLondon\n' | khmer-translit predict --input - --jsonl
 ```
 ```python
 from khmer_translit.english import Transliterator
 
-tl = Transliterator.from_pretrained("small-model/model.npz")   # load once, reuse
+tl = Transliterator.from_pretrained()     # the published model (pinned, sha256-checked); load once, reuse
 print(tl.predict("coffee").text)                                # ខូហ្វ៊ី
 ```
 The ByT5 adapter:
 ```bash
-pip install "khmer-translit[byt5] @ git+https://github.com/richardcheam/khmer-transliterator"
-hf download ric912/en-km-phonetic-byt5-lora --local-dir byt5-adapter
-khmer-translit predict --backend byt5 --model byt5-adapter --word coffee --top-k 4 --json
+pip install "khmer-translit[byt5]"         # adds PyTorch and Transformers
+khmer-translit predict --backend byt5 --word coffee --top-k 4 --json
 ```
-The base model (`google/byt5-small`, pinned revision) is downloaded on first use, or passed with `--base FOLDER`.
+The adapter and the base model (`google/byt5-small`, pinned revision) are downloaded on first use; `--model FOLDER`
+and `--base FOLDER` use local copies, and `--offline` never downloads. Without `[hub]`, download `model.npz`
+yourself and pass `--model path/to/model.npz`.
 
 **Inputs:** one English word or name, at most 32 letters (normalised: NFKC, lower case, accents removed,
 apostrophes and hyphens dropped). Empty input, several words, digits or other scripts, and longer words are refused
@@ -69,6 +69,6 @@ exact training data in [`training-data/`](training-data/README.md).
 | `report/` | the technical report (PDF) |
 
 ## Licence
-- **Code:** PolyForm Noncommercial 1.0.0 (`LICENSE`).
-- **Model weights:** CC BY-NC-SA 4.0 (see the model cards).
+- **Code:** MIT (`LICENSE`), from version 0.3.0 (0.2.x was PolyForm Noncommercial).
+- **Model weights:** CC BY-SA 4.0 (see the model cards), since 2026-11-13 (before: CC BY-NC-SA 4.0).
 - **Training data:** CC BY-SA 4.0; the sources keep their own terms (`training-data/NOTICE.md`).

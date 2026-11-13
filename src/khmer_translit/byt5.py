@@ -140,13 +140,14 @@ class ByT5Transliterator:
         self.batch_size = int(dec.get("batch_size", 32))
 
     @classmethod
-    def from_pretrained(cls, adapter: str | Path, base: str | Path | None = None, *, offline: bool | None = None,
+    def from_pretrained(cls, adapter: str | Path | None = None, base: str | Path | None = None, *, offline: bool | None = None,
                         threads: int | None = None, expected_sha256: str | None = None,
                         verify_base: bool = True) -> "ByT5Transliterator":
         """Load the base model and the adapter.
 
         Args:
-            adapter: Folder with `adapter.safetensors` and `adapter_config.json`.
+            adapter: Folder with `adapter.safetensors` and `adapter_config.json`. None: the published adapter,
+                downloaded on first use (pinned commit, sha256-checked).
             base: Local base folder, or a Hub id (default `google/byt5-small` at the pinned revision, resolved
                 from the Transformers cache or downloaded once unless offline).
             offline: Never download. Default: true if `HF_HUB_OFFLINE` or `KHMER_TRANSLIT_OFFLINE` is set.
@@ -165,6 +166,9 @@ class ByT5Transliterator:
         torch = _deps()
         from safetensors.torch import load_file
         from transformers import T5ForConditionalGeneration
+        if adapter is None:
+            from khmer_translit import hub
+            adapter = hub.download("byt5", local_files_only=bool(offline))
         adapter = Path(adapter)
         cfg_p, ten_p = adapter / CONFIG_FILE, adapter / ADAPTER_FILE
         for p in (cfg_p, ten_p):

@@ -31,7 +31,8 @@ def _load(args: argparse.Namespace):
                                                   threads=args.threads, expected_sha256=getattr(args, "sha256", None))
     from khmer_translit.english import Transliterator
     return Transliterator.from_pretrained(args.model, cmudict_path=args.cmudict or ps.CMUDICT,
-                                          expected_sha256=getattr(args, "sha256", None))
+                                          expected_sha256=getattr(args, "sha256", None),
+                                          offline=bool(getattr(args, "offline", False)))
 
 
 def cmd_prepare(args: argparse.Namespace) -> int:
@@ -96,9 +97,10 @@ def main(argv: list[str] | None = None) -> int:
         q = sub.add_parser(name)
         q.add_argument("--backend", choices=("small", "e02", "byt5"), default="small",
                        help="small: the small NumPy model (default; 'e02' is the same); byt5: ByT5 + LoRA adapter")
-        q.add_argument("--model", required=True, help="small: model.npz or its folder; byt5: the adapter folder")
+        q.add_argument("--model", default=None, help="small: model.npz or its folder; byt5: the adapter folder "
+                       "(default: the published model, downloaded on first use; needs the [hub] extra)")
         q.add_argument("--base", default=None, help="byt5: local google/byt5-small folder or Hub id (pinned revision)")
-        q.add_argument("--offline", action="store_true", help="byt5: never download (also HF_HUB_OFFLINE=1)")
+        q.add_argument("--offline", action="store_true", help="never download; use local files or the cache (also HF_HUB_OFFLINE=1)")
         q.add_argument("--threads", type=int, default=None, help="byt5: CPU threads")
         q.add_argument("--cmudict", default=None, help="CMUdict file (phone-input models)")
         q.add_argument("--sha256", default=None, help="refuse the model unless its sha256 matches")
@@ -114,7 +116,12 @@ def main(argv: list[str] | None = None) -> int:
     args = ap.parse_args(argv)
     try:
         return {"prepare": cmd_prepare, "predict": cmd_predict, "inspect": cmd_inspect}[args.cmd](args)
-    except (FileNotFoundError, ValueError, ImportError) as e:
+    except (FileNotFoundError, ValueError, ImportError, OSError) as e:
+        print(f"khmer-translit: error: {e}", file=sys.stderr)
+        return 2
+    except RuntimeError as e:                     # e.g. hub.IntegrityError: a downloaded file failed its check
+        if type(e).__name__ != "IntegrityError":
+            raise
         print(f"khmer-translit: error: {e}", file=sys.stderr)
         return 2
 

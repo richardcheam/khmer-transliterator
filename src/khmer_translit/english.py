@@ -100,14 +100,16 @@ class Transliterator:
         self.beam = int(meta.get("beam", 4))
 
     @classmethod
-    def from_pretrained(cls, path: str | Path, cmudict_path: str | Path = ps.CMUDICT,
-                        expected_sha256: str | None = None) -> "Transliterator":
+    def from_pretrained(cls, path: str | Path | None = None, cmudict_path: str | Path = ps.CMUDICT,
+                        expected_sha256: str | None = None, offline: bool = False) -> "Transliterator":
         """Load a model file (`model.npz`, as written by `training/train_small_model.py`).
 
         Args:
-            path: The `model.npz` file, or a folder holding it.
+            path: The `model.npz` file, or a folder holding it. None: the published model, downloaded on first use
+                (pinned commit, sha256-checked; needs `pip install "khmer-translit[hub]"`).
             cmudict_path: CMUdict file (phone-input models only; checked against the hash the model records).
             expected_sha256: If given, the file's sha256 must match.
+            offline: With `path=None`, use only an already-downloaded copy.
 
         Returns:
             The transliterator.
@@ -116,6 +118,9 @@ class Transliterator:
             FileNotFoundError: Missing model file (or CMUdict for a phone-input model).
             ModelFormatError: Checksum, format, encoder version or vocabulary mismatch.
         """
+        if path is None:
+            from khmer_translit import hub
+            path = hub.download("small", local_files_only=offline)
         path = Path(path)
         if path.is_dir():
             path = path / "model.npz"

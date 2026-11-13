@@ -38,6 +38,25 @@ class Normalization(unittest.TestCase):
         self.assertEqual([ps.ENGLISH_VOCAB.tokens[i] for i in ids], ["<task:en>", "a", "b"])
 
 
+class Pinning(unittest.TestCase):
+    def test_full_commits_and_hashes(self):
+        from khmer_translit import hub
+        for spec in hub.MODELS.values():
+            self.assertEqual(len(spec["revision"]), 40)
+            self.assertTrue(all(len(h) == 64 for h in spec["files"].values()))
+
+    def test_verify_rejects_a_changed_file(self):
+        import tempfile
+        from pathlib import Path
+        from khmer_translit import hub
+        with tempfile.TemporaryDirectory() as d:
+            p = Path(d) / "model.npz"
+            p.write_bytes(b"abc")
+            hub.verify(d, {"model.npz": hub.sha256_file(p)})
+            with self.assertRaises(hub.IntegrityError):
+                hub.verify(d, {"model.npz": "0" * 64})
+
+
 class ByteCodec(unittest.TestCase):
     def test_round_trip(self):
         from khmer_translit import byt5
